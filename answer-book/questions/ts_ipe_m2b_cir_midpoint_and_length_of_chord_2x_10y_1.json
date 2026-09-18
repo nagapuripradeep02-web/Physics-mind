@@ -89,22 +89,38 @@
             "style": "indent",
             "added": true
           },
-          "p = |1 − 10 + 7| / √(1² + (−2)²) = 2/√5",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|1\\ - \\ 10\\ + \\ 7\\right|}{\\sqrt{1^{2}\\ + \\ \\left( - 2\\right)^{2}}} = \\ \\dfrac{2}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Half the chord is √(r² − p²).",
             "added": true
           },
           "Length of the chord = 2√(r² − p²)",
           {
-            "text": "p² = 4/5",
+            "text": "p^{2}\\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2√(25 − 4/5) = 2√(121/5)",
           {
-            "text": "since 25 − 4/5 = (125 − 4)/5 = 121/5",
+            "text": "= \\ 2\\sqrt{25\\ - \\ \\dfrac{4}{5}}\\ = \\ 2\\sqrt{\\dfrac{121}{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce25\\ - \\ \\dfrac{4}{5} = \\ \\dfrac{125\\ - \\ 4}{5} = \\ \\dfrac{121}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2(11)/√5 = 22/√5"
+          {
+            "text": "= \\ \\dfrac{2\\left(11\\right)}{\\sqrt{5}} = \\ \\dfrac{22}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The perpendicular distance from the centre to the line is p, and the chord is 2√(r² − p²). Writing 25 as 125/5 makes the subtraction one step: (125 − 4)/5 = 121/5.",
         "common_mistakes": [
@@ -112,10 +128,22 @@
           "Squaring 2/√5 as 2/5."
         ],
         "lines_compact": [
-          "p = |1 − 10 + 7| / √(1² + (−2)²) = 2/√5",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|1\\ - \\ 10\\ + \\ 7\\right|}{\\sqrt{1^{2}\\ + \\ \\left( - 2\\right)^{2}}} = \\ \\dfrac{2}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Length of the chord = 2√(r² − p²)",
-          "= 2√(25 − 4/5) = 2√(121/5)",
-          "= 2(11)/√5 = 22/√5"
+          {
+            "text": "= \\ 2\\sqrt{25\\ - \\ \\dfrac{4}{5}}\\ = \\ 2\\sqrt{\\dfrac{121}{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(11\\right)}{\\sqrt{5}} = \\ \\dfrac{22}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -139,25 +167,47 @@
             "added": true
           },
           {
-            "text": "  (h − x₁)/a = (k − y₁)/b = −(ax₁+by₁+c)/(a²+b²)",
+            "text": "\\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b} = \\ - \\dfrac{ax_{1} + by_{1} + c}{a^{2} + b^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "(h − 1)/1 = (k − 5)/(−2) = −(1 − 10 + 7)/(1 + 4)",
           {
-            "text": "1 − 10 + 7 = −2, so the right side is 2/5",
+            "text": "\\dfrac{h\\ - \\ 1}{1} = \\ \\dfrac{k\\ - \\ 5}{ - 2} = \\ - \\dfrac{1\\ - \\ 10\\ + \\ 7}{1\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ 10\\ + \\ 7\\ = \\ - 2,\\ \\text{so}\\ \\text{the}\\ \\text{right}\\ \\text{side}\\ \\text{is}\\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (h − 1)/1 = (k − 5)/(−2) = 2/5",
-          "⇒ h = 1 + 2/5 = 7/5",
           {
-            "text": "k − 5 = (−2)(2/5) = −4/5",
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ 1}{1} = \\ \\dfrac{k\\ - \\ 5}{ - 2} = \\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ h\\ = \\ 1\\ + \\ \\dfrac{2}{5} = \\ \\dfrac{7}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ - \\ 5\\ = \\ \\left( - 2\\right)\\left(\\dfrac{2}{5}\\right)\\ = \\ - \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ k = 5 − 4/5 = 21/5",
           {
-            "text": "∴ Mid point = (7/5, 21/5)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ k\\ = \\ 5\\ - \\ \\dfrac{4}{5} = \\ \\dfrac{21}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Mid}\\ \\text{point}\\ = \\ \\left(\\dfrac{7}{5},\\ \\dfrac{21}{5}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The perpendicular from the centre to a chord bisects it, so the point where that perpendicular meets the line is the mid point of the chord. The common value 2/5 comes from −(−2)/5, which is where the sign is usually lost.",
@@ -168,13 +218,30 @@
         "lines_compact": [
           "The mid point of the chord is the foot of the",
           "perpendicular (h, k) from C(1, 5) to x − 2y + 7 = 0",
-          "(h − 1)/1 = (k − 5)/(−2) = −(1 − 10 + 7)/(1 + 4)",
-          "⇒ (h − 1)/1 = (k − 5)/(−2) = 2/5",
-          "⇒ h = 1 + 2/5 = 7/5",
-          "⇒ k = 5 − 4/5 = 21/5",
           {
-            "text": "∴ Mid point = (7/5, 21/5)",
-            "style": "boxed"
+            "text": "\\dfrac{h\\ - \\ 1}{1} = \\ \\dfrac{k\\ - \\ 5}{ - 2} = \\ - \\dfrac{1\\ - \\ 10\\ + \\ 7}{1\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ 1}{1} = \\ \\dfrac{k\\ - \\ 5}{ - 2} = \\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ h\\ = \\ 1\\ + \\ \\dfrac{2}{5} = \\ \\dfrac{7}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ k\\ = \\ 5\\ - \\ \\dfrac{4}{5} = \\ \\dfrac{21}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Mid}\\ \\text{point}\\ = \\ \\left(\\dfrac{7}{5},\\ \\dfrac{21}{5}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },

@@ -68,8 +68,16 @@
             "style": "normal"
           },
           "Cubing both sides:",
-          "(5/3) × 3 = 5, so",
-          "(d²y/dx²)³ = [1 + (dy/dx)²]⁵",
+          {
+            "text": "\\left(\\dfrac{5}{3}\\right)\\ \\times \\ 3\\ = \\ 5,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d^{2}y}{dx^{2}}\\right)^{3}\\ = \\ \\left[1\\ + \\ \\left(\\dfrac{dy}{dx}\\right)^{2}\\right]^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is now free from fractional powers."
         ],
         "why": "Cubing both sides multiplies the exponent 5/3 by 3, giving the whole number 5, so the equation becomes a genuine polynomial in the derivatives with no fractional power left anywhere.",
@@ -87,9 +95,17 @@
         "margin_note": "The last mark. Cubing puts (d²y/dx²)³ on the left, so the highest-order derivative now carries exponent 3.",
         "memory_tip": "Whenever cubing lands the highest derivative itself inside a cube, the degree is 3, not 1 — read the exponent on the LEFT side here, not the right.",
         "lines": [
-          "The highest order derivative present is d²y/dx²,",
+          {
+            "text": "\\text{The}\\ \\text{highest}\\ \\text{order}\\ \\text{derivative}\\ \\text{present}\\ \\text{is}\\ \\dfrac{d^{2}y}{dx^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the order is 2.",
-          "The exponent on (d²y/dx²)³ in the cleared",
+          {
+            "text": "\\text{The}\\ \\text{exponent}\\ \\text{on}\\ \\left(\\dfrac{d^{2}y}{dx^{2}}\\right)^{3}\\ \\text{in}\\ \\text{the}\\ \\text{cleared}",
+            "style": "normal",
+            "render": "katex"
+          },
           "equation is 3,",
           "so the degree is 3.",
           {
@@ -112,9 +128,17 @@
           "Assuming degree is always 1 just because order-and-degree questions often come out that way."
         ],
         "lines_compact": [
-          "The highest order derivative present is d²y/dx²,",
+          {
+            "text": "\\text{The}\\ \\text{highest}\\ \\text{order}\\ \\text{derivative}\\ \\text{present}\\ \\text{is}\\ \\dfrac{d^{2}y}{dx^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the order is 2.",
-          "The exponent on (d²y/dx²)³ in the cleared",
+          {
+            "text": "\\text{The}\\ \\text{exponent}\\ \\text{on}\\ \\left(\\dfrac{d^{2}y}{dx^{2}}\\right)^{3}\\ \\text{in}\\ \\text{the}\\ \\text{cleared}",
+            "style": "normal",
+            "render": "katex"
+          },
           "equation is 3,",
           "so the degree is 3.",
           {

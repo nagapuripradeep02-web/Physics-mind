@@ -61,11 +61,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x²/a² + y²/b² = 1 ⇒ y²/b² = 1 − x²/a²",
-          "Write 1 − x²/a² over a²:",
-          "⇒ y² = b²[(a² − x²)/a²]",
+          {
+            "text": "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ \\Rightarrow \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ - \\ \\dfrac{x^{2}}{a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Write}\\ 1\\ - \\ \\dfrac{x^{2}}{a^{2}}\\text{over}\\ a^{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y^{2}\\ = \\ b^{2}\\left[\\dfrac{a^{2}\\ - \\ x^{2}}{a^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take the positive root for the upper half:",
-          "⇒ y = (b/a)√(a² − x²)",
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\left(\\dfrac{b}{a}\\right)\\sqrt{a^{2}\\ - \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put y = 0 ⇒ √(a² − x²) = 0 ⇒ x² = a² ⇒ x = ±a"
         ],
         "why": "Solving the ellipse equation for y gives the upper half of the curve as a function of x, and setting y=0 finds where the curve meets the x-axis — at x = ±a, and x = a is the length of the semi-axis along the x-axis.",
@@ -193,9 +209,15 @@
             "added": true
           },
           "Required area = 4 (area of OAB)",
-          "= 4∫₀ᵃ y dx = 4∫₀ᵃ (b/a)√(a² − x²) dx",
           {
-            "text": "Take out 4b/a and use the standard formula",
+            "text": "= \\ 4\\int _{0}^{a}\\ ydx\\ = \\ 4\\int _{0}^{a}\\ \\left(\\dfrac{b}{a}\\right)\\sqrt{a^{2}\\ - \\ x^{2}}dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ \\text{out}\\ \\dfrac{4b}{a}\\text{and}\\ \\text{use}\\ \\text{the}\\ \\text{standard}\\ \\text{formula}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -206,7 +228,9 @@
           "= (4b/a)[(x/2)√(a²−x²) +",
           "(a²/2)Sin⁻¹(x/a)]₀ᵃ   [standard formula]",
           {
-            "text": "At x = a: √(a² − a²) = 0 and Sin⁻¹(1) = π/2;",
+            "text": "\\text{At}\\ x\\ = \\ a:\\ \\sqrt{a^{2}\\ - \\ a^{2}}\\ = \\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{2};",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -214,10 +238,20 @@
             "style": "indent",
             "added": true
           },
-          "= (4b/a)[0 + (a²/2)Sin⁻¹(1)]",
-          "= (4b/a)(a²/2)(π/2)",
           {
-            "text": "and (4b/a)(a²/2)(π/2) = 4a²bπ/(4a) = πab",
+            "text": "= \\ \\left(\\dfrac{4b}{a}\\right)\\left[0\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4b}{a}\\right)\\left(\\dfrac{a^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\left(\\dfrac{4b}{a}\\right)\\left(\\dfrac{a^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{4a^{2}b\\pi }{4a} = \\ \\pi ab",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -232,11 +266,23 @@
         ],
         "lines_compact": [
           "Required area = 4 (area of OAB)",
-          "= 4∫₀ᵃ y dx = 4∫₀ᵃ (b/a)√(a² − x²) dx",
+          {
+            "text": "= \\ 4\\int _{0}^{a}\\ ydx\\ = \\ 4\\int _{0}^{a}\\ \\left(\\dfrac{b}{a}\\right)\\sqrt{a^{2}\\ - \\ x^{2}}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (4b/a)[(x/2)√(a²−x²) +",
           "(a²/2)Sin⁻¹(x/a)]₀ᵃ   [standard formula]",
-          "= (4b/a)[0 + (a²/2)Sin⁻¹(1)]",
-          "= (4b/a)(a²/2)(π/2)",
+          {
+            "text": "= \\ \\left(\\dfrac{4b}{a}\\right)\\left[0\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4b}{a}\\right)\\left(\\dfrac{a^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area of the ellipse = πab sq. units",
             "style": "boxed"
@@ -252,8 +298,16 @@
         "margin_note": "Last mark. Substituting b=a into πab is the whole deduction — no fresh integration is needed.",
         "memory_tip": "A circle is an ellipse with equal axes — setting b=a in any ellipse formula gives the matching circle formula.",
         "lines": [
-          "If b = a, the ellipse x²/a² + y²/b²",
-          "= 1 becomes x²/a² + y²/a² = 1, i.e. x² + y² = a²",
+          {
+            "text": "\\text{If}\\ b\\ = \\ a,\\ \\text{the}\\ \\text{ellipse}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ \\text{becomes}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{a^{2}} = \\ 1,\\ i.e.\\ x^{2}\\ + \\ y^{2}\\ = \\ a^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[a circle of radius a]",
           "Putting b = a in the area formula πab gives",
           {
@@ -271,8 +325,16 @@
           "Writing the final circle area as πa instead of πa²."
         ],
         "lines_compact": [
-          "If b = a, the ellipse x²/a² + y²/b²",
-          "= 1 becomes x²/a² + y²/a² = 1, i.e. x² + y² = a²",
+          {
+            "text": "\\text{If}\\ b\\ = \\ a,\\ \\text{the}\\ \\text{ellipse}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ \\text{becomes}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{a^{2}} = \\ 1,\\ i.e.\\ x^{2}\\ + \\ y^{2}\\ = \\ a^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[a circle of radius a]",
           "Putting b = a in the area formula πab gives",
           {

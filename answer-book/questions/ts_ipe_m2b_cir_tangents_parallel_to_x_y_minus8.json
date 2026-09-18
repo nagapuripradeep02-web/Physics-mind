@@ -100,7 +100,11 @@
             "text": "Distance from C(2, −3) to x + y + k = 0:",
             "added": true
           },
-          "⇒ |2 − 3 + k| / √(1 + 1) = 5",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left|2\\ - \\ 3\\ + \\ k\\right|}{\\sqrt{1\\ + \\ 1}} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ |k − 1| = 5√2",
           "⇒ k − 1 = ±5√2 ⇒ k = 1 ± 5√2"
         ],
@@ -112,7 +116,11 @@
         "lines_compact": [
           "Any line parallel to x + y − 8 = 0 is x + y + k = 0",
           "If it touches the circle then p = r",
-          "⇒ |2 − 3 + k| / √(1 + 1) = 5",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left|2\\ - \\ 3\\ + \\ k\\right|}{\\sqrt{1\\ + \\ 1}} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ |k − 1| = 5√2",
           "⇒ k − 1 = ±5√2 ⇒ k = 1 ± 5√2"
         ]

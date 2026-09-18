@@ -66,7 +66,11 @@
             "style": "heading"
           },
           "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
-          "Here a = π/2.",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ I",
           {
             "text": "= \\int _{0}^{\\pi /2} \\cos ^{5/2}x/(\\sin ^{5/2}x +",
@@ -94,7 +98,11 @@
         "margin_note": "One more mark. (√cosx)⁵ becomes (√sinx)⁵ under the swap, and the denominator's two terms swap places but stay the same sum.",
         "memory_tip": "(√cos(π/2 − x))⁵ = (√sinx)⁵ — the base swaps, the power 5/2 stays exactly as written.",
         "lines": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2}",
@@ -112,12 +120,15 @@
             "style": "normal"
           },
           {
-            "text": "cos(π/2 − x) = sinx and sin(π/2 − x) = cosx,",
+            "text": "\\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x\\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  and the power 5/2 stays on each:",
+            "text": "\\text{and}\\ \\text{the}\\ \\text{power}\\ \\dfrac{5}{2}\\text{stays}\\ \\text{on}\\ \\text{each}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "⇒ I",
@@ -138,7 +149,11 @@
           "Changing the order of the denominator's two terms and thinking that changes its value."
         ],
         "lines_compact": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2}",
@@ -206,8 +221,9 @@
             "added": true
           },
           {
-            "text": "∴ I = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The sum in the numerator is identical to the denominator, so the whole fraction equals 1 for every x — reducing the integral to the length of the interval.",
@@ -233,8 +249,9 @@
             "style": "normal"
           },
           {
-            "text": "∴ I = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

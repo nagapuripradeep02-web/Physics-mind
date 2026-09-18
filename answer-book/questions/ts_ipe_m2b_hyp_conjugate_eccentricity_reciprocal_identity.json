@@ -65,9 +65,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let x²/a² − y²/b² = 1 be the hyperbola",
+          {
+            "text": "\\text{Let}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ \\text{be}\\ \\text{the}\\ \\text{hyperbola}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and e its eccentricity.",
-          "Its conjugate hyperbola is x²/a² − y²/b² = −1,",
+          {
+            "text": "\\text{Its}\\ \\text{conjugate}\\ \\text{hyperbola}\\ \\text{is}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ - 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "with eccentricity e₁.",
           "(For the hyperbola b² = a²(e² − 1), so",
           {
@@ -83,7 +91,11 @@
             "text": "  e₁² = (a² + b²)/b².)",
             "style": "indent"
           },
-          "e = √(a² + b²)/a and e₁ = √(a² + b²)/b"
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{a}\\text{and}\\ e_{1}\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The conjugate hyperbola swaps which term is positive, so its transverse axis is the OTHER axis — its eccentricity formula uses b in the denominator where the original used a.",
         "common_mistakes": [
@@ -105,22 +117,28 @@
             "added": true
           },
           {
-            "text": "  1/e² = a²/(a²+b²) and 1/e₁² = b²/(a²+b²)",
+            "text": "\\dfrac{1}{e^{2}} = \\ \\dfrac{a^{2}}{a^{2} + b^{2}}\\text{and}\\ \\dfrac{1}{e_{1}^{2}} = \\ \\dfrac{b^{2}}{a^{2} + b^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Add them:",
             "added": true
           },
-          "1/e² + 1/e₁² = a²/(a²+b²) + b²/(a²+b²)",
+          {
+            "text": "\\dfrac{1}{e^{2}} + \\ \\dfrac{1}{e_{1}^{2}} = \\ \\dfrac{a^{2}}{a^{2} + b^{2}} + \\ \\dfrac{b^{2}}{a^{2} + b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(same denominator, so add the tops)",
             "added": true
           },
           {
-            "text": "= (a²+b²)/(a²+b²) = 1",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2} + b^{2}}{a^{2} + b^{2}} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Squaring both eccentricities and inverting turns each formula into a fraction with the same denominator a²+b², so adding them collapses to 1 immediately.",
@@ -129,10 +147,15 @@
           "Adding the two ORIGINAL formulas instead of their reciprocals' squares."
         ],
         "lines_compact": [
-          "1/e² + 1/e₁² = a²/(a²+b²) + b²/(a²+b²)",
           {
-            "text": "= (a²+b²)/(a²+b²) = 1",
-            "style": "boxed"
+            "text": "\\dfrac{1}{e^{2}} + \\ \\dfrac{1}{e_{1}^{2}} = \\ \\dfrac{a^{2}}{a^{2} + b^{2}} + \\ \\dfrac{b^{2}}{a^{2} + b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2} + b^{2}}{a^{2} + b^{2}} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

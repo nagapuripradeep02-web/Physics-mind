@@ -93,18 +93,31 @@
         "memory_tip": "By symmetry about x=1, the two pieces of a V-shaped modulus graph often contribute equal areas.",
         "lines": [
           {
-            "text": "∫(1−x)dx = x − x²/2 and ∫(x−1)dx = x²/2 − x:",
-            "added": true
-          },
-          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
-          "[(2 − 2) − (1/2 − 1)]",
-          {
-            "text": "At x = 2: 4/2 − 2 = 0; at x = 1: 1/2 − 1 = −1/2",
+            "text": "\\int \\left(1 - x\\right)dx\\ = \\ x\\ - \\ \\dfrac{x^{2}}{2}\\text{and}\\ \\int \\left(x - 1\\right)dx\\ = \\ \\dfrac{x^{2}}{2} - \\ x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 1/2 + 0 + 1/2 = 1",
-            "style": "boxed"
+            "text": "= \\ \\left[x\\ - \\ \\dfrac{x^{2}}{2}\\right]_{0}^{1}\\ + \\ \\left[\\dfrac{x^{2}}{2} - \\ x\\right]_{1}^{2}\\ = \\ \\left(1\\ - \\ \\dfrac{1}{2}\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\left(2\\ - \\ 2\\right)\\ - \\ \\left(\\dfrac{1}{2} - \\ 1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ 2:\\ \\dfrac{4}{2} - \\ 2\\ = \\ 0;\\ \\text{at}\\ x\\ = \\ 1:\\ \\dfrac{1}{2} - \\ 1\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{1}{2} + \\ 0\\ + \\ \\dfrac{1}{2} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Integrating each piece over its own interval and adding the two results gives the total area under |1−x| from 0 to 2, which comes out to a clean whole number.",
@@ -113,11 +126,20 @@
           "Adding the two pieces incorrectly instead of tracking each bracket separately."
         ],
         "lines_compact": [
-          "= [x − x²/2]₀¹ + [x²/2 − x]₁² = (1 − 1/2) +",
-          "[(2 − 2) − (1/2 − 1)]",
           {
-            "text": "∴ I = 1/2 + 0 + 1/2 = 1",
-            "style": "boxed"
+            "text": "= \\ \\left[x\\ - \\ \\dfrac{x^{2}}{2}\\right]_{0}^{1}\\ + \\ \\left[\\dfrac{x^{2}}{2} - \\ x\\right]_{1}^{2}\\ = \\ \\left(1\\ - \\ \\dfrac{1}{2}\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\left(2\\ - \\ 2\\right)\\ - \\ \\left(\\dfrac{1}{2} - \\ 1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{1}{2} + \\ 0\\ + \\ \\dfrac{1}{2} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -82,18 +82,27 @@
         "memory_tip": "Since 2 is exactly the midpoint of [0,4], the two triangular areas either side of x=2 are equal.",
         "lines": [
           {
-            "text": "∫(2−x)dx = 2x − x²/2 and",
+            "text": "\\int \\left(2 - x\\right)dx\\ = \\ 2x\\ - \\ \\dfrac{x^{2}}{2}\\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ∫(x−2)dx = x²/2 − 2x:",
+            "text": "\\int \\left(x - 2\\right)dx\\ = \\ \\dfrac{x^{2}}{2} - \\ 2x:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= [2x − x²/2]₀² + [x²/2 − 2x]₂⁴ = (4 − 2) +",
+          {
+            "text": "= \\ \\left[2x\\ - \\ \\dfrac{x^{2}}{2}\\right]_{0}^{2}\\ + \\ \\left[\\dfrac{x^{2}}{2} - \\ 2x\\right]_{2}^{4}\\ = \\ \\left(4\\ - \\ 2\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
           "[(8−8) − (2−4)]",
           {
-            "text": "At x = 4: 16/2 − 8 = 0; at x = 2: 4/2 − 4 = −2",
+            "text": "\\text{At}\\ x\\ = \\ 4:\\ \\dfrac{16}{2} - \\ 8\\ = \\ 0;\\ \\text{at}\\ x\\ = \\ 2:\\ \\dfrac{4}{2} - \\ 4\\ = \\ - 2",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -107,7 +116,11 @@
           "Forgetting to add the two separate integrals together."
         ],
         "lines_compact": [
-          "= [2x − x²/2]₀² + [x²/2 − 2x]₂⁴ = (4 − 2) +",
+          {
+            "text": "= \\ \\left[2x\\ - \\ \\dfrac{x^{2}}{2}\\right]_{0}^{2}\\ + \\ \\left[\\dfrac{x^{2}}{2} - \\ 2x\\right]_{2}^{4}\\ = \\ \\left(4\\ - \\ 2\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
           "[(8−8) − (2−4)]",
           {
             "text": "∴ I = 2 + 0 + 2 = 4",

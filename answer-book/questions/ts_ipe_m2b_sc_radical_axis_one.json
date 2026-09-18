@@ -63,8 +63,16 @@
           },
           "Given circles, divided to standard form:",
           "(the first by 2, the second by 3)",
-          "S ≡ x² + y² + 3/2 x + 3y − 5/2 = 0",
-          "S′ ≡ x² + y² − 7/3 x + 8/3 y − 11/3 = 0"
+          {
+            "text": "S\\ \\equiv \\ x^{2}\\ + \\ y^{2}\\ + \\ \\dfrac{3}{2}x\\ + \\ 3y\\ - \\ \\dfrac{5}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S'\\ \\equiv \\ x^{2}\\ + \\ y^{2}\\ - \\ \\dfrac{7}{3}x\\ + \\ \\dfrac{8}{3}y\\ - \\ \\dfrac{11}{3} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The radical axis formula S − S′ = 0 only cancels x² and y² correctly when both circles already carry coefficient 1 on those terms — dividing each circle by its own leading coefficient does this.",
         "common_mistakes": [
@@ -82,20 +90,34 @@
         "margin_note": "Second mark, for the subtraction and the cleared final line.",
         "lines": [
           "Radical axis is S − S′ = 0",
-          "⇒ (3/2 + 7/3)x + (3 − 8/3)y + (−5/2 + 11/3) = 0",
           {
-            "text": "3/2 + 7/3 = 9/6 + 14/6 = 23/6",
+            "text": "\\Rightarrow \\ \\left(\\dfrac{3}{2} + \\ \\dfrac{7}{3}\\right)x\\ + \\ \\left(3\\ - \\ \\dfrac{8}{3}\\right)y\\ + \\ \\left( - \\dfrac{5}{2} + \\ \\dfrac{11}{3}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{3}{2} + \\ \\dfrac{7}{3} = \\ \\dfrac{9}{6} + \\ \\dfrac{14}{6} = \\ \\dfrac{23}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "3 − 8/3 = 9/3 − 8/3 = 1/3",
+            "text": "3\\ - \\ \\dfrac{8}{3} = \\ \\dfrac{9}{3} - \\ \\dfrac{8}{3} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "−5/2 + 11/3 = −15/6 + 22/6 = 7/6",
+            "text": "- \\dfrac{5}{2} + \\ \\dfrac{11}{3} = \\ - \\dfrac{15}{6} + \\ \\dfrac{22}{6} = \\ \\dfrac{7}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (23/6)x + (1/3)y + 7/6 = 0",
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{23}{6}\\right)x\\ + \\ \\left(\\dfrac{1}{3}\\right)y\\ + \\ \\dfrac{7}{6} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 6:",
             "added": true
@@ -113,8 +135,16 @@
         "memory_tip": "Whenever the intermediate coefficients are fractions, multiply the whole final equation by their common denominator — here 6 — to reach the book's clean whole-number form.",
         "lines_compact": [
           "Radical axis is S − S′ = 0",
-          "⇒ (3/2 + 7/3)x + (3 − 8/3)y + (−5/2 + 11/3) = 0",
-          "⇒ (23/6)x + (1/3)y + 7/6 = 0",
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{3}{2} + \\ \\dfrac{7}{3}\\right)x\\ + \\ \\left(3\\ - \\ \\dfrac{8}{3}\\right)y\\ + \\ \\left( - \\dfrac{5}{2} + \\ \\dfrac{11}{3}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{23}{6}\\right)x\\ + \\ \\left(\\dfrac{1}{3}\\right)y\\ + \\ \\dfrac{7}{6} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ 23x + 2y + 7 = 0",
             "style": "boxed"

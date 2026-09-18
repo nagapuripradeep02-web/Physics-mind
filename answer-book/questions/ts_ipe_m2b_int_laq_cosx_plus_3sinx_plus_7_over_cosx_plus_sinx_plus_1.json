@@ -96,12 +96,20 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
+          {
+            "text": "I\\ = \\ A\\int \\left[\\dfrac{Dr'}{Dr}\\right]dx\\ + \\ B\\int 1dx\\ + \\ C\\int \\dfrac{dx}{Dr}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The first gives log|Dr|, the second x:",
             "added": true
           },
-          "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
+          {
+            "text": "= \\ - \\log \\left|\\cos x + \\sin x + 1\\right|\\ + \\ 2x\\ + \\ 5\\int \\dfrac{dx}{\\cos x + \\sin x + 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With A=−1 multiplying the log term, B=2 multiplying the plain x term, and C=5 left over on the genuine ∫dx/Dr piece, the split works exactly as in the earlier three-part example, roles relabelled.",
         "common_mistakes": [
@@ -110,8 +118,16 @@
         ],
         "memory_tip": "A is negative here, so the log term in the final answer is subtracted, not added — check the sign before boxing the result.",
         "lines_compact": [
-          "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
-          "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
+          {
+            "text": "I\\ = \\ A\\int \\left[\\dfrac{Dr'}{Dr}\\right]dx\\ + \\ B\\int 1dx\\ + \\ C\\int \\dfrac{dx}{Dr}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\log \\left|\\cos x + \\sin x + 1\\right|\\ + \\ 2x\\ + \\ 5\\int \\dfrac{dx}{\\cos x + \\sin x + 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -122,25 +138,52 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Put tan(x/2)=t: cosx+sinx+1",
           {
-            "text": "Then sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²)",
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right) = t:\\ \\cos x + \\sin x + 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ \\sin x\\ = \\ \\dfrac{2t}{1 + t^{2}},\\ \\cos x\\ = \\ \\dfrac{1 - t^{2}}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  and dx = 2dt/(1+t²)",
+            "text": "\\text{and}\\ dx\\ = \\ \\dfrac{2dt}{1 + t^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
-          "= 2(1+t)/(1+t²)",
-          "∫dx/(cosx+sinx+1)",
-          "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
+          {
+            "text": "= \\ \\dfrac{\\left(1 - t^{2}\\right) + 2t + \\left(1 + t^{2}\\right)}{1 + t^{2}} = \\ \\dfrac{2 + 2t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(1 + t\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{\\cos x + \\sin x + 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right] \\div \\left[\\dfrac{2\\left(1 + t\\right)}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The (1+t²) and the 2 both cancel:",
             "added": true
           },
-          "= ∫dt/(1+t) = log|1+t|+c"
+          {
+            "text": "= \\ \\int \\dfrac{dt}{1 + t} = \\ \\log \\left|1 + t\\right| + c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "This denominator collapses to the same simple (1+t) form as 1+sinx+cosx, since cosx+sinx+1 is algebraically the same shape — only the order of the terms differs.",
         "common_mistakes": [
@@ -149,12 +192,36 @@
         ],
         "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification applies.",
         "lines_compact": [
-          "Put tan(x/2)=t: cosx+sinx+1",
-          "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
-          "= 2(1+t)/(1+t²)",
-          "∫dx/(cosx+sinx+1)",
-          "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
-          "= ∫dt/(1+t) = log|1+t|+c"
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right) = t:\\ \\cos x + \\sin x + 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(1 - t^{2}\\right) + 2t + \\left(1 + t^{2}\\right)}{1 + t^{2}} = \\ \\dfrac{2 + 2t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(1 + t\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{\\cos x + \\sin x + 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right] \\div \\left[\\dfrac{2\\left(1 + t\\right)}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{dt}{1 + t} = \\ \\log \\left|1 + t\\right| + c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -170,14 +237,16 @@
             "added": true
           },
           {
-            "text": "  and t = tan(x/2):",
+            "text": "\\text{and}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right):",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "∴ I = −log|cosx+sinx+1| + 2x",
           {
-            "text": "+ 5log|1+tan(x/2)| + c",
-            "style": "boxed"
+            "text": "+ \\ 5\\log \\left|1 + \\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Multiplying C=5 by the log|1+t| just found and writing t back as tan(x/2) gives the third and final term, completing the answer in x.",
@@ -189,8 +258,9 @@
         "lines_compact": [
           "∴ I = −log|cosx+sinx+1| + 2x",
           {
-            "text": "+ 5log|1+tan(x/2)| + c",
-            "style": "boxed"
+            "text": "+ \\ 5\\log \\left|1 + \\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

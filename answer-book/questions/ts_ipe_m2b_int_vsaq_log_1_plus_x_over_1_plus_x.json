@@ -56,12 +56,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The derivative of log(1+x) is 1/(1+x), and",
+          {
+            "text": "\\text{The}\\ \\text{derivative}\\ \\text{of}\\ \\log \\left(1 + x\\right)\\ \\text{is}\\ \\dfrac{1}{1 + x},\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  that factor is already present:",
             "style": "indent"
           },
-          "Put log(1+x) = t ⇒ dx/(1+x) = dt",
+          {
+            "text": "\\text{Put}\\ \\log \\left(1 + x\\right)\\ = \\ t\\ \\Rightarrow \\ \\dfrac{dx}{1 + x} = \\ dt",
+            "style": "normal",
+            "render": "katex"
+          },
           "I = ∫ t dt"
         ],
         "why": "d/dx[log(1+x)] = 1/(1+x), so the whole factor dx/(1+x) converts to dt in one step, leaving just the outer factor log(1+x) = t to integrate as a plain power of t.",
@@ -80,7 +88,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∫t dt = t²/2 + c",
+            "text": "\\int tdt\\ = \\ \\dfrac{t^{2}}{2} + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -88,8 +98,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [log(1+x)/(1+x)] dx = [log(1+x)]²/2 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\log \\left(1 + x\\right)}{1 + x}\\right]dx\\ = \\ \\dfrac{\\left[\\log \\left(1 + x\\right)\\right]^{2}}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫t dt = t²/2 + c is the plain power rule, and substituting t=log(1+x) back in gives the final answer as a square of the logarithm.",
@@ -100,8 +111,9 @@
         "memory_tip": "The square applies to the WHOLE log(1+x), not to what is inside the log — [log(1+x)]², never log[(1+x)²].",
         "lines_compact": [
           {
-            "text": "∴ ∫ [log(1+x)/(1+x)] dx = [log(1+x)]²/2 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\log \\left(1 + x\\right)}{1 + x}\\right]dx\\ = \\ \\dfrac{\\left[\\log \\left(1 + x\\right)\\right]^{2}}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

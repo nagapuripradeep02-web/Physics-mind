@@ -61,23 +61,41 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given hyperbola x²/16 − y²/9 = 1",
+          {
+            "text": "\\text{Given}\\ \\text{hyperbola}\\ \\dfrac{x^{2}}{16} - \\ \\dfrac{y^{2}}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ a² = 16, b² = 9",
-          "The asymptotes are x/a − y/b = 0 and",
-          "x/a + y/b = 0, that is,",
+          {
+            "text": "\\text{The}\\ \\text{asymptotes}\\ \\text{are}\\ \\dfrac{x}{a} - \\ \\dfrac{y}{b} = \\ 0\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 0,\\ \\text{that}\\ \\text{is},",
+            "style": "normal",
+            "render": "katex"
+          },
           "bx − ay = 0 and bx + ay = 0",
           "(multiply each by ab)",
           "For a point (x₁,y₁) on the hyperbola,",
           "the product of its distances to the two",
-          "asymptotes is a²b²/(a²+b²)",
+          {
+            "text": "\\text{asymptotes}\\ \\text{is}\\ \\dfrac{a^{2}b^{2}}{a^{2} + b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(The distances are |bx₁ − ay₁|/√(a²+b²) and",
           {
-            "text": "  |bx₁ + ay₁|/√(a²+b²). Their product is",
-            "style": "indent"
+            "text": "\\dfrac{\\left|bx_{1}\\ + \\ ay_{1}\\right|}{\\sqrt{a^{2} + b^{2}}}.\\ \\text{Their}\\ \\text{product}\\ \\text{is}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "  |b²x₁² − a²y₁²|/(a²+b²), and",
-            "style": "indent"
+            "text": "\\dfrac{\\left|b^{2}x_{1}^{2}\\ - \\ a^{2}y_{1}^{2}\\right|}{a^{2} + b^{2}},\\ \\text{and}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  b²x₁² − a²y₁² = a²b² since (x₁, y₁) is on",
@@ -107,10 +125,15 @@
             "text": "Put a² = 16 and b² = 9:",
             "added": true
           },
-          "= (16)(9)/(16+9)",
           {
-            "text": "= 144/25",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(16\\right)\\left(9\\right)}{16 + 9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{144}{25}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting the values of a² and b² read off the standard form gives the numeric product directly.",
@@ -119,10 +142,15 @@
           "Leaving the answer as an unsimplified fraction when 144/25 is already in lowest terms and should stay as a fraction."
         ],
         "lines_compact": [
-          "= (16)(9)/(16+9)",
           {
-            "text": "= 144/25",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(16\\right)\\left(9\\right)}{16 + 9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{144}{25}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

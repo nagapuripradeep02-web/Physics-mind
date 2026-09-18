@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫sinⁿx dx from 0 to π/2 has a direct formula,",
+          {
+            "text": "\\int \\sin ^{n} xdx\\ \\text{from}\\ 0\\ \\text{to}\\ \\dfrac{\\pi }{2}hasa\\ \\text{direct}\\ \\text{formula},",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  so no repeated by-parts is needed.",
             "style": "indent"
@@ -62,7 +66,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(n−1)(n−3)···2]/[n(n−2)···3] · 1",
+          {
+            "text": "= \\ \\dfrac{\\left(n - 1\\right)\\left(n - 3\\right) \\cdot \\cdot \\cdot 2}{n\\left(n - 2\\right) \\cdot \\cdot \\cdot 3} \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "[Wallis's formula]"
         ],
         "why": "For an odd power of sin, Wallis's formula uses the same descending-product pattern as the cosine version, ending at 2 on top and 3 on the bottom with no π/2 factor.",
@@ -89,14 +97,19 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(6)(4)(2)]/[(7)(5)(3)] · (1) = 48/105",
+          {
+            "text": "= \\ \\dfrac{\\left(6\\right)\\left(4\\right)\\left(2\\right)}{\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)\\ = \\ \\dfrac{48}{105}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "6·4·2 = 48 and 7·5·3 = 105; divide both by 3:",
             "added": true
           },
           {
-            "text": "∴ I = 16/35",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16}{35}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting n=7 gives the three-term descending product 6·4·2=48 over 7·5·3=105, which simplifies to 16/35 after dividing by the common factor 3.",
@@ -110,10 +123,15 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(6)(4)(2)]/[(7)(5)(3)] · (1) = 48/105",
           {
-            "text": "∴ I = 16/35",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(6\\right)\\left(4\\right)\\left(2\\right)}{\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)\\ = \\ \\dfrac{48}{105}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16}{35}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

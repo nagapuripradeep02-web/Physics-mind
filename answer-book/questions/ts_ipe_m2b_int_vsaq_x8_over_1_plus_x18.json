@@ -66,8 +66,16 @@
             "text": "  already present in the numerator:",
             "style": "indent"
           },
-          "⇒ 9x⁸dx = dt, i.e. x⁸dx = dt/9",
-          "I = ∫ (dt/9)/(1+t²) = (1/9)∫dt/(1+t²)"
+          {
+            "text": "\\Rightarrow \\ 9x^{8}dx\\ = \\ dt,\\ i.e.\\ x^{8}dx\\ = \\ \\dfrac{dt}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\ \\dfrac{\\dfrac{dt}{9}}{1 + t^{2}} = \\ \\left(\\dfrac{1}{9}\\right)\\int \\dfrac{dt}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Recognising x¹⁸ as (x⁹)² makes the denominator 1+t² for t=x⁹, and the leftover x⁸dx is exactly (1/9)dt since d/dx(x⁹)=9x⁸.",
         "common_mistakes": [
@@ -85,7 +93,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∫dt/(1+t²) = Tan⁻¹t + c",
+            "text": "\\int \\dfrac{dt}{1 + t^{2}} = \\ \\operatorname{Tan}^{-1} t\\ + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -93,8 +103,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [x⁸/(1+x¹⁸)] dx = (1/9)Tan⁻¹(x⁹) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{x^{8}}{1 + x^{18}}\\right]dx\\ = \\ \\left(\\dfrac{1}{9}\\right)\\operatorname{Tan}^{-1}\\left(x^{9}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "(1/9)∫dt/(1+t²) = (1/9)Tan⁻¹t + c is the standard Tan⁻¹ formula with a=1, and substituting t=x⁹ back in completes the answer.",
@@ -105,8 +116,9 @@
         "memory_tip": "The 1/9 picked up from the substitution survives to the very end — it is not absorbed into anything else.",
         "lines_compact": [
           {
-            "text": "∴ ∫ [x⁸/(1+x¹⁸)] dx = (1/9)Tan⁻¹(x⁹) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{x^{8}}{1 + x^{18}}\\right]dx\\ = \\ \\left(\\dfrac{1}{9}\\right)\\operatorname{Tan}^{-1}\\left(x^{9}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

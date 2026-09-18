@@ -70,7 +70,11 @@
             "style": "indent"
           },
           "(1+xlogx)/x = 1/x + logx",
-          "Here f(x) = logx ⇒ f′(x) = 1/x"
+          {
+            "text": "\\text{Here}\\ f\\left(x\\right)\\ = \\ \\log x\\ \\Rightarrow \\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing both terms of the numerator by x separates the bracket into 1/x and logx, which are exactly f′(x) and f(x) for f(x)=logx.",
         "common_mistakes": [

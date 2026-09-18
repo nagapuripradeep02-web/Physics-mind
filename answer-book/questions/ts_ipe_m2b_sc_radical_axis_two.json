@@ -62,7 +62,11 @@
           "S ≡ x² + y² + 4x + 6y − 7 = 0",
           "4(x² + y²) + 8x + 12y − 9 = 0",
           "Divide by 4 so x² and y² have coefficient 1:",
-          "⇒ S′ ≡ x² + y² + 2x + 3y − 9/4 = 0"
+          {
+            "text": "\\Rightarrow \\ S'\\ \\equiv \\ x^{2}\\ + \\ y^{2}\\ + \\ 2x\\ + \\ 3y\\ - \\ \\dfrac{9}{4} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The second circle's leading coefficient of 4 must be divided out of every term, including the constant, before it can be subtracted from S in the radical axis formula.",
         "common_mistakes": [
@@ -80,12 +84,22 @@
         "margin_note": "Second mark, for the subtraction and the cleared final line.",
         "lines": [
           "Radical axis is S − S′ = 0",
-          "⇒ (4 − 2)x + (6 − 3)y + (−7 + 9/4) = 0",
           {
-            "text": "−7 + 9/4 = −28/4 + 9/4 = −19/4",
+            "text": "\\Rightarrow \\ \\left(4\\ - \\ 2\\right)x\\ + \\ \\left(6\\ - \\ 3\\right)y\\ + \\ \\left( - 7\\ + \\ \\dfrac{9}{4}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- 7\\ + \\ \\dfrac{9}{4} = \\ - \\dfrac{28}{4} + \\ \\dfrac{9}{4} = \\ - \\dfrac{19}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 2x + 3y − 19/4 = 0",
+          {
+            "text": "\\Rightarrow \\ 2x\\ + \\ 3y\\ - \\ \\dfrac{19}{4} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 4:",
             "added": true
@@ -103,8 +117,16 @@
         "memory_tip": "−7 = −28/4, so −7 + 9/4 = −19/4 — convert to a common denominator before adding, rather than mixing whole numbers and quarters.",
         "lines_compact": [
           "Radical axis is S − S′ = 0",
-          "⇒ (4 − 2)x + (6 − 3)y + (−7 + 9/4) = 0",
-          "⇒ 2x + 3y − 19/4 = 0",
+          {
+            "text": "\\Rightarrow \\ \\left(4\\ - \\ 2\\right)x\\ + \\ \\left(6\\ - \\ 3\\right)y\\ + \\ \\left( - 7\\ + \\ \\dfrac{9}{4}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2x\\ + \\ 3y\\ - \\ \\dfrac{19}{4} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ 8x + 12y − 19 = 0",
             "style": "boxed"

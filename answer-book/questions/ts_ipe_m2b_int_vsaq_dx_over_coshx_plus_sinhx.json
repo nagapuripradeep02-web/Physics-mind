@@ -69,9 +69,21 @@
             "text": "  because cosh²x − sinh²x = 1:",
             "style": "indent"
           },
-          "1/(coshx+sinhx)",
-          "= (coshx−sinhx)/[(coshx+sinhx)(coshx−sinhx)]",
-          "= (coshx−sinhx)/(cosh²x−sinh²x)",
+          {
+            "text": "\\dfrac{1}{\\cos hx + \\sin hx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos hx - \\sin hx}{\\left(\\cos hx + \\sin hx\\right)\\left(\\cos hx - \\sin hx\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos hx - \\sin hx}{\\cos h^{2}x - \\sin h^{2}x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= coshx−sinhx   [∵ cosh²x−sinh²x = 1]"
         ],
         "why": "Multiplying top and bottom by the conjugate (coshx−sinhx) uses the identity cosh²x−sinh²x=1 to collapse the whole denominator down to a plain 1, leaving only the numerator.",
@@ -98,8 +110,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ dx/(coshx+sinhx) = sinhx − coshx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{\\cos hx + \\sin hx} = \\ \\sin hx\\ - \\ \\cos hx\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫coshx dx = sinhx and ∫sinhx dx = coshx are standard hyperbolic derivatives, integrated term by term from coshx−sinhx.",
@@ -110,8 +123,9 @@
         "memory_tip": "∫coshx=sinhx, ∫sinhx=coshx — the two hyperbolic functions swap names on integration, same as sin and cos do.",
         "lines_compact": [
           {
-            "text": "∴ ∫ dx/(coshx+sinhx) = sinhx − coshx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{\\cos hx + \\sin hx} = \\ \\sin hx\\ - \\ \\cos hx\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

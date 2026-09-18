@@ -85,8 +85,16 @@
             "text": "The area needs to know which curve is higher.",
             "added": true
           },
-          "For 0 < x < 1, test x = 1/2:",
-          "x² = 1/4 and x³ = 1/8, so x² > x³ on this interval",
+          {
+            "text": "\\text{For}\\ 0\\ < \\ x\\ < \\ 1,\\ \\text{test}\\ x\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x^{2}\\ = \\ \\dfrac{1}{4}\\text{and}\\ x^{3}\\ = \\ \\dfrac{1}{8},\\ \\text{so}\\ x^{2}\\ > \\ x^{3}\\ \\text{on}\\ \\text{this}\\ \\text{interval}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(for 0 < x < 1, x³ = x²·x and x < 1)",
             "added": true
@@ -100,8 +108,16 @@
           "Testing a point with x > 1, where x³ > x² and the order reverses."
         ],
         "lines_compact": [
-          "For 0 < x < 1, test x = 1/2:",
-          "x² = 1/4 and x³ = 1/8, so x² > x³ on this interval",
+          {
+            "text": "\\text{For}\\ 0\\ < \\ x\\ < \\ 1,\\ \\text{test}\\ x\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x^{2}\\ = \\ \\dfrac{1}{4}\\text{and}\\ x^{3}\\ = \\ \\dfrac{1}{8},\\ \\text{so}\\ x^{2}\\ > \\ x^{3}\\ \\text{on}\\ \\text{this}\\ \\text{interval}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ the upper boundary curve is y",
           "= x²; the lower boundary curve is y = x³"
         ]
@@ -121,17 +137,24 @@
           },
           "Required area A = ∫₀¹ (x² − x³) dx",
           {
-            "text": "∫x² dx = x³/3 and ∫x³ dx = x⁴/4:",
+            "text": "\\int x^{2}dx\\ = \\ \\dfrac{x^{3}}{3}\\text{and}\\ \\int x^{3}dx\\ = \\ \\dfrac{x^{4}}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [x³/3 − x⁴/4]₀¹ = 1/3 − 1/4 = (4 − 3)/12",
+          {
+            "text": "= \\ \\left[\\dfrac{x^{3}}{3} - \\ \\dfrac{x^{4}}{4}\\right]_{0}^{1}\\ = \\ \\dfrac{1}{3} - \\ \\dfrac{1}{4} = \\ \\dfrac{4\\ - \\ 3}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "At x = 0 both terms are 0.",
             "added": true
           },
           {
-            "text": "∴ Area = 1/12 sq. units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{1}{12}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Integrating the upper curve minus the lower curve over the interval and evaluating at the two limits (the lower limit x = 0 gives 0) leaves 1/3 − 1/4, a clean fraction over 12.",
@@ -141,10 +164,15 @@
         ],
         "lines_compact": [
           "Required area A = ∫₀¹ (x² − x³) dx",
-          "= [x³/3 − x⁴/4]₀¹ = 1/3 − 1/4 = (4 − 3)/12",
           {
-            "text": "∴ Area = 1/12 sq. units",
-            "style": "boxed"
+            "text": "= \\ \\left[\\dfrac{x^{3}}{3} - \\ \\dfrac{x^{4}}{4}\\right]_{0}^{1}\\ = \\ \\dfrac{1}{3} - \\ \\dfrac{1}{4} = \\ \\dfrac{4\\ - \\ 3}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{1}{12}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

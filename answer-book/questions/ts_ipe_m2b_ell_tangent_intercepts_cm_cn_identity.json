@@ -77,8 +77,16 @@
             "text": "  xx₁/a² + yy₁/b² = 1)",
             "style": "indent"
           },
-          "(x cos θ)/a + (y sin θ)/b = 1",
-          "Write it in intercept form x/p + y/q = 1:",
+          {
+            "text": "\\dfrac{x\\cos \\theta }{a} + \\ \\dfrac{y\\sin \\theta }{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Write}\\ \\text{it}\\ \\text{in}\\ \\text{intercept}\\ \\text{form}\\ \\dfrac{x}{p} + \\ \\dfrac{y}{q} = \\ 1:",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ x / (a/cos θ) + y / (b/sin θ) = 1"
         ],
         "why": "Writing the tangent line in intercept form x/p + y/q = 1 makes its x- and y-intercepts p and q directly readable, which is exactly what M and N are.",
@@ -150,7 +158,11 @@
             "style": "indent",
             "added": true
           },
-          "cos θ = a/CM  and  sin θ = b/CN"
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a}{CM}\\text{and}\\ \\sin \\theta \\ = \\ \\dfrac{b}{CN}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Isolating cos θ and sin θ in terms of the two measurable lengths CM and CN sets up the identity cos²θ + sin²θ = 1 as the final step.",
         "common_mistakes": [
@@ -159,7 +171,11 @@
         ],
         "lines_compact": [
           "From CM = a/cos θ and CN = b/sin θ:",
-          "cos θ = a/CM  and  sin θ = b/CN"
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a}{CM}\\text{and}\\ \\sin \\theta \\ = \\ \\dfrac{b}{CN}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,12 +193,15 @@
           },
           "cos²θ + sin²θ = 1",
           {
-            "text": "⇒ (a/CM)² + (b/CN)² = 1",
+            "text": "\\Rightarrow \\ \\left(\\dfrac{a}{CM}\\right)^{2}\\ + \\ \\left(\\dfrac{b}{CN}\\right)^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a²/(CM)² + b²/(CN)² = 1",
-            "style": "boxed"
+            "text": "\\dfrac{a^{2}}{\\left(CM\\right)^{2}} + \\ \\dfrac{b^{2}}{\\left(CN\\right)^{2}} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting cos θ = a/CM and sin θ = b/CN into cos²θ + sin²θ = 1 gives exactly the identity that was to be proved.",
@@ -193,8 +212,9 @@
         "lines_compact": [
           "cos²θ + sin²θ = 1",
           {
-            "text": "a²/(CM)² + b²/(CN)² = 1",
-            "style": "boxed"
+            "text": "\\dfrac{a^{2}}{\\left(CM\\right)^{2}} + \\ \\dfrac{b^{2}}{\\left(CN\\right)^{2}} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },

@@ -61,7 +61,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know ∫₀ᵏ f(x)dx = ∫₀ᵏ f(k − x)dx, k = π/2",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\int _{0}^{k}\\ f\\left(x\\right)dx\\ = \\ \\int _{0}^{k}\\ f\\left(k\\ - \\ x\\right)dx,\\ k\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore I = \\int _{0}^{\\pi /2} (a \\sin x + b \\cos x)/(\\sin x + \\cos x)",
             "render": "katex",
@@ -84,7 +88,11 @@
         "margin_note": "One more mark. sinx and cosx swap under x → π/2 − x.",
         "memory_tip": "Under x → π/2 − x, every sinx becomes cosx and every cosx becomes sinx — swap them consistently everywhere.",
         "lines": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2} [a \\sin (\\pi /2-x) + b",
@@ -97,7 +105,9 @@
             "style": "normal"
           },
           {
-            "text": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx:",
+            "text": "\\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x\\ \\text{and}\\ \\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ I",
@@ -114,7 +124,11 @@
           "Swapping only one of the two terms in the numerator."
         ],
         "lines_compact": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2} [a \\sin (\\pi /2-x) + b",
@@ -193,8 +207,9 @@
             "added": true
           },
           {
-            "text": "∴ I = (a + b)π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Adding the two forms lets (a+b) factor out of the whole numerator, which then cancels exactly with the denominator sinx+cosx, leaving a plain constant to integrate.",
@@ -231,8 +246,9 @@
             "style": "normal"
           },
           {
-            "text": "∴ I = (a + b)π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

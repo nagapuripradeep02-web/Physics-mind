@@ -66,16 +66,32 @@
           },
           "Given D.E is (x² − y²)dx − xy dy = 0",
           "Take xy dy to the right and divide by xy dx:",
-          "⇒ dy/dx = (x² − y²)/(xy) … (1)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x^{2}\\ - \\ y^{2}}{xy}\\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Every term top and bottom has degree 2, so",
           {
             "text": "  (1) is a homogeneous D.E.",
             "style": "indent"
           },
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (x² − v²x²)/(x·vx)",
+          {
+            "text": "\\text{Put}\\ y\\ = \\ vx\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{x^{2}\\ - \\ v^{2}x^{2}}{x \\cdot vx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take x² out above and below; it cancels:",
-          "= (1 − v²)/v"
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ v^{2}}{v}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Rewriting the equation as dy/dx = (a function of x and y that only depends on the ratio y/x) confirms it is homogeneous, and the y = vx substitution turns it into an equation for v alone.",
         "common_mistakes": [
@@ -96,16 +112,26 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = (1 − v²)/v − v = (1 − 2v²)/v",
           {
-            "text": "since v = v²/v, and 1 − v² − v² = 1 − 2v²",
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{1\\ - \\ v^{2}}{v} - \\ v\\ = \\ \\dfrac{1\\ - \\ 2v^{2}}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin cev\\ = \\ \\dfrac{v^{2}}{v},\\ \\text{and}\\ 1\\ - \\ v^{2}\\ - \\ v^{2}\\ = \\ 1\\ - \\ 2v^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Separate v and x:",
             "added": true
           },
-          "⇒ v/(1 − 2v²) dv = dx/x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Subtracting v as a single fraction over v combines the two terms into one clean function of v, which is what makes the equation separable.",
         "common_mistakes": [
@@ -113,8 +139,16 @@
           "Losing the factor of 2 in front of v² when combining terms."
         ],
         "lines_compact": [
-          "x·dv/dx = (1 − v²)/v − v = (1 − 2v²)/v",
-          "⇒ v/(1 − 2v²) dv = dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{1\\ - \\ v^{2}}{v} - \\ v\\ = \\ \\dfrac{1\\ - \\ 2v^{2}}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -126,22 +160,37 @@
         "margin_note": "Two marks. Force a −4v into the numerator to match the derivative of (1 − 2v²), then correct with a compensating factor of −1/4.",
         "memory_tip": "The derivative of 1 − 2v² is −4v, so v dv needs a −1/4 out front to become that exact log-integral shape.",
         "lines": [
-          "∫ v/(1 − 2v²) dv = ∫ dx/x",
+          {
+            "text": "\\int \\ \\dfrac{v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The derivative of 1 − 2v² is −4v, so write",
             "added": true
           },
           {
-            "text": "  v as (−1/4)(−4v):",
+            "text": "v\\ \\text{as}\\ \\left( - \\dfrac{1}{4}\\right)\\left( - 4v\\right):",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ −1/4 ∫ −4v/(1 − 2v²) dv = ∫ dx/x",
           {
-            "text": "∫f′/f = log f; write the constant as log c:",
+            "text": "\\Rightarrow \\ - \\dfrac{1}{4}\\int \\ - \\dfrac{4v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{f'}{f} = \\ \\log f;\\ \\text{write}\\ \\text{the}\\ \\text{constant}\\ \\text{as}\\ \\log c:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ −1/4 log(1 − 2v²) = log x + log c"
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{4}\\log \\left(1\\ - \\ 2v^{2}\\right)\\ = \\ \\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The derivative of the denominator 1 − 2v² is −4v, so writing the numerator as −4v times −1/4 turns the left integral into a direct log form, matching the ∫dx/x = log x on the right.",
         "common_mistakes": [
@@ -149,9 +198,21 @@
           "Dropping the constant of integration on one side only."
         ],
         "lines_compact": [
-          "∫ v/(1 − 2v²) dv = ∫ dx/x",
-          "⇒ −1/4 ∫ −4v/(1 − 2v²) dv = ∫ dx/x",
-          "⇒ −1/4 log(1 − 2v²) = log x + log c"
+          {
+            "text": "\\int \\ \\dfrac{v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{4}\\int \\ - \\dfrac{4v}{1\\ - \\ 2v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{4}\\log \\left(1\\ - \\ 2v^{2}\\right)\\ = \\ \\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -167,17 +228,31 @@
             "text": "Multiply by −4, and log x + log c = log(cx):",
             "added": true
           },
-          "⇒ log(1 − 2v²) = −4 log(cx) = log(1/(cx)⁴)",
+          {
+            "text": "\\Rightarrow \\ \\log \\left(1\\ - \\ 2v^{2}\\right)\\ = \\ - 4\\log \\left(cx\\right)\\ = \\ \\log \\left(\\dfrac{1}{\\left(cx\\right)^{4}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Equal logs have equal insides:",
             "added": true
           },
-          "⇒ 1 − 2v² = 1/(cx)⁴",
           {
-            "text": "1 − 2y²/x² = (x² − 2y²)/x², so",
+            "text": "\\Rightarrow \\ 1\\ - \\ 2v^{2}\\ = \\ \\dfrac{1}{\\left(cx\\right)^{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ \\dfrac{2y^{2}}{x^{2}} = \\ \\dfrac{x^{2}\\ - \\ 2y^{2}}{x^{2}},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put v = y/x: (x² − 2y²)/x² = 1/(cx)⁴"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\dfrac{x^{2}\\ - \\ 2y^{2}}{x^{2}} = \\ \\dfrac{1}{\\left(cx\\right)^{4}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Multiplying both sides of the log equation by −4 removes the fraction, and only then is it clean to substitute v = y/x, since the −4 power would otherwise complicate the fraction further.",
         "common_mistakes": [
@@ -185,9 +260,21 @@
           "Substituting v = y/x before clearing the −4 power, producing a much messier line."
         ],
         "lines_compact": [
-          "⇒ log(1 − 2v²) = −4 log(cx) = log(1/(cx)⁴)",
-          "⇒ 1 − 2v² = 1/(cx)⁴",
-          "Put v = y/x: (x² − 2y²)/x² = 1/(cx)⁴"
+          {
+            "text": "\\Rightarrow \\ \\log \\left(1\\ - \\ 2v^{2}\\right)\\ = \\ - 4\\log \\left(cx\\right)\\ = \\ \\log \\left(\\dfrac{1}{\\left(cx\\right)^{4}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 1\\ - \\ 2v^{2}\\ = \\ \\dfrac{1}{\\left(cx\\right)^{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\dfrac{x^{2}\\ - \\ 2y^{2}}{x^{2}} = \\ \\dfrac{1}{\\left(cx\\right)^{4}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -205,7 +292,9 @@
           },
           "⇒ (cx)⁴(x² − 2y²) = x² ⇒ c⁴x²(x² − 2y²) = 1",
           {
-            "text": "1/c⁴ is another constant; call it c:",
+            "text": "\\dfrac{1}{c^{4}}\\text{is}\\ \\text{another}\\ \\text{constant};\\ \\text{call}\\ \\text{it}\\ c:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

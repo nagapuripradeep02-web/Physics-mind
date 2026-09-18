@@ -61,11 +61,23 @@
           },
           "Compare each with x² + y² + 2gx + 2fy + c = 0.",
           "From the given circles, g = −6, f = −3, c = 41",
-          "and g′ = k/2, f′ = 3, c′ = −59",
-          "(2g′ = k in the second circle, so g′ = k/2)",
+          {
+            "text": "\\text{and}\\ g'\\ = \\ \\dfrac{k}{2},\\ f'\\ = \\ 3,\\ c'\\ = \\ - 59",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2g'\\ = \\ k\\ \\text{in}\\ \\text{the}\\ \\text{second}\\ \\text{circle},\\ \\text{so}\\ g'\\ = \\ \\dfrac{k}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The radius is √(g² + f² − c):",
           "r₁ = √(36 + 9 − 41) = 2",
-          "r₂ = √(k²/4 + 9 + 59) = √(k²/4 + 68)"
+          {
+            "text": "r_{2}\\ = \\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 9\\ + \\ 59}\\ = \\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With one circle's x-coefficient replaced by the unknown k, its own g′ becomes k/2, and every quantity built from it — r₂, and later d — carries k as a variable rather than a fixed number.",
         "common_mistakes": [
@@ -86,14 +98,19 @@
             "text": "With d² − r₁² − r₂² = c + c′ − 2gg′ − 2ff′:",
             "added": true
           },
-          "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
+          {
+            "text": "\\cos 45^{\\circ}\\ = \\ \\dfrac{c\\ + \\ c'\\ - \\ 2gg'\\ - \\ 2ff'}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Top: c + c′ = 41 − 59 = −18,",
             "added": true
           },
           {
-            "text": "  −2gg′ = −2(−6)(k/2) = 6k,",
+            "text": "- 2gg'\\ = \\ - 2\\left( - 6\\right)\\left(\\dfrac{k}{2}\\right)\\ = \\ 6k,",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -107,29 +124,52 @@
             "added": true
           },
           {
-            "text": "Bottom: 2 · 2 · √(k²/4 + 68)",
-            "added": true
-          },
-          "1/√2 = 6k / (4√(k²/4 + 68))",
-          {
-            "text": "Cross-multiply: 4√(k²/4 + 68) = 6k√2, and",
+            "text": "\\text{Bottom}:\\ 2\\ \\cdot \\ 2\\ \\cdot \\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  6k√2/4 = 3k√2/2 = 3k/√2:",
+            "text": "\\dfrac{1}{\\sqrt{2}} = \\ \\dfrac{6k}{4\\sqrt{\\dfrac{k^{2}}{4} + \\ 68}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Cross} - \\text{multiply}:\\ 4\\sqrt{\\dfrac{k^{2}}{4} + \\ 68}\\ = \\ 6k\\sqrt{2},\\ \\text{and}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{6k\\sqrt{2}}{4} = \\ \\dfrac{3k\\sqrt{2}}{2} = \\ \\dfrac{3k}{\\sqrt{2}}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ √(k²/4 + 68) = 3k/√2 · 1",
           {
-            "text": "Squaring: k²/4 + 68 = 9k²/2; multiply by 4:",
+            "text": "\\Rightarrow \\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}\\ = \\ \\dfrac{3k}{\\sqrt{2}} \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Squaring}:\\ \\dfrac{k^{2}}{4} + \\ 68\\ = \\ \\dfrac{9k^{2}}{2};\\ \\text{multiply}\\ \\text{by}\\ 4:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ k² + 272 = 18k² ⇒ 17k² = 272",
           "Dividing gives k² = 16, so k = 4 or k = −4.",
-          "k = −4 fails √(k²/4 + 68) = 3k/√2:",
+          {
+            "text": "k\\ = \\ - 4\\ \\text{fails}\\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}\\ = \\ \\dfrac{3k}{\\sqrt{2}}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "the left side is ≥ 0, the right side is not.",
-          "It gives cos θ = −1/√2, an angle of 135°.",
+          {
+            "text": "\\text{It}\\ \\text{gives}\\ \\cos \\theta \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\text{an}\\ \\text{angle}\\ \\text{of}\\ 135^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ k = 4",
             "style": "boxed"
@@ -142,14 +182,34 @@
         ],
         "memory_tip": "Squaring can create roots. After solving, put each one back into the line BEFORE the squaring and keep only the roots that survive.",
         "lines_compact": [
-          "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
-          "1/√2 = 6k / (4√(k²/4 + 68))",
-          "⇒ √(k²/4 + 68) = 3k/√2 · 1",
+          {
+            "text": "\\cos 45^{\\circ}\\ = \\ \\dfrac{c\\ + \\ c'\\ - \\ 2gg'\\ - \\ 2ff'}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\sqrt{2}} = \\ \\dfrac{6k}{4\\sqrt{\\dfrac{k^{2}}{4} + \\ 68}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}\\ = \\ \\dfrac{3k}{\\sqrt{2}} \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
           "Dividing gives k² = 16, so k = 4 or k = −4.",
-          "k = −4 fails √(k²/4 + 68) = 3k/√2:",
+          {
+            "text": "k\\ = \\ - 4\\ \\text{fails}\\ \\sqrt{\\dfrac{k^{2}}{4} + \\ 68}\\ = \\ \\dfrac{3k}{\\sqrt{2}}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "the left side is ≥ 0, the right side is not.",
-          "It gives cos θ = −1/√2, an angle of 135°.",
+          {
+            "text": "\\text{It}\\ \\text{gives}\\ \\cos \\theta \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\text{an}\\ \\text{angle}\\ \\text{of}\\ 135^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ k = 4",
             "style": "boxed"

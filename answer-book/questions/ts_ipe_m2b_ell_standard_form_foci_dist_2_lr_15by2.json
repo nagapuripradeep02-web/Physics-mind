@@ -71,7 +71,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the ellipse be x²/a² + y²/b² = 1,",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{ellipse}\\ \\text{be}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "with foci S(ae, 0), S′(−ae, 0)",
           "(a > b, and b² = a²(1 − e²))",
           "SS′ = ae − (−ae) = 2ae.",
@@ -94,13 +98,25 @@
         "memory_tip": "Latus rectum = 2b²/a — rearrange it to isolate b² when a is still unknown.",
         "lines": [
           {
-            "text": "The latus rectum has length 2b²/a.",
+            "text": "\\text{The}\\ \\text{latus}\\ \\text{rectum}\\ has\\ \\text{length}\\ \\dfrac{2b^{2}}{a}.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Length of latus rectum is 15/2",
-          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)",
           {
-            "text": "(multiply both sides by a/2)",
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{latus}\\ \\text{rectum}\\ \\text{is}\\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2b^{2}}{a} = \\ \\dfrac{15}{2} \\Rightarrow \\ b^{2}\\ = \\ \\dfrac{15a}{4}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\dfrac{a}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -110,8 +126,16 @@
           "Dividing by a instead of multiplying by a when rearranging 2b²/a = 15/2, which gives b² = 15/(4a) instead of 15a/4."
         ],
         "lines_compact": [
-          "Length of latus rectum is 15/2",
-          "⇒ 2b²/a = 15/2 ⇒ b² = 15a/4 …(2)"
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{latus}\\ \\text{rectum}\\ \\text{is}\\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2b^{2}}{a} = \\ \\dfrac{15}{2} \\Rightarrow \\ b^{2}\\ = \\ \\dfrac{15a}{4}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -134,7 +158,11 @@
             "added": true
           },
           "From (2) and (3):",
-          "15a/4 = a² − 1 ⇒ 4a² − 15a − 4 = 0",
+          {
+            "text": "\\dfrac{15a}{4} = \\ a^{2}\\ - \\ 1\\ \\Rightarrow \\ 4a^{2}\\ - \\ 15a\\ - \\ 4\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply by 4: 15a = 4a² − 4, then move 15a)",
             "added": true
@@ -152,7 +180,11 @@
             "text": "4a² − 16a + a − 4 = 4a(a − 4) + 1(a − 4)",
             "added": true
           },
-          "⇒ (a − 4)(4a + 1) = 0 ⇒ a = 4 or a = −1/4",
+          {
+            "text": "\\Rightarrow \\ \\left(a\\ - \\ 4\\right)\\left(4a\\ + \\ 1\\right)\\ = \\ 0\\ \\Rightarrow \\ a\\ = \\ 4\\ \\text{or}\\ a\\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "a cannot be negative, so a = 4",
           {
             "text": "(a is half the length of the major axis)",
@@ -169,8 +201,16 @@
           "b² = a²(1 − e²) = a² − (ae)² = a² − 1 …(3)",
           "[since ae = 1]",
           "From (2) and (3):",
-          "15a/4 = a² − 1 ⇒ 4a² − 15a − 4 = 0",
-          "⇒ (a − 4)(4a + 1) = 0 ⇒ a = 4 or a = −1/4",
+          {
+            "text": "\\dfrac{15a}{4} = \\ a^{2}\\ - \\ 1\\ \\Rightarrow \\ 4a^{2}\\ - \\ 15a\\ - \\ 4\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(a\\ - \\ 4\\right)\\left(4a\\ + \\ 1\\right)\\ = \\ 0\\ \\Rightarrow \\ a\\ = \\ 4\\ \\text{or}\\ a\\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "a cannot be negative, so a = 4",
           "⇒ b² = a² − 1 = 16 − 1 = 15"
         ]
@@ -186,15 +226,20 @@
         "lines": [
           "a² = 16, b² = 15",
           {
-            "text": "Put these in x²/a² + y²/b² = 1:",
+            "text": "\\text{Put}\\ \\text{these}\\ \\text{in}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Equation of the ellipse: x²/16 + y²/15 = 1",
-            "style": "boxed"
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{ellipse}:\\ \\dfrac{x^{2}}{16} + \\ \\dfrac{y^{2}}{15} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "Check: 2b²/a = 30/4 = 15/2, and",
+            "text": "\\text{Check}:\\ \\dfrac{2b^{2}}{a} = \\ \\dfrac{30}{4} = \\ \\dfrac{15}{2},\\ \\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -211,8 +256,9 @@
         "lines_compact": [
           "a² = 16, b² = 15",
           {
-            "text": "Equation of the ellipse: x²/16 + y²/15 = 1",
-            "style": "boxed"
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{ellipse}:\\ \\dfrac{x^{2}}{16} + \\ \\dfrac{y^{2}}{15} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

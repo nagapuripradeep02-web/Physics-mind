@@ -69,7 +69,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the ellipse be S ≡ x²/a² + y²/b² − 1 = 0",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{ellipse}\\ \\text{be}\\ S\\ \\equiv \\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let P(x₁, y₁) be a point on the locus.",
           "(P is the foot of the perpendicular drawn",
           {
@@ -81,9 +85,17 @@
           "Take mx to the left:",
           "y − mx = ±√(a²m² + b²) …(1)",
           "The perpendicular to this tangent through",
-          "focus (±ae, 0) has slope −1/m:",
+          {
+            "text": "\\text{focus}\\ \\left( \\pm ae,\\ 0\\right)has\\ \\text{slope}\\ - \\dfrac{1}{m}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "(perpendicular slopes multiply to −1)",
-          "Its equation is y − 0 = (−1/m)(x ∓ ae).",
+          {
+            "text": "\\text{Its}\\ \\text{equation}\\ \\text{is}\\ y\\ - \\ 0\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ \\mp \\ ae\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by m: my = −x ± ae, and move −x:",
           "my + x = ±ae …(2)"
         ],

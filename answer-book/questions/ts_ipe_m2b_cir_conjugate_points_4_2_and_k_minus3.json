@@ -64,7 +64,11 @@
           "Two points are conjugate when S₁₂ = 0",
           "For S ≡ x² + y² − 5x + 8y + 6 = 0:",
           "Compare with x² + y² + 2gx + 2fy + c = 0:",
-          "g = −5/2, f = 4, c = 6",
+          {
+            "text": "g\\ = \\ - \\dfrac{5}{2},\\ f\\ = \\ 4,\\ c\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           "S₁₂ = x₁x₂ + y₁y₂ + g(x₁+x₂) + f(y₁+y₂) + c"
         ],
         "why": "S₁₂ replaces x² by x₁x₂, y² by y₁y₂, 2gx by g(x₁ + x₂) and 2fy by f(y₁ + y₂). The linear terms use sums because the 2 in 2gx is what splits into the two points.",
@@ -83,24 +87,41 @@
         "memory_tip": "4k − 5k/2 is (3/2)k. Collect the k terms before the numbers.",
         "lines": [
           "With (x₁, y₁) = (4, 2) and (x₂, y₂) = (k, −3):",
-          "4k + 2(−3) − (5/2)(4 + k) + 4(2 − 3) + 6 = 0",
           {
-            "text": "(5/2)(4 + k) = 10 + (5/2)k",
+            "text": "4k\\ + \\ 2\\left( - 3\\right)\\ - \\ \\left(\\dfrac{5}{2}\\right)\\left(4\\ + \\ k\\right)\\ + \\ 4\\left(2\\ - \\ 3\\right)\\ + \\ 6\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{2}\\right)\\left(4\\ + \\ k\\right)\\ = \\ 10\\ + \\ \\left(\\dfrac{5}{2}\\right)k",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 4k − 6 − 10 − (5/2)k − 4 + 6 = 0",
           {
-            "text": "4k − (5/2)k = (8 − 5)k/2 = (3/2)k",
+            "text": "\\Rightarrow \\ 4k\\ - \\ 6\\ - \\ 10\\ - \\ \\left(\\dfrac{5}{2}\\right)k\\ - \\ 4\\ + \\ 6\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4k\\ - \\ \\left(\\dfrac{5}{2}\\right)k\\ = \\ \\dfrac{\\left(8\\ - \\ 5\\right)k}{2} = \\ \\left(\\dfrac{3}{2}\\right)k",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "−6 − 10 − 4 + 6 = −14",
             "added": true
           },
-          "⇒ (3/2)k − 14 = 0 ⇒ 3k = 28",
           {
-            "text": "∴ k = 28/3",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\left(\\dfrac{3}{2}\\right)k\\ - \\ 14\\ = \\ 0\\ \\Rightarrow \\ 3k\\ = \\ 28",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{28}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The k terms are 4k and −(5/2)k, which combine to (3/2)k. The numbers are −6 − 10 − 4 + 6 = −14. The answer is a fraction because 28 is not divisible by 3.",
@@ -110,12 +131,25 @@
         ],
         "lines_compact": [
           "With (x₁, y₁) = (4, 2) and (x₂, y₂) = (k, −3):",
-          "4k + 2(−3) − (5/2)(4 + k) + 4(2 − 3) + 6 = 0",
-          "⇒ 4k − 6 − 10 − (5/2)k − 4 + 6 = 0",
-          "⇒ (3/2)k − 14 = 0 ⇒ 3k = 28",
           {
-            "text": "∴ k = 28/3",
-            "style": "boxed"
+            "text": "4k\\ + \\ 2\\left( - 3\\right)\\ - \\ \\left(\\dfrac{5}{2}\\right)\\left(4\\ + \\ k\\right)\\ + \\ 4\\left(2\\ - \\ 3\\right)\\ + \\ 6\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 4k\\ - \\ 6\\ - \\ 10\\ - \\ \\left(\\dfrac{5}{2}\\right)k\\ - \\ 4\\ + \\ 6\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{3}{2}\\right)k\\ - \\ 14\\ = \\ 0\\ \\Rightarrow \\ 3k\\ = \\ 28",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{28}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -99,7 +99,11 @@
             "text": "Divide both sides by (x² + 1)(y² + 1):",
             "added": true
           },
-          "⇒ x/(x² + 1) dx = −y/(y² + 1) dy"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{x^{2}\\ + \\ 1}dx\\ = \\ - \\dfrac{y}{y^{2}\\ + \\ 1}dy",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing both sides by (x² + 1)(y² + 1) leaves x and its differential entirely on one side and y and its differential entirely on the other, which is exactly what separation of variables requires.",
         "common_mistakes": [
@@ -108,7 +112,11 @@
         ],
         "lines_compact": [
           "x(y² + 1)dx = −y(x² + 1)dy",
-          "⇒ x/(x² + 1) dx = −y/(y² + 1) dy"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{x^{2}\\ + \\ 1}dx\\ = \\ - \\dfrac{y}{y^{2}\\ + \\ 1}dy",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -120,17 +128,26 @@
         "margin_note": "One mark. Both sides are the standard ∫x/(x²+1)dx = (1/2)log(x²+1) shape.",
         "memory_tip": "The numerator on each side is exactly half the derivative of the denominator — a direct log-integral.",
         "lines": [
-          "∫ x/(x² + 1) dx = −∫ y/(y² + 1) dy",
+          {
+            "text": "\\int \\ \\dfrac{x}{x^{2}\\ + \\ 1}dx\\ = \\ - \\int \\ \\dfrac{y}{y^{2}\\ + \\ 1}dy",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2x is the derivative of x² + 1, so",
             "added": true
           },
           {
-            "text": "  ∫x/(x² + 1) dx = (1/2)log(x² + 1):",
+            "text": "\\int \\dfrac{x}{x^{2}\\ + \\ 1}dx\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(x^{2}\\ + \\ 1\\right):",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ (1/2)log(x² + 1) = −(1/2)log(y² + 1) + c₁",
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(x^{2}\\ + \\ 1\\right)\\ = \\ - \\left(\\dfrac{1}{2}\\right)\\log \\left(y^{2}\\ + \\ 1\\right)\\ + \\ c_{1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by 2 and write 2c₁ = log c:",
             "added": true
@@ -143,8 +160,16 @@
           "Leaving the equation with logs on both sides instead of combining them onto one side before the next step."
         ],
         "lines_compact": [
-          "∫ x/(x² + 1) dx = −∫ y/(y² + 1) dy",
-          "⇒ (1/2)log(x² + 1) = −(1/2)log(y² + 1) + c₁",
+          {
+            "text": "\\int \\ \\dfrac{x}{x^{2}\\ + \\ 1}dx\\ = \\ - \\int \\ \\dfrac{y}{y^{2}\\ + \\ 1}dy",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(x^{2}\\ + \\ 1\\right)\\ = \\ - \\left(\\dfrac{1}{2}\\right)\\log \\left(y^{2}\\ + \\ 1\\right)\\ + \\ c_{1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ log(x² + 1) + log(y² + 1) = log c"
         ]
       },

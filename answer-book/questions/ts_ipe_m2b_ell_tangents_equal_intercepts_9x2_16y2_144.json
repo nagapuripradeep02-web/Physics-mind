@@ -60,7 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "9x² + 16y² = 144 ⇒ x²/16 + y²/9 = 1",
+          {
+            "text": "9x^{2}\\ + \\ 16y^{2}\\ = \\ 144\\ \\Rightarrow \\ \\dfrac{x^{2}}{16} + \\ \\dfrac{y^{2}}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide every term by 144)",
           "⇒ a² = 16, b² = 9",
           "A line making equal intercepts on the axes",

@@ -56,7 +56,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is a linear D.E in y.",
           "Here P = sec x and Q = tan x",
           "⇒ ∫P dx = ∫sec x dx = log|sec x + tan x|"

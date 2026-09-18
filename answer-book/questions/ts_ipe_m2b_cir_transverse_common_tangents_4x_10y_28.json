@@ -119,16 +119,25 @@
             "added": true
           },
           {
-            "text": "  ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))",
+            "text": "\\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m\\ + \\ n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m\\ + \\ n}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Here m = 1, n = 3, C₁ = (2, 5), C₂ = (−2, 3)",
             "added": true
           },
-          "I = ((1(−2) + 3(2))/(1+3), (1(3) + 3(5))/(1+3))",
-          "= (4/4, 18/4) = (1, 9/2)"
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{1\\left( - 2\\right)\\ + \\ 3\\left(2\\right)}{1 + 3},\\ \\dfrac{1\\left(3\\right)\\ + \\ 3\\left(5\\right)}{1 + 3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4}{4},\\ \\dfrac{18}{4}\\right)\\ = \\ \\left(1,\\ \\dfrac{9}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Both transverse tangents pass through one point between the circles, and that point divides the line of centres internally in the ratio of the radii. Every later step is measured from it.",
         "common_mistakes": [
@@ -139,8 +148,16 @@
           "r₁ : r₂ = 1 : 3",
           "The internal centre of similitude I divides",
           "C₁C₂ internally in the ratio 1 : 3",
-          "I = ((1(−2) + 3(2))/(1+3), (1(3) + 3(5))/(1+3))",
-          "= (4/4, 18/4) = (1, 9/2)"
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{1\\left( - 2\\right)\\ + \\ 3\\left(2\\right)}{1 + 3},\\ \\dfrac{1\\left(3\\right)\\ + \\ 3\\left(5\\right)}{1 + 3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4}{4},\\ \\dfrac{18}{4}\\right)\\ = \\ \\left(1,\\ \\dfrac{9}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -154,7 +171,11 @@
         "lines": [
           "The pair of tangents from I(x₁, y₁) to",
           "S = 0 is S₁² = S₁₁ · S",
-          "With S ≡ x²+y²−4x−10y+28 and I = (1, 9/2):",
+          {
+            "text": "\\text{With}\\ S\\ \\equiv \\ x^{2} + y^{2} - 4x - 10y + 28\\ \\text{and}\\ I\\ = \\ \\left(1,\\ \\dfrac{9}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "S₁ = xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c,",
             "added": true
@@ -164,17 +185,31 @@
             "style": "indent",
             "added": true
           },
-          "S₁ = x(1) + y(9/2) − 2(x + 1) − 5(y + 9/2) + 28",
           {
-            "text": "= x − 2x + 9y/2 − 5y − 2 − 45/2 + 28",
+            "text": "S_{1}\\ = \\ x\\left(1\\right)\\ + \\ y\\left(\\dfrac{9}{2}\\right)\\ - \\ 2\\left(x\\ + \\ 1\\right)\\ - \\ 5\\left(y\\ + \\ \\dfrac{9}{2}\\right)\\ + \\ 28",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ x\\ - \\ 2x\\ + \\ \\dfrac{9y}{2} - \\ 5y\\ - \\ 2\\ - \\ \\dfrac{45}{2} + \\ 28",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −x − y/2 + 7/2",
+          {
+            "text": "= \\ - x\\ - \\ \\dfrac{y}{2} + \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "S₁₁ = x₁² + y₁² − 4x₁ − 10y₁ + 28",
             "added": true
           },
-          "S₁₁ = 1 + 81/4 − 4 − 45 + 28 = 1/4"
+          {
+            "text": "S_{11}\\ = \\ 1\\ + \\ \\dfrac{81}{4} - \\ 4\\ - \\ 45\\ + \\ 28\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "S₁ is the general form with one point replaced by I, and S₁₁ is S₁ with both points equal to I. Because I lies outside the circle, S₁₁ is positive and the pair is a genuine pair of lines.",
         "common_mistakes": [
@@ -184,10 +219,26 @@
         "lines_compact": [
           "The pair of tangents from I(x₁, y₁) to",
           "S = 0 is S₁² = S₁₁ · S",
-          "With S ≡ x²+y²−4x−10y+28 and I = (1, 9/2):",
-          "S₁ = x(1) + y(9/2) − 2(x + 1) − 5(y + 9/2) + 28",
-          "= −x − y/2 + 7/2",
-          "S₁₁ = 1 + 81/4 − 4 − 45 + 28 = 1/4"
+          {
+            "text": "\\text{With}\\ S\\ \\equiv \\ x^{2} + y^{2} - 4x - 10y + 28\\ \\text{and}\\ I\\ = \\ \\left(1,\\ \\dfrac{9}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{1}\\ = \\ x\\left(1\\right)\\ + \\ y\\left(\\dfrac{9}{2}\\right)\\ - \\ 2\\left(x\\ + \\ 1\\right)\\ - \\ 5\\left(y\\ + \\ \\dfrac{9}{2}\\right)\\ + \\ 28",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - x\\ - \\ \\dfrac{y}{2} + \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{11}\\ = \\ 1\\ + \\ \\dfrac{81}{4} - \\ 4\\ - \\ 45\\ + \\ 28\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -200,18 +251,31 @@
         "memory_tip": "Write −x − y/2 + 7/2 as (−2x − y + 7)/2 so the square is a clean quarter.",
         "lines": [
           {
-            "text": "Write −x − y/2 + 7/2 over 2:",
+            "text": "\\text{Write}\\ - x\\ - \\ \\dfrac{y}{2} + \\ \\dfrac{7}{2}\\text{over}\\ 2:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (−2x − y + 7)/2",
+            "text": "= \\ \\dfrac{ - 2x\\ - \\ y\\ + \\ 7}{2}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "S₁² = ((−2x − y + 7)/2)² = (2x + y − 7)²/4",
-          "S₁₁ · S = (1/4)(x² + y² − 4x − 10y + 28)",
           {
-            "text": "Both sides carry 1/4, so multiply by 4:",
+            "text": "S_{1}^{2}\\ = \\ \\left(\\dfrac{ - 2x\\ - \\ y\\ + \\ 7}{2}\\right)^{2}\\ = \\ \\dfrac{\\left(2x\\ + \\ y\\ - \\ 7\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{11}\\ \\cdot \\ S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\left(x^{2}\\ + \\ y^{2}\\ - \\ 4x\\ - \\ 10y\\ + \\ 28\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{sides}\\ \\text{carry}\\ \\dfrac{1}{4},\\ \\text{so}\\ \\text{multiply}\\ \\text{by}\\ 4:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ (2x + y − 7)² = x² + y² − 4x − 10y + 28",
@@ -248,8 +312,16 @@
           "Inserting a y² term into the final answer because a pair \"should\" have one."
         ],
         "lines_compact": [
-          "S₁² = ((−2x − y + 7)/2)² = (2x + y − 7)²/4",
-          "S₁₁ · S = (1/4)(x² + y² − 4x − 10y + 28)",
+          {
+            "text": "S_{1}^{2}\\ = \\ \\left(\\dfrac{ - 2x\\ - \\ y\\ + \\ 7}{2}\\right)^{2}\\ = \\ \\dfrac{\\left(2x\\ + \\ y\\ - \\ 7\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{11}\\ \\cdot \\ S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\left(x^{2}\\ + \\ y^{2}\\ - \\ 4x\\ - \\ 10y\\ + \\ 28\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ (2x + y − 7)² = x² + y² − 4x − 10y + 28",
           "⇒ 4x² + y² + 49 + 4xy − 28x − 14y",
           "  = x² + y² − 4x − 10y + 28",

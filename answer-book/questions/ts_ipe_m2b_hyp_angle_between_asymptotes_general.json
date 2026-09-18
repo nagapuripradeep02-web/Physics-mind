@@ -57,24 +57,48 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The asymptotes of x²/a² − y²/b² = 1 are",
-          "y = ±(b/a)x",
+          {
+            "text": "\\text{The}\\ \\text{asymptotes}\\ \\text{of}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ \\text{are}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\pm \\left(\\dfrac{b}{a}\\right)x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(x²/a² − y²/b² = 0 factors as",
           {
             "text": "  (x/a − y/b)(x/a + y/b) = 0)",
             "style": "indent"
           },
           "They are equally inclined to the x-axis",
-          "at an angle θ, where tanθ = b/a",
+          {
+            "text": "\\text{at}\\ \\text{an}\\ \\text{angle}\\ \\theta ,\\ \\text{where}\\ \\tan \\theta \\ = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(slopes b/a and −b/a: one line makes θ above",
           {
             "text": "  the x-axis, the other θ below it)",
             "style": "indent"
           },
           "Use sec²θ = 1 + tan²θ:",
-          "secθ = √(1 + tan²θ) = √(1 + b²/a²)",
-          "= √(a²+b²)/a = e",
-          "(1 + b²/a² = (a² + b²)/a², and e = √(a² + b²)/a)"
+          {
+            "text": "\\sec \\theta \\ = \\ \\sqrt{1\\ + \\ \\tan ^{2} \\theta }\\ = \\ \\sqrt{1\\ + \\ \\dfrac{b^{2}}{a^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{a^{2} + b^{2}}}{a} = \\ e",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ + \\ \\dfrac{b^{2}}{a^{2}} = \\ \\dfrac{a^{2}\\ + \\ b^{2}}{a^{2}},\\ \\text{and}\\ e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Each asymptote makes the same angle θ with the x-axis, one above and one below it — writing secθ in terms of tanθ turns the angle straight into the hyperbola's own eccentricity.",
         "common_mistakes": [
@@ -91,7 +115,11 @@
         "margin_note": "Second mark. The full angle between the two asymptotes is twice θ.",
         "memory_tip": "One asymptote sits at +θ above the x-axis, the other at −θ below — so the angle BETWEEN them is 2θ, not θ.",
         "lines": [
-          "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",
+          {
+            "text": "\\sec \\theta \\ = \\ e\\ \\Rightarrow \\ \\theta \\ = \\ \\operatorname{Sec}^{-1} e\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{b}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The angle between the two asymptotes is",
             "added": true
@@ -112,7 +140,11 @@
           "Writing Tan⁻¹e by mistake. The correct forms are Sec⁻¹e and Tan⁻¹(b/a): sec takes e, and tan takes b/a."
         ],
         "lines_compact": [
-          "secθ = e ⇒ θ = Sec⁻¹e = Tan⁻¹(b/a)",
+          {
+            "text": "\\sec \\theta \\ = \\ e\\ \\Rightarrow \\ \\theta \\ = \\ \\operatorname{Sec}^{-1} e\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{b}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Angle between the asymptotes = 2Sec⁻¹(e)",
             "style": "boxed"

@@ -62,15 +62,24 @@
           },
           "The integrand is a ratio of sinx and cosx",
           {
-            "text": "  terms, so the tan(x/2) substitution turns",
-            "style": "indent"
+            "text": "\\text{terms},\\ \\text{so}\\ \\text{the}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{substitution}\\ \\text{turns}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  it into a rational function of t.",
             "style": "indent"
           },
-          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
-          "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ = \\ t\\ \\Rightarrow \\ \\sin x\\ = \\ \\dfrac{2t}{1 + t^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos x\\ = \\ \\dfrac{1 - t^{2}}{1 + t^{2}},\\ dx\\ = \\ \\dfrac{2dt}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The same universal substitution t = tan(x/2) — it works on any rational function of sinx and cosx, including one with a constant term (the 1) added in, as here.",
         "common_mistakes": [
@@ -87,13 +96,25 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "1+sinx+cosx = [(1+t²)+2t+(1−t²)]/(1+t²)",
+          {
+            "text": "1 + \\sin x + \\cos x\\ = \\ \\dfrac{\\left(1 + t^{2}\\right) + 2t + \\left(1 - t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The t² terms cancel:",
             "added": true
           },
-          "= (2+2t)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(2+2t)/(1+t²)]",
+          {
+            "text": "= \\ \\dfrac{2 + 2t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{2 + 2t}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Dividing by a fraction multiplies by its",
             "added": true
@@ -103,12 +124,20 @@
             "style": "indent",
             "added": true
           },
-          "= ∫2dt/(2+2t)",
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{2 + 2t}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Take 2 out of the denominator:",
             "added": true
           },
-          "= ∫dt/(1+t)"
+          {
+            "text": "= \\ \\int \\dfrac{dt}{1 + t}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the constant 1 with the common denominator (1+t²) lets t² cancel completely against −t², leaving the linear (2+2t) — no quadratic survives in this particular denominator.",
         "common_mistakes": [
@@ -117,11 +146,31 @@
         ],
         "memory_tip": "1 + sinx + cosx always simplifies to a LINEAR expression in t, never a quadratic — the t² terms cancel here.",
         "lines_compact": [
-          "1+sinx+cosx = [(1+t²)+2t+(1−t²)]/(1+t²)",
-          "= (2+2t)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(2+2t)/(1+t²)]",
-          "= ∫2dt/(2+2t)",
-          "= ∫dt/(1+t)"
+          {
+            "text": "1 + \\sin x + \\cos x\\ = \\ \\dfrac{\\left(1 + t^{2}\\right) + 2t + \\left(1 - t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2 + 2t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{2 + 2t}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{2 + 2t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{dt}{1 + t}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -132,14 +181,21 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∫dt/(1+t) = log|1+t| + c",
           {
-            "text": "Put t = tan(x/2) back:",
+            "text": "\\int \\dfrac{dt}{1 + t} = \\ \\log \\left|1 + t\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{back}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ ∫ dx/(1+sinx+cosx) = log|1+tan(x/2)| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + \\sin x + \\cos x} = \\ \\log \\left|1 + \\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫dt/(1+t) is the most basic log-form integral in the whole chapter — once the (1+t²) cancellation happens, no further algebra is needed before integrating.",
@@ -149,10 +205,15 @@
         ],
         "memory_tip": "The simplest tan(x/2) answers in this chapter end in a single log with tan(x/2) plugged straight in.",
         "lines_compact": [
-          "∫dt/(1+t) = log|1+t| + c",
           {
-            "text": "∴ ∫ dx/(1+sinx+cosx) = log|1+tan(x/2)| + c",
-            "style": "boxed"
+            "text": "\\int \\dfrac{dt}{1 + t} = \\ \\log \\left|1 + t\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + \\sin x + \\cos x} = \\ \\log \\left|1 + \\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

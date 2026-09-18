@@ -88,12 +88,15 @@
           },
           "⇒ 2y₁² − xy₁ + y = 0",
           {
-            "text": "y₁ means dy/dx:",
+            "text": "y_{1}\\ \\text{means}\\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ 2(dy/dx)² − x(dy/dx) + y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ 2\\left(\\dfrac{dy}{dx}\\right)^{2}\\ - \\ x\\left(\\dfrac{dy}{dx}\\right)\\ + \\ y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Putting c = y₁ back into the original equation y = cx − 2c² gives an equation in x, y and y₁ alone; rearranging it to zero eliminates the constant c completely and leaves the required differential equation.",
@@ -105,8 +108,9 @@
           "∴ (1) ⇒ y = y₁x − 2y₁²",
           "⇒ 2y₁² − xy₁ + y = 0",
           {
-            "text": "∴ 2(dy/dx)² − x(dy/dx) + y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ 2\\left(\\dfrac{dy}{dx}\\right)^{2}\\ - \\ x\\left(\\dfrac{dy}{dx}\\right)\\ + \\ y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

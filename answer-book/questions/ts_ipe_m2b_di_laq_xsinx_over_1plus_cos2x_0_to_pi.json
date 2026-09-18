@@ -175,13 +175,25 @@
           },
           "Put cosx = t ⇒ −sinx dx = dt, so sinx dx = −dt",
           "x = 0 ⇒ t = cos0 = 1; x = π ⇒ t = cosπ = −1",
-          "I = (π/2)∫₁⁻¹ (−dt)/(1 + t²)",
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{1}^{-1}\\ \\dfrac{ - dt}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Swapping the limits removes the minus sign:",
             "added": true
           },
-          "= (π/2)∫₋₁¹ dt/(1 + t²)",
-          "= (π/2)[Tan⁻¹t]₋₁¹"
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\dfrac{dt}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\operatorname{Tan}^{-1} t\\right]_{-1}^{1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "cosx = t turns sinx dx into a plain −dt, and 1 + cos²x becomes 1 + t² — a standard Tan⁻¹ form. Flipping the limits absorbs the negative sign.",
         "common_mistakes": [
@@ -191,9 +203,21 @@
         "lines_compact": [
           "Put cosx = t ⇒ −sinx dx = dt, so sinx dx = −dt",
           "x = 0 ⇒ t = cos0 = 1; x = π ⇒ t = cosπ = −1",
-          "I = (π/2)∫₁⁻¹ (−dt)/(1 + t²)",
-          "= (π/2)∫₋₁¹ dt/(1 + t²)",
-          "= (π/2)[Tan⁻¹t]₋₁¹"
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{1}^{-1}\\ \\dfrac{ - dt}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\dfrac{dt}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\operatorname{Tan}^{-1} t\\right]_{-1}^{1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -205,15 +229,26 @@
         "margin_note": "The last mark. Underline π²/4.",
         "memory_tip": "Tan⁻¹(1) and Tan⁻¹(−1) are a pair: π/4 and −π/4 — their difference is always π/2.",
         "lines": [
-          "= (π/2)[Tan⁻¹(1) − Tan⁻¹(−1)]",
           {
-            "text": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4:",
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left( - 1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\text{and}\\ \\operatorname{Tan}^{-1}\\left( - 1\\right)\\ = \\ - \\dfrac{\\pi }{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (π/2)(π/4 + π/4) = (π/2)(π/2)",
           {
-            "text": "∴ I = π²/4",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\dfrac{\\pi }{4} + \\ \\dfrac{\\pi }{4}\\right)\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi ^{2}}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4, so subtracting gives π/2 exactly — a clean angle pair that makes the final multiplication easy.",
@@ -222,11 +257,20 @@
           "Leaving the answer as (π/2)(π/2) instead of simplifying to π²/4."
         ],
         "lines_compact": [
-          "= (π/2)[Tan⁻¹(1) − Tan⁻¹(−1)]",
-          "= (π/2)(π/4 + π/4) = (π/2)(π/2)",
           {
-            "text": "∴ I = π²/4",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left( - 1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\dfrac{\\pi }{4} + \\ \\dfrac{\\pi }{4}\\right)\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi ^{2}}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

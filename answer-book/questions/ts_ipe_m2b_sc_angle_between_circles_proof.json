@@ -63,14 +63,31 @@
           "(1) has g = 0, f = 0 and c = −a².",
           "(2) has 2g = −a and 2f = −a, so",
           {
-            "text": "  g = −a/2, f = −a/2 and c = 0.",
-            "style": "indent"
+            "text": "g\\ = \\ - \\dfrac{a}{2},\\ f\\ = \\ - \\dfrac{a}{2}\\text{and}\\ c\\ = \\ 0.",
+            "style": "indent",
+            "render": "katex"
           },
-          "Centre C₁ = (0, 0), C₂ = (a/2, a/2)",
-          "d = C₁C₂ = √(a²/4 + a²/4) = a/√2",
-          "(a²/4 + a²/4 = a²/2, and √(a²/2) = a/√2)",
+          {
+            "text": "\\text{Centre}\\ C_{1}\\ = \\ \\left(0,\\ 0\\right),\\ C_{2}\\ = \\ \\left(\\dfrac{a}{2},\\ \\dfrac{a}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d\\ = \\ C_{1}C_{2}\\ = \\ \\sqrt{\\dfrac{a^{2}}{4} + \\ \\dfrac{a^{2}}{4}}\\ = \\ \\dfrac{a}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{a^{2}}{4} + \\ \\dfrac{a^{2}}{4} = \\ \\dfrac{a^{2}}{2},\\ \\text{and}\\ \\sqrt{\\dfrac{a^{2}}{2}}\\ = \\ \\dfrac{a}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1), r₁ = a",
-          "From (2), r₂ = √(a²/4 + a²/4) = a/√2"
+          {
+            "text": "\\text{From}\\ \\left(2\\right),\\ r_{2}\\ = \\ \\sqrt{\\dfrac{a^{2}}{4} + \\ \\dfrac{a^{2}}{4}}\\ = \\ \\dfrac{a}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The angle between two circles is computed from their centres, radii, and the distance between centres — all three are needed before the angle formula can be applied, and here every one of them is an expression in a rather than a plain number.",
         "common_mistakes": [
@@ -91,28 +108,49 @@
             "text": "The angle θ between two circles is given by",
             "added": true
           },
-          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
           {
-            "text": "Here d² = a²/2, r₁² = a² and r₂² = a²/2:",
-            "added": true
-          },
-          "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
-          {
-            "text": "Top: a²/2 − a² − a²/2 = −a²",
-            "added": true
+            "text": "\\cos \\theta \\ = \\ \\dfrac{d^{2}\\ - \\ r_{1}^{2}\\ - \\ r_{2}^{2}}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "Bottom: 2 · a · a/√2 = 2a²/√2 = √2 a²",
-            "added": true
-          },
-          "= −a² / (√2 a²) = −1/√2 = cos 135° ⇒ θ = 135°",
-          {
-            "text": "and 135° = 135 × π/180 = 3π/4:",
+            "text": "\\text{Here}\\ d^{2}\\ = \\ \\dfrac{a^{2}}{2},\\ r_{1}^{2}\\ = \\ a^{2}\\ \\text{and}\\ r_{2}^{2}\\ = \\ \\dfrac{a^{2}}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Angle between the circles is 3π/4",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\dfrac{a^{2}}{2} - \\ a^{2}\\ - \\ \\dfrac{a^{2}}{2}}{2\\ \\cdot \\ a\\ \\cdot \\ \\dfrac{a}{\\sqrt{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Top}:\\ \\dfrac{a^{2}}{2} - \\ a^{2}\\ - \\ \\dfrac{a^{2}}{2} = \\ - a^{2}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{Bottom}:\\ 2\\ \\cdot \\ a\\ \\cdot \\ \\dfrac{a}{\\sqrt{2}} = \\ \\dfrac{2a^{2}}{\\sqrt{2}} = \\ \\sqrt{2}a^{2}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ - \\dfrac{a^{2}}{\\sqrt{2}a^{2}} = \\ - \\dfrac{1}{\\sqrt{2}} = \\ \\cos 135^{\\circ}\\ \\Rightarrow \\ \\theta \\ = \\ 135^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ 135^{\\circ}\\ = \\ 135\\ \\times \\ \\dfrac{\\pi }{180} = \\ \\dfrac{3\\pi }{4}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{circles}\\ \\text{is}\\ \\dfrac{3\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The angle between two intersecting circles is found from cos θ = (d² − r₁² − r₂²) / (2r₁r₂); substituting the expressions from step 1 leaves a² cancelling out completely, so the angle 3π/4 holds for EVERY value of a, which is exactly what 'show that' asks for.",
@@ -122,12 +160,25 @@
         ],
         "memory_tip": "cos θ = −1/√2 is always 135° = 3π/4 — a value worth memorising directly, alongside cos θ = 1/√2 for 45° = π/4.",
         "lines_compact": [
-          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
-          "= (a²/2 − a² − a²/2) / (2 · a · a/√2)",
-          "= −a² / (√2 a²) = −1/√2 = cos 135° ⇒ θ = 135°",
           {
-            "text": "∴ Angle between the circles is 3π/4",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{d^{2}\\ - \\ r_{1}^{2}\\ - \\ r_{2}^{2}}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{a^{2}}{2} - \\ a^{2}\\ - \\ \\dfrac{a^{2}}{2}}{2\\ \\cdot \\ a\\ \\cdot \\ \\dfrac{a}{\\sqrt{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{a^{2}}{\\sqrt{2}a^{2}} = \\ - \\dfrac{1}{\\sqrt{2}} = \\ \\cos 135^{\\circ}\\ \\Rightarrow \\ \\theta \\ = \\ 135^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{circles}\\ \\text{is}\\ \\dfrac{3\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

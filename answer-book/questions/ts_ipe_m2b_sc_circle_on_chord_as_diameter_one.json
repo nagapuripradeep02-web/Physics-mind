@@ -104,11 +104,15 @@
             "added": true
           },
           {
-            "text": "2g = λ − 2 ⇒ g = (λ − 2)/2",
+            "text": "2g\\ = \\ \\lambda \\ - \\ 2\\ \\Rightarrow \\ g\\ = \\ \\dfrac{\\lambda \\ - \\ 2}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "2f = λ + 4 ⇒ f = (λ + 4)/2",
+            "text": "2f\\ = \\ \\lambda \\ + \\ 4\\ \\Rightarrow \\ f\\ = \\ \\dfrac{\\lambda \\ + \\ 4}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -116,15 +120,23 @@
             "added": true
           },
           {
-            "text": "−g = −(λ − 2)/2 = (2 − λ)/2",
+            "text": "- g\\ = \\ - \\dfrac{\\lambda \\ - \\ 2}{2} = \\ \\dfrac{2\\ - \\ \\lambda }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "−f = −(λ + 4)/2 = −(4 + λ)/2",
+            "text": "- f\\ = \\ - \\dfrac{\\lambda \\ + \\ 4}{2} = \\ - \\dfrac{4\\ + \\ \\lambda }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Centre of the above circle is",
-          "( (2 − λ)/2 , −(4 + λ)/2 )"
+          {
+            "text": "\\left(\\dfrac{2\\ - \\ \\lambda }{2},\\ - \\dfrac{4\\ + \\ \\lambda }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "For a circle x² + y² + 2gx + 2fy + c = 0 the centre is (−g, −f) — halving the x and y coefficients from step 1 and negating gives this centre in terms of λ.",
         "common_mistakes": [
@@ -134,7 +146,11 @@
         "memory_tip": "Centre = −(half the x-coefficient), −(half the y-coefficient) — always two negatives, one for each coordinate.",
         "lines_compact": [
           "Centre of the above circle is",
-          "( (2 − λ)/2 , −(4 + λ)/2 )"
+          {
+            "text": "\\left(\\dfrac{2\\ - \\ \\lambda }{2},\\ - \\dfrac{4\\ + \\ \\lambda }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -157,10 +173,16 @@
           "Line L = 0 becomes a diameter if the",
           "centre lies on L ≡ x + y − 3 = 0",
           {
-            "text": "Put x = (2 − λ)/2 and y = −(4 + λ)/2 in L:",
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{2\\ - \\ \\lambda }{2}\\text{and}\\ y\\ = \\ - \\dfrac{4\\ + \\ \\lambda }{2}\\text{in}\\ L:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (2 − λ)/2 − (4 + λ)/2 − 3 = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2\\ - \\ \\lambda }{2} - \\ \\dfrac{4\\ + \\ \\lambda }{2} - \\ 3\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 2:",
             "added": true
@@ -198,7 +220,11 @@
         "lines_compact": [
           "Line L = 0 becomes a diameter if the",
           "centre lies on L ≡ x + y − 3 = 0",
-          "⇒ (2 − λ)/2 − (4 + λ)/2 − 3 = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2\\ - \\ \\lambda }{2} - \\ \\dfrac{4\\ + \\ \\lambda }{2} - \\ 3\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2 − λ − 4 − λ − 6 = 0",
           "⇒ −2λ − 8 = 0 ⇒ λ = −4",
           "From (1), the required circle is",

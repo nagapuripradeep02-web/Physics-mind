@@ -74,8 +74,16 @@
             "style": "heading"
           },
           "Given hyperbola x² − 4y² = 5",
-          "⇒ x²/5 − y²/(5/4) = 1 ⇒ a² = 5, b² = 5/4",
-          "(divide by 5: 4y²/5 = y² ÷ (5/4))",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x^{2}}{5} - \\ \\dfrac{y^{2}}{\\dfrac{5}{4}} = \\ 1\\ \\Rightarrow \\ a^{2}\\ = \\ 5,\\ b^{2}\\ = \\ \\dfrac{5}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\text{by}\\ 5:\\ \\dfrac{4y^{2}}{5} = \\ y^{2}\\ \\div \\ \\left(\\dfrac{5}{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Comparing 3x − 4y + k = 0",
           "with the general line lx + my + n = 0: l = 3,",
           "m = −4, n = k",
@@ -102,12 +110,20 @@
         "memory_tip": "Here n = k enters squared, so k² = 25 gives k = ±5 — keep both signs.",
         "lines": [
           {
-            "text": "Put a² = 5, b² = 5/4, l = 3, m = −4, n = k:",
+            "text": "\\text{Put}\\ a^{2}\\ = \\ 5,\\ b^{2}\\ = \\ \\dfrac{5}{4},\\ l\\ = \\ 3,\\ m\\ = \\ - 4,\\ n\\ = \\ k:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "k² = 5(3²) − (5/4)(−4)² = 45 − 20 = 25",
           {
-            "text": "(5 × 9 = 45 and (5/4) × 16 = 20)",
+            "text": "k^{2}\\ = \\ 5\\left(3^{2}\\right)\\ - \\ \\left(\\dfrac{5}{4}\\right)\\left( - 4\\right)^{2}\\ = \\ 45\\ - \\ 20\\ = \\ 25",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(5\\ \\times \\ 9\\ = \\ 45\\ \\text{and}\\ \\left(\\dfrac{5}{4}\\right)\\ \\times \\ 16\\ = \\ 20\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -125,7 +141,11 @@
           "Computing (−4)² as −16 instead of +16 before multiplying by 5/4."
         ],
         "lines_compact": [
-          "k² = 5(3²) − (5/4)(−4)² = 45 − 20 = 25",
+          {
+            "text": "k^{2}\\ = \\ 5\\left(3^{2}\\right)\\ - \\ \\left(\\dfrac{5}{4}\\right)\\left( - 4\\right)^{2}\\ = \\ 45\\ - \\ 20\\ = \\ 25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "k = ±5",
             "style": "boxed"

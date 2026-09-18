@@ -51,7 +51,11 @@
             "style": "heading"
           },
           "Given parabola y² = 6x ⇒ 4a = 6 ⇒ 2a = 3",
-          "⇒ a = 3/2",
+          {
+            "text": "\\Rightarrow \\ a\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The latus rectum is the chord through the focus",
           {
             "text": "  (a, 0), perpendicular to the axis. At x = a,",
@@ -62,7 +66,11 @@
             "style": "indent"
           },
           "The positive end of the latus rectum is (a, 2a)",
-          "= (3/2, 3)"
+          {
+            "text": "= \\ \\left(\\dfrac{3}{2},\\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The latus rectum is the chord through the focus perpendicular to the axis, and its two ends are always (a,2a) and (a,−2a) — the positive end is the one with the positive y-coordinate.",
         "common_mistakes": [
@@ -81,10 +89,16 @@
         "lines": [
           "Tangent at (x₁, y₁) on y² = 4ax is yy₁ = 2a(x + x₁)",
           {
-            "text": "Put x₁ = 3/2, y₁ = 3 and 2a = 3:",
+            "text": "\\text{Put}\\ x_{1}\\ = \\ \\dfrac{3}{2},\\ y_{1}\\ = \\ 3\\ \\text{and}\\ 2a\\ = \\ 3:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
+          {
+            "text": "\\Rightarrow \\ y\\left(3\\right)\\ = \\ 3\\left(x\\ + \\ \\dfrac{3}{2}\\right)\\ \\Rightarrow \\ y\\ = \\ x\\ + \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 3)",
             "added": true
@@ -100,10 +114,20 @@
             "text": "(perpendicular slopes multiply to −1)",
             "added": true
           },
-          "Normal at (3/2, 3) with slope −1:",
-          "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
           {
-            "text": "(y − 3 = −x + 3/2 ⇒ x + y = 9/2; multiply by 2)",
+            "text": "\\text{Normal}\\ \\text{at}\\ \\left(\\dfrac{3}{2},\\ 3\\right)\\ \\text{with}\\ \\text{slope}\\ - 1:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 3\\ = \\ - 1\\left(x\\ - \\ \\dfrac{3}{2}\\right)\\ \\Rightarrow \\ 2x\\ + \\ 2y\\ - \\ 9\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ - \\ 3\\ = \\ - x\\ + \\ \\dfrac{3}{2} \\Rightarrow \\ x\\ + \\ y\\ = \\ \\dfrac{9}{2};\\ \\text{multiply}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -123,12 +147,24 @@
         "memory_tip": "Find the tangent first — the normal's slope is −1 ÷ (the tangent's slope), since perpendicular slopes multiply to −1.",
         "lines_compact": [
           "Tangent at (x₁, y₁) on y² = 4ax is yy₁ = 2a(x + x₁)",
-          "⇒ y(3) = 3(x + 3/2) ⇒ y = x + 3/2",
+          {
+            "text": "\\Rightarrow \\ y\\left(3\\right)\\ = \\ 3\\left(x\\ + \\ \\dfrac{3}{2}\\right)\\ \\Rightarrow \\ y\\ = \\ x\\ + \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x − 2y + 3 = 0",
           "Slope of this tangent is 1,",
           "so the slope of the normal is −1",
-          "Normal at (3/2, 3) with slope −1:",
-          "y − 3 = −1(x − 3/2) ⇒ 2x + 2y − 9 = 0",
+          {
+            "text": "\\text{Normal}\\ \\text{at}\\ \\left(\\dfrac{3}{2},\\ 3\\right)\\ \\text{with}\\ \\text{slope}\\ - 1:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 3\\ = \\ - 1\\left(x\\ - \\ \\dfrac{3}{2}\\right)\\ \\Rightarrow \\ 2x\\ + \\ 2y\\ - \\ 9\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ tangent: 2x − 2y + 3 = 0",
             "style": "boxed"

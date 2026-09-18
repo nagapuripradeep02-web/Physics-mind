@@ -74,8 +74,16 @@
             "style": "indent"
           },
           "Let 9cosx−sinx",
-          "= A·d/dx(4sinx+5cosx) + B(4sinx+5cosx)",
-          "Here d/dx(4sinx+5cosx) = 4cosx−5sinx",
+          {
+            "text": "= \\ A \\cdot \\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)\\ + \\ B\\left(4\\sin x + 5\\cos x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)\\ = \\ 4\\cos x - 5\\sin x",
+            "style": "normal",
+            "render": "katex"
+          },
           "= A(4cosx−5sinx) + B(4sinx+5cosx) …(i)",
           "Compare the coefficients on both sides:",
           "Coefficient of cosx: 4A+5B = 9",
@@ -143,7 +151,11 @@
         "margin_note": "Method",
         "lines": [
           "Putting A=1, B=1 in (i): 9cosx−sinx",
-          "= 1·d/dx(4sinx+5cosx) + 1·(4sinx+5cosx)",
+          {
+            "text": "= \\ 1 \\cdot \\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)\\ + \\ 1 \\cdot \\left(4\\sin x + 5\\cos x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide every term by 4sinx+5cosx",
             "added": true
@@ -154,7 +166,11 @@
             "added": true
           },
           "I",
-          "= ∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx",
+          {
+            "text": "= \\ \\int \\dfrac{\\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)}{4\\sin x + 5\\cos x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "+ ∫1 dx"
         ],
         "why": "With A and B both known numbers, the original integral splits into exactly two recognisable pieces: an f′(x)/f(x) form (a pure log) and a plain constant.",
@@ -165,9 +181,17 @@
         "memory_tip": "Once A and B are numbers, the integral is ALWAYS a log plus a plain x term — no other outcome is possible for this family.",
         "lines_compact": [
           "Putting A=1, B=1 in (i): 9cosx−sinx",
-          "= 1·d/dx(4sinx+5cosx) + 1·(4sinx+5cosx)",
+          {
+            "text": "= \\ 1 \\cdot \\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)\\ + \\ 1 \\cdot \\left(4\\sin x + 5\\cos x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
-          "= ∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx",
+          {
+            "text": "= \\ \\int \\dfrac{\\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)}{4\\sin x + 5\\cos x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "+ ∫1 dx"
         ]
       },
@@ -180,7 +204,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "The first integral has the form ∫f′/f dx,",
+            "text": "\\text{The}\\ \\text{first}\\ \\text{integral}\\ has\\ \\text{the}\\ \\text{form}\\ \\int \\dfrac{f'}{f}dx,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -189,7 +215,9 @@
             "added": true
           },
           {
-            "text": "∫[d/dx(4sinx+5cosx)]/(4sinx+5cosx) dx",
+            "text": "\\int \\dfrac{\\dfrac{d}{dx}\\left(4\\sin x + 5\\cos x\\right)}{4\\sin x + 5\\cos x}dx",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

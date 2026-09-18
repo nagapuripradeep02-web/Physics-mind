@@ -90,7 +90,11 @@
           "Move −36 and −16 to the right:",
           "⇒ 9(x − 2)² + 16(y + 1)² = 92 + 36 + 16 = 144",
           "Divide every term by 144:",
-          "⇒ (x − 2)²/16 + (y + 1)²/9 = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left(x\\ - \\ 2\\right)^{2}}{16} + \\ \\dfrac{\\left(y\\ + \\ 1\\right)^{2}}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Centre (h, k) = (2, −1); a² = 16, b² = 9.",
           "a > b, so the major axis is horizontal."
         ],
@@ -114,14 +118,25 @@
             "added": true
           },
           {
-            "text": "For a horizontal ellipse e² = (a² − b²)/a²:",
+            "text": "\\text{For}\\ a\\ \\text{horizontal}\\ \\text{ellipse}\\ e^{2}\\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "e = √(a² − b²) / a",
-          "= √(16 − 9) / 4",
           {
-            "text": "e = √7 / 4",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ - \\ b^{2}}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{16\\ - \\ 9}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{7}}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Shifting the centre never changes the shape of the ellipse, so a, b and e are identical to an ellipse of the same a² and b² centred at the origin.",
@@ -130,11 +145,20 @@
           "Leaving a² in the denominator instead of a."
         ],
         "lines_compact": [
-          "e = √(a² − b²) / a",
-          "= √(16 − 9) / 4",
           {
-            "text": "e = √7 / 4",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ - \\ b^{2}}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{16\\ - \\ 9}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{7}}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -157,9 +181,15 @@
             "added": true
           },
           "Foci = (h ± ae, k)",
-          "= (2 ± 4·√7/4, −1)",
           {
-            "text": "(ae = 4 · √7/4 = √7)",
+            "text": "= \\ \\left(2\\ \\pm \\ 4 \\cdot \\dfrac{\\sqrt{7}}{4},\\ - 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(ae\\ = \\ 4\\ \\cdot \\ \\dfrac{\\sqrt{7}}{4} = \\ \\sqrt{7}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -174,7 +204,11 @@
         ],
         "lines_compact": [
           "Foci = (h ± ae, k)",
-          "= (2 ± 4·√7/4, −1)",
+          {
+            "text": "= \\ \\left(2\\ \\pm \\ 4 \\cdot \\dfrac{\\sqrt{7}}{4},\\ - 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Foci = (2 ± √7, −1)",
             "style": "boxed"
@@ -199,15 +233,26 @@
             "style": "indent",
             "added": true
           },
-          "Length of latus rectum = 2b² / a",
-          "= 2(9) / 4",
           {
-            "text": "(18/4 = 9/2, dividing top and bottom by 2)",
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2b^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(9\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{18}{4} = \\ \\dfrac{9}{2},\\ \\text{dividing}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 9/2",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The latus rectum is a length, and lengths are unchanged by shifting the centre — only positions move.",
@@ -216,11 +261,20 @@
           "Writing 2a²/b instead of 2b²/a."
         ],
         "lines_compact": [
-          "Length of latus rectum = 2b² / a",
-          "= 2(9) / 4",
           {
-            "text": "= 9/2",
-            "style": "boxed"
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2b^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(9\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -238,14 +292,25 @@
             "added": true
           },
           {
-            "text": "  axis, at a distance a/e from the centre:",
+            "text": "\\text{axis},\\ \\text{at}\\ a\\ \\text{distance}\\ \\dfrac{a}{e}\\text{from}\\ \\text{the}\\ \\text{centre}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "x = h ± a/e",
-          "= 2 ± 4/(√7/4) = 2 ± 16/√7",
           {
-            "text": "(4 ÷ (√7/4) = 4 × 4/√7 = 16/√7)",
+            "text": "x\\ = \\ h\\ \\pm \\ \\dfrac{a}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\pm \\ \\dfrac{4}{\\dfrac{\\sqrt{7}}{4}} = \\ 2\\ \\pm \\ \\dfrac{16}{\\sqrt{7}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(4\\ \\div \\ \\left(\\dfrac{\\sqrt{7}}{4}\\right)\\ = \\ 4\\ \\times \\ \\dfrac{4}{\\sqrt{7}} = \\ \\dfrac{16}{\\sqrt{7}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Multiply by √7: √7x = 2√7 ± 16",
@@ -264,8 +329,16 @@
           "Multiplying only the a/e term by √7 and forgetting to multiply the shifted 2 as well."
         ],
         "lines_compact": [
-          "x = h ± a/e",
-          "= 2 ± 4/(√7/4) = 2 ± 16/√7",
+          {
+            "text": "x\\ = \\ h\\ \\pm \\ \\dfrac{a}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\pm \\ \\dfrac{4}{\\dfrac{\\sqrt{7}}{4}} = \\ 2\\ \\pm \\ \\dfrac{16}{\\sqrt{7}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by √7: √7x = 2√7 ± 16",
           {
             "text": "√7x − 2√7 − 16 = 0 and √7x − 2√7 + 16 = 0",

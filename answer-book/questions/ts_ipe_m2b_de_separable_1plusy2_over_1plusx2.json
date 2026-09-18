@@ -57,9 +57,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx = (1 + y²)/(1 + x²)",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1\\ + \\ y^{2}}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Keep y terms with dy and x terms with dx:",
-          "⇒ dy/(1 + y²) = dx/(1 + x²)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{1\\ + \\ y^{2}} = \\ \\dfrac{dx}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Cross-multiplying moves the (1+y²) factor to the left with dy and leaves (1+x²) on the right with dx, separating the two variables completely with no further rearrangement needed.",
         "common_mistakes": [
@@ -76,9 +84,15 @@
         "margin_note": "The last mark. Both sides integrate directly to a Tan⁻¹ — no substitution needed.",
         "memory_tip": "∫1/(1+x²)dx = Tan⁻¹x is one of the standard integrals worth remembering, and it is used on both sides here.",
         "lines": [
-          "∫dy/(1 + y²) = ∫dx/(1 + x²)",
           {
-            "text": "Both are the standard ∫du/(1 + u²) = Tan⁻¹u:",
+            "text": "\\int \\dfrac{dy}{1\\ + \\ y^{2}} = \\ \\int \\dfrac{dx}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{are}\\ \\text{the}\\ \\text{standard}\\ \\int \\dfrac{du}{1\\ + \\ u^{2}} = \\ \\operatorname{Tan}^{-1} u:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -92,7 +106,11 @@
           "Forgetting the arbitrary constant c, leaving the answer as Tan⁻¹y = Tan⁻¹x with no constant of integration."
         ],
         "lines_compact": [
-          "∫dy/(1 + y²) = ∫dx/(1 + x²)",
+          {
+            "text": "\\int \\dfrac{dy}{1\\ + \\ y^{2}} = \\ \\int \\dfrac{dx}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Tan⁻¹y = Tan⁻¹x + c",
             "style": "boxed"

@@ -94,12 +94,20 @@
             "text": "The angle θ between two circles is given by",
             "added": true
           },
-          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{d^{2}\\ - \\ r_{1}^{2}\\ - \\ r_{2}^{2}}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Here d² = 100, r₁² = 4 and r₂² = 72:",
             "added": true
           },
-          "= (100 − 4 − 72) / (2 · 2 · √72)",
+          {
+            "text": "= \\ \\dfrac{100\\ - \\ 4\\ - \\ 72}{2\\ \\cdot \\ 2\\ \\cdot \\ \\sqrt{72}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Top: 100 − 4 − 72 = 24",
             "added": true
@@ -108,14 +116,21 @@
             "text": "Bottom: √72 = √(36 × 2) = 6√2, so 4√72 = 24√2",
             "added": true
           },
-          "= 24 / (4√72) = 24 / (24√2) = 1/√2",
           {
-            "text": "and cos 45° = 1/√2:",
+            "text": "= \\ \\dfrac{24}{4\\sqrt{72}} = \\ \\dfrac{24}{24\\sqrt{2}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cos 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Angle between the circles is θ = 45° = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{circles}\\ \\text{is}\\ \\theta \\ = \\ 45^{\\circ}\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting d, r₁, r₂ into cos θ = (d² − r₁² − r₂²) / (2r₁r₂) and simplifying √72 = 6√2 collapses the fraction to the standard value 1/√2, which is cos 45°.",
@@ -125,12 +140,25 @@
         ],
         "memory_tip": "Simplify √72 = √(36 · 2) = 6√2 before doing the division — a surd left unsimplified is the usual reason this fraction looks stuck.",
         "lines_compact": [
-          "cos θ = (d² − r₁² − r₂²) / (2r₁r₂)",
-          "= (100 − 4 − 72) / (2 · 2 · √72)",
-          "= 24 / (4√72) = 24 / (24√2) = 1/√2",
           {
-            "text": "∴ Angle between the circles is θ = 45° = π/4",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{d^{2}\\ - \\ r_{1}^{2}\\ - \\ r_{2}^{2}}{2r_{1}r_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{100\\ - \\ 4\\ - \\ 72}{2\\ \\cdot \\ 2\\ \\cdot \\ \\sqrt{72}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{24}{4\\sqrt{72}} = \\ \\dfrac{24}{24\\sqrt{2}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{the}\\ \\text{circles}\\ \\text{is}\\ \\theta \\ = \\ 45^{\\circ}\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

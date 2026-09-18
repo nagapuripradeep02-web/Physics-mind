@@ -70,7 +70,11 @@
             "style": "heading"
           },
           "Let the hyperbola be",
-          "S ≡ x²/a² − y²/b² − 1 = 0",
+          {
+            "text": "S\\ \\equiv \\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let P(x₁, y₁) be a point on the locus.",
           "(P is the point where two perpendicular",
           {
@@ -160,12 +164,17 @@
             "added": true
           },
           {
-            "text": "  is C/A. Here A = x₁² − a², C = y₁² + b².",
+            "text": "\\text{is}\\ \\dfrac{C}{A}.\\ \\text{Here}\\ A\\ = \\ x_{1}^{2}\\ - \\ a^{2},\\ C\\ = \\ y_{1}^{2}\\ + \\ b^{2}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Product of roots of (1):",
-          "m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
+          {
+            "text": "m_{1}m_{2}\\ = \\ \\dfrac{y_{1}^{2}\\ + \\ b^{2}}{x_{1}^{2}\\ - \\ a^{2}} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Two lines are perpendicular exactly when the product of their slopes is −1; since m₁ and m₂ are the roots of the quadratic in (1), their product is read off directly from the ratio of its constant and leading coefficients.",
         "common_mistakes": [
@@ -175,7 +184,11 @@
         "lines_compact": [
           "If the tangents are perpendicular, m₁m₂ = −1",
           "Product of roots of (1):",
-          "m₁m₂ = (y₁² + b²) / (x₁² − a²) = −1"
+          {
+            "text": "m_{1}m_{2}\\ = \\ \\dfrac{y_{1}^{2}\\ + \\ b^{2}}{x_{1}^{2}\\ - \\ a^{2}} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

@@ -61,7 +61,11 @@
             "style": "heading"
           },
           "We know ∫ₐᵇ f(x)dx = ∫ₐᵇ f(a + b − x)dx",
-          "Here a = π/6 and b = π/3, so a + b = π/2.",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ \\dfrac{\\pi }{6}\\text{and}\\ b\\ = \\ \\dfrac{\\pi }{3},\\ \\text{so}\\ a\\ + \\ b\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore I = \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin x}/(\\sqrt{\\sin x} + \\sqrt{\\cos x}) dx \\dots (1)",
             "render": "katex",
@@ -83,7 +87,11 @@
         "margin_note": "One more mark. √sinx becomes √cosx under the swap.",
         "memory_tip": "sin(π/2 − x) = cosx, so √sin(π/2−x) = √cosx.",
         "lines": [
-          "By x → π/6 + π/3 − x = π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{6} + \\ \\dfrac{\\pi }{3} - \\ x\\ = \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin (\\pi /2-x)}/[\\sqrt{\\sin (\\pi /2-x)}",
@@ -96,7 +104,9 @@
             "style": "normal"
           },
           {
-            "text": "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx:",
+            "text": "\\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x\\ \\text{and}\\ \\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ I",
@@ -117,7 +127,11 @@
           "Forgetting that the limits π/6 and π/3 stay exactly as they were — only the integrand changes."
         ],
         "lines_compact": [
-          "By x → π/6 + π/3 − x = π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{6} + \\ \\dfrac{\\pi }{3} - \\ x\\ = \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{\\pi /6}^{\\pi /3} \\sqrt{\\sin (\\pi /2-x)}/[\\sqrt{\\sin (\\pi /2-x)}",
@@ -175,14 +189,19 @@
             "render": "katex",
             "style": "normal"
           },
-          "= π/3 − π/6 = π/6",
+          {
+            "text": "= \\ \\dfrac{\\pi }{3} - \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "since π/3 = 2π/6. Divide both sides by 2:",
             "added": true
           },
           {
-            "text": "∴ I = π/12",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The two numerators add up to exactly the denominator, so the integrand becomes 1 for every x, reducing the integral to the length of the interval between the two limits.",
@@ -207,10 +226,15 @@
             "render": "katex",
             "style": "normal"
           },
-          "= π/3 − π/6 = π/6",
           {
-            "text": "∴ I = π/12",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\pi }{3} - \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

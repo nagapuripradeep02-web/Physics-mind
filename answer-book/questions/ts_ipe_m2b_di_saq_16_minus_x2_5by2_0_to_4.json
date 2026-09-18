@@ -68,7 +68,11 @@
           },
           "Put x = 4sinθ ⇒ dx = 4cosθ dθ",
           "x = 0 ⇒ sinθ = 0 ⇒ θ = 0; x = 4 ⇒ sinθ = 1",
-          "⇒ θ = π/2"
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing x as 4sinθ makes 16 − x² = 16(1 − sin²θ) = 16cos²θ, a perfect square that removes the awkward fractional power in the next step.",
         "common_mistakes": [
@@ -96,8 +100,9 @@
             "added": true
           },
           {
-            "text": "  so the power 5/2 gives (4cosθ)⁵:",
+            "text": "\\text{so}\\ \\text{the}\\ \\text{power}\\ \\dfrac{5}{2}\\text{gives}\\ \\left(4\\cos \\theta \\right)^{5}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -153,8 +158,9 @@
             "added": true
           },
           {
-            "text": "  (n−1)(n−3)…1 / [n(n−2)…2] · π/2",
+            "text": "\\left(n - 1\\right)\\left(n - 3\\right)\\dots \\dfrac{1}{n\\left(n - 2\\right)\\dots 2} \\cdot \\ \\dfrac{\\pi }{2}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -162,17 +168,33 @@
             "render": "katex",
             "style": "normal"
           },
-          "= (15/48)(π/2)",
           {
-            "text": "4⁶ = 4096 and 15/48 = 5/16:",
+            "text": "= \\ \\left(\\dfrac{15}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4^{6}\\ = \\ 4096\\ \\text{and}\\ \\dfrac{15}{48} = \\ \\dfrac{5}{16}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "I = 4⁶ · (15/48)(π/2) = 4096 · (5/16)(π/2)",
           {
-            "text": "4096 · 5/16 = 256 · 5 = 1280:",
+            "text": "I\\ = \\ 4^{6}\\ \\cdot \\ \\left(\\dfrac{15}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 4096\\ \\cdot \\ \\left(\\dfrac{5}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4096\\ \\cdot \\ \\dfrac{5}{16} = \\ 256\\ \\cdot \\ 5\\ = \\ 1280:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1280 · π/2",
+          {
+            "text": "= \\ 1280\\ \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ I = 640π",
             "style": "boxed"
@@ -189,9 +211,21 @@
             "render": "katex",
             "style": "normal"
           },
-          "= (15/48)(π/2)",
-          "I = 4⁶ · (15/48)(π/2) = 4096 · (5/16)(π/2)",
-          "= 1280 · π/2",
+          {
+            "text": "= \\ \\left(\\dfrac{15}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ 4^{6}\\ \\cdot \\ \\left(\\dfrac{15}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 4096\\ \\cdot \\ \\left(\\dfrac{5}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1280\\ \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ I = 640π",
             "style": "boxed"

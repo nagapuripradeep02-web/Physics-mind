@@ -52,12 +52,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is (cosx)dy/dx + y·sinx = tanx",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\left(\\cos x\\right)\\dfrac{dy}{dx}\\ + \\ y \\cdot \\sin x\\ = \\ \\tan x",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide every term by cosx:",
-          "⇒ dy/dx + y·(sinx/cosx) = tanx/cosx",
-          "sinx/cosx = tanx and 1/cosx = secx:",
-          "⇒ dy/dx + y·tanx = tanx·secx",
-          "This is in the form dy/dx + yP(x) = Q(x).",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y \\cdot \\left(\\dfrac{\\sin x}{\\cos x}\\right)\\ = \\ \\dfrac{\\tan x}{\\cos x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sin x}{\\cos x} = \\ \\tan x\\ \\text{and}\\ \\dfrac{1}{\\cos x} = \\ \\sec x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y \\cdot \\tan x\\ = \\ \\tan x \\cdot \\sec x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here P = tanx"
         ],
         "why": "Dividing every term by cosx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and simplifies sinx/cosx to the plain tanx that becomes P.",

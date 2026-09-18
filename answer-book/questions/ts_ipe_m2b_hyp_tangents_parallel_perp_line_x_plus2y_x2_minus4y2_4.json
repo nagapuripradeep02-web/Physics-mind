@@ -61,15 +61,27 @@
             "style": "heading"
           },
           "Given hyperbola is x² − 4y² = 4",
-          "Divide by 4: x²/4 − y²/1 = 1 ⇒ a² = 4, b² = 1",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ 4:\\ \\dfrac{x^{2}}{4} - \\ \\dfrac{y^{2}}{1} = \\ 1\\ \\Rightarrow \\ a^{2}\\ = \\ 4,\\ b^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
           "(y = mx + c touches the hyperbola when",
           {
             "text": "  c² = a²m² − b²)",
             "style": "indent"
           },
-          "Slope of the given line x + 2y = 0: m = −1/2",
-          "(2y = −x ⇒ y = −x/2)"
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{given}\\ \\text{line}\\ x\\ + \\ 2y\\ = \\ 0:\\ m\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2y\\ = \\ - x\\ \\Rightarrow \\ y\\ = \\ - \\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Every 'tangent parallel/perpendicular to a line' question starts the same way: write the hyperbola's tangent-with-slope-m formula, then read the given line's own slope off it.",
         "common_mistakes": [
@@ -86,9 +98,21 @@
         "margin_note": "Two marks. This case is degenerate — see the why for this step.",
         "memory_tip": "If the root under the tangent formula collapses to zero, check whether the given slope IS an asymptote slope ±b/a.",
         "lines": [
-          "Parallel tangent has the same slope m = −1/2",
-          "y = −(1/2)x ± √(4(1/4) − 1)",
-          "= −(1/2)x ± √(1 − 1) = −(1/2)x",
+          {
+            "text": "\\text{Parallel}\\ \\text{tangent}\\ has\\ \\text{the}\\ \\text{same}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ - \\left(\\dfrac{1}{2}\\right)x\\ \\pm \\ \\sqrt{4\\left(\\dfrac{1}{4}\\right)\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\left(\\dfrac{1}{2}\\right)x\\ \\pm \\ \\sqrt{1\\ - \\ 1}\\ = \\ - \\left(\\dfrac{1}{2}\\right)x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by 2: 2y = −x",
             "added": true
@@ -103,8 +127,9 @@
             "added": true
           },
           {
-            "text": "  hyperbola: its slope −1/2 equals −b/a.",
+            "text": "\\text{hyperbola}:\\ \\text{its}\\ \\text{slope}\\ - \\dfrac{1}{2}\\text{equals}\\ - \\dfrac{b}{a}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -132,9 +157,21 @@
           "Not noticing that a zero under the root here is a special case (the given line's slope equals an asymptote slope), not a coincidence to ignore."
         ],
         "lines_compact": [
-          "Parallel tangent has the same slope m = −1/2",
-          "y = −(1/2)x ± √(4(1/4) − 1)",
-          "= −(1/2)x ± √(1 − 1) = −(1/2)x",
+          {
+            "text": "\\text{Parallel}\\ \\text{tangent}\\ has\\ \\text{the}\\ \\text{same}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ - \\left(\\dfrac{1}{2}\\right)x\\ \\pm \\ \\sqrt{4\\left(\\dfrac{1}{4}\\right)\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\left(\\dfrac{1}{2}\\right)x\\ \\pm \\ \\sqrt{1\\ - \\ 1}\\ = \\ - \\left(\\dfrac{1}{2}\\right)x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x + 2y = 0",
             "style": "boxed"
@@ -155,7 +192,9 @@
           "reciprocal:",
           "m = 2",
           {
-            "text": "(−1 ÷ (−1/2) = 2)",
+            "text": "\\left( - 1\\ \\div \\ \\left( - \\dfrac{1}{2}\\right)\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

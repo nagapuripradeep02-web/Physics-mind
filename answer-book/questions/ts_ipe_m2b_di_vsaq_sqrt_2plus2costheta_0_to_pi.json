@@ -79,7 +79,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "1 + cosθ = 2cos²(θ/2)   [half-angle identity]",
+          {
+            "text": "1\\ + \\ \\cos \\theta \\ = \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\text{half} - \\text{angle}\\ \\text{identity}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore I = \\int _{0}^{\\pi } \\sqrt{4\\cos ^{2}(\\theta /2)} d\\theta",
             "render": "katex",
@@ -90,7 +94,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "[cos(θ/2) ≥ 0 on 0 ≤ θ ≤ π]"
+          {
+            "text": "\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ \\ge \\ 0\\ \\text{on}\\ 0\\ \\le \\ \\theta \\ \\le \\ \\pi \\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Factoring out 2 and using 1+cosθ = 2cos²(θ/2) turns the square root into a plain cosine, because cos(θ/2) stays non-negative for θ between 0 and π so the square root of its square is itself.",
         "common_mistakes": [
@@ -108,12 +116,15 @@
         "memory_tip": "sin(π/2) = 1 is the standard value to remember here.",
         "lines": [
           {
-            "text": "∫cos(θ/2) dθ = 2sin(θ/2), because the",
+            "text": "\\int \\cos \\left(\\dfrac{\\theta }{2}\\right)d\\theta \\ = \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right),\\ \\text{because}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  derivative of θ/2 is 1/2:",
+            "text": "\\text{derivative}\\ \\text{of}\\ \\dfrac{\\theta }{2}\\text{is}\\ \\dfrac{1}{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -122,10 +133,16 @@
             "style": "normal"
           },
           {
-            "text": "At θ = π: sin(π/2) = 1; at θ = 0: sin0 = 0",
+            "text": "\\text{At}\\ \\theta \\ = \\ \\pi :\\ \\sin \\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 1;\\ \\text{at}\\ \\theta \\ = \\ 0:\\ \\sin 0\\ = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4(sin(π/2) − sin0)",
+          {
+            "text": "= \\ 4\\left(\\sin \\left(\\dfrac{\\pi }{2}\\right)\\ - \\ \\sin 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ I = 4(1 − 0) = 4",
             "style": "boxed"
@@ -142,7 +159,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "= 4(sin(π/2) − sin0)",
+          {
+            "text": "= \\ 4\\left(\\sin \\left(\\dfrac{\\pi }{2}\\right)\\ - \\ \\sin 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ I = 4(1 − 0) = 4",
             "style": "boxed"

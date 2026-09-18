@@ -63,9 +63,17 @@
             "text": "  coefficient 1:",
             "style": "indent"
           },
-          "Divide by 2: x² + y² = 7/2",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ 2:\\ x^{2}\\ + \\ y^{2}\\ = \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Compare with x² + y² = r²",
-          "⇒ Centre C = (0, 0), radius r = √(7/2)"
+          {
+            "text": "\\Rightarrow \\ \\text{Centre}\\ C\\ = \\ \\left(0,\\ 0\\right),\\ \\text{radius}\\ r\\ = \\ \\sqrt{\\dfrac{7}{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The coefficients of x² and y² must be 1 before the right side can be read as r². Here 7/2 is r², so the radius is its square root.",
         "common_mistakes": [
@@ -94,12 +102,15 @@
             "added": true
           },
           {
-            "text": "Put r = √(7/2):",
+            "text": "\\text{Put}\\ r\\ = \\ \\sqrt{\\dfrac{7}{2}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x = √(7/2) cos θ,  y = √(7/2) sin θ",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\sqrt{\\dfrac{7}{2}}\\cos \\theta ,\\ y\\ = \\ \\sqrt{\\dfrac{7}{2}}\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "A point on a circle centred at the origin is at distance r in the direction θ, so its coordinates are r cos θ and r sin θ. The surd stays as it is.",
@@ -111,8 +122,9 @@
           "The centre is the origin, so",
           "x = r cos θ,  y = r sin θ",
           {
-            "text": "∴ x = √(7/2) cos θ,  y = √(7/2) sin θ",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\sqrt{\\dfrac{7}{2}}\\cos \\theta ,\\ y\\ = \\ \\sqrt{\\dfrac{7}{2}}\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

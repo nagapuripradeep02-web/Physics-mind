@@ -66,7 +66,11 @@
             "style": "indent"
           },
           "Here f(x) = log secx",
-          "⇒ f′(x) = (1/secx)·secx tanx = tanx",
+          {
+            "text": "\\Rightarrow \\ f'\\left(x\\right)\\ = \\ \\left(\\dfrac{1}{\\sec x}\\right) \\cdot \\sec x\\tan x\\ = \\ \\tan x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\int e^x[f(x)+f'(x)]\\,dx = e^x f(x)+c",
             "render": "katex",

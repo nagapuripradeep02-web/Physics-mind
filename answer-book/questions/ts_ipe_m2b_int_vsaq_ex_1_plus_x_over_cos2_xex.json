@@ -75,7 +75,11 @@
           },
           "Put xeˣ = t",
           "⇒ [xeˣ + eˣ(1)]dx = dt, i.e. eˣ(1+x)dx = dt",
-          "I = ∫ dt/cos²t = ∫ sec²t dt"
+          {
+            "text": "I\\ = \\ \\int \\ \\dfrac{dt}{\\cos ^{2} t} = \\ \\int \\ \\sec ^{2} tdt",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "By the product rule, d/dx(xeˣ) = xeˣ+eˣ = eˣ(x+1), which is exactly the numerator — so the whole numerator dx converts to dt, leaving a plain sec²t to integrate.",
         "common_mistakes": [
@@ -101,8 +105,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ {eˣ(1+x)/cos²(xeˣ)} dx = tan(xeˣ) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{\\{e^{x}\\left(1 + x\\right)}{\\cos ^{2}\\left(xe^{x}\\right)}\\}dx\\ = \\ \\tan \\left(xe^{x}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫sec²t dt = tant + c is a standard derivative, and substituting t=xeˣ back in gives the final answer as a tangent of the product xeˣ.",
@@ -113,8 +118,9 @@
         "memory_tip": "∫sec²t dt = tant — one of the six basic trig derivatives, worth having instantly available.",
         "lines_compact": [
           {
-            "text": "∴ ∫ {eˣ(1+x)/cos²(xeˣ)} dx = tan(xeˣ) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{\\{e^{x}\\left(1 + x\\right)}{\\cos ^{2}\\left(xe^{x}\\right)}\\}dx\\ = \\ \\tan \\left(xe^{x}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

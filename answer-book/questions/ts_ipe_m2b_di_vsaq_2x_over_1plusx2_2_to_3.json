@@ -60,13 +60,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₂³ 2x dx/(1+x²)",
+          {
+            "text": "I\\ = \\ \\int _{2}^{3}\\ \\dfrac{2xdx}{1 + x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The top 2x is the derivative of 1 + x²,",
           {
             "text": "  so the integral is a log.",
             "style": "indent"
           },
-          "Since d/dx[log|1+x²|] = 2x/(1+x²),",
+          {
+            "text": "\\operatorname{Sin} ce\\dfrac{d}{dx}\\left[\\log \\left|1 + x^{2}\\right|\\right]\\ = \\ \\dfrac{2x}{1 + x^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "the antiderivative is log|1+x²|",
           "∴ I = [log|1 + x²|]₂³"
         ],
@@ -91,12 +99,15 @@
           },
           "= log|1 + 3²| − log|1 + 2²| = log10 − log5",
           {
-            "text": "log p − log q = log(p/q):",
+            "text": "\\log p\\ - \\ \\log q\\ = \\ \\log \\left(\\dfrac{p}{q}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = log(10/5) = log2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\log \\left(\\dfrac{10}{5}\\right)\\ = \\ \\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Subtracting two logs is the same as taking the log of their quotient, so log10 − log5 collapses to log2 directly.",
@@ -107,8 +118,9 @@
         "lines_compact": [
           "= log|1 + 3²| − log|1 + 2²| = log10 − log5",
           {
-            "text": "∴ I = log(10/5) = log2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\log \\left(\\dfrac{10}{5}\\right)\\ = \\ \\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

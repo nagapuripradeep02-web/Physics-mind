@@ -64,9 +64,17 @@
             "style": "normal"
           },
           "=",
-          "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
+          {
+            "text": "\\dfrac{\\left[\\left(m - 1\\right)\\left(m - 3\\right) \\cdot \\cdot \\cdot \\right]\\left[\\left(n - 1\\right)\\left(n - 3\\right) \\cdot \\cdot \\cdot \\right]}{\\left(m + n\\right)\\left(m + n - 2\\right) \\cdot \\cdot \\cdot }",
+            "style": "normal",
+            "render": "katex"
+          },
           "· K",
-          "K = π/2 if both m and n are even, else K = 1.",
+          {
+            "text": "K\\ = \\ \\dfrac{\\pi }{2}\\text{if}\\ \\text{both}\\ m\\ \\text{and}\\ n\\ \\text{are}\\ \\text{even},\\ \\text{else}\\ K\\ = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here m=7 (odd power of cos),",
           "n=2 (even power of sin), so K = 1"
         ],
@@ -93,14 +101,19 @@
             "text": "Bottom: m + n = 9, so (9)(7)(5)(3) = 945",
             "added": true
           },
-          "= [(6)(4)(2)][(1)]/[(9)(7)(5)(3)] · (1) = 48/945",
+          {
+            "text": "= \\ \\dfrac{\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]\\left[\\left(1\\right)\\right]}{\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)\\ = \\ \\dfrac{48}{945}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide 48 and 945 by 3:",
             "added": true
           },
           {
-            "text": "∴ I = 16/315",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16}{315}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The odd power 7 descends as 6·4·2=48, the even power 2 descends as just 1, and the combined (m+n)=9 product descends as 9·7·5·3=945; the product 48/945 simplifies to 16/315 — the book's printed value 8/315 is exactly half this, because it was copied from the neighbouring printed answer instead of recomputed.",
@@ -109,10 +122,15 @@
           "Missing that (n−1) for n=2 is just the single term 1, not an empty product."
         ],
         "lines_compact": [
-          "= [(6)(4)(2)][(1)]/[(9)(7)(5)(3)] · (1) = 48/945",
           {
-            "text": "∴ I = 16/315",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]\\left[\\left(1\\right)\\right]}{\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)\\ = \\ \\dfrac{48}{945}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16}{315}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

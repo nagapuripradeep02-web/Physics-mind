@@ -73,8 +73,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx + y tan x = cos³x",
-          "This is in the form dy/dx + yP(x) = Q(x),",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ + \\ y\\tan x\\ = \\ \\cos ^{3} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "which is a linear D.E in y.",
           "Here, P = tan x and Q = cos³x",
           "⇒ ∫P dx = ∫tan x dx = log(sec x)"
@@ -134,10 +142,16 @@
           "Hence, the solution is y·(I.F.) = ∫(I.F.)Q dx",
           "⇒ y sec x = ∫sec x·cos³x dx",
           {
-            "text": "sec x = 1/cos x:",
+            "text": "\\sec x\\ = \\ \\dfrac{1}{\\cos x}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ∫(cos³x/cos x) dx = ∫cos²x dx"
+          {
+            "text": "= \\ \\int \\left(\\dfrac{\\cos ^{3} x}{\\cos x}\\right)dx\\ = \\ \\int \\cos ^{2} xdx",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The formula y·(I.F.) = ∫(I.F.)Q dx applies directly once the integrating factor is known, and writing sec x as 1/cos x lets cos³x/cos x cancel to the much simpler cos²x before integrating.",
         "common_mistakes": [
@@ -147,7 +161,11 @@
         "lines_compact": [
           "Hence, the solution is y·(I.F.) = ∫(I.F.)Q dx",
           "⇒ y sec x = ∫sec x·cos³x dx",
-          "= ∫(cos³x/cos x) dx = ∫cos²x dx"
+          {
+            "text": "= \\ \\int \\left(\\dfrac{\\cos ^{3} x}{\\cos x}\\right)dx\\ = \\ \\int \\cos ^{2} xdx",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -160,12 +178,20 @@
         "memory_tip": "The double-angle identity cos²x = (1 + cos 2x)/2 is the standard way to integrate a plain cos²x.",
         "lines": [
           {
-            "text": "Use cos²x = (1 + cos 2x)/2:",
+            "text": "\\text{Use}\\ \\cos ^{2} x\\ = \\ \\dfrac{1\\ + \\ \\cos 2x}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫cos²x dx = (1/2)∫(1 + cos 2x) dx",
           {
-            "text": "∫cos 2x dx = (sin 2x)/2:",
+            "text": "\\int \\cos ^{2} xdx\\ = \\ \\left(\\dfrac{1}{2}\\right)\\int \\left(1\\ + \\ \\cos 2x\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\cos 2xdx\\ = \\ \\dfrac{\\sin 2x}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (1/2)(x + sin2x/2) + c",
@@ -191,7 +217,11 @@
           "Multiplying only the left side by 2cos x and forgetting to multiply every term on the right by the same factor; the boxed line writes 2y = x cos x + sin x cos²x + c cos x rather than + 2c cos x, silently relabelling 2c as c — a standard convenience since the constant is arbitrary either way, not a missed step."
         ],
         "lines_compact": [
-          "∫cos²x dx = (1/2)∫(1 + cos 2x) dx",
+          {
+            "text": "\\int \\cos ^{2} xdx\\ = \\ \\left(\\dfrac{1}{2}\\right)\\int \\left(1\\ + \\ \\cos 2x\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (1/2)(x + sin2x/2) + c",
           "⇒ y sec x = x/2 + sin2x/4 + c,",
           "and multiplying through by 2 cos x:",

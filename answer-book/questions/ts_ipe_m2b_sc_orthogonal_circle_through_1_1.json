@@ -168,9 +168,15 @@
             "style": "indent",
             "added": true
           },
-          "Sub in (2): −6g + 2 = 16 ⇒ g = −7/3",
           {
-            "text": "(−6g = 14, so g = 14/(−6) = −7/3)",
+            "text": "\\text{Sub}\\ \\text{in}\\ \\left(2\\right):\\ - 6g\\ + \\ 2\\ = \\ 16\\ \\Rightarrow \\ g\\ = \\ - \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 6g\\ = \\ 14,\\ \\text{so}\\ g\\ = \\ \\dfrac{14}{ - 6} = \\ - \\dfrac{7}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -182,19 +188,33 @@
             "style": "indent",
             "added": true
           },
-          "Sub in (3): −2g − 2f + 2 = −1 ⇒ g + f = 3/2",
-          "⇒ f = 3/2 − g = 23/6",
           {
-            "text": "(3/2 + 7/3 = 9/6 + 14/6 = 23/6)",
+            "text": "\\text{Sub}\\ \\text{in}\\ \\left(3\\right):\\ - 2g\\ - \\ 2f\\ + \\ 2\\ = \\ - 1\\ \\Rightarrow \\ g\\ + \\ f\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ f\\ = \\ \\dfrac{3}{2} - \\ g\\ = \\ \\dfrac{23}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{2} + \\ \\dfrac{7}{3} = \\ \\dfrac{9}{6} + \\ \\dfrac{14}{6} = \\ \\dfrac{23}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "c = −2 − 2g − 2f = −5",
           {
-            "text": "(−2 + 14/3 − 23/3 = −2 − 9/3 = −5)",
+            "text": "\\left( - 2\\ + \\ \\dfrac{14}{3} - \\ \\dfrac{23}{3} = \\ - 2\\ - \\ \\dfrac{9}{3} = \\ - 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "So 2g = −14/3, 2f = 23/3 and c = −5.",
+            "text": "\\text{So}\\ 2g\\ = \\ - \\dfrac{14}{3},\\ 2f\\ = \\ \\dfrac{23}{3}\\text{and}\\ c\\ = \\ - 5.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Substituting g, f, c in S = 0,",
@@ -219,9 +239,21 @@
         "memory_tip": "Eliminate the SAME unknown first in every such question — c is usually easiest, since it appears alone (no g or f multiplying it) in every orthogonality equation.",
         "lines_compact": [
           "From (1), c = −2 − 2g − 2f",
-          "Sub in (2): −6g + 2 = 16 ⇒ g = −7/3",
-          "Sub in (3): −2g − 2f + 2 = −1 ⇒ g + f = 3/2",
-          "⇒ f = 3/2 − g = 23/6",
+          {
+            "text": "\\text{Sub}\\ \\text{in}\\ \\left(2\\right):\\ - 6g\\ + \\ 2\\ = \\ 16\\ \\Rightarrow \\ g\\ = \\ - \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Sub}\\ \\text{in}\\ \\left(3\\right):\\ - 2g\\ - \\ 2f\\ + \\ 2\\ = \\ - 1\\ \\Rightarrow \\ g\\ + \\ f\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ f\\ = \\ \\dfrac{3}{2} - \\ g\\ = \\ \\dfrac{23}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "c = −2 − 2g − 2f = −5",
           "Substituting g, f, c in S = 0,",
           {

@@ -65,7 +65,11 @@
           },
           "[∵ sec²θ = 1 + tan²θ]",
           "Put tanθ = y ⇒ sec²θ dθ = dy",
-          "θ = 0 ⇒ y = 0; θ = π/4 ⇒ y = tan(π/4) = 1"
+          {
+            "text": "\\theta \\ = \\ 0\\ \\Rightarrow \\ y\\ = \\ 0;\\ \\theta \\ = \\ \\dfrac{\\pi }{4} \\Rightarrow \\ y\\ = \\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Splitting off one factor of sec²θ as the derivative of tanθ turns sec⁴θ into sec²θ(1+tan²θ), a form ready for the substitution tanθ=y, since sec²θdθ is exactly dy.",
         "common_mistakes": [
@@ -83,17 +87,26 @@
         "memory_tip": "The upper limit y=1 makes every term in y+y³/3 equal to its own coefficient, since 1ⁿ=1 for any n.",
         "lines": [
           {
-            "text": "∫1 dy = y and ∫y² dy = y³/3:",
-            "added": true
-          },
-          "I = ∫₀¹ (1+y²) dy = [y + y³/3]₀¹",
-          {
-            "text": "At y = 1: 1 + 1/3; at y = 0: 0",
+            "text": "\\int 1dy\\ = \\ y\\ \\text{and}\\ \\int y^{2}dy\\ = \\ \\dfrac{y^{3}}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 1 + 1/3 = 4/3",
-            "style": "boxed"
+            "text": "I\\ = \\ \\int _{0}^{1}\\ \\left(1 + y^{2}\\right)dy\\ = \\ \\left[y\\ + \\ \\dfrac{y^{3}}{3}\\right]_{0}^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ y\\ = \\ 1:\\ 1\\ + \\ \\dfrac{1}{3};\\ \\text{at}\\ y\\ = \\ 0:\\ 0",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ 1\\ + \\ \\dfrac{1}{3} = \\ \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Integrating the polynomial 1+y² term by term gives y+y³/3, and substituting y=1 (the upper limit) and y=0 (the lower limit, contributing nothing) gives 1+1/3.",
@@ -102,10 +115,15 @@
           "Adding 1+1/3 incorrectly instead of getting 4/3."
         ],
         "lines_compact": [
-          "I = ∫₀¹ (1+y²) dy = [y + y³/3]₀¹",
           {
-            "text": "∴ I = 1 + 1/3 = 4/3",
-            "style": "boxed"
+            "text": "I\\ = \\ \\int _{0}^{1}\\ \\left(1 + y^{2}\\right)dy\\ = \\ \\left[y\\ + \\ \\dfrac{y^{3}}{3}\\right]_{0}^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ 1\\ + \\ \\dfrac{1}{3} = \\ \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

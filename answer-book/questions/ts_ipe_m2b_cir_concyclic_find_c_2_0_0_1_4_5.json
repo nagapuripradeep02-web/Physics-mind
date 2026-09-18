@@ -195,17 +195,33 @@
             "text": "(4 + 2)x₁ − 3 − 10 = 0",
             "added": true
           },
-          "(1) + (3) ⇒ 6x₁ − 13 = 0 ⇒ x₁ = 13/6",
           {
-            "text": "Put x₁ = 13/6 in (2):",
+            "text": "\\left(1\\right)\\ + \\ \\left(3\\right)\\ \\Rightarrow \\ 6x_{1}\\ - \\ 13\\ = \\ 0\\ \\Rightarrow \\ x_{1}\\ = \\ \\dfrac{13}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x_{1}\\ = \\ \\dfrac{13}{6}\\text{in}\\ \\left(2\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "From (2): y₁ = 5 − 13/6 = 17/6",
           {
-            "text": "5 = 30/6, and 30/6 − 13/6 = 17/6",
+            "text": "\\text{From}\\ \\left(2\\right):\\ y_{1}\\ = \\ 5\\ - \\ \\dfrac{13}{6} = \\ \\dfrac{17}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "5\\ = \\ \\dfrac{30}{6},\\ \\text{and}\\ \\dfrac{30}{6} - \\ \\dfrac{13}{6} = \\ \\dfrac{17}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ Centre S(x₁, y₁) = (13/6, 17/6)"
+          {
+            "text": "\\therefore \\ \\text{Centre}\\ S\\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(\\dfrac{13}{6},\\ \\dfrac{17}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Equation (1) has −2y₁ and equation (2) doubled has +2y₁, so adding removes y₁ at once. The centre has sixths in it, which is expected once a 6 appears in the coefficient.",
         "common_mistakes": [
@@ -215,9 +231,21 @@
         "lines_compact": [
           "(1): 4x₁ − 2y₁ − 3 = 0",
           "(2)×2: 2x₁ + 2y₁ − 10 = 0 … (3)",
-          "(1) + (3) ⇒ 6x₁ − 13 = 0 ⇒ x₁ = 13/6",
-          "From (2): y₁ = 5 − 13/6 = 17/6",
-          "∴ Centre S(x₁, y₁) = (13/6, 17/6)"
+          {
+            "text": "\\left(1\\right)\\ + \\ \\left(3\\right)\\ \\Rightarrow \\ 6x_{1}\\ - \\ 13\\ = \\ 0\\ \\Rightarrow \\ x_{1}\\ = \\ \\dfrac{13}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(2\\right):\\ y_{1}\\ = \\ 5\\ - \\ \\dfrac{13}{6} = \\ \\dfrac{17}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Centre}\\ S\\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(\\dfrac{13}{6},\\ \\dfrac{17}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -231,7 +259,9 @@
         "lines": [
           "A = (2, 0) lies on the circle, so r = SA.",
           {
-            "text": "Put the centre (13/6, 17/6) and A(2, 0) in",
+            "text": "\\text{Put}\\ \\text{the}\\ \\text{centre}\\ \\left(\\dfrac{13}{6},\\ \\dfrac{17}{6}\\right)\\ \\text{and}\\ A\\left(2,\\ 0\\right)\\ \\text{in}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -239,14 +269,32 @@
             "style": "indent",
             "added": true
           },
-          "r² = (2 − 13/6)² + (0 − 17/6)²",
           {
-            "text": "2 = 12/6, and 12/6 − 13/6 = −1/6",
+            "text": "r^{2}\\ = \\ \\left(2\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(0\\ - \\ \\dfrac{17}{6}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\ = \\ \\dfrac{12}{6},\\ \\text{and}\\ \\dfrac{12}{6} - \\ \\dfrac{13}{6} = \\ - \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−1/6)² + (17/6)² = 1/36 + 289/36 = 290/36",
-          "Circle with centre (13/6, 17/6) and r² = 290/36:",
-          "(x − 13/6)² + (y − 17/6)² = 290/36",
+          {
+            "text": "= \\ \\left( - \\dfrac{1}{6}\\right)^{2}\\ + \\ \\left(\\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{1}{36} + \\ \\dfrac{289}{36} = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Circle}\\ \\text{with}\\ \\text{centre}\\ \\left(\\dfrac{13}{6},\\ \\dfrac{17}{6}\\right)\\ \\text{and}\\ r^{2}\\ = \\ \\dfrac{290}{36}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(y\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "D(0, c) lies on the circle, so it satisfies",
             "added": true
@@ -256,25 +304,40 @@
             "style": "indent",
             "added": true
           },
-          "Put D(0, c):  (0 − 13/6)² + (c − 17/6)² = 290/36",
           {
-            "text": "169/36 + (c − 17/6)² = 290/36",
+            "text": "\\text{Put}\\ D\\left(0,\\ c\\right):\\ \\left(0\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(c\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{169}{36} + \\ \\left(c\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (c − 17/6)² = 290/36 − 169/36 = 121/36",
+          {
+            "text": "\\Rightarrow \\ \\left(c\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36} - \\ \\dfrac{169}{36} = \\ \\dfrac{121}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Take the square root of both sides:",
             "added": true
           },
-          "⇒ c − 17/6 = ±11/6",
+          {
+            "text": "\\Rightarrow \\ c\\ - \\ \\dfrac{17}{6} = \\ \\pm \\dfrac{11}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 6:",
             "added": true
           },
           "⇒ 6c = 17 ± 11 ⇒ 6c = 28 or 6c = 6",
           {
-            "text": "∴ c = 14/3 or c = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{14}{3}\\text{or}\\ c\\ = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting D(0, c) into the circle gives a square equal to a number, and a square has two square roots. Both give a genuine fourth point on the circle, so both values of c are answers.",
@@ -285,17 +348,46 @@
         ],
         "lines_compact": [
           "A = (2, 0) lies on the circle, so r = SA.",
-          "r² = (2 − 13/6)² + (0 − 17/6)²",
-          "= (−1/6)² + (17/6)² = 1/36 + 289/36 = 290/36",
-          "Circle with centre (13/6, 17/6) and r² = 290/36:",
-          "(x − 13/6)² + (y − 17/6)² = 290/36",
-          "Put D(0, c):  (0 − 13/6)² + (c − 17/6)² = 290/36",
-          "⇒ (c − 17/6)² = 290/36 − 169/36 = 121/36",
-          "⇒ c − 17/6 = ±11/6",
+          {
+            "text": "r^{2}\\ = \\ \\left(2\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(0\\ - \\ \\dfrac{17}{6}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - \\dfrac{1}{6}\\right)^{2}\\ + \\ \\left(\\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{1}{36} + \\ \\dfrac{289}{36} = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Circle}\\ \\text{with}\\ \\text{centre}\\ \\left(\\dfrac{13}{6},\\ \\dfrac{17}{6}\\right)\\ \\text{and}\\ r^{2}\\ = \\ \\dfrac{290}{36}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(y\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ D\\left(0,\\ c\\right):\\ \\left(0\\ - \\ \\dfrac{13}{6}\\right)^{2}\\ + \\ \\left(c\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(c\\ - \\ \\dfrac{17}{6}\\right)^{2}\\ = \\ \\dfrac{290}{36} - \\ \\dfrac{169}{36} = \\ \\dfrac{121}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ c\\ - \\ \\dfrac{17}{6} = \\ \\pm \\dfrac{11}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 6c = 17 ± 11 ⇒ 6c = 28 or 6c = 6",
           {
-            "text": "∴ c = 14/3 or c = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{14}{3}\\text{or}\\ c\\ = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -60,7 +60,11 @@
             "text": "  lx + my + n = 0 to x² + y² = r² is",
             "style": "indent"
           },
-          "Point of contact = (−lr²/n, −mr²/n)"
+          {
+            "text": "\\text{Point}\\ \\text{of}\\ \\text{contact}\\ = \\ \\left( - \\dfrac{lr^{2}}{n},\\ - \\dfrac{mr^{2}}{n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The point of contact is the foot of the perpendicular from the centre, and for a circle centred at the origin that works out to (−lr²/n, −mr²/n). It is only valid when the line really touches the circle.",
         "common_mistakes": [
@@ -81,10 +85,20 @@
             "text": "Put l = 1, m = −2, n = −5 and r² = 5:",
             "added": true
           },
-          "x = −(1)(5)/(−5) = 1",
-          "y = −(−2)(5)/(−5) = −2",
           {
-            "text": "since −(−2)(5) = 10 and 10/(−5) = −2",
+            "text": "x\\ = \\ - \\dfrac{\\left(1\\right)\\left(5\\right)}{ - 5} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ - \\dfrac{\\left( - 2\\right)\\left(5\\right)}{ - 5} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\ - \\left( - 2\\right)\\left(5\\right)\\ = \\ 10\\ \\text{and}\\ \\dfrac{10}{ - 5} = \\ - 2",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -102,8 +116,16 @@
           "Reporting the answer as (−1, 2)."
         ],
         "lines_compact": [
-          "x = −(1)(5)/(−5) = 1",
-          "y = −(−2)(5)/(−5) = −2",
+          {
+            "text": "x\\ = \\ - \\dfrac{\\left(1\\right)\\left(5\\right)}{ - 5} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ - \\dfrac{\\left( - 2\\right)\\left(5\\right)}{ - 5} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Point of contact is (1, −2)",
             "style": "boxed"

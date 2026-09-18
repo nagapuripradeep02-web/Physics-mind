@@ -66,7 +66,11 @@
           "Compare each with x² + y² + 2gx + 2fy + c = 0.",
           "From the given circles, we get",
           "(2g = −5 and 2f = −14 in the first)",
-          "g = −5/2, f = −7, c = −34 and",
+          {
+            "text": "g\\ = \\ - \\dfrac{5}{2},\\ f\\ = \\ - 7,\\ c\\ = \\ - 34\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(2g′ = 2 and 2f′ = 4 in the second)",
           "g′ = 1, f′ = 2, c′ = k"
         ],
@@ -90,9 +94,15 @@
             "added": true
           },
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
-          "⇒ 2(−5/2)(1) + 2(−7)(2) = −34 + k",
           {
-            "text": "2(−5/2)(1) = −5 and 2(−7)(2) = −28:",
+            "text": "\\Rightarrow \\ 2\\left( - \\dfrac{5}{2}\\right)\\left(1\\right)\\ + \\ 2\\left( - 7\\right)\\left(2\\right)\\ = \\ - 34\\ + \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\left( - \\dfrac{5}{2}\\right)\\left(1\\right)\\ = \\ - 5\\ \\text{and}\\ 2\\left( - 7\\right)\\left(2\\right)\\ = \\ - 28:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ −5 − 28 = −34 + k",
@@ -113,7 +123,11 @@
         "memory_tip": "2gg′ + 2ff′ = c + c′ is the formula every orthogonal-circles VSAQ tests — memorise it exactly as written, both sides.",
         "lines_compact": [
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
-          "⇒ 2(−5/2)(1) + 2(−7)(2) = −34 + k",
+          {
+            "text": "\\Rightarrow \\ 2\\left( - \\dfrac{5}{2}\\right)\\left(1\\right)\\ + \\ 2\\left( - 7\\right)\\left(2\\right)\\ = \\ - 34\\ + \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ −5 − 28 = −34 + k",
           {
             "text": "∴ k = −33 + 34 = 1",

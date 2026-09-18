@@ -104,9 +104,15 @@
             "added": true
           },
           "(2) − (3): 1 − 2 = l − m + n − (l + m + n)",
-          "⇒ −1 = −2m ⇒ m = 1/2",
           {
-            "text": "(l − l = 0 and −m − m = −2m; −2m = −1, so m = 1/2)",
+            "text": "\\Rightarrow \\ - 1\\ = \\ - 2m\\ \\Rightarrow \\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(l\\ - \\ l\\ = \\ 0\\ \\text{and}\\ - m\\ - \\ m\\ = \\ - 2m;\\ - 2m\\ = \\ - 1,\\ \\text{so}\\ m\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -120,7 +126,11 @@
           "(1) − (3): −1 − 2 = 4l + 2m + n − (l + m + n)",
           "⇒ −3 = 3l + m   ……(4)",
           "(2) − (3): 1 − 2 = l − m + n − (l + m + n)",
-          "⇒ −1 = −2m ⇒ m = 1/2"
+          {
+            "text": "\\Rightarrow \\ - 1\\ = \\ - 2m\\ \\Rightarrow \\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -132,16 +142,26 @@
         "margin_note": "Two marks for l — this is the step where the earlier fractions have to be carried through carefully.",
         "lines": [
           {
-            "text": "Put m = 1/2 in (4):",
-            "added": true
-          },
-          "From (4): 3l + 1/2 = −3 ⇒ 3l = −7/2 ⇒ l = −7/6",
-          {
-            "text": "(−3 − 1/2 = −6/2 − 1/2 = −7/2)",
+            "text": "\\text{Put}\\ m\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\left(4\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(divide −7/2 by 3: −7/6)",
+            "text": "\\text{From}\\ \\left(4\\right):\\ 3l\\ + \\ \\dfrac{1}{2} = \\ - 3\\ \\Rightarrow \\ 3l\\ = \\ - \\dfrac{7}{2} \\Rightarrow \\ l\\ = \\ - \\dfrac{7}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 3\\ - \\ \\dfrac{1}{2} = \\ - \\dfrac{6}{2} - \\ \\dfrac{1}{2} = \\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\left(\\text{divide}\\ - \\dfrac{7}{2}\\text{by}\\ 3:\\ - \\dfrac{7}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -152,7 +172,11 @@
         ],
         "memory_tip": "m is already known — put it in and (4) is a one-line equation for l.",
         "lines_compact": [
-          "From (4): 3l + 1/2 = −3 ⇒ 3l = −7/2 ⇒ l = −7/6"
+          {
+            "text": "\\text{From}\\ \\left(4\\right):\\ 3l\\ + \\ \\dfrac{1}{2} = \\ - 3\\ \\Rightarrow \\ 3l\\ = \\ - \\dfrac{7}{2} \\Rightarrow \\ l\\ = \\ - \\dfrac{7}{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -164,17 +188,37 @@
         "margin_note": "Last mark. Check the boxed equation by putting one of the three given points back in — it should give 0.",
         "lines": [
           "From (3): l + m + n = 2",
-          "⇒ n = 2 − (−7/6) − 1/2 = 2 + 7/6 − 3/6 = 8/3",
           {
-            "text": "(2 = 12/6, and 12/6 + 7/6 − 3/6 = 16/6 = 8/3)",
+            "text": "\\Rightarrow \\ n\\ = \\ 2\\ - \\ \\left( - \\dfrac{7}{6}\\right)\\ - \\ \\dfrac{1}{2} = \\ 2\\ + \\ \\dfrac{7}{6} - \\ \\dfrac{3}{6} = \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ = \\ \\dfrac{12}{6},\\ \\text{and}\\ \\dfrac{12}{6} + \\ \\dfrac{7}{6} - \\ \\dfrac{3}{6} = \\ \\dfrac{16}{6} = \\ \\dfrac{8}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Substitute l = −7/6, m = 1/2,",
-          "n = 8/3 in x = ly² + my + n:",
-          "x = −(7/6)y² + (1/2)y + 8/3",
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ - \\dfrac{7}{6},\\ m\\ = \\ \\dfrac{1}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ \\dfrac{8}{3}\\text{in}\\ x\\ = \\ ly^{2}\\ + \\ my\\ + \\ n:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ - \\left(\\dfrac{7}{6}\\right)y^{2}\\ + \\ \\left(\\dfrac{1}{2}\\right)y\\ + \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 6: 6x = −7y² + 3y + 16",
           {
-            "text": "(6 × 7/6 = 7, 6 × 1/2 = 3, 6 × 8/3 = 16)",
+            "text": "\\left(6\\ \\times \\ \\dfrac{7}{6} = \\ 7,\\ 6\\ \\times \\ \\dfrac{1}{2} = \\ 3,\\ 6\\ \\times \\ \\dfrac{8}{3} = \\ 16\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -198,10 +242,26 @@
         "memory_tip": "Multiply the whole equation by the smallest number that clears every denominator at once — here that number is 6.",
         "lines_compact": [
           "From (3): l + m + n = 2",
-          "⇒ n = 2 − (−7/6) − 1/2 = 2 + 7/6 − 3/6 = 8/3",
-          "Substitute l = −7/6, m = 1/2,",
-          "n = 8/3 in x = ly² + my + n:",
-          "x = −(7/6)y² + (1/2)y + 8/3",
+          {
+            "text": "\\Rightarrow \\ n\\ = \\ 2\\ - \\ \\left( - \\dfrac{7}{6}\\right)\\ - \\ \\dfrac{1}{2} = \\ 2\\ + \\ \\dfrac{7}{6} - \\ \\dfrac{3}{6} = \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ - \\dfrac{7}{6},\\ m\\ = \\ \\dfrac{1}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ \\dfrac{8}{3}\\text{in}\\ x\\ = \\ ly^{2}\\ + \\ my\\ + \\ n:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ - \\left(\\dfrac{7}{6}\\right)y^{2}\\ + \\ \\left(\\dfrac{1}{2}\\right)y\\ + \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 6: 6x = −7y² + 3y + 16",
           {
             "text": "∴ 7y² + 6x − 3y − 16 = 0",

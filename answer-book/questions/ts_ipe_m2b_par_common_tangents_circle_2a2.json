@@ -69,9 +69,21 @@
           "Given parabola y² = 8ax, so y² = 4(2a)x   ……(1)",
           "(this is y² = 4Ax with A = 2a)",
           "The tangent to (1)",
-          "with slope m is y = mx + 2a/m   ……(2)",
-          "(y = mx + A/m touches y² = 4Ax; here A = 2a)",
-          "Comparing (2) with y = mx + c gives c = 2a/m."
+          {
+            "text": "\\text{with}\\ \\text{slope}\\ m\\ \\text{is}\\ y\\ = \\ mx\\ + \\ \\dfrac{2a}{m}\\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ = \\ mx\\ + \\ \\dfrac{A}{m}\\text{touches}\\ y^{2}\\ = \\ 4Ax;\\ \\text{here}\\ A\\ = \\ 2a\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ \\left(2\\right)\\ \\text{with}\\ y\\ = \\ mx\\ + \\ c\\ \\text{gives}\\ c\\ = \\ \\dfrac{2a}{m}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing y² = 8ax as y² = 4(2a)x matches it to the standard form y² = 4Ax with A = 2a, so the standard tangent formula y = mx + A/m can be used directly with A replaced by 2a.",
         "common_mistakes": [
@@ -106,7 +118,11 @@
           },
           "Here r² = 2a²,",
           "so applying this to (2) and (3):",
-          "(2a/m)² = 2a²(1 + m²)",
+          {
+            "text": "\\left(\\dfrac{2a}{m}\\right)^{2}\\ = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a common tangent must touch both curves)",
             "added": true
@@ -124,7 +140,11 @@
           "x² + y² = r² when c² = r²(1 + m²).",
           "Here r² = 2a²,",
           "so applying this to (2) and (3):",
-          "(2a/m)² = 2a²(1 + m²)"
+          {
+            "text": "\\left(\\dfrac{2a}{m}\\right)^{2}\\ = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -135,8 +155,16 @@
         "mark_note": "Method",
         "margin_note": "Two marks for the algebra and the rejection of the impossible root — both are needed for full credit.",
         "lines": [
-          "(2a/m)² = 2a²(1 + m²)",
-          "⇒ 4a²/m² = 2a²(1 + m²) ⇒ 2/m² = 1 + m²",
+          {
+            "text": "\\left(\\dfrac{2a}{m}\\right)^{2}\\ = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4a^{2}}{m^{2}} = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)\\ \\Rightarrow \\ \\dfrac{2}{m^{2}} = \\ 1\\ + \\ m^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 2a²)",
             "added": true
@@ -166,8 +194,16 @@
         ],
         "memory_tip": "m⁴ + m² − 2 factors as (m² − 1)(m² + 2) — the second bracket can never be zero for a real m, so only m² = 1 survives.",
         "lines_compact": [
-          "(2a/m)² = 2a²(1 + m²)",
-          "⇒ 4a²/m² = 2a²(1 + m²) ⇒ 2/m² = 1 + m²",
+          {
+            "text": "\\left(\\dfrac{2a}{m}\\right)^{2}\\ = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4a^{2}}{m^{2}} = \\ 2a^{2}\\left(1\\ + \\ m^{2}\\right)\\ \\Rightarrow \\ \\dfrac{2}{m^{2}} = \\ 1\\ + \\ m^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2 = m² + m⁴ ⇒ m⁴ + m² − 2 = 0",
           "⇒ (m² − 1)(m² + 2) = 0",
           "m² = 1 or m² = −2; m² cannot be negative,",
@@ -183,12 +219,22 @@
         "margin_note": "Last mark for combining both lines into the single boxed ± form the question asks for.",
         "lines": [
           {
-            "text": "Put m = ±1 in c = 2a/m:",
+            "text": "\\text{Put}\\ m\\ = \\ \\pm 1\\ \\text{in}\\ c\\ = \\ \\dfrac{2a}{m}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "For m = 1: c = 2a/1 = 2a, giving y = x + 2a",
+          {
+            "text": "\\text{For}\\ m\\ = \\ 1:\\ c\\ = \\ \\dfrac{2a}{1} = \\ 2a,\\ \\text{giving}\\ y\\ = \\ x\\ + \\ 2a",
+            "style": "normal",
+            "render": "katex"
+          },
           "For m = −1:",
-          "c = 2a/(−1) = −2a, giving y = −x − 2a = −(x + 2a)",
+          {
+            "text": "c\\ = \\ \\dfrac{2a}{ - 1} = \\ - 2a,\\ \\text{giving}\\ y\\ = \\ - x\\ - \\ 2a\\ = \\ - \\left(x\\ + \\ 2a\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the common tangents are y = ±(x + 2a)",
             "style": "boxed"
@@ -210,9 +256,17 @@
         ],
         "memory_tip": "c always equals 2a divided by m, so the sign of c copies the sign of m.",
         "lines_compact": [
-          "For m = 1: c = 2a/1 = 2a, giving y = x + 2a",
+          {
+            "text": "\\text{For}\\ m\\ = \\ 1:\\ c\\ = \\ \\dfrac{2a}{1} = \\ 2a,\\ \\text{giving}\\ y\\ = \\ x\\ + \\ 2a",
+            "style": "normal",
+            "render": "katex"
+          },
           "For m = −1:",
-          "c = 2a/(−1) = −2a, giving y = −x − 2a = −(x + 2a)",
+          {
+            "text": "c\\ = \\ \\dfrac{2a}{ - 1} = \\ - 2a,\\ \\text{giving}\\ y\\ = \\ - x\\ - \\ 2a\\ = \\ - \\left(x\\ + \\ 2a\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the common tangents are y = ±(x + 2a)",
             "style": "boxed"

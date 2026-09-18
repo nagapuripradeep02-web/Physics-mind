@@ -58,8 +58,16 @@
           },
           "I = ∫₀ᵃ √(a² − x²) dx",
           "Formula: ∫√(a²−x²) dx",
-          "= (x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a) + c",
-          "∴ I = [(x/2)√(a²−x²) + (a²/2)Sin⁻¹(x/a)]₀ᵃ"
+          {
+            "text": "= \\ \\left(\\dfrac{x}{2}\\right)\\sqrt{a^{2} - x^{2}}\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{x}{a}\\right)\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left[\\left(\\dfrac{x}{2}\\right)\\sqrt{a^{2} - x^{2}}\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{x}{a}\\right)\\right]_{0}^{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "√(a²−x²) has a standard antiderivative built from two pieces — an algebraic term and an inverse-sine term — that is worth memorising rather than deriving by a trigonometric substitution each time.",
         "common_mistakes": [
@@ -76,23 +84,35 @@
         "margin_note": "Second mark. Sin⁻¹(1) = π/2 — memorise this standard value.",
         "memory_tip": "At x=a the square root itself becomes 0, so only the inverse-sine half of the formula contributes.",
         "lines": [
-          "At x=a: (a/2)(0) + (a²/2)Sin⁻¹(1).",
           {
-            "text": "√(a² − a²) = 0 and Sin⁻¹(1) = π/2",
+            "text": "\\text{At}\\ x = a:\\ \\left(\\dfrac{a}{2}\\right)\\left(0\\right)\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(1\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sqrt{a^{2}\\ - \\ a^{2}}\\ = \\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At x=0: 0 + (a²/2)Sin⁻¹(0) = 0",
           {
-            "text": "∴ I = (a²/2)(π/2) = πa²/4",
-            "style": "boxed"
+            "text": "\\text{At}\\ x = 0:\\ 0\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(0\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{a^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{\\pi a^{2}}{4}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "Check: y = √(a² − x²) from 0 to a is a",
             "added": true
           },
           {
-            "text": "  quarter circle, and πa²/4 is a quarter of πa².",
+            "text": "\\text{quarter}\\ \\text{circle},\\ \\text{and}\\ \\dfrac{\\pi a^{2}}{4}\\text{is}\\ a\\ \\text{quarter}\\ \\text{of}\\ \\pi a^{2}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           }
         ],
@@ -102,11 +122,20 @@
           "Forgetting that the algebraic term (x/2)√(a²−x²) vanishes at x=a because √(a²−a²)=0."
         ],
         "lines_compact": [
-          "At x=a: (a/2)(0) + (a²/2)Sin⁻¹(1).",
-          "At x=0: 0 + (a²/2)Sin⁻¹(0) = 0",
           {
-            "text": "∴ I = (a²/2)(π/2) = πa²/4",
-            "style": "boxed"
+            "text": "\\text{At}\\ x = a:\\ \\left(\\dfrac{a}{2}\\right)\\left(0\\right)\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(1\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x = 0:\\ 0\\ + \\ \\left(\\dfrac{a^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(0\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{a^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{\\pi a^{2}}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

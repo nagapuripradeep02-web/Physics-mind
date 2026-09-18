@@ -68,7 +68,11 @@
             "text": "  at the point P, then",
             "style": "indent"
           },
-          "Then tan(θ/2) = r / √S₁₁"
+          {
+            "text": "\\text{Then}\\ \\tan \\left(\\dfrac{\\theta }{2}\\right)\\ = \\ \\dfrac{r}{\\sqrt{S_{11}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The line joining the external point to the centre bisects the angle between the two tangents, so each half-angle sits in a right-angled triangle whose opposite side is r and whose adjacent side is the tangent length √S₁₁.",
         "common_mistakes": [
@@ -86,9 +90,15 @@
         "memory_tip": "Perpendicular tangents: θ = 90°, half of it is 45°, and tan 45° = 1.",
         "lines": [
           "The tangents are perpendicular ⇒ θ = 90°",
-          "⇒ tan(90°/2) = tan 45° = 1",
           {
-            "text": "⇒ r / √S₁₁ = 1",
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{90^{\\circ}}{2}\\right)\\ = \\ \\tan 45^{\\circ}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{r}{\\sqrt{S_{11}}} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -111,8 +121,16 @@
         ],
         "lines_compact": [
           "The tangents are perpendicular ⇒ θ = 90°",
-          "⇒ tan(90°/2) = tan 45° = 1",
-          "⇒ r / √S₁₁ = 1 ⇒ r² = S₁₁"
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{90^{\\circ}}{2}\\right)\\ = \\ \\tan 45^{\\circ}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{r}{\\sqrt{S_{11}}} = \\ 1\\ \\Rightarrow \\ r^{2}\\ = \\ S_{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

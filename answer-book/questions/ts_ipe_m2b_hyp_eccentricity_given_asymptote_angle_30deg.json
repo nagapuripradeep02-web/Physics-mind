@@ -114,8 +114,9 @@
             "added": true
           },
           {
-            "text": "  4(√6 − √2)/((√6)² − (√2)²) = 4(√6 − √2)/4",
+            "text": "\\dfrac{4\\left(\\sqrt{6}\\ - \\ \\sqrt{2}\\right)}{\\left(\\sqrt{6}\\right)^{2}\\ - \\ \\left(\\sqrt{2}\\right)^{2}} = \\ \\dfrac{4\\left(\\sqrt{6}\\ - \\ \\sqrt{2}\\right)}{4}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {

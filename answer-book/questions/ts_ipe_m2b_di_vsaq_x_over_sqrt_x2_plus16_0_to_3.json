@@ -61,10 +61,26 @@
             "text": "  so multiply and divide by 2.",
             "style": "indent"
           },
-          "I = ∫₀³ x dx/√(x²+16)",
-          "= (1/2)∫₀³ 2x dx/√(x²+16)",
-          "∫f′/√f dx = 2√f:",
-          "= (1/2)[2√(x²+16)]₀³ = [√(x²+16)]₀³"
+          {
+            "text": "I\\ = \\ \\int _{0}^{3}\\ \\dfrac{xdx}{\\sqrt{x^{2} + 16}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\int _{0}^{3}\\ \\dfrac{2xdx}{\\sqrt{x^{2} + 16}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{f'}{\\sqrt{f}}dx\\ = \\ 2\\sqrt{f}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[2\\sqrt{x^{2} + 16}\\right]_{0}^{3}\\ = \\ \\left[\\sqrt{x^{2} + 16}\\right]_{0}^{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "x dx is exactly half the derivative of x²+16 (which is 2x dx), so multiplying and dividing by 2 turns the integral into the standard form ∫f'(x)dx/√f(x), whose antiderivative is 2√f(x).",
         "common_mistakes": [

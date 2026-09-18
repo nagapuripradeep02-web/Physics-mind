@@ -61,15 +61,24 @@
           },
           "The integrand is a ratio of sinx and cosx",
           {
-            "text": "  terms, so the tan(x/2) substitution turns",
-            "style": "indent"
+            "text": "\\text{terms},\\ \\text{so}\\ \\text{the}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{substitution}\\ \\text{turns}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  it into a rational function of t.",
             "style": "indent"
           },
-          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
-          "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ = \\ t\\ \\Rightarrow \\ \\sin x\\ = \\ \\dfrac{2t}{1 + t^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos x\\ = \\ \\dfrac{1 - t^{2}}{1 + t^{2}},\\ dx\\ = \\ \\dfrac{2dt}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The same universal substitution t = tan(x/2), now applied to a denominator that also carries a constant term.",
         "common_mistakes": [
@@ -87,7 +96,11 @@
         "margin_note": "Method",
         "lines": [
           "3cosx+4sinx+6",
-          "= [3(1−t²)+4(2t)+6(1+t²)]/(1+t²)",
+          {
+            "text": "= \\ \\dfrac{3\\left(1 - t^{2}\\right) + 4\\left(2t\\right) + 6\\left(1 + t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The t² terms give −3t²+6t² = 3t²,",
             "added": true
@@ -97,13 +110,25 @@
             "style": "indent",
             "added": true
           },
-          "= (3t²+8t+9)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(3t²+8t+9)/(1+t²)]",
+          {
+            "text": "= \\ \\dfrac{3t^{2} + 8t + 9}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{3t^{2} + 8t + 9}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The (1+t²) cancels:",
             "added": true
           },
-          "= ∫2dt/(3t²+8t+9)"
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{3t^{2} + 8t + 9}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The (1+t²) factors cancel as before, but this time the numerator's −t² and +6t² combine to leave a genuine quadratic 3t²+8t+9, not a linear expression.",
         "common_mistakes": [
@@ -113,10 +138,26 @@
         "memory_tip": "6·(1+t²) contributes +6 AND +6t² — both pieces must land in the working, not just the constant part.",
         "lines_compact": [
           "3cosx+4sinx+6",
-          "= [3(1−t²)+4(2t)+6(1+t²)]/(1+t²)",
-          "= (3t²+8t+9)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(3t²+8t+9)/(1+t²)]",
-          "= ∫2dt/(3t²+8t+9)"
+          {
+            "text": "= \\ \\dfrac{3\\left(1 - t^{2}\\right) + 4\\left(2t\\right) + 6\\left(1 + t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3t^{2} + 8t + 9}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{3t^{2} + 8t + 9}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{3t^{2} + 8t + 9}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -131,14 +172,26 @@
             "text": "Take 3 out of the denominator:",
             "added": true
           },
-          "I = (2/3)∫dt/(t²+8t/3+3)",
           {
-            "text": "Complete the square. Half of 8/3 is 4/3:",
+            "text": "I\\ = \\ \\left(\\dfrac{2}{3}\\right)\\int \\dfrac{dt}{t^{2} + \\dfrac{8t}{3} + 3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Complete}\\ \\text{the}\\ \\text{square}.\\ \\text{Half}\\ \\text{of}\\ \\dfrac{8}{3}\\text{is}\\ \\dfrac{4}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "t²+8t/3+3 = (t+4/3)²−16/9+3 = (t+4/3)²+11/9",
           {
-            "text": "11/9 = (√11/3)², so a = √11/3",
+            "text": "t^{2} + \\dfrac{8t}{3} + 3\\ = \\ \\left(t + \\dfrac{4}{3}\\right)^{2} - \\dfrac{16}{9} + 3\\ = \\ \\left(t + \\dfrac{4}{3}\\right)^{2} + \\dfrac{11}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{11}{9} = \\ \\left(\\dfrac{\\sqrt{11}}{3}\\right)^{2},\\ \\text{so}\\ a\\ = \\ \\dfrac{\\sqrt{11}}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -154,8 +207,16 @@
         ],
         "memory_tip": "Positive constant after completing the square ⇒ Tan⁻¹; negative ⇒ log — check the sign every time.",
         "lines_compact": [
-          "I = (2/3)∫dt/(t²+8t/3+3)",
-          "t²+8t/3+3 = (t+4/3)²−16/9+3 = (t+4/3)²+11/9",
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{2}{3}\\right)\\int \\dfrac{dt}{t^{2} + \\dfrac{8t}{3} + 3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "t^{2} + \\dfrac{8t}{3} + 3\\ = \\ \\left(t + \\dfrac{4}{3}\\right)^{2} - \\dfrac{16}{9} + 3\\ = \\ \\left(t + \\dfrac{4}{3}\\right)^{2} + \\dfrac{11}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I = \\frac{2}{3}\\cdot\\frac{1}{\\sqrt{11}/3}\\operatorname{Tan}^{-1}\\!\\left(\\frac{t+4/3}{\\sqrt{11}/3}\\right)+c",
             "render": "katex",
@@ -172,22 +233,32 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "(2/3)·(3/√11) = 2/√11, and dividing",
+            "text": "\\left(\\dfrac{2}{3}\\right) \\cdot \\left(\\dfrac{3}{\\sqrt{11}}\\right)\\ = \\ \\dfrac{2}{\\sqrt{11}},\\ \\text{and}\\ \\text{dividing}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  (t+4/3) by (√11/3) gives (3t+4)/√11:",
+            "text": "\\left(t + \\dfrac{4}{3}\\right)\\ \\text{by}\\ \\left(\\dfrac{\\sqrt{11}}{3}\\right)\\ \\text{gives}\\ \\dfrac{3t + 4}{\\sqrt{11}}:",
             "style": "indent",
-            "added": true
-          },
-          "= (2/√11)Tan⁻¹[(3t+4)/√11] + c",
-          {
-            "text": "Put t = tan(x/2) back:",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = (2/√11)Tan⁻¹[(3tan(x/2)+4)/√11] + c",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{3t + 4}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{back}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{3\\tan \\left(\\dfrac{x}{2}\\right) + 4}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Clearing the internal thirds inside the Tan⁻¹ argument and substituting tan(x/2) back for t returns the answer to the variable the question was asked in.",
@@ -197,10 +268,15 @@
         ],
         "memory_tip": "Multiply top and bottom of the inner fraction by 3 to clear the thirds, then swap t for tan(x/2).",
         "lines_compact": [
-          "= (2/√11)Tan⁻¹[(3t+4)/√11] + c",
           {
-            "text": "∴ I = (2/√11)Tan⁻¹[(3tan(x/2)+4)/√11] + c",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{3t + 4}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{3\\tan \\left(\\dfrac{x}{2}\\right) + 4}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

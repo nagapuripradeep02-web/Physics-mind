@@ -69,7 +69,11 @@
             "style": "heading"
           },
           "Given hyperbola is 3x² − 4y² = 12",
-          "Divide by 12: x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ 12:\\ \\dfrac{x^{2}}{4} - \\ \\dfrac{y^{2}}{3} = \\ 1\\ \\Rightarrow \\ a^{2}\\ = \\ 4,\\ b^{2}\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
           "(y = mx + c touches the hyperbola when",
           {

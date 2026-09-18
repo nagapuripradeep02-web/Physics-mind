@@ -142,10 +142,20 @@
             "text": "(move 6 to the left: 2l = 1 − 6 = −5)",
             "added": true
           },
-          "⇒ 2l = −5 ⇒ l = −5/2,",
-          "and m = 3 − 3(−5/2) = 3 + 15/2 = 21/2",
           {
-            "text": "(3 = 6/2, and 6/2 + 15/2 = 21/2)",
+            "text": "\\Rightarrow \\ 2l\\ = \\ - 5\\ \\Rightarrow \\ l\\ = \\ - \\dfrac{5}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ m\\ = \\ 3\\ - \\ 3\\left( - \\dfrac{5}{2}\\right)\\ = \\ 3\\ + \\ \\dfrac{15}{2} = \\ \\dfrac{21}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ = \\ \\dfrac{6}{2},\\ \\text{and}\\ \\dfrac{6}{2} + \\ \\dfrac{15}{2} = \\ \\dfrac{21}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -159,8 +169,16 @@
           "From (4): m = 3 − 3l",
           "Substitute in (5):",
           "1 = 8l + 2(3 − 3l) = 8l + 6 − 6l = 2l + 6",
-          "⇒ 2l = −5 ⇒ l = −5/2,",
-          "and m = 3 − 3(−5/2) = 3 + 15/2 = 21/2"
+          {
+            "text": "\\Rightarrow \\ 2l\\ = \\ - 5\\ \\Rightarrow \\ l\\ = \\ - \\dfrac{5}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ m\\ = \\ 3\\ - \\ 3\\left( - \\dfrac{5}{2}\\right)\\ = \\ 3\\ + \\ \\dfrac{15}{2} = \\ \\dfrac{21}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,14 +190,28 @@
         "margin_note": "Last mark. Check the boxed equation with one of the three given points — it should give 0.",
         "lines": [
           "From (1): l + m + n = −2",
-          "⇒ n = −2 − (−5/2) − 21/2 = −2 + 5/2 − 21/2 = −10",
           {
-            "text": "(5/2 − 21/2 = −16/2 = −8, and −2 − 8 = −10)",
+            "text": "\\Rightarrow \\ n\\ = \\ - 2\\ - \\ \\left( - \\dfrac{5}{2}\\right)\\ - \\ \\dfrac{21}{2} = \\ - 2\\ + \\ \\dfrac{5}{2} - \\ \\dfrac{21}{2} = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{2} - \\ \\dfrac{21}{2} = \\ - \\dfrac{16}{2} = \\ - 8,\\ \\text{and}\\ - 2\\ - \\ 8\\ = \\ - 10\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Substitute l = −5/2, m = 21/2,",
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ - \\dfrac{5}{2},\\ m\\ = \\ \\dfrac{21}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "n = −10 in x = ly² + my + n:",
-          "x = −(5/2)y² + (21/2)y − 10",
+          {
+            "text": "x\\ = \\ - \\left(\\dfrac{5}{2}\\right)y^{2}\\ + \\ \\left(\\dfrac{21}{2}\\right)y\\ - \\ 10",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 2: 2x = −5y² + 21y − 20",
           {
             "text": "Bring every term to the left:",
@@ -202,10 +234,22 @@
         "memory_tip": "Multiply through by 2, the shared denominator of every fraction here, to reach one whole-number equation.",
         "lines_compact": [
           "From (1): l + m + n = −2",
-          "⇒ n = −2 − (−5/2) − 21/2 = −2 + 5/2 − 21/2 = −10",
-          "Substitute l = −5/2, m = 21/2,",
+          {
+            "text": "\\Rightarrow \\ n\\ = \\ - 2\\ - \\ \\left( - \\dfrac{5}{2}\\right)\\ - \\ \\dfrac{21}{2} = \\ - 2\\ + \\ \\dfrac{5}{2} - \\ \\dfrac{21}{2} = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ - \\dfrac{5}{2},\\ m\\ = \\ \\dfrac{21}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "n = −10 in x = ly² + my + n:",
-          "x = −(5/2)y² + (21/2)y − 10",
+          {
+            "text": "x\\ = \\ - \\left(\\dfrac{5}{2}\\right)y^{2}\\ + \\ \\left(\\dfrac{21}{2}\\right)y\\ - \\ 10",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 2: 2x = −5y² + 21y − 20",
           {
             "text": "∴ 5y² + 2x − 21y + 20 = 0",

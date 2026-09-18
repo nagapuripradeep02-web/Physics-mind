@@ -89,9 +89,15 @@
         "memory_tip": "Find the tangent's slope first, then flip and negate it for the normal.",
         "lines": [
           "From x − 16y + 33 = 0:",
-          "16y = x + 33 ⇒ slope of tangent = 1/16",
           {
-            "text": "(y = x/16 + 33/16, so the slope is 1/16)",
+            "text": "16y\\ = \\ x\\ + \\ 33\\ \\Rightarrow \\ \\text{slope}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\dfrac{1}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ = \\ \\dfrac{x}{16} + \\ \\dfrac{33}{16},\\ \\text{so}\\ \\text{the}\\ \\text{slope}\\ \\text{is}\\ \\dfrac{1}{16}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -99,8 +105,9 @@
             "added": true
           },
           {
-            "text": "  so its slope is −1 ÷ (1/16):",
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - 1\\ \\div \\ \\left(\\dfrac{1}{16}\\right):",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "⇒ slope of normal = −16",
@@ -135,7 +142,11 @@
         ],
         "lines_compact": [
           "From x − 16y + 33 = 0:",
-          "16y = x + 33 ⇒ slope of tangent = 1/16",
+          {
+            "text": "16y\\ = \\ x\\ + \\ 33\\ \\Rightarrow \\ \\text{slope}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\dfrac{1}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ slope of normal = −16",
           "Equation of the normal at (−1, 2)",
           "with slope −16: y − 2 = −16(x + 1)",

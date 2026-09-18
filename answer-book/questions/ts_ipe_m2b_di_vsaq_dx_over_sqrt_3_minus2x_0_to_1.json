@@ -57,9 +57,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀¹ dx/√(3 − 2x)",
-          "∫dx/√(ax + b) = (2/a)√(ax + b), here a = −2:",
-          "∫dx/√(3−2x) = (−1/2)·2√(3−2x) = −√(3−2x)",
+          {
+            "text": "I\\ = \\ \\int _{0}^{1}\\ \\dfrac{dx}{\\sqrt{3\\ - \\ 2x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{\\sqrt{ax\\ + \\ b}} = \\ \\left(\\dfrac{2}{a}\\right)\\sqrt{ax\\ + \\ b},\\ \\text{here}\\ a\\ = \\ - 2:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{\\sqrt{3 - 2x}} = \\ \\left( - \\dfrac{1}{2}\\right) \\cdot 2\\sqrt{3 - 2x}\\ = \\ - \\sqrt{3 - 2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[derivative of 3−2x is −2]",
           "∴ I = [−√(3 − 2x)]₀¹"
         ],

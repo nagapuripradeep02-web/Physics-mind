@@ -77,13 +77,33 @@
             "text": "  derivative of the quadratic, plus B.",
             "style": "indent"
           },
-          "Here d/dx(6−2x²+x) = −4x+1",
-          "Let 6x+5 = A·d/dx(6−2x²+x) + B",
+          {
+            "text": "\\text{Here}\\ \\dfrac{d}{dx}\\left(6 - 2x^{2} + x\\right)\\ = \\ - 4x + 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Let}\\ 6x + 5\\ = \\ A \\cdot \\dfrac{d}{dx}\\left(6 - 2x^{2} + x\\right)\\ + \\ B",
+            "style": "normal",
+            "render": "katex"
+          },
           "= A(−4x+1) + B",
           "Compare the coefficients on both sides:",
-          "Coeff of x: −4A=6 ⇒ A=−3/2; constant:",
-          "A+B=5 ⇒ B=13/2",
-          "since B = 5 + 3/2 = 10/2 + 3/2 = 13/2"
+          {
+            "text": "\\text{Coeff}\\ \\text{of}\\ x:\\ - 4A = 6\\ \\Rightarrow \\ A = - \\dfrac{3}{2};\\ \\text{constant}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "A + B = 5\\ \\Rightarrow \\ B = \\dfrac{13}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ceB\\ = \\ 5\\ + \\ \\dfrac{3}{2} = \\ \\dfrac{10}{2} + \\ \\dfrac{3}{2} = \\ \\dfrac{13}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The same A·Dr′+B split, applied to a quadratic that DECREASES for large x (the −2x² term), which is what gives A a negative value here.",
         "common_mistakes": [
@@ -100,9 +120,21 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=−3/2, B=13/2: I",
-          "= (−3/2)∫(−4x+1)√(6−2x²+x) dx +",
-          "(13/2)∫√(6−2x²+x) dx",
+          {
+            "text": "\\text{Putting}\\ A = - \\dfrac{3}{2},\\ B = \\dfrac{13}{2}:\\ I",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - \\dfrac{3}{2}\\right)\\int \\left( - 4x + 1\\right)\\sqrt{6 - 2x^{2} + x}dx\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{13}{2}\\right)\\int \\sqrt{6 - 2x^{2} + x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The first has the derivative of the",
             "added": true
@@ -137,9 +169,21 @@
         ],
         "memory_tip": "(−3/2)×(2/3) = −1 exactly — the fraction cancels to a clean whole-number coefficient here.",
         "lines_compact": [
-          "Putting A=−3/2, B=13/2: I",
-          "= (−3/2)∫(−4x+1)√(6−2x²+x) dx +",
-          "(13/2)∫√(6−2x²+x) dx",
+          {
+            "text": "\\text{Putting}\\ A = - \\dfrac{3}{2},\\ B = \\dfrac{13}{2}:\\ I",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - \\dfrac{3}{2}\\right)\\int \\left( - 4x + 1\\right)\\sqrt{6 - 2x^{2} + x}dx\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{13}{2}\\right)\\int \\sqrt{6 - 2x^{2} + x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "∫(−4x+1)√(6−2x²+x) dx",
           {
             "text": "= \\tfrac{2}{3}\\left(6-2x^{2}+x\\right)^{3/2}",
@@ -177,21 +221,37 @@
             "added": true
           },
           {
-            "text": "6−2x²+x = −2[x² − x/2 − 3]",
+            "text": "6 - 2x^{2} + x\\ = \\ - 2\\left[x^{2}\\ - \\ \\dfrac{x}{2} - \\ 3\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= −2[(x−1/4)² − 1/16 − 3]",
+            "text": "= \\ - 2\\left[\\left(x - \\dfrac{1}{4}\\right)^{2}\\ - \\ \\dfrac{1}{16} - \\ 3\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= −2[(x−1/4)² − 49/16]",
+            "text": "= \\ - 2\\left[\\left(x - \\dfrac{1}{4}\\right)^{2}\\ - \\ \\dfrac{49}{16}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "6−2x²+x = 2[(7/4)²−(x−1/4)²],",
-          "so √(6−2x²+x) = √2·√[(7/4)²−(x−1/4)²]",
           {
-            "text": "Put u = x − 1/4 and a = 7/4, so du = dx",
+            "text": "6 - 2x^{2} + x\\ = \\ 2\\left[\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\sqrt{6 - 2x^{2} + x}\\ = \\ \\sqrt{2} \\cdot \\sqrt{\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ u\\ = \\ x\\ - \\ \\dfrac{1}{4}\\text{and}\\ a\\ = \\ \\dfrac{7}{4},\\ \\text{so}\\ du\\ = \\ dx",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -207,8 +267,16 @@
         ],
         "memory_tip": "Negative x² coefficient under a root ⇒ a²−u² ⇒ Sin⁻¹ (capital S, circular). Positive x² coefficient ⇒ u²+a² gives sinh⁻¹ and u²−a² gives cosh⁻¹ (small letters, hyperbolic) — check the sign of the constant.",
         "lines_compact": [
-          "6−2x²+x = 2[(7/4)²−(x−1/4)²],",
-          "so √(6−2x²+x) = √2·√[(7/4)²−(x−1/4)²]",
+          {
+            "text": "6 - 2x^{2} + x\\ = \\ 2\\left[\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\sqrt{6 - 2x^{2} + x}\\ = \\ \\sqrt{2} \\cdot \\sqrt{\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\int\\sqrt{a^2-u^2}\\,du = \\frac{u}{2}\\sqrt{a^2-u^2} + \\frac{a^2}{2}\\operatorname{Sin}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
             "render": "katex",
@@ -225,11 +293,15 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "Here u/2 = (4x−1)/8 and a²/2 = 49/32, so",
+            "text": "\\text{Here}\\ \\dfrac{u}{2} = \\ \\dfrac{4x - 1}{8}\\text{and}\\ \\dfrac{a^{2}}{2} = \\ \\dfrac{49}{32},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(13/2)∫√(6−2x²+x) dx = (13√2/2) ×",
+            "text": "\\left(\\dfrac{13}{2}\\right)\\int \\sqrt{6 - 2x^{2} + x}dx\\ = \\ \\left(\\dfrac{13\\sqrt{2}}{2}\\right)\\ \\times",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -243,12 +315,15 @@
             "added": true
           },
           {
-            "text": "(13√2/2)·(1/8) = 13√2/16 and",
+            "text": "\\left(\\dfrac{13\\sqrt{2}}{2}\\right) \\cdot \\left(\\dfrac{1}{8}\\right)\\ = \\ \\dfrac{13\\sqrt{2}}{16}\\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  (13√2/2)·(49/32) = 637√2/64",
+            "text": "\\left(\\dfrac{13\\sqrt{2}}{2}\\right) \\cdot \\left(\\dfrac{49}{32}\\right)\\ = \\ \\dfrac{637\\sqrt{2}}{64}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -256,10 +331,15 @@
             "render": "katex",
             "style": "eq"
           },
-          "+ (13√2/16)(4x−1)√[(7/4)²−(x−1/4)²]",
           {
-            "text": "+ (637√2/64) Sin⁻¹[(4x−1)/7] + c",
-            "style": "boxed"
+            "text": "+ \\ \\left(\\dfrac{13\\sqrt{2}}{16}\\right)\\left(4x - 1\\right)\\sqrt{\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{637\\sqrt{2}}{64}\\right)\\operatorname{Sin}^{-1} \\left[\\dfrac{4x - 1}{7}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Multiplying B=13/2 into the √2 factor and both terms of the standard √(a²−u²) result, then writing u=x−1/4 as (4x−1)/4 throughout, gives the second and third parts of the answer.",
@@ -274,10 +354,15 @@
             "render": "katex",
             "style": "eq"
           },
-          "+ (13√2/16)(4x−1)√[(7/4)²−(x−1/4)²]",
           {
-            "text": "+ (637√2/64) Sin⁻¹[(4x−1)/7] + c",
-            "style": "boxed"
+            "text": "+ \\ \\left(\\dfrac{13\\sqrt{2}}{16}\\right)\\left(4x - 1\\right)\\sqrt{\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{637\\sqrt{2}}{64}\\right)\\operatorname{Sin}^{-1} \\left[\\dfrac{4x - 1}{7}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

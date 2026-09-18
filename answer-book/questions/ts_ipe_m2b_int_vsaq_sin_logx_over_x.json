@@ -51,12 +51,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The derivative of logx is 1/x, and that",
+          {
+            "text": "\\text{The}\\ \\text{derivative}\\ \\text{of}\\ \\log x\\ \\text{is}\\ \\dfrac{1}{x},\\ \\text{and}\\ \\text{that}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  factor is already present:",
             "style": "indent"
           },
-          "Put logx = t ⇒ (1/x)dx = dt",
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\left(\\dfrac{1}{x}\\right)dx\\ = \\ dt",
+            "style": "normal",
+            "render": "katex"
+          },
           "I = ∫ sint dt"
         ],
         "why": "The factor 1/x dx is EXACTLY dt once t=logx, since d/dx(logx)=1/x — the substitution removes x from the integral completely, leaving a plain function of t.",
@@ -83,8 +91,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [sin(logx)/x] dx = −cos(logx) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\sin \\left(\\log x\\right)}{x}\\right]dx\\ = \\ - \\cos \\left(\\log x\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫sint dt = −cost + c is the most basic standard integral, and substituting t=logx back in returns the answer to the original variable x.",
@@ -95,8 +104,9 @@
         "memory_tip": "∫sint dt = −cost — sine integrates to NEGATIVE cosine, always.",
         "lines_compact": [
           {
-            "text": "∴ ∫ [sin(logx)/x] dx = −cos(logx) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\sin \\left(\\log x\\right)}{x}\\right]dx\\ = \\ - \\cos \\left(\\log x\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

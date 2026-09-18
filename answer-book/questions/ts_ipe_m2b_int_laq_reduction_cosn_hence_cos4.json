@@ -202,18 +202,41 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 4, 2 successively in (1):",
-          "I₄ = cos³x sinx/4 + (3/4)I₂",
-          "I₂ = cosx sinx/2 + (1/2)I₀, and I₀ = ∫dx = x",
-          "So I₂ = cosx sinx/2 + x/2",
-          "I₄ = cos³x sinx/4 + (3/4)[cosx sinx/2 + x/2]",
           {
-            "text": "(3/4)·(1/2) = 3/8 in both terms:",
+            "text": "I_{4}\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{2}\\ = \\ \\dfrac{\\cos x\\sin x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{0},\\ \\text{and}\\ I_{0}\\ = \\ \\int dx\\ = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ I_{2}\\ = \\ \\dfrac{\\cos x\\sin x}{2} + \\ \\dfrac{x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{4}\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{4}\\right)\\left[\\dfrac{\\cos x\\sin x}{2} + \\ \\dfrac{x}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{4}\\right) \\cdot \\left(\\dfrac{1}{2}\\right)\\ = \\ \\dfrac{3}{8}\\text{in}\\ \\text{both}\\ \\text{terms}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ I = cos³x sinx/4 + (3/8)cosx sinx",
           {
-            "text": "+ 3x/8 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{8}\\right)\\cos x\\sin x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{3x}{8} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The same even-n chain as sinⁿx — n=4 needs I₂, I₂ needs I₀ = x — but with every sign positive throughout.",
@@ -224,14 +247,35 @@
         "memory_tip": "sin⁴x and cos⁴x are structural twins — same coefficients (1/4, 3/8, 3/8) — but the SIGNS differ: sin⁴x's answer keeps its first two terms negative, while cos⁴x's answer is all positive.",
         "lines_compact": [
           "Put n = 4, 2 successively in (1):",
-          "I₄ = cos³x sinx/4 + (3/4)I₂",
-          "I₂ = cosx sinx/2 + (1/2)I₀, and I₀ = ∫dx = x",
-          "So I₂ = cosx sinx/2 + x/2",
-          "I₄ = cos³x sinx/4 + (3/4)[cosx sinx/2 + x/2]",
-          "∴ I = cos³x sinx/4 + (3/8)cosx sinx",
           {
-            "text": "+ 3x/8 + c",
-            "style": "boxed"
+            "text": "I_{4}\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{2}\\ = \\ \\dfrac{\\cos x\\sin x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{0},\\ \\text{and}\\ I_{0}\\ = \\ \\int dx\\ = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ I_{2}\\ = \\ \\dfrac{\\cos x\\sin x}{2} + \\ \\dfrac{x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{4}\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{4}\\right)\\left[\\dfrac{\\cos x\\sin x}{2} + \\ \\dfrac{x}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\cos ^{3} x\\sin x}{4} + \\ \\left(\\dfrac{3}{8}\\right)\\cos x\\sin x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{3x}{8} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

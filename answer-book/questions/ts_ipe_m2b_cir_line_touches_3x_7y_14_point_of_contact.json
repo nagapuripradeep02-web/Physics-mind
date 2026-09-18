@@ -71,13 +71,37 @@
           },
           "Given circle: x² + y² − 3x + 7y + 14 = 0",
           "Compare with x² + y² + 2gx + 2fy + c = 0:",
-          "2g = −3 ⇒ g = −3/2",
-          "2f = 7 ⇒ f = 7/2",
-          "Here g = −3/2, f = 7/2, c = 14",
-          "Centre C = (−g, −f) = (3/2, −7/2)",
+          {
+            "text": "2g\\ = \\ - 3\\ \\Rightarrow \\ g\\ = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2f\\ = \\ 7\\ \\Rightarrow \\ f\\ = \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ g\\ = \\ - \\dfrac{3}{2},\\ f\\ = \\ \\dfrac{7}{2},\\ c\\ = \\ 14",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Centre}\\ C\\ = \\ \\left( - g,\\ - f\\right)\\ = \\ \\left(\\dfrac{3}{2},\\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Radius r = √(g² + f² − c)",
-          "r = √(9/4 + 49/4 − 14) = √((9 + 49 − 56)/4)",
-          "= √(2/4) = 1/√2"
+          {
+            "text": "r\\ = \\ \\sqrt{\\dfrac{9}{4} + \\ \\dfrac{49}{4} - \\ 14}\\ = \\ \\sqrt{\\dfrac{9\\ + \\ 49\\ - \\ 56}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{2}{4}}\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "A line touches a circle when its distance from the centre equals the radius, so the radius is needed before anything can be compared. Writing 14 as 56/4 keeps one denominator.",
         "common_mistakes": [
@@ -94,7 +118,11 @@
         "margin_note": "Second printed mark, tagged \"1 Mark\". State p = r in words, not only as an equation.",
         "memory_tip": "p = r means touching, p > r means the line misses, p < r means it cuts.",
         "lines": [
-          "Perpendicular distance from C(3/2, −7/2)",
+          {
+            "text": "\\text{Perpendicular}\\ \\text{distance}\\ \\text{from}\\ C\\left(\\dfrac{3}{2},\\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x + y + 1 = 0:",
           {
             "text": "A line touches a circle when this distance",
@@ -105,8 +133,16 @@
             "style": "indent",
             "added": true
           },
-          "p = |3/2 − 7/2 + 1| / √(1² + 1²)",
-          "= |(3 − 7 + 2)/2| / √2 = |−1| / √2 = 1/√2",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|\\dfrac{3}{2} - \\ \\dfrac{7}{2} + \\ 1\\right|}{\\sqrt{1^{2}\\ + \\ 1^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|\\dfrac{3\\ - \\ 7\\ + \\ 2}{2}\\right|}{\\sqrt{2}} = \\ \\dfrac{\\left| - 1\\right|}{\\sqrt{2}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ p = r",
           "∴ The line touches the circle."
         ],
@@ -116,10 +152,22 @@
           "Reaching p = r but not writing the sentence that the line touches the circle."
         ],
         "lines_compact": [
-          "Perpendicular distance from C(3/2, −7/2)",
+          {
+            "text": "\\text{Perpendicular}\\ \\text{distance}\\ \\text{from}\\ C\\left(\\dfrac{3}{2},\\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x + y + 1 = 0:",
-          "p = |3/2 − 7/2 + 1| / √(1² + 1²)",
-          "= |(3 − 7 + 2)/2| / √2 = |−1| / √2 = 1/√2",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|\\dfrac{3}{2} - \\ \\dfrac{7}{2} + \\ 1\\right|}{\\sqrt{1^{2}\\ + \\ 1^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|\\dfrac{3\\ - \\ 7\\ + \\ 2}{2}\\right|}{\\sqrt{2}} = \\ \\dfrac{\\left| - 1\\right|}{\\sqrt{2}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ p = r",
           "∴ The line touches the circle."
         ]
@@ -134,7 +182,11 @@
         "memory_tip": "Point of contact = foot of the perpendicular from the centre to the tangent.",
         "lines": [
           "The point of contact (h, k) is the foot of",
-          "the perpendicular from C(3/2, −7/2)",
+          {
+            "text": "\\text{the}\\ \\text{perpendicular}\\ \\text{from}\\ C\\left(\\dfrac{3}{2},\\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x + y + 1 = 0",
           {
             "text": "Foot of the perpendicular from (x₁, y₁) to",
@@ -145,19 +197,41 @@
             "style": "indent",
             "added": true
           },
-          "(h − x₁)/a = (k − y₁)/b",
-          "= −(ax₁ + by₁ + c)/(a² + b²)",
+          {
+            "text": "\\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Here a = 1, b = 1, c = 1",
             "added": true
           },
-          "⇒ (h − 3/2)/1 = (k + 7/2)/1",
-          "= −(3/2 − 7/2 + 1)/(1 + 1)",
           {
-            "text": "3/2 − 7/2 + 1 = −1, so this is −(−1)/2",
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ \\dfrac{3}{2}}{1} = \\ \\dfrac{k\\ + \\ \\dfrac{7}{2}}{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\dfrac{3}{2} - \\ \\dfrac{7}{2} + \\ 1}{1\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{3}{2} - \\ \\dfrac{7}{2} + \\ 1\\ = \\ - 1,\\ \\text{so}\\ \\text{this}\\ \\text{is}\\ - \\dfrac{ - 1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (h − 3/2)/1 = (k + 7/2)/1 = 1/2"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ \\dfrac{3}{2}}{1} = \\ \\dfrac{k\\ + \\ \\dfrac{7}{2}}{1} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The radius drawn to the point of contact is perpendicular to the tangent, so the point of contact is exactly where the perpendicular from the centre meets the line. That turns the geometry into the standard foot-of-perpendicular formula.",
         "common_mistakes": [
@@ -166,13 +240,37 @@
         ],
         "lines_compact": [
           "The point of contact (h, k) is the foot of",
-          "the perpendicular from C(3/2, −7/2)",
+          {
+            "text": "\\text{the}\\ \\text{perpendicular}\\ \\text{from}\\ C\\left(\\dfrac{3}{2},\\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x + y + 1 = 0",
-          "(h − x₁)/a = (k − y₁)/b",
-          "= −(ax₁ + by₁ + c)/(a² + b²)",
-          "⇒ (h − 3/2)/1 = (k + 7/2)/1",
-          "= −(3/2 − 7/2 + 1)/(1 + 1)",
-          "⇒ (h − 3/2)/1 = (k + 7/2)/1 = 1/2"
+          {
+            "text": "\\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ \\dfrac{3}{2}}{1} = \\ \\dfrac{k\\ + \\ \\dfrac{7}{2}}{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\dfrac{3}{2} - \\ \\dfrac{7}{2} + \\ 1}{1\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{h\\ - \\ \\dfrac{3}{2}}{1} = \\ \\dfrac{k\\ + \\ \\dfrac{7}{2}}{1} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -184,8 +282,16 @@
         "margin_note": "The last printed mark, tagged \"1 Mark\". Check the answer by putting it back into the line.",
         "memory_tip": "Add 1/2 to each side of the two little equations and read h and k off.",
         "lines": [
-          "h − 3/2 = 1/2 ⇒ h = 3/2 + 1/2 = 2",
-          "k + 7/2 = 1/2 ⇒ k = 1/2 − 7/2 = −3",
+          {
+            "text": "h\\ - \\ \\dfrac{3}{2} = \\ \\dfrac{1}{2} \\Rightarrow \\ h\\ = \\ \\dfrac{3}{2} + \\ \\dfrac{1}{2} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ + \\ \\dfrac{7}{2} = \\ \\dfrac{1}{2} \\Rightarrow \\ k\\ = \\ \\dfrac{1}{2} - \\ \\dfrac{7}{2} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Point of contact is (2, −3)",
             "style": "boxed"
@@ -205,8 +311,16 @@
           "Reporting the centre as the point of contact."
         ],
         "lines_compact": [
-          "h − 3/2 = 1/2 ⇒ h = 3/2 + 1/2 = 2",
-          "k + 7/2 = 1/2 ⇒ k = 1/2 − 7/2 = −3",
+          {
+            "text": "h\\ - \\ \\dfrac{3}{2} = \\ \\dfrac{1}{2} \\Rightarrow \\ h\\ = \\ \\dfrac{3}{2} + \\ \\dfrac{1}{2} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k\\ + \\ \\dfrac{7}{2} = \\ \\dfrac{1}{2} \\Rightarrow \\ k\\ = \\ \\dfrac{1}{2} - \\ \\dfrac{7}{2} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Point of contact is (2, −3)",
             "style": "boxed"

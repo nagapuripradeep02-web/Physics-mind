@@ -144,7 +144,9 @@
           "⇒ (1 + 4 − 2 − 15) + λ(1 + 2 − 6) = 0",
           "⇒ −12 + λ(−3) = 0 ⇒ λ = −4",
           {
-            "text": "(−3λ = 12, so λ = 12/(−3) = −4)",
+            "text": "\\left( - 3\\lambda \\ = \\ 12,\\ \\text{so}\\ \\lambda \\ = \\ \\dfrac{12}{ - 3} = \\ - 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Put λ = −4 in (1), then",

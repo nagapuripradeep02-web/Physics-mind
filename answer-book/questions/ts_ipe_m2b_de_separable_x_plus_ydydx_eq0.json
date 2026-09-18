@@ -57,9 +57,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is x + y·dy/dx = 0",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ x\\ + \\ y \\cdot \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take x to the right side and multiply by dx:",
-          "⇒ y·dy/dx = −x ⇒ y dy = −x dx"
+          {
+            "text": "\\Rightarrow \\ y \\cdot \\dfrac{dy}{dx}\\ = \\ - x\\ \\Rightarrow \\ ydy\\ = \\ - xdx",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Moving x to the other side and multiplying through by dx leaves y dy on the left and −x dx on the right, which is already fully separated with nothing further to rearrange.",
         "common_mistakes": [
@@ -80,7 +88,11 @@
             "text": "Integrate both sides:",
             "added": true
           },
-          "∫y dy = −∫x dx ⇒ y²/2 = −x²/2 + c",
+          {
+            "text": "\\int ydy\\ = \\ - \\int xdx\\ \\Rightarrow \\ \\dfrac{y^{2}}{2} = \\ - \\dfrac{x^{2}}{2} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by 2 and take x² to the left:",
             "added": true
@@ -96,7 +108,11 @@
           "Writing y² − x² = c by losing the minus sign on −x²/2."
         ],
         "lines_compact": [
-          "∫y dy = −∫x dx ⇒ y²/2 = −x²/2 + c",
+          {
+            "text": "\\int ydy\\ = \\ - \\int xdx\\ \\Rightarrow \\ \\dfrac{y^{2}}{2} = \\ - \\dfrac{x^{2}}{2} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ y² + x² = 2c",
             "style": "boxed"

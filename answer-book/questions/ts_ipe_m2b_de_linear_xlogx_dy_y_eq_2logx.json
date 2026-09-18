@@ -65,13 +65,33 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is x·logx·dy/dx + y = 2logx",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ x \\cdot \\log x \\cdot \\dfrac{dy}{dx}\\ + \\ y\\ = \\ 2\\log x",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide every term by x·logx:",
-          "⇒ dy/dx + y·(1/(x·logx)) = 2logx/(x·logx)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y \\cdot \\left(\\dfrac{1}{x \\cdot \\log x}\\right)\\ = \\ \\dfrac{2\\log x}{x \\cdot \\log x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "logx cancels on the right:",
-          "= 2/x [dividing throughout by x·logx]",
-          "This is in the form dy/dx + yP(x) = Q(x).",
-          "Here P = 1/(x·logx) and Q = 2/x"
+          {
+            "text": "= \\ \\dfrac{2}{x}\\left[\\text{dividing}\\ \\text{throughout}\\ \\text{by}\\ x \\cdot \\log x\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ P\\ = \\ \\dfrac{1}{x \\cdot \\log x}\\text{and}\\ Q\\ = \\ \\dfrac{2}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing every term by xlogx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it also cancels one logx from the right side, leaving the clean Q = 2/x.",
         "common_mistakes": [
@@ -88,14 +108,32 @@
         "margin_note": "One mark. I.F. = e to the power ∫P dx; recognise ∫1/(xlogx)dx as the f'/f form with f(x) = logx.",
         "memory_tip": "∫f'(x)/f(x) dx = log f(x) is the fastest route whenever the numerator is exactly the derivative of the denominator's inner function.",
         "lines": [
-          "Here P = 1/(x·logx)",
           {
-            "text": "Write 1/(x·logx) as (1/x)/logx:",
+            "text": "\\text{Here}\\ P\\ = \\ \\dfrac{1}{x \\cdot \\log x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Write}\\ \\dfrac{1}{x \\cdot \\log x}\\text{as}\\ \\dfrac{\\dfrac{1}{x}}{\\log x}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
-          "since ∫f'(x)/f(x) dx = log f(x)",
-          "with f(x) = logx, f'(x) = 1/x",
+          {
+            "text": "\\Rightarrow \\ \\int Pdx\\ = \\ \\int \\dfrac{1}{x \\cdot \\log x}dx\\ = \\ \\log \\left(\\log x\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\ \\int f'\\dfrac{x}{f\\left(x\\right)}dx\\ = \\ \\log f\\left(x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ f\\left(x\\right)\\ = \\ \\log x,\\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "e to the power log A is A:",
             "added": true
@@ -112,10 +150,26 @@
           "Leaving the I.F. as log(logx) instead of simplifying e to the power log(logx) back to logx."
         ],
         "lines_compact": [
-          "Here P = 1/(x·logx)",
-          "⇒ ∫P dx = ∫1/(x·logx) dx = log(logx),",
-          "since ∫f'(x)/f(x) dx = log f(x)",
-          "with f(x) = logx, f'(x) = 1/x",
+          {
+            "text": "\\text{Here}\\ P\\ = \\ \\dfrac{1}{x \\cdot \\log x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\int Pdx\\ = \\ \\int \\dfrac{1}{x \\cdot \\log x}dx\\ = \\ \\log \\left(\\log x\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\ \\int f'\\dfrac{x}{f\\left(x\\right)}dx\\ = \\ \\log f\\left(x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ f\\left(x\\right)\\ = \\ \\log x,\\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (\\log x)} = \\log x",
             "render": "katex",
@@ -133,12 +187,22 @@
         "memory_tip": "logx/x always substitutes cleanly with t = logx, since d(logx) = dx/x is exactly the leftover factor.",
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
           {
-            "text": "d/dx(logx) = 1/x, so:",
+            "text": "\\Rightarrow \\ y \\cdot \\log x\\ = \\ \\int \\log x \\cdot \\left(\\dfrac{2}{x}\\right)dx\\ = \\ 2\\int \\left(\\dfrac{\\log x}{x}\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x},\\ \\text{so}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put logx = t ⇒ (1/x)dx = dt,",
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\left(\\dfrac{1}{x}\\right)dx\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes 2∫t dt"
         ],
         "why": "Multiplying Q by the integrating factor logx gives an integral in logx/x, and the substitution t = logx turns it into a plain polynomial integral, since dt is exactly the leftover 1/x dx factor already present.",
@@ -148,8 +212,16 @@
         ],
         "lines_compact": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
-          "⇒ y·logx = ∫logx·(2/x) dx = 2∫(logx/x) dx",
-          "Put logx = t ⇒ (1/x)dx = dt,",
+          {
+            "text": "\\Rightarrow \\ y \\cdot \\log x\\ = \\ \\int \\log x \\cdot \\left(\\dfrac{2}{x}\\right)dx\\ = \\ 2\\int \\left(\\dfrac{\\log x}{x}\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\left(\\dfrac{1}{x}\\right)dx\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes 2∫t dt"
         ]
       },
@@ -163,10 +235,16 @@
         "memory_tip": "2∫t dt = t² directly — the 2 and the 1/2 from the power rule cancel exactly.",
         "lines": [
           {
-            "text": "∫t dt = t²/2:",
+            "text": "\\int tdt\\ = \\ \\dfrac{t^{2}}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2∫t dt = 2(t²/2) + c = t² + c",
+          {
+            "text": "2\\int tdt\\ = \\ 2\\left(\\dfrac{t^{2}}{2}\\right)\\ + \\ c\\ = \\ t^{2}\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           "So y·logx = t² + c, and putting t = logx back in:",
           {
             "text": "y·logx = (logx)² + c",
@@ -179,7 +257,11 @@
           "Missing the factor of 2 cancelling against the 1/2 from integrating t, and writing an extra 2 in the final answer."
         ],
         "lines_compact": [
-          "2∫t dt = 2(t²/2) + c = t² + c",
+          {
+            "text": "2\\int tdt\\ = \\ 2\\left(\\dfrac{t^{2}}{2}\\right)\\ + \\ c\\ = \\ t^{2}\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           "So y·logx = t² + c, and putting t = logx back in:",
           {
             "text": "y·logx = (logx)² + c",

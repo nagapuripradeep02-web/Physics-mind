@@ -189,17 +189,30 @@
             "added": true
           },
           {
-            "text": "  ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))",
+            "text": "\\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m\\ + \\ n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m\\ + \\ n}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Here m = 5, n = 8, C₁ = (2, 3), C₂ = (−3, −9)",
             "added": true
           },
-          "P = ((5(−3) + 8(2))/13, (5(−9) + 8(3))/13)",
-          "= ((−15 + 16)/13, (−45 + 24)/13)",
-          "∴ P = (1/13, −21/13)"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{5\\left( - 3\\right)\\ + \\ 8\\left(2\\right)}{13},\\ \\dfrac{5\\left( - 9\\right)\\ + \\ 8\\left(3\\right)}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{ - 15\\ + \\ 16}{13},\\ \\dfrac{ - 45\\ + \\ 24}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\dfrac{1}{13},\\ - \\dfrac{21}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The contact point is at distance r₁ from C₁ and r₂ from C₂ along the segment joining them, which is internal division in the ratio r₁ : r₂. The denominator 5 + 8 = 13 is why the answer has thirteenths.",
         "common_mistakes": [
@@ -209,9 +222,21 @@
         "lines_compact": [
           "P divides C₁C₂ internally in the ratio",
           "r₁ : r₂ = 5 : 8",
-          "P = ((5(−3) + 8(2))/13, (5(−9) + 8(3))/13)",
-          "= ((−15 + 16)/13, (−45 + 24)/13)",
-          "∴ P = (1/13, −21/13)"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{5\\left( - 3\\right)\\ + \\ 8\\left(2\\right)}{13},\\ \\dfrac{5\\left( - 9\\right)\\ + \\ 8\\left(3\\right)}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{ - 15\\ + \\ 16}{13},\\ \\dfrac{ - 45\\ + \\ 24}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\dfrac{1}{13},\\ - \\dfrac{21}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -251,12 +276,15 @@
             "style": "boxed"
           },
           {
-            "text": "Check P(1/13, −21/13): 5/13 − 252/13 + 19",
+            "text": "\\text{Check}\\ P\\left(\\dfrac{1}{13},\\ - \\dfrac{21}{13}\\right):\\ \\dfrac{5}{13} - \\ \\dfrac{252}{13} + \\ 19",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = (5 − 252 + 247)/13 = 0",
+            "text": "= \\ \\dfrac{5\\ - \\ 252\\ + \\ 247}{13} = \\ 0",
             "style": "indent",
+            "render": "katex",
             "added": true
           }
         ],

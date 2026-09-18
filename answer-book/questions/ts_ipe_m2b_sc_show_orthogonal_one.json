@@ -53,10 +53,22 @@
           },
           "Compare each with x² + y² + 2gx + 2fy + c = 0.",
           "The second has 3x² + 3y², so divide it by 3:",
-          "x² + y² − (8/3)x + (29/3)y = 0",
+          {
+            "text": "x^{2}\\ + \\ y^{2}\\ - \\ \\left(\\dfrac{8}{3}\\right)x\\ + \\ \\left(\\dfrac{29}{3}\\right)y\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here, g = −1, f = −1, c = −7 and",
-          "(2g′ = −8/3 and 2f′ = 29/3)",
-          "g′ = −4/3, f′ = 29/6, c′ = 0"
+          {
+            "text": "\\left(2g'\\ = \\ - \\dfrac{8}{3}\\text{and}\\ 2f'\\ = \\ \\dfrac{29}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g'\\ = \\ - \\dfrac{4}{3},\\ f'\\ = \\ \\dfrac{29}{6},\\ c'\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing the second circle by its leading coefficient 3 first puts it in standard form, so its g′, f′, c′ can be read off correctly before checking orthogonality.",
         "common_mistakes": [
@@ -80,12 +92,20 @@
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
           "L.H.S = 2gg′ + 2ff′",
           {
-            "text": "2(−1)(−4/3) = 8/3 and 2(−1)(29/6) = −29/3",
+            "text": "2\\left( - 1\\right)\\left( - \\dfrac{4}{3}\\right)\\ = \\ \\dfrac{8}{3}\\text{and}\\ 2\\left( - 1\\right)\\left(\\dfrac{29}{6}\\right)\\ = \\ - \\dfrac{29}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
           {
-            "text": "(8/3 − 29/3 = −21/3 = −7)",
+            "text": "= \\ 2\\left( - 1\\right)\\left( - \\dfrac{4}{3}\\right)\\ + \\ 2\\left( - 1\\right)\\left(\\dfrac{29}{6}\\right)\\ = \\ \\dfrac{8}{3} - \\ \\dfrac{29}{3} = \\ - 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{8}{3} - \\ \\dfrac{29}{3} = \\ - \\dfrac{21}{3} = \\ - 7\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "R.H.S = c + c′ = −7 + 0 = −7",
@@ -103,7 +123,11 @@
         "lines_compact": [
           "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
           "L.H.S = 2gg′ + 2ff′",
-          "= 2(−1)(−4/3) + 2(−1)(29/6) = 8/3 − 29/3 = −7",
+          {
+            "text": "= \\ 2\\left( - 1\\right)\\left( - \\dfrac{4}{3}\\right)\\ + \\ 2\\left( - 1\\right)\\left(\\dfrac{29}{6}\\right)\\ = \\ \\dfrac{8}{3} - \\ \\dfrac{29}{3} = \\ - 7",
+            "style": "normal",
+            "render": "katex"
+          },
           "R.H.S = c + c′ = −7 + 0 = −7",
           {
             "text": "∴ L.H.S = R.H.S ⇒ circles are orthogonal.",

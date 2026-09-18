@@ -82,22 +82,55 @@
           },
           "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx, so",
           {
-            "text": "  replace x by π/4 − x:",
-            "style": "indent"
+            "text": "\\text{replace}\\ x\\ \\text{by}\\ \\dfrac{\\pi }{4} - \\ x:",
+            "style": "indent",
+            "render": "katex"
           },
-          "By x → π/4 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{4} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I = \\int _{0}^{\\pi /4} \\log [1 + \\tan (\\pi /4 - x)] dx",
             "render": "katex",
             "style": "normal"
           },
-          "tan(A−B) = (tanA − tanB)/(1 + tanA tanB)",
-          "With A = π/4 and tan(π/4) = 1:",
-          "tan(π/4 − x) = (1 − tanx)/(1 + tanx)",
-          "1 + tan(π/4 − x)",
-          "= 1 + (1 − tanx)/(1 + tanx)",
-          "= [(1 + tanx) + (1 − tanx)]/(1 + tanx)",
-          "= 2/(1 + tanx)"
+          {
+            "text": "\\tan \\left(A - B\\right)\\ = \\ \\dfrac{\\tan A\\ - \\ \\tan B}{1\\ + \\ \\tan A\\tan B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{With}\\ A\\ = \\ \\dfrac{\\pi }{4}\\text{and}\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4} - \\ x\\right)\\ = \\ \\dfrac{1\\ - \\ \\tan x}{1\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ + \\ \\dfrac{1\\ - \\ \\tan x}{1\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(1\\ + \\ \\tan x\\right)\\ + \\ \\left(1\\ - \\ \\tan x\\right)}{1\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2}{1\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The tan(A−B) formula with A = π/4 (where tan π/4 = 1) gives a clean fraction (1−tanx)/(1+tanx); adding 1 to it collapses the numerator to a plain 2, which is the key simplification the rest of the proof depends on.",
         "common_mistakes": [
@@ -124,7 +157,9 @@
             "style": "normal"
           },
           {
-            "text": "Since log(p/q) = log p − log q:",
+            "text": "\\operatorname{Sin} ce\\log \\left(\\dfrac{p}{q}\\right)\\ = \\ \\log p\\ - \\ \\log q:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -194,15 +229,26 @@
             "text": "I appears on both sides; take it to the left:",
             "added": true
           },
-          "⇒ I + I = (π/4)log2",
-          "⇒ 2I = (π/4)log2",
           {
-            "text": "Divide both sides by 2, and (π/4)/2 = π/8:",
+            "text": "\\Rightarrow \\ I\\ + \\ I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 2,\\ \\text{and}\\ \\dfrac{\\dfrac{\\pi }{4}}{2} = \\ \\dfrac{\\pi }{8}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = (π/8) log2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{\\pi }{8}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Adding I to both sides of I = (π/4)log2 − I gives 2I = (π/4)log2 directly, and dividing by 2 gives the final value.",
@@ -211,11 +257,20 @@
           "Forgetting to divide by 2 at the very last step."
         ],
         "lines_compact": [
-          "⇒ I + I = (π/4)log2",
-          "⇒ 2I = (π/4)log2",
           {
-            "text": "∴ I = (π/8) log2",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ I\\ + \\ I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{\\pi }{8}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

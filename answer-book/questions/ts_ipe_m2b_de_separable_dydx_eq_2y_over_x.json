@@ -61,9 +61,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx = 2y/x",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{2y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Keep y terms with dy and x terms with dx:",
-          "⇒ dy/y = 2dx/x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{y} = \\ \\dfrac{2dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing both sides by y and multiplying through by dx separates the variables immediately, since 2y/x·dx already carries the x and y factors on opposite sides once y is cleared.",
         "common_mistakes": [
@@ -80,7 +88,11 @@
         "margin_note": "The last mark. ∫dy/y = log y and ∫2dx/x = 2 log x; combine the two logs and the constant into one power form.",
         "memory_tip": "log y = log x² + log c combines to log y = log(cx²), so y = cx² — always write the constant as log c to combine logs cleanly.",
         "lines": [
-          "∫dy/y = 2∫dx/x ⇒ log y = 2 log x + log c",
+          {
+            "text": "\\int \\dfrac{dy}{y} = \\ 2\\int \\dfrac{dx}{x} \\Rightarrow \\ \\log y\\ = \\ 2\\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2 log x = log x², and log p + log q = log(pq):",
             "added": true
@@ -101,7 +113,11 @@
           "Stopping at log y = 2 log x + log c without finishing the simplification down to y = cx²."
         ],
         "lines_compact": [
-          "∫dy/y = 2∫dx/x ⇒ log y = 2 log x + log c",
+          {
+            "text": "\\int \\dfrac{dy}{y} = \\ 2\\int \\dfrac{dx}{x} \\Rightarrow \\ \\log y\\ = \\ 2\\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ log y = log x² + log c ⇒ log y = log(cx²)",
           {
             "text": "∴ y = cx²",

@@ -158,18 +158,36 @@
         "lines": [
           "Put cosx = t ⇒ sinx dx = −dt. x = 0",
           "⇒ t = 1; x = π ⇒ t = −1",
-          "I = (π/2)∫₁⁻¹ −(1 − t²)/(1 + t²) dt",
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{1}^{-1}\\ - \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}dt",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Swapping the limits removes the minus sign:",
             "added": true
           },
-          "= (π/2)∫₋₁¹ (1 − t²)/(1 + t²) dt",
           {
-            "text": "(1 − t²)/(1 + t²) = [2 − (1 + t²)]/(1 + t²)",
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}} = \\ \\dfrac{2\\ - \\ \\left(1\\ + \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (π/2)∫₋₁¹ [2/(1 + t²) − 1] dt",
-          "= (π/2)[2Tan⁻¹t − t]₋₁¹"
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\left[\\dfrac{2}{1\\ + \\ t^{2}} - \\ 1\\right]dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[2\\operatorname{Tan}^{-1} t\\ - \\ t\\right]_{-1}^{1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Splitting (1 − t²)/(1 + t²) as 2/(1 + t²) − 1 turns the integrand into two pieces with easy antiderivatives — Tan⁻¹t and t itself.",
         "common_mistakes": [
@@ -179,10 +197,26 @@
         "lines_compact": [
           "Put cosx = t ⇒ sinx dx = −dt. x = 0",
           "⇒ t = 1; x = π ⇒ t = −1",
-          "I = (π/2)∫₁⁻¹ −(1 − t²)/(1 + t²) dt",
-          "= (π/2)∫₋₁¹ (1 − t²)/(1 + t²) dt",
-          "= (π/2)∫₋₁¹ [2/(1 + t²) − 1] dt",
-          "= (π/2)[2Tan⁻¹t − t]₋₁¹"
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{1}^{-1}\\ - \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\int _{-1}^{1}\\ \\left[\\dfrac{2}{1\\ + \\ t^{2}} - \\ 1\\right]dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[2\\operatorname{Tan}^{-1} t\\ - \\ t\\right]_{-1}^{1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -195,18 +229,29 @@
         "memory_tip": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2 — the same angle pair as in ∫ x sinx/(1 + cos²x) dx from 0 to π.",
         "lines": [
           {
-            "text": "Tan⁻¹(1) = π/4 and Tan⁻¹(−1) = −π/4:",
+            "text": "\\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\text{and}\\ \\operatorname{Tan}^{-1}\\left( - 1\\right)\\ = \\ - \\dfrac{\\pi }{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
-          "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\{\\left[2\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ 1\\right]\\ - \\ \\left[2\\operatorname{Tan}^{-1}\\left( - 1\\right)\\ - \\ \\left( - 1\\right)\\right]\\}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\left(\\dfrac{\\pi }{2} - \\ 1\\right)\\ - \\ \\left( - \\dfrac{\\pi }{2} + \\ 1\\right)\\right]\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\pi \\ - \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "since π/2 − 1 + π/2 − 1 = π − 2",
             "added": true
           },
           {
-            "text": "∴ I = π(π − 2)/2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi \\left(\\pi \\ - \\ 2\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2; substituting both endpoints and simplifying leaves π − 2 inside the bracket, which is then multiplied by the outer π/2 to give π(π − 2)/2.",
@@ -215,11 +260,20 @@
           "Writing the final answer as π²/2 − π instead of the equivalent π(π − 2)/2."
         ],
         "lines_compact": [
-          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
-          "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
           {
-            "text": "∴ I = π(π − 2)/2",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\{\\left[2\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ 1\\right]\\ - \\ \\left[2\\operatorname{Tan}^{-1}\\left( - 1\\right)\\ - \\ \\left( - 1\\right)\\right]\\}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{2}\\right)\\left[\\left(\\dfrac{\\pi }{2} - \\ 1\\right)\\ - \\ \\left( - \\dfrac{\\pi }{2} + \\ 1\\right)\\right]\\ = \\ \\left(\\dfrac{\\pi }{2}\\right)\\left(\\pi \\ - \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi \\left(\\pi \\ - \\ 2\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

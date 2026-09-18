@@ -80,8 +80,16 @@
           "Let sinx − cosx = t. Then (cosx + sinx) dx = dt",
           "Change the limits:",
           "x = 0 ⇒ t = sin0 − cos0 = 0 − 1 = −1",
-          "x = π/4",
-          "⇒ t = sin(π/4) − cos(π/4) = 1/√2 − 1/√2 = 0"
+          {
+            "text": "x\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ t\\ = \\ \\sin \\left(\\dfrac{\\pi }{4}\\right)\\ - \\ \\cos \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}} - \\ \\dfrac{1}{\\sqrt{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Choosing t = sinx − cosx works because its derivative dt = (cosx + sinx)dx is exactly the numerator of the integrand — the substitution absorbs the whole numerator into dt.",
         "common_mistakes": [
@@ -138,23 +146,47 @@
         "margin_note": "Two marks for matching the integral to the standard a² − x² log formula, with a = 5 and the variable 4t.",
         "memory_tip": "∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c — here a = 5 and the variable is 4t, so an extra factor of 1/4 appears from d(4t) = 4dt.",
         "lines": [
-          "∴ I = ∫₋₁⁰ dt/(25 − 16t²)",
+          {
+            "text": "\\therefore \\ I\\ = \\ \\int _{-1}^{0}\\ \\dfrac{dt}{25\\ - \\ 16t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "25 = 5² and 16t² = (4t)²:",
             "added": true
           },
-          "= ∫₋₁⁰ dt/(5² − (4t)²)",
           {
-            "text": "Put u = 4t, so dt = du/4, and a = 5:",
+            "text": "= \\ \\int _{-1}^{0}\\ \\dfrac{dt}{5^{2}\\ - \\ \\left(4t\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ u\\ = \\ 4t,\\ \\text{so}\\ dt\\ = \\ \\dfrac{du}{4},\\ \\text{and}\\ a\\ = \\ 5:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰",
-          "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
           {
-            "text": "(1/4)·(1/10) = 1/40:",
+            "text": "= \\ \\left(\\dfrac{1}{4}\\right) \\cdot \\left(\\dfrac{1}{2 \\cdot 5}\\right)\\left[\\log \\left|\\dfrac{5\\ + \\ 4t}{5\\ - \\ 4t}\\right|\\right]_{-1}^{0}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\int \\dfrac{dx}{a^{2}\\ - \\ x^{2}} = \\ \\dfrac{1}{2a}\\log \\left|\\dfrac{a + x}{a - x}\\right|\\ + \\ c\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{4}\\right) \\cdot \\left(\\dfrac{1}{10}\\right)\\ = \\ \\dfrac{1}{40}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[\\log \\left|\\dfrac{5\\ + \\ 4t}{5\\ - \\ 4t}\\right|\\right]_{-1}^{0}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "25 − 16t² matches the standard a² − x² form with a = 5 and x replaced by 4t; the extra 1/4 factor accounts for the fact that d(4t) = 4 dt, not dt.",
         "common_mistakes": [
@@ -162,11 +194,31 @@
           "Writing the log formula with a Tan⁻¹ form instead of the correct log form (a²−x² takes a log, not a²+x² which takes a Tan⁻¹)."
         ],
         "lines_compact": [
-          "∴ I = ∫₋₁⁰ dt/(25 − 16t²)",
-          "= ∫₋₁⁰ dt/(5² − (4t)²)",
-          "= (1/4)·(1/(2·5)) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰",
-          "[∵ ∫dx/(a² − x²) = 1/(2a) log|(a+x)/(a−x)| + c]",
-          "= (1/40) [log|(5 + 4t)/(5 − 4t)|]₋₁⁰"
+          {
+            "text": "\\therefore \\ I\\ = \\ \\int _{-1}^{0}\\ \\dfrac{dt}{25\\ - \\ 16t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int _{-1}^{0}\\ \\dfrac{dt}{5^{2}\\ - \\ \\left(4t\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{4}\\right) \\cdot \\left(\\dfrac{1}{2 \\cdot 5}\\right)\\left[\\log \\left|\\dfrac{5\\ + \\ 4t}{5\\ - \\ 4t}\\right|\\right]_{-1}^{0}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\int \\dfrac{dx}{a^{2}\\ - \\ x^{2}} = \\ \\dfrac{1}{2a}\\log \\left|\\dfrac{a + x}{a - x}\\right|\\ + \\ c\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[\\log \\left|\\dfrac{5\\ + \\ 4t}{5\\ - \\ 4t}\\right|\\right]_{-1}^{0}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -179,23 +231,42 @@
         "memory_tip": "log1 = 0, so only the t = −1 term survives with a minus sign in front.",
         "lines": [
           {
-            "text": "At t = 0: (5 + 0)/(5 − 0) = 5/5 = 1",
+            "text": "\\text{At}\\ t\\ = \\ 0:\\ \\dfrac{5\\ + \\ 0}{5\\ - \\ 0} = \\ \\dfrac{5}{5} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "At t = −1: (5 − 4)/(5 + 4) = 1/9",
+            "text": "\\text{At}\\ t\\ = \\ - 1:\\ \\dfrac{5\\ - \\ 4}{5\\ + \\ 4} = \\ \\dfrac{1}{9}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/40)[log(5/5) − log(1/9)]",
           {
-            "text": "log1 = 0 and −log(1/9) = log9:",
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[\\log \\left(\\dfrac{5}{5}\\right)\\ - \\ \\log \\left(\\dfrac{1}{9}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\log 1\\ = \\ 0\\ \\text{and}\\ - \\log \\left(\\dfrac{1}{9}\\right)\\ = \\ \\log 9:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/40)[0 − log(1/9)] = (1/40) log9",
-          "= (1/40) log3² = (2 log3)/40",
           {
-            "text": "∴ I = (log3)/20",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[0\\ - \\ \\log \\left(\\dfrac{1}{9}\\right)\\right]\\ = \\ \\left(\\dfrac{1}{40}\\right)\\log 9",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\log 3^{2}\\ = \\ \\dfrac{2\\log 3}{40}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\log 3}{20}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "At t = 0 the log term is log1 = 0, and at t = −1 it is log(1/9) = −log9; subtracting the second from the first flips the sign, and log3² = 2log3 lets the final fraction simplify to a clean quotient by 20.",
@@ -204,12 +275,25 @@
           "Leaving the answer as (2log3)/40 instead of simplifying to (log3)/20."
         ],
         "lines_compact": [
-          "= (1/40)[log(5/5) − log(1/9)]",
-          "= (1/40)[0 − log(1/9)] = (1/40) log9",
-          "= (1/40) log3² = (2 log3)/40",
           {
-            "text": "∴ I = (log3)/20",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[\\log \\left(\\dfrac{5}{5}\\right)\\ - \\ \\log \\left(\\dfrac{1}{9}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\left[0\\ - \\ \\log \\left(\\dfrac{1}{9}\\right)\\right]\\ = \\ \\left(\\dfrac{1}{40}\\right)\\log 9",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{40}\\right)\\log 3^{2}\\ = \\ \\dfrac{2\\log 3}{40}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\log 3}{20}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -63,17 +63,33 @@
           },
           "Let lx + my + n = 0 be the tangent",
           "at the point P(θ) = (a cos θ, b sin θ)",
-          "on the ellipse x²/a² + y²/b² = 1",
+          {
+            "text": "\\text{on}\\ \\text{the}\\ \\text{ellipse}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(Every point of the ellipse is (a cos θ, b sin θ)",
           {
             "text": "  for some angle θ.)",
             "style": "indent"
           },
           "Equation of the tangent at P(θ):",
-          "The tangent at (x₁, y₁) is xx₁/a² + yy₁/b² = 1.",
+          {
+            "text": "\\text{The}\\ \\text{tangent}\\ \\text{at}\\ \\left(x_{1},\\ y_{1}\\right)\\ \\text{is}\\ \\dfrac{xx_{1}}{a^{2}} + \\ \\dfrac{yy_{1}}{b^{2}} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x₁ = a cos θ and y₁ = b sin θ:",
-          "x(a cos θ)/a² + y(b sin θ)/b² = 1, that is",
-          "(x cos θ)/a + (y sin θ)/b = 1"
+          {
+            "text": "\\dfrac{x\\left(a\\cos \\theta \\right)}{a^{2}} + \\ \\dfrac{y\\left(b\\sin \\theta \\right)}{b^{2}} = \\ 1,\\ \\text{that}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x\\cos \\theta }{a} + \\ \\dfrac{y\\sin \\theta }{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the tangent at the general parametric point P(θ) lets the given line lx + my + n = 0 be matched against it directly, since a tangent line at ANY point on the ellipse has this same form.",
         "common_mistakes": [
@@ -112,7 +128,11 @@
             "style": "indent",
             "added": true
           },
-          "Comparing (cos θ)/a · x + (sin θ)/b · y = 1",
+          {
+            "text": "\\text{Comparing}\\ \\dfrac{\\cos \\theta }{a} \\cdot \\ x\\ + \\ \\dfrac{\\sin \\theta }{b} \\cdot \\ y\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "with lx + my = −n:",
           "(cos θ / a) / l = (sin θ / b) / m = −1/n",
           {
@@ -120,8 +140,9 @@
             "added": true
           },
           {
-            "text": "  ⇒ cos θ = −al/n",
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ - \\dfrac{al}{n}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -129,11 +150,16 @@
             "added": true
           },
           {
-            "text": "  ⇒ sin θ = −bm/n",
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ - \\dfrac{bm}{n}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ cos θ = −al/n,  sin θ = −bm/n"
+          {
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ - \\dfrac{al}{n},\\ \\sin \\theta \\ = \\ - \\dfrac{bm}{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Since both equations describe the same line, their x-coefficients, y-coefficients and constants must all be in one common ratio — that ratio is set equal to −1/n by comparing the constant terms.",
         "common_mistakes": [
@@ -141,10 +167,18 @@
           "Losing the a and b when isolating cos θ and sin θ."
         ],
         "lines_compact": [
-          "Comparing (cos θ)/a · x + (sin θ)/b · y = 1",
+          {
+            "text": "\\text{Comparing}\\ \\dfrac{\\cos \\theta }{a} \\cdot \\ x\\ + \\ \\dfrac{\\sin \\theta }{b} \\cdot \\ y\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "with lx + my = −n:",
           "(cos θ / a) / l = (sin θ / b) / m = −1/n",
-          "⇒ cos θ = −al/n,  sin θ = −bm/n"
+          {
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ - \\dfrac{al}{n},\\ \\sin \\theta \\ = \\ - \\dfrac{bm}{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -160,13 +194,21 @@
             "text": "Use the identity cos²θ + sin²θ = 1:",
             "added": true
           },
-          "cos²θ + sin²θ = 1 ⇒ (al/n)² + (bm/n)² = 1",
           {
-            "text": "(a minus sign squared is +, so (−al/n)² = (al/n)²)",
+            "text": "\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta \\ = \\ 1\\ \\Rightarrow \\ \\left(\\dfrac{al}{n}\\right)^{2}\\ + \\ \\left(\\dfrac{bm}{n}\\right)^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ \\text{minus}\\ \\text{sign}\\ \\text{squared}\\ \\text{is}\\ + ,\\ \\text{so}\\ \\left( - \\dfrac{al}{n}\\right)^{2}\\ = \\ \\left(\\dfrac{al}{n}\\right)^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⇒ a²l²/n² + b²m²/n² = 1",
+            "text": "\\Rightarrow \\ \\dfrac{a^{2}l^{2}}{n^{2}} + \\ \\dfrac{b^{2}m^{2}}{n^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -193,7 +235,11 @@
           "Writing the final condition with n on the wrong side, e.g. a²l² + b²m² + n² = 0."
         ],
         "lines_compact": [
-          "cos²θ + sin²θ = 1 ⇒ (al/n)² + (bm/n)² = 1",
+          {
+            "text": "\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta \\ = \\ 1\\ \\Rightarrow \\ \\left(\\dfrac{al}{n}\\right)^{2}\\ + \\ \\left(\\dfrac{bm}{n}\\right)^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "a²l² + b²m² = n²",
             "style": "boxed"

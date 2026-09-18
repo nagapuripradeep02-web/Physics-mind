@@ -200,17 +200,32 @@
         "lines": [
           "Put n = 5, 3 successively in (1):",
           "I₅ = −cosec³x cotx/4 + (3/4)I₃",
-          "I₃ = −cosecx cotx/2 + (1/2)I₁,",
-          "and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
-          "So I₃ = −cosecx cotx/2 + (1/2)log|tan(x/2)| + c",
           {
-            "text": "(3/4)·(1/2) = 3/8 in both terms of I₃:",
+            "text": "I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ I_{1}\\ = \\ \\int \\operatorname{cosec} xdx\\ = \\ \\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{4}\\right) \\cdot \\left(\\dfrac{1}{2}\\right)\\ = \\ \\dfrac{3}{8}\\text{in}\\ \\text{both}\\ \\text{terms}\\ \\text{of}\\ I_{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
           {
-            "text": "+ (3/8)log|tan(x/2)| + c",
-            "style": "boxed"
+            "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Odd n stops at I₁ = ∫cosecx dx = log|tan(x/2)|, the cosecant's own standard result — and the leading minus sign from every earlier line must still be there on the boxed final answer.",
@@ -222,13 +237,26 @@
         "lines_compact": [
           "Put n = 5, 3 successively in (1):",
           "I₅ = −cosec³x cotx/4 + (3/4)I₃",
-          "I₃ = −cosecx cotx/2 + (1/2)I₁,",
-          "and I₁ = ∫cosecx dx = log|tan(x/2)| + c",
-          "So I₃ = −cosecx cotx/2 + (1/2)log|tan(x/2)| + c",
+          {
+            "text": "I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ I_{1}\\ = \\ \\int \\operatorname{cosec} xdx\\ = \\ \\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
           {
-            "text": "+ (3/8)log|tan(x/2)| + c",
-            "style": "boxed"
+            "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -60,11 +60,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "I = ∫₀ᵃ dx/(x² + a²)",
+          {
+            "text": "I\\ = \\ \\int _{0}^{a}\\ \\dfrac{dx}{x^{2}\\ + \\ a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The denominator is a sum of two squares:",
-          "∫dx/(x²+a²) = (1/a)Tan⁻¹(x/a) + c",
+          {
+            "text": "\\int \\dfrac{dx}{x^{2} + a^{2}} = \\ \\left(\\dfrac{1}{a}\\right)\\operatorname{Tan}^{-1}\\left(\\dfrac{x}{a}\\right)\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           "[standard formula]",
-          "∴ I = [(1/a)Tan⁻¹(x/a)]₀ᵃ"
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left[\\left(\\dfrac{1}{a}\\right)\\operatorname{Tan}^{-1}\\left(\\dfrac{x}{a}\\right)\\right]_{0}^{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The integral of 1/(x²+a²) is a standard form with antiderivative (1/a)Tan⁻¹(x/a), which is worth memorising directly rather than re-deriving each time.",
         "common_mistakes": [
@@ -82,17 +94,26 @@
         "memory_tip": "x/a at the upper limit x=a is always 1, giving Tan⁻¹1=π/4 regardless of the value of a.",
         "lines": [
           {
-            "text": "At x = a, x/a = 1; at x = 0, x/a = 0.",
+            "text": "\\text{At}\\ x\\ = \\ a,\\ \\dfrac{x}{a} = \\ 1;\\ \\text{at}\\ x\\ = \\ 0,\\ \\dfrac{x}{a} = \\ 0.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Tan⁻¹(1) = π/4 and Tan⁻¹(0) = 0:",
+            "text": "\\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\text{and}\\ \\operatorname{Tan}^{-1}\\left(0\\right)\\ = \\ 0:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/a)[Tan⁻¹(1) − Tan⁻¹(0)] = (1/a)[π/4 − 0]",
           {
-            "text": "∴ I = π/(4a)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{a}\\right)\\left[\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(0\\right)\\right]\\ = \\ \\left(\\dfrac{1}{a}\\right)\\left[\\dfrac{\\pi }{4} - \\ 0\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "At the upper limit x=a, x/a=1 so Tan⁻¹(1)=π/4; at the lower limit x=0, Tan⁻¹(0)=0, so the bracket simplifies to π/4 and the outer 1/a gives the final answer.",
@@ -101,10 +122,15 @@
           "Forgetting the outer factor 1/a in the final answer."
         ],
         "lines_compact": [
-          "= (1/a)[Tan⁻¹(1) − Tan⁻¹(0)] = (1/a)[π/4 − 0]",
           {
-            "text": "∴ I = π/(4a)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{a}\\right)\\left[\\operatorname{Tan}^{-1}\\left(1\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(0\\right)\\right]\\ = \\ \\left(\\dfrac{1}{a}\\right)\\left[\\dfrac{\\pi }{4} - \\ 0\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

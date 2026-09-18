@@ -69,12 +69,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given that dy/dx = (x − y + 3)/(2x − 2y + 5)",
-          "= [(x − y) + 3]/[2(x − y) + 5] … (1)",
-          "Comparing (x − y + 3)/(2x − 2y + 5)",
-          "with (a₁x + b₁y + c₁)/(a₂x + b₂y + c₂)",
-          "a₁/a₂ = 1/2, b₁/b₂ = −1/−2 = 1/2",
-          "⇒ a₁/a₂ = b₁/b₂",
+          {
+            "text": "\\text{Given}\\ \\text{that}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x\\ - \\ y\\ + \\ 3}{2x\\ - \\ 2y\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(x\\ - \\ y\\right)\\ + \\ 3}{2\\left(x\\ - \\ y\\right)\\ + \\ 5}\\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ \\dfrac{x\\ - \\ y\\ + \\ 3}{2x\\ - \\ 2y\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ \\dfrac{a_{1}x\\ + \\ b_{1}y\\ + \\ c_{1}}{a_{2}x\\ + \\ b_{2}y\\ + \\ c_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{a_{1}}{a_{2}} = \\ \\dfrac{1}{2},\\ \\dfrac{b_{1}}{b_{2}} = \\ - \\dfrac{1}{-2} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{a_{1}}{a_{2}} = \\ \\dfrac{b_{1}}{b_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The same x − y appears above and below,",
           "so take the substitution x − y = v"
         ],
@@ -97,10 +121,26 @@
             "text": "Differentiate x − y = v with respect to x:",
             "added": true
           },
-          "x − y = v ⇒ 1 − dy/dx = dv/dx",
-          "⇒ dy/dx = 1 − dv/dx",
-          "(1) ⇒ 1 − dv/dx = (v + 3)/(2v + 5)",
-          "⇒ dv/dx = 1 − (v + 3)/(2v + 5)"
+          {
+            "text": "x\\ - \\ y\\ = \\ v\\ \\Rightarrow \\ 1\\ - \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ 1\\ - \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ 1\\ - \\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{v\\ + \\ 3}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dv}{dx}\\ = \\ 1\\ - \\ \\dfrac{v\\ + \\ 3}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Differentiating the substitution v = x − y gives a direct relation between dv/dx and dy/dx, which replaces dy/dx everywhere in (1) and leaves an equation purely in v and x.",
         "common_mistakes": [
@@ -108,10 +148,26 @@
           "Substituting the un-simplified (x−y+3)/(2x−2y+5) instead of the rewritten (v+3)/(2v+5)."
         ],
         "lines_compact": [
-          "x − y = v ⇒ 1 − dy/dx = dv/dx",
-          "⇒ dy/dx = 1 − dv/dx",
-          "(1) ⇒ 1 − dv/dx = (v + 3)/(2v + 5)",
-          "⇒ dv/dx = 1 − (v + 3)/(2v + 5)"
+          {
+            "text": "x\\ - \\ y\\ = \\ v\\ \\Rightarrow \\ 1\\ - \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ 1\\ - \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ 1\\ - \\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{v\\ + \\ 3}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dv}{dx}\\ = \\ 1\\ - \\ \\dfrac{v\\ + \\ 3}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -127,17 +183,29 @@
             "text": "Write 1 over the denominator 2v + 5:",
             "added": true
           },
-          "dv/dx = [(2v + 5) − (v + 3)]/(2v + 5)",
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ \\dfrac{\\left(2v\\ + \\ 5\\right)\\ - \\ \\left(v\\ + \\ 3\\right)}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2v + 5 − v − 3 = v + 2:",
             "added": true
           },
-          "= (v + 2)/(2v + 5)",
+          {
+            "text": "= \\ \\dfrac{v\\ + \\ 2}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Separate v and x:",
             "added": true
           },
-          "⇒ dx = (2v + 5)/(v + 2) dv"
+          {
+            "text": "\\Rightarrow \\ dx\\ = \\ \\dfrac{2v\\ + \\ 5}{v\\ + \\ 2}dv",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Combining the two right-hand terms into a single fraction gives dv/dx as a clean function of v, and inverting turns the equation into a separated form ready for integration.",
         "common_mistakes": [
@@ -145,9 +213,21 @@
           "Forgetting to invert dv/dx = (...) into dx = (...) dv before integrating."
         ],
         "lines_compact": [
-          "dv/dx = [(2v + 5) − (v + 3)]/(2v + 5)",
-          "= (v + 2)/(2v + 5)",
-          "⇒ dx = (2v + 5)/(v + 2) dv"
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ \\dfrac{\\left(2v\\ + \\ 5\\right)\\ - \\ \\left(v\\ + \\ 3\\right)}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{v\\ + \\ 2}{2v\\ + \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ dx\\ = \\ \\dfrac{2v\\ + \\ 5}{v\\ + \\ 2}dv",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -163,11 +243,25 @@
             "text": "Write the top 2v + 5 as 2(v + 2) + 1:",
             "added": true
           },
-          "(2v + 5)/(v + 2) = [2(v + 2) + 1]/(v + 2)",
-          "= 2 + 1/(v + 2)",
-          "∫ dx = ∫ [2 + 1/(v + 2)] dv",
           {
-            "text": "∫2 dv = 2v and ∫dv/(v + 2) = log(v + 2):",
+            "text": "\\dfrac{2v\\ + \\ 5}{v\\ + \\ 2} = \\ \\dfrac{2\\left(v\\ + \\ 2\\right)\\ + \\ 1}{v\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ + \\ \\dfrac{1}{v\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\ dx\\ = \\ \\int \\ \\left[2\\ + \\ \\dfrac{1}{v\\ + \\ 2}\\right]dv",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int 2dv\\ = \\ 2v\\ \\text{and}\\ \\int \\dfrac{dv}{v\\ + \\ 2} = \\ \\log \\left(v\\ + \\ 2\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ x = 2v + log(v + 2) + c"
@@ -178,9 +272,21 @@
           "Dropping the constant of integration c."
         ],
         "lines_compact": [
-          "(2v + 5)/(v + 2) = [2(v + 2) + 1]/(v + 2)",
-          "= 2 + 1/(v + 2)",
-          "∫ dx = ∫ [2 + 1/(v + 2)] dv",
+          {
+            "text": "\\dfrac{2v\\ + \\ 5}{v\\ + \\ 2} = \\ \\dfrac{2\\left(v\\ + \\ 2\\right)\\ + \\ 1}{v\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ + \\ \\dfrac{1}{v\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\ dx\\ = \\ \\int \\ \\left[2\\ + \\ \\dfrac{1}{v\\ + \\ 2}\\right]dv",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ x = 2v + log(v + 2) + c"
         ]
       },

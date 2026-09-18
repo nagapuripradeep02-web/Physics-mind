@@ -107,12 +107,20 @@
             "text": "So tanⁿ⁻²x sec²x dx becomes tⁿ⁻²dt:",
             "added": true
           },
-          "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1)",
+          {
+            "text": "\\int \\ \\tan ^{n-2} x\\sec ^{2} xdx\\ = \\ \\int \\ t^{n-2}dt\\ = \\ \\dfrac{t^{n-1}}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Put t = tanx back:",
             "added": true
           },
-          "= tanⁿ⁻¹x/(n−1)",
+          {
+            "text": "= \\ \\dfrac{\\tan ^{n-1} x}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The second integral is Iₙ₋₂ by definition:",
             "added": true
@@ -131,8 +139,16 @@
         "memory_tip": "Power rule in t, then swap t back for tanx — one substitution does the whole job.",
         "lines_compact": [
           "In the first integral put t = tanx ⇒ dt = sec²x dx",
-          "∫ tanⁿ⁻²x sec²x dx = ∫ tⁿ⁻²dt = tⁿ⁻¹/(n−1)",
-          "= tanⁿ⁻¹x/(n−1)",
+          {
+            "text": "\\int \\ \\tan ^{n-2} x\\sec ^{2} xdx\\ = \\ \\int \\ t^{n-2}dt\\ = \\ \\dfrac{t^{n-1}}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\tan ^{n-1} x}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore\\ I_n = \\frac{\\tan^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",
@@ -149,8 +165,16 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = tan⁴x/4 − I₃",
-          "I₃ = tan²x/2 − I₁, and I₁ = ∫tanx dx = log|secx| + c",
+          {
+            "text": "I_{5}\\ = \\ \\dfrac{\\tan ^{4} x}{4} - \\ I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{3}\\ = \\ \\dfrac{\\tan ^{2} x}{2} - \\ I_{1},\\ \\text{and}\\ I_{1}\\ = \\ \\int \\tan xdx\\ = \\ \\log \\left|\\sec x\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Substituting I₃ into I₅ — the two minus",
             "added": true
@@ -161,8 +185,9 @@
             "added": true
           },
           {
-            "text": "∴ I = tan⁴x/4 − tan²x/2 + log|secx| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\tan ^{4} x}{4} - \\ \\dfrac{\\tan ^{2} x}{2} + \\ \\log \\left|\\sec x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Odd n chains down through I₃ to I₁ = ∫tanx dx, the ONE tanⁿ integral that is not itself a power — it is the standard log|secx| result, so the chain stops there.",
@@ -173,11 +198,20 @@
         "memory_tip": "Odd n stops at I₁ = log|secx|; even n stops at I₀ = x — never mix the two chains up.",
         "lines_compact": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = tan⁴x/4 − I₃",
-          "I₃ = tan²x/2 − I₁, and I₁ = ∫tanx dx = log|secx| + c",
           {
-            "text": "∴ I = tan⁴x/4 − tan²x/2 + log|secx| + c",
-            "style": "boxed"
+            "text": "I_{5}\\ = \\ \\dfrac{\\tan ^{4} x}{4} - \\ I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{3}\\ = \\ \\dfrac{\\tan ^{2} x}{2} - \\ I_{1},\\ \\text{and}\\ I_{1}\\ = \\ \\int \\tan xdx\\ = \\ \\log \\left|\\sec x\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\tan ^{4} x}{4} - \\ \\dfrac{\\tan ^{2} x}{2} + \\ \\log \\left|\\sec x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -190,16 +224,27 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 6, 4, 2 successively in (1):",
-          "I₆ = tan⁵x/5 − I₄, I₄ = tan³x/3 − I₂,",
-          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
-          "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
           {
-            "text": "Then I₆ = tan⁵x/5 − [tan³x/3 − tanx + x]",
+            "text": "I_{6}\\ = \\ \\dfrac{\\tan ^{5} x}{5} - \\ I_{4},\\ I_{4}\\ = \\ \\dfrac{\\tan ^{3} x}{3} - \\ I_{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
+          {
+            "text": "\\text{So}\\ I_{2}\\ = \\ \\tan x\\ - \\ x,\\ I_{4}\\ = \\ \\dfrac{\\tan ^{3} x}{3} - \\ \\tan x\\ + \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ I_{6}\\ = \\ \\dfrac{\\tan ^{5} x}{5} - \\ \\left[\\dfrac{\\tan ^{3} x}{3} - \\ \\tan x\\ + \\ x\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = tan⁵x/5 − tan³x/3 + tanx − x + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\tan ^{5} x}{5} - \\ \\dfrac{\\tan ^{3} x}{3} + \\ \\tan x\\ - \\ x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Even n chains down through I₄ and I₂ to I₀ = x — the same even-n chain as sinⁿ and cosⁿ, just with tanx's own reduction formula doing the stepping down.",
@@ -210,12 +255,21 @@
         "memory_tip": "Work the chain n → n−2 → … ALL the way to I₀ or I₁ before writing the boxed answer — never stop one step early.",
         "lines_compact": [
           "Put n = 6, 4, 2 successively in (1):",
-          "I₆ = tan⁵x/5 − I₄, I₄ = tan³x/3 − I₂,",
-          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
-          "So I₂ = tanx − x, I₄ = tan³x/3 − tanx + x",
           {
-            "text": "∴ I = tan⁵x/5 − tan³x/3 + tanx − x + c",
-            "style": "boxed"
+            "text": "I_{6}\\ = \\ \\dfrac{\\tan ^{5} x}{5} - \\ I_{4},\\ I_{4}\\ = \\ \\dfrac{\\tan ^{3} x}{3} - \\ I_{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "I₂ = tanx − I₀, and I₀ = ∫dx = x",
+          {
+            "text": "\\text{So}\\ I_{2}\\ = \\ \\tan x\\ - \\ x,\\ I_{4}\\ = \\ \\dfrac{\\tan ^{3} x}{3} - \\ \\tan x\\ + \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\tan ^{5} x}{5} - \\ \\dfrac{\\tan ^{3} x}{3} + \\ \\tan x\\ - \\ x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

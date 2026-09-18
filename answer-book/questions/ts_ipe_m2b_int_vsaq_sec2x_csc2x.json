@@ -68,14 +68,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "sec²x·cosec²x = 1/(cos²x sin²x)",
+          {
+            "text": "\\sec ^{2} x \\cdot \\cos ec^{2}x\\ = \\ \\dfrac{1}{\\cos ^{2} x\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Write the 1 on top as sin²x + cos²x so the",
           {
             "text": "  fraction splits in two:",
             "style": "indent"
           },
-          "= (sin²x+cos²x)/(cos²x sin²x)",
-          "= 1/cos²x + 1/sin²x = sec²x + cosec²x"
+          {
+            "text": "= \\ \\dfrac{\\sin ^{2} x + \\cos ^{2} x}{\\cos ^{2} x\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{\\cos ^{2} x} + \\ \\dfrac{1}{\\sin ^{2} x} = \\ \\sec ^{2} x\\ + \\ \\cos ec^{2}x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Replacing the numerator 1 with sin²x+cos²x (always true) and splitting the fraction turns one product into a sum of two separately-integrable standard terms.",
         "common_mistakes": [

@@ -61,8 +61,16 @@
             "text": "  splits into two simple ones:",
             "style": "indent"
           },
-          "1/[(x+1)(x+2)] = [(x+2)−(x+1)]/[(x+1)(x+2)]",
-          "= 1/(x+1) − 1/(x+2)"
+          {
+            "text": "\\dfrac{1}{\\left(x + 1\\right)\\left(x + 2\\right)} = \\ \\dfrac{\\left(x + 2\\right) - \\left(x + 1\\right)}{\\left(x + 1\\right)\\left(x + 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{x + 1} - \\ \\dfrac{1}{x + 2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the numerator 1 as the difference (x+2)−(x+1) — which really does equal 1 — and splitting the fraction term by term gives the two simple partial fractions directly.",
         "common_mistakes": [
@@ -80,12 +88,15 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "Each part has the form ∫dx/(x+a) = log|x+a|:",
+            "text": "\\text{Each}\\ \\text{part}\\ has\\ \\text{the}\\ \\text{form}\\ \\int \\dfrac{dx}{x + a} = \\ \\log \\left|x + a\\right|:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ ∫ dx/[(x+1)(x+2)] = log|x+1| − log|x+2| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{\\left(x + 1\\right)\\left(x + 2\\right)} = \\ \\log \\left|x + 1\\right|\\ - \\ \\log \\left|x + 2\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Each partial fraction integrates to a plain log — ∫dx/(x+1) = log|x+1|, ∫dx/(x+2) = log|x+2| — and the two are subtracted, matching the split found above.",
@@ -96,8 +107,9 @@
         "memory_tip": "Two logs subtracted — or equivalently, one log of the ratio (x+1)/(x+2) — either form is correct, but write only one.",
         "lines_compact": [
           {
-            "text": "∴ ∫ dx/[(x+1)(x+2)] = log|x+1| − log|x+2| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{\\left(x + 1\\right)\\left(x + 2\\right)} = \\ \\log \\left|x + 1\\right|\\ - \\ \\log \\left|x + 2\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }
