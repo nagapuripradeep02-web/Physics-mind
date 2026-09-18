@@ -1,5 +1,18 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚀 SESSION — Drag-to-ask is LIVE on answers.viditra.co for all four maths papers (2026-09-18, master)
+
+**Bottom line: both deploys the four sessions above left for the founder are done and verified against the live site, not the repo.** PRs #211–#215 were already merged on origin/master; nothing was left to commit from those desks.
+
+- **Edge Function** `answerbook-vidi-chat` was already at **v28** (deployed 2026-09-17 UTC from the other machine's backgrounded agent) — read back with `get_edge_function` and diffed byte-identical to `origin/master`. One live probe on a Maths-2B card (common tangents, the dragged step 2 lines, `internal: true`) came back HTTP 200 in 3.0 s in the lecturer shape: named the dragged line, the rule in general letters, the marks sentence last.
+- **Cloudflare page**: `wrangler whoami` is logged in on THIS machine (it was not on the Mac), so `build:answers:gated:live` → `smoke:answers:gated` **31/31** → `npx wrangler deploy -c wrangler.answers.toml` (version `d4abf485`). The live `index.html` is byte-identical to the built artifact (9,103,525 bytes) and carries `DRAG_ASK_SUBJECTS = { mathematics, mathematics_1b, mathematics_2a, mathematics_2b }` and `#vidiAttach`. Before the deploy the live page had zero matches.
+- Chain on master before shipping: `npx tsc --noEmit` clean; `build:answers` + the drag gate (`answer_book.spec.ts -g drag-to-ask`) green.
+- Housekeeping: the unpushed `review_probe.py` commit from Run 15 was rebased onto master and pushed (`ccae91b8`). Its post-commit auto-push had not fired: `.git/hooks/post-commit` exists but `core.hooksPath` is unset on this checkout — worth a look before assuming the hooks push.
+
+**Next: the Rule-41 relaxation (ONE everyday comparison per maths reply) is live for all four maths papers but still lacks the founder's sign-off in CLAUDE.md that DISCUSSIONS Session 91 §5 asked for; and physics/chemistry/biology cards still have no drag boxes — the founder calls the next paper.**
+
+---
+
 ## 🧪 SESSION — Drag-to-ask and the lecturer's reply reach Maths-2B — all four maths papers now in (2026-09-18, `feat/answerbook-drag-maths-2b`)
 
 **Bottom line: the fourth and last maths paper is in. 271 Maths-2B cards across its eight chapters, with seven chapter conditions for its own topics — so the drag boxes and the lecturer reply now cover 1,459 maths cards across Maths-1A, 1B, 2A and 2B.** Physics, chemistry, botany and zoology are untouched: their replies still take the short-prose path, and their cards have no drag boxes.
