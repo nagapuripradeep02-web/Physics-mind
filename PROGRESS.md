@@ -1,5 +1,30 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧪 SESSION — Every division in the maths book is written as a stacked fraction (2026-09-18/19, `feat/answerbook-stacked-fractions`)
+
+**Bottom line: 11,967 lines across 1,046 cards in Maths-1A, 1B, 2A and 2B now write a division the way a student writes it — numerator over a bar over denominator — instead of with a slash.** The founder's ask, from his own handwritten page: "students tend to write like that in their notes". The engine already had the path (build-time KaTeX, Rule 18 — typeset by the build, never at runtime); this was a content pass over the four papers.
+
+### How it was done, and why it can be trusted
+
+A converter (`frac_convert.py`, session scratchpad — deliberately NOT in the repo: it is a one-time tool, not a pipeline) parses each authored line into a tree and prints that tree TWICE: once as TeX, once back as the authored text. A line is rewritten only when the second printing matches the original character for character, ignoring spaces and grouping brackets. On top of that every generated formula was rendered through KaTeX (12,038 of them, zero failures) and random samples were read by hand per paper.
+
+**What it refuses rather than guesses** (1,165 lines kept their slash): a prose word beside the slash; a bare function name applied to a number ("cos π/4" is cos(π/4), while "sin x/cos x" is the ratio and converts); a factor glued after the denominator ("x/2y"); a sum sign above the bar; and a line that opens a bracket the NEXT line closes — Maths-1B's written-in-full notes wrap mid-expression, which is why it keeps 844 of them.
+
+**Four bugs the converter had, all caught by reading its output rather than trusting the run:** Python counts '¹' as a digit and 'ʳ' as a letter, so "¹¹Cᵣ" parsed as the number 11; the numerator must be the whole product before the bar (2ab/c), not the last factor; "(1/2)ⁿC₁" read as a power silently changes the maths; and Sin⁻¹/Tan⁻¹ carry a capital for the PRINCIPAL value, which the first pass lowercased.
+
+### Two defects the conversion introduced, both found and fixed
+
+1. **A blue note turned black** once it became a typeset line — `.katex` sets its own colour, beating the inherited blue, so one sentence read blue as text and black as maths. One CSS rule, scoped to `.line.added`.
+2. **71 lines were wider than the 624px page.** A typeset line cannot wrap and `.kx-clip` hides its overflow, so an over-wide one loses its right edge invisibly. Found by sweeping all 1,168 typeset cards in a real browser at both answer lengths; those lines went back to plain text, which wraps. Re-swept: 0. **Worth remembering: an off-screen measuring harness reported ZERO — the fonts had not settled and every number it produced was wrong.** Only opening each card for real measures this.
+
+### The gate that guards it
+
+`a typeset line renders as math, sits on whole rules, and never shows raw TeX` swept 40-odd cards before this pass and 1,168 after, and its flat 700ms-per-card sleeps alone came to over 27 minutes — it timed out at 360s and again at 1,800s without finishing. The sleeps are now a wait for the page to actually paint, fonts awaited once up front: **6 minutes, passing, with coverage unchanged** (every card, both lengths, every line).
+
+**Verified:** check_cards 556 / 375 / 257 / 271 pass · build clean · tsc 0 · the typeset gate green.
+
+---
+
 ## 🚀 SESSION — The Vidi window resizes: a corner grip, and the phone sheet pulls taller (2026-09-18, `feat/answerbook-vidi-resize`, DEPLOYED)
 
 **Bottom line: a student can now make the chat as big as they want.** The founder's phone screenshot showed Vidi as a 358 × 560 postage stamp — Chrome's desktop-site view gives a phone a 980px viewport, taller than wide, where the phone bottom-sheet CSS (≤720px) never applies and the floating window's default size is tiny on a 2,000px-tall screen.
