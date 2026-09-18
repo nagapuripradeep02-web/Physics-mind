@@ -4813,6 +4813,9 @@
           b.appendChild(el('door-tile-name', y.label));
           b.appendChild(el('door-tile-sub', cellSubjects(y, t)));
           b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
+          // A live cell's note says what the book does NOT hold: MEC opens a
+          // maths-only book and must say so before the student is inside it.
+          if (y.note) b.appendChild(el('door-note', y.note));
           b.appendChild(el('door-go', 'Open the Answer Book →'));
           b.addEventListener('click', function () { choose(t.id, y.id, y.stream); });
           host.appendChild(b);

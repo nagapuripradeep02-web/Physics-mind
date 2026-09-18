@@ -51,4 +51,7 @@ routes = [
 # MPC in the same artifact, reading the same Physics-II and Chemistry-II cards.
 # The door's BiPC → second year cell opens it. (The interim workers.dev preview,
 # wrangler.answers-bipc.toml, was retired the same day.)
-directory = "./answer-book/dist-gated-mpc+mpc_2+bipc_2"
+# MEC both years joined 2026-09-18 (founder): a maths-only book reading the
+# four maths papers MPC already ships (Maths-1A/1B first year, 2A/2B second),
+# no Economics or Commerce. The door's two MEC cells open it and say so.
+directory = "./answer-book/dist-gated-mpc+mpc_2+bipc_2+mec+mec_2"
