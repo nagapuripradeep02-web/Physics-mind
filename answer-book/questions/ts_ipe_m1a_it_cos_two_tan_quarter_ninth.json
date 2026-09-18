@@ -57,15 +57,43 @@
             "style": "heading"
           },
           "(the addition formula for inverse tangents)",
-          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy))",
+          {
+            "text": "\\operatorname{Tan}^{-1} x\\ + \\ \\operatorname{Tan}^{-1} y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{x\\ + \\ y}{1\\ - \\ xy}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "and this holds only when xy < 1.",
-          "Here x = 1/4, y = 2/9,",
+          {
+            "text": "\\text{Here}\\ x\\ = \\ \\dfrac{1}{4},\\ y\\ = \\ \\dfrac{2}{9},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so xy = 2/36 = 1/18 < 1  ✓",
-          "Tan⁻¹(1/4) + Tan⁻¹(2/9)",
-          "(1/4 + 2/9 = 17/36 and 1 − 1/18 = 17/18)",
-          "= Tan⁻¹((1/4 + 2/9)/(1 − 1/18))",
-          "((17/36)/(17/18) = 18/36 = 1/2)",
-          "= Tan⁻¹((17/36)/(17/18)) = Tan⁻¹(1/2)"
+          {
+            "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{4} + \\ \\dfrac{2}{9} = \\ \\dfrac{17}{36}\\text{and}\\ 1\\ - \\ \\dfrac{1}{18} = \\ \\dfrac{17}{18}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{1}{4} + \\ \\dfrac{2}{9}}{1\\ - \\ \\dfrac{1}{18}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\dfrac{17}{36}}{\\dfrac{17}{18}} = \\ \\dfrac{18}{36} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{17}{36}}{\\dfrac{17}{18}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,18 +132,36 @@
         "margin_note": "Third mark. The tangent form of cos2θ is chosen because tanθ is the ratio already known.",
         "memory_tip": "cos2θ = (1 − tan²θ)/(1 + tan²θ) works straight from tanθ, with no triangle needed.",
         "lines": [
-          "Let θ = Tan⁻¹(1/2) ⇒ tanθ = 1/2",
+          {
+            "text": "\\text{Let}\\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ \\Rightarrow \\ \\tan \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos2θ in terms of tanθ)",
             "added": true
           },
-          "cos2θ = (1 − tan²θ)/(1 + tan²θ)",
           {
-            "text": "(tan²θ = 1/4)",
+            "text": "\\cos 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{1\\ + \\ \\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan ^{2} \\theta \\ = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1 − 1/4)/(1 + 1/4)",
-          "= (3/4)/(5/4)"
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\dfrac{1}{4}}{1\\ + \\ \\dfrac{1}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{3}{4}}{\\dfrac{5}{4}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -145,10 +191,26 @@
           "Writing tan²θ as 1/2 instead of 1/4."
         ],
         "lines_compact": [
-          "Let θ = Tan⁻¹(1/2) ⇒ tanθ = 1/2",
-          "cos2θ = (1 − tan²θ)/(1 + tan²θ)",
-          "= (1 − 1/4)/(1 + 1/4)",
-          "= (3/4)/(5/4)"
+          {
+            "text": "\\text{Let}\\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ \\Rightarrow \\ \\tan \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{1\\ + \\ \\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\dfrac{1}{4}}{1\\ + \\ \\dfrac{1}{4}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{3}{4}}{\\dfrac{5}{4}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -161,18 +223,29 @@
         "memory_tip": "(3/4) ÷ (5/4) = 3/5 — the quarters cancel.",
         "lines": [
           {
-            "text": "((3/4)/(5/4) = 3/5)",
+            "text": "\\left(\\dfrac{\\dfrac{3}{4}}{\\dfrac{5}{4}} = \\ \\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 3/5",
+          {
+            "text": "= \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2θ is twice the sum found in step 1)",
             "added": true
           },
-          "and 2θ = 2(Tan⁻¹(1/4) + Tan⁻¹(2/9))",
           {
-            "text": "∴ cos[2(Tan⁻¹(1/4) + Tan⁻¹(2/9))] = 3/5",
-            "style": "boxed"
+            "text": "\\text{and}\\ 2\\theta \\ = \\ 2\\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\left[2\\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\right)\\right]\\ = \\ \\dfrac{3}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -203,11 +276,20 @@
           "Forgetting that 2θ is the whole bracket doubled."
         ],
         "lines_compact": [
-          "= 3/5",
-          "and 2θ = 2(Tan⁻¹(1/4) + Tan⁻¹(2/9))",
           {
-            "text": "∴ cos[2(Tan⁻¹(1/4) + Tan⁻¹(2/9))] = 3/5",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ 2\\theta \\ = \\ 2\\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\left[2\\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\right)\\right]\\ = \\ \\dfrac{3}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -54,13 +54,33 @@
           },
           "Heron's formula: Δ = √(s(s−a)(s−b)(s−c))",
           "(the half-angle formula)",
-          "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
+          {
+            "text": "\\tan \\left(\\dfrac{A}{2}\\right)\\ = \\ \\sqrt{\\dfrac{\\left(s - b\\right)\\left(s - c\\right)}{s\\left(s - a\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply top and bottom by √((s−b)(s−c)))",
-          "= (s−b)(s−c)/√(s(s−a)(s−b)(s−c))",
+          {
+            "text": "= \\ \\dfrac{\\left(s - b\\right)\\left(s - c\\right)}{\\sqrt{s\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the root on the bottom is Δ)",
-          "= (s−b)(s−c)/Δ",
-          "Similarly tan(B/2) = (s−c)(s−a)/Δ",
-          "and tan(C/2) = (s−a)(s−b)/Δ"
+          {
+            "text": "= \\ \\dfrac{\\left(s - b\\right)\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Similarly}\\ \\tan \\left(\\dfrac{B}{2}\\right)\\ = \\ \\dfrac{\\left(s - c\\right)\\left(s - a\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\tan \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{\\left(s - a\\right)\\left(s - b\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +119,11 @@
         "margin_note": "No separate mark at this length. Each bracket pair gives s², a term in s, and a product of two sides.",
         "memory_tip": "Every product has the same shape: s² − s(sum of the two sides) + (their product).",
         "lines": [
-          "∴ L.H.S = N/Δ, where",
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{N}{\\Delta },\\ \\text{where}",
+            "style": "normal",
+            "render": "katex"
+          },
           "N = (s−b)(s−c) + (s−c)(s−a) + (s−a)(s−b)",
           {
             "text": "(multiply out each pair of brackets)",
@@ -137,7 +161,11 @@
           "Dropping one of the three products."
         ],
         "lines_compact": [
-          "∴ L.H.S = N/Δ, where",
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{N}{\\Delta },\\ \\text{where}",
+            "style": "normal",
+            "render": "katex"
+          },
           "N = (s−b)(s−c) + (s−c)(s−a) + (s−a)(s−b)",
           "(s−b)(s−c) = s² − s(b+c) + bc",
           "(s−c)(s−a) = s² − s(c+a) + ca",
@@ -165,8 +193,9 @@
           "= 3s² − 4s² + (ab + bc + ca)   [∵ a+b+c = 2s]",
           "= ab + bc + ca − s²",
           {
-            "text": "∴ L.H.S = (bc + ca + ab − s²)/Δ",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{bc\\ + \\ ca\\ + \\ ab\\ - \\ s^{2}}{\\Delta }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -201,8 +230,9 @@
           "= 3s² − 4s² + (ab + bc + ca)   [∵ a+b+c = 2s]",
           "= ab + bc + ca − s²",
           {
-            "text": "∴ L.H.S = (bc + ca + ab − s²)/Δ",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{bc\\ + \\ ca\\ + \\ ab\\ - \\ s^{2}}{\\Delta }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

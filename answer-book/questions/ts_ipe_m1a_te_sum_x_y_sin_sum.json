@@ -60,13 +60,29 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given x + y = 2π/3   …(1)",
-          "and sin x + sin y = 3/2   …(2)",
+          {
+            "text": "\\text{Given}\\ x\\ + \\ y\\ = \\ \\dfrac{2\\pi }{3}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\sin x\\ + \\ \\sin y\\ = \\ \\dfrac{3}{2}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now sinC + sinD",
-          "  = 2 sin((C+D)/2) cos((C−D)/2)",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C + D}{2}\\right)\\cos \\left(\\dfrac{C - D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(use it with C = x and D = y)",
           "⇒ sin x + sin y",
-          "  = 2 sin((x+y)/2) cos((x−y)/2)"
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{x + y}{2}\\right)\\cos \\left(\\dfrac{x - y}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,24 +121,50 @@
         "margin_note": "Second mark. Half of 2π/3 is π/3, and sin(π/3) = √3/2. The whole first factor becomes a number, leaving one unknown.",
         "memory_tip": "Half of 2π/3 is π/3, and sin(π/3) = √3/2. That factor is now just a number.",
         "lines": [
-          "From (1), (x+y)/2 = π/3",
           {
-            "text": "(half of 2π/3 is π/3)",
+            "text": "\\text{From}\\ \\left(1\\right),\\ \\dfrac{x + y}{2} = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{half}\\ \\text{of}\\ \\dfrac{2\\pi }{3}\\text{is}\\ \\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "So (2) becomes",
-          "⇒ 2 sin(π/3) cos((x−y)/2) = 3/2",
           {
-            "text": "(sin(π/3) = √3/2)",
+            "text": "\\Rightarrow \\ 2\\sin \\left(\\dfrac{\\pi }{3}\\right)\\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{\\sqrt{3}}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 2 × (√3/2) × cos((x−y)/2) = 3/2",
-          "⇒ √3 cos((x−y)/2) = 3/2",
           {
-            "text": "(divide by √3; 3/(2√3) = √3/2)",
+            "text": "\\Rightarrow \\ 2\\ \\times \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\ \\times \\ \\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sqrt{3}\\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\text{by}\\ \\sqrt{3};\\ \\dfrac{3}{2\\sqrt{3}} = \\ \\dfrac{\\sqrt{3}}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ cos((x−y)/2) = 3/(2√3) = √3/2"
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2\\sqrt{3}} = \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -152,12 +194,32 @@
           "Simplifying 3/(2√3) to 3√3/2."
         ],
         "lines_compact": [
-          "From (1), (x+y)/2 = π/3",
+          {
+            "text": "\\text{From}\\ \\left(1\\right),\\ \\dfrac{x + y}{2} = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "So (2) becomes",
-          "⇒ 2 sin(π/3) cos((x−y)/2) = 3/2",
-          "⇒ 2 × (√3/2) × cos((x−y)/2) = 3/2",
-          "⇒ √3 cos((x−y)/2) = 3/2",
-          "⇒ cos((x−y)/2) = 3/(2√3) = √3/2"
+          {
+            "text": "\\Rightarrow \\ 2\\sin \\left(\\dfrac{\\pi }{3}\\right)\\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2\\ \\times \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\ \\times \\ \\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sqrt{3}\\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(\\dfrac{x - y}{2}\\right)\\ = \\ \\dfrac{3}{2\\sqrt{3}} = \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -169,18 +231,32 @@
         "margin_note": "Third mark. √3/2 is cos(π/6), so the cosine general solution applies to the half-difference. Multiply through by 2 at the end to reach x − y itself.",
         "memory_tip": "√3/2 = cos(π/6). Solve for the HALF-difference first, then double every term.",
         "lines": [
-          "Now √3/2 = cos(π/6), so α = π/6",
+          {
+            "text": "\\text{Now}\\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For cosθ = cosα, θ = 2nπ ± α",
           {
-            "text": "(here the angle is (x − y)/2 and α = π/6)",
+            "text": "\\left(\\text{here}\\ \\text{the}\\ \\text{angle}\\ \\text{is}\\ \\dfrac{x\\ - \\ y}{2}\\text{and}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (x − y)/2 = 2nπ ± π/6,  n ∈ Z",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ - \\ y}{2} = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply by 2)",
             "added": true
           },
-          "⇒ x − y = 4nπ ± π/3   …(3)"
+          {
+            "text": "\\Rightarrow \\ x\\ - \\ y\\ = \\ 4n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}\\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,10 +286,22 @@
           "Taking α = π/3 because √3/2 is read as sin(π/3)."
         ],
         "lines_compact": [
-          "Now √3/2 = cos(π/6), so α = π/6",
+          {
+            "text": "\\text{Now}\\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For cosθ = cosα, θ = 2nπ ± α",
-          "⇒ (x − y)/2 = 2nπ ± π/6,  n ∈ Z",
-          "⇒ x − y = 4nπ ± π/3   …(3)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ - \\ y}{2} = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ - \\ y\\ = \\ 4n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}\\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -226,28 +314,56 @@
         "memory_tip": "Add the sum and the difference to get 2x. The ± exchanges the values of x and y, so write both: x = π/2, y = π/6 or x = π/6, y = π/2.",
         "lines": [
           "Adding (1) and (3):",
-          "⇒ 2x = 2π/3 + 4nπ ± π/3",
+          {
+            "text": "\\Rightarrow \\ 2x\\ = \\ \\dfrac{2\\pi }{3} + \\ 4n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 2)",
             "added": true
           },
-          "⇒ x = π/3 + 2nπ ± π/6",
           {
-            "text": "(from (1), y = 2π/3 − x)",
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{\\pi }{3} + \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{from}\\ \\left(1\\right),\\ y\\ = \\ \\dfrac{2\\pi }{3} - \\ x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ y = 2π/3 − x = π/3 − 2nπ ∓ π/6",
-          "Taking n = 0 with the upper signs:",
-          "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
-          "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
-          "The lower signs give x = π/6, y = π/2.",
           {
-            "text": "∴ x = π/2, y = π/6  (or)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{2\\pi }{3} - \\ x\\ = \\ \\dfrac{\\pi }{3} - \\ 2n\\pi \\ \\mp \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Taking n = 0 with the upper signs:",
+          {
+            "text": "x\\ = \\ \\dfrac{\\pi }{3} + \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{2},\\ y\\ = \\ \\dfrac{\\pi }{3} - \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "x = π/6, y = π/2",
-            "style": "boxed"
+            "text": "\\text{Check}:\\ \\sin \\left(\\dfrac{\\pi }{2}\\right)\\ + \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ 1\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{lower}\\ \\text{signs}\\ \\text{give}\\ x\\ = \\ \\dfrac{\\pi }{6},\\ y\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{\\pi }{2},\\ y\\ = \\ \\dfrac{\\pi }{6}\\left(\\text{or}\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ \\dfrac{\\pi }{6},\\ y\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -280,20 +396,46 @@
         ],
         "lines_compact": [
           "Adding (1) and (3):",
-          "⇒ 2x = 2π/3 + 4nπ ± π/3",
-          "⇒ x = π/3 + 2nπ ± π/6",
-          "⇒ y = 2π/3 − x = π/3 − 2nπ ∓ π/6",
-          "Taking n = 0 with the upper signs:",
-          "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
-          "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
-          "The lower signs give x = π/6, y = π/2.",
           {
-            "text": "∴ x = π/2, y = π/6  (or)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ 2x\\ = \\ \\dfrac{2\\pi }{3} + \\ 4n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "x = π/6, y = π/2",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{\\pi }{3} + \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{2\\pi }{3} - \\ x\\ = \\ \\dfrac{\\pi }{3} - \\ 2n\\pi \\ \\mp \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Taking n = 0 with the upper signs:",
+          {
+            "text": "x\\ = \\ \\dfrac{\\pi }{3} + \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{2},\\ y\\ = \\ \\dfrac{\\pi }{3} - \\ \\dfrac{\\pi }{6} = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ \\sin \\left(\\dfrac{\\pi }{2}\\right)\\ + \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ 1\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{lower}\\ \\text{signs}\\ \\text{give}\\ x\\ = \\ \\dfrac{\\pi }{6},\\ y\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{\\pi }{2},\\ y\\ = \\ \\dfrac{\\pi }{6}\\left(\\text{or}\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ \\dfrac{\\pi }{6},\\ y\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

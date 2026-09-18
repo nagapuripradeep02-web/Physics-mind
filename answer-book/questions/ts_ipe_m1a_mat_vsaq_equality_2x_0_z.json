@@ -103,15 +103,20 @@
             "added": true
           },
           "The entry 2x = 2 gives x = 1 as well.",
-          "y − 5 = −y ⇒ 2y = 5 ⇒ y = 5/2",
+          {
+            "text": "y\\ - \\ 5\\ = \\ - y\\ \\Rightarrow \\ 2y\\ = \\ 5\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(add y + 5 to both sides)",
             "added": true
           },
           "z = 2, and 1 + a = 1 ⇒ a = 0",
           {
-            "text": "∴ x = 1, y = 5/2, z = 2, a = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ 1,\\ y\\ = \\ \\dfrac{5}{2},\\ z\\ = \\ 2,\\ a\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,11 +148,16 @@
         "lines_compact": [
           "x − 1 = 1 − x ⇒ 2x = 2 ⇒ x = 1",
           "The entry 2x = 2 gives x = 1 as well.",
-          "y − 5 = −y ⇒ 2y = 5 ⇒ y = 5/2",
+          {
+            "text": "y\\ - \\ 5\\ = \\ - y\\ \\Rightarrow \\ 2y\\ = \\ 5\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "z = 2, and 1 + a = 1 ⇒ a = 0",
           {
-            "text": "∴ x = 1, y = 5/2, z = 2, a = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ 1,\\ y\\ = \\ \\dfrac{5}{2},\\ z\\ = \\ 2,\\ a\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

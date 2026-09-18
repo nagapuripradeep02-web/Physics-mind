@@ -100,7 +100,11 @@
             "text": "(sin75° = sin(90° − 15°) = cos15°)",
             "added": true
           },
-          "sin75° = cos15° = (√3 + 1)/(2√2)",
+          {
+            "text": "\\sin 75^{\\circ}\\ = \\ \\cos 15^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos15° = cos(45° − 30°)",
             "added": true
@@ -110,15 +114,24 @@
             "style": "indent",
             "added": true
           },
-          "sin30° = 1/2",
-          "= [(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "\\sin 30^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}\\right]\\ \\times \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2√2 × 2 = 4√2)",
             "added": true
           },
           {
-            "text": "∴ Value = (√3 + 1)/(4√2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Value}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -149,12 +162,25 @@
           "Forgetting the 1/2 that comes from sin30°."
         ],
         "lines_compact": [
-          "sin75° = cos15° = (√3 + 1)/(2√2)",
-          "sin30° = 1/2",
-          "= [(√3 + 1)/(2√2)] × (1/2)",
           {
-            "text": "∴ Value = (√3 + 1)/(4√2)",
-            "style": "boxed"
+            "text": "\\sin 75^{\\circ}\\ = \\ \\cos 15^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin 30^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}\\right]\\ \\times \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Value}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

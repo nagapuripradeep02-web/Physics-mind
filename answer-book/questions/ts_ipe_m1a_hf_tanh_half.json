@@ -106,17 +106,23 @@
         "memory_tip": "(3/2) divided by (1/2) is 3, not 3/2. Keep the half outside the logarithm.",
         "lines": [
           {
-            "text": "(put x = 1/2)",
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ Tanh⁻¹(1/2) = (1/2) logₑ((1 + 1/2)/(1 − 1/2))",
           {
-            "text": "(1 + 1/2 = 3/2 and 1 − 1/2 = 1/2)",
+            "text": "\\left(1\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2}\\text{and}\\ 1\\ - \\ \\dfrac{1}{2} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (1/2) logₑ((3/2)/(1/2))",
           {
-            "text": "((3/2)/(1/2) = 3)",
+            "text": "\\left(\\dfrac{\\dfrac{3}{2}}{\\dfrac{1}{2}} = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

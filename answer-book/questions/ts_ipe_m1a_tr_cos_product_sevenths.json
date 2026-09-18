@@ -51,8 +51,16 @@
             "style": "heading"
           },
           "Each angle is double the one before.",
-          "Put θ = 2π/7.",
-          "Then 4π/7 = 2θ and 8π/7 = 4θ",
+          {
+            "text": "\\text{Put}\\ \\theta \\ = \\ \\dfrac{2\\pi }{7}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ \\dfrac{4\\pi }{7} = \\ 2\\theta \\ \\text{and}\\ \\dfrac{8\\pi }{7} = \\ 4\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = cos θ · cos 2θ · cos 4θ"
         ],
         "recall": {
@@ -95,10 +103,16 @@
         "lines": [
           "Multiply and divide by 2³ sin θ:",
           {
-            "text": "(sin θ ≠ 0, because 0 < 2π/7 < π; and 2³ = 8)",
+            "text": "\\left(\\sin \\theta \\ \\ne \\ 0,\\ \\text{because}\\ 0\\ < \\ \\dfrac{2\\pi }{7} < \\ \\pi ;\\ \\text{and}\\ 2^{3}\\ = \\ 8\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/(8 sin θ)) (2 sin θ cos θ)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sin \\theta }\\right)\\left(2\\sin \\theta \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  · (2 cos 2θ)(2 cos 4θ)",
           {
             "text": "(2 sin θ cos θ = sin 2θ; 2 sin 2θ cos 2θ = sin 4θ;",
@@ -109,7 +123,11 @@
             "style": "indent",
             "added": true
           },
-          "= (1/(8 sin θ)) sin 8θ",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sin \\theta }\\right)\\sin 8\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [sin 2θ = 2 sin θ cos θ, used three times]"
         ],
         "recall": {
@@ -143,9 +161,17 @@
         "memory_tip": "One 2 per cosine. Three cosines means 2³ = 8, and the last angle reached is 8θ.",
         "lines_compact": [
           "Multiply and divide by 2³ sin θ:",
-          "= (1/(8 sin θ)) (2 sin θ cos θ)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sin \\theta }\\right)\\left(2\\sin \\theta \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  · (2 cos 2θ)(2 cos 4θ)",
-          "= (1/(8 sin θ)) sin 8θ",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sin \\theta }\\right)\\sin 8\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [sin 2θ = 2 sin θ cos θ, used three times]"
         ]
       },
@@ -161,24 +187,39 @@
             "text": "Reduce sin 8θ to sin θ:",
             "added": true
           },
-          "8θ = 16π/7 = 2π + 2π/7",
           {
-            "text": "(14π/7 = 2π)",
+            "text": "8\\theta \\ = \\ \\dfrac{16\\pi }{7} = \\ 2\\pi \\ + \\ \\dfrac{2\\pi }{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{14\\pi }{7} = \\ 2\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "sin(16π/7) = sin(2π/7) = sin θ",
+          {
+            "text": "\\sin \\left(\\dfrac{16\\pi }{7}\\right)\\ = \\ \\sin \\left(\\dfrac{2\\pi }{7}\\right)\\ = \\ \\sin \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin(2π + x) = sin x)",
             "added": true
           },
-          "L.H.S = sin θ / (8 sin θ)",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{\\sin \\theta }{8\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "sin θ cancels (it is not 0):",
             "added": true
           },
           {
-            "text": "= 1/8 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{8} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -211,12 +252,25 @@
         ],
         "memory_tip": "16π/7 is just over one full turn. Take out 2π and the leftover is the starting angle.",
         "lines_compact": [
-          "8θ = 16π/7 = 2π + 2π/7",
-          "sin(16π/7) = sin(2π/7) = sin θ",
-          "L.H.S = sin θ / (8 sin θ)",
           {
-            "text": "= 1/8 = R.H.S",
-            "style": "boxed"
+            "text": "8\\theta \\ = \\ \\dfrac{16\\pi }{7} = \\ 2\\pi \\ + \\ \\dfrac{2\\pi }{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{16\\pi }{7}\\right)\\ = \\ \\sin \\left(\\dfrac{2\\pi }{7}\\right)\\ = \\ \\sin \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{\\sin \\theta }{8\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{8} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

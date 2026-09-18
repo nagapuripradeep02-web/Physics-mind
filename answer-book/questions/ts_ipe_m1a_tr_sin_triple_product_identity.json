@@ -50,7 +50,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = sin A · [sin(π/3 + A) sin(π/3 − A)]",
+          {
+            "text": "L.H.S\\ = \\ \\sin A\\ \\cdot \\ \\left[\\sin \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\sin \\left(\\dfrac{\\pi }{3} - \\ A\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "The bracket has the form sin(X + Y) sin(X − Y):",
           "sin(X + Y) sin(X − Y) = sin²X − sin²Y"
         ],
@@ -91,18 +95,36 @@
         "mark_note": "Formula",
         "margin_note": "First mark. X is π/3 and Y is A, so the bracket becomes 3/4 − sin²A. Keep sin A multiplying it.",
         "lines": [
-          "With X = π/3 and Y = A:",
-          "sin(π/3 + A) sin(π/3 − A)",
-          "  = sin²(π/3) − sin²A = 3/4 − sin²A",
           {
-            "text": "(sin(π/3) = √3/2, so sin²(π/3) = 3/4)",
+            "text": "\\text{With}\\ X\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ Y\\ = \\ A:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\sin \\left(\\dfrac{\\pi }{3} - \\ A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ - \\ \\sin ^{2} A\\ = \\ \\dfrac{3}{4} - \\ \\sin ^{2} A",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{\\sqrt{3}}{2},\\ \\text{so}\\ \\sin ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Put this back beside sin A:",
             "added": true
           },
-          "L.H.S = sin A (3/4 − sin²A)"
+          {
+            "text": "L.H.S\\ = \\ \\sin A\\left(\\dfrac{3}{4} - \\ \\sin ^{2} A\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -134,10 +156,26 @@
         ],
         "memory_tip": "sin(π/3) = √3/2, and squaring it gives 3/4.",
         "lines_compact": [
-          "With X = π/3 and Y = A:",
-          "sin(π/3 + A) sin(π/3 − A)",
-          "  = sin²(π/3) − sin²A = 3/4 − sin²A",
-          "L.H.S = sin A (3/4 − sin²A)"
+          {
+            "text": "\\text{With}\\ X\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ Y\\ = \\ A:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\sin \\left(\\dfrac{\\pi }{3} - \\ A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ - \\ \\sin ^{2} A\\ = \\ \\dfrac{3}{4} - \\ \\sin ^{2} A",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\sin A\\left(\\dfrac{3}{4} - \\ \\sin ^{2} A\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -153,19 +191,25 @@
             "added": true
           },
           {
-            "text": "  (3/4)sin A − sin³A = (3 sin A − 4 sin³A)/4",
+            "text": "\\left(\\dfrac{3}{4}\\right)\\sin A\\ - \\ \\sin ^{3} A\\ = \\ \\dfrac{3\\sin A\\ - \\ 4\\sin ^{3} A}{4}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= (3 sin A − 4 sin³A)/4",
+          {
+            "text": "= \\ \\dfrac{3\\sin A\\ - \\ 4\\sin ^{3} A}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The top is the triple-angle formula:",
             "added": true
           },
           "sin 3A = 3 sin A − 4 sin³A",
           {
-            "text": "∴ L.H.S = (1/4) sin 3A = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\sin 3A\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -198,11 +242,16 @@
         ],
         "memory_tip": "sin 3A = 3 sin A − 4 sin³A: sine starts with 3, cosine starts with 4.",
         "lines_compact": [
-          "= (3 sin A − 4 sin³A)/4",
+          {
+            "text": "= \\ \\dfrac{3\\sin A\\ - \\ 4\\sin ^{3} A}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "sin 3A = 3 sin A − 4 sin³A",
           {
-            "text": "∴ L.H.S = (1/4) sin 3A = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\sin 3A\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

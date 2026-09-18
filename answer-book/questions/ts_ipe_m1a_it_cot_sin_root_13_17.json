@@ -56,15 +56,43 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let θ = Sin⁻¹√(13/17)",
-          "(Sin⁻¹ of a number between 0 and 1 lies in (0, π/2))",
-          "⇒ sinθ = √(13/17), and θ ∈ (0, π/2)",
+          {
+            "text": "\\text{Let}\\ \\theta \\ = \\ \\operatorname{Sin}^{-1} \\sqrt{\\dfrac{13}{17}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\operatorname{Sin}^{-1} \\text{of}a\\ \\text{number}\\ \\text{between}\\ 0\\ \\text{and}\\ 1\\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\sqrt{\\dfrac{13}{17}},\\ \\text{and}\\ \\theta \\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos²θ = 1 − sin²θ)",
-          "cos²θ = 1 − 13/17 = 4/17",
-          "θ is first quadrant, so cosθ = 2/√17",
-          "L.H.S = cotθ = cosθ/sinθ",
+          {
+            "text": "\\cos ^{2} \\theta \\ = \\ 1\\ - \\ \\dfrac{13}{17} = \\ \\dfrac{4}{17}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\theta \\ \\text{is}\\ \\text{first}\\ \\text{quadrant},\\ \\text{so}\\ \\cos \\theta \\ = \\ \\dfrac{2}{\\sqrt{17}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the √17s cancel)",
-          "= (2/√17)/(√13/√17) = 2/√13"
+          {
+            "text": "= \\ \\dfrac{\\dfrac{2}{\\sqrt{17}}}{\\dfrac{\\sqrt{13}}{\\sqrt{17}}} = \\ \\dfrac{2}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,8 +131,16 @@
         "margin_note": "Third mark. The 2, 3, √13 triangle gives the sine in one line, with no formula needed.",
         "memory_tip": "tanφ = 2/3 gives a 2, 3, √13 triangle, so sinφ = 2/√13.",
         "lines": [
-          "Let φ = Tan⁻¹(2/3) ⇒ tanφ = 2/3",
-          "φ ∈ (0, π/2), so sinφ is positive.",
+          {
+            "text": "\\text{Let}\\ \\phi \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{3}\\right)\\ \\Rightarrow \\ \\tan \\phi \\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\phi \\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}\\ \\sin \\phi \\ \\text{is}\\ \\text{positive}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(tan = opposite/adjacent in a right triangle)",
             "added": true
@@ -119,7 +155,11 @@
             "text": "(sin = opposite/hypotenuse)",
             "added": true
           },
-          "R.H.S = sinφ = 2/√13"
+          {
+            "text": "R.H.S\\ = \\ \\sin \\phi \\ = \\ \\dfrac{2}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -149,11 +189,23 @@
           "Using √5 instead of √13 for the hypotenuse."
         ],
         "lines_compact": [
-          "Let φ = Tan⁻¹(2/3) ⇒ tanφ = 2/3",
-          "φ ∈ (0, π/2), so sinφ is positive.",
+          {
+            "text": "\\text{Let}\\ \\phi \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{3}\\right)\\ \\Rightarrow \\ \\tan \\phi \\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\phi \\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{so}\\ \\sin \\phi \\ \\text{is}\\ \\text{positive}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Opposite 2, adjacent 3,",
           "hypotenuse √(2² + 3²) = √13",
-          "R.H.S = sinφ = 2/√13"
+          {
+            "text": "R.H.S\\ = \\ \\sin \\phi \\ = \\ \\dfrac{2}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -165,15 +217,24 @@
         "margin_note": "Last mark. Say in words that the two sides are equal — a proof is not finished until the comparison is written.",
         "memory_tip": "Both sides come to 2/√13. Rationalise once at the end: 2√13/13.",
         "lines": [
-          "Both sides equal 2/√13,",
+          {
+            "text": "\\text{Both}\\ \\text{sides}\\ \\text{equal}\\ \\dfrac{2}{\\sqrt{13}},",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply top and bottom by √13)",
             "added": true
           },
-          "that is 2√13/13.",
           {
-            "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
-            "style": "boxed"
+            "text": "\\text{that}\\ \\text{is}\\ \\dfrac{2\\sqrt{13}}{13}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\operatorname{Sin}^{-1} \\sqrt{\\dfrac{13}{17}}\\right)\\ = \\ \\sin \\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{2}{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -204,11 +265,20 @@
           "Rationalising 2/√13 wrongly as √13/13."
         ],
         "lines_compact": [
-          "Both sides equal 2/√13,",
-          "that is 2√13/13.",
           {
-            "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
-            "style": "boxed"
+            "text": "\\text{Both}\\ \\text{sides}\\ \\text{equal}\\ \\dfrac{2}{\\sqrt{13}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\dfrac{2\\sqrt{13}}{13}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\operatorname{Sin}^{-1} \\sqrt{\\dfrac{13}{17}}\\right)\\ = \\ \\sin \\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{2}{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

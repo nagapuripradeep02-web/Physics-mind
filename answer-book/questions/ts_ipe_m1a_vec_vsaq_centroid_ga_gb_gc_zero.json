@@ -56,7 +56,11 @@
           "the position vectors of A, B, C and G.",
           "(the centroid's position vector is the average of a, b, c)",
           "G is the centroid of triangle ABC, so",
-          "g = (a + b + c)/3"
+          {
+            "text": "g\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,12 +111,20 @@
           },
           "⇒ GA + GB + GC = (a + b + c) − 3g",
           {
-            "text": "(put g = (a + b + c)/3)",
+            "text": "\\left(\\text{put}\\ g\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (a + b + c) − 3 · (a + b + c)/3",
           {
-            "text": "(3 × (a + b + c)/3 = a + b + c)",
+            "text": "= \\ \\left(a\\ + \\ b\\ + \\ c\\right)\\ - \\ 3\\ \\cdot \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\times \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3} = \\ a\\ + \\ b\\ + \\ c\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (a + b + c) − (a + b + c)",
@@ -152,7 +164,11 @@
         "lines_compact": [
           "GA = a − g,  GB = b − g,  GC = c − g",
           "⇒ GA + GB + GC = (a + b + c) − 3g",
-          "= (a + b + c) − 3 · (a + b + c)/3",
+          {
+            "text": "= \\ \\left(a\\ + \\ b\\ + \\ c\\right)\\ - \\ 3\\ \\cdot \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (a + b + c) − (a + b + c)",
           {
             "text": "∴ GA + GB + GC = 0",

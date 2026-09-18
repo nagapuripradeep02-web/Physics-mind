@@ -52,11 +52,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Period of sin 2x = 2π/2 = π.",
-          "(sin kx has period 2π/k; here k = 2)",
-          "The interval [−π/2, π/2] has length π,",
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\sin 2x\\ = \\ \\dfrac{2\\pi }{2} = \\ \\pi .",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin kxhas\\ \\text{period}\\ \\dfrac{2\\pi }{k};\\ \\text{here}\\ k\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{interval}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right]has\\ \\text{length}\\ \\pi ,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so it holds exactly one full period.",
-          "x = −π/2, −π/4, 0, π/4, π/2",
+          {
+            "text": "x\\ = \\ - \\dfrac{\\pi }{2},\\ - \\dfrac{\\pi }{4},\\ 0,\\ \\dfrac{\\pi }{4},\\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(2x = −π, −π/2, 0, π/2, π, and the sine of",
           {
             "text": "  each is 0, −1, 0, 1, 0)",

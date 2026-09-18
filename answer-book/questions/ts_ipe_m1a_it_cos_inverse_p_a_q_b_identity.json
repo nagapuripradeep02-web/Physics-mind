@@ -60,12 +60,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let A = Cos⁻¹(p/a) and B = Cos⁻¹(q/b).",
+          {
+            "text": "\\text{Let}\\ A\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{p}{a}\\right)\\ \\text{and}\\ B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{q}{b}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "These need a ≠ 0, b ≠ 0,",
-          "|p/a| ≤ 1 and |q/b| ≤ 1.",
+          {
+            "text": "\\left|\\dfrac{p}{a}\\right|\\ \\le \\ 1\\ \\text{and}\\ \\left|\\dfrac{q}{b}\\right|\\ \\le \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(Cos⁻¹ takes values in [0, π], where sine is never negative)",
           "A, B ∈ [0, π] ⇒ sinA ≥ 0, sinB ≥ 0",
-          "cosA = p/a, cosB = q/b, A + B = α"
+          {
+            "text": "\\cos A\\ = \\ \\dfrac{p}{a},\\ \\cos B\\ = \\ \\dfrac{q}{b},\\ A\\ + \\ B\\ = \\ \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,15 +123,25 @@
           },
           "= cosA cosB − sinA sinB",
           {
-            "text": "(cosA cosB = (p/a)(q/b) = pq/(ab))",
+            "text": "\\left(\\cos A\\cos B\\ = \\ \\left(\\dfrac{p}{a}\\right)\\left(\\dfrac{q}{b}\\right)\\ = \\ \\dfrac{pq}{ab}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= pq/(ab) − sinA sinB",
+          {
+            "text": "= \\ \\dfrac{pq}{ab} - \\ \\sin A\\sin B",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move sinA sinB and cosα across)",
             "added": true
           },
-          "⇒ sinA sinB = pq/(ab) − cosα"
+          {
+            "text": "\\Rightarrow \\ \\sin A\\sin B\\ = \\ \\dfrac{pq}{ab} - \\ \\cos \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,8 +173,16 @@
         "lines_compact": [
           "cosα = cos(A + B)",
           "= cosA cosB − sinA sinB",
-          "= pq/(ab) − sinA sinB",
-          "⇒ sinA sinB = pq/(ab) − cosα"
+          {
+            "text": "= \\ \\dfrac{pq}{ab} - \\ \\sin A\\sin B",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin A\\sin B\\ = \\ \\dfrac{pq}{ab} - \\ \\cos \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -168,24 +198,48 @@
             "text": "(square both sides of the last line)",
             "added": true
           },
-          "sin²A sin²B = (pq/(ab) − cosα)²",
+          {
+            "text": "\\sin ^{2} A\\sin ^{2} B\\ = \\ \\left(\\dfrac{pq}{ab} - \\ \\cos \\alpha \\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin² = 1 − cos²)",
             "added": true
           },
-          "sin²A = 1 − p²/a², sin²B = 1 − q²/b²",
+          {
+            "text": "\\sin ^{2} A\\ = \\ 1\\ - \\ \\dfrac{p^{2}}{a^{2}},\\ \\sin ^{2} B\\ = \\ 1\\ - \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put these into the left side)",
             "added": true
           },
-          "(1 − p²/a²)(1 − q²/b²)",
-          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α",
+          {
+            "text": "\\left(1\\ - \\ \\dfrac{p^{2}}{a^{2}}\\right)\\left(1\\ - \\ \\dfrac{q^{2}}{b^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\cos ^{2} \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply out the left side)",
             "added": true
           },
-          "⇒ 1 − p²/a² − q²/b² + p²q²/(a²b²)",
-          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α"
+          {
+            "text": "\\Rightarrow \\ 1\\ - \\ \\dfrac{p^{2}}{a^{2}} - \\ \\dfrac{q^{2}}{b^{2}} + \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\cos ^{2} \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -215,12 +269,36 @@
           "Expanding the square of a difference without its middle term."
         ],
         "lines_compact": [
-          "sin²A sin²B = (pq/(ab) − cosα)²",
-          "sin²A = 1 − p²/a², sin²B = 1 − q²/b²",
-          "(1 − p²/a²)(1 − q²/b²)",
-          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α",
-          "⇒ 1 − p²/a² − q²/b² + p²q²/(a²b²)",
-          "= p²q²/(a²b²) − (2pq/(ab)) cosα + cos²α"
+          {
+            "text": "\\sin ^{2} A\\sin ^{2} B\\ = \\ \\left(\\dfrac{pq}{ab} - \\ \\cos \\alpha \\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ^{2} A\\ = \\ 1\\ - \\ \\dfrac{p^{2}}{a^{2}},\\ \\sin ^{2} B\\ = \\ 1\\ - \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ \\dfrac{p^{2}}{a^{2}}\\right)\\left(1\\ - \\ \\dfrac{q^{2}}{b^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\cos ^{2} \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 1\\ - \\ \\dfrac{p^{2}}{a^{2}} - \\ \\dfrac{q^{2}}{b^{2}} + \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}q^{2}}{a^{2}b^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\cos ^{2} \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -233,21 +311,36 @@
         "memory_tip": "Finish with 1 − cos²α = sin²α — the whole right-hand side of the question is only that.",
         "lines": [
           {
-            "text": "(p²q²/(a²b²) is on both sides, so it cancels)",
+            "text": "\\left(\\dfrac{p^{2}q^{2}}{a^{2}b^{2}}\\text{is}\\ \\text{on}\\ \\text{both}\\ \\text{sides},\\ \\text{so}\\ \\text{it}\\ \\text{cancels}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 − p²/a² − q²/b²",
-          "= cos²α − (2pq/(ab)) cosα",
+          {
+            "text": "1\\ - \\ \\dfrac{p^{2}}{a^{2}} - \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos ^{2} \\alpha \\ - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move cos²α to the left and the p², q² terms to the right)",
             "added": true
           },
           "⇒ 1 − cos²α",
-          "= p²/a² − (2pq/(ab)) cosα + q²/b²",
+          {
+            "text": "= \\ \\dfrac{p^{2}}{a^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and 1 − cos²α = sin²α",
           {
-            "text": "∴ p²/a² − (2pq/(ab)) cosα + q²/b² = sin²α",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{p^{2}}{a^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\dfrac{q^{2}}{b^{2}} = \\ \\sin ^{2} \\alpha",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -278,14 +371,27 @@
           "Losing the sign of the middle term."
         ],
         "lines_compact": [
-          "1 − p²/a² − q²/b²",
-          "= cos²α − (2pq/(ab)) cosα",
+          {
+            "text": "1\\ - \\ \\dfrac{p^{2}}{a^{2}} - \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos ^{2} \\alpha \\ - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 1 − cos²α",
-          "= p²/a² − (2pq/(ab)) cosα + q²/b²",
+          {
+            "text": "= \\ \\dfrac{p^{2}}{a^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\dfrac{q^{2}}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and 1 − cos²α = sin²α",
           {
-            "text": "∴ p²/a² − (2pq/(ab)) cosα + q²/b² = sin²α",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{p^{2}}{a^{2}} - \\ \\left(\\dfrac{2pq}{ab}\\right)\\cos \\alpha \\ + \\ \\dfrac{q^{2}}{b^{2}} = \\ \\sin ^{2} \\alpha",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

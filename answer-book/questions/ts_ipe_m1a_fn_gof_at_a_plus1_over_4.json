@@ -52,9 +52,21 @@
             "style": "heading"
           },
           "f(x) = 4x − 1, g(x) = x² + 2",
-          "(gof)((a+1)/4) = g[f((a+1)/4)]",
-          "f((a+1)/4) = 4((a+1)/4) − 1",
-          "(4 × (a + 1)/4 = a + 1)",
+          {
+            "text": "\\left(gof\\right)\\left(\\dfrac{a + 1}{4}\\right)\\ = \\ g\\left[f\\left(\\dfrac{a + 1}{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{a + 1}{4}\\right)\\ = \\ 4\\left(\\dfrac{a + 1}{4}\\right)\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(4\\ \\times \\ \\dfrac{a\\ + \\ 1}{4} = \\ a\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (a + 1) − 1 = a"
         ],
         "recall": {
@@ -95,11 +107,16 @@
         "mark_note": "Value of (gof)((a + 1)/4)",
         "margin_note": "Second mark. g receives a, not (a + 1)/4. Put a into x² + 2 and write the single expression.",
         "lines": [
-          "∴ (gof)((a+1)/4) = g(a)",
+          {
+            "text": "\\therefore \\ \\left(gof\\right)\\left(\\dfrac{a + 1}{4}\\right)\\ = \\ g\\left(a\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "g(a) = a² + 2",
           {
-            "text": "(gof)((a+1)/4) = a² + 2",
-            "style": "boxed"
+            "text": "\\left(gof\\right)\\left(\\dfrac{a + 1}{4}\\right)\\ = \\ a^{2}\\ + \\ 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

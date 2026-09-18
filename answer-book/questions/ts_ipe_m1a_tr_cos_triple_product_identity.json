@@ -50,7 +50,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = cos A · [cos(π/3 + A) cos(π/3 − A)]",
+          {
+            "text": "L.H.S\\ = \\ \\cos A\\ \\cdot \\ \\left[\\cos \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\cos \\left(\\dfrac{\\pi }{3} - \\ A\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "The bracket has the form cos(X + Y) cos(X − Y):",
           "cos(X + Y) cos(X − Y) = cos²X − sin²Y"
         ],
@@ -91,11 +95,25 @@
         "mark_note": "Formula",
         "margin_note": "First mark. The bracket first becomes 1/4 − sin²A; replacing sin²A by 1 − cos²A turns it into cos²A − 3/4.",
         "lines": [
-          "With X = π/3 and Y = A:",
-          "cos(π/3 + A) cos(π/3 − A)",
-          "  = cos²(π/3) − sin²A = 1/4 − sin²A",
           {
-            "text": "(cos(π/3) = 1/2, so cos²(π/3) = 1/4)",
+            "text": "\\text{With}\\ X\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ Y\\ = \\ A:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\cos \\left(\\dfrac{\\pi }{3} - \\ A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ - \\ \\sin ^{2} A\\ = \\ \\dfrac{1}{4} - \\ \\sin ^{2} A",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{1}{2},\\ \\text{so}\\ \\cos ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -103,12 +121,22 @@
             "added": true
           },
           "sin²A = 1 − cos²A",
-          "  ⇒ 1/4 − sin²A = cos²A − 3/4",
           {
-            "text": "(1/4 − 1 + cos²A = cos²A − 3/4)",
+            "text": "\\Rightarrow \\ \\dfrac{1}{4} - \\ \\sin ^{2} A\\ = \\ \\cos ^{2} A\\ - \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{4} - \\ 1\\ + \\ \\cos ^{2} A\\ = \\ \\cos ^{2} A\\ - \\ \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "L.H.S = cos A (cos²A − 3/4)"
+          {
+            "text": "L.H.S\\ = \\ \\cos A\\left(\\cos ^{2} A\\ - \\ \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -140,12 +168,32 @@
         ],
         "memory_tip": "cos(π/3) = 1/2, and squaring gives 1/4. Then 1/4 − 1 = −3/4.",
         "lines_compact": [
-          "With X = π/3 and Y = A:",
-          "cos(π/3 + A) cos(π/3 − A)",
-          "  = cos²(π/3) − sin²A = 1/4 − sin²A",
+          {
+            "text": "\\text{With}\\ X\\ = \\ \\dfrac{\\pi }{3}\\text{and}\\ Y\\ = \\ A:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{\\pi }{3} + \\ A\\right)\\cos \\left(\\dfrac{\\pi }{3} - \\ A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos ^{2}\\left(\\dfrac{\\pi }{3}\\right)\\ - \\ \\sin ^{2} A\\ = \\ \\dfrac{1}{4} - \\ \\sin ^{2} A",
+            "style": "normal",
+            "render": "katex"
+          },
           "sin²A = 1 − cos²A",
-          "  ⇒ 1/4 − sin²A = cos²A − 3/4",
-          "L.H.S = cos A (cos²A − 3/4)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{4} - \\ \\sin ^{2} A\\ = \\ \\cos ^{2} A\\ - \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\cos A\\left(\\cos ^{2} A\\ - \\ \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -161,19 +209,25 @@
             "added": true
           },
           {
-            "text": "  cos³A − (3/4)cos A = (4cos³A − 3cos A)/4",
+            "text": "\\cos ^{3} A\\ - \\ \\left(\\dfrac{3}{4}\\right)\\cos A\\ = \\ \\dfrac{4\\cos ^{3} A\\ - \\ 3\\cos A}{4}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= (4 cos³A − 3 cos A)/4",
+          {
+            "text": "= \\ \\dfrac{4\\cos ^{3} A\\ - \\ 3\\cos A}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The top is the triple-angle formula:",
             "added": true
           },
           "cos 3A = 4 cos³A − 3 cos A",
           {
-            "text": "∴ L.H.S = (1/4) cos 3A = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\cos 3A\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -206,11 +260,16 @@
         ],
         "memory_tip": "cos 3A = 4 cos³A − 3 cos A: cosine starts with 4, sine starts with 3.",
         "lines_compact": [
-          "= (4 cos³A − 3 cos A)/4",
+          {
+            "text": "= \\ \\dfrac{4\\cos ^{3} A\\ - \\ 3\\cos A}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "cos 3A = 4 cos³A − 3 cos A",
           {
-            "text": "∴ L.H.S = (1/4) cos 3A = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\left(\\dfrac{1}{4}\\right)\\cos 3A\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -56,10 +56,18 @@
             "style": "heading"
           },
           "L.H.S = √3 cosec20° − sec20°",
-          "(cosec θ = 1/sin θ and sec θ = 1/cos θ)",
+          {
+            "text": "\\left(\\cos ec\\theta \\ = \\ \\dfrac{1}{\\sin \\theta }\\text{and}\\ \\sec \\theta \\ = \\ \\dfrac{1}{\\cos \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= √3/sin20° − 1/cos20°",
           "Use the common denominator sin20° cos20°:",
-          "= (√3 cos20° − sin20°)/(sin20° cos20°)"
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3}\\cos 20^{\\circ}\\ - \\ \\sin 20^{\\circ}}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +107,9 @@
         "margin_note": "First mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question.",
         "lines": [
           {
-            "text": "Take out 2 from the top, so that √3/2 and 1/2",
+            "text": "\\text{Take}\\ \\text{out}\\ 2\\ \\text{from}\\ \\text{the}\\ \\text{top},\\ \\text{so}\\ \\text{that}\\ \\dfrac{\\sqrt{3}}{2}\\text{and}\\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -107,8 +117,16 @@
             "style": "indent",
             "added": true
           },
-          "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
-          "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
+          {
+            "text": "= \\ \\dfrac{2\\left[\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\cos 20^{\\circ}\\ - \\ \\left(\\dfrac{1}{2}\\right)\\sin 20^{\\circ}\\right]}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left[\\sin 60^{\\circ}\\cos 20^{\\circ}\\ - \\ \\cos 60^{\\circ}\\sin 20^{\\circ}\\right]}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -139,8 +157,16 @@
         ],
         "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question.",
         "lines_compact": [
-          "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
-          "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
+          {
+            "text": "= \\ \\dfrac{2\\left[\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\cos 20^{\\circ}\\ - \\ \\left(\\dfrac{1}{2}\\right)\\sin 20^{\\circ}\\right]}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left[\\sin 60^{\\circ}\\cos 20^{\\circ}\\ - \\ \\cos 60^{\\circ}\\sin 20^{\\circ}\\right]}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -154,7 +180,11 @@
             "text": "(sinA cosB − cosA sinB = sin(A − B))",
             "added": true
           },
-          "= 2 sin(60° − 20°) / (sin20° cos20°)",
+          {
+            "text": "= \\ \\dfrac{2\\sin \\left(60^{\\circ}\\ - \\ 20^{\\circ}\\right)}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(60° − 20° = 40°)",
             "added": true
@@ -189,7 +219,11 @@
         ],
         "memory_tip": "The numerator collapses to 2 sin 40°.",
         "lines_compact": [
-          "= 2 sin(60° − 20°) / (sin20° cos20°)",
+          {
+            "text": "= \\ \\dfrac{2\\sin \\left(60^{\\circ}\\ - \\ 20^{\\circ}\\right)}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 sin40° / (sin20° cos20°)"
         ]
       },
@@ -205,7 +239,11 @@
             "text": "Write sin40° with the double-angle formula:",
             "added": true
           },
-          "= 2(2 sin20° cos20°) / (sin20° cos20°)",
+          {
+            "text": "= \\ \\dfrac{2\\left(2\\sin 20^{\\circ}\\cos 20^{\\circ}\\right)}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "sin20° cos20° cancels from top and bottom:",
             "added": true
@@ -248,7 +286,11 @@
         ],
         "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4.",
         "lines_compact": [
-          "= 2(2 sin20° cos20°) / (sin20° cos20°)",
+          {
+            "text": "= \\ \\dfrac{2\\left(2\\sin 20^{\\circ}\\cos 20^{\\circ}\\right)}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 4 = R.H.S",
             "style": "boxed"

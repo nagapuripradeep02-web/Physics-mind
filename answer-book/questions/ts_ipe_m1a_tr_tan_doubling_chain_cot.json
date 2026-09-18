@@ -53,12 +53,28 @@
             "style": "heading"
           },
           "Every ratio below must exist, so sin 8θ ≠ 0,",
-          "that is θ ≠ nπ/8. This is stronger than the",
-          "θ ≠ nπ/2 the question states.",
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\theta \\ \\ne \\ \\dfrac{n\\pi }{8}.\\ \\text{This}\\ \\text{is}\\ \\text{stronger}\\ \\text{than}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\theta \\ \\ne \\ \\dfrac{n\\pi }{2}\\text{the}\\ \\text{question}\\ \\text{states}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "First prove a rule that is used three times:",
-          "cot θ − tan θ = cosθ/sinθ − sinθ/cosθ",
+          {
+            "text": "\\cot \\theta \\ - \\ \\tan \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta } - \\ \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(common denominator sinθ cosθ)",
-          "= (cos²θ − sin²θ)/(sinθ cosθ)",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta }{\\sin \\theta \\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos²θ − sin²θ = cos 2θ, and",
           {
             "text": "  sinθ cosθ = (1/2) sin 2θ)",

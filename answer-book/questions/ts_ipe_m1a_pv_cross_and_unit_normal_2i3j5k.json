@@ -173,12 +173,17 @@
         "margin_note": "Last mark. Divide the cross product by its own length. Both directions along that line are unit vectors, so the answer carries a ± sign.",
         "memory_tip": "A unit vector is the vector over its own length, and BOTH signs are correct — write the ±.",
         "lines": [
-          "Unit vector = ± (a × b)/|a × b|",
+          {
+            "text": "\\text{Unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{a\\ \\times \\ b}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "A plane has two sides, so both",
           "directions are correct answers.",
           {
-            "text": "∴ ± (−26i − 9j + 5k)/√782",
-            "style": "boxed"
+            "text": "\\therefore \\ \\pm \\ \\dfrac{ - 26i\\ - \\ 9j\\ + \\ 5k}{\\sqrt{782}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

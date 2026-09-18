@@ -52,13 +52,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = (x² − 4)/(x − 2)",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x^{2}\\ - \\ 4}{x\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The denominator must not be zero:",
           "x − 2 ≠ 0 ⇒ x ≠ 2",
           "∴ Domain = R − {2}",
           "For x ≠ 2 the factor x − 2 cancels:",
           "(x² − 4 = (x − 2)(x + 2); x − 2 ≠ 0, so it cancels)",
-          "f(x) = (x − 2)(x + 2)/(x − 2) = x + 2"
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 2\\right)}{x\\ - \\ 2} = \\ x\\ + \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

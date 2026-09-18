@@ -57,7 +57,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "sin θ = 4/5 is positive, so θ is in Q₁ or Q₂.",
+          {
+            "text": "\\sin \\theta \\ = \\ \\dfrac{4}{5}\\text{is}\\ \\text{positive},\\ \\text{so}\\ \\theta \\ \\text{is}\\ \\text{in}\\ Q_{1}\\ \\text{or}\\ Q_{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin is positive only in Q₁ and Q₂)",
           "Since θ is not in Q₁, θ lies in Q₂.",
           "In Q₂, cos θ < 0."
@@ -103,19 +107,32 @@
             "text": "Use sin²θ + cos²θ = 1:",
             "added": true
           },
-          "cos²θ = 1 − sin²θ = 1 − (4/5)² = 1 − 16/25",
           {
-            "text": "(1 = 25/25, and 25/25 − 16/25 = 9/25)",
-            "added": true
-          },
-          "= 9/25 ⇒ cos θ = ±3/5",
-          {
-            "text": "(√(9/25) = 3/5; in Q₂ cos is negative)",
-            "added": true
+            "text": "\\cos ^{2} \\theta \\ = \\ 1\\ - \\ \\sin ^{2} \\theta \\ = \\ 1\\ - \\ \\left(\\dfrac{4}{5}\\right)^{2}\\ = \\ 1\\ - \\ \\dfrac{16}{25}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ cos θ = −3/5   (since cos θ < 0)",
-            "style": "boxed"
+            "text": "\\left(1\\ = \\ \\dfrac{25}{25},\\ \\text{and}\\ \\dfrac{25}{25} - \\ \\dfrac{16}{25} = \\ \\dfrac{9}{25}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{9}{25} \\Rightarrow \\ \\cos \\theta \\ = \\ \\pm \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{9}{25}}\\ = \\ \\dfrac{3}{5};\\ \\text{in}\\ Q_{2}\\cos \\text{is}\\ \\text{negative}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ - \\dfrac{3}{5}\\left(\\sin ce\\cos \\theta \\ < \\ 0\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,11 +162,20 @@
           "Leaving the answer as ±3/5."
         ],
         "lines_compact": [
-          "cos²θ = 1 − sin²θ = 1 − (4/5)² = 1 − 16/25",
-          "= 9/25 ⇒ cos θ = ±3/5",
           {
-            "text": "∴ cos θ = −3/5   (since cos θ < 0)",
-            "style": "boxed"
+            "text": "\\cos ^{2} \\theta \\ = \\ 1\\ - \\ \\sin ^{2} \\theta \\ = \\ 1\\ - \\ \\left(\\dfrac{4}{5}\\right)^{2}\\ = \\ 1\\ - \\ \\dfrac{16}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{9}{25} \\Rightarrow \\ \\cos \\theta \\ = \\ \\pm \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ - \\dfrac{3}{5}\\left(\\sin ce\\cos \\theta \\ < \\ 0\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

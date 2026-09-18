@@ -122,10 +122,15 @@
             "text": "(|a||b| = √6 × √26 = √156)",
             "added": true
           },
-          "= √155/(√6 · √26) = √155/√156",
           {
-            "text": "∴ sin θ = √(155/156)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{155}}{\\sqrt{6}\\ \\cdot \\ \\sqrt{26}} = \\ \\dfrac{\\sqrt{155}}{\\sqrt{156}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ \\sqrt{\\dfrac{155}{156}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,10 +166,15 @@
             "render": "katex",
             "style": "eq"
           },
-          "= √155/(√6 · √26) = √155/√156",
           {
-            "text": "∴ sin θ = √(155/156)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{155}}{\\sqrt{6}\\ \\cdot \\ \\sqrt{26}} = \\ \\dfrac{\\sqrt{155}}{\\sqrt{156}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ \\sqrt{\\dfrac{155}{156}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -52,12 +52,28 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "π/2 < θ < π, so θ is in the second quadrant.",
+          {
+            "text": "\\dfrac{\\pi }{2} < \\ \\theta \\ < \\ \\pi ,\\ \\text{so}\\ \\theta \\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{second}\\ \\text{quadrant}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "In the second quadrant sinθ is positive.",
           "(sin²θ + cos²θ = 1, and the sign is +)",
-          "sinθ = +√(1 − cos²θ) = √(1 − 25/169)",
-          "((−5/13)² = 25/169, and 169 − 25 = 144)",
-          "= √(144/169) = 12/13"
+          {
+            "text": "\\sin \\theta \\ = \\ + \\sqrt{1\\ - \\ \\cos ^{2} \\theta }\\ = \\ \\sqrt{1\\ - \\ \\dfrac{25}{169}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left( - \\dfrac{5}{13}\\right)^{2}\\ = \\ \\dfrac{25}{169},\\ \\text{and}\\ 169\\ - \\ 25\\ = \\ 144\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{144}{169}}\\ = \\ \\dfrac{12}{13}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,7 +117,11 @@
             "added": true
           },
           "sin2θ = 2 sinθ cosθ",
-          "= 2 × (12/13) × (−5/13)",
+          {
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{12}{13}\\right)\\ \\times \\ \\left( - \\dfrac{5}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 × 12 × 5 = 120 and 13 × 13 = 169; one",
             "added": true
@@ -111,10 +131,15 @@
             "style": "indent",
             "added": true
           },
-          "= −120/169",
           {
-            "text": "∴ sin2θ = −120/169",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{120}{169}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sin 2\\theta \\ = \\ - \\dfrac{120}{169}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,11 +171,20 @@
         ],
         "lines_compact": [
           "sin2θ = 2 sinθ cosθ",
-          "= 2 × (12/13) × (−5/13)",
-          "= −120/169",
           {
-            "text": "∴ sin2θ = −120/169",
-            "style": "boxed"
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{12}{13}\\right)\\ \\times \\ \\left( - \\dfrac{5}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{120}{169}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sin 2\\theta \\ = \\ - \\dfrac{120}{169}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

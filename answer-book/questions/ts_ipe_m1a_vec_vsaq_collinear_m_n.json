@@ -80,9 +80,21 @@
             "text": "  matching components are in one ratio)",
             "style": "indent"
           },
-          "∴ 2/4 = 5/m = 1/n",
-          "(2/4 = 1/2)",
-          "⇒ 1/2 = 5/m = 1/n"
+          {
+            "text": "\\therefore \\ \\dfrac{2}{4} = \\ \\dfrac{5}{m} = \\ \\dfrac{1}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{4} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{2} = \\ \\dfrac{5}{m} = \\ \\dfrac{1}{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,12 +137,20 @@
             "text": "(cross-multiply: 5 × 2 = m × 1)",
             "added": true
           },
-          "1/2 = 5/m ⇒ m = 2 × 5 = 10",
+          {
+            "text": "\\dfrac{1}{2} = \\ \\dfrac{5}{m} \\Rightarrow \\ m\\ = \\ 2\\ \\times \\ 5\\ = \\ 10",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply: 1 × 2 = n × 1)",
             "added": true
           },
-          "1/2 = 1/n ⇒ n = 2",
+          {
+            "text": "\\dfrac{1}{2} = \\ \\dfrac{1}{n} \\Rightarrow \\ n\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: 4i + 10j + 2k = 2(2i + 5j + k))",
             "added": true
@@ -167,8 +187,16 @@
           "Finding m and forgetting n."
         ],
         "lines_compact": [
-          "1/2 = 5/m ⇒ m = 2 × 5 = 10",
-          "1/2 = 1/n ⇒ n = 2",
+          {
+            "text": "\\dfrac{1}{2} = \\ \\dfrac{5}{m} \\Rightarrow \\ m\\ = \\ 2\\ \\times \\ 5\\ = \\ 10",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{2} = \\ \\dfrac{1}{n} \\Rightarrow \\ n\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ m = 10, n = 2",
             "style": "boxed"

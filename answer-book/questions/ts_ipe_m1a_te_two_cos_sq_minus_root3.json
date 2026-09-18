@@ -169,7 +169,11 @@
             "added": true
           },
           "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
-          "⇒ sinθ = √3/2  (or)  sinθ = −√3",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2}\\left(\\text{or}\\right)\\sin \\theta \\ = \\ - \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But |sinθ| ≤ 1 always, and √3 > 1,",
           "so sinθ = −√3 has NO solution."
         ],
@@ -203,7 +207,11 @@
         ],
         "lines_compact": [
           "⇒ 2sinθ − √3 = 0  (or)  sinθ + √3 = 0",
-          "⇒ sinθ = √3/2  (or)  sinθ = −√3",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2}\\left(\\text{or}\\right)\\sin \\theta \\ = \\ - \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But |sinθ| ≤ 1 always, and √3 > 1,",
           "so sinθ = −√3 has NO solution."
         ]
@@ -217,16 +225,27 @@
         "margin_note": "Last mark. sinθ = √3/2 is sin(π/3), so the principal value is π/3 and the sine general solution applies.",
         "memory_tip": "sinθ = √3/2 = sin(π/3), so the sine general solution applies: nπ + (−1)ⁿ(π/3).",
         "lines": [
-          "Now sinθ = √3/2 = sin(π/3)",
-          "Here the principal value is α = π/3",
+          {
+            "text": "\\text{Now}\\ \\sin \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2} = \\ \\sin \\left(\\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
           {
-            "text": "(the sine general solution with α = π/3)",
+            "text": "\\left(\\text{the}\\ \\sin e\\ \\text{general}\\ \\text{solution}\\ \\text{with}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ θ = nπ + (−1)ⁿ (π/3),  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{3}\\right),\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -257,12 +276,21 @@
           "Using the cosine general solution."
         ],
         "lines_compact": [
-          "Now sinθ = √3/2 = sin(π/3)",
-          "Here the principal value is α = π/3",
+          {
+            "text": "\\text{Now}\\ \\sin \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2} = \\ \\sin \\left(\\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
           {
-            "text": "∴ θ = nπ + (−1)ⁿ (π/3),  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{3}\\right),\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

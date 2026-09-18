@@ -53,10 +53,22 @@
             "style": "heading"
           },
           "(gof)(x) = g[f(x)]",
-          "f acts first: f(x) = 1/x",
-          "For x ∈ (0, ∞) we have x > 0, so 1/x > 0.",
+          {
+            "text": "f\\ \\text{acts}\\ \\text{first}:\\ f\\left(x\\right)\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{For}\\ x\\ \\in \\ \\left(0,\\ \\infty \\right)\\ \\text{we}\\ \\text{have}\\ x\\ > \\ 0,\\ \\text{so}\\ \\dfrac{1}{x} > \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
           "A positive number has a real square root,",
-          "so g can act on 1/x."
+          {
+            "text": "\\text{so}\\ g\\ \\text{can}\\ \\text{act}\\ \\text{on}\\ \\dfrac{1}{x}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -97,16 +109,31 @@
         "margin_note": "Second mark. Either √(1/x) or 1/√x is a correct final form; the simplified 1/√x is the one to box, with the domain written beside it.",
         "memory_tip": "√(a/b) = √a/√b for positive a and b, and √1 = 1, so √(1/x) = 1/√x.",
         "lines": [
-          "Now apply g to 1/x:",
-          "g(1/x) = √(1/x)",
           {
-            "text": "(√(p/q) = √p/√q when p ≥ 0 and q > 0)",
+            "text": "\\text{Now}\\ \\text{apply}\\ g\\ \\text{to}\\ \\dfrac{1}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g\\left(\\dfrac{1}{x}\\right)\\ = \\ \\sqrt{\\dfrac{1}{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{p}{q}}\\ = \\ \\dfrac{\\sqrt{p}}{\\sqrt{q}}\\text{when}\\ p\\ \\ge \\ 0\\ \\text{and}\\ q\\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= √1/√x = 1/√x",
           {
-            "text": "∴ (gof)(x) = 1/√x, x ∈ (0, ∞)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{1}}{\\sqrt{x}} = \\ \\dfrac{1}{\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(gof\\right)\\left(x\\right)\\ = \\ \\dfrac{1}{\\sqrt{x}},\\ x\\ \\in \\ \\left(0,\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -137,12 +164,25 @@
           "Leaving the domain x ∈ (0, ∞) off the final line."
         ],
         "lines_compact": [
-          "Now apply g to 1/x:",
-          "g(1/x) = √(1/x)",
-          "= √1/√x = 1/√x",
           {
-            "text": "∴ (gof)(x) = 1/√x, x ∈ (0, ∞)",
-            "style": "boxed"
+            "text": "\\text{Now}\\ \\text{apply}\\ g\\ \\text{to}\\ \\dfrac{1}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g\\left(\\dfrac{1}{x}\\right)\\ = \\ \\sqrt{\\dfrac{1}{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{1}}{\\sqrt{x}} = \\ \\dfrac{1}{\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(gof\\right)\\left(x\\right)\\ = \\ \\dfrac{1}{\\sqrt{x}},\\ x\\ \\in \\ \\left(0,\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

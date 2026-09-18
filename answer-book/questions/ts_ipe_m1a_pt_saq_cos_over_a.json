@@ -58,13 +58,26 @@
             "style": "heading"
           },
           "(cosine rule for each cosine)",
-          "L.H.S = cosA/a + cosB/b + cosC/c",
-          "= (1/a)[(b²+c²−a²)/(2bc)] + (1/b)[(c²+a²−b²)/(2ca)]",
           {
-            "text": "+ (1/c)[(a²+b²−c²)/(2ab)]",
-            "style": "indent"
+            "text": "L.H.S\\ = \\ \\dfrac{\\cos A}{a} + \\ \\dfrac{\\cos B}{b} + \\ \\dfrac{\\cos C}{c}",
+            "style": "normal",
+            "render": "katex"
           },
-          "((1/a) × 1/(2bc) = 1/(2abc), and likewise)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{a}\\right)\\left[\\dfrac{b^{2} + c^{2} - a^{2}}{2bc}\\right]\\ + \\ \\left(\\dfrac{1}{b}\\right)\\left[\\dfrac{c^{2} + a^{2} - b^{2}}{2ca}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{1}{c}\\right)\\left[\\dfrac{a^{2} + b^{2} - c^{2}}{2ab}\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{a}\\right)\\ \\times \\ \\dfrac{1}{2bc} = \\ \\dfrac{1}{2abc},\\ \\text{and}\\ \\text{likewise}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each denominator is 2abc:"
         ],
         "recall": {
@@ -108,14 +121,19 @@
             "text": "(add the tops over 2abc)",
             "added": true
           },
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
+          {
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{2abc}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(each square appears twice with + and once with −)",
             "added": true
           },
           {
-            "text": "= (a² + b² + c²)/(2abc) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{2abc} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,10 +163,15 @@
           "Writing the denominator as abc."
         ],
         "lines_compact": [
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
           {
-            "text": "= (a² + b² + c²)/(2abc) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{2abc}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{2abc} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

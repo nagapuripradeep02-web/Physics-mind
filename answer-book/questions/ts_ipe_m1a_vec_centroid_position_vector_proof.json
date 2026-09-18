@@ -65,7 +65,11 @@
           "Let D be the midpoint of BC.",
           "(the midpoint of BC is halfway between b and c)",
           "By the midpoint rule,",
-          "OD = (b + c)/2",
+          {
+            "text": "OD\\ = \\ \\dfrac{b\\ + \\ c}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a median joins a vertex to the midpoint of the",
           {
             "text": "  opposite side)",
@@ -116,23 +120,47 @@
             "added": true
           },
           "Let G be the point with",
-          "OG = (a + b + c)/3.   ……(1)",
+          {
+            "text": "OG\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}.\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a vector from A is its end point minus OA)",
             "added": true
           },
-          "AG = OG − OA = (a + b + c)/3 − a",
           {
-            "text": "(write a as 3a/3 and subtract)",
+            "text": "AG\\ = \\ OG\\ - \\ OA\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3} - \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ a\\ \\text{as}\\ \\dfrac{3a}{3}\\text{and}\\ \\text{subtract}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "   = (b + c − 2a)/3",
-          "AD = OD − OA = (b + c)/2 − a",
           {
-            "text": "(write a as 2a/2 and subtract)",
+            "text": "= \\ \\dfrac{b\\ + \\ c\\ - \\ 2a}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "AD\\ = \\ OD\\ - \\ OA\\ = \\ \\dfrac{b\\ + \\ c}{2} - \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ a\\ \\text{as}\\ \\dfrac{2a}{2}\\text{and}\\ \\text{subtract}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "   = (b + c − 2a)/2"
+          {
+            "text": "= \\ \\dfrac{b\\ + \\ c\\ - \\ 2a}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -164,11 +192,31 @@
         ],
         "lines_compact": [
           "Let G be the point with",
-          "OG = (a + b + c)/3.   ……(1)",
-          "AG = OG − OA = (a + b + c)/3 − a",
-          "   = (b + c − 2a)/3",
-          "AD = OD − OA = (b + c)/2 − a",
-          "   = (b + c − 2a)/2"
+          {
+            "text": "OG\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}.\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "AG\\ = \\ OG\\ - \\ OA\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{3} - \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b\\ + \\ c\\ - \\ 2a}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "AD\\ = \\ OD\\ - \\ OA\\ = \\ \\dfrac{b\\ + \\ c}{2} - \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b\\ + \\ c\\ - \\ 2a}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -181,7 +229,11 @@
         "memory_tip": "AG = (2/3) AD. The same fraction that puts G on the median also gives the 2 : 1 ratio.",
         "lines": [
           "Comparing the two,",
-          "AG = (2/3) AD",
+          {
+            "text": "AG\\ = \\ \\left(\\dfrac{2}{3}\\right)AD",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(both have the top b + c − 2a, and",
             "added": true
@@ -194,10 +246,16 @@
           "AG is a number times AD, and both start",
           "at A, so G lies on the line AD.",
           {
-            "text": "(GD = AD − AG = (1/3)AD)",
+            "text": "\\left(GD\\ = \\ AD\\ - \\ AG\\ = \\ \\left(\\dfrac{1}{3}\\right)AD\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Since AG = (2/3) AD, G divides AD with",
+          {
+            "text": "\\operatorname{Sin} ceAG\\ = \\ \\left(\\dfrac{2}{3}\\right)AD,\\ G\\ \\text{divides}\\ AD\\ \\text{with}",
+            "style": "normal",
+            "render": "katex"
+          },
           "AG : GD = 2 : 1."
         ],
         "recall": {
@@ -230,10 +288,18 @@
         ],
         "lines_compact": [
           "Comparing the two,",
-          "AG = (2/3) AD",
+          {
+            "text": "AG\\ = \\ \\left(\\dfrac{2}{3}\\right)AD",
+            "style": "normal",
+            "render": "katex"
+          },
           "AG is a number times AD, and both start",
           "at A, so G lies on the line AD.",
-          "Since AG = (2/3) AD, G divides AD with",
+          {
+            "text": "\\operatorname{Sin} ceAG\\ = \\ \\left(\\dfrac{2}{3}\\right)AD,\\ G\\ \\text{divides}\\ AD\\ \\text{with}",
+            "style": "normal",
+            "render": "katex"
+          },
           "AG : GD = 2 : 1."
         ]
       },
@@ -246,7 +312,11 @@
         "margin_note": "Last mark. One median is not enough: the centroid is where all three meet. The expression (a + b + c)/3 treats a, b and c alike, so the same working at B and at C puts G on those medians too.",
         "memory_tip": "The expression treats a, b and c alike, so the same working at B and C puts G on all three medians.",
         "lines": [
-          "The expression (a + b + c)/3 does not change",
+          {
+            "text": "\\text{The}\\ \\text{expression}\\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}\\text{does}\\ \\text{not}\\ \\text{change}",
+            "style": "normal",
+            "render": "katex"
+          },
           "if the letters a, b, c are swapped.",
           {
             "text": "(a + b + c = b + c + a = c + a + b)",
@@ -258,8 +328,9 @@
           "G is the common point of the three medians,",
           "which is the centroid of triangle ABC.",
           {
-            "text": "∴ Centroid = (1/3)(a + b + c)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Centroid}\\ = \\ \\left(\\dfrac{1}{3}\\right)\\left(a\\ + \\ b\\ + \\ c\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -290,7 +361,11 @@
           "Assuming the three medians meet at a point instead of showing that G is on each of them."
         ],
         "lines_compact": [
-          "The expression (a + b + c)/3 does not change",
+          {
+            "text": "\\text{The}\\ \\text{expression}\\ \\dfrac{a\\ + \\ b\\ + \\ c}{3}\\text{does}\\ \\text{not}\\ \\text{change}",
+            "style": "normal",
+            "render": "katex"
+          },
           "if the letters a, b, c are swapped.",
           "So the same working with the midpoint of",
           "CA, and with the midpoint of AB, puts G on",
@@ -298,8 +373,9 @@
           "G is the common point of the three medians,",
           "which is the centroid of triangle ABC.",
           {
-            "text": "∴ Centroid = (1/3)(a + b + c)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Centroid}\\ = \\ \\left(\\dfrac{1}{3}\\right)\\left(a\\ + \\ b\\ + \\ c\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -69,12 +69,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = (cos9° + sin9°)/(cos9° − sin9°)",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{\\cos 9^{\\circ}\\ + \\ \\sin 9^{\\circ}}{\\cos 9^{\\circ}\\ - \\ \\sin 9^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide numerator and denominator by cos9°:",
           "(cos9° ≠ 0, and sin9°/cos9° = tan9°)",
-          "= (1 + tan9°)/(1 − tan9°)",
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\tan 9^{\\circ}}{1\\ - \\ \\tan 9^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Write 1 as tan45°, so a tan(A + B) form appears:",
-          "= (tan45° + tan9°)/(1 − tan45° tan9°)   [∵ tan45° = 1]"
+          {
+            "text": "= \\ \\dfrac{\\tan 45^{\\circ}\\ + \\ \\tan 9^{\\circ}}{1\\ - \\ \\tan 45^{\\circ}\\tan 9^{\\circ}}\\left[\\because \\ \\tan 45^{\\circ}\\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,7 +126,9 @@
         "memory_tip": "The formula gives tan54°, and 54° = 90° − 36°, so tan54° is cot36°.",
         "lines": [
           {
-            "text": "(tan(A + B) = (tanA + tanB)/(1 − tanA tanB))",
+            "text": "\\left(\\tan \\left(A\\ + \\ B\\right)\\ = \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= tan(45° + 9°) = tan54°",

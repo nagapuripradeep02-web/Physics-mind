@@ -60,8 +60,9 @@
           "a × b is perpendicular to both a and b.",
           "∴ required unit vector",
           {
-            "text": "= ± (a × b)/|a × b|",
-            "style": "indent"
+            "text": "= \\ \\pm \\ \\dfrac{a\\ \\times \\ b}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -186,8 +187,9 @@
           "Both directions are unit normals, so",
           "the answer carries a ± sign.",
           {
-            "text": "∴ Unit vector = ± (2i − j − k)/√6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{2i\\ - \\ j\\ - \\ k}{\\sqrt{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -222,8 +224,9 @@
           "Both directions are unit normals, so",
           "the answer carries a ± sign.",
           {
-            "text": "∴ Unit vector = ± (2i − j − k)/√6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{2i\\ - \\ j\\ - \\ k}{\\sqrt{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

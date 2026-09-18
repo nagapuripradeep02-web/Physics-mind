@@ -128,19 +128,26 @@
             "style": "indent",
             "added": true
           },
-          "⇒ c = (2 ± √20)/8 = (1 ± √5)/4",
+          {
+            "text": "\\Rightarrow \\ c\\ = \\ \\dfrac{2\\ \\pm \\ \\sqrt{20}}{8} = \\ \\dfrac{1\\ \\pm \\ \\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√20 = 2√5; dividing top and bottom by 2)",
             "added": true
           },
           "36° is acute, so c > 0",
           {
-            "text": "((1 − √5)/4 is negative, so it is rejected)",
+            "text": "\\left(\\dfrac{1\\ - \\ \\sqrt{5}}{4}\\text{is}\\ \\text{negative},\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ \\text{rejected}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ cos36° = (√5 + 1)/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -175,11 +182,16 @@
           "4c³ + 2c² − 3c − 1 = 0",
           "⇒ (c + 1)(4c² − 2c − 1) = 0",
           "c = cos36° ≠ −1, so 4c² − 2c − 1 = 0",
-          "⇒ c = (2 ± √20)/8 = (1 ± √5)/4",
+          {
+            "text": "\\Rightarrow \\ c\\ = \\ \\dfrac{2\\ \\pm \\ \\sqrt{20}}{8} = \\ \\dfrac{1\\ \\pm \\ \\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "36° is acute, so c > 0",
           {
-            "text": "∴ cos36° = (√5 + 1)/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

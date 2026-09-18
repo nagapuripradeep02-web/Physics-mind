@@ -61,12 +61,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = 1/r² + 1/r₁² + 1/r₂² + 1/r₃²",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{1}{r^{2}} + \\ \\dfrac{1}{r_{1}^{2}} + \\ \\dfrac{1}{r_{2}^{2}} + \\ \\dfrac{1}{r_{3}^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(r = Δ/s, r₁ = Δ/(s−a), and so on;",
           "  take the reciprocal of each)",
-          "= (s/Δ)² + ((s−a)/Δ)² + ((s−b)/Δ)² + ((s−c)/Δ)²",
+          {
+            "text": "= \\ \\left(\\dfrac{s}{\\Delta }\\right)^{2}\\ + \\ \\left(\\dfrac{s - a}{\\Delta }\\right)^{2}\\ + \\ \\left(\\dfrac{s - b}{\\Delta }\\right)^{2}\\ + \\ \\left(\\dfrac{s - c}{\\Delta }\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the same denominator Δ²)",
-          "= [s² + (s−a)² + (s−b)² + (s−c)²]/Δ²"
+          {
+            "text": "= \\ \\dfrac{s^{2}\\ + \\ \\left(s - a\\right)^{2}\\ + \\ \\left(s - b\\right)^{2}\\ + \\ \\left(s - c\\right)^{2}}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,12 +126,25 @@
             "text": "(collect: 4s², then the −2s terms, then the squares)",
             "added": true
           },
-          "= [4s² − 2s(a+b+c) + a²+b²+c²]/Δ²",
-          "= [4s² − 2s(2s) + a²+b²+c²]/Δ²   [∵ a+b+c = 2s]",
-          "= [4s² − 4s² + a²+b²+c²]/Δ²",
           {
-            "text": "= (a²+b²+c²)/Δ² = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 2s\\left(a + b + c\\right)\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 2s\\left(2s\\right)\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}\\left[\\because \\ a + b + c\\ = \\ 2s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 4s^{2}\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2} + b^{2} + c^{2}}{\\Delta ^{2}} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,12 +176,25 @@
         ],
         "lines_compact": [
           "= [s² + (s²−2as+a²) + (s²−2bs+b²) + (s²−2cs+c²)]/Δ²",
-          "= [4s² − 2s(a+b+c) + a²+b²+c²]/Δ²",
-          "= [4s² − 2s(2s) + a²+b²+c²]/Δ²   [∵ a+b+c = 2s]",
-          "= [4s² − 4s² + a²+b²+c²]/Δ²",
           {
-            "text": "= (a²+b²+c²)/Δ² = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 2s\\left(a + b + c\\right)\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 2s\\left(2s\\right)\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}\\left[\\because \\ a + b + c\\ = \\ 2s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4s^{2}\\ - \\ 4s^{2}\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2} + b^{2} + c^{2}}{\\Delta ^{2}} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

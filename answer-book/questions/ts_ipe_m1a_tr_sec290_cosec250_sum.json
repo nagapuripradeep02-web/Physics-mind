@@ -101,14 +101,21 @@
             "text": "Use the common denominator √3 sin20° cos20°:",
             "added": true
           },
-          "= (√3 cos20° − sin20°)/(√3 sin20° cos20°)",
           {
-            "text": "Take out 2 from the top: √3/2 = sin60°",
+            "text": "= \\ \\dfrac{\\sqrt{3}\\cos 20^{\\circ}\\ - \\ \\sin 20^{\\circ}}{\\sqrt{3}\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ \\text{out}\\ 2\\ \\text{from}\\ \\text{the}\\ \\text{top}:\\ \\dfrac{\\sqrt{3}}{2} = \\ \\sin 60^{\\circ}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  and 1/2 = cos60°:",
+            "text": "\\text{and}\\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Numerator = 2(sin60° cos20° − cos60° sin20°)",
@@ -117,16 +124,31 @@
             "text": "Write the bottom so that 2 sin20° cos20° appears:",
             "added": true
           },
-          "Denominator = (√3/2)(2 sin20° cos20°)",
-          "= (√3/2) sin40°",
-          "L.H.S = 2 sin40° ÷ [(√3/2) sin40°]",
           {
-            "text": "(sin40° cancels, and 2 ÷ (√3/2) = 4/√3)",
+            "text": "\\text{Denominator}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(2\\sin 20^{\\circ}\\cos 20^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\sin 40^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\sin 40^{\\circ}\\ \\div \\ \\left[\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\sin 40^{\\circ}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin 40^{\\circ}\\ \\text{cancels},\\ \\text{and}\\ 2\\ \\div \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\ = \\ \\dfrac{4}{\\sqrt{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ L.H.S = 4/√3 = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{4}{\\sqrt{3}} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,15 +179,32 @@
           "Forgetting the 2 in 2 sin20° cos20° = sin40°."
         ],
         "lines_compact": [
-          "= (√3 cos20° − sin20°)/(√3 sin20° cos20°)",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3}\\cos 20^{\\circ}\\ - \\ \\sin 20^{\\circ}}{\\sqrt{3}\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = 2(sin60° cos20° − cos60° sin20°)",
           "= 2 sin(60° − 20°) = 2 sin40°",
-          "Denominator = (√3/2)(2 sin20° cos20°)",
-          "= (√3/2) sin40°",
-          "L.H.S = 2 sin40° ÷ [(√3/2) sin40°]",
           {
-            "text": "∴ L.H.S = 4/√3 = R.H.S",
-            "style": "boxed"
+            "text": "\\text{Denominator}\\ = \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(2\\sin 20^{\\circ}\\cos 20^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\sin 40^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\sin 40^{\\circ}\\ \\div \\ \\left[\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\sin 40^{\\circ}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{4}{\\sqrt{3}} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

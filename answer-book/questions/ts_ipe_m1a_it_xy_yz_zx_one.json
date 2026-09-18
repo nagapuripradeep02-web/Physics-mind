@@ -65,7 +65,11 @@
           "Tan⁻¹y = B ⇒ tanB = y",
           "Tan⁻¹z = C ⇒ tanC = z",
           "(this is the condition given in the question)",
-          "Hence A + B + C = π/2"
+          {
+            "text": "\\text{Hence}\\ A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,12 +108,20 @@
         "margin_note": "Half the marks. Move C across, then take the tangent of both sides. tan(π/2 − C) is cot C, which is 1/tan C — and that is where the z ends up in a denominator.",
         "memory_tip": "Move C across FIRST, then take tangents. tan(π/2 − C) = cot C = 1/tan C, which puts z in a denominator.",
         "lines": [
-          "A + B + C = π/2 ⇒ A + B = π/2 − C",
+          {
+            "text": "A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{\\pi }{2} \\Rightarrow \\ A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take the tangent of both sides)",
             "added": true
           },
-          "⇒ tan(A + B) = tan(π/2 − C)",
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(A\\ + \\ B\\right)\\ = \\ \\tan \\left(\\dfrac{\\pi }{2} - \\ C\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(if z = 0, then A + B = π/2, so xy = 1 and",
             "added": true
@@ -125,10 +137,16 @@
             "added": true
           },
           {
-            "text": "(tan(π/2 − C) = cotC)",
+            "text": "\\left(\\tan \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\cot C\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (tanA + tanB)/(1 − tanA tanB) = cotC = 1/tanC"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B} = \\ \\cot C\\ = \\ \\dfrac{1}{\\tan C}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,9 +176,21 @@
           "Taking tangents before rearranging, which leaves three angles inside one tangent."
         ],
         "lines_compact": [
-          "A + B + C = π/2 ⇒ A + B = π/2 − C",
-          "⇒ tan(A + B) = tan(π/2 − C)",
-          "⇒ (tanA + tanB)/(1 − tanA tanB) = cotC = 1/tanC"
+          {
+            "text": "A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{\\pi }{2} \\Rightarrow \\ A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(A\\ + \\ B\\right)\\ = \\ \\tan \\left(\\dfrac{\\pi }{2} - \\ C\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B} = \\ \\cot C\\ = \\ \\dfrac{1}{\\tan C}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -176,7 +206,11 @@
             "text": "(put tanA = x, tanB = y and tanC = z)",
             "added": true
           },
-          "⇒ (x + y)/(1 − xy) = 1/z",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ + \\ y}{1\\ - \\ xy} = \\ \\dfrac{1}{z}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply)",
             "added": true
@@ -224,7 +258,11 @@
           "Stopping at zx + yz = 1 − xy without collecting."
         ],
         "lines_compact": [
-          "⇒ (x + y)/(1 − xy) = 1/z",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ + \\ y}{1\\ - \\ xy} = \\ \\dfrac{1}{z}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ z(x + y) = 1 − xy",
           "⇒ zx + yz = 1 − xy",
           {

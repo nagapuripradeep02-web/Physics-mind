@@ -110,23 +110,36 @@
             "added": true
           },
           "= sin60° cos45° + cos60° sin45°",
-          "= (√3/2)(1/√2) + (1/2)(1/√2) = (√3 + 1)/(2√2)",
           {
-            "text": "(√3/(2√2) + 1/(2√2) = (√3 + 1)/(2√2))",
+            "text": "= \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ \\left(\\dfrac{1}{2}\\right)\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sqrt{3}}{2\\sqrt{2}} + \\ \\dfrac{1}{2\\sqrt{2}} = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Multiply by sin 60° = √3/2:",
+            "text": "\\text{Multiply}\\ \\text{by}\\ \\sin 60^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Expression = (√3 + 1)/(2√2) × √3/2",
+          {
+            "text": "\\text{Expression}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}} \\times \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√3 × √3 = 3, and 2√2 × 2 = 4√2)",
             "added": true
           },
           {
-            "text": "∴ Value = √3(√3 + 1)/(4√2) = (3 + √3)/(4√2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Value}\\ = \\ \\dfrac{\\sqrt{3}\\left(\\sqrt{3}\\ + \\ 1\\right)}{4\\sqrt{2}} = \\ \\dfrac{3\\ + \\ \\sqrt{3}}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -159,11 +172,20 @@
         "lines_compact": [
           "sin 105° = sin(60° + 45°)",
           "= sin60° cos45° + cos60° sin45°",
-          "= (√3/2)(1/√2) + (1/2)(1/√2) = (√3 + 1)/(2√2)",
-          "Expression = (√3 + 1)/(2√2) × √3/2",
           {
-            "text": "∴ Value = √3(√3 + 1)/(4√2) = (3 + √3)/(4√2)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ \\left(\\dfrac{1}{2}\\right)\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Expression}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}} \\times \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Value}\\ = \\ \\dfrac{\\sqrt{3}\\left(\\sqrt{3}\\ + \\ 1\\right)}{4\\sqrt{2}} = \\ \\dfrac{3\\ + \\ \\sqrt{3}}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

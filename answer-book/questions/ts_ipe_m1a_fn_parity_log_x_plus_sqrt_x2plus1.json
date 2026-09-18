@@ -59,7 +59,11 @@
           "(multiply the two, using (p − q)(p + q) = p² − q²)",
           "(−x + √(x² + 1))(x + √(x² + 1))",
           "= (√(x² + 1))² − x² = x² + 1 − x² = 1",
-          "⇒ −x + √(x² + 1) = 1/(x + √(x² + 1))"
+          {
+            "text": "\\Rightarrow \\ - x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}\\ = \\ \\dfrac{1}{x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,10 +104,22 @@
         "margin_note": "The second mark is log(1/u) = −log u and the word. Write f(−x) = −f(x) explicitly, then name the function odd.",
         "memory_tip": "A reciprocal inside a logarithm comes out as a minus sign: log(1/u) = −log u, in any base.",
         "lines": [
-          "f(−x) = log[1/(x + √(x² + 1))]",
-          "= −log(x + √(x² + 1))   [∵ log(1/u) = −log u]",
+          {
+            "text": "f\\left( - x\\right)\\ = \\ \\log \\left[\\dfrac{1}{x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\log \\left(x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}\\right)\\left[\\because \\ \\log \\left(\\dfrac{1}{u}\\right)\\ = \\ - \\log u\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= −f(x) for every x ∈ R",
-          "This holds in any base, since log(1/u) = −log u",
+          {
+            "text": "\\text{This}\\ \\text{holds}\\ \\text{in}\\ \\text{any}\\ \\text{base},\\ \\sin ce\\log \\left(\\dfrac{1}{u}\\right)\\ = \\ - \\log u",
+            "style": "normal",
+            "render": "katex"
+          },
           "is true for every base of the logarithm.",
           {
             "text": "(f(−x) = −f(x) for every x in the domain is the",
@@ -148,10 +164,22 @@
           "Naming the function even because the expression contains x²."
         ],
         "lines_compact": [
-          "f(−x) = log[1/(x + √(x² + 1))]",
-          "= −log(x + √(x² + 1))   [∵ log(1/u) = −log u]",
+          {
+            "text": "f\\left( - x\\right)\\ = \\ \\log \\left[\\dfrac{1}{x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\log \\left(x\\ + \\ \\sqrt{x^{2}\\ + \\ 1}\\right)\\left[\\because \\ \\log \\left(\\dfrac{1}{u}\\right)\\ = \\ - \\log u\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= −f(x) for every x ∈ R",
-          "This holds in any base, since log(1/u) = −log u",
+          {
+            "text": "\\text{This}\\ \\text{holds}\\ \\text{in}\\ \\text{any}\\ \\text{base},\\ \\sin ce\\log \\left(\\dfrac{1}{u}\\right)\\ = \\ - \\log u",
+            "style": "normal",
+            "render": "katex"
+          },
           "is true for every base of the logarithm.",
           {
             "text": "∴ f is an odd function on R.",

@@ -65,7 +65,11 @@
         "lines": [
           "nth term = n(n+1)(n+2)",
           "Let S(n): 1·2·3 + 2·3·4 + …",
-          "        + n(n+1)(n+2) = n(n+1)(n+2)(n+3)/4"
+          {
+            "text": "+ \\ n\\left(n + 1\\right)\\left(n + 2\\right)\\ = \\ \\dfrac{n\\left(n + 1\\right)\\left(n + 2\\right)\\left(n + 3\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,7 +114,11 @@
             "added": true
           },
           "L.H.S of S(1) = 1·2·3 = 6",
-          "R.H.S of S(1) = 1(2)(3)(4)/4 = 24/4 = 6",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1\\left(2\\right)\\left(3\\right)\\left(4\\right)}{4} = \\ \\dfrac{24}{4} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ],
         "recall": {
@@ -144,7 +152,11 @@
         "lines_compact": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1·2·3 = 6",
-          "R.H.S of S(1) = 1(2)(3)(4)/4 = 24/4 = 6",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1\\left(2\\right)\\left(3\\right)\\left(4\\right)}{4} = \\ \\dfrac{24}{4} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ]
       },
@@ -163,7 +175,11 @@
           },
           "S(k): 1·2·3 + 2·3·4 + …",
           "        + k(k+1)(k+2)",
-          "        = k(k+1)(k+2)(k+3)/4   …(1)"
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,7 +213,11 @@
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1·2·3 + 2·3·4 + …",
           "        + k(k+1)(k+2)",
-          "        = k(k+1)(k+2)(k+3)/4   …(1)"
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -214,18 +234,30 @@
             "added": true
           },
           "Add (k+1)(k+2)(k+3) to both sides of (1):",
-          "L.H.S = k(k+1)(k+2)(k+3)/4",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "        + (k+1)(k+2)(k+3)",
           {
             "text": "(write both parts over 4)",
             "added": true
           },
-          "= [k(k+1)(k+2)(k+3) + 4(k+1)(k+2)(k+3)]/4",
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)\\ + \\ 4\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out (k + 1)(k + 2)(k + 3); k + 4 is left)",
             "added": true
           },
-          "= (k+1)(k+2)(k+3)(k+4)/4 = R.H.S",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)\\left(k + 4\\right)}{4} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ],
         "recall": {
@@ -260,10 +292,22 @@
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "Add (k+1)(k+2)(k+3) to both sides of (1):",
-          "L.H.S = k(k+1)(k+2)(k+3)/4",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "        + (k+1)(k+2)(k+3)",
-          "= [k(k+1)(k+2)(k+3) + 4(k+1)(k+2)(k+3)]/4",
-          "= (k+1)(k+2)(k+3)(k+4)/4 = R.H.S",
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)\\ + \\ 4\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(k + 3\\right)\\left(k + 4\\right)}{4} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ]
       },

@@ -69,7 +69,11 @@
           },
           "(the first term is a = ar⁰, so the nth term has rⁿ⁻¹)",
           "The nth term is arⁿ⁻¹.",
-          "Let S(n): a + ar + … + arⁿ⁻¹ = a(rⁿ − 1)/(r − 1)",
+          {
+            "text": "\\text{Let}\\ S\\left(n\\right):\\ a\\ + \\ ar\\ + \\ \\dots \\ + \\ ar^{n-1}\\ = \\ \\dfrac{a\\left(r^{n}\\ - \\ 1\\right)}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(r ≠ 1, so the right side is defined)"
         ],
         "recall": {
@@ -109,7 +113,11 @@
         "margin_note": "First mark. Put n = 1 into both sides. The right side needs the (r−1) to cancel, which it does exactly.",
         "lines": [
           "For n = 1: L.H.S = a",
-          "R.H.S = a(r¹ − 1)/(r − 1) = a(r−1)/(r−1) = a",
+          {
+            "text": "R.H.S\\ = \\ \\dfrac{a\\left(r^{1}\\ - \\ 1\\right)}{r\\ - \\ 1} = \\ \\dfrac{a\\left(r - 1\\right)}{r - 1} = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(r ≠ 1, so r − 1 cancels)",
             "added": true
@@ -146,7 +154,11 @@
         "memory_tip": "At n = 1 the right side is a(r − 1)/(r − 1), and the brackets cancel exactly to a.",
         "lines_compact": [
           "For n = 1: L.H.S = a",
-          "R.H.S = a(r¹ − 1)/(r − 1) = a(r−1)/(r−1) = a",
+          {
+            "text": "R.H.S\\ = \\ \\dfrac{a\\left(r^{1}\\ - \\ 1\\right)}{r\\ - \\ 1} = \\ \\dfrac{a\\left(r - 1\\right)}{r - 1} = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ S(1) is true."
         ]
       },
@@ -159,7 +171,11 @@
         "margin_note": "Second mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step uses this equation.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
-          "a + ar + … + arᵏ⁻¹ = a(rᵏ − 1)/(r − 1)   …(1)"
+          {
+            "text": "a\\ + \\ ar\\ + \\ \\dots \\ + \\ ar^{k-1}\\ = \\ \\dfrac{a\\left(r^{k}\\ - \\ 1\\right)}{r\\ - \\ 1}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,22 +215,40 @@
         "margin_note": "Third mark, and the longest step on the page. Add the (k+1)th term, which is arᵏ, to both sides of the hypothesis, then combine over the common denominator.",
         "lines": [
           "Adding the (k+1)th term arᵏ to both sides of (1):",
-          "L.H.S = a(rᵏ − 1)/(r − 1) + arᵏ",
           {
-            "text": "(write arᵏ as arᵏ(r − 1)/(r − 1))",
+            "text": "L.H.S\\ = \\ \\dfrac{a\\left(r^{k}\\ - \\ 1\\right)}{r\\ - \\ 1} + \\ ar^{k}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ ar^{k}\\ \\text{as}\\ \\dfrac{ar^{k}\\left(r\\ - \\ 1\\right)}{r\\ - \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [a(rᵏ − 1) + arᵏ(r − 1)]/(r − 1)",
+          {
+            "text": "= \\ \\dfrac{a\\left(r^{k}\\ - \\ 1\\right)\\ + \\ ar^{k}\\left(r\\ - \\ 1\\right)}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(open the brackets)",
             "added": true
           },
-          "= [arᵏ − a + arᵏ⁺¹ − arᵏ]/(r − 1)",
+          {
+            "text": "= \\ \\dfrac{ar^{k}\\ - \\ a\\ + \\ ar^{k+1}\\ - \\ ar^{k}}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(arᵏ and −arᵏ cancel; take out a)",
             "added": true
           },
-          "= [arᵏ⁺¹ − a]/(r − 1) = a(rᵏ⁺¹ − 1)/(r − 1)",
+          {
+            "text": "= \\ \\dfrac{ar^{k+1}\\ - \\ a}{r\\ - \\ 1} = \\ \\dfrac{a\\left(r^{k+1}\\ - \\ 1\\right)}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ S(k+1) is true."
         ],
         "recall": {
@@ -247,10 +281,26 @@
         "memory_tip": "Add the (k+1)th term arᵏ to BOTH sides, then combine over (r − 1) — the arᵏ terms cancel.",
         "lines_compact": [
           "Adding the (k+1)th term arᵏ to both sides of (1):",
-          "L.H.S = a(rᵏ − 1)/(r − 1) + arᵏ",
-          "= [a(rᵏ − 1) + arᵏ(r − 1)]/(r − 1)",
-          "= [arᵏ − a + arᵏ⁺¹ − arᵏ]/(r − 1)",
-          "= [arᵏ⁺¹ − a]/(r − 1) = a(rᵏ⁺¹ − 1)/(r − 1)",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{a\\left(r^{k}\\ - \\ 1\\right)}{r\\ - \\ 1} + \\ ar^{k}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a\\left(r^{k}\\ - \\ 1\\right)\\ + \\ ar^{k}\\left(r\\ - \\ 1\\right)}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ar^{k}\\ - \\ a\\ + \\ ar^{k+1}\\ - \\ ar^{k}}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ar^{k+1}\\ - \\ a}{r\\ - \\ 1} = \\ \\dfrac{a\\left(r^{k+1}\\ - \\ 1\\right)}{r\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ S(k+1) is true."
         ]
       },

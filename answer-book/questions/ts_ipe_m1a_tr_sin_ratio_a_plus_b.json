@@ -140,7 +140,9 @@
           "tan α and tan β exist, so cos α ≠ 0 and",
           "cos β ≠ 0. Divide both sides by cos α cos β:",
           {
-            "text": "(sinβ/cosβ = tanβ and sinα/cosα = tanα)",
+            "text": "\\left(\\dfrac{\\sin \\beta }{\\cos \\beta } = \\ \\tan \\beta \\ \\text{and}\\ \\dfrac{\\sin \\alpha }{\\cos \\alpha } = \\ \\tan \\alpha \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

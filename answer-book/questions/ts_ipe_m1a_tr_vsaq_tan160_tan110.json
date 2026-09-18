@@ -64,7 +64,11 @@
           "Write both angles through 20°:",
           "tan160° = tan(180° − 20°) = −tan20° = −λ",
           "(tan(180° − θ) = −tan θ)",
-          "tan110° = tan(90° + 20°) = −cot20° = −1/λ",
+          {
+            "text": "\\tan 110^{\\circ}\\ = \\ \\tan \\left(90^{\\circ}\\ + \\ 20^{\\circ}\\right)\\ = \\ - \\cot 20^{\\circ}\\ = \\ - \\dfrac{1}{\\lambda }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(tan(90° + θ) = −cot θ, and cot20° = 1/tan20°)"
         ],
         "recall": {
@@ -105,27 +109,46 @@
         "memory_tip": "The denominator becomes 1 + 1 = 2, and the numerator combines over λ.",
         "lines": [
           {
-            "text": "Put tan160° = −λ and tan110° = −1/λ in:",
+            "text": "\\text{Put}\\ \\tan 160^{\\circ}\\ = \\ - \\lambda \\ \\text{and}\\ \\tan 110^{\\circ}\\ = \\ - \\dfrac{1}{\\lambda }\\text{in}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
           {
-            "text": "(−λ + 1/λ = 1/λ − λ, and (−λ)(−1/λ) = 1)",
-            "added": true
+            "text": "L.H.S\\ = \\ \\dfrac{ - \\lambda \\ - \\ \\left( - \\dfrac{1}{\\lambda }\\right)}{1\\ + \\ \\left( - \\lambda \\right)\\left( - \\dfrac{1}{\\lambda }\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= (1/λ − λ)/(1 + 1)",
           {
-            "text": "(1/λ − λ = (1 − λ²)/λ)",
+            "text": "\\left( - \\lambda \\ + \\ \\dfrac{1}{\\lambda } = \\ \\dfrac{1}{\\lambda } - \\ \\lambda ,\\ \\text{and}\\ \\left( - \\lambda \\right)\\left( - \\dfrac{1}{\\lambda }\\right)\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ((1 − λ²)/λ)/2",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{\\lambda } - \\ \\lambda }{1\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\lambda } - \\ \\lambda \\ = \\ \\dfrac{1\\ - \\ \\lambda ^{2}}{\\lambda }\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1\\ - \\ \\lambda ^{2}}{\\lambda }}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by 2 puts the 2 beside λ)",
             "added": true
           },
           {
-            "text": "= (1 − λ²)/(2λ) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1\\ - \\ \\lambda ^{2}}{2\\lambda } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,12 +179,25 @@
           "Failing to combine the numerator over a common denominator."
         ],
         "lines_compact": [
-          "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
-          "= (1/λ − λ)/(1 + 1)",
-          "= ((1 − λ²)/λ)/2",
           {
-            "text": "= (1 − λ²)/(2λ) = R.H.S",
-            "style": "boxed"
+            "text": "L.H.S\\ = \\ \\dfrac{ - \\lambda \\ - \\ \\left( - \\dfrac{1}{\\lambda }\\right)}{1\\ + \\ \\left( - \\lambda \\right)\\left( - \\dfrac{1}{\\lambda }\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{\\lambda } - \\ \\lambda }{1\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1\\ - \\ \\lambda ^{2}}{\\lambda }}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\lambda ^{2}}{2\\lambda } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

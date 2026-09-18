@@ -98,14 +98,22 @@
         "mark_note": "Formula",
         "margin_note": "First mark. Half-sums are 72° and 120°; half-differences are 60° and 36°. cos(−θ) = cos θ, so the sign of the half-difference does not matter.",
         "lines": [
-          "cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2)",
           {
-            "text": "((12° + 132°)/2 = 72° and (132° − 12°)/2 = 60°)",
+            "text": "\\cos C\\ + \\ \\cos D\\ = \\ 2\\cos \\left(\\dfrac{C + D}{2}\\right)\\cos \\left(\\dfrac{C - D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{12^{\\circ}\\ + \\ 132^{\\circ}}{2} = \\ 72^{\\circ}\\ \\text{and}\\ \\dfrac{132^{\\circ}\\ - \\ 12^{\\circ}}{2} = \\ 60^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "cos 12° + cos 132° = 2 cos 72° cos 60°",
           {
-            "text": "((84° + 156°)/2 = 120° and (156° − 84°)/2 = 36°)",
+            "text": "\\left(\\dfrac{84^{\\circ}\\ + \\ 156^{\\circ}}{2} = \\ 120^{\\circ}\\ \\text{and}\\ \\dfrac{156^{\\circ}\\ - \\ 84^{\\circ}}{2} = \\ 36^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "cos 84° + cos 156° = 2 cos 120° cos 36°",
@@ -145,7 +153,11 @@
         ],
         "memory_tip": "Half the sum sits in the first cosine, half the difference in the second.",
         "lines_compact": [
-          "cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2)",
+          {
+            "text": "\\cos C\\ + \\ \\cos D\\ = \\ 2\\cos \\left(\\dfrac{C + D}{2}\\right)\\cos \\left(\\dfrac{C - D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "cos 12° + cos 132° = 2 cos 72° cos 60°",
           "cos 84° + cos 156° = 2 cos 120° cos 36°",
           "= 2 cos 72° cos 60° + 2 cos 120° cos 36°"
@@ -159,25 +171,40 @@
         "mark_note": "Result",
         "margin_note": "Last mark. 2 cos 60° = 1 and 2 cos 120° = −1, so the sum is cos 72° − cos 36°. The two square roots cancel and −2/4 remains.",
         "lines": [
-          "cos 60° = 1/2 and cos 120° = −1/2",
           {
-            "text": "(2 × 1/2 = 1 and 2 × (−1/2) = −1)",
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\text{and}\\ \\cos 120^{\\circ}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\dfrac{1}{2} = \\ 1\\ \\text{and}\\ 2\\ \\times \\ \\left( - \\dfrac{1}{2}\\right)\\ = \\ - 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= cos 72° − cos 36°",
-          "cos 72° = (√5 − 1)/4, cos 36° = (√5 + 1)/4",
+          {
+            "text": "\\cos 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4},\\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(both are values proved in this chapter)",
             "added": true
           },
-          "= (√5 − 1)/4 − (√5 + 1)/4 = −2/4",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4} - \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4} = \\ - \\dfrac{2}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√5 − 1 − √5 − 1 = −2)",
             "added": true
           },
           {
-            "text": "= −1/2 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -210,13 +237,26 @@
         ],
         "memory_tip": "cos 36° is the larger value (√5 + 1)/4 and cos 72° the smaller (√5 − 1)/4; their difference is −2/4.",
         "lines_compact": [
-          "cos 60° = 1/2 and cos 120° = −1/2",
-          "= cos 72° − cos 36°",
-          "cos 72° = (√5 − 1)/4, cos 36° = (√5 + 1)/4",
-          "= (√5 − 1)/4 − (√5 + 1)/4 = −2/4",
           {
-            "text": "= −1/2 = R.H.S",
-            "style": "boxed"
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\text{and}\\ \\cos 120^{\\circ}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "= cos 72° − cos 36°",
+          {
+            "text": "\\cos 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4},\\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4} - \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4} = \\ - \\dfrac{2}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

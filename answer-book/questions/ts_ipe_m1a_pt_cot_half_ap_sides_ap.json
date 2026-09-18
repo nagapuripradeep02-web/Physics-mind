@@ -53,13 +53,33 @@
             "style": "heading"
           },
           "(the half-angle formula)",
-          "cot(A/2) = √(s(s−a)/((s−b)(s−c)))",
+          {
+            "text": "\\cot \\left(\\dfrac{A}{2}\\right)\\ = \\ \\sqrt{\\dfrac{s\\left(s - a\\right)}{\\left(s - b\\right)\\left(s - c\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply top and bottom by √(s(s−a)))",
-          "= s(s−a)/√(s(s−a)(s−b)(s−c))",
+          {
+            "text": "= \\ \\dfrac{s\\left(s - a\\right)}{\\sqrt{s\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(Heron: √(s(s−a)(s−b)(s−c)) = Δ)",
-          "= s(s−a)/Δ",
-          "Similarly cot(B/2) = s(s−b)/Δ",
-          "and cot(C/2) = s(s−c)/Δ"
+          {
+            "text": "= \\ \\dfrac{s\\left(s - a\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Similarly}\\ \\cot \\left(\\dfrac{B}{2}\\right)\\ = \\ \\dfrac{s\\left(s - b\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cot \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{s\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,14 +118,30 @@
         "margin_note": "The other mark. Dividing by s/Δ is allowed because s and Δ are both positive; then the 2s cancels from both sides.",
         "memory_tip": "Three terms are in A.P. when twice the middle equals the sum of the outer two: 2cot(B/2) = cot(A/2) + cot(C/2).",
         "lines": [
-          "cot(A/2), cot(B/2), cot(C/2) are in A.P., so",
-          "2 cot(B/2) = cot(A/2) + cot(C/2)",
+          {
+            "text": "\\cot \\left(\\dfrac{A}{2}\\right),\\ \\cot \\left(\\dfrac{B}{2}\\right),\\ \\cot \\left(\\dfrac{C}{2}\\right)\\ \\text{are}\\ \\text{in}\\ A.P.,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\cot \\left(\\dfrac{B}{2}\\right)\\ = \\ \\cot \\left(\\dfrac{A}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(in an A.P. x, y, z, the middle term gives 2y = x + z)",
             "added": true
           },
-          "⇒ 2s(s−b)/Δ = s(s−a)/Δ + s(s−c)/Δ",
-          "s > 0 and Δ > 0, so divide by s/Δ:",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2s\\left(s - b\\right)}{\\Delta } = \\ \\dfrac{s\\left(s - a\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "s\\ > \\ 0\\ \\text{and}\\ \\Delta \\ > \\ 0,\\ \\text{so}\\ \\text{divide}\\ \\text{by}\\ \\dfrac{s}{\\Delta }:",
+            "style": "normal",
+            "render": "katex"
+          },
           "2(s−b) = (s−a) + (s−c) = 2s − (a+c)",
           {
             "text": "(take 2s from both sides and multiply by −1)",
@@ -145,10 +181,26 @@
           "Cancelling the 2s wrongly and finishing with b = a + c."
         ],
         "lines_compact": [
-          "cot(A/2), cot(B/2), cot(C/2) are in A.P., so",
-          "2 cot(B/2) = cot(A/2) + cot(C/2)",
-          "⇒ 2s(s−b)/Δ = s(s−a)/Δ + s(s−c)/Δ",
-          "s > 0 and Δ > 0, so divide by s/Δ:",
+          {
+            "text": "\\cot \\left(\\dfrac{A}{2}\\right),\\ \\cot \\left(\\dfrac{B}{2}\\right),\\ \\cot \\left(\\dfrac{C}{2}\\right)\\ \\text{are}\\ \\text{in}\\ A.P.,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\cot \\left(\\dfrac{B}{2}\\right)\\ = \\ \\cot \\left(\\dfrac{A}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2s\\left(s - b\\right)}{\\Delta } = \\ \\dfrac{s\\left(s - a\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "s\\ > \\ 0\\ \\text{and}\\ \\Delta \\ > \\ 0,\\ \\text{so}\\ \\text{divide}\\ \\text{by}\\ \\dfrac{s}{\\Delta }:",
+            "style": "normal",
+            "render": "katex"
+          },
           "2(s−b) = (s−a) + (s−c) = 2s − (a+c)",
           "⇒ 2s − 2b = 2s − (a+c) ⇒ 2b = a + c",
           {

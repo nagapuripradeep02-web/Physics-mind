@@ -61,7 +61,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(r₁ = 4R sin(A/2)cos(B/2)cos(C/2), and so on)",
+          {
+            "text": "\\left(r_{1}\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right),\\ \\text{and}\\ \\text{so}\\ \\text{on}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = (r₃ + r₁) + (r − r₂)",
           "= [4R cos(A/2)cos(B/2)sin(C/2)",
           {
@@ -78,8 +82,16 @@
             "text": "  4R sin(B/2) from the second)",
             "style": "indent"
           },
-          "= 4R cos(B/2)[cos(A/2)sin(C/2) + sin(A/2)cos(C/2)]",
-          "  − 4R sin(B/2)[cos(A/2)cos(C/2) − sin(A/2)sin(C/2)]"
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{B}{2}\\right)\\left[\\cos \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 4R\\sin \\left(\\dfrac{B}{2}\\right)\\left[\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,17 +131,37 @@
         "memory_tip": "(A + C)/2 = 90° − B/2 turns the brackets into cos(B/2) and sin(B/2), and cos²(B/2) − sin²(B/2) gives cos B.",
         "lines": [
           {
-            "text": "(the brackets are sin((A+C)/2) and cos((A+C)/2))",
+            "text": "\\left(\\text{the}\\ \\text{brackets}\\ \\text{are}\\ \\sin \\left(\\dfrac{A + C}{2}\\right)\\ \\text{and}\\ \\cos \\left(\\dfrac{A + C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4R cos(B/2) sin((A+C)/2) − 4R sin(B/2) cos((A+C)/2)",
-          "= 4R cos(B/2) cos(B/2) − 4R sin(B/2) sin(B/2)",
-          "  [∵ (A+C)/2 = 90° − B/2, so sin((A+C)/2) = cos(B/2)]",
           {
-            "text": "(and cos((A+C)/2) = sin(B/2) in the same way)",
+            "text": "= \\ 4R\\cos \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{A + C}{2}\\right)\\ - \\ 4R\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{A + C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\ - \\ 4R\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{B}{2},\\ \\text{so}\\ \\sin \\left(\\dfrac{A + C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{and}\\ \\cos \\left(\\dfrac{A + C}{2}\\right)\\ = \\ \\sin \\left(\\dfrac{B}{2}\\right)\\ \\text{in}\\ \\text{the}\\ \\text{same}\\ \\text{way}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4R[cos²(B/2) − sin²(B/2)]",
+          {
+            "text": "= \\ 4R\\left[\\cos ^{2}\\left(\\dfrac{B}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 4R cos B = R.H.S   [∵ cos2θ = cos²θ − sin²θ]",
             "style": "boxed"
@@ -163,10 +195,26 @@
           "Writing (A+C)/2 = 90° − B, without halving B."
         ],
         "lines_compact": [
-          "= 4R cos(B/2) sin((A+C)/2) − 4R sin(B/2) cos((A+C)/2)",
-          "= 4R cos(B/2) cos(B/2) − 4R sin(B/2) sin(B/2)",
-          "  [∵ (A+C)/2 = 90° − B/2, so sin((A+C)/2) = cos(B/2)]",
-          "= 4R[cos²(B/2) − sin²(B/2)]",
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{A + C}{2}\\right)\\ - \\ 4R\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{A + C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\ - \\ 4R\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{B}{2},\\ \\text{so}\\ \\sin \\left(\\dfrac{A + C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\left[\\cos ^{2}\\left(\\dfrac{B}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 4R cos B = R.H.S   [∵ cos2θ = cos²θ − sin²θ]",
             "style": "boxed"

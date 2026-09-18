@@ -67,10 +67,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Change to degrees (π/10 = 18°):",
-          "cos(π/10) = cos18°,  cos(3π/10) = cos54°",
-          "cos(7π/10) = cos126° = cos(180° − 54°) = −cos54°",
-          "cos(9π/10) = cos162° = cos(180° − 18°) = −cos18°",
+          {
+            "text": "\\text{Change}\\ \\text{to}\\ \\text{degrees}\\ \\left(\\dfrac{\\pi }{10} = \\ 18^{\\circ}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{\\pi }{10}\\right)\\ = \\ \\cos 18^{\\circ},\\ \\cos \\left(\\dfrac{3\\pi }{10}\\right)\\ = \\ \\cos 54^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{7\\pi }{10}\\right)\\ = \\ \\cos 126^{\\circ}\\ = \\ \\cos \\left(180^{\\circ}\\ - \\ 54^{\\circ}\\right)\\ = \\ - \\cos 54^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{9\\pi }{10}\\right)\\ = \\ \\cos 162^{\\circ}\\ = \\ \\cos \\left(180^{\\circ}\\ - \\ 18^{\\circ}\\right)\\ = \\ - \\cos 18^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos(180° − θ) = −cos θ)"
         ],
         "recall": {
@@ -166,7 +182,11 @@
         "marks": 0,
         "margin_note": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4. These are standard results and are quoted, not derived.",
         "lines": [
-          "sin18° = (√5 − 1)/4,  sin54° = (√5 + 1)/4",
+          {
+            "text": "\\sin 18^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4},\\ \\sin 54^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin54° = cos36°; both values are proved in",
             "added": true
@@ -176,7 +196,11 @@
             "style": "indent",
             "added": true
           },
-          "= [(√5 − 1)/4]² [(√5 + 1)/4]²"
+          {
+            "text": "= \\ \\left[\\dfrac{\\sqrt{5}\\ - \\ 1}{4}\\right]^{2}\\left[\\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -207,8 +231,16 @@
         ],
         "memory_tip": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4 — standard results, quoted not derived.",
         "lines_compact": [
-          "sin18° = (√5 − 1)/4,  sin54° = (√5 + 1)/4",
-          "= [(√5 − 1)/4]² [(√5 + 1)/4]²"
+          {
+            "text": "\\sin 18^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4},\\ \\sin 54^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{\\sqrt{5}\\ - \\ 1}{4}\\right]^{2}\\left[\\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -223,19 +255,30 @@
             "text": "Put the two squares together (p²q² = (pq)²):",
             "added": true
           },
-          "= [(√5 − 1)(√5 + 1)/16]²",
+          {
+            "text": "= \\ \\left[\\dfrac{\\left(\\sqrt{5}\\ - \\ 1\\right)\\left(\\sqrt{5}\\ + \\ 1\\right)}{16}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((√5 − 1)(√5 + 1) = (√5)² − 1² = 5 − 1)",
             "added": true
           },
-          "= [(5 − 1)/16]² = [4/16]²",
           {
-            "text": "(4/16 = 1/4)",
+            "text": "= \\ \\left[\\dfrac{5\\ - \\ 1}{16}\\right]^{2}\\ = \\ \\left[\\dfrac{4}{16}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4}{16} = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (1/4)² = 1/16 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{4}\\right)^{2}\\ = \\ \\dfrac{1}{16} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -267,11 +310,20 @@
         ],
         "memory_tip": "Group the CONJUGATES first: (√5 − 1)(√5 + 1) = 4, and the surds vanish.",
         "lines_compact": [
-          "= [(√5 − 1)(√5 + 1)/16]²",
-          "= [(5 − 1)/16]² = [4/16]²",
           {
-            "text": "= (1/4)² = 1/16 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\left[\\dfrac{\\left(\\sqrt{5}\\ - \\ 1\\right)\\left(\\sqrt{5}\\ + \\ 1\\right)}{16}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{5\\ - \\ 1}{16}\\right]^{2}\\ = \\ \\left[\\dfrac{4}{16}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{4}\\right)^{2}\\ = \\ \\dfrac{1}{16} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

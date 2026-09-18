@@ -58,16 +58,36 @@
             "style": "heading"
           },
           "R.H.S = 2 cosh²x − 1",
-          "(cosh x = (eˣ + e⁻ˣ)/2)",
-          "= 2((eˣ + e⁻ˣ)/2)² − 1",
+          {
+            "text": "\\left(\\cos hx\\ = \\ \\dfrac{e^{x}\\ + \\ e^{-x}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left(\\dfrac{e^{x}\\ + \\ e^{-x}}{2}\\right)^{2}\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "((eˣ + e⁻ˣ)² = e²ˣ + 2eˣe⁻ˣ + e⁻²ˣ,",
           {
             "text": "  and eˣe⁻ˣ = 1)",
             "style": "indent"
           },
-          "= 2 · (e²ˣ + e⁻²ˣ + 2)/4 − 1",
-          "(2/4 = 1/2)",
-          "= (e²ˣ + e⁻²ˣ + 2)/2 − 1"
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}\\ + \\ 2}{4} - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{4} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}\\ + \\ 2}{2} - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,13 +127,25 @@
         "memory_tip": "The +2/2 is exactly 1, and the −1 removes it. What is left is the definition of cosh 2x.",
         "lines": [
           {
-            "text": "(write 1 as 2/2)",
+            "text": "\\left(\\text{write}\\ 1\\ \\text{as}\\ \\dfrac{2}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
-          "= (e²ˣ + e⁻²ˣ)/2",
           {
-            "text": "(cosh 2x = (e²ˣ + e⁻²ˣ)/2 by the definition)",
+            "text": "= \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}\\ + \\ 2\\ - \\ 2}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos h2x\\ = \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}}{2}\\text{by}\\ \\text{the}\\ \\text{definition}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -149,8 +181,16 @@
           "Forgetting that the −1 cancels the +2/2 exactly."
         ],
         "lines_compact": [
-          "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
-          "= (e²ˣ + e⁻²ˣ)/2",
+          {
+            "text": "= \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}\\ + \\ 2\\ - \\ 2}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{e^{2x}\\ + \\ e^{-2x}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= cosh 2x = L.H.S",
             "style": "boxed"

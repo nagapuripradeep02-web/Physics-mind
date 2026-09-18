@@ -54,7 +54,11 @@
           },
           "For the G.P. 4, 8, 16, …",
           "(r is a term divided by the term before it)",
-          "a = 4  and  r = 8/4 = 2",
+          {
+            "text": "a\\ = \\ 4\\ \\text{and}\\ r\\ = \\ \\dfrac{8}{4} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "The nth term of a G.P. is  tₙ = arⁿ⁻¹"
         ],
         "recall": {

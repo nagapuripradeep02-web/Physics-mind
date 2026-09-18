@@ -50,9 +50,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given tanθ = b/a",
-          "(a ≠ 0, since tanθ = b/a is given; and cosθ ≠ 0)",
-          "⇒ sinθ/cosθ = b/a",
+          {
+            "text": "\\text{Given}\\ \\tan \\theta \\ = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ \\ne \\ 0,\\ \\sin ce\\tan \\theta \\ = \\ \\dfrac{b}{a}\\text{is}\\ \\text{given};\\ \\text{and}\\ \\cos \\theta \\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cross-multiply)",
           "⇒ b cosθ = a sinθ"
         ],

@@ -64,9 +64,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given A + B + C = π/2",
-          "⇒ A + B = π/2 − C",
-          "The sum is π/2 here, not π.",
+          {
+            "text": "\\text{Given}\\ A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{sum}\\ \\text{is}\\ \\dfrac{\\pi }{2}\\text{here},\\ \\text{not}\\ \\pi .",
+            "style": "normal",
+            "render": "katex"
+          },
           "(Only this given sum is used; there is no",
           {
             "text": "  triangle.)",
@@ -115,12 +127,17 @@
             "added": true
           },
           {
-            "text": "  (p+q)/2 = A + B and (p−q)/2 = A − B",
+            "text": "\\dfrac{p + q}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{p - q}{2} = \\ A\\ - \\ B",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "= 2 sin(A+B) cos(A−B) + sin2C",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Write sin2C with the double-angle formula:",
             "added": true
@@ -159,7 +176,11 @@
         "lines_compact": [
           "L.H.S = (sin2A + sin2B) + sin2C",
           "= 2 sin(A+B) cos(A−B) + sin2C",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 sin(A+B) cos(A−B) + 2 sinC cosC",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ]
@@ -177,10 +198,20 @@
             "text": "Change sin(A+B) using the given sum:",
             "added": true
           },
-          "A + B = π/2 − C",
-          "⇒ sin(A+B) = sin(π/2 − C) = cosC",
           {
-            "text": "(sin(π/2 − θ) = cos θ)",
+            "text": "A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(A + B\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "L.H.S = 2 cosC cos(A−B) + 2 sinC cosC"
@@ -213,8 +244,16 @@
           "Using sin(π − C) = sin C, which belongs to the triangle version of this question."
         ],
         "lines_compact": [
-          "A + B = π/2 − C",
-          "⇒ sin(A+B) = sin(π/2 − C) = cosC",
+          {
+            "text": "A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(A + B\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = 2 cosC cos(A−B) + 2 sinC cosC"
         ]
       },
@@ -237,9 +276,15 @@
             "added": true
           },
           "Inside the bracket, sinC = cos(A+B)",
-          "  [∵ C = π/2 − (A+B)]",
           {
-            "text": "(sinC = sin(π/2 − (A+B)) = cos(A+B))",
+            "text": "\\left[\\because \\ C\\ = \\ \\dfrac{\\pi }{2} - \\ \\left(A + B\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin C\\ = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\left(A + B\\right)\\right)\\ = \\ \\cos \\left(A + B\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 2 cosC [cos(A−B) + cos(A+B)]"
@@ -274,7 +319,11 @@
         "lines_compact": [
           "= 2 cosC [cos(A−B) + sinC]",
           "Inside the bracket, sinC = cos(A+B)",
-          "  [∵ C = π/2 − (A+B)]",
+          {
+            "text": "\\left[\\because \\ C\\ = \\ \\dfrac{\\pi }{2} - \\ \\left(A + B\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 cosC [cos(A−B) + cos(A+B)]"
         ]
       },

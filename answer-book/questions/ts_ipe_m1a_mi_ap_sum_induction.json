@@ -64,7 +64,11 @@
           "nth term = a + (n−1)d",
           "Let S(n): a + (a+d) + …",
           "        + [a + (n−1)d]",
-          "        = (n/2)[2a + (n−1)d]"
+          {
+            "text": "= \\ \\left(\\dfrac{n}{2}\\right)\\left[2a\\ + \\ \\left(n - 1\\right)d\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,12 +113,20 @@
             "added": true
           },
           "L.H.S of S(1) = a",
-          "R.H.S of S(1) = (1/2)[2a + (0)d]",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left[2a\\ + \\ \\left(0\\right)d\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((1 − 1)d = 0)",
             "added": true
           },
-          "        = (1/2)(2a) = a",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left(2a\\right)\\ = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ],
         "recall": {
@@ -148,8 +160,16 @@
         "lines_compact": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = a",
-          "R.H.S of S(1) = (1/2)[2a + (0)d]",
-          "        = (1/2)(2a) = a",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left[2a\\ + \\ \\left(0\\right)d\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left(2a\\right)\\ = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ]
       },
@@ -168,7 +188,11 @@
           },
           "S(k): a + (a+d) + …",
           "        + [a + (k−1)d]",
-          "        = (k/2)[2a + (k−1)d]   …(1)"
+          {
+            "text": "= \\ \\left(\\dfrac{k}{2}\\right)\\left[2a\\ + \\ \\left(k - 1\\right)d\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -202,7 +226,11 @@
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): a + (a+d) + …",
           "        + [a + (k−1)d]",
-          "        = (k/2)[2a + (k−1)d]   …(1)"
+          {
+            "text": "= \\ \\left(\\dfrac{k}{2}\\right)\\left[2a\\ + \\ \\left(k - 1\\right)d\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -220,27 +248,47 @@
           },
           "(k+1)th term = a + kd.",
           "Add it to both sides of (1):",
-          "L.H.S = (k/2)[2a + (k−1)d] + a + kd",
+          {
+            "text": "L.H.S\\ = \\ \\left(\\dfrac{k}{2}\\right)\\left[2a\\ + \\ \\left(k - 1\\right)d\\right]\\ + \\ a\\ + \\ kd",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write both parts over 2)",
             "added": true
           },
-          "= [k(2a + (k−1)d) + 2a + 2kd]/2",
+          {
+            "text": "= \\ \\dfrac{k\\left(2a\\ + \\ \\left(k - 1\\right)d\\right)\\ + \\ 2a\\ + \\ 2kd}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(open the bracket k(2a + (k − 1)d))",
             "added": true
           },
-          "= [2ak + k(k−1)d + 2a + 2kd]/2",
+          {
+            "text": "= \\ \\dfrac{2ak\\ + \\ k\\left(k - 1\\right)d\\ + \\ 2a\\ + \\ 2kd}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2ak + 2a = 2a(k + 1), and k² − k + 2k = k² + k)",
             "added": true
           },
-          "= [2a(k+1) + d(k² + k)]/2",
+          {
+            "text": "= \\ \\dfrac{2a\\left(k + 1\\right)\\ + \\ d\\left(k^{2}\\ + \\ k\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(k² + k = k(k + 1))",
             "added": true
           },
-          "= [2a(k+1) + dk(k+1)]/2",
+          {
+            "text": "= \\ \\dfrac{2a\\left(k + 1\\right)\\ + \\ dk\\left(k + 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out (k + 1)/2; the right side of S(k + 1) is",
             "added": true
@@ -250,7 +298,11 @@
             "style": "indent",
             "added": true
           },
-          "= ((k+1)/2)(2a + kd) = R.H.S",
+          {
+            "text": "= \\ \\left(\\dfrac{k + 1}{2}\\right)\\left(2a\\ + \\ kd\\right)\\ = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ],
         "recall": {
@@ -286,12 +338,36 @@
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = a + kd.",
           "Add it to both sides of (1):",
-          "L.H.S = (k/2)[2a + (k−1)d] + a + kd",
-          "= [k(2a + (k−1)d) + 2a + 2kd]/2",
-          "= [2ak + k(k−1)d + 2a + 2kd]/2",
-          "= [2a(k+1) + d(k² + k)]/2",
-          "= [2a(k+1) + dk(k+1)]/2",
-          "= ((k+1)/2)(2a + kd) = R.H.S",
+          {
+            "text": "L.H.S\\ = \\ \\left(\\dfrac{k}{2}\\right)\\left[2a\\ + \\ \\left(k - 1\\right)d\\right]\\ + \\ a\\ + \\ kd",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k\\left(2a\\ + \\ \\left(k - 1\\right)d\\right)\\ + \\ 2a\\ + \\ 2kd}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2ak\\ + \\ k\\left(k - 1\\right)d\\ + \\ 2a\\ + \\ 2kd}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2a\\left(k + 1\\right)\\ + \\ d\\left(k^{2}\\ + \\ k\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2a\\left(k + 1\\right)\\ + \\ dk\\left(k + 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{k + 1}{2}\\right)\\left(2a\\ + \\ kd\\right)\\ = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ]
       },

@@ -66,7 +66,11 @@
           },
           "Given",
           "A + B + C = π  ⇒  A + B = π − C",
-          "⇒  (A+B)/4 = (π−C)/4",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{A + B}{4} = \\ \\dfrac{\\pi - C}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide both sides by 4)"
         ],
         "recall": {
@@ -105,34 +109,71 @@
         "margin_note": "Three of the eight marks. Pair the two PLUS terms; averaging two half angles is where the quarter angles appear. Then sin(C/2) is rewritten in the form that carries the −1 the answer begins with.",
         "memory_tip": "Choose sin(C/2) = 1 − 2sin²((π−C)/4). The 1 in it becomes the −1 in the answer.",
         "lines": [
-          "L.H.S = sin(A/2) + sin(B/2) − sin(C/2)",
           {
-            "text": "Pair the first two with p = A/2, q = B/2:",
+            "text": "L.H.S\\ = \\ \\sin \\left(\\dfrac{A}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Pair}\\ \\text{the}\\ \\text{first}\\ \\text{two}\\ \\text{with}\\ p\\ = \\ \\dfrac{A}{2},\\ q\\ = \\ \\dfrac{B}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  (p+q)/2 = (A+B)/4 and (p−q)/2 = (A−B)/4",
+            "text": "\\dfrac{p + q}{2} = \\ \\dfrac{A + B}{4}\\text{and}\\ \\dfrac{p - q}{2} = \\ \\dfrac{A - B}{4}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= 2 sin((A+B)/4) cos((A−B)/4) − sin(C/2)",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "Now write sin(C/2) through (π−C)/4:",
-            "added": true
+            "text": "= \\ 2\\sin \\left(\\dfrac{A + B}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "Also C/2 = π/2 − (π−C)/2",
           {
-            "text": "(π/2 − (π−C)/2 = (π − π + C)/2 = C/2)",
-            "added": true
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒  sin(C/2) = cos((π−C)/2)",
-          "  [∵ sin(π/2 − θ) = cosθ]",
           {
-            "text": "Then use cos 2θ with θ = (π−C)/4:",
+            "text": "\\text{Now}\\ \\text{write}\\ \\sin \\left(\\dfrac{C}{2}\\right)\\ \\text{through}\\ \\dfrac{\\pi - C}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒  sin(C/2) = 1 − 2 sin²((π−C)/4)",
+          {
+            "text": "\\text{Also}\\ \\dfrac{C}{2} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{\\pi - C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi - C}{2} = \\ \\dfrac{\\pi \\ - \\ \\pi \\ + \\ C}{2} = \\ \\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\cos \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ \\text{use}\\ \\cos 2\\theta \\ \\text{with}\\ \\theta \\ = \\ \\dfrac{\\pi - C}{4}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ 1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ cos2θ = 1 − 2sin²θ]"
         ],
         "recall": {
@@ -163,13 +204,41 @@
           "Applying the sine SUM formula to a pair where one term carries a minus sign."
         ],
         "lines_compact": [
-          "L.H.S = sin(A/2) + sin(B/2) − sin(C/2)",
-          "= 2 sin((A+B)/4) cos((A−B)/4) − sin(C/2)",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
-          "Also C/2 = π/2 − (π−C)/2",
-          "⇒  sin(C/2) = cos((π−C)/2)",
-          "  [∵ sin(π/2 − θ) = cosθ]",
-          "⇒  sin(C/2) = 1 − 2 sin²((π−C)/4)",
+          {
+            "text": "L.H.S\\ = \\ \\sin \\left(\\dfrac{A}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{A + B}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\dfrac{C}{2} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{\\pi - C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\cos \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ 1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ cos2θ = 1 − 2sin²θ]"
         ]
       },
@@ -183,13 +252,25 @@
         "memory_tip": "Subtracting 1 − 2sin²((π−C)/4) gives −1 plus a positive square term. The −1 stays outside from here on.",
         "lines": [
           {
-            "text": "Put (A+B)/4 = (π−C)/4 from the given condition:",
+            "text": "\\text{Put}\\ \\dfrac{A + B}{4} = \\ \\dfrac{\\pi - C}{4}\\text{from}\\ \\text{the}\\ \\text{given}\\ \\text{condition}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 sin((π−C)/4) cos((A−B)/4) − sin(C/2)",
-          "  [∵ (A+B)/4 = (π−C)/4]",
           {
-            "text": "Now put in the value of sin(C/2) found above;",
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + B}{4} = \\ \\dfrac{\\pi - C}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\text{put}\\ \\text{in}\\ \\text{the}\\ \\text{value}\\ \\text{of}\\ \\sin \\left(\\dfrac{C}{2}\\right)\\ \\text{found}\\ \\text{above};",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -197,8 +278,16 @@
             "style": "indent",
             "added": true
           },
-          "= 2 sin((π−C)/4) cos((A−B)/4)",
-          "    − 1 + 2 sin²((π−C)/4)"
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 1\\ + \\ 2\\sin ^{2}\\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -228,10 +317,26 @@
           "Subtracting only the 1 and leaving the sign of 2sin²((π−C)/4) unchanged."
         ],
         "lines_compact": [
-          "= 2 sin((π−C)/4) cos((A−B)/4) − sin(C/2)",
-          "  [∵ (A+B)/4 = (π−C)/4]",
-          "= 2 sin((π−C)/4) cos((A−B)/4)",
-          "    − 1 + 2 sin²((π−C)/4)"
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + B}{4} = \\ \\dfrac{\\pi - C}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\cos \\left(\\dfrac{A - B}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 1\\ + \\ 2\\sin ^{2}\\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -244,11 +349,21 @@
         "memory_tip": "Inside the bracket, sin((π−C)/4) = cos((π+C)/4), and the condition rewrites that as cos((2π−A−B)/4).",
         "lines": [
           {
-            "text": "Write −1 first and take out 2 sin((π−C)/4):",
+            "text": "\\text{Write}\\ - 1\\ \\text{first}\\ \\text{and}\\ \\text{take}\\ \\text{out}\\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −1 + 2 sin((π−C)/4)",
-          "    × [cos((A−B)/4) + sin((π−C)/4)]",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ \\left[\\cos \\left(\\dfrac{A - B}{4}\\right)\\ + \\ \\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: 2 sin((π−C)/4) × sin((π−C)/4)",
             "added": true
@@ -267,20 +382,42 @@
             "style": "indent",
             "added": true
           },
-          "Now sin((π−C)/4) = cos((π+C)/4)",
-          "  [∵ sinθ = cos(π/2 − θ)]",
           {
-            "text": "(π/2 − (π−C)/4 = (2π − π + C)/4 = (π+C)/4)",
+            "text": "\\text{Now}\\ \\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi + C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\theta \\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi - C}{4} = \\ \\dfrac{2\\pi \\ - \\ \\pi \\ + \\ C}{4} = \\ \\dfrac{\\pi + C}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "and (π+C)/4 = (2π−A−B)/4",
+          {
+            "text": "\\text{and}\\ \\dfrac{\\pi + C}{4} = \\ \\dfrac{2\\pi - A - B}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = π − A − B]",
           {
             "text": "(π + C = π + π − A − B = 2π − A − B)",
             "added": true
           },
-          "= −1 + 2 sin((π−C)/4)",
-          "    × [cos((A−B)/4) + cos((2π−A−B)/4)]"
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ \\left[\\cos \\left(\\dfrac{A - B}{4}\\right)\\ + \\ \\cos \\left(\\dfrac{2\\pi - A - B}{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -310,14 +447,42 @@
           "Taking the −1 inside the bracket."
         ],
         "lines_compact": [
-          "= −1 + 2 sin((π−C)/4)",
-          "    × [cos((A−B)/4) + sin((π−C)/4)]",
-          "Now sin((π−C)/4) = cos((π+C)/4)",
-          "  [∵ sinθ = cos(π/2 − θ)]",
-          "and (π+C)/4 = (2π−A−B)/4",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ \\left[\\cos \\left(\\dfrac{A - B}{4}\\right)\\ + \\ \\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\sin \\left(\\dfrac{\\pi - C}{4}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi + C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\theta \\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\pi + C}{4} = \\ \\dfrac{2\\pi - A - B}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = π − A − B]",
-          "= −1 + 2 sin((π−C)/4)",
-          "    × [cos((A−B)/4) + cos((2π−A−B)/4)]"
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ \\left[\\cos \\left(\\dfrac{A - B}{4}\\right)\\ + \\ \\cos \\left(\\dfrac{2\\pi - A - B}{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -330,26 +495,49 @@
         "memory_tip": "Half the sum is (π−B)/4 and half the difference is −(π−A)/4. Cosine is even, so the minus sign drops.",
         "lines": [
           {
-            "text": "Use the sum formula with p = (A−B)/4 and",
+            "text": "\\text{Use}\\ \\text{the}\\ \\text{sum}\\ \\text{formula}\\ \\text{with}\\ p\\ = \\ \\dfrac{A - B}{4}\\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  q = (2π−A−B)/4:",
+            "text": "q\\ = \\ \\dfrac{2\\pi - A - B}{4}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p + q = (2π − 2B)/4, so (p+q)/2 = (π−B)/4",
+            "text": "p\\ + \\ q\\ = \\ \\dfrac{2\\pi \\ - \\ 2B}{4},\\ \\text{so}\\ \\dfrac{p + q}{2} = \\ \\dfrac{\\pi - B}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p − q = (2A − 2π)/4, so (p−q)/2 = −(π−A)/4",
+            "text": "p\\ - \\ q\\ = \\ \\dfrac{2A\\ - \\ 2\\pi }{4},\\ \\text{so}\\ \\dfrac{p - q}{2} = \\ - \\dfrac{\\pi - A}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −1 + 2 sin((π−C)/4)",
-          "    × 2 cos((π−A)/4) cos((π−B)/4)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
-          "  [(p+q)/2 = (π−B)/4, (p−q)/2 = −(π−A)/4]",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ 2\\cos \\left(\\dfrac{\\pi - A}{4}\\right)\\cos \\left(\\dfrac{\\pi - B}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\dfrac{p + q}{2} = \\ \\dfrac{\\pi - B}{4},\\ \\dfrac{p - q}{2} = \\ - \\dfrac{\\pi - A}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos(−θ) = cos θ, so the minus sign goes)",
             "added": true
@@ -358,7 +546,11 @@
             "text": "Multiply 2 × 2 = 4 and reorder the factors:",
             "added": true
           },
-          "= −1 + 4 cos((π−A)/4) cos((π−B)/4) sin((π−C)/4)",
+          {
+            "text": "= \\ - 1\\ + \\ 4\\cos \\left(\\dfrac{\\pi - A}{4}\\right)\\cos \\left(\\dfrac{\\pi - B}{4}\\right)\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S = R.H.S",
             "style": "boxed"
@@ -392,11 +584,31 @@
           "Losing the leading −1 at the very end."
         ],
         "lines_compact": [
-          "= −1 + 2 sin((π−C)/4)",
-          "    × 2 cos((π−A)/4) cos((π−B)/4)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
-          "  [(p+q)/2 = (π−B)/4, (p−q)/2 = −(π−A)/4]",
-          "= −1 + 4 cos((π−A)/4) cos((π−B)/4) sin((π−C)/4)",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\times \\ 2\\cos \\left(\\dfrac{\\pi - A}{4}\\right)\\cos \\left(\\dfrac{\\pi - B}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\dfrac{p + q}{2} = \\ \\dfrac{\\pi - B}{4},\\ \\dfrac{p - q}{2} = \\ - \\dfrac{\\pi - A}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - 1\\ + \\ 4\\cos \\left(\\dfrac{\\pi - A}{4}\\right)\\cos \\left(\\dfrac{\\pi - B}{4}\\right)\\sin \\left(\\dfrac{\\pi - C}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S = R.H.S",
             "style": "boxed"

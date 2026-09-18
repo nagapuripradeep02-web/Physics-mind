@@ -55,18 +55,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Write each angle through π/8:",
           {
-            "text": "  3π/8 = π/2 − π/8, 5π/8 = π/2 + π/8,",
-            "style": "indent"
+            "text": "\\text{Write}\\ \\text{each}\\ \\text{angle}\\ \\text{through}\\ \\dfrac{\\pi }{8}:",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  7π/8 = π − π/8",
-            "style": "indent"
+            "text": "\\dfrac{3\\pi }{8} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8},\\ \\dfrac{5\\pi }{8} = \\ \\dfrac{\\pi }{2} + \\ \\dfrac{\\pi }{8},",
+            "style": "indent",
+            "render": "katex"
           },
-          "sin(3π/8) = sin(π/2 − π/8) = cos(π/8)",
-          "sin(5π/8) = sin(π/2 + π/8) = cos(π/8)",
-          "sin(7π/8) = sin(π − π/8) = sin(π/8)"
+          {
+            "text": "\\dfrac{7\\pi }{8} = \\ \\pi \\ - \\ \\dfrac{\\pi }{8}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{3\\pi }{8}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{5\\pi }{8}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{2} + \\ \\dfrac{\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{7\\pi }{8}\\right)\\ = \\ \\sin \\left(\\pi \\ - \\ \\dfrac{\\pi }{8}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,23 +127,43 @@
             "text": "Put these in:",
             "added": true
           },
-          "L.H.S = sin⁴(π/8) + cos⁴(π/8) + cos⁴(π/8) + sin⁴(π/8)",
+          {
+            "text": "L.H.S\\ = \\ \\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Collect the equal terms:",
             "added": true
           },
-          "= 2[sin⁴(π/8) + cos⁴(π/8)]",
           {
-            "text": "Use a² + b² with a = sin²(π/8), b = cos²(π/8):",
+            "text": "= \\ 2\\left[\\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Use}\\ a^{2}\\ + \\ b^{2}\\ \\text{with}\\ a\\ = \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right),\\ b\\ = \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2[(sin²(π/8) + cos²(π/8))² − 2sin²(π/8)cos²(π/8)]",
+          {
+            "text": "= \\ 2\\left[\\left(\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)^{2}\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ a² + b² = (a+b)² − 2ab]",
           {
-            "text": "(sin²(π/8) + cos²(π/8) = 1)",
+            "text": "\\left(\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2[1 − 2sin²(π/8)cos²(π/8)]"
+          {
+            "text": "= \\ 2\\left[1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -156,11 +194,27 @@
         ],
         "memory_tip": "a⁴ + b⁴ is handled by a² + b² = (a+b)² − 2ab applied to the SQUARES.",
         "lines_compact": [
-          "L.H.S = sin⁴(π/8) + cos⁴(π/8) + cos⁴(π/8) + sin⁴(π/8)",
-          "= 2[sin⁴(π/8) + cos⁴(π/8)]",
-          "= 2[(sin²(π/8) + cos²(π/8))² − 2sin²(π/8)cos²(π/8)]",
+          {
+            "text": "L.H.S\\ = \\ \\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left[\\sin ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{4}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left[\\left(\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)^{2}\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ a² + b² = (a+b)² − 2ab]",
-          "= 2[1 − 2sin²(π/8)cos²(π/8)]"
+          {
+            "text": "= \\ 2\\left[1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -175,24 +229,41 @@
             "text": "Open the bracket:",
             "added": true
           },
-          "= 2 − 4sin²(π/8)cos²(π/8)",
+          {
+            "text": "= \\ 2\\ - \\ 4\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4 sin²θ cos²θ = (2 sin θ cos θ)²)",
             "added": true
           },
-          "= 2 − [2 sin(π/8) cos(π/8)]²",
           {
-            "text": "(2 sin θ cos θ = sin 2θ, with θ = π/8)",
-            "added": true
-          },
-          "= 2 − [sin(π/4)]² = 2 − (1/√2)²",
-          {
-            "text": "((1/√2)² = 1/2)",
-            "added": true
+            "text": "= \\ 2\\ - \\ \\left[2\\sin \\left(\\dfrac{\\pi }{8}\\right)\\cos \\left(\\dfrac{\\pi }{8}\\right)\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= 2 − 1/2 = 3/2 = R.H.S",
-            "style": "boxed"
+            "text": "\\left(2\\sin \\theta \\cos \\theta \\ = \\ \\sin 2\\theta ,\\ \\text{with}\\ \\theta \\ = \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ 2\\ - \\ \\left[\\sin \\left(\\dfrac{\\pi }{4}\\right)\\right]^{2}\\ = \\ 2\\ - \\ \\left(\\dfrac{1}{\\sqrt{2}}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{\\sqrt{2}}\\right)^{2}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ 2\\ - \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -224,12 +295,25 @@
         ],
         "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4), and sin(π/4) = 1/√2, so the square is 1/2.",
         "lines_compact": [
-          "= 2 − 4sin²(π/8)cos²(π/8)",
-          "= 2 − [2 sin(π/8) cos(π/8)]²",
-          "= 2 − [sin(π/4)]² = 2 − (1/√2)²",
           {
-            "text": "= 2 − 1/2 = 3/2 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 2\\ - \\ 4\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ - \\ \\left[2\\sin \\left(\\dfrac{\\pi }{8}\\right)\\cos \\left(\\dfrac{\\pi }{8}\\right)\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ - \\ \\left[\\sin \\left(\\dfrac{\\pi }{4}\\right)\\right]^{2}\\ = \\ 2\\ - \\ \\left(\\dfrac{1}{\\sqrt{2}}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ - \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

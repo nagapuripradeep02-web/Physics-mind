@@ -229,7 +229,9 @@
           "Check: OB + OC = 2a − 4b + 6c = 2 OA,",
           "so A is the midpoint of BC.",
           {
-            "text": "(OA = (OB + OC)/2 is the midpoint rule)",
+            "text": "\\left(OA\\ = \\ \\dfrac{OB\\ + \\ OC}{2}\\text{is}\\ \\text{the}\\ \\text{midpoint}\\ \\text{rule}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

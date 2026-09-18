@@ -52,12 +52,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x + 1/x,  x ≠ 0",
-          "LHS = (f(x))² = (x + 1/x)²",
+          {
+            "text": "f\\left(x\\right)\\ = \\ x\\ + \\ \\dfrac{1}{x},\\ x\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "LHS\\ = \\ \\left(f\\left(x\\right)\\right)^{2}\\ = \\ \\left(x\\ + \\ \\dfrac{1}{x}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "((p + q)² = p² + 2pq + q²)",
-          "= x² + 2·x·(1/x) + 1/x²",
-          "(2·x·(1/x) = 2)",
-          "= x² + 1/x² + 2"
+          {
+            "text": "= \\ x^{2}\\ + \\ 2 \\cdot x \\cdot \\left(\\dfrac{1}{x}\\right)\\ + \\ \\dfrac{1}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2 \\cdot x \\cdot \\left(\\dfrac{1}{x}\\right)\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} + \\ 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,12 +120,26 @@
         "lines": [
           "x ≠ 0 ⇒ x² ≠ 0, so f(x²) is defined.",
           {
-            "text": "(f(t) = t + 1/t, with t = x² and then t = 1)",
+            "text": "\\left(f\\left(t\\right)\\ = \\ t\\ + \\ \\dfrac{1}{t},\\ \\text{with}\\ t\\ = \\ x^{2}\\ \\text{and}\\ \\text{then}\\ t\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "f(x²) = x² + 1/x²",
-          "f(1) = 1 + 1/1 = 2",
-          "RHS = f(x²) + f(1) = x² + 1/x² + 2",
+          {
+            "text": "f\\left(x^{2}\\right)\\ = \\ x^{2}\\ + \\ \\dfrac{1}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(1\\right)\\ = \\ 1\\ + \\ \\dfrac{1}{1} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "RHS\\ = \\ f\\left(x^{2}\\right)\\ + \\ f\\left(1\\right)\\ = \\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} + \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "LHS and RHS are the same expression.",
           {
             "text": "∴ (f(x))² = f(x²) + f(1)",
@@ -143,9 +177,21 @@
         ],
         "lines_compact": [
           "x ≠ 0 ⇒ x² ≠ 0, so f(x²) is defined.",
-          "f(x²) = x² + 1/x²",
-          "f(1) = 1 + 1/1 = 2",
-          "RHS = f(x²) + f(1) = x² + 1/x² + 2",
+          {
+            "text": "f\\left(x^{2}\\right)\\ = \\ x^{2}\\ + \\ \\dfrac{1}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(1\\right)\\ = \\ 1\\ + \\ \\dfrac{1}{1} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "RHS\\ = \\ f\\left(x^{2}\\right)\\ + \\ f\\left(1\\right)\\ = \\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} + \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "LHS and RHS are the same expression.",
           {
             "text": "∴ (f(x))² = f(x²) + f(1)",

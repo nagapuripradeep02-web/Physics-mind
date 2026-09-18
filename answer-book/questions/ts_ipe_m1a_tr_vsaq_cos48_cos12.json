@@ -59,10 +59,22 @@
           },
           "Given expression = cos48° cos12°",
           "Multiply and divide by 2, to make 2 cos A cos B:",
-          "= (1/2)(2 cos48° cos12°)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left(2\\cos 48^{\\circ}\\cos 12^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(2 cos A cos B = cos(A + B) + cos(A − B))",
-          "= (1/2)[cos(48° + 12°) + cos(48° − 12°)]",
-          "= (1/2)[cos60° + cos36°]"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\cos \\left(48^{\\circ}\\ + \\ 12^{\\circ}\\right)\\ + \\ \\cos \\left(48^{\\circ}\\ - \\ 12^{\\circ}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\cos 60^{\\circ}\\ + \\ \\cos 36^{\\circ}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,24 +113,39 @@
         "margin_note": "Second mark. cos60° = 1/2 and cos36° = (√5+1)/4 — the second is a standard result and is quoted, not derived.",
         "memory_tip": "cos60° = 1/2 and cos36° = (√5 + 1)/4 — the second is standard and is quoted.",
         "lines": [
-          "cos60° = 1/2,  cos36° = (√5 + 1)/4",
+          {
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2},\\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos36° is the value proved in this chapter)",
             "added": true
           },
-          "= (1/2)[1/2 + (√5 + 1)/4]",
           {
-            "text": "(1/2 = 2/4, so add over 4)",
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\dfrac{1}{2} + \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2} = \\ \\dfrac{2}{4},\\ \\text{so}\\ \\text{add}\\ \\text{over}\\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/2)[(2 + √5 + 1)/4]",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\dfrac{2\\ + \\ \\sqrt{5}\\ + \\ 1}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 + 1 = 3, and 2 × 4 = 8)",
             "added": true
           },
           {
-            "text": "= (3 + √5)/8",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{3\\ + \\ \\sqrt{5}}{8}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -149,12 +176,25 @@
           "Adding the fractions without a common denominator."
         ],
         "lines_compact": [
-          "cos60° = 1/2,  cos36° = (√5 + 1)/4",
-          "= (1/2)[1/2 + (√5 + 1)/4]",
-          "= (1/2)[(2 + √5 + 1)/4]",
           {
-            "text": "= (3 + √5)/8",
-            "style": "boxed"
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2},\\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\dfrac{1}{2} + \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\dfrac{2\\ + \\ \\sqrt{5}\\ + \\ 1}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3\\ + \\ \\sqrt{5}}{8}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

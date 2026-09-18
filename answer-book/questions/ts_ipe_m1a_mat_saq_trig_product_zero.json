@@ -65,10 +65,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given θ − φ = π/2, so θ = π/2 + φ.",
-          "(cos(π/2 + φ) = −sin φ and sin(π/2 + φ) = cos φ)",
-          "cos θ = cos(π/2 + φ) = −sin φ",
-          "sin θ = sin(π/2 + φ) = cos φ"
+          {
+            "text": "\\text{Given}\\ \\theta \\ - \\ \\phi \\ = \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\theta \\ = \\ \\dfrac{\\pi }{2} + \\ \\phi .",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{2} + \\ \\phi \\right)\\ = \\ - \\sin \\phi \\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{2} + \\ \\phi \\right)\\ = \\ \\cos \\phi \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\theta \\ = \\ \\cos \\left(\\dfrac{\\pi }{2} + \\ \\phi \\right)\\ = \\ - \\sin \\phi",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\theta \\ = \\ \\sin \\left(\\dfrac{\\pi }{2} + \\ \\phi \\right)\\ = \\ \\cos \\phi",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

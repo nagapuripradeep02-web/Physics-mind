@@ -60,11 +60,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given 1/(a+c) + 1/(b+c) = 3/(a+b+c)",
+          {
+            "text": "\\text{Given}\\ \\dfrac{1}{a + c} + \\ \\dfrac{1}{b + c} = \\ \\dfrac{3}{a + b + c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(add the two fractions over (a + c)(b + c))",
-          "⇒ [(b+c) + (a+c)]/[(a+c)(b+c)] = 3/(a+b+c)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left(b + c\\right)\\ + \\ \\left(a + c\\right)}{\\left(a + c\\right)\\left(b + c\\right)} = \\ \\dfrac{3}{a + b + c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "((b + c) + (a + c) = (a + b + c) + c)",
-          "⇒ [(a+b+c) + c]/[(a+c)(b+c)] = 3/(a+b+c)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left(a + b + c\\right)\\ + \\ c}{\\left(a + c\\right)\\left(b + c\\right)} = \\ \\dfrac{3}{a + b + c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cross-multiply)",
           "⇒ (a+b+c)² + c(a+b+c) = 3(a+c)(b+c)"
         ],
@@ -172,12 +184,22 @@
         "margin_note": "Last mark. Divide both sides by 2ab: the left becomes cos C exactly, and the right becomes 1/2.",
         "lines": [
           {
-            "text": "(cosine rule: cos C = (a² + b² − c²)/(2ab))",
+            "text": "\\left(\\text{cosine}\\ \\text{rule}:\\ \\cos C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Dividing both sides by 2ab:",
-          "(a² + b² − c²)/(2ab) = ab/(2ab)",
-          "⇒ cos C = 1/2 = cos 60°",
+          {
+            "text": "\\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab} = \\ \\dfrac{ab}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos C\\ = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(C lies between 0° and 180°)",
             "added": true
@@ -217,8 +239,16 @@
         "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2.",
         "lines_compact": [
           "Dividing both sides by 2ab:",
-          "(a² + b² − c²)/(2ab) = ab/(2ab)",
-          "⇒ cos C = 1/2 = cos 60°",
+          {
+            "text": "\\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab} = \\ \\dfrac{ab}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos C\\ = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ C = 60°",
             "style": "boxed"

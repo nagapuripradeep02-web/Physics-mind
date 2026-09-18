@@ -237,7 +237,11 @@
             "text": "(add 5λ to both sides and take away 3)",
             "added": true
           },
-          "14λ = 3, so λ = 3/14"
+          {
+            "text": "14\\lambda \\ = \\ 3,\\ \\text{so}\\ \\lambda \\ = \\ \\dfrac{3}{14}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -271,7 +275,11 @@
           "put r = i + j + k in (3) :",
           "(1 + 2λ) + (1 + 3λ) + (1 + 4λ) = 6 − 5λ",
           "3 + 9λ = 6 − 5λ",
-          "14λ = 3, so λ = 3/14"
+          {
+            "text": "14\\lambda \\ = \\ 3,\\ \\text{so}\\ \\lambda \\ = \\ \\dfrac{3}{14}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -284,11 +292,21 @@
         "memory_tip": "Keep everything over 14. The fourteens all clear in the next line.",
         "lines": [
           {
-            "text": "Put λ = 3/14:",
+            "text": "\\text{Put}\\ \\lambda \\ = \\ \\dfrac{3}{14}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Normal = (1 + 6/14)i + (1 + 9/14)j",
-          "   + (1 + 12/14)k",
+          {
+            "text": "\\text{Normal}\\ = \\ \\left(1\\ + \\ \\dfrac{6}{14}\\right)i\\ + \\ \\left(1\\ + \\ \\dfrac{9}{14}\\right)j",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(1\\ + \\ \\dfrac{12}{14}\\right)k",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 + 6/14 = 20/14 and 1 + 9/14 = 23/14,",
             "added": true
@@ -298,12 +316,22 @@
             "style": "indent",
             "added": true
           },
-          "= (20i + 23j + 26k)/14",
           {
-            "text": "(5λ = 15/14, and 6 = 84/14)",
+            "text": "= \\ \\dfrac{20i\\ + \\ 23j\\ + \\ 26k}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(5\\lambda \\ = \\ \\dfrac{15}{14},\\ \\text{and}\\ 6\\ = \\ \\dfrac{84}{14}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Constant = 6 − 15/14 = 69/14"
+          {
+            "text": "\\text{Constant}\\ = \\ 6\\ - \\ \\dfrac{15}{14} = \\ \\dfrac{69}{14}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -333,10 +361,26 @@
           "Forgetting the 1 that sits in front of each bracket."
         ],
         "lines_compact": [
-          "Normal = (1 + 6/14)i + (1 + 9/14)j",
-          "   + (1 + 12/14)k",
-          "= (20i + 23j + 26k)/14",
-          "Constant = 6 − 15/14 = 69/14"
+          {
+            "text": "\\text{Normal}\\ = \\ \\left(1\\ + \\ \\dfrac{6}{14}\\right)i\\ + \\ \\left(1\\ + \\ \\dfrac{9}{14}\\right)j",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(1\\ + \\ \\dfrac{12}{14}\\right)k",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{20i\\ + \\ 23j\\ + \\ 26k}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Constant}\\ = \\ 6\\ - \\ \\dfrac{15}{14} = \\ \\dfrac{69}{14}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

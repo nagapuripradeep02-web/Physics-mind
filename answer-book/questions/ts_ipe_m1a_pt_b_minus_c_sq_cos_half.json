@@ -59,13 +59,22 @@
             "text": "  the 2bc terms)",
             "style": "indent"
           },
-          "L.H.S = (b²+c²)[cos²(A/2) + sin²(A/2)]",
           {
-            "text": "+ 2bc[sin²(A/2) − cos²(A/2)]",
-            "style": "indent"
+            "text": "L.H.S\\ = \\ \\left(b^{2} + c^{2}\\right)\\left[\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2bc\\left[\\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ - \\ \\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "indent",
+            "render": "katex"
           },
           "(cos² + sin² = 1; take the minus sign outside)",
-          "= (b² + c²) − 2bc[cos²(A/2) − sin²(A/2)]"
+          {
+            "text": "= \\ \\left(b^{2}\\ + \\ c^{2}\\right)\\ - \\ 2bc\\left[\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,10 +114,16 @@
         "memory_tip": "cos²θ − sin²θ = cos 2θ, so with θ = A/2 the bracket is cos A and the line becomes the cosine rule.",
         "lines": [
           {
-            "text": "(cos 2θ = cos²θ − sin²θ with θ = A/2)",
+            "text": "\\left(\\cos 2\\theta \\ = \\ \\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta \\ \\text{with}\\ \\theta \\ = \\ \\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "cos²(A/2) − sin²(A/2) = cos A",
+          {
+            "text": "\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ \\cos A",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = b² + c² − 2bc cos A",
           "= a²   [∵ a² = b² + c² − 2bc cosA]",
           {
@@ -144,7 +159,11 @@
           "Using a² = b² + c² + 2bc cosA with the wrong sign."
         ],
         "lines_compact": [
-          "cos²(A/2) − sin²(A/2) = cos A",
+          {
+            "text": "\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ \\cos A",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = b² + c² − 2bc cos A",
           "= a²   [∵ a² = b² + c² − 2bc cosA]",
           {

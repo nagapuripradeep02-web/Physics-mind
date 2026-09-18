@@ -109,13 +109,20 @@
           },
           "= 7(1 + 2 + … + n)",
           {
-            "text": "(1 + 2 + … + n = n(n + 1)/2)",
+            "text": "\\left(1\\ + \\ 2\\ + \\ \\dots \\ + \\ n\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 7 · n(n + 1)/2",
           {
-            "text": "∴ Σ f(r) = 7n(n + 1)/2",
-            "style": "boxed"
+            "text": "= \\ 7\\ \\cdot \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\Sigma f\\left(r\\right)\\ = \\ \\dfrac{7n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,10 +159,15 @@
           "= f(1) + f(2) + … + f(n)",
           "= 7(1) + 7(2) + … + 7(n)",
           "= 7(1 + 2 + … + n)",
-          "= 7 · n(n + 1)/2",
           {
-            "text": "∴ Σ f(r) = 7n(n + 1)/2",
-            "style": "boxed"
+            "text": "= \\ 7\\ \\cdot \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\Sigma f\\left(r\\right)\\ = \\ \\dfrac{7n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

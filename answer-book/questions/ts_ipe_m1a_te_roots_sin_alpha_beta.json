@@ -183,12 +183,25 @@
             "text": "(here A = a² + b², B = −2bc and C = c² − a²)",
             "added": true
           },
-          "Sum of roots = −B/A:",
-          "  sinα + sinβ = 2bc/(a² + b²)",
-          "Product of roots = C/A:",
           {
-            "text": "  sinα · sinβ = (c² − a²)/(a² + b²)",
-            "style": "boxed"
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ = \\ - \\dfrac{B}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\alpha \\ + \\ \\sin \\beta \\ = \\ \\dfrac{2bc}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ = \\ \\dfrac{C}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\alpha \\ \\cdot \\ \\sin \\beta \\ = \\ \\dfrac{c^{2}\\ - \\ a^{2}}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -220,12 +233,25 @@
         ],
         "lines_compact": [
           "This is a quadratic in sinθ with roots sinα, sinβ.",
-          "Sum of roots = −B/A:",
-          "  sinα + sinβ = 2bc/(a² + b²)",
-          "Product of roots = C/A:",
           {
-            "text": "  sinα · sinβ = (c² − a²)/(a² + b²)",
-            "style": "boxed"
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ = \\ - \\dfrac{B}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\alpha \\ + \\ \\sin \\beta \\ = \\ \\dfrac{2bc}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ = \\ \\dfrac{C}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\alpha \\ \\cdot \\ \\sin \\beta \\ = \\ \\dfrac{c^{2}\\ - \\ a^{2}}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

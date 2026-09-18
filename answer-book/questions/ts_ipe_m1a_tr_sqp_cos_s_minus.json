@@ -74,13 +74,22 @@
           "L.H.S = [cos(S−A) + cos(S−B)] + [cos(S−C) + cos S]",
           "Use the sum formula on each pair:",
           {
-            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
-            "style": "indent"
+            "text": "\\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           "(first pair: p + q = 2S − A − B, p − q = B − A)",
           "(second pair: p + q = 2S − C, p − q = −C)",
-          "= 2 cos((2S−A−B)/2) cos((B−A)/2)",
-          "  + 2 cos((2S−C)/2) cos(−C/2)"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{2S - A - B}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\cos \\left(\\dfrac{2S - C}{2}\\right)\\cos \\left( - \\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -124,13 +133,27 @@
             "added": true
           },
           "A + B + C = 2S ⇒ 2S − A − B = C",
-          "⇒ cos((2S − A − B)/2) = cos(C/2)",
-          "Also cos((B−A)/2) = cos((A−B)/2)  [cos(−θ) = cos θ]",
           {
-            "text": "((B−A)/2 = −(A−B)/2)",
+            "text": "\\Rightarrow \\ \\cos \\left(\\dfrac{2S\\ - \\ A\\ - \\ B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\cos \\left(\\dfrac{B - A}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\left[\\cos \\left( - \\theta \\right)\\ = \\ \\cos \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{B - A}{2} = \\ - \\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "First pair = 2 cos(C/2) cos((A−B)/2)"
+          {
+            "text": "\\text{First}\\ \\text{pair}\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,9 +183,21 @@
         ],
         "lines_compact": [
           "A + B + C = 2S ⇒ 2S − A − B = C",
-          "⇒ cos((2S − A − B)/2) = cos(C/2)",
-          "Also cos((B−A)/2) = cos((A−B)/2)  [cos(−θ) = cos θ]",
-          "First pair = 2 cos(C/2) cos((A−B)/2)"
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(\\dfrac{2S\\ - \\ A\\ - \\ B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\cos \\left(\\dfrac{B - A}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\left[\\cos \\left( - \\theta \\right)\\ = \\ \\cos \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{First}\\ \\text{pair}\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,13 +217,25 @@
             "text": "(2S − C = (A + B + C) − C = A + B)",
             "added": true
           },
-          "2S − C = A + B ⇒ cos((2S − C)/2) = cos((A+B)/2)",
-          "and cos(−C/2) = cos(C/2)",
+          {
+            "text": "2S\\ - \\ C\\ = \\ A\\ + \\ B\\ \\Rightarrow \\ \\cos \\left(\\dfrac{2S\\ - \\ C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cos \\left( - \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos(−θ) = cos θ)",
             "added": true
           },
-          "Second pair = 2 cos((A+B)/2) cos(C/2)"
+          {
+            "text": "\\text{Second}\\ \\text{pair}\\ = \\ 2\\cos \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -217,9 +264,21 @@
           "Writing 2S − C as A + B + C."
         ],
         "lines_compact": [
-          "2S − C = A + B ⇒ cos((2S − C)/2) = cos((A+B)/2)",
-          "and cos(−C/2) = cos(C/2)",
-          "Second pair = 2 cos((A+B)/2) cos(C/2)"
+          {
+            "text": "2S\\ - \\ C\\ = \\ A\\ + \\ B\\ \\Rightarrow \\ \\cos \\left(\\dfrac{2S\\ - \\ C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cos \\left( - \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Second}\\ \\text{pair}\\ = \\ 2\\cos \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -235,13 +294,27 @@
             "text": "Add the two pairs:",
             "added": true
           },
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "      + 2 cos((A+B)/2) cos(C/2)",
           {
-            "text": "Both terms have 2 cos(C/2); take it out:",
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\cos \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{have}\\ 2\\cos \\left(\\dfrac{C}{2}\\right);\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -270,9 +343,21 @@
           "Expanding the brackets back out."
         ],
         "lines_compact": [
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "      + 2 cos((A+B)/2) cos(C/2)",
-          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\cos \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -289,19 +374,29 @@
             "added": true
           },
           {
-            "text": "  with x = A/2 and y = B/2:",
+            "text": "\\text{with}\\ x\\ = \\ \\dfrac{A}{2}\\text{and}\\ y\\ = \\ \\dfrac{B}{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2)",
-          "L.H.S = 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
+          {
+            "text": "\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply 2 × 2 = 4 and reorder:",
             "added": true
           },
           {
-            "text": "∴ The sum equals 4 cos(A/2) cos(B/2) cos(C/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{The}\\ \\text{sum}\\ \\text{equals}\\ 4\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -331,11 +426,20 @@
           "Reporting 2 instead of 4."
         ],
         "lines_compact": [
-          "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2)",
-          "L.H.S = 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
           {
-            "text": "∴ The sum equals 4 cos(A/2) cos(B/2) cos(C/2)",
-            "style": "boxed"
+            "text": "\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{The}\\ \\text{sum}\\ \\text{equals}\\ 4\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

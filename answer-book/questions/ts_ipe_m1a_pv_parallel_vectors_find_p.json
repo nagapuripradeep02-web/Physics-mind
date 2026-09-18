@@ -60,7 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let a = 4i + (2p/3)j + pk",
+          {
+            "text": "\\text{Let}\\ a\\ = \\ 4i\\ + \\ \\left(\\dfrac{2p}{3}\\right)j\\ + \\ pk",
+            "style": "normal",
+            "render": "katex"
+          },
           "and b = i + 2j + 3k.",
           "a is parallel to b ⇒ a = t b, t ≠ 0.",
           "So like components are in one ratio."
@@ -102,8 +106,16 @@
         "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it gives the same equation and adds nothing new.",
         "memory_tip": "Write all three ratios first — here the middle one repeats the third, so it adds no new equation.",
         "lines": [
-          "4/1 = (2p/3)/2 = p/3",
-          "The middle ratio is (2p/3)/2 = p/3,",
+          {
+            "text": "\\dfrac{4}{1} = \\ \\dfrac{\\dfrac{2p}{3}}{2} = \\ \\dfrac{p}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{middle}\\ \\text{ratio}\\ \\text{is}\\ \\dfrac{\\dfrac{2p}{3}}{2} = \\ \\dfrac{p}{3},",
+            "style": "normal",
+            "render": "katex"
+          },
           "the same as the third ratio, so it",
           "gives no new equation."
         ],
@@ -145,13 +157,21 @@
         "memory_tip": "Use the two ratios that carry plain numbers, 4/1 and p/3, and cross multiply.",
         "lines": [
           "From the first and third ratios,",
-          "4/1 = p/3",
+          {
+            "text": "\\dfrac{4}{1} = \\ \\dfrac{p}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply: p = 4 × 3)",
             "added": true
           },
           "⇒ p = 12",
-          "Then 2p/3 = 8, and 8/2 = 4 as needed."
+          {
+            "text": "\\text{Then}\\ \\dfrac{2p}{3} = \\ 8,\\ \\text{and}\\ \\dfrac{8}{2} = \\ 4\\ \\text{as}\\ \\text{needed}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -182,9 +202,17 @@
         ],
         "lines_compact": [
           "From the first and third ratios,",
-          "4/1 = p/3",
+          {
+            "text": "\\dfrac{4}{1} = \\ \\dfrac{p}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ p = 12",
-          "Then 2p/3 = 8, and 8/2 = 4 as needed."
+          {
+            "text": "\\text{Then}\\ \\dfrac{2p}{3} = \\ 8,\\ \\text{and}\\ \\dfrac{8}{2} = \\ 4\\ \\text{as}\\ \\text{needed}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

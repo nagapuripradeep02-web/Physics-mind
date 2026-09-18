@@ -56,8 +56,16 @@
           "cos66° = sin(90° − 66°) = sin24°",
           "(cos θ = sin(90° − θ))",
           "L.H.S = 4(sin84° + sin24°)",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
-          "((84° + 24°)/2 = 54° and (84° − 24°)/2 = 30°)",
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{84^{\\circ}\\ + \\ 24^{\\circ}}{2} = \\ 54^{\\circ}\\ \\text{and}\\ \\dfrac{84^{\\circ}\\ - \\ 24^{\\circ}}{2} = \\ 30^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 8 sin54° cos30°",
           "(4 × 2 = 8)"
         ],
@@ -98,18 +106,32 @@
         "margin_note": "Second mark. cos30° = √3/2 and sin54° = cos36° = (√5 + 1)/4. The 4 in that value cancels the 4 outside.",
         "memory_tip": "sin54° = cos36° = (√5 + 1)/4, and its 4 cancels the 4 standing in front.",
         "lines": [
-          "cos30° = √3/2, so L.H.S = 4√3 sin54°",
           {
-            "text": "(8 × √3/2 = 4√3)",
+            "text": "\\cos 30^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2},\\ \\text{so}\\ L.H.S\\ = \\ 4\\sqrt{3}\\sin 54^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(8\\ \\times \\ \\dfrac{\\sqrt{3}}{2} = \\ 4\\sqrt{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "sin54° = cos(90° − 54°) = cos36°",
-          "cos36° = (√5 + 1)/4",
+          {
+            "text": "\\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the value proved in this chapter)",
             "added": true
           },
-          "= 4√3 × (√5 + 1)/4 = √3(√5 + 1)",
+          {
+            "text": "= \\ 4\\sqrt{3}\\ \\times \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4} = \\ \\sqrt{3}\\left(\\sqrt{5}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the 4s cancel, and √3 × √5 = √15)",
             "added": true
@@ -147,10 +169,22 @@
           "Leaving √3 × √5 unmultiplied."
         ],
         "lines_compact": [
-          "cos30° = √3/2, so L.H.S = 4√3 sin54°",
+          {
+            "text": "\\cos 30^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2},\\ \\text{so}\\ L.H.S\\ = \\ 4\\sqrt{3}\\sin 54^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "sin54° = cos(90° − 54°) = cos36°",
-          "cos36° = (√5 + 1)/4",
-          "= 4√3 × (√5 + 1)/4 = √3(√5 + 1)",
+          {
+            "text": "\\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\sqrt{3}\\ \\times \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4} = \\ \\sqrt{3}\\left(\\sqrt{5}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S = √15 + √3 = R.H.S",
             "style": "boxed"

@@ -56,11 +56,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(the addition formula; (3/4)(3/5) = 9/20 < 1, so it applies)",
-          "Tan⁻¹(3/4) + Tan⁻¹(3/5)",
-          "= Tan⁻¹((3/4 + 3/5)/(1 − (3/4)(3/5)))",
-          "(3/4 + 3/5 = 27/20 and 1 − 9/20 = 11/20)",
-          "= Tan⁻¹((27/20)/(11/20)) = Tan⁻¹(27/11)"
+          {
+            "text": "\\left(\\text{the}\\ \\text{addition}\\ \\text{formula};\\ \\left(\\dfrac{3}{4}\\right)\\left(\\dfrac{3}{5}\\right)\\ = \\ \\dfrac{9}{20} < \\ 1,\\ \\text{so}\\ \\text{it}\\ \\text{applies}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{3}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{3}{4} + \\ \\dfrac{3}{5}}{1\\ - \\ \\left(\\dfrac{3}{4}\\right)\\left(\\dfrac{3}{5}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{4} + \\ \\dfrac{3}{5} = \\ \\dfrac{27}{20}\\text{and}\\ 1\\ - \\ \\dfrac{9}{20} = \\ \\dfrac{11}{20}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{27}{20}}{\\dfrac{11}{20}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,18 +118,34 @@
         "margin_note": "Third mark, and the step that differs from an all-addition chain of arctangents. Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy)) — note the PLUS in the denominator.",
         "memory_tip": "The DIFFERENCE formula has a PLUS in the denominator: (x − y)/(1 + xy).",
         "lines": [
-          "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\operatorname{Tan}^{-1} x\\ - \\ \\operatorname{Tan}^{-1} y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{x - y}{1 + xy}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(it needs xy > −1; here xy is positive)",
             "added": true
           },
-          "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
-          "= Tan⁻¹((27/11 − 8/19)/(1 + (27/11)(8/19)))",
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{8}{19}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{27}{11} - \\ \\dfrac{8}{19}}{1\\ + \\ \\left(\\dfrac{27}{11}\\right)\\left(\\dfrac{8}{19}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the top and the bottom by 11 × 19 = 209)",
             "added": true
           },
-          "= Tan⁻¹((513 − 88)/(209 + 216)) = Tan⁻¹(425/425)"
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{513\\ - \\ 88}{209\\ + \\ 216}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{425}{425}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -139,10 +175,26 @@
           "Subtracting in the wrong order."
         ],
         "lines_compact": [
-          "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
-          "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
-          "= Tan⁻¹((27/11 − 8/19)/(1 + (27/11)(8/19)))",
-          "= Tan⁻¹((513 − 88)/(209 + 216)) = Tan⁻¹(425/425)"
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\operatorname{Tan}^{-1} x\\ - \\ \\operatorname{Tan}^{-1} y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{x - y}{1 + xy}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{8}{19}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{27}{11} - \\ \\dfrac{8}{19}}{1\\ + \\ \\left(\\dfrac{27}{11}\\right)\\left(\\dfrac{8}{19}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{513\\ - \\ 88}{209\\ + \\ 216}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{425}{425}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -155,13 +207,20 @@
         "memory_tip": "425/425 is 1, so the answer is Tan⁻¹(1) = π/4.",
         "lines": [
           {
-            "text": "(425/425 = 1, and tan(π/4) = 1)",
+            "text": "\\left(\\dfrac{425}{425} = \\ 1,\\ \\text{and}\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= Tan⁻¹(1) = π/4",
           {
-            "text": "∴ Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4",
-            "style": "boxed"
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3}{5}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{8}{19}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -191,10 +250,15 @@
           "Failing to simplify the fraction."
         ],
         "lines_compact": [
-          "= Tan⁻¹(1) = π/4",
           {
-            "text": "∴ Tan⁻¹(3/4) + Tan⁻¹(3/5) − Tan⁻¹(8/19) = π/4",
-            "style": "boxed"
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{3}{5}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{8}{19}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

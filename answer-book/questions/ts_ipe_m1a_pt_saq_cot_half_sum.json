@@ -61,11 +61,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = cot(A/2) + cot(B/2) + cot(C/2)",
-          "(half-angle formula: cot(A/2) = s(s−a)/Δ)",
-          "= s(s−a)/Δ + s(s−b)/Δ + s(s−c)/Δ",
-          "(take out the common s/Δ)",
-          "= s[(s−a) + (s−b) + (s−c)]/Δ"
+          {
+            "text": "L.H.S\\ = \\ \\cot \\left(\\dfrac{A}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{B}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{half} - \\text{angle}\\ \\text{formula}:\\ \\cot \\left(\\dfrac{A}{2}\\right)\\ = \\ \\dfrac{s\\left(s - a\\right)}{\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left(s - a\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - b\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\text{the}\\ \\text{common}\\ \\dfrac{s}{\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[\\left(s - a\\right)\\ + \\ \\left(s - b\\right)\\ + \\ \\left(s - c\\right)\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,12 +128,25 @@
             "text": "((s−a) + (s−b) + (s−c) = 3s − (a + b + c))",
             "added": true
           },
-          "= s[3s − (a + b + c)]/Δ",
-          "= s[3s − 2s]/Δ   [∵ a + b + c = 2s]",
-          "= s[s]/Δ",
           {
-            "text": "= s²/Δ = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{s\\left[3s\\ - \\ \\left(a\\ + \\ b\\ + \\ c\\right)\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[3s\\ - \\ 2s\\right]}{\\Delta }\\left[\\because \\ a\\ + \\ b\\ + \\ c\\ = \\ 2s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[s\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s^{2}}{\\Delta } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,12 +176,25 @@
           "Cancelling the Δ wrongly."
         ],
         "lines_compact": [
-          "= s[3s − (a + b + c)]/Δ",
-          "= s[3s − 2s]/Δ   [∵ a + b + c = 2s]",
-          "= s[s]/Δ",
           {
-            "text": "= s²/Δ = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{s\\left[3s\\ - \\ \\left(a\\ + \\ b\\ + \\ c\\right)\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[3s\\ - \\ 2s\\right]}{\\Delta }\\left[\\because \\ a\\ + \\ b\\ + \\ c\\ = \\ 2s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[s\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s^{2}}{\\Delta } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

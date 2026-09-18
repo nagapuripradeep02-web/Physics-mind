@@ -101,7 +101,11 @@
             "text": "Expand cot(A + B) with its formula:",
             "added": true
           },
-          "⇒ (cot A cot B − 1)/(cot A + cot B) = −cot C",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cot A\\cot B\\ - \\ 1}{\\cot A\\ + \\ \\cot B} = \\ - \\cot C",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           "cot A cot B − 1 = −cot C (cot A + cot B)",
           {
@@ -153,7 +157,11 @@
           "Multiplying only cot A by −cot C and leaving cot B unmultiplied."
         ],
         "lines_compact": [
-          "⇒ (cot A cot B − 1)/(cot A + cot B) = −cot C",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cot A\\cot B\\ - \\ 1}{\\cot A\\ + \\ \\cot B} = \\ - \\cot C",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           "cot A cot B − 1 = −cot C (cot A + cot B)",
           "= −cot C cot A − cot B cot C",

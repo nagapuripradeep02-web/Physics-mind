@@ -53,9 +53,21 @@
             "style": "heading"
           },
           "(a) For tan A and tan B to exist, neither",
-          "A nor B is an odd multiple of π/2.",
-          "tan(A + B) = tan(π/4) = 1",
-          "⇒ (tan A + tan B)/(1 − tan A tan B) = 1",
+          {
+            "text": "A\\ \\text{nor}\\ B\\ \\text{is}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(A\\ + \\ B\\right)\\ = \\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply by 1 − tan A tan B, then move",
           {
             "text": "  −tan A tan B to the left)",
@@ -111,12 +123,22 @@
         "lines": [
           "(b) For cot A and cot B to exist, neither",
           "A nor B is a multiple of π.",
-          "cot(A + B) = cot(π/4) = 1",
           {
-            "text": "(cot(A + B) = (cot A cot B − 1)/(cot A + cot B))",
+            "text": "\\cot \\left(A\\ + \\ B\\right)\\ = \\ \\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cot \\left(A\\ + \\ B\\right)\\ = \\ \\dfrac{\\cot A\\cot B\\ - \\ 1}{\\cot A\\ + \\ \\cot B}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cot A\\cot B\\ - \\ 1}{\\cot A\\ + \\ \\cot B} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply by cot A + cot B, move cot A + cot B",
             "added": true
@@ -173,8 +195,16 @@
         "lines_compact": [
           "(b) For cot A and cot B to exist, neither",
           "A nor B is a multiple of π.",
-          "cot(A + B) = cot(π/4) = 1",
-          "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
+          {
+            "text": "\\cot \\left(A\\ + \\ B\\right)\\ = \\ \\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cot A\\cot B\\ - \\ 1}{\\cot A\\ + \\ \\cot B} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ cot A cot B − cot A − cot B = 1",
           "(cot A − 1)(cot B − 1)",
           "= cot A cot B − cot A − cot B + 1",

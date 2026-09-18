@@ -160,13 +160,21 @@
           },
           "The direction cosines are the components",
           "of the unit vector along AB:",
-          "l = 2/3,  m = −2/3,  n = −1/3",
+          {
+            "text": "l\\ = \\ \\dfrac{2}{3},\\ m\\ = \\ - \\dfrac{2}{3},\\ n\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the squares of the direction cosines always add to 1)",
             "added": true
           },
           "Check: l² + m² + n²",
-          "  = (4 + 4 + 1)/9 = 9/9 = 1"
+          {
+            "text": "= \\ \\dfrac{4\\ + \\ 4\\ + \\ 1}{9} = \\ \\dfrac{9}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,9 +207,17 @@
         "lines_compact": [
           "The direction cosines are the components",
           "of the unit vector along AB:",
-          "l = 2/3,  m = −2/3,  n = −1/3",
+          {
+            "text": "l\\ = \\ \\dfrac{2}{3},\\ m\\ = \\ - \\dfrac{2}{3},\\ n\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: l² + m² + n²",
-          "  = (4 + 4 + 1)/9 = 9/9 = 1"
+          {
+            "text": "= \\ \\dfrac{4\\ + \\ 4\\ + \\ 1}{9} = \\ \\dfrac{9}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -215,18 +231,24 @@
         "lines": [
           "Let α, β, γ be the angles the line makes",
           "with the x, y and z axes. Then",
-          "cos α = 2/3,  cos β = −2/3,  cos γ = −1/3",
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{2}{3},\\ \\cos \\beta \\ = \\ - \\dfrac{2}{3},\\ \\cos \\gamma \\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(Cos⁻¹ of a negative number lies between 90° and 180°)",
             "added": true
           },
           {
-            "text": "∴ α = Cos⁻¹(2/3),  β = Cos⁻¹(−2/3),",
-            "style": "boxed"
+            "text": "\\therefore \\ \\alpha \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{2}{3}\\right),\\ \\beta \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{2}{3}\\right),",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "γ = Cos⁻¹(−1/3)",
-            "style": "boxed"
+            "text": "\\gamma \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{1}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           "Taking BA instead reverses all three signs",
           "and gives the supplementary angles."
@@ -263,14 +285,20 @@
         "lines_compact": [
           "Let α, β, γ be the angles the line makes",
           "with the x, y and z axes. Then",
-          "cos α = 2/3,  cos β = −2/3,  cos γ = −1/3",
           {
-            "text": "∴ α = Cos⁻¹(2/3),  β = Cos⁻¹(−2/3),",
-            "style": "boxed"
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{2}{3},\\ \\cos \\beta \\ = \\ - \\dfrac{2}{3},\\ \\cos \\gamma \\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "γ = Cos⁻¹(−1/3)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\alpha \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{2}{3}\\right),\\ \\beta \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{2}{3}\\right),",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\gamma \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{1}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           "Taking BA instead reverses all three signs",
           "and gives the supplementary angles."

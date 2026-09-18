@@ -54,10 +54,18 @@
           },
           "Let y = Tanh⁻¹x, so x = tanh y",
           "(the definition of tanh y)",
-          "x = (eʸ − e⁻ʸ)/(eʸ + e⁻ʸ)",
+          {
+            "text": "x\\ = \\ \\dfrac{e^{y}\\ - \\ e^{-y}}{e^{y}\\ + \\ e^{-y}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply the top and the bottom by eʸ:",
           "(eʸ × eʸ = e²ʸ and e⁻ʸ × eʸ = 1)",
-          "x = (e²ʸ − 1)/(e²ʸ + 1)"
+          {
+            "text": "x\\ = \\ \\dfrac{e^{2y}\\ - \\ 1}{e^{2y}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -97,20 +105,36 @@
         "memory_tip": "1 + x and 1 − x share the denominator e²ʸ + 1, so dividing them leaves e²ʸ on its own.",
         "lines": [
           {
-            "text": "(1 + x = (e²ʸ + 1 + e²ʸ − 1)/(e²ʸ + 1))",
+            "text": "\\left(1\\ + \\ x\\ = \\ \\dfrac{e^{2y}\\ + \\ 1\\ + \\ e^{2y}\\ - \\ 1}{e^{2y}\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 + x = 2e²ʸ/(e²ʸ + 1)",
           {
-            "text": "(1 − x = (e²ʸ + 1 − e²ʸ + 1)/(e²ʸ + 1))",
+            "text": "1\\ + \\ x\\ = \\ \\dfrac{2e^{2y}}{e^{2y}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ x\\ = \\ \\dfrac{e^{2y}\\ + \\ 1\\ - \\ e^{2y}\\ + \\ 1}{e^{2y}\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 − x = 2/(e²ʸ + 1)",
+          {
+            "text": "1\\ - \\ x\\ = \\ \\dfrac{2}{e^{2y}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide: the e²ʸ + 1 cancels)",
             "added": true
           },
-          "∴ (1 + x)/(1 − x) = e²ʸ",
+          {
+            "text": "\\therefore \\ \\dfrac{1\\ + \\ x}{1\\ - \\ x} = \\ e^{2y}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
           "The ratio is positive, so its logarithm exists",
           {
@@ -155,9 +179,21 @@
           "Forgetting the 1/2 that comes from 2y on the left."
         ],
         "lines_compact": [
-          "1 + x = 2e²ʸ/(e²ʸ + 1)",
-          "1 − x = 2/(e²ʸ + 1)",
-          "∴ (1 + x)/(1 − x) = e²ʸ",
+          {
+            "text": "1\\ + \\ x\\ = \\ \\dfrac{2e^{2y}}{e^{2y}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ x\\ = \\ \\dfrac{2}{e^{2y}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1\\ + \\ x}{1\\ - \\ x} = \\ e^{2y}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
           "The ratio is positive, so its logarithm exists",
           "2y = logₑ((1 + x)/(1 − x))",

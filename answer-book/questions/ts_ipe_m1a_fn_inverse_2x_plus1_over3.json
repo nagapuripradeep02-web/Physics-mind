@@ -52,13 +52,29 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f: R→R, f(x) = (2x + 1)/3",
+          {
+            "text": "f:\\ R \\to R,\\ f\\left(x\\right)\\ = \\ \\dfrac{2x\\ + \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "(multiply both sides by 3)",
-          "(2x + 1)/3 = y ⇒ 2x + 1 = 3y",
+          {
+            "text": "\\dfrac{2x\\ + \\ 1}{3} = \\ y\\ \\Rightarrow \\ 2x\\ + \\ 1\\ = \\ 3y",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take away 1, then divide by 2)",
-          "⇒ 2x = 3y − 1 ⇒ x = (3y − 1)/2",
-          "∴ f⁻¹(y) = (3y − 1)/2"
+          {
+            "text": "\\Rightarrow \\ 2x\\ = \\ 3y\\ - \\ 1\\ \\Rightarrow \\ x\\ = \\ \\dfrac{3y\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f^{-1}\\left(y\\right)\\ = \\ \\dfrac{3y\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -96,9 +112,21 @@
         "margin_note": "No mark for this, but it is a 20-second check that catches a sign slip. Feed the inverse back into f and see whether x comes out.",
         "memory_tip": "Test it: put the inverse into f. If f(f⁻¹(x)) comes back as x, the inverse is right.",
         "lines": [
-          "Rename y as x: f⁻¹(x) = (3x − 1)/2",
-          "Check: f(f⁻¹(x)) = (2·(3x − 1)/2 + 1)/3",
-          "= (3x − 1 + 1)/3 = 3x/3 = x",
+          {
+            "text": "\\text{Rename}\\ y\\ \\text{as}\\ x:\\ f^{-1}\\left(x\\right)\\ = \\ \\dfrac{3x\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ f\\left(f^{-1}\\left(x\\right)\\right)\\ = \\ \\dfrac{2 \\cdot \\dfrac{3x\\ - \\ 1}{2} + \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3x\\ - \\ 1\\ + \\ 1}{3} = \\ \\dfrac{3x}{3} = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
           "f is one one and onto, so f⁻¹ exists",
           "on all of R. So f⁻¹: R→R."
         ],
@@ -141,8 +169,9 @@
         "lines": [
           "∴ f⁻¹: R→R is given by",
           {
-            "text": "f⁻¹(x) = (3x − 1)/2",
-            "style": "boxed"
+            "text": "f^{-1}\\left(x\\right)\\ = \\ \\dfrac{3x\\ - \\ 1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

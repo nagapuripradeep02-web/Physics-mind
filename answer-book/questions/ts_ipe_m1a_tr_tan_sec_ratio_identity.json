@@ -110,15 +110,24 @@
             "text": "Write both in sin and cos:",
             "added": true
           },
-          "= 1/cos θ + sin θ/cos θ",
+          {
+            "text": "= \\ \\dfrac{1}{\\cos \\theta } + \\ \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(same denominator cos θ, so add the tops)",
             "added": true
           },
-          "= (1 + sin θ)/cos θ = RHS",
           {
-            "text": "∴ LHS = (1 + sin θ)/cos θ",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1\\ + \\ \\sin \\theta }{\\cos \\theta } = \\ RHS",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ LHS\\ = \\ \\dfrac{1\\ + \\ \\sin \\theta }{\\cos \\theta }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,11 +160,20 @@
         "lines_compact": [
           "The denominator is not 0, so it cancels:",
           "LHS = sec θ + tan θ",
-          "= 1/cos θ + sin θ/cos θ",
-          "= (1 + sin θ)/cos θ = RHS",
           {
-            "text": "∴ LHS = (1 + sin θ)/cos θ",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{\\cos \\theta } + \\ \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\sin \\theta }{\\cos \\theta } = \\ RHS",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ LHS\\ = \\ \\dfrac{1\\ + \\ \\sin \\theta }{\\cos \\theta }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -67,9 +67,17 @@
           "p₁ is the altitude from A to BC, so",
           "Δ = ½ (base)(height) = ½ (BC)(p₁) = ½ a p₁",
           "(divide both sides by ½ a)",
-          "⇒ p₁ = 2Δ/a.  Similarly p₂ = 2Δ/b, p₃ = 2Δ/c",
+          {
+            "text": "\\Rightarrow \\ p_{1}\\ = \\ \\dfrac{2\\Delta }{a}.\\ \\text{Similarly}\\ p_{2}\\ = \\ \\dfrac{2\\Delta }{b},\\ p_{3}\\ = \\ \\dfrac{2\\Delta }{c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take the reciprocal of each)",
-          "Hence 1/p₁ = a/(2Δ), 1/p₂ = b/(2Δ), 1/p₃ = c/(2Δ)"
+          {
+            "text": "\\text{Hence}\\ \\dfrac{1}{p_{1}} = \\ \\dfrac{a}{2\\Delta },\\ \\dfrac{1}{p_{2}} = \\ \\dfrac{b}{2\\Delta },\\ \\dfrac{1}{p_{3}} = \\ \\dfrac{c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -227,13 +235,25 @@
         "mark_note": "Method",
         "margin_note": "One mark. The three reciprocals share 1/(2Δ), and a + b + c is 2s — so the sum becomes s/Δ, which is 1/r.",
         "lines": [
-          "(i) 1/p₁ + 1/p₂ + 1/p₃ = a/(2Δ) + b/(2Δ) + c/(2Δ)",
+          {
+            "text": "\\dfrac{\\left(i\\right)1}{p_{1}} + \\ \\dfrac{1}{p_{2}} + \\ \\dfrac{1}{p_{3}} = \\ \\dfrac{a}{2\\Delta } + \\ \\dfrac{b}{2\\Delta } + \\ \\dfrac{c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(same denominator 2Δ, and a + b + c = 2s)",
             "added": true
           },
-          "= (a+b+c)/(2Δ) = 2s/(2Δ) = s/Δ",
-          "= 1/r   [∵ r = Δ/s]"
+          {
+            "text": "= \\ \\dfrac{a + b + c}{2\\Delta } = \\ \\dfrac{2s}{2\\Delta } = \\ \\dfrac{s}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{r}\\left[\\because \\ r\\ = \\ \\dfrac{\\Delta }{s}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -264,9 +284,21 @@
         ],
         "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r.",
         "lines_compact": [
-          "(i) 1/p₁ + 1/p₂ + 1/p₃ = a/(2Δ) + b/(2Δ) + c/(2Δ)",
-          "= (a+b+c)/(2Δ) = 2s/(2Δ) = s/Δ",
-          "= 1/r   [∵ r = Δ/s]"
+          {
+            "text": "\\dfrac{\\left(i\\right)1}{p_{1}} + \\ \\dfrac{1}{p_{2}} + \\ \\dfrac{1}{p_{3}} = \\ \\dfrac{a}{2\\Delta } + \\ \\dfrac{b}{2\\Delta } + \\ \\dfrac{c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a + b + c}{2\\Delta } = \\ \\dfrac{2s}{2\\Delta } = \\ \\dfrac{s}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{r}\\left[\\because \\ r\\ = \\ \\dfrac{\\Delta }{s}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -277,17 +309,29 @@
         "mark_note": "Method",
         "margin_note": "One more mark. The same sum with a minus on the third: a + b − c is 2s − 2c = 2(s−c), and Δ/(s−c) is r₃.",
         "lines": [
-          "(ii) 1/p₁ + 1/p₂ − 1/p₃ = (a + b − c)/(2Δ)",
+          {
+            "text": "\\dfrac{\\left(ii\\right)1}{p_{1}} + \\ \\dfrac{1}{p_{2}} - \\ \\dfrac{1}{p_{3}} = \\ \\dfrac{a\\ + \\ b\\ - \\ c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write a + b − c as (a + b + c) − 2c = 2s − 2c)",
             "added": true
           },
-          "= (a+b+c−2c)/(2Δ) = (2s − 2c)/(2Δ)",
+          {
+            "text": "= \\ \\dfrac{a + b + c - 2c}{2\\Delta } = \\ \\dfrac{2s\\ - \\ 2c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide top and bottom by 2)",
             "added": true
           },
-          "= (s−c)/Δ = 1/r₃   [∵ r₃ = Δ/(s−c)]"
+          {
+            "text": "= \\ \\dfrac{s - c}{\\Delta } = \\ \\dfrac{1}{r_{3}}\\left[\\because \\ r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -318,9 +362,21 @@
         ],
         "memory_tip": "With a minus on the third: a + b − c = 2s − 2c = 2(s − c), and Δ/(s − c) is r₃.",
         "lines_compact": [
-          "(ii) 1/p₁ + 1/p₂ − 1/p₃ = (a + b − c)/(2Δ)",
-          "= (a+b+c−2c)/(2Δ) = (2s − 2c)/(2Δ)",
-          "= (s−c)/Δ = 1/r₃   [∵ r₃ = Δ/(s−c)]"
+          {
+            "text": "\\dfrac{\\left(ii\\right)1}{p_{1}} + \\ \\dfrac{1}{p_{2}} - \\ \\dfrac{1}{p_{3}} = \\ \\dfrac{a\\ + \\ b\\ - \\ c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a + b + c - 2c}{2\\Delta } = \\ \\dfrac{2s\\ - \\ 2c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s - c}{\\Delta } = \\ \\dfrac{1}{r_{3}}\\left[\\because \\ r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -331,7 +387,11 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
         "lines": [
-          "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
+          {
+            "text": "\\left(iii\\right)p_{1}p_{2}p_{3}\\ = \\ \\left(\\dfrac{2\\Delta }{a}\\right)\\left(\\dfrac{2\\Delta }{b}\\right)\\left(\\dfrac{2\\Delta }{c}\\right)\\ = \\ \\dfrac{8\\Delta ^{3}}{abc}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(Δ = abc/(4R) comes from Δ = ½ bc sinA",
             "added": true
@@ -346,10 +406,15 @@
             "text": "((abc/4R)³ = (abc)³/(64R³); cancel one abc)",
             "added": true
           },
-          "= 8(abc)³/(abc · 64R³) = (abc)²/(8R³)",
           {
-            "text": "∴ p₁p₂p₃ = 8Δ³/(abc) = (abc)²/(8R³)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{8\\left(abc\\right)^{3}}{abc\\ \\cdot \\ 64R^{3}} = \\ \\dfrac{\\left(abc\\right)^{2}}{8R^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ p_{1}p_{2}p_{3}\\ = \\ \\dfrac{8\\Delta ^{3}}{abc} = \\ \\dfrac{\\left(abc\\right)^{2}}{8R^{3}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -381,12 +446,21 @@
         ],
         "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
         "lines_compact": [
-          "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
-          "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
-          "= 8(abc)³/(abc · 64R³) = (abc)²/(8R³)",
           {
-            "text": "∴ p₁p₂p₃ = 8Δ³/(abc) = (abc)²/(8R³)",
-            "style": "boxed"
+            "text": "\\left(iii\\right)p_{1}p_{2}p_{3}\\ = \\ \\left(\\dfrac{2\\Delta }{a}\\right)\\left(\\dfrac{2\\Delta }{b}\\right)\\left(\\dfrac{2\\Delta }{c}\\right)\\ = \\ \\dfrac{8\\Delta ^{3}}{abc}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
+          {
+            "text": "= \\ \\dfrac{8\\left(abc\\right)^{3}}{abc\\ \\cdot \\ 64R^{3}} = \\ \\dfrac{\\left(abc\\right)^{2}}{8R^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ p_{1}p_{2}p_{3}\\ = \\ \\dfrac{8\\Delta ^{3}}{abc} = \\ \\dfrac{\\left(abc\\right)^{2}}{8R^{3}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

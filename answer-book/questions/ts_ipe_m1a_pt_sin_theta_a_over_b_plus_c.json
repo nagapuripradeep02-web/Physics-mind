@@ -63,13 +63,33 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given sin θ = a/(b + c)",
+          {
+            "text": "\\text{Given}\\ \\sin \\theta \\ = \\ \\dfrac{a}{b\\ + \\ c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(square both sides)",
-          "⇒ sin²θ = a²/(b + c)²",
+          {
+            "text": "\\Rightarrow \\ \\sin ^{2} \\theta \\ = \\ \\dfrac{a^{2}}{\\left(b\\ + \\ c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin²θ + cos²θ = 1)",
-          "∴ cos²θ = 1 − sin²θ = 1 − a²/(b+c)²",
-          "(write 1 as (b + c)²/(b + c)²)",
-          "= ((b+c)² − a²)/(b+c)²"
+          {
+            "text": "\\therefore \\ \\cos ^{2} \\theta \\ = \\ 1\\ - \\ \\sin ^{2} \\theta \\ = \\ 1\\ - \\ \\dfrac{a^{2}}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ 1\\ \\text{as}\\ \\dfrac{\\left(b\\ + \\ c\\right)^{2}}{\\left(b\\ + \\ c\\right)^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(b + c\\right)^{2}\\ - \\ a^{2}}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,13 +130,25 @@
             "text": "((b + c)² = b² + c² + 2bc)",
             "added": true
           },
-          "= (b² + c² + 2bc − a²)/(b+c)²",
-          "= (2bc + (b² + c² − a²))/(b+c)²",
+          {
+            "text": "= \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ + \\ 2bc\\ - \\ a^{2}}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2bc\\ + \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ a^{2}\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cosine rule: b² + c² − a² = 2bc cos A)",
             "added": true
           },
-          "= (2bc + 2bc cos A)/(b+c)²"
+          {
+            "text": "= \\ \\dfrac{2bc\\ + \\ 2bc\\cos A}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,9 +178,21 @@
         ],
         "memory_tip": "Expand (b + c)², then group so b² + c² − a² appears — that is 2bc cos A.",
         "lines_compact": [
-          "= (b² + c² + 2bc − a²)/(b+c)²",
-          "= (2bc + (b² + c² − a²))/(b+c)²",
-          "= (2bc + 2bc cos A)/(b+c)²"
+          {
+            "text": "= \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ + \\ 2bc\\ - \\ a^{2}}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2bc\\ + \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ a^{2}\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2bc\\ + \\ 2bc\\cos A}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -163,12 +207,22 @@
             "text": "(take out the common factor 2bc)",
             "added": true
           },
-          "= 2bc(1 + cos A)/(b+c)²",
           {
-            "text": "(1 + cos A = 2cos²(A/2))",
+            "text": "= \\ \\dfrac{2bc\\left(1\\ + \\ \\cos A\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ + \\ \\cos A\\ = \\ 2\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4bc cos²(A/2)/(b+c)²"
+          {
+            "text": "= \\ \\dfrac{4bc\\cos ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -198,8 +252,16 @@
         ],
         "memory_tip": "1 + cos A = 2cos²(A/2), the same half of the pair as the a = (b+c)cos θ question.",
         "lines_compact": [
-          "= 2bc(1 + cos A)/(b+c)²",
-          "= 4bc cos²(A/2)/(b+c)²"
+          {
+            "text": "= \\ \\dfrac{2bc\\left(1\\ + \\ \\cos A\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4bc\\cos ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b + c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -210,7 +272,11 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. The square root gives exactly the result the question states — which is worth noticing rather than doubting.",
         "lines": [
-          "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\sqrt{\\dfrac{4bc\\cos ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b + c\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take cos θ ≥ 0, that is θ acute; and",
             "added": true
@@ -220,8 +286,9 @@
             "added": true
           },
           {
-            "text": "= (2√(bc)/(b+c)) cos(A/2)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{2\\sqrt{bc}}{b + c}\\right)\\cos \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -251,10 +318,15 @@
         ],
         "memory_tip": "The right-hand side is the same as in the a = (b + c) cos θ question, where it equals sin θ.",
         "lines_compact": [
-          "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
           {
-            "text": "= (2√(bc)/(b+c)) cos(A/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\sqrt{\\dfrac{4bc\\cos ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b + c\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2\\sqrt{bc}}{b + c}\\right)\\cos \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

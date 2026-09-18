@@ -171,7 +171,11 @@
             "text": "(divide by 2)",
             "added": true
           },
-          "∴ a·b = 15/2"
+          {
+            "text": "\\therefore \\ a \\cdot b\\ = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -203,7 +207,11 @@
         "lines_compact": [
           "49 = 34 + 2(a·b)",
           "2(a·b) = 49 − 34 = 15",
-          "∴ a·b = 15/2"
+          {
+            "text": "\\therefore \\ a \\cdot b\\ = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -216,20 +224,35 @@
         "memory_tip": "cos θ = 1/2 is a standard value: θ = 60°.",
         "lines": [
           "Let θ be the angle between a and b.",
-          "cos θ = (a·b)/(|a||b|)",
-          "  = (15/2)/(3 × 5)",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|\\left|b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{15}{2}}{3\\ \\times \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3 × 5 = 15)",
             "added": true
           },
-          "  = (15/2)/15 = 1/2",
           {
-            "text": "(cos 60° = 1/2, and θ lies between 0° and 180°)",
+            "text": "= \\ \\dfrac{\\dfrac{15}{2}}{15} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2},\\ \\text{and}\\ \\theta \\ \\text{lies}\\ \\text{between}\\ 0^{\\circ}\\ \\text{and}\\ 180^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ θ = 60° = π/3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ 60^{\\circ}\\ = \\ \\dfrac{\\pi }{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -261,12 +284,25 @@
         ],
         "lines_compact": [
           "Let θ be the angle between a and b.",
-          "cos θ = (a·b)/(|a||b|)",
-          "  = (15/2)/(3 × 5)",
-          "  = (15/2)/15 = 1/2",
           {
-            "text": "∴ θ = 60° = π/3",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|\\left|b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{15}{2}}{3\\ \\times \\ 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{15}{2}}{15} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ 60^{\\circ}\\ = \\ \\dfrac{\\pi }{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

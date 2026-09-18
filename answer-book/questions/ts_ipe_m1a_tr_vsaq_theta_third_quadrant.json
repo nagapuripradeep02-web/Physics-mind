@@ -54,9 +54,17 @@
           },
           "Divide numerator and denominator by cos11°:",
           "(sin11°/cos11° = tan11°)",
-          "tanθ = (1 + tan11°)/(1 − tan11°)",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{1\\ + \\ \\tan 11^{\\circ}}{1\\ - \\ \\tan 11^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Write 1 as tan45°:",
-          "= (tan45° + tan11°)/(1 − tan45° tan11°)",
+          {
+            "text": "= \\ \\dfrac{\\tan 45^{\\circ}\\ + \\ \\tan 11^{\\circ}}{1\\ - \\ \\tan 45^{\\circ}\\tan 11^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(tan(A + B) formula)",
           "= tan(45° + 11°) = tan56°"
         ],

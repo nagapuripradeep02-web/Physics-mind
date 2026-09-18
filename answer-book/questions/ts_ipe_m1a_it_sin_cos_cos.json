@@ -61,12 +61,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Take Sin⁻¹(3/5) = α and Cos⁻¹(12/13) = β",
-          "RTP: α + β = Cos⁻¹(33/65), that is, cos(α+β) = 33/65",
-          "(cosα = √(1 − 9/25) = 4/5, positive because α is acute)",
-          "Sin⁻¹(3/5) = α ⇒ sinα = 3/5 ⇒ cosα = 4/5",
-          "(sinβ = √(1 − 144/169) = 5/13, as β is acute)",
-          "Cos⁻¹(12/13) = β ⇒ cosβ = 12/13 ⇒ sinβ = 5/13"
+          {
+            "text": "\\text{Take}\\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ = \\ \\alpha \\ \\text{and}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{12}{13}\\right)\\ = \\ \\beta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "RTP:\\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{33}{65}\\right),\\ \\text{that}\\ \\text{is},\\ \\cos \\left(\\alpha + \\beta \\right)\\ = \\ \\dfrac{33}{65}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\alpha \\ = \\ \\sqrt{1\\ - \\ \\dfrac{9}{25}}\\ = \\ \\dfrac{4}{5},\\ \\text{positive}\\ \\text{because}\\ \\alpha \\ \\text{is}\\ \\text{acute}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ = \\ \\alpha \\ \\Rightarrow \\ \\sin \\alpha \\ = \\ \\dfrac{3}{5} \\Rightarrow \\ \\cos \\alpha \\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\beta \\ = \\ \\sqrt{1\\ - \\ \\dfrac{144}{169}}\\ = \\ \\dfrac{5}{13},\\ \\text{as}\\ \\beta \\ \\text{is}\\ \\text{acute}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Cos}^{-1}\\left(\\dfrac{12}{13}\\right)\\ = \\ \\beta \\ \\Rightarrow \\ \\cos \\beta \\ = \\ \\dfrac{12}{13} \\Rightarrow \\ \\sin \\beta \\ = \\ \\dfrac{5}{13}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,12 +135,22 @@
             "added": true
           },
           "cos(α + β) = cosα cosβ − sinα sinβ",
-          "= (4/5)(12/13) − (3/5)(5/13)",
           {
-            "text": "((4/5)(12/13) = 48/65 and (3/5)(5/13) = 15/65)",
+            "text": "= \\ \\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{12}{13}\\right)\\ - \\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{5}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{12}{13}\\right)\\ = \\ \\dfrac{48}{65}\\text{and}\\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{5}{13}\\right)\\ = \\ \\dfrac{15}{65}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 48/65 − 15/65 = 33/65"
+          {
+            "text": "= \\ \\dfrac{48}{65} - \\ \\dfrac{15}{65} = \\ \\dfrac{33}{65}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,8 +182,16 @@
         ],
         "lines_compact": [
           "cos(α + β) = cosα cosβ − sinα sinβ",
-          "= (4/5)(12/13) − (3/5)(5/13)",
-          "= 48/65 − 15/65 = 33/65"
+          {
+            "text": "= \\ \\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{12}{13}\\right)\\ - \\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{5}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{48}{65} - \\ \\dfrac{15}{65} = \\ \\dfrac{33}{65}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -170,11 +212,20 @@
             "style": "indent",
             "added": true
           },
-          "cos(α + β) = 33/65",
-          "⇒ α + β = Cos⁻¹(33/65)",
           {
-            "text": "∴ Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65)",
-            "style": "boxed"
+            "text": "\\cos \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{33}{65}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{33}{65}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ + \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{12}{13}\\right)\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{33}{65}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -204,11 +255,20 @@
           "Stopping at the fraction."
         ],
         "lines_compact": [
-          "cos(α + β) = 33/65",
-          "⇒ α + β = Cos⁻¹(33/65)",
           {
-            "text": "∴ Sin⁻¹(3/5) + Cos⁻¹(12/13) = Cos⁻¹(33/65)",
-            "style": "boxed"
+            "text": "\\cos \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{33}{65}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{33}{65}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ + \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{12}{13}\\right)\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{33}{65}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

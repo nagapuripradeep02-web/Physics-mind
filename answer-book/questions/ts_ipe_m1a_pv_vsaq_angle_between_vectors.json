@@ -117,8 +117,16 @@
         "margin_note": "Second mark. √14 times √14 is 14, so the fraction is 7/14 = 1/2 — and a cosine of a half is a familiar angle.",
         "memory_tip": "7/14 = 1/2, and a cosine of a half is a familiar angle.",
         "lines": [
-          "cos θ = 7/(√14 · √14) = 7/14 = 1/2",
-          "cos θ = 1/2 = cos 60°",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{7}{\\sqrt{14}\\ \\cdot \\ \\sqrt{14}} = \\ \\dfrac{7}{14} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ θ = 60°",
             "style": "boxed"

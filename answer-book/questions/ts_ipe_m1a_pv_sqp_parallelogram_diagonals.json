@@ -288,18 +288,31 @@
           "|AC| = √(16 + 4) = √20 = 2√5",
           "|BD| = √(4 + 4 + 16) = √24 = 2√6",
           {
-            "text": "(cos θ = (AC·BD)/(|AC||BD|))",
+            "text": "\\left(\\cos \\theta \\ = \\ \\dfrac{AC \\cdot BD}{\\left|AC\\right|\\left|BD\\right|}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "cos θ = −12/(2√5 · 2√6) = −12/(4√30) = −3/√30",
           {
-            "text": "(−3/√30 = −√9/√30 = −√3/√10)",
+            "text": "\\cos \\theta \\ = \\ - \\dfrac{12}{2\\sqrt{5}\\ \\cdot \\ 2\\sqrt{6}} = \\ - \\dfrac{12}{4\\sqrt{30}} = \\ - \\dfrac{3}{\\sqrt{30}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\dfrac{3}{\\sqrt{30}} = \\ - \\dfrac{\\sqrt{9}}{\\sqrt{30}} = \\ - \\dfrac{\\sqrt{3}}{\\sqrt{10}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −√3/√10",
           {
-            "text": "∴ θ = Cos⁻¹(−√3/√10)",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{\\sqrt{3}}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{\\sqrt{3}}{\\sqrt{10}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -334,11 +347,20 @@
           "AC·BD = 4(−2) + (−2)(2) + 0(−4) = −8 − 4 = −12",
           "|AC| = √(16 + 4) = √20 = 2√5",
           "|BD| = √(4 + 4 + 16) = √24 = 2√6",
-          "cos θ = −12/(2√5 · 2√6) = −12/(4√30) = −3/√30",
-          "= −√3/√10",
           {
-            "text": "∴ θ = Cos⁻¹(−√3/√10)",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ - \\dfrac{12}{2\\sqrt{5}\\ \\cdot \\ 2\\sqrt{6}} = \\ - \\dfrac{12}{4\\sqrt{30}} = \\ - \\dfrac{3}{\\sqrt{30}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\sqrt{3}}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left( - \\dfrac{\\sqrt{3}}{\\sqrt{10}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

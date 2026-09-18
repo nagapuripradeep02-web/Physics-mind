@@ -61,9 +61,21 @@
             "style": "heading"
           },
           "(Δ = rs = r₁(s − a) = r₂(s − b) = r₃(s − c))",
-          "r = Δ/s, r₁ = Δ/(s−a),",
-          "r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
-          "where s = (a + b + c)/2 and Δ is the area"
+          {
+            "text": "r\\ = \\ \\dfrac{\\Delta }{s},\\ r_{1}\\ = \\ \\dfrac{\\Delta }{s - a},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{2}\\ = \\ \\dfrac{\\Delta }{s - b},\\ r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{where}\\ s\\ = \\ \\dfrac{a\\ + \\ b\\ + \\ c}{2}\\text{and}\\ \\Delta \\ \\text{is}\\ \\text{the}\\ \\text{area}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,7 +115,11 @@
         "margin_note": "One mark. Add over the common denominator on the left and subtract over the common denominator on the right. Both numerators come out as Δc.",
         "memory_tip": "2s − a − b = c and s − (s−c) = c, so both sides carry the same numerator Δc.",
         "lines": [
-          "r₁ + r₂ = Δ/(s−a) + Δ/(s−b)",
+          {
+            "text": "r_{1}\\ + \\ r_{2}\\ = \\ \\dfrac{\\Delta }{s - a} + \\ \\dfrac{\\Delta }{s - b}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator (s−a)(s−b); the tops become",
             "added": true
@@ -113,14 +129,30 @@
             "style": "indent",
             "added": true
           },
-          "= Δ(2s − a − b)/[(s−a)(s−b)]",
-          "= Δc/[(s−a)(s−b)]   [∵ 2s − a − b = c]",
-          "r₃ − r = Δ/(s−c) − Δ/s",
+          {
+            "text": "= \\ \\dfrac{\\Delta \\left(2s\\ - \\ a\\ - \\ b\\right)}{\\left(s - a\\right)\\left(s - b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta c}{\\left(s - a\\right)\\left(s - b\\right)}\\left[\\because \\ 2s\\ - \\ a\\ - \\ b\\ = \\ c\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{3}\\ - \\ r\\ = \\ \\dfrac{\\Delta }{s - c} - \\ \\dfrac{\\Delta }{s}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator s(s−c))",
             "added": true
           },
-          "= Δ[s − (s−c)]/[s(s−c)] = Δc/[s(s−c)]"
+          {
+            "text": "= \\ \\dfrac{\\Delta \\left[s\\ - \\ \\left(s - c\\right)\\right]}{s\\left(s - c\\right)} = \\ \\dfrac{\\Delta c}{s\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,11 +183,31 @@
           "Writing 2s − a − b = c − s."
         ],
         "lines_compact": [
-          "r₁ + r₂ = Δ/(s−a) + Δ/(s−b)",
-          "= Δ(2s − a − b)/[(s−a)(s−b)]",
-          "= Δc/[(s−a)(s−b)]   [∵ 2s − a − b = c]",
-          "r₃ − r = Δ/(s−c) − Δ/s",
-          "= Δ[s − (s−c)]/[s(s−c)] = Δc/[s(s−c)]"
+          {
+            "text": "r_{1}\\ + \\ r_{2}\\ = \\ \\dfrac{\\Delta }{s - a} + \\ \\dfrac{\\Delta }{s - b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta \\left(2s\\ - \\ a\\ - \\ b\\right)}{\\left(s - a\\right)\\left(s - b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta c}{\\left(s - a\\right)\\left(s - b\\right)}\\left[\\because \\ 2s\\ - \\ a\\ - \\ b\\ = \\ c\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{3}\\ - \\ r\\ = \\ \\dfrac{\\Delta }{s - c} - \\ \\dfrac{\\Delta }{s}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta \\left[s\\ - \\ \\left(s - c\\right)\\right]}{s\\left(s - c\\right)} = \\ \\dfrac{\\Delta c}{s\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -168,7 +220,11 @@
         "memory_tip": "Both sides carry Δc, so cancel it and compare (s−a)(s−b) with s(s−c).",
         "lines": [
           "Given r₁ + r₂ = r₃ − r, so",
-          "Δc/[(s−a)(s−b)] = Δc/[s(s−c)]",
+          {
+            "text": "\\dfrac{\\Delta c}{\\left(s - a\\right)\\left(s - b\\right)} = \\ \\dfrac{\\Delta c}{s\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Δ > 0 and c > 0, so Δc cancels:",
           "(s−a)(s−b) = s(s−c)",
           {
@@ -215,7 +271,11 @@
         ],
         "lines_compact": [
           "Given r₁ + r₂ = r₃ − r, so",
-          "Δc/[(s−a)(s−b)] = Δc/[s(s−c)]",
+          {
+            "text": "\\dfrac{\\Delta c}{\\left(s - a\\right)\\left(s - b\\right)} = \\ \\dfrac{\\Delta c}{s\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Δ > 0 and c > 0, so Δc cancels:",
           "(s−a)(s−b) = s(s−c)",
           "⇒ s² − (a+b)s + ab = s² − cs",
@@ -235,14 +295,30 @@
             "text": "(divide both sides by 2ab)",
             "added": true
           },
-          "⇒ s(s−c)/(ab) = 1/2",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{s\\left(s - c\\right)}{ab} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the half-angle formula)",
             "added": true
           },
-          "But cos²(C/2) = s(s−c)/(ab)",
-          "⇒ cos²(C/2) = 1/2",
-          "⇒ cos C = 2cos²(C/2) − 1 = 1 − 1 = 0",
+          {
+            "text": "\\text{But}\\ \\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{s\\left(s - c\\right)}{ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos C\\ = \\ 2\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\ = \\ 1\\ - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "C lies between 0° and 180°, so",
           {
             "text": "∴ C = 90°",
@@ -278,10 +354,26 @@
           "Reading cos²(C/2) = ½ as C = 45° — the HALF angle is 45°, so C is 90°."
         ],
         "lines_compact": [
-          "⇒ s(s−c)/(ab) = 1/2",
-          "But cos²(C/2) = s(s−c)/(ab)",
-          "⇒ cos²(C/2) = 1/2",
-          "⇒ cos C = 2cos²(C/2) − 1 = 1 − 1 = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{s\\left(s - c\\right)}{ab} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{But}\\ \\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{s\\left(s - c\\right)}{ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos C\\ = \\ 2\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\ = \\ 1\\ - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "C lies between 0° and 180°, so",
           {
             "text": "∴ C = 90°",

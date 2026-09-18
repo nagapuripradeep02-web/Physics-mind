@@ -64,7 +64,11 @@
           "b is projected ON a, so the answer",
           "points along a.",
           "Projection vector of b on a",
-          "  = ((a·b)/|a|²) a"
+          {
+            "text": "= \\ \\left(\\dfrac{a \\cdot b}{\\left|a\\right|^{2}}\\right)a",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -193,10 +197,16 @@
         "lines": [
           "Projection vector of b on a",
           {
-            "text": "((a·b)/|a|² = 6/3)",
+            "text": "\\left(\\dfrac{a \\cdot b}{\\left|a\\right|^{2}} = \\ \\dfrac{6}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "  = (6/3)(i + j + k)",
+          {
+            "text": "= \\ \\left(\\dfrac{6}{3}\\right)\\left(i\\ + \\ j\\ + \\ k\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  = 2(i + j + k)",
           {
             "text": "∴ Projection = 2i + 2j + 2k",
@@ -237,7 +247,11 @@
         ],
         "lines_compact": [
           "Projection vector of b on a",
-          "  = (6/3)(i + j + k)",
+          {
+            "text": "= \\ \\left(\\dfrac{6}{3}\\right)\\left(i\\ + \\ j\\ + \\ k\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  = 2(i + j + k)",
           {
             "text": "∴ Projection = 2i + 2j + 2k",

@@ -60,21 +60,45 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = Σ r₁/(bc)",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{\\Sigma r_{1}}{bc}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(r₁ = 4R sin(A/2)cos(B/2)cos(C/2),",
           {
             "text": "  b = 2R sinB and c = 2R sinC)",
             "style": "indent"
           },
-          "= Σ [4R sin(A/2)cos(B/2)cos(C/2)]",
+          {
+            "text": "= \\ \\Sigma \\left[4R\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "/ [(2R sinB)(2R sinC)]",
             "style": "indent"
           },
-          "(4R/(4R²) = 1/R)",
-          "= Σ [sin(A/2)cos(B/2)cos(C/2)] / [R sinB sinC]",
-          "(sin θ = 2 sin(θ/2) cos(θ/2))",
-          "= Σ [sin(A/2)cos(B/2)cos(C/2)]",
+          {
+            "text": "\\left(\\dfrac{4R}{4R^{2}} = \\ \\dfrac{1}{R}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Sigma \\left[\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\right]}{R\\sin B\\sin C}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\theta \\ = \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\Sigma \\left[\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "/ [R(2 sin(B/2)cos(B/2))(2 sin(C/2)cos(C/2))]",
             "style": "indent"
@@ -118,21 +142,42 @@
         "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying top and bottom by sin(A/2) turns what is left into sin²(A/2)/r.",
         "lines": [
           {
-            "text": "(cos(B/2) and cos(C/2) cancel, and 2 × 2 = 4)",
+            "text": "\\left(\\cos \\left(\\dfrac{B}{2}\\right)\\ \\text{and}\\ \\cos \\left(\\dfrac{C}{2}\\right)\\ \\text{cancel},\\ \\text{and}\\ 2\\ \\times \\ 2\\ = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
-          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
           {
-            "text": "[multiplying top and bottom by sin(A/2)]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\Sigma \\sin \\left(\\dfrac{A}{2}\\right)}{4R\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
           {
-            "text": "(the other two terms give sin²(B/2)/r and sin²(C/2)/r)",
+            "text": "= \\ \\dfrac{\\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{4R\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\text{multiplying}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ \\sin \\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{r}\\left[\\because \\ r\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{other}\\ \\text{two}\\ \\text{terms}\\ \\text{give}\\ \\dfrac{\\sin ^{2}\\left(\\dfrac{B}{2}\\right)}{r}\\text{and}\\ \\dfrac{\\sin ^{2}\\left(\\dfrac{C}{2}\\right)}{r}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left(\\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{B}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -162,14 +207,31 @@
           "Not spotting that the denominator is r."
         ],
         "lines_compact": [
-          "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
-          "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]",
           {
-            "text": "[multiplying top and bottom by sin(A/2)]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\Sigma \\sin \\left(\\dfrac{A}{2}\\right)}{4R\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= Σ sin²(A/2)/r   [∵ r = 4R sin(A/2)sin(B/2)sin(C/2)]",
-          "= (1/r)(sin²(A/2) + sin²(B/2) + sin²(C/2))"
+          {
+            "text": "= \\ \\dfrac{\\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{4R\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\text{multiplying}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ \\sin \\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{r}\\left[\\because \\ r\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left(\\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{B}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -181,18 +243,37 @@
         "margin_note": "Two more marks. sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2) — the Trigonometric Ratios and Transformations identity, quoted.",
         "memory_tip": "Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2), and that product is r/(4R).",
         "lines": [
-          "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
-          "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
-          "= (1/r)[1 − 2(r/(4R))]",
           {
-            "text": "[∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
-            "style": "indent"
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(2r/(4R) = r/(2R))",
+            "text": "\\left[\\because \\ \\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 1\\ - \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ 2\\left(\\dfrac{r}{4R}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{r}{4R}\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2r}{4R} = \\ \\dfrac{r}{2R}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/r)[1 − r/(2R)]"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ \\dfrac{r}{2R}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -222,14 +303,31 @@
           "Writing the product as r/(2R)."
         ],
         "lines_compact": [
-          "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
-          "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
-          "= (1/r)[1 − 2(r/(4R))]",
           {
-            "text": "[∵ sin(A/2)sin(B/2)sin(C/2) = r/(4R)]",
-            "style": "indent"
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
           },
-          "= (1/r)[1 − r/(2R)]"
+          {
+            "text": "\\left[\\because \\ \\Sigma \\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 1\\ - \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ 2\\left(\\dfrac{r}{4R}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{r}{4R}\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{r}\\right)\\left[1\\ - \\ \\dfrac{r}{2R}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,15 +343,26 @@
             "text": "(multiply out the bracket)",
             "added": true
           },
-          "= 1/r − (1/r)(r/(2R))",
           {
-            "text": "((1/r)(r/(2R)) = 1/(2R))",
+            "text": "= \\ \\dfrac{1}{r} - \\ \\left(\\dfrac{1}{r}\\right)\\left(\\dfrac{r}{2R}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{r}\\right)\\left(\\dfrac{r}{2R}\\right)\\ = \\ \\dfrac{1}{2R}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1/r − 1/(2R)",
           {
-            "text": "∴ r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{r} - \\ \\dfrac{1}{2R}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{r_{1}}{bc} + \\ \\dfrac{r_{2}}{ca} + \\ \\dfrac{r_{3}}{ab} = \\ \\dfrac{1}{r} - \\ \\dfrac{1}{2R}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -284,11 +393,20 @@
           "Cancelling the r in the wrong term."
         ],
         "lines_compact": [
-          "= 1/r − (1/r)(r/(2R))",
-          "= 1/r − 1/(2R)",
           {
-            "text": "∴ r₁/(bc) + r₂/(ca) + r₃/(ab) = 1/r − 1/(2R)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{r} - \\ \\left(\\dfrac{1}{r}\\right)\\left(\\dfrac{r}{2R}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{r} - \\ \\dfrac{1}{2R}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{r_{1}}{bc} + \\ \\dfrac{r_{2}}{ca} + \\ \\dfrac{r_{3}}{ab} = \\ \\dfrac{1}{r} - \\ \\dfrac{1}{2R}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -61,7 +61,11 @@
           "The point has position vector",
           "a = 2i + 5j − 3k.",
           "Distance from the point to the plane is",
-          "|a·n − d| / |n|",
+          {
+            "text": "\\dfrac{\\left|a \\cdot n\\ - \\ d\\right|}{\\left|n\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the formula measures the gap along the normal n)"
         ],
         "recall": {
@@ -165,14 +169,27 @@
             "text": "(a distance cannot be negative, so take the modulus)",
             "added": true
           },
-          "Distance = |−13| / 7 = 13/7",
+          {
+            "text": "\\text{Distance}\\ = \\ \\dfrac{\\left| - 13\\right|}{7} = \\ \\dfrac{13}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: divide the plane by |n| = 7.",
-          "Then r·(6i − 3j + 2k)/7 = 4/7 and",
-          "a·(6i − 3j + 2k)/7 = −9/7.",
+          {
+            "text": "\\text{Then}\\ r \\cdot \\dfrac{6i\\ - \\ 3j\\ + \\ 2k}{7} = \\ \\dfrac{4}{7}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a \\cdot \\dfrac{6i\\ - \\ 3j\\ + \\ 2k}{7} = \\ - \\dfrac{9}{7}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Gap = |−9/7 − 4/7| = 13/7  ✓",
           {
-            "text": "Distance = 13/7 units",
-            "style": "boxed"
+            "text": "\\text{Distance}\\ = \\ \\dfrac{13}{7}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -203,14 +220,27 @@
           "Writing square units; a distance is in plain units."
         ],
         "lines_compact": [
-          "Distance = |−13| / 7 = 13/7",
+          {
+            "text": "\\text{Distance}\\ = \\ \\dfrac{\\left| - 13\\right|}{7} = \\ \\dfrac{13}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: divide the plane by |n| = 7.",
-          "Then r·(6i − 3j + 2k)/7 = 4/7 and",
-          "a·(6i − 3j + 2k)/7 = −9/7.",
+          {
+            "text": "\\text{Then}\\ r \\cdot \\dfrac{6i\\ - \\ 3j\\ + \\ 2k}{7} = \\ \\dfrac{4}{7}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a \\cdot \\dfrac{6i\\ - \\ 3j\\ + \\ 2k}{7} = \\ - \\dfrac{9}{7}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Gap = |−9/7 − 4/7| = 13/7  ✓",
           {
-            "text": "Distance = 13/7 units",
-            "style": "boxed"
+            "text": "\\text{Distance}\\ = \\ \\dfrac{13}{7}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

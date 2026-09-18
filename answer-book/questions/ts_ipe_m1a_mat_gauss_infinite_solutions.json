@@ -226,9 +226,15 @@
         "margin_note": "Fourth mark. Rows 2 and 3 are proportional, so one of them cancels completely. A row of all zeros — INCLUDING the constant after the rule — means that equation carried no information, not that something went wrong.",
         "memory_tip": "Rows 2 and 3 are proportional, so one cancels completely. A zero row including the constant, with no row reading 0 = non-zero, leaves fewer equations than unknowns, so there are infinitely many solutions.",
         "lines": [
-          "R₃ → R₃ − (2/3)R₂",
           {
-            "text": "R₃ − (2/3)R₂:",
+            "text": "R_{3}\\ \\to \\ R_{3}\\ - \\ \\left(\\dfrac{2}{3}\\right)R_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "R_{3}\\ - \\ \\left(\\dfrac{2}{3}\\right)R_{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -286,7 +292,11 @@
           "Trying to divide by the zero row to get a pivot."
         ],
         "lines_compact": [
-          "R₃ → R₃ − (2/3)R₂",
+          {
+            "text": "R_{3}\\ \\to \\ R_{3}\\ - \\ \\left(\\dfrac{2}{3}\\right)R_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & 0 & 0 \\end{array}\\right]",
             "render": "katex",

@@ -73,16 +73,29 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given A + B + C = π/2.",
+          {
+            "text": "\\text{Given}\\ A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(There is no triangle; only this sum is used.)",
           "L.H.S = (cos 2A + cos 2B) + cos 2C",
           "Pair the first two with the sum formula:",
           {
-            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
-            "style": "indent"
+            "text": "\\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
-          "= 2 cos((2A + 2B)/2) cos((2A − 2B)/2) + cos 2C",
-          "((2A + 2B)/2 = A + B and (2A − 2B)/2 = A − B)",
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{2A\\ + \\ 2B}{2}\\right)\\cos \\left(\\dfrac{2A\\ - \\ 2B}{2}\\right)\\ + \\ \\cos 2C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2A\\ + \\ 2B}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{2A\\ - \\ 2B}{2} = \\ A\\ - \\ B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 cos(A + B) cos(A − B) + cos 2C"
         ],
         "recall": {
@@ -125,10 +138,20 @@
             "text": "Change cos(A + B) using the given sum:",
             "added": true
           },
-          "A + B = π/2 − C",
-          "⇒ cos(A + B) = cos(π/2 − C) = sin C",
           {
-            "text": "(cos(π/2 − θ) = sin θ)",
+            "text": "A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(A\\ + \\ B\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "L.H.S = 2 sin C cos(A − B) + cos 2C"
@@ -160,8 +183,16 @@
           "Writing cos(π/2 − C) = cos C."
         ],
         "lines_compact": [
-          "A + B = π/2 − C",
-          "⇒ cos(A + B) = cos(π/2 − C) = sin C",
+          {
+            "text": "A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(A\\ + \\ B\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = 2 sin C cos(A − B) + cos 2C"
         ]
       },
@@ -236,9 +267,15 @@
             "text": "Use the given sum again, inside the bracket:",
             "added": true
           },
-          "Inside the bracket, sin C = cos(π/2 − C) = cos(A + B)",
           {
-            "text": "(π/2 − C = A + B)",
+            "text": "\\text{Inside}\\ \\text{the}\\ \\text{bracket},\\ \\sin C\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\cos \\left(A\\ + \\ B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{2} - \\ C\\ = \\ A\\ + \\ B\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Bracket = cos(A − B) − cos(A + B)"
@@ -270,7 +307,11 @@
           "Writing sin C = cos(A − B)."
         ],
         "lines_compact": [
-          "Inside the bracket, sin C = cos(π/2 − C) = cos(A + B)",
+          {
+            "text": "\\text{Inside}\\ \\text{the}\\ \\text{bracket},\\ \\sin C\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ C\\right)\\ = \\ \\cos \\left(A\\ + \\ B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Bracket = cos(A − B) − cos(A + B)"
         ]
       },

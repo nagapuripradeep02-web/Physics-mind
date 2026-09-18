@@ -63,9 +63,21 @@
           "Given cos2θ + cos8θ = cos5θ",
           "(take every term to one side)",
           "⇒ (cos2θ + cos8θ) − cos5θ = 0",
-          "(cos x + cos y = 2 cos((x+y)/2) cos((x−y)/2))",
-          "⇒ 2cos((2θ+8θ)/2) cos((2θ−8θ)/2) − cos5θ = 0",
-          "((2θ + 8θ)/2 = 5θ and (2θ − 8θ)/2 = −3θ)",
+          {
+            "text": "\\left(\\cos x\\ + \\ \\cos y\\ = \\ 2\\cos \\left(\\dfrac{x + y}{2}\\right)\\cos \\left(\\dfrac{x - y}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2\\cos \\left(\\dfrac{2\\theta + 8\\theta }{2}\\right)\\cos \\left(\\dfrac{2\\theta - 8\\theta }{2}\\right)\\ - \\ \\cos 5\\theta \\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2\\theta \\ + \\ 8\\theta }{2} = \\ 5\\theta \\ \\text{and}\\ \\dfrac{2\\theta \\ - \\ 8\\theta }{2} = \\ - 3\\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2cos5θ cos(−3θ) − cos5θ = 0"
         ],
         "recall": {
@@ -163,17 +175,24 @@
         "lines": [
           "(i) If cos5θ = 0 then",
           {
-            "text": "(cos φ = 0 exactly when φ is an odd multiple of π/2)",
+            "text": "\\left(\\cos \\phi \\ = \\ 0\\ \\text{exactly}\\ \\text{when}\\ \\phi \\ \\text{is}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "  5θ = (2n+1) π/2,  n ∈ Z",
+          {
+            "text": "5\\theta \\ = \\ \\dfrac{\\left(2n + 1\\right)\\pi }{2},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 5)",
             "added": true
           },
           {
-            "text": "  θ = (2n+1) π/10,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\theta \\ = \\ \\dfrac{\\left(2n + 1\\right)\\pi }{10},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -205,10 +224,15 @@
         ],
         "lines_compact": [
           "(i) If cos5θ = 0 then",
-          "  5θ = (2n+1) π/2,  n ∈ Z",
           {
-            "text": "  θ = (2n+1) π/10,  n ∈ Z",
-            "style": "boxed"
+            "text": "5\\theta \\ = \\ \\dfrac{\\left(2n + 1\\right)\\pi }{2},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\theta \\ = \\ \\dfrac{\\left(2n + 1\\right)\\pi }{10},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -225,20 +249,33 @@
             "text": "(add 1 to both sides and divide by 2)",
             "added": true
           },
-          "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
-          "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
+          {
+            "text": "\\left(ii\\right)\\ \\text{If}\\ 2\\cos 3\\theta \\ - \\ 1\\ = \\ 0\\ \\text{then}\\ \\cos 3\\theta \\ = \\ \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3},\\ \\text{and}\\ \\text{for}\\ \\cos \\theta \\ = \\ \\cos \\alpha ,\\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(use it with 3θ in place of θ)",
             "added": true
           },
-          "  ⇒ 3θ = 2nπ ± π/3",
+          {
+            "text": "\\Rightarrow \\ 3\\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both terms on the right by 3)",
             "added": true
           },
           {
-            "text": "  θ = 2nπ/3 ± π/9,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\theta \\ = \\ \\dfrac{2n\\pi }{3} \\pm \\ \\dfrac{\\pi }{9},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -269,12 +306,25 @@
           "Dropping the ± sign."
         ],
         "lines_compact": [
-          "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
-          "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",
-          "  ⇒ 3θ = 2nπ ± π/3",
           {
-            "text": "  θ = 2nπ/3 ± π/9,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\left(ii\\right)\\ \\text{If}\\ 2\\cos 3\\theta \\ - \\ 1\\ = \\ 0\\ \\text{then}\\ \\cos 3\\theta \\ = \\ \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3},\\ \\text{and}\\ \\text{for}\\ \\cos \\theta \\ = \\ \\cos \\alpha ,\\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 3\\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\theta \\ = \\ \\dfrac{2n\\pi }{3} \\pm \\ \\dfrac{\\pi }{9},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -52,12 +52,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x³ − 1/x³,  x ≠ 0",
-          "x ≠ 0 ⇒ 1/x ≠ 0, so f(1/x) is defined.",
-          "Put 1/x in place of x:",
-          "f(1/x) = (1/x)³ − 1/(1/x)³",
-          "((1/x)³ = 1/x³ and 1 ÷ (1/x³) = x³)",
-          "= 1/x³ − x³"
+          {
+            "text": "f\\left(x\\right)\\ = \\ x^{3}\\ - \\ \\dfrac{1}{x^{3}},\\ x\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ \\ne \\ 0\\ \\Rightarrow \\ \\dfrac{1}{x} \\ne \\ 0,\\ \\text{so}\\ f\\left(\\dfrac{1}{x}\\right)\\ \\text{is}\\ \\text{defined}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ \\dfrac{1}{x}\\text{in}\\ \\text{place}\\ \\text{of}\\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{1}{x}\\right)\\ = \\ \\left(\\dfrac{1}{x}\\right)^{3}\\ - \\ \\dfrac{1}{\\left(\\dfrac{1}{x}\\right)^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{x}\\right)^{3}\\ = \\ \\dfrac{1}{x^{3}}\\text{and}\\ 1\\ \\div \\ \\left(\\dfrac{1}{x^{3}}\\right)\\ = \\ x^{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{x^{3}} - \\ x^{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,21 +122,36 @@
         "margin_note": "Second mark is the addition shown ending at 0. Write the added line first; jumping straight to 0 gives the examiner nothing to mark. Check with x = 2: f(2) = 63/8 and f(1/2) = −63/8.",
         "memory_tip": "f(1/x) is f(x) with a minus sign in front, so the sum must be 0.",
         "lines": [
-          "f(x) + f(1/x)",
-          "= (x³ − 1/x³) + (1/x³ − x³)",
+          {
+            "text": "f\\left(x\\right)\\ + \\ f\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(x^{3}\\ - \\ \\dfrac{1}{x^{3}}\\right)\\ + \\ \\left(\\dfrac{1}{x^{3}} - \\ x^{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(open the brackets)",
             "added": true
           },
-          "= x³ − 1/x³ + 1/x³ − x³",
           {
-            "text": "(x³ − x³ = 0 and −1/x³ + 1/x³ = 0)",
+            "text": "= \\ x^{3}\\ - \\ \\dfrac{1}{x^{3}} + \\ \\dfrac{1}{x^{3}} - \\ x^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x^{3}\\ - \\ x^{3}\\ = \\ 0\\ \\text{and}\\ - \\dfrac{1}{x^{3}} + \\ \\dfrac{1}{x^{3}} = \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 0",
           {
-            "text": "∴ f(x) + f(1/x) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ f\\left(x\\right)\\ + \\ f\\left(\\dfrac{1}{x}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,13 +184,26 @@
           "Writing the answer as 0 with no added line above it."
         ],
         "lines_compact": [
-          "f(x) + f(1/x)",
-          "= (x³ − 1/x³) + (1/x³ − x³)",
-          "= x³ − 1/x³ + 1/x³ − x³",
+          {
+            "text": "f\\left(x\\right)\\ + \\ f\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(x^{3}\\ - \\ \\dfrac{1}{x^{3}}\\right)\\ + \\ \\left(\\dfrac{1}{x^{3}} - \\ x^{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ x^{3}\\ - \\ \\dfrac{1}{x^{3}} + \\ \\dfrac{1}{x^{3}} - \\ x^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 0",
           {
-            "text": "∴ f(x) + f(1/x) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ f\\left(x\\right)\\ + \\ f\\left(\\dfrac{1}{x}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

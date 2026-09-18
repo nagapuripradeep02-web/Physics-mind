@@ -103,15 +103,20 @@
             "text": "(100° − 40° = 60°)",
             "added": true
           },
-          "cos60° = 1/2",
+          {
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos 60° is a standard value)",
             "added": true
           },
           "= R.H.S",
           {
-            "text": "∴ L.H.S = 1/2 = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,11 +147,16 @@
           "Stopping at cos60° without writing its value."
         ],
         "lines_compact": [
-          "cos60° = 1/2",
+          {
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= R.H.S",
           {
-            "text": "∴ L.H.S = 1/2 = R.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

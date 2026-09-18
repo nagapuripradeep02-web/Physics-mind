@@ -82,9 +82,17 @@
             "text": "  = s/Δ = 1/r)",
             "style": "indent"
           },
-          "We know 1/r = 1/r₁ + 1/r₂ + 1/r₃",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{1}{r} = \\ \\dfrac{1}{r_{1}} + \\ \\dfrac{1}{r_{2}} + \\ \\dfrac{1}{r_{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the common denominator is 24)",
-          "⇒ 1/r = 1/8 + 1/12 + 1/24 = (3 + 2 + 1)/24 = 6/24 = 1/4",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{r} = \\ \\dfrac{1}{8} + \\ \\dfrac{1}{12} + \\ \\dfrac{1}{24} = \\ \\dfrac{3\\ + \\ 2\\ + \\ 1}{24} = \\ \\dfrac{6}{24} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ r = 4"
         ],
         "recall": {
@@ -125,7 +133,9 @@
         "margin_note": "One more mark. Δ = √(r r₁ r₂ r₃) is the standard result that turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
         "lines": [
           {
-            "text": "(r r₁ r₂ r₃ = Δ⁴/[s(s−a)(s−b)(s−c)] = Δ⁴/Δ² = Δ²)",
+            "text": "\\left(rr_{1}r_{2}r_{3}\\ = \\ \\dfrac{\\Delta ^{4}}{s\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)} = \\ \\dfrac{\\Delta ^{4}}{\\Delta ^{2}} = \\ \\Delta ^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "We know Δ = √(r r₁ r₂ r₃)",
@@ -135,7 +145,11 @@
           },
           "= √(4 × 8 × 12 × 24) = √(4 × 8 × (3×4) × (3×8))",
           "= √(3² × 4² × 8²) = 3 × 4 × 8 = 96",
-          "Now r = Δ/s ⇒ s = Δ/r = 96/4 = 24"
+          {
+            "text": "\\text{Now}\\ r\\ = \\ \\dfrac{\\Delta }{s} \\Rightarrow \\ s\\ = \\ \\dfrac{\\Delta }{r} = \\ \\dfrac{96}{4} = \\ 24",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -170,7 +184,11 @@
           "We know Δ = √(r r₁ r₂ r₃)",
           "= √(4 × 8 × 12 × 24) = √(4 × 8 × (3×4) × (3×8))",
           "= √(3² × 4² × 8²) = 3 × 4 × 8 = 96",
-          "Now r = Δ/s ⇒ s = Δ/r = 96/4 = 24"
+          {
+            "text": "\\text{Now}\\ r\\ = \\ \\dfrac{\\Delta }{s} \\Rightarrow \\ s\\ = \\ \\dfrac{\\Delta }{r} = \\ \\dfrac{96}{4} = \\ 24",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,21 +200,35 @@
         "margin_note": "One more mark. Each ex-radius names one side: r₁ = Δ/(s−a) gives s−a, and s is known — so a follows. Same for b and c.",
         "lines": [
           {
-            "text": "(Δ = r₁(s − a), so s − a = Δ/r₁)",
+            "text": "\\left(\\Delta \\ = \\ r_{1}\\left(s\\ - \\ a\\right),\\ \\text{so}\\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 96/8 = 12",
+          {
+            "text": "\\left(i\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} \\Rightarrow \\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}} = \\ \\dfrac{96}{8} = \\ 12",
+            "style": "normal",
+            "render": "katex"
+          },
           "  ∴ 24 − a = 12 ⇒ a = 12",
           {
             "text": "(24 − 8 = 16)",
             "added": true
           },
-          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 96/12 = 8 ⇒ b = 16",
+          {
+            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{96}{12} = \\ 8\\ \\Rightarrow \\ b\\ = \\ 16",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(24 − 4 = 20)",
             "added": true
           },
-          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 96/24 = 4 ⇒ c = 20"
+          {
+            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{96}{24} = \\ 4\\ \\Rightarrow \\ c\\ = \\ 20",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -228,10 +260,22 @@
         ],
         "memory_tip": "Each ex-radius names ONE side: r₁ gives s − a, and s is known, so a follows.",
         "lines_compact": [
-          "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 96/8 = 12",
+          {
+            "text": "\\left(i\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} \\Rightarrow \\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}} = \\ \\dfrac{96}{8} = \\ 12",
+            "style": "normal",
+            "render": "katex"
+          },
           "  ∴ 24 − a = 12 ⇒ a = 12",
-          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 96/12 = 8 ⇒ b = 16",
-          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 96/24 = 4 ⇒ c = 20"
+          {
+            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{96}{12} = \\ 8\\ \\Rightarrow \\ b\\ = \\ 16",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{96}{24} = \\ 4\\ \\Rightarrow \\ c\\ = \\ 20",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

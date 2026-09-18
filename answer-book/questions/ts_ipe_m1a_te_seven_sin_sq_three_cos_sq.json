@@ -115,7 +115,11 @@
             "text": "(divide by 4)",
             "added": true
           },
-          "⇒ sin²θ = 1/4"
+          {
+            "text": "\\Rightarrow \\ \\sin ^{2} \\theta \\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,7 +150,11 @@
         "lines_compact": [
           "⇒ 4 sin²θ = 4 − 3",
           "⇒ 4 sin²θ = 1",
-          "⇒ sin²θ = 1/4"
+          {
+            "text": "\\Rightarrow \\ \\sin ^{2} \\theta \\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -158,14 +166,32 @@
         "margin_note": "Third mark, and the one this question is really testing. Write 1/4 as the SQUARE of a standard sine value, so the equation reads sin²θ = sin²α with α = π/6.",
         "memory_tip": "Write 1/4 as (1/2)², and 1/2 is sin(π/6). Keep the square on both sides.",
         "lines": [
-          "Now 1/4 = (1/2)²",
-          "and 1/2 = sin(π/6)",
           {
-            "text": "(so 1/4 = (1/2)² = sin²(π/6))",
+            "text": "\\text{Now}\\ \\dfrac{1}{4} = \\ \\left(\\dfrac{1}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{1}{2} = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{so}\\ \\dfrac{1}{4} = \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ = \\ \\sin ^{2}\\left(\\dfrac{\\pi }{6}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ sin²θ = sin²(π/6)",
-          "Here the principal value is α = π/6"
+          {
+            "text": "\\Rightarrow \\ \\sin ^{2} \\theta \\ = \\ \\sin ^{2}\\left(\\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -195,10 +221,26 @@
           "Writing sin²θ = sin(π/6) and dropping the square on the right."
         ],
         "lines_compact": [
-          "Now 1/4 = (1/2)²",
-          "and 1/2 = sin(π/6)",
-          "⇒ sin²θ = sin²(π/6)",
-          "Here the principal value is α = π/6"
+          {
+            "text": "\\text{Now}\\ \\dfrac{1}{4} = \\ \\left(\\dfrac{1}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{1}{2} = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin ^{2} \\theta \\ = \\ \\sin ^{2}\\left(\\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -222,8 +264,9 @@
             "added": true
           },
           {
-            "text": "∴ θ = nπ ± π/6,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -258,8 +301,9 @@
           "For sin²θ = sin²α, the general solution is",
           "θ = nπ ± α,  n ∈ Z",
           {
-            "text": "∴ θ = nπ ± π/6,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

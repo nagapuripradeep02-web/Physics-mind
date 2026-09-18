@@ -118,10 +118,20 @@
             "style": "indent",
             "added": true
           },
-          "= 2 cos((2A+2B)/2) cos((2A−2B)/2) − cos 2C",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "((2A+2B)/2 = A + B and (2A−2B)/2 = A − B)",
+            "text": "= \\ 2\\cos \\left(\\dfrac{2A + 2B}{2}\\right)\\cos \\left(\\dfrac{2A - 2B}{2}\\right)\\ - \\ \\cos 2C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2A + 2B}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{2A - 2B}{2} = \\ A\\ - \\ B\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -165,8 +175,16 @@
         ],
         "lines_compact": [
           "L.H.S = cos 2A + cos 2B − cos 2C",
-          "= 2 cos((2A+2B)/2) cos((2A−2B)/2) − cos 2C",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{2A + 2B}{2}\\right)\\cos \\left(\\dfrac{2A - 2B}{2}\\right)\\ - \\ \\cos 2C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 cos(A+B) cos(A−B) − (2cos²C − 1)",
           "  [∵ cos2θ = 2cos²θ − 1]"
         ]

@@ -66,9 +66,21 @@
             "style": "heading"
           },
           "Change each angle to degrees (π = 180°):",
-          "π/10 = 18°, 4π/10 = 72°,",
-          "6π/10 = 108°, 9π/10 = 162°",
-          "(180°/10 = 18°)",
+          {
+            "text": "\\dfrac{\\pi }{10} = \\ 18^{\\circ},\\ \\dfrac{4\\pi }{10} = \\ 72^{\\circ},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{6\\pi }{10} = \\ 108^{\\circ},\\ \\dfrac{9\\pi }{10} = \\ 162^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{180^{\\circ}}{10} = \\ 18^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = cos²18° + cos²72° + cos²108° + cos²162°"
         ],
         "recall": {

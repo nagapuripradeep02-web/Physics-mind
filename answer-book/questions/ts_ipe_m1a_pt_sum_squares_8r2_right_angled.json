@@ -107,11 +107,17 @@
         "memory_tip": "sin²θ = (1 − cos2θ)/2, then cos2A + cos2B = 2cos(A+B)cos(A−B), and cos(A+B) = −cos C.",
         "lines": [
           {
-            "text": "(sin²θ = (1 − cos 2θ)/2)",
+            "text": "\\left(\\sin ^{2} \\theta \\ = \\ \\dfrac{1\\ - \\ \\cos 2\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "sin²A + sin²B",
-          "= (1 − cos2A)/2 + (1 − cos2B)/2",
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\cos 2A}{2} + \\ \\dfrac{1\\ - \\ \\cos 2B}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(½ + ½ = 1)",
             "added": true
@@ -159,7 +165,11 @@
         ],
         "lines_compact": [
           "sin²A + sin²B",
-          "= (1 − cos2A)/2 + (1 − cos2B)/2",
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\cos 2A}{2} + \\ \\dfrac{1\\ - \\ \\cos 2B}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1 − ½(cos2A + cos2B)",
           "= 1 − cos(A+B) cos(A−B)",
           "= 1 + cos C cos(A−B)",

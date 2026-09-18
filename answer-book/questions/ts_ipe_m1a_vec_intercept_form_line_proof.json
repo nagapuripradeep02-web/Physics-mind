@@ -175,7 +175,11 @@
           "y = t b   ……(3)",
           "a ≠ 0 and b ≠ 0, so divide (2) by a and",
           "(3) by b:",
-          "x/a = 1 − t   and   y/b = t"
+          {
+            "text": "\\dfrac{x}{a} = \\ 1\\ - \\ t\\ \\text{and}\\ \\dfrac{y}{b} = \\ t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -212,7 +216,11 @@
           "y = t b   ……(3)",
           "a ≠ 0 and b ≠ 0, so divide (2) by a and",
           "(3) by b:",
-          "x/a = 1 − t   and   y/b = t"
+          {
+            "text": "\\dfrac{x}{a} = \\ 1\\ - \\ t\\ \\text{and}\\ \\dfrac{y}{b} = \\ t",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -225,7 +233,11 @@
         "memory_tip": "Add the two results. One is 1 − t and the other is t, so t cancels and 1 is left.",
         "lines": [
           "Add the two results:",
-          "x/a + y/b = (1 − t) + t = 1",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ \\left(1\\ - \\ t\\right)\\ + \\ t\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the t and the −t cancel)",
             "added": true
@@ -233,8 +245,9 @@
           "Check: t = 0 gives A(a, 0) and t = 1 gives",
           "B(0, b), and both satisfy this equation.",
           {
-            "text": "∴ x/a + y/b = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -266,12 +279,17 @@
         ],
         "lines_compact": [
           "Add the two results:",
-          "x/a + y/b = (1 − t) + t = 1",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ \\left(1\\ - \\ t\\right)\\ + \\ t\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check: t = 0 gives A(a, 0) and t = 1 gives",
           "B(0, b), and both satisfy this equation.",
           {
-            "text": "∴ x/a + y/b = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

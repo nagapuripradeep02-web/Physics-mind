@@ -102,10 +102,15 @@
             "text": "(a vector divided by its length has length 1)",
             "added": true
           },
-          "∴ Unit vector = a/|a|",
           {
-            "text": "= (2i + 3j + k)/√14",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\dfrac{a}{\\left|a\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2i\\ + \\ 3j\\ + \\ k}{\\sqrt{14}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -135,10 +140,15 @@
           "Writing |a|/a, which is upside down."
         ],
         "lines_compact": [
-          "∴ Unit vector = a/|a|",
           {
-            "text": "= (2i + 3j + k)/√14",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\dfrac{a}{\\left|a\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2i\\ + \\ 3j\\ + \\ k}{\\sqrt{14}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

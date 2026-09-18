@@ -62,9 +62,21 @@
           },
           "Given tanθ + 3 cotθ = 5 secθ",
           "These ratios exist only if sinθ ≠ 0 and",
-          "cosθ ≠ 0, that is θ ≠ nπ/2.",
-          "(tanθ = sinθ/cosθ, cotθ = cosθ/sinθ, secθ = 1/cosθ)",
-          "⇒ sinθ/cosθ + 3cosθ/sinθ = 5/cosθ",
+          {
+            "text": "\\cos \\theta \\ \\ne \\ 0,\\ \\text{that}\\ \\text{is}\\ \\theta \\ \\ne \\ \\dfrac{n\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan \\theta \\ = \\ \\dfrac{\\sin \\theta }{\\cos \\theta },\\ \\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta },\\ \\sec \\theta \\ = \\ \\dfrac{1}{\\cos \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sin \\theta }{\\cos \\theta } + \\ \\dfrac{3\\cos \\theta }{\\sin \\theta } = \\ \\dfrac{5}{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by sinθ cosθ:",
           "⇒ sin²θ + 3cos²θ = 5 sinθ"
         ],
@@ -180,7 +192,11 @@
             "text": "(a product is 0 only when one factor is 0)",
             "added": true
           },
-          "⇒ sinθ = 1/2  (or)  sinθ = −3",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{1}{2}\\left(\\text{or}\\right)\\sin \\theta \\ = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "But |sinθ| ≤ 1 always, and 3 > 1,",
           "so sinθ = −3 has no solution."
         ],
@@ -215,7 +231,11 @@
           "⇒ 2sin²θ + 6 sinθ − sinθ − 3 = 0",
           "⇒ 2sinθ(sinθ + 3) − 1(sinθ + 3) = 0",
           "⇒ (2sinθ − 1)(sinθ + 3) = 0",
-          "⇒ sinθ = 1/2  (or)  sinθ = −3",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{1}{2}\\left(\\text{or}\\right)\\sin \\theta \\ = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "But |sinθ| ≤ 1 always, and 3 > 1,",
           "so sinθ = −3 has no solution."
         ]
@@ -229,14 +249,27 @@
         "margin_note": "Last mark. Clearing the fractions could have let in values where sinθ or cosθ is zero, so test the remaining root against θ ≠ nπ/2 before writing the answer. It passes, so the whole family is kept.",
         "memory_tip": "Before writing the answer, put the root back: sinθ = 1/2 gives cosθ = ±√3/2, so no denominator is zero.",
         "lines": [
-          "Check: sinθ = 1/2 makes cosθ = ±√3/2.",
-          "Neither is zero, so θ ≠ nπ/2 holds and this",
+          {
+            "text": "\\text{Check}:\\ \\sin \\theta \\ = \\ \\dfrac{1}{2}\\text{makes}\\ \\cos \\theta \\ = \\ \\pm \\dfrac{\\sqrt{3}}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Neither}\\ \\text{is}\\ \\text{zero},\\ \\text{so}\\ \\theta \\ \\ne \\ \\dfrac{n\\pi }{2}\\text{holds}\\ \\text{and}\\ \\text{this}",
+            "style": "normal",
+            "render": "katex"
+          },
           "root also satisfies the original equation.",
-          "Now sinθ = 1/2 = sin(π/6), so α = π/6",
+          {
+            "text": "\\text{Now}\\ \\sin \\theta \\ = \\ \\dfrac{1}{2} = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
           {
-            "text": "∴ θ = nπ + (−1)ⁿ (π/6),  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{6}\\right),\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

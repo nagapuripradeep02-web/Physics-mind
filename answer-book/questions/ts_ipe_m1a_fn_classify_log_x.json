@@ -57,8 +57,16 @@
           "(one one: equal images must come from equal inputs)",
           "Let f(a) = f(b), where a, b > 0",
           "⇒ log a = log b ⇒ log a − log b = 0",
-          "(log p − log q = log(p/q); log t = 0 only when t = 1)",
-          "⇒ log(a/b) = 0 ⇒ a/b = e⁰ = 1 ⇒ a = b",
+          {
+            "text": "\\left(\\log p\\ - \\ \\log q\\ = \\ \\log \\left(\\dfrac{p}{q}\\right);\\ \\log t\\ = \\ 0\\ \\text{only}\\ \\text{when}\\ t\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\log \\left(\\dfrac{a}{b}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{a}{b} = \\ e^{0}\\ = \\ 1\\ \\Rightarrow \\ a\\ = \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ f is one one (an injection)."
         ],
         "recall": {

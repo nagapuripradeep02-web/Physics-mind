@@ -357,11 +357,20 @@
             "style": "indent",
             "added": true
           },
-          "S.D = |(a−c)·(b×d)| / |b×d|",
-          "= |−40| / 30 = 40/30",
           {
-            "text": "∴ Distance = 4/3 units",
-            "style": "boxed"
+            "text": "S.D\\ = \\ \\dfrac{\\left|\\left(a - c\\right) \\cdot \\left(b \\times d\\right)\\right|}{\\left|b \\times d\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left| - 40\\right|}{30} = \\ \\dfrac{40}{30}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Distance}\\ = \\ \\dfrac{4}{3}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -392,11 +401,20 @@
           "Leaving the answer as 40/30 uncancelled."
         ],
         "lines_compact": [
-          "S.D = |(a−c)·(b×d)| / |b×d|",
-          "= |−40| / 30 = 40/30",
           {
-            "text": "∴ Distance = 4/3 units",
-            "style": "boxed"
+            "text": "S.D\\ = \\ \\dfrac{\\left|\\left(a - c\\right) \\cdot \\left(b \\times d\\right)\\right|}{\\left|b \\times d\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left| - 40\\right|}{30} = \\ \\dfrac{40}{30}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Distance}\\ = \\ \\dfrac{4}{3}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

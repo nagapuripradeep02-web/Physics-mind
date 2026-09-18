@@ -55,13 +55,37 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "In R.H.S, numerator = cot(A/2) + cot(B/2) + cot(C/2)",
-          "(cot(A/2) = s(s−a)/Δ, from the half-angle formula)",
-          "= s(s−a)/Δ + s(s−b)/Δ + s(s−c)/Δ",
-          "(take out the common s/Δ)",
-          "= s[(s−a) + (s−b) + (s−c)]/Δ",
+          {
+            "text": "\\text{In}\\ R.H.S,\\ \\text{numerator}\\ = \\ \\cot \\left(\\dfrac{A}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{B}{2}\\right)\\ + \\ \\cot \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cot \\left(\\dfrac{A}{2}\\right)\\ = \\ \\dfrac{s\\left(s - a\\right)}{\\Delta },\\ \\text{from}\\ \\text{the}\\ \\text{half} - \\text{angle}\\ \\text{formula}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left(s - a\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - b\\right)}{\\Delta } + \\ \\dfrac{s\\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\text{the}\\ \\text{common}\\ \\dfrac{s}{\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s\\left[\\left(s - a\\right)\\ + \\ \\left(s - b\\right)\\ + \\ \\left(s - c\\right)\\right]}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a + b + c = 2s)",
-          "= s[3s − (a+b+c)]/Δ = s[3s − 2s]/Δ = s²/Δ   …(1)"
+          {
+            "text": "= \\ \\dfrac{s\\left[3s\\ - \\ \\left(a + b + c\\right)\\right]}{\\Delta } = \\ \\dfrac{s\\left[3s\\ - \\ 2s\\right]}{\\Delta } = \\ \\dfrac{s^{2}}{\\Delta }\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,26 +126,45 @@
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           {
-            "text": "(cot = cos/sin)",
+            "text": "\\left(\\cot \\ = \\ \\dfrac{\\cos }{\\sin }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= cosA/sinA + cosB/sinB + cosC/sinC",
+          {
+            "text": "= \\ \\dfrac{\\cos A}{\\sin A} + \\ \\dfrac{\\cos B}{\\sin B} + \\ \\dfrac{\\cos C}{\\sin C}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cosine rule for each cosine)",
             "added": true
           },
-          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
           {
-            "text": "+ (a²+b²−c²)/(2ab sinC)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{b^{2} + c^{2} - a^{2}}{2bc\\sin A} + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{2ca\\sin B}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= (b²+c²−a²)/(4Δ) + (c²+a²−b²)/(4Δ) + (a²+b²−c²)/(4Δ)",
+          {
+            "text": "+ \\ \\dfrac{a^{2} + b^{2} - c^{2}}{2ab\\sin C}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b^{2} + c^{2} - a^{2}}{4\\Delta } + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{4\\Delta } + \\ \\dfrac{a^{2} + b^{2} - c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ Δ = ½ bc sinA, so 2bc sinA = 4Δ]",
           {
             "text": "(each square appears twice with + and once with −)",
             "added": true
           },
-          "= (a² + b² + c²)/(4Δ)   …(2)"
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta }\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,15 +196,32 @@
         "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Every term then has the denominator 4Δ.",
         "lines_compact": [
           "In R.H.S, denominator = cotA + cotB + cotC",
-          "= cosA/sinA + cosB/sinB + cosC/sinC",
-          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
           {
-            "text": "+ (a²+b²−c²)/(2ab sinC)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\cos A}{\\sin A} + \\ \\dfrac{\\cos B}{\\sin B} + \\ \\dfrac{\\cos C}{\\sin C}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= (b²+c²−a²)/(4Δ) + (c²+a²−b²)/(4Δ) + (a²+b²−c²)/(4Δ)",
+          {
+            "text": "= \\ \\dfrac{b^{2} + c^{2} - a^{2}}{2bc\\sin A} + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{2ca\\sin B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{a^{2} + b^{2} - c^{2}}{2ab\\sin C}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b^{2} + c^{2} - a^{2}}{4\\Delta } + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{4\\Delta } + \\ \\dfrac{a^{2} + b^{2} - c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ Δ = ½ bc sinA, so 2bc sinA = 4Δ]",
-          "= (a² + b² + c²)/(4Δ)   …(2)"
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta }\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,24 +232,37 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. Divide (1) by (2). The Δ cancels, and 4s² is (2s)² — which is (a+b+c)².",
         "lines": [
-          "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
+          {
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right),\\ R.H.S\\ = \\ \\left(\\dfrac{s^{2}}{\\Delta }\\right)\\ \\div \\ \\left(\\dfrac{a^{2} + b^{2} + c^{2}}{4\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by a fraction is multiplying by its reciprocal)",
             "added": true
           },
-          "= 4s²/(a²+b²+c²)",
+          {
+            "text": "= \\ \\dfrac{4s^{2}}{a^{2} + b^{2} + c^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4s² = (2s)²)",
             "added": true
           },
-          "= (2s)²/(a²+b²+c²)",
+          {
+            "text": "= \\ \\dfrac{\\left(2s\\right)^{2}}{a^{2} + b^{2} + c^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2s = a + b + c)",
             "added": true
           },
           {
-            "text": "= (a+b+c)²/(a²+b²+c²) = L.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(a + b + c\\right)^{2}}{a^{2} + b^{2} + c^{2}} = \\ L.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -221,12 +294,25 @@
         ],
         "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)².",
         "lines_compact": [
-          "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
-          "= 4s²/(a²+b²+c²)",
-          "= (2s)²/(a²+b²+c²)",
           {
-            "text": "= (a+b+c)²/(a²+b²+c²) = L.H.S",
-            "style": "boxed"
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right),\\ R.H.S\\ = \\ \\left(\\dfrac{s^{2}}{\\Delta }\\right)\\ \\div \\ \\left(\\dfrac{a^{2} + b^{2} + c^{2}}{4\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4s^{2}}{a^{2} + b^{2} + c^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(2s\\right)^{2}}{a^{2} + b^{2} + c^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a + b + c\\right)^{2}}{a^{2} + b^{2} + c^{2}} = \\ L.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

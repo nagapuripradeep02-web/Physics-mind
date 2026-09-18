@@ -66,7 +66,11 @@
           },
           "A, B, C are the angles of a triangle.",
           "Given A + B + C = 180°",
-          "⇒ (A+B)/2 = 90° − C/2",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(A + B = 180° − C; halve both sides.)"
         ],
         "recall": {
@@ -110,18 +114,33 @@
             "text": "Pair the first two with p = A, q = B:",
             "added": true
           },
-          "= 2 sin((A+B)/2) cos((A−B)/2) + sinC",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "Write sinC with half-angles (θ = C/2), so it",
+            "text": "= \\ 2\\sin \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Write}\\ \\sin C\\ \\text{with}\\ \\text{half} - \\text{angles}\\ \\left(\\theta \\ = \\ \\dfrac{C}{2}\\right),\\ \\text{so}\\ \\text{it}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  shares cos(C/2) with the first term later:",
+            "text": "\\text{shares}\\ \\cos \\left(\\dfrac{C}{2}\\right)\\ \\text{with}\\ \\text{the}\\ \\text{first}\\ \\text{term}\\ \\text{later}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "Also sinC = 2 sin(C/2) cos(C/2)",
+          {
+            "text": "\\text{Also}\\ \\sin C\\ = \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
         "recall": {
@@ -154,9 +173,21 @@
         ],
         "lines_compact": [
           "L.H.S = sinA + sinB + sinC",
-          "= 2 sin((A+B)/2) cos((A−B)/2) + sinC",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
-          "Also sinC = 2 sin(C/2) cos(C/2)",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\sin C\\ = \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ]
       },
@@ -173,14 +204,26 @@
             "text": "Use the given condition in the first factor:",
             "added": true
           },
-          "sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          {
+            "text": "\\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sin(90° − θ) = cosθ]",
           {
             "text": "Put both results into the L.H.S:",
             "added": true
           },
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "         + 2 sin(C/2) cos(C/2)"
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,10 +253,22 @@
           "Using A + B = 180° − C and forgetting that the half angle needs the halved condition."
         ],
         "lines_compact": [
-          "sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          {
+            "text": "\\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sin(90° − θ) = cosθ]",
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "         + 2 sin(C/2) cos(C/2)"
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -226,21 +281,41 @@
         "memory_tip": "Take 2 cos(C/2) out, then write sin(C/2) as cos((A+B)/2) so the bracket holds two cosines.",
         "lines": [
           {
-            "text": "Both terms have 2 cos(C/2); take it out:",
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{have}\\ 2\\cos \\left(\\dfrac{C}{2}\\right);\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) [cos((A−B)/2) + sin(C/2)]",
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Inside the bracket, use the condition again:",
             "added": true
           },
-          "sin(C/2) = cos((A+B)/2)",
-          "  [∵ (A+B)/2 = 90° − C/2]",
           {
-            "text": "(cos((A+B)/2) = cos(90° − C/2) = sin(C/2))",
+            "text": "\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\cos \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -270,10 +345,26 @@
           "Taking out cos(C/2) instead of 2 cos(C/2)."
         ],
         "lines_compact": [
-          "= 2 cos(C/2) [cos((A−B)/2) + sin(C/2)]",
-          "sin(C/2) = cos((A+B)/2)",
-          "  [∵ (A+B)/2 = 90° − C/2]",
-          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -286,27 +377,41 @@
         "memory_tip": "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2). The two 2s multiply to give the 4.",
         "lines": [
           {
-            "text": "Use the sum formula with p = (A−B)/2 and",
+            "text": "\\text{Use}\\ \\text{the}\\ \\text{sum}\\ \\text{formula}\\ \\text{with}\\ p\\ = \\ \\dfrac{A - B}{2}\\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  q = (A+B)/2: (p+q)/2 = A/2, (p−q)/2 = −B/2",
+            "text": "q\\ = \\ \\dfrac{A + B}{2}:\\ \\dfrac{p + q}{2} = \\ \\dfrac{A}{2},\\ \\dfrac{p - q}{2} = \\ - \\dfrac{B}{2}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(cos(−B/2) = cos(B/2))",
+            "text": "\\left(\\cos \\left( - \\dfrac{B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{B}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply 2 × 2 = 4 and reorder:",
             "added": true
           },
           {
-            "text": "= 4 cos(A/2) cos(B/2) cos(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 4\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -337,11 +442,20 @@
           "Writing 2 cos(A/2) cos(B/2) cos(C/2) and losing one factor of 2."
         ],
         "lines_compact": [
-          "= 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "= 4 cos(A/2) cos(B/2) cos(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

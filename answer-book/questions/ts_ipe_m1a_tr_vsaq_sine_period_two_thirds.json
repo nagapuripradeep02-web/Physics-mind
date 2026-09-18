@@ -63,13 +63,21 @@
           },
           "Let sin kx be the required sine function.",
           "(take k > 0)",
-          "Period of sin kx = 2π/k",
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\sin kx\\ = \\ \\dfrac{2\\pi }{k}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin repeats every 2π, so sin kx repeats when",
           {
             "text": "  x grows by 2π/k)",
             "style": "indent"
           },
-          "∴ 2π/k = 2/3"
+          {
+            "text": "\\therefore \\ \\dfrac{2\\pi }{k} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,7 +117,9 @@
         "memory_tip": "Cross-multiplying gives 2k = 6π, so k = 3π and the function is sin(3πx).",
         "lines": [
           {
-            "text": "Cross-multiply 2π/k = 2/3:",
+            "text": "\\text{Cross} - \\text{multiply}\\ \\dfrac{2\\pi }{k} = \\ \\dfrac{2}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ 2k = 6π  ⇒  k = 3π",
@@ -122,12 +132,15 @@
             "style": "boxed"
           },
           {
-            "text": "Check: sin(3π(x + 2/3)) = sin(3πx + 2π)",
+            "text": "\\text{Check}:\\ \\sin \\left(3\\pi \\left(x\\ + \\ \\dfrac{2}{3}\\right)\\right)\\ = \\ \\sin \\left(3\\pi x\\ + \\ 2\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = sin(3πx), so 2/3 is a period.",
+            "text": "= \\ \\sin \\left(3\\pi x\\right),\\ \\text{so}\\ \\dfrac{2}{3}\\text{is}\\ a\\ \\text{period}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           }
         ],

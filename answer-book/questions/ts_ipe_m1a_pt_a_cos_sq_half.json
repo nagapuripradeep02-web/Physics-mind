@@ -65,12 +65,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = a cos²(A/2) + b cos²(B/2) + c cos²(C/2)",
-          "(cos²θ = (1 + cos 2θ)/2 with θ = A/2)",
-          "= a(1+cosA)/2 + b(1+cosB)/2 + c(1+cosC)/2",
+          {
+            "text": "L.H.S\\ = \\ a\\cos ^{2}\\left(\\dfrac{A}{2}\\right)\\ + \\ b\\cos ^{2}\\left(\\dfrac{B}{2}\\right)\\ + \\ c\\cos ^{2}\\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos ^{2} \\theta \\ = \\ \\dfrac{1\\ + \\ \\cos 2\\theta }{2}\\text{with}\\ \\theta \\ = \\ \\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a\\left(1 + \\cos A\\right)}{2} + \\ \\dfrac{b\\left(1 + \\cos B\\right)}{2} + \\ \\dfrac{c\\left(1 + \\cos C\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(split each fraction into two parts and collect them)",
-          "= (a+b+c)/2 + (a cosA + b cosB + c cosC)/2",
-          "= s + (a cosA + b cosB + c cosC)/2   [∵ (a+b+c)/2 = s]"
+          {
+            "text": "= \\ \\dfrac{a + b + c}{2} + \\ \\dfrac{a\\cos A\\ + \\ b\\cos B\\ + \\ c\\cos C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ s\\ + \\ \\dfrac{a\\cos A\\ + \\ b\\cos B\\ + \\ c\\cos C}{2}\\left[\\because \\ \\dfrac{a + b + c}{2} = \\ s\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -194,9 +214,15 @@
             "text": "(put this into the result of step 1)",
             "added": true
           },
-          "∴ L.H.S = s + (R · 4 sinA sinB sinC)/2",
           {
-            "text": "(4/2 = 2)",
+            "text": "\\therefore \\ L.H.S\\ = \\ s\\ + \\ \\dfrac{R\\ \\cdot \\ 4\\sin A\\sin B\\sin C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4}{2} = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= s + 2R sinA sinB sinC"
@@ -238,7 +264,11 @@
             "text": "= 4 sinA sinB sinC]",
             "style": "indent"
           },
-          "∴ L.H.S = s + (R · 4 sinA sinB sinC)/2",
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ s\\ + \\ \\dfrac{R\\ \\cdot \\ 4\\sin A\\sin B\\sin C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= s + 2R sinA sinB sinC"
         ]
       },
@@ -251,7 +281,11 @@
         "margin_note": "Last two marks. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
         "memory_tip": "Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the term becomes Δ/R.",
         "lines": [
-          "= s + (2R² sinA sinB sinC)/R",
+          {
+            "text": "= \\ s\\ + \\ \\dfrac{2R^{2}\\sin A\\sin B\\sin C}{R}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "[multiplying and dividing by R]",
             "style": "indent"
@@ -260,10 +294,15 @@
             "text": "(Δ = ½ bc sinA = ½(2R sinB)(2R sinC) sinA)",
             "added": true
           },
-          "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",
           {
-            "text": "∴ L.H.S = s + Δ/R = R.H.S",
-            "style": "boxed"
+            "text": "= \\ s\\ + \\ \\dfrac{\\Delta }{R}\\left[\\because \\ \\Delta \\ = \\ 2R^{2}\\sin A\\sin B\\sin C\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ s\\ + \\ \\dfrac{\\Delta }{R} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -294,15 +333,24 @@
           "Writing Δ = R² sinA sinB sinC without the 2."
         ],
         "lines_compact": [
-          "= s + (2R² sinA sinB sinC)/R",
+          {
+            "text": "= \\ s\\ + \\ \\dfrac{2R^{2}\\sin A\\sin B\\sin C}{R}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "[multiplying and dividing by R]",
             "style": "indent"
           },
-          "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",
           {
-            "text": "∴ L.H.S = s + Δ/R = R.H.S",
-            "style": "boxed"
+            "text": "= \\ s\\ + \\ \\dfrac{\\Delta }{R}\\left[\\because \\ \\Delta \\ = \\ 2R^{2}\\sin A\\sin B\\sin C\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ s\\ + \\ \\dfrac{\\Delta }{R} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

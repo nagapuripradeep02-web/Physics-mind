@@ -52,11 +52,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The logarithm needs (3 − x)/x > 0",
+          {
+            "text": "\\text{The}\\ \\text{logarithm}\\ \\text{needs}\\ \\dfrac{3\\ - \\ x}{x} > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "The root needs log₁₀((3 − x)/x) ≥ 0",
           "Now log₁₀ 1 = 0, so the second condition means",
           "(log₁₀ u ≥ 0 exactly when u ≥ 1)",
-          "(3 − x)/x ≥ 1"
+          {
+            "text": "\\dfrac{3\\ - \\ x}{x} \\ge \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -97,16 +105,34 @@
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
         "memory_tip": "Bring the 1 across before solving. Never multiply by x, whose sign is not yet known.",
         "lines": [
-          "(3 − x)/x ≥ 1 gives (3 − x)/x − 1 ≥ 0",
           {
-            "text": "(write 1 as x/x: (3 − x)/x − x/x = (3 − 2x)/x)",
+            "text": "\\dfrac{3\\ - \\ x}{x} \\ge \\ 1\\ \\text{gives}\\ \\dfrac{3\\ - \\ x}{x} - \\ 1\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ 1\\ \\text{as}\\ \\dfrac{x}{x}:\\ \\dfrac{3\\ - \\ x}{x} - \\ \\dfrac{x}{x} = \\ \\dfrac{3\\ - \\ 2x}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ (3 − 2x)/x ≥ 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3\\ - \\ 2x}{x} \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "If x < 0 the top 3 − 2x is positive,",
           "so the quotient is negative and x < 0 fails.",
-          "So x > 0, and then 3 − 2x ≥ 0 gives x ≤ 3/2.",
-          "Here (3 − x)/x ≥ 1 > 0,",
+          {
+            "text": "\\text{So}\\ x\\ > \\ 0,\\ \\text{and}\\ \\text{then}\\ 3\\ - \\ 2x\\ \\ge \\ 0\\ \\text{gives}\\ x\\ \\le \\ \\dfrac{3}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\dfrac{3\\ - \\ x}{x} \\ge \\ 1\\ > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the first condition holds as well.",
           {
             "text": "∴ Domain = (0, 3/2]",
@@ -148,12 +174,28 @@
           "Writing (0, 3/2) with a round bracket, although x = 3/2 gives log₁₀ 1 = 0 and √0 = 0."
         ],
         "lines_compact": [
-          "(3 − x)/x ≥ 1 gives (3 − x)/x − 1 ≥ 0",
-          "⇒ (3 − 2x)/x ≥ 0",
+          {
+            "text": "\\dfrac{3\\ - \\ x}{x} \\ge \\ 1\\ \\text{gives}\\ \\dfrac{3\\ - \\ x}{x} - \\ 1\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3\\ - \\ 2x}{x} \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "If x < 0 the top 3 − 2x is positive,",
           "so the quotient is negative and x < 0 fails.",
-          "So x > 0, and then 3 − 2x ≥ 0 gives x ≤ 3/2.",
-          "Here (3 − x)/x ≥ 1 > 0,",
+          {
+            "text": "\\text{So}\\ x\\ > \\ 0,\\ \\text{and}\\ \\text{then}\\ 3\\ - \\ 2x\\ \\ge \\ 0\\ \\text{gives}\\ x\\ \\le \\ \\dfrac{3}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\dfrac{3\\ - \\ x}{x} \\ge \\ 1\\ > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the first condition holds as well.",
           {
             "text": "∴ Domain = (0, 3/2]",

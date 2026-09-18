@@ -68,9 +68,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given A + B + C = 3π/2",
-          "⇒ A + B = 3π/2 − C",
-          "The sum is 3π/2 here, not π.",
+          {
+            "text": "\\text{Given}\\ A\\ + \\ B\\ + \\ C\\ = \\ \\dfrac{3\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ A\\ + \\ B\\ = \\ \\dfrac{3\\pi }{2} - \\ C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{sum}\\ \\text{is}\\ \\dfrac{3\\pi }{2}\\text{here},\\ \\text{not}\\ \\pi .",
+            "style": "normal",
+            "render": "katex"
+          },
           "(So A, B, C are not the angles of a triangle;",
           {
             "text": "  only this given sum is used.)",
@@ -119,12 +131,17 @@
             "added": true
           },
           {
-            "text": "  (p+q)/2 = A + B and (p−q)/2 = A − B",
+            "text": "\\dfrac{p + q}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{p - q}{2} = \\ A\\ - \\ B",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "= 2 cos(A+B) cos(A−B) + cos2C",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,7 +172,11 @@
         "lines_compact": [
           "L.H.S = (cos2A + cos2B) + cos2C",
           "= 2 cos(A+B) cos(A−B) + cos2C",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -171,8 +192,16 @@
             "text": "Change cos(A+B) using the given sum:",
             "added": true
           },
-          "cos(A+B) = cos(3π/2 − C) = −sinC",
-          "  [∵ cos(3π/2 − θ) = −sinθ]",
+          {
+            "text": "\\cos \\left(A + B\\right)\\ = \\ \\cos \\left(\\dfrac{3\\pi }{2} - \\ C\\right)\\ = \\ - \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos \\left(\\dfrac{3\\pi }{2} - \\ \\theta \\right)\\ = \\ - \\sin \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3π/2 is an odd multiple of π/2, so cos becomes",
             "added": true
@@ -212,8 +241,16 @@
           "Writing cos(3π/2 − C) = −cos C, which mixes up the shift."
         ],
         "lines_compact": [
-          "cos(A+B) = cos(3π/2 − C) = −sinC",
-          "  [∵ cos(3π/2 − θ) = −sinθ]",
+          {
+            "text": "\\cos \\left(A + B\\right)\\ = \\ \\cos \\left(\\dfrac{3\\pi }{2} - \\ C\\right)\\ = \\ - \\sin C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos \\left(\\dfrac{3\\pi }{2} - \\ \\theta \\right)\\ = \\ - \\sin \\theta \\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = −2 sinC cos(A−B) + cos2C"
         ]
       },
@@ -288,10 +325,20 @@
             "text": "Write sinC in terms of A + B:",
             "added": true
           },
-          "C = 3π/2 − (A+B)",
-          "⇒ sinC = sin(3π/2 − (A+B)) = −cos(A+B)",
           {
-            "text": "(sin(3π/2 − θ) = −cos θ, by the same rule)",
+            "text": "C\\ = \\ \\dfrac{3\\pi }{2} - \\ \\left(A + B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin C\\ = \\ \\sin \\left(\\dfrac{3\\pi }{2} - \\ \\left(A + B\\right)\\right)\\ = \\ - \\cos \\left(A + B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\left(\\dfrac{3\\pi }{2} - \\ \\theta \\right)\\ = \\ - \\cos \\theta ,\\ \\text{by}\\ \\text{the}\\ \\text{same}\\ \\text{rule}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Bracket = cos(A−B) − cos(A+B)",
@@ -328,8 +375,16 @@
           "Writing sin(3π/2 − θ) = +cos θ, which leaves the bracket as a sum."
         ],
         "lines_compact": [
-          "C = 3π/2 − (A+B)",
-          "⇒ sinC = sin(3π/2 − (A+B)) = −cos(A+B)",
+          {
+            "text": "C\\ = \\ \\dfrac{3\\pi }{2} - \\ \\left(A + B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin C\\ = \\ \\sin \\left(\\dfrac{3\\pi }{2} - \\ \\left(A + B\\right)\\right)\\ = \\ - \\cos \\left(A + B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Bracket = cos(A−B) − cos(A+B)"
         ]
       },

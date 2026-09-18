@@ -100,15 +100,26 @@
         "margin_note": "Second mark. Projection vector of b on a = (a·b / |a|²) a. The direction is a, so a stays in the answer.",
         "memory_tip": "(a·b / |a|²)a — the direction is a, so a stays in the answer.",
         "lines": [
-          "Projection vector of b on a = (a·b / |a|²) a",
           {
-            "text": "(the number a·b/|a|² = 4/3 multiplies a)",
+            "text": "\\text{Projection}\\ \\text{vector}\\ \\text{of}\\ b\\ \\text{on}\\ a\\ = \\ \\left(a \\cdot \\dfrac{b}{\\left|a\\right|^{2}}\\right)a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{number}\\ a \\cdot \\dfrac{b}{\\left|a\\right|^{2}} = \\ \\dfrac{4}{3}\\text{multiplies}\\ a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (4/3)(i − j − k)",
           {
-            "text": "∴ Projection vector = (4/3)(i − j − k)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{4}{3}\\right)\\left(i\\ - \\ j\\ - \\ k\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Projection}\\ \\text{vector}\\ = \\ \\left(\\dfrac{4}{3}\\right)\\left(i\\ - \\ j\\ - \\ k\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -138,11 +149,20 @@
           "Projecting a on b by mistake."
         ],
         "lines_compact": [
-          "Projection vector of b on a = (a·b / |a|²) a",
-          "= (4/3)(i − j − k)",
           {
-            "text": "∴ Projection vector = (4/3)(i − j − k)",
-            "style": "boxed"
+            "text": "\\text{Projection}\\ \\text{vector}\\ \\text{of}\\ b\\ \\text{on}\\ a\\ = \\ \\left(a \\cdot \\dfrac{b}{\\left|a\\right|^{2}}\\right)a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{4}{3}\\right)\\left(i\\ - \\ j\\ - \\ k\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Projection}\\ \\text{vector}\\ = \\ \\left(\\dfrac{4}{3}\\right)\\left(i\\ - \\ j\\ - \\ k\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

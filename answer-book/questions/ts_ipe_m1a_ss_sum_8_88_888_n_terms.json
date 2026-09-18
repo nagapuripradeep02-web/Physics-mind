@@ -56,9 +56,17 @@
           "(take out the common factor 8)",
           "= 8(1 + 11 + 111 + … to n terms)",
           "(multiply and divide by 9: 9 × 1 = 9, 9 × 11 = 99, …)",
-          "= (8/9)(9 + 99 + 999 + … to n terms)",
+          {
+            "text": "= \\ \\left(\\dfrac{8}{9}\\right)\\left(9\\ + \\ 99\\ + \\ 999\\ + \\ \\dots \\ \\text{to}\\ n\\ \\text{terms}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(9 = 10 − 1, 99 = 10² − 1, …)",
-          "= (8/9)[(10 − 1) + (10² − 1) + (10³ − 1) + … + (10ⁿ − 1)]"
+          {
+            "text": "= \\ \\left(\\dfrac{8}{9}\\right)\\left[\\left(10\\ - \\ 1\\right)\\ + \\ \\left(10^{2}\\ - \\ 1\\right)\\ + \\ \\left(10^{3}\\ - \\ 1\\right)\\ + \\ \\dots \\ + \\ \\left(10^{n}\\ - \\ 1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,25 +109,42 @@
             "text": "(the n copies of −1 add to −n)",
             "added": true
           },
-          "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
           {
-            "text": "(the sum of n terms of a G.P. is a(rⁿ − 1)/(r − 1))",
+            "text": "= \\ \\left(\\dfrac{8}{9}\\right)\\left[\\left(10\\ + \\ 10^{2}\\ + \\ \\dots \\ + \\ 10^{n}\\right)\\ - \\ n\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{sum}\\ \\text{of}\\ n\\ \\text{terms}\\ \\text{of}\\ aG.P.\\ \\text{is}\\ \\dfrac{a\\left(r^{n}\\ - \\ 1\\right)}{r\\ - \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
-          "10 + 10² + … + 10ⁿ = 10(10ⁿ − 1)/9",
           {
-            "text": "(put the sum back and take out 1/9)",
+            "text": "10\\ + \\ 10^{2}\\ + \\ \\dots \\ + \\ 10^{n}\\ = \\ \\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\text{the}\\ \\text{sum}\\ \\text{back}\\ \\text{and}\\ \\text{take}\\ \\text{out}\\ \\dfrac{1}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
+          {
+            "text": "S_{n}\\ = \\ \\left(\\dfrac{8}{9}\\right)\\left[\\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9} - \\ n\\right]\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left[10\\left(10^{n}\\ - \\ 1\\right)\\ - \\ 9n\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(10(10ⁿ − 1) − 9n = 10ⁿ⁺¹ − 10 − 9n)",
             "added": true
           },
           {
-            "text": "∴ Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10)",
-            "style": "boxed"
+            "text": "\\therefore \\ S_{n}\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left(10^{n+1}\\ - \\ 9n\\ - \\ 10\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,13 +175,26 @@
           "Using a = 1 for the G.P. of powers of 10, which actually starts at 10."
         ],
         "lines_compact": [
-          "= (8/9)[(10 + 10² + … + 10ⁿ) − n]",
-          "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
-          "10 + 10² + … + 10ⁿ = 10(10ⁿ − 1)/9",
-          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
           {
-            "text": "∴ Sₙ = (8/81)(10ⁿ⁺¹ − 9n − 10)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{8}{9}\\right)\\left[\\left(10\\ + \\ 10^{2}\\ + \\ \\dots \\ + \\ 10^{n}\\right)\\ - \\ n\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          "The powers of 10 form a G.P. with a = 10, r = 10, n terms:",
+          {
+            "text": "10\\ + \\ 10^{2}\\ + \\ \\dots \\ + \\ 10^{n}\\ = \\ \\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{n}\\ = \\ \\left(\\dfrac{8}{9}\\right)\\left[\\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9} - \\ n\\right]\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left[10\\left(10^{n}\\ - \\ 1\\right)\\ - \\ 9n\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ S_{n}\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left(10^{n+1}\\ - \\ 9n\\ - \\ 10\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

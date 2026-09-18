@@ -58,14 +58,31 @@
             "style": "heading"
           },
           "L.H.S = a²cotA + b²cotB + c²cotC",
-          "(sine rule: a = 2R sinA; cot = cos/sin)",
-          "= (2R sinA)²(cosA/sinA) + (2R sinB)²(cosB/sinB)",
           {
-            "text": "+ (2R sinC)²(cosC/sinC)",
-            "style": "indent"
+            "text": "\\left(\\sin e\\ \\text{rule}:\\ a\\ = \\ 2R\\sin A;\\ \\cot \\ = \\ \\dfrac{\\cos }{\\sin }\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 4R² sin²A · cosA/sinA + …",
-          "(4R² sin²A · cosA/sinA = 2R² × 2 sinA cosA)",
+          {
+            "text": "= \\ \\left(2R\\sin A\\right)^{2}\\left(\\dfrac{\\cos A}{\\sin A}\\right)\\ + \\ \\left(2R\\sin B\\right)^{2}\\left(\\dfrac{\\cos B}{\\sin B}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(2R\\sin C\\right)^{2}\\left(\\dfrac{\\cos C}{\\sin C}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R^{2}\\sin ^{2} A\\ \\cdot \\ \\dfrac{\\cos A}{\\sin A} + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(4R^{2}\\sin ^{2} A\\ \\cdot \\ \\dfrac{\\cos A}{\\sin A} = \\ 2R^{2}\\ \\times \\ 2\\sin A\\cos A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 2R²(2 sinA cosA + 2 sinB cosB + 2 sinC cosC)",
             "style": "indent"
@@ -120,21 +137,29 @@
             "style": "indent"
           },
           {
-            "text": "(8R² sinA sinB sinC = (1/R) × 8R³ sinA sinB sinC)",
+            "text": "\\left(8R^{2}\\sin A\\sin B\\sin C\\ = \\ \\left(\\dfrac{1}{R}\\right)\\ \\times \\ 8R^{3}\\sin A\\sin B\\sin C\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/R)(2R sinA)(2R sinB)(2R sinC)",
           {
-            "text": "[∵ 8R² = 8R³/R]",
-            "style": "indent"
+            "text": "= \\ \\left(\\dfrac{1}{R}\\right)\\left(2R\\sin A\\right)\\left(2R\\sin B\\right)\\left(2R\\sin C\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ 8R^{2}\\ = \\ \\dfrac{8R^{3}}{R}\\right]",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(a = 2R sinA, b = 2R sinB, c = 2R sinC)",
             "added": true
           },
           {
-            "text": "= abc/R = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{abc}{R} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -170,14 +195,20 @@
             "text": "[∵ in a △, Σsin2A = 4 sinA sinB sinC]",
             "style": "indent"
           },
-          "= (1/R)(2R sinA)(2R sinB)(2R sinC)",
           {
-            "text": "[∵ 8R² = 8R³/R]",
-            "style": "indent"
+            "text": "= \\ \\left(\\dfrac{1}{R}\\right)\\left(2R\\sin A\\right)\\left(2R\\sin B\\right)\\left(2R\\sin C\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= abc/R = R.H.S",
-            "style": "boxed"
+            "text": "\\left[\\because \\ 8R^{2}\\ = \\ \\dfrac{8R^{3}}{R}\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{abc}{R} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

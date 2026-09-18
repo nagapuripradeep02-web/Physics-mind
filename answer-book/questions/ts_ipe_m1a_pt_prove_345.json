@@ -64,7 +64,11 @@
           "(r r₁ r₂ r₃ = Δ²)",
           "Δ = √(r r₁ r₂ r₃) = √(1 × 2 × 3 × 6) = √36 = 6",
           "(Δ = rs)",
-          "Now r = Δ/s ⇒ 1 = 6/s ⇒ s = 6"
+          {
+            "text": "\\text{Now}\\ r\\ = \\ \\dfrac{\\Delta }{s} \\Rightarrow \\ 1\\ = \\ \\dfrac{6}{s} \\Rightarrow \\ s\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,13 +108,27 @@
         "margin_note": "Two marks — the bulk. Same pairing as the r₁ = 8, r₂ = 12, r₃ = 24 question: r₁ with a, r₂ with b, r₃ with c.",
         "lines": [
           {
-            "text": "(Δ = r₁(s − a), so s − a = Δ/r₁)",
+            "text": "\\left(\\Delta \\ = \\ r_{1}\\left(s\\ - \\ a\\right),\\ \\text{so}\\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 6/2 = 3",
+          {
+            "text": "\\left(i\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} \\Rightarrow \\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}} = \\ \\dfrac{6}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "  ∴ 6 − a = 3 ⇒ a = 3",
-          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 6/3 = 2 ⇒ 6 − b = 2 ⇒ b = 4",
-          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 6/6 = 1 ⇒ 6 − c = 1 ⇒ c = 5"
+          {
+            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{6}{3} = \\ 2\\ \\Rightarrow \\ 6\\ - \\ b\\ = \\ 2\\ \\Rightarrow \\ b\\ = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{6}{6} = \\ 1\\ \\Rightarrow \\ 6\\ - \\ c\\ = \\ 1\\ \\Rightarrow \\ c\\ = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -142,10 +160,22 @@
         ],
         "memory_tip": "The pairing is fixed: r₁ with a, r₂ with b, r₃ with c.",
         "lines_compact": [
-          "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 6/2 = 3",
+          {
+            "text": "\\left(i\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} \\Rightarrow \\ s\\ - \\ a\\ = \\ \\dfrac{\\Delta }{r_{1}} = \\ \\dfrac{6}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "  ∴ 6 − a = 3 ⇒ a = 3",
-          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 6/3 = 2 ⇒ 6 − b = 2 ⇒ b = 4",
-          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 6/6 = 1 ⇒ 6 − c = 1 ⇒ c = 5"
+          {
+            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{6}{3} = \\ 2\\ \\Rightarrow \\ 6\\ - \\ b\\ = \\ 2\\ \\Rightarrow \\ b\\ = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{6}{6} = \\ 1\\ \\Rightarrow \\ 6\\ - \\ c\\ = \\ 1\\ \\Rightarrow \\ c\\ = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

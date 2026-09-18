@@ -168,7 +168,11 @@
             "text": "(divide both sides by 3 + √8)",
             "added": true
           },
-          "So 3 − √8 = 1/(3 + √8)",
+          {
+            "text": "\\text{So}\\ 3\\ - \\ \\sqrt{8}\\ = \\ \\dfrac{1}{3\\ + \\ \\sqrt{8}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(logₑ(1/y) = −logₑ y)",
             "added": true
@@ -207,7 +211,11 @@
           "The second solution is x = −logₑ(3 + √8)",
           "Taking the minus sign before the surd gives logₑ(3 − √8)",
           "(3 + √8)(3 − √8) = 9 − 8 = 1",
-          "So 3 − √8 = 1/(3 + √8)",
+          {
+            "text": "\\text{So}\\ 3\\ - \\ \\sqrt{8}\\ = \\ \\dfrac{1}{3\\ + \\ \\sqrt{8}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ logₑ(3 − √8) = −logₑ(3 + √8)",
           "So cosh x = 3 has exactly two solutions, ±logₑ(3 + √8)"
         ]

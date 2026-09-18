@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "L.H.S = tanh(x − y) = sinh(x − y)/cosh(x − y)",
-          "(tanh = sinh/cosh)",
+          {
+            "text": "\\left(\\tan h\\ = \\ \\dfrac{\\sin h}{\\cos h}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = sinh x cosh y − cosh x sinh y",
           "(the subtraction formulas for sinh and cosh)",
           "Denominator = cosh x cosh y − sinh x sinh y"
@@ -98,19 +102,24 @@
           "cosh x ≥ 1 and cosh y ≥ 1, so cosh x cosh y ≠ 0",
           "Divide the top and the bottom by cosh x cosh y",
           {
-            "text": "(sinh x cosh y/(cosh x cosh y) = tanh x, and so on)",
+            "text": "\\left(\\dfrac{\\sin hx\\cos hy}{\\cos hx\\cos hy} = \\ \\tan hx,\\ \\text{and}\\ \\text{so}\\ \\text{on}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The top becomes tanh x − tanh y",
           {
-            "text": "(cosh x cosh y/(cosh x cosh y) = 1)",
+            "text": "\\left(\\dfrac{\\cos hx\\cos hy}{\\cos hx\\cos hy} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The bottom becomes 1 − tanh x tanh y",
           "∴ tanh(x − y)",
           {
-            "text": "= (tanh x − tanh y)/(1 − tanh x tanh y)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\tan hx\\ - \\ \\tan hy}{1\\ - \\ \\tan hx\\tan hy}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -147,8 +156,9 @@
           "The bottom becomes 1 − tanh x tanh y",
           "∴ tanh(x − y)",
           {
-            "text": "= (tanh x − tanh y)/(1 − tanh x tanh y)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\tan hx\\ - \\ \\tan hy}{1\\ - \\ \\tan hx\\tan hy}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

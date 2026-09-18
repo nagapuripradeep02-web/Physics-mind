@@ -111,7 +111,9 @@
             "style": "eq"
           },
           {
-            "text": "(6/24 = 1/4, 3/24 = 1/8, −4/24 = −1/6, 2/24 = 1/12)",
+            "text": "\\left(\\dfrac{6}{24} = \\ \\dfrac{1}{4},\\ \\dfrac{3}{24} = \\ \\dfrac{1}{8},\\ - \\dfrac{4}{24} = \\ - \\dfrac{1}{6},\\ \\dfrac{2}{24} = \\ \\dfrac{1}{12}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -120,7 +122,9 @@
             "style": "boxed"
           },
           {
-            "text": "Check: (2)(1/4) + (−3)(−1/6) = 1/2 + 1/2 = 1",
+            "text": "\\text{Check}:\\ \\left(2\\right)\\left(\\dfrac{1}{4}\\right)\\ + \\ \\left( - 3\\right)\\left( - \\dfrac{1}{6}\\right)\\ = \\ \\dfrac{1}{2} + \\ \\dfrac{1}{2} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],

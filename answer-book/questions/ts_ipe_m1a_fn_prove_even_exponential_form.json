@@ -52,17 +52,49 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x/(eˣ − 1) + x/2 + 1, x ≠ 0",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x}{e^{x}\\ - \\ 1} + \\ \\dfrac{x}{2} + \\ 1,\\ x\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "x ∈ R − {0} ⇒ −x ∈ R − {0},",
           "so f(−x) is defined for every such x.",
           "(put −x in place of every x)",
-          "f(−x) = −x/(e⁻ˣ − 1) − x/2 + 1",
-          "e⁻ˣ − 1 = 1/eˣ − 1 = (1 − eˣ)/eˣ",
-          "(dividing by (1 − eˣ)/eˣ is multiplying by eˣ/(1 − eˣ))",
-          "⇒ −x/(e⁻ˣ − 1) = −x·eˣ/(1 − eˣ)",
-          "(−1/(1 − eˣ) = 1/(eˣ − 1))",
-          "= xeˣ/(eˣ − 1)",
-          "∴ f(−x) = xeˣ/(eˣ − 1) − x/2 + 1"
+          {
+            "text": "f\\left( - x\\right)\\ = \\ - \\dfrac{x}{e^{-x}\\ - \\ 1} - \\ \\dfrac{x}{2} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e^{-x}\\ - \\ 1\\ = \\ \\dfrac{1}{e^{x}} - \\ 1\\ = \\ \\dfrac{1\\ - \\ e^{x}}{e^{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{1\\ - \\ e^{x}}{e^{x}}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{e^{x}}{1\\ - \\ e^{x}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{x}{e^{-x}\\ - \\ 1} = \\ - x \\cdot \\dfrac{e^{x}}{1\\ - \\ e^{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\dfrac{1}{1\\ - \\ e^{x}} = \\ \\dfrac{1}{e^{x}\\ - \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{xe^{x}}{e^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f\\left( - x\\right)\\ = \\ \\dfrac{xe^{x}}{e^{x}\\ - \\ 1} - \\ \\dfrac{x}{2} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,14 +139,32 @@
             "text": "Write eˣ on top as (eˣ − 1) + 1:",
             "added": true
           },
-          "xeˣ/(eˣ − 1) = x(eˣ − 1 + 1)/(eˣ − 1)",
           {
-            "text": "(x(eˣ − 1)/(eˣ − 1) = x)",
+            "text": "\\dfrac{xe^{x}}{e^{x}\\ - \\ 1} = \\ \\dfrac{x\\left(e^{x}\\ - \\ 1\\ + \\ 1\\right)}{e^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{x\\left(e^{x}\\ - \\ 1\\right)}{e^{x}\\ - \\ 1} = \\ x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= x + x/(eˣ − 1)",
-          "∴ f(−x) = x + x/(eˣ − 1) − x/2 + 1",
-          "= x/(eˣ − 1) + x/2 + 1   [∵ x − x/2 = x/2]",
+          {
+            "text": "= \\ x\\ + \\ \\dfrac{x}{e^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f\\left( - x\\right)\\ = \\ x\\ + \\ \\dfrac{x}{e^{x}\\ - \\ 1} - \\ \\dfrac{x}{2} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{x}{e^{x}\\ - \\ 1} + \\ \\dfrac{x}{2} + \\ 1\\left[\\because \\ x\\ - \\ \\dfrac{x}{2} = \\ \\dfrac{x}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= f(x) for every x ∈ R − {0}",
           {
             "text": "∴ f is an even function on R − {0}.",
@@ -150,10 +200,26 @@
           "Concluding odd because a minus sign appeared during the working."
         ],
         "lines_compact": [
-          "xeˣ/(eˣ − 1) = x(eˣ − 1 + 1)/(eˣ − 1)",
-          "= x + x/(eˣ − 1)",
-          "∴ f(−x) = x + x/(eˣ − 1) − x/2 + 1",
-          "= x/(eˣ − 1) + x/2 + 1   [∵ x − x/2 = x/2]",
+          {
+            "text": "\\dfrac{xe^{x}}{e^{x}\\ - \\ 1} = \\ \\dfrac{x\\left(e^{x}\\ - \\ 1\\ + \\ 1\\right)}{e^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ x\\ + \\ \\dfrac{x}{e^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f\\left( - x\\right)\\ = \\ x\\ + \\ \\dfrac{x}{e^{x}\\ - \\ 1} - \\ \\dfrac{x}{2} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{x}{e^{x}\\ - \\ 1} + \\ \\dfrac{x}{2} + \\ 1\\left[\\because \\ x\\ - \\ \\dfrac{x}{2} = \\ \\dfrac{x}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= f(x) for every x ∈ R − {0}",
           {
             "text": "∴ f is an even function on R − {0}.",

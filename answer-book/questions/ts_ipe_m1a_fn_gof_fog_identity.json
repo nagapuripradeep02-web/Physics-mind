@@ -63,7 +63,11 @@
           },
           "(f acts first, then g)",
           "(gof)(x) = g[f(x)] = g(2x − 1)",
-          "= ((2x − 1) + 1)/2 = 2x/2 = x"
+          {
+            "text": "= \\ \\dfrac{\\left(2x\\ - \\ 1\\right)\\ + \\ 1}{2} = \\ \\dfrac{2x}{2} = \\ x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,12 +106,20 @@
         "margin_note": "The second mark. Now g acts first. Both answers are x, which is the point of the question.",
         "memory_tip": "Now g acts first. Both come to x — the two functions undo each other, which is the point.",
         "lines": [
-          "(fog)(x) = f[g(x)] = f((x + 1)/2)",
+          {
+            "text": "\\left(\\text{fog}\\right)\\left(x\\right)\\ = \\ f\\left[g\\left(x\\right)\\right]\\ = \\ f\\left(\\dfrac{x\\ + \\ 1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(g acts first, then f)",
             "added": true
           },
-          "= 2((x + 1)/2) − 1 = x + 1 − 1 = x",
+          {
+            "text": "= \\ 2\\left(\\dfrac{x\\ + \\ 1}{2}\\right)\\ - \\ 1\\ = \\ x\\ + \\ 1\\ - \\ 1\\ = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (gof)(x) = (fog)(x) = x",
             "style": "boxed"
@@ -146,8 +158,16 @@
           "Cancelling the 2 and then dropping the − 1, which leaves x + 1."
         ],
         "lines_compact": [
-          "(fog)(x) = f[g(x)] = f((x + 1)/2)",
-          "= 2((x + 1)/2) − 1 = x + 1 − 1 = x",
+          {
+            "text": "\\left(\\text{fog}\\right)\\left(x\\right)\\ = \\ f\\left[g\\left(x\\right)\\right]\\ = \\ f\\left(\\dfrac{x\\ + \\ 1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left(\\dfrac{x\\ + \\ 1}{2}\\right)\\ - \\ 1\\ = \\ x\\ + \\ 1\\ - \\ 1\\ = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (gof)(x) = (fog)(x) = x",
             "style": "boxed"

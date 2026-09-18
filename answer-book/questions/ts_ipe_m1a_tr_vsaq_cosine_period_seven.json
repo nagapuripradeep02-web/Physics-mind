@@ -59,13 +59,21 @@
           },
           "Let cos kx be the required cosine function.",
           "(take k > 0)",
-          "Period of cos kx = 2π/k",
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\cos kx\\ = \\ \\dfrac{2\\pi }{k}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos repeats every 2π, so cos kx repeats when",
           {
             "text": "  kx grows by 2π, that is when x grows by 2π/k)",
             "style": "indent"
           },
-          "∴ 2π/k = 7"
+          {
+            "text": "\\therefore \\ \\dfrac{2\\pi }{k} = \\ 7",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,18 +116,26 @@
             "text": "Multiply both sides by k, then divide by 7:",
             "added": true
           },
-          "⇒ k = 2π/7",
           {
-            "text": "∴ cos(2πx/7) is the required cosine function",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ k\\ = \\ \\dfrac{2\\pi }{7}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "Check: cos(2π(x + 7)/7) = cos(2πx/7 + 2π)",
+            "text": "\\therefore \\ \\cos \\left(\\dfrac{2\\pi x}{7}\\right)\\ \\text{is}\\ \\text{the}\\ \\text{required}\\ \\text{cosine}\\ \\text{function}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ \\cos \\left(\\dfrac{2\\pi \\left(x\\ + \\ 7\\right)}{7}\\right)\\ = \\ \\cos \\left(\\dfrac{2\\pi x}{7} + \\ 2\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = cos(2πx/7), so 7 is a period.",
+            "text": "= \\ \\cos \\left(\\dfrac{2\\pi x}{7}\\right),\\ \\text{so}\\ 7\\ \\text{is}\\ a\\ \\text{period}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           }
         ],
@@ -150,10 +166,15 @@
           "Writing cos(7x/2π)."
         ],
         "lines_compact": [
-          "⇒ k = 2π/7",
           {
-            "text": "∴ cos(2πx/7) is the required cosine function",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ k\\ = \\ \\dfrac{2\\pi }{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\left(\\dfrac{2\\pi x}{7}\\right)\\ \\text{is}\\ \\text{the}\\ \\text{required}\\ \\text{cosine}\\ \\text{function}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

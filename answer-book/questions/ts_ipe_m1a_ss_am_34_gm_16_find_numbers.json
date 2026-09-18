@@ -54,7 +54,11 @@
           },
           "Let the two positive numbers be a and b",
           "(multiply both sides by 2)",
-          "A.M. = (a + b)/2 = 34  ⇒  a + b = 68",
+          {
+            "text": "A.M.\\ = \\ \\dfrac{a\\ + \\ b}{2} = \\ 34\\ \\Rightarrow \\ a\\ + \\ b\\ = \\ 68",
+            "style": "normal",
+            "render": "katex"
+          },
           "(square both sides)",
           "G.M. = √(ab) = 16  ⇒  ab = 16² = 256"
         ],
@@ -110,22 +114,33 @@
             "text": "(the quadratic formula)",
             "added": true
           },
-          "x = [68 ± √(68² − 4 × 256)]/2",
+          {
+            "text": "x\\ = \\ \\dfrac{68\\ \\pm \\ \\sqrt{68^{2}\\ - \\ 4\\ \\times \\ 256}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(68² = 4624 and 4 × 256 = 1024)",
             "added": true
           },
           {
-            "text": "= [68 ± √(4624 − 1024)]/2",
-            "style": "indent"
+            "text": "= \\ \\dfrac{68\\ \\pm \\ \\sqrt{4624\\ - \\ 1024}}{2}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(4624 − 1024 = 3600 and √3600 = 60)",
             "added": true
           },
-          "= [68 ± √3600]/2 = (68 ± 60)/2",
           {
-            "text": "((68 + 60)/2 = 64 and (68 − 60)/2 = 4)",
+            "text": "= \\ \\dfrac{68\\ \\pm \\ \\sqrt{3600}}{2} = \\ \\dfrac{68\\ \\pm \\ 60}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{68\\ + \\ 60}{2} = \\ 64\\ \\text{and}\\ \\dfrac{68\\ - \\ 60}{2} = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -163,12 +178,21 @@
         "lines_compact": [
           "a and b are the roots of  x² − (a + b)x + ab = 0",
           "x² − 68x + 256 = 0",
-          "x = [68 ± √(68² − 4 × 256)]/2",
           {
-            "text": "= [68 ± √(4624 − 1024)]/2",
-            "style": "indent"
+            "text": "x\\ = \\ \\dfrac{68\\ \\pm \\ \\sqrt{68^{2}\\ - \\ 4\\ \\times \\ 256}}{2}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= [68 ± √3600]/2 = (68 ± 60)/2",
+          {
+            "text": "= \\ \\dfrac{68\\ \\pm \\ \\sqrt{4624\\ - \\ 1024}}{2}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{68\\ \\pm \\ \\sqrt{3600}}{2} = \\ \\dfrac{68\\ \\pm \\ 60}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ x = 64 or 4, so the two numbers are 64 and 4",
             "style": "boxed"

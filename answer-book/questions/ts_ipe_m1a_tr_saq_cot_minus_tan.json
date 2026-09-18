@@ -57,7 +57,11 @@
           },
           "L.H.S = cotA − tanA",
           "Write both as sine-cosine fractions:",
-          "= cosA/sinA − sinA/cosA"
+          {
+            "text": "= \\ \\dfrac{\\cos A}{\\sin A} - \\ \\dfrac{\\sin A}{\\cos A}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +103,11 @@
             "text": "Subtract over the common denominator sinA cosA:",
             "added": true
           },
-          "= (cos²A − sin²A)/(sinA cosA)",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} A\\ - \\ \\sin ^{2} A}{\\sin A\\cos A}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
         ],
         "recall": {
@@ -131,7 +139,11 @@
         ],
         "memory_tip": "The numerator is cos²A − sin²A, a DIFFERENCE — and that is exactly cos 2A.",
         "lines_compact": [
-          "= (cos²A − sin²A)/(sinA cosA)",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} A\\ - \\ \\sin ^{2} A}{\\sin A\\cos A}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
         ]
       },

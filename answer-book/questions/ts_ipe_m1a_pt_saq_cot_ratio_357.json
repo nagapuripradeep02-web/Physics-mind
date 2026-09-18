@@ -57,10 +57,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given cot(A/2) : cot(B/2) : cot(C/2) = 3 : 5 : 7",
-          "(cot(A/2) = s(s−a)/Δ)",
-          "⇒ s(s−a)/Δ : s(s−b)/Δ : s(s−c)/Δ = 3 : 5 : 7",
-          "⇒ (s−a) : (s−b) : (s−c) = 3 : 5 : 7   [s/Δ cancels]",
+          {
+            "text": "\\text{Given}\\ \\cot \\left(\\dfrac{A}{2}\\right)\\ :\\ \\cot \\left(\\dfrac{B}{2}\\right)\\ :\\ \\cot \\left(\\dfrac{C}{2}\\right)\\ = \\ 3\\ :\\ 5\\ :\\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cot \\left(\\dfrac{A}{2}\\right)\\ = \\ \\dfrac{s\\left(s - a\\right)}{\\Delta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{s\\left(s - a\\right)}{\\Delta }:\\ \\dfrac{s\\left(s - b\\right)}{\\Delta }:\\ \\dfrac{s\\left(s - c\\right)}{\\Delta } = \\ 3\\ :\\ 5\\ :\\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(s - a\\right)\\ :\\ \\left(s - b\\right)\\ :\\ \\left(s - c\\right)\\ = \\ 3\\ :\\ 5\\ :\\ 7\\left[\\dfrac{s}{\\Delta }\\text{cancels}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(equal ratios: each is the same multiple k)",
           "Take s − a = 3k, s − b = 5k, s − c = 7k  (k > 0)"
         ],

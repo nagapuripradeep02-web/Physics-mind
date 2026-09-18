@@ -77,12 +77,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy))",
-          "(it needs xy < 1; here xy = 1/10)",
-          "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5)",
-          "= Tan⁻¹((1/2 + 1/5)/(1 − (1/2)(1/5)))",
-          "(1/2 + 1/5 = 7/10 and 1 − 1/10 = 9/10)",
-          "= Tan⁻¹((7/10)/(9/10)) = Tan⁻¹(7/9)"
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\operatorname{Tan}^{-1} x\\ + \\ \\operatorname{Tan}^{-1} y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{x + y}{1 - xy}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{it}\\ \\text{needs}\\ xy\\ < \\ 1;\\ \\text{here}\\ xy\\ = \\ \\dfrac{1}{10}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{1}{2} + \\ \\dfrac{1}{5}}{1\\ - \\ \\left(\\dfrac{1}{2}\\right)\\left(\\dfrac{1}{5}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2} + \\ \\dfrac{1}{5} = \\ \\dfrac{7}{10}\\text{and}\\ 1\\ - \\ \\dfrac{1}{10} = \\ \\dfrac{9}{10}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{7}{10}}{\\dfrac{9}{10}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{7}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -122,16 +146,32 @@
         "memory_tip": "Same formula again with 7/9 and 1/8. Both parts have the denominator 72, and 65/72 over 65/72 is exactly 1.",
         "lines": [
           {
-            "text": "(here xy = (7/9)(1/8) = 7/72 < 1)",
+            "text": "\\left(\\text{here}\\ xy\\ = \\ \\left(\\dfrac{7}{9}\\right)\\left(\\dfrac{1}{8}\\right)\\ = \\ \\dfrac{7}{72} < \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
-          "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
           {
-            "text": "(7/9 + 1/8 = 56/72 + 9/72 = 65/72; 1 − 7/72 = 65/72)",
+            "text": "\\therefore \\ L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{7}{9}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{7}{9} + \\ \\dfrac{1}{8}}{1\\ - \\ \\left(\\dfrac{7}{9}\\right)\\left(\\dfrac{1}{8}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{7}{9} + \\ \\dfrac{1}{8} = \\ \\dfrac{56}{72} + \\ \\dfrac{9}{72} = \\ \\dfrac{65}{72};\\ 1\\ - \\ \\dfrac{7}{72} = \\ \\dfrac{65}{72}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= Tan⁻¹((65/72)/(65/72))",
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{65}{72}}{\\dfrac{65}{72}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= Tan⁻¹(1)"
         ],
         "recall": {
@@ -162,9 +202,21 @@
           "Restarting from the original three terms."
         ],
         "lines_compact": [
-          "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
-          "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
-          "= Tan⁻¹((65/72)/(65/72))",
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{7}{9}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{7}{9} + \\ \\dfrac{1}{8}}{1\\ - \\ \\left(\\dfrac{7}{9}\\right)\\left(\\dfrac{1}{8}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{\\dfrac{65}{72}}{\\dfrac{65}{72}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= Tan⁻¹(1)"
         ]
       },
@@ -178,13 +230,20 @@
         "memory_tip": "Tan⁻¹(1) = π/4, since tan(π/4) = 1. Name the standard value.",
         "lines": [
           {
-            "text": "(π/4 is the angle in (−π/2, π/2) whose tangent is 1)",
+            "text": "\\left(\\dfrac{\\pi }{4}\\text{is}\\ \\text{the}\\ \\text{angle}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{whose}\\ \\text{tangent}\\ \\text{is}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
           {
-            "text": "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4",
-            "style": "boxed"
+            "text": "\\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\left[\\because \\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{5}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{8}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -214,10 +273,15 @@
           "Writing π/2."
         ],
         "lines_compact": [
-          "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
           {
-            "text": "∴ Tan⁻¹(1/2) + Tan⁻¹(1/5) + Tan⁻¹(1/8) = π/4",
-            "style": "boxed"
+            "text": "\\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\left[\\because \\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{5}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{8}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

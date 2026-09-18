@@ -181,7 +181,9 @@
           },
           "Cancel abc in each diagonal entry:",
           {
-            "text": "(bc/abc = 1/a, ca/abc = 1/b, ab/abc = 1/c)",
+            "text": "\\left(\\dfrac{bc}{abc} = \\ \\dfrac{1}{a},\\ \\dfrac{ca}{abc} = \\ \\dfrac{1}{b},\\ \\dfrac{ab}{abc} = \\ \\dfrac{1}{c}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -241,8 +243,16 @@
         "margin_note": "Last mark. Multiply row by column: a(1/a) = 1 on the diagonal, and every off-diagonal product has a zero in it. The product is the identity, so the answer is right.",
         "memory_tip": "Check by multiplying: a times 1/a is 1 on the diagonal, and every other product contains a zero.",
         "lines": [
-          "Multiply row by column: a(1/a) = 1, b(1/b) = 1,",
-          "c(1/c) = 1, and every other product has a 0 in it.",
+          {
+            "text": "\\text{Multiply}\\ \\text{row}\\ \\text{by}\\ \\text{column}:\\ a\\left(\\dfrac{1}{a}\\right)\\ = \\ 1,\\ b\\left(\\dfrac{1}{b}\\right)\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "c\\left(\\dfrac{1}{c}\\right)\\ = \\ 1,\\ \\text{and}\\ \\text{every}\\ \\text{other}\\ \\text{product}\\ hasa0\\ \\text{in}\\ \\text{it}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "So A·A⁻¹ = I, which confirms the answer.",
           {
             "text": "A^{-1} = \\begin{bmatrix} 1/a & 0 & 0 \\\\ 0 & 1/b & 0 \\\\ 0 & 0 & 1/c \\end{bmatrix}\\quad (a, b, c \\ne 0)",

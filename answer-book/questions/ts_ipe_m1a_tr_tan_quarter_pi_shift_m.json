@@ -68,16 +68,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given sin(α+β)/cos(α−β) = (1−m)/(1+m)",
-          "α − β is not an odd multiple of π/2,",
+          {
+            "text": "\\text{Given}\\ \\dfrac{\\sin \\left(\\alpha + \\beta \\right)}{\\cos \\left(\\alpha - \\beta \\right)} = \\ \\dfrac{1 - m}{1 + m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\alpha \\ - \\ \\beta \\ \\text{is}\\ \\text{not}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so cos(α−β) ≠ 0. Also 1 + m ≠ 0.",
           "(cos θ = 0 only when θ is an odd multiple",
           {
             "text": "  of π/2.)",
             "style": "indent"
           },
-          "Take cos(π/4 − α) ≠ 0, cos(π/4 − β) ≠ 0,",
-          "and cos(π/4 + β) ≠ 0 so the right side exists."
+          {
+            "text": "\\text{Take}\\ \\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)\\ \\ne \\ 0,\\ \\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\ \\ne \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cos \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ \\ne \\ 0\\ \\text{so}\\ \\text{the}\\ \\text{right}\\ \\text{side}\\ \\text{exists}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -189,8 +205,16 @@
             "style": "indent",
             "added": true
           },
-          "sin(α+β) = cos(π/2 − α − β)",
-          "  [∵ sinθ = cos(π/2 − θ)]"
+          {
+            "text": "\\sin \\left(\\alpha + \\beta \\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\theta \\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -220,8 +244,16 @@
           "Writing sin θ = cos(θ + π/2), which is −sin θ, and losing the sign."
         ],
         "lines_compact": [
-          "sin(α+β) = cos(π/2 − α − β)",
-          "  [∵ sinθ = cos(π/2 − θ)]"
+          {
+            "text": "\\sin \\left(\\alpha + \\beta \\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin \\theta \\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -234,15 +266,21 @@
         "memory_tip": "Both brackets give the same two half-angles, π/4 − β and π/4 − α — the sum gives cosines, the difference gives sines.",
         "lines": [
           {
-            "text": "Take p = α − β and q = π/2 − α − β:",
+            "text": "\\text{Take}\\ p\\ = \\ \\alpha \\ - \\ \\beta \\ \\text{and}\\ q\\ = \\ \\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta :",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p + q = π/2 − 2β, so (p+q)/2 = π/4 − β",
+            "text": "p\\ + \\ q\\ = \\ \\dfrac{\\pi }{2} - \\ 2\\beta ,\\ \\text{so}\\ \\dfrac{p + q}{2} = \\ \\dfrac{\\pi }{4} - \\ \\beta",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p − q = 2α − π/2, so (p−q)/2 = α − π/4",
+            "text": "p\\ - \\ q\\ = \\ 2\\alpha \\ - \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\dfrac{p - q}{2} = \\ \\alpha \\ - \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -250,14 +288,25 @@
             "added": true
           },
           {
-            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
+            "text": "\\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "cos(α−β) + cos(π/2 − α − β)",
-          "     = 2 cos(π/4 − β) cos(π/4 − α)",
           {
-            "text": "(cos(α − π/4) = cos(π/4 − α))",
+            "text": "\\cos \\left(\\alpha - \\beta \\right)\\ + \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\alpha \\ - \\ \\dfrac{\\pi }{4}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -265,14 +314,25 @@
             "added": true
           },
           {
-            "text": "  cos p − cos q = −2 sin((p+q)/2) sin((p−q)/2)",
+            "text": "\\cos p\\ - \\ \\cos q\\ = \\ - 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\sin \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "cos(α−β) − cos(π/2 − α − β)",
-          "     = 2 sin(π/4 − β) sin(π/4 − α)",
           {
-            "text": "(−sin(α − π/4) = sin(π/4 − α))",
+            "text": "\\cos \\left(\\alpha - \\beta \\right)\\ - \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\sin \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\sin \\left(\\alpha \\ - \\ \\dfrac{\\pi }{4}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -305,10 +365,26 @@
           "Writing the difference as 2 sin(π/4 − α) cos(π/4 − β), mixing the two formulas."
         ],
         "lines_compact": [
-          "cos(α−β) + cos(π/2 − α − β)",
-          "     = 2 cos(π/4 − β) cos(π/4 − α)",
-          "cos(α−β) − cos(π/2 − α − β)",
-          "     = 2 sin(π/4 − β) sin(π/4 − α)"
+          {
+            "text": "\\cos \\left(\\alpha - \\beta \\right)\\ + \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\alpha - \\beta \\right)\\ - \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\alpha \\ - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\sin \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -321,10 +397,20 @@
         "memory_tip": "Divide by cos(π/4 − β) cos(π/4 − α). Each sine over its own cosine becomes a tangent.",
         "lines": [
           "Put both in (1) and cancel the 2:",
-          "m cos(π/4 − β) cos(π/4 − α)",
-          "     = sin(π/4 − β) sin(π/4 − α)",
           {
-            "text": "Divide both sides by cos(π/4 − β) cos(π/4 − α),",
+            "text": "m\\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\sin \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right),",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -336,7 +422,11 @@
             "text": "(sin ÷ cos = tan for each angle)",
             "added": true
           },
-          "⇒ m = tan(π/4 − α) tan(π/4 − β)"
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)\\tan \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -367,9 +457,21 @@
         ],
         "lines_compact": [
           "Put both in (1) and cancel the 2:",
-          "m cos(π/4 − β) cos(π/4 − α)",
-          "     = sin(π/4 − β) sin(π/4 − α)",
-          "⇒ m = tan(π/4 − α) tan(π/4 − β)"
+          {
+            "text": "m\\cos \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\cos \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\sin \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)\\tan \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -381,7 +483,11 @@
         "margin_note": "Last mark. (π/4 − β) and (π/4 + β) add to π/2, so their tangents multiply to 1. Multiplying m by tan(π/4 + β) removes the second tangent and leaves the result.",
         "memory_tip": "(π/4 − β) + (π/4 + β) = π/2, so tan(π/4 − β) tan(π/4 + β) = 1. That is what removes the extra tangent.",
         "lines": [
-          "(π/4 − β) + (π/4 + β) = π/2",
+          {
+            "text": "\\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\ + \\ \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(tan(π/2 − θ) = cot θ, so tan(π/4 − β)",
             "added": true
@@ -391,15 +497,26 @@
             "style": "indent",
             "added": true
           },
-          "⇒ tan(π/4 − β) tan(π/4 + β) = 1",
-          "Multiply both sides by tan(π/4 + β):",
           {
-            "text": "(on the right, tan(π/4 − β) tan(π/4 + β) = 1)",
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{on}\\ \\text{the}\\ \\text{right},\\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "m tan(π/4 + β) = tan(π/4 − α)",
-            "style": "boxed"
+            "text": "m\\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -430,12 +547,25 @@
           "Stopping at m = tan(π/4 − α) tan(π/4 − β) without reaching the asked form."
         ],
         "lines_compact": [
-          "(π/4 − β) + (π/4 + β) = π/2",
-          "⇒ tan(π/4 − β) tan(π/4 + β) = 1",
-          "Multiply both sides by tan(π/4 + β):",
           {
-            "text": "m tan(π/4 + β) = tan(π/4 − α)",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\ + \\ \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\beta \\right)\\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "m\\tan \\left(\\dfrac{\\pi }{4} + \\ \\beta \\right)\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\alpha \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -196,8 +196,9 @@
           },
           "V = ⅙ |1|",
           {
-            "text": "= 1/6 cubic units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{6}\\text{cubic}\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -229,8 +230,9 @@
         "lines_compact": [
           "V = ⅙ |1|",
           {
-            "text": "= 1/6 cubic units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{6}\\text{cubic}\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

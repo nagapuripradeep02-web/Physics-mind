@@ -66,7 +66,11 @@
             "style": "heading"
           },
           "(the addition formula for inverse tangents)",
-          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy)),",
+          {
+            "text": "\\operatorname{Tan}^{-1} x\\ + \\ \\operatorname{Tan}^{-1} y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{x\\ + \\ y}{1\\ - \\ xy}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "when xy < 1",
           "Here x = 1/7, y = 1/13, so xy = 1/91 < 1. ✓"
         ],
@@ -106,13 +110,27 @@
         "margin_note": "Second mark. Put x = 1/7 and y = 1/13 into the formula and write both parts over 91.",
         "memory_tip": "Write both parts over 91: (13 + 7)/91 on top and (91 − 1)/91 below.",
         "lines": [
-          "Tan⁻¹(1/7) + Tan⁻¹(1/13)",
-          "= Tan⁻¹[(1/7 + 1/13) / (1 − (1/7)(1/13))]",
           {
-            "text": "(1/7 + 1/13 = 20/91 and 1 − 1/91 = 90/91)",
+            "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1} \\left[\\dfrac{\\dfrac{1}{7} + \\ \\dfrac{1}{13}}{1\\ - \\ \\left(\\dfrac{1}{7}\\right)\\left(\\dfrac{1}{13}\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{7} + \\ \\dfrac{1}{13} = \\ \\dfrac{20}{91}\\text{and}\\ 1\\ - \\ \\dfrac{1}{91} = \\ \\dfrac{90}{91}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= Tan⁻¹[((13 + 7)/91) / ((91 − 1)/91)]"
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1} \\left[\\dfrac{\\dfrac{13\\ + \\ 7}{91}}{\\dfrac{91\\ - \\ 1}{91}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -141,9 +159,21 @@
           "Multiplying 1/7 and 1/13 as 1/20."
         ],
         "lines_compact": [
-          "Tan⁻¹(1/7) + Tan⁻¹(1/13)",
-          "= Tan⁻¹[(1/7 + 1/13) / (1 − (1/7)(1/13))]",
-          "= Tan⁻¹[((13 + 7)/91) / ((91 − 1)/91)]"
+          {
+            "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1} \\left[\\dfrac{\\dfrac{1}{7} + \\ \\dfrac{1}{13}}{1\\ - \\ \\left(\\dfrac{1}{7}\\right)\\left(\\dfrac{1}{13}\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1} \\left[\\dfrac{\\dfrac{13\\ + \\ 7}{91}}{\\dfrac{91\\ - \\ 1}{91}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -155,12 +185,22 @@
         "margin_note": "Third mark. The 91s cancel, leaving 20/90 — which reduces to 2/9.",
         "memory_tip": "The 91s cancel, leaving 20/90, which reduces to 2/9 — not 2/10.",
         "lines": [
-          "= Tan⁻¹(20/90)   [the 91s cancel]",
           {
-            "text": "(20/90 = 2/9)",
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{20}{90}\\right)\\left[\\text{the}\\ 91s\\ \\text{cancel}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{20}{90} = \\ \\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= Tan⁻¹(2/9)"
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -189,8 +229,16 @@
           "Reducing 20/90 to 2/10."
         ],
         "lines_compact": [
-          "= Tan⁻¹(20/90)   [the 91s cancel]",
-          "= Tan⁻¹(2/9)"
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{20}{90}\\right)\\left[\\text{the}\\ 91s\\ \\text{cancel}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -202,15 +250,24 @@
         "margin_note": "Last mark. The first two terms equal the third, so subtracting it leaves 0.",
         "memory_tip": "The first two terms equal the third exactly, so subtracting it leaves 0. Show that line.",
         "lines": [
-          "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) = Tan⁻¹(2/9)",
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put this result into the left side)",
             "added": true
           },
-          "L.H.S = Tan⁻¹(2/9) − Tan⁻¹(2/9) = 0",
           {
-            "text": "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0",
-            "style": "boxed"
+            "text": "L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -241,11 +298,20 @@
           "Stating the answer without showing the subtraction."
         ],
         "lines_compact": [
-          "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) = Tan⁻¹(2/9)",
-          "L.H.S = Tan⁻¹(2/9) − Tan⁻¹(2/9) = 0",
           {
-            "text": "∴ Tan⁻¹(1/7) + Tan⁻¹(1/13) − Tan⁻¹(2/9) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{13}\\right)\\ - \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

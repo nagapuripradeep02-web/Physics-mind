@@ -54,7 +54,11 @@
           },
           "Let the first five terms of the G.P. be",
           "(each term is r times the one before it)",
-          "a/r²,  a/r,  a,  ar,  ar²",
+          {
+            "text": "\\dfrac{a}{r^{2}},\\ \\dfrac{a}{r},\\ a,\\ ar,\\ ar^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The third term is the middle one, so a = 4"
         ],
         "recall": {
@@ -94,7 +98,11 @@
         "margin_note": "Second mark. Show that the powers of r add to zero — that line is the reason no value of r is ever needed.",
         "memory_tip": "The powers −2, −1, 0, 1, 2 add to zero, so only a⁵ is left: the middle term to the fifth power.",
         "lines": [
-          "Product = (a/r²)(a/r)(a)(ar)(ar²)",
+          {
+            "text": "\\text{Product}\\ = \\ \\left(\\dfrac{a}{r^{2}}\\right)\\left(\\dfrac{a}{r}\\right)\\left(a\\right)\\left(ar\\right)\\left(ar^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the five a's to get a⁵; add the powers of r)",
             "added": true
@@ -142,7 +150,11 @@
           "Giving 4 × 5 = 20 in place of 4⁵."
         ],
         "lines_compact": [
-          "Product = (a/r²)(a/r)(a)(ar)(ar²)",
+          {
+            "text": "\\text{Product}\\ = \\ \\left(\\dfrac{a}{r^{2}}\\right)\\left(\\dfrac{a}{r}\\right)\\left(a\\right)\\left(ar\\right)\\left(ar^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The powers of r are −2, −1, 0, 1, 2 and they add to 0",
           "So the product = a⁵ = 4⁵",
           {

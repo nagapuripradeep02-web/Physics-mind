@@ -114,13 +114,25 @@
             "text": "Pair the first two with p = S−A and q = S−B:",
             "added": true
           },
-          "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(p + q = 2S − A − B and p − q = B − A)",
             "added": true
           },
-          "= 2 cos((2S−(A+B))/2) cos((B−A)/2) + cosC"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{2S - \\left(A + B\\right)}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,9 +162,21 @@
         ],
         "lines_compact": [
           "L.H.S = cos(S−A) + cos(S−B) + cosC",
-          "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
-          "= 2 cos((2S−(A+B))/2) cos((B−A)/2) + cosC"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{2S - \\left(A + B\\right)}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -169,8 +193,9 @@
             "added": true
           },
           {
-            "text": "  (2S−(A+B))/2 = C/2.",
+            "text": "\\dfrac{2S - \\left(A + B\\right)}{2} = \\ \\dfrac{C}{2}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -178,12 +203,21 @@
             "added": true
           },
           {
-            "text": "  a cos²(C/2) appear:",
+            "text": "a\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ \\text{appear}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) cos((B−A)/2) + (2cos²(C/2) − 1)",
-          "  [∵ 2S − (A+B) = C, and cosθ = 2cos²(θ/2) − 1]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\left(2\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ 2S\\ - \\ \\left(A + B\\right)\\ = \\ C,\\ \\text{and}\\ \\cos \\theta \\ = \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ - \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -213,8 +247,16 @@
           "Forgetting the −1."
         ],
         "lines_compact": [
-          "= 2 cos(C/2) cos((B−A)/2) + (2cos²(C/2) − 1)",
-          "  [∵ 2S − (A+B) = C, and cosθ = 2cos²(θ/2) − 1]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\left(2\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ 2S\\ - \\ \\left(A + B\\right)\\ = \\ C,\\ \\text{and}\\ \\cos \\theta \\ = \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ - \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -227,12 +269,20 @@
         "memory_tip": "The common factor comes out and the −1 stays OUTSIDE the bracket.",
         "lines": [
           {
-            "text": "Write −1 first and take out 2 cos(C/2):",
+            "text": "\\text{Write}\\ - 1\\ \\text{first}\\ \\text{and}\\ \\text{take}\\ \\text{out}\\ 2\\cos \\left(\\dfrac{C}{2}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(C/2)]",
           {
-            "text": "(check: 2 cos(C/2) × cos(C/2) = 2cos²(C/2))",
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{check}:\\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\times \\ \\cos \\left(\\dfrac{C}{2}\\right)\\ = \\ 2\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -244,7 +294,11 @@
             "style": "indent",
             "added": true
           },
-          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = (S−A) + (S−B)]"
         ],
         "recall": {
@@ -275,8 +329,16 @@
           "Leaving the bracket in terms of C."
         ],
         "lines_compact": [
-          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(C/2)]",
-          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = (S−A) + (S−B)]"
         ]
       },
@@ -294,25 +356,42 @@
             "added": true
           },
           {
-            "text": "  p = ((S−A)+(S−B))/2 and q = (B−A)/2:",
+            "text": "p\\ = \\ \\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\text{and}\\ q\\ = \\ \\dfrac{B - A}{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p + q = S − A, so (p+q)/2 = (S−A)/2",
+            "text": "p\\ + \\ q\\ = \\ S\\ - \\ A,\\ \\text{so}\\ \\dfrac{p + q}{2} = \\ \\dfrac{S - A}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p − q = S − B, so (p−q)/2 = (S−B)/2",
+            "text": "p\\ - \\ q\\ = \\ S\\ - \\ B,\\ \\text{so}\\ \\dfrac{p - q}{2} = \\ \\dfrac{S - B}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −1 + 2 cos(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left(2\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply 2 × 2 = 4 and reorder:",
             "added": true
           },
-          "= −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2)",
+          {
+            "text": "= \\ - 1\\ + \\ 4\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S = R.H.S",
             "style": "boxed"
@@ -346,9 +425,21 @@
           "Losing the −1."
         ],
         "lines_compact": [
-          "= −1 + 2 cos(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
-          "= −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2)",
+          {
+            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left(2\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - 1\\ + \\ 4\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S = R.H.S",
             "style": "boxed"
