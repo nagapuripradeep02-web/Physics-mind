@@ -1,5 +1,30 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚀 SESSION — MEC opens in the Answer Book, both years, maths only (2026-09-18, `feat/answerbook-mec`)
+
+**Bottom line: the door's MEC tile is live in both years. An MEC student gets Maths-1A + 1B (931 answers, 22 chapters) in first year and Maths-2A + 2B (528 answers, 18 chapters) in second year — the SAME cards MPC ships — and is told at the door that Economics and Commerce are not in this book.** Nothing was authored; the change is registry + door + copy.
+
+### The premise, checked before the work order
+
+The founder asked whether MEC sits the same maths papers as MPC. **Second year: yes, one paper** — Maths-2A/2B are common to MPC and MEC in March 2027 (the 2026-27 reform is first-year only; second year switches 2027-28, already encoded in `PAPER_PATTERNS`). **First year: same syllabus, same 60 + 15 shape, but a separate question paper** — Telangana Today, 14 May 2026 ("Telangana Inter Board unveils major exam reforms"): until now "both MPC and MEC students shared the same question paper"; from 2026-27 the board "implement[s] a separate question paper for mathematics for MEC students", with activity marks "similar to MPC mathematics". So every 1A/1B card is the right content for MEC, but the appearance stars come from MPC past papers and predict MEC's new paper less well. Recorded, not blocking. Live `ab_content` already flags one free chapter in every maths paper (mathematics-6, mathematics_1b-3, mathematics_2a-6, mathematics_2b-6), so "one chapter in every subject is free" stays true for MEC with no data change.
+
+### What changed (the BiPC-second-year pattern, commit `7cbac9c7`, applied again)
+
+- `src/scripts/build_answer_book.ts`: `STREAMS.mec` (`mathematics`, `mathematics_1b`) and `STREAMS.mec_2` (`mathematics_2a`, `mathematics_2b`); the four maths keys join `SHARED_SUBJECTS` (one bundle, one row, one count per cell); `TRACKS.mec` lights both cells with `note: 'Maths only. Economics and Commerce are not in this book.'` and a subjects line naming only the four maths papers; the "mec must never produce an artifact" rationale rewritten.
+- `answer-book/notebook.js` (`Door.renderYears`): a LIVE cell now prints its `note` too — until now only coming-soon cells did. MPC/BiPC live cells have empty notes, so only MEC changes.
+- `src/scripts/build_og_card.ts` `LABELS`: `mec`, `mec_2`, and the five-stream key. `src/scripts/push_answer_content.ts` `STREAM_SUBJECTS`: `mec`, `mec_2`. `package.json`: `build:answers:gated:live` + `content:push:live` → `mpc,mpc_2,bipc_2,mec,mec_2`. `wrangler.answers.toml`: `directory` → `dist-gated-mpc+mpc_2+bipc_2+mec+mec_2`.
+- `e2e/answer_book_gated.spec.ts`: new gate "an MEC student opens a maths-only book in either year, and is told so at the door" — both cells are BUTTONs carrying the note; first year → eyebrow `First year · MEC`, picker exactly `mathematics` + `mathematics_1b`; second year → `Second year · MEC`, exactly `mathematics_2a` + `mathematics_2b`.
+- `website/students.html`: the MEC card flips to live (maths-only copy, `student_mec` CTA); the BiPC card now says second year is live and first year is coming (it said "Coming soon" for a book that has been sold since 2026-09-11); the "next" line and the footer corrected. `answer-book/README.md` gains a "Streams and the door" paragraph.
+- NOT touched: Edge Functions (Vidi keys the subject from the question-id prefix; content is keyed by `unit_key`), `PAPER_PATTERNS`, questions, prices, free flags. No `content:push:live` needed — the unit set is unchanged and the push never prunes.
+
+### Evidence
+
+`npx tsc --noEmit` clean. `build:answers:gated:live` passes its own guards (5 live cells for 5 streams); `PM_TRACKS` read off the artifact: mec first_year LIVE 931/22, second_year LIVE 528/18, `PM_STREAM_SUBJECTS.mec` = the two 1A/1B keys. `smoke:answers:gated` **32 passed** (31 + the new gate). `build:answers` + the drag-to-ask gate green (the offline page is unaffected by the door edit).
+
+**Caveats for the founder:** (1) MEC first-year maths has its OWN question paper from 2026-27 — right syllabus and shape, but the stars cannot be re-ranked until a real MEC 2027 paper exists. (2) The MEC pass is the same ₹99/₹199 SKU for four papers where MPC gets six; changing that is a separate decision.
+
+---
+
 ## 🚀 SESSION — Drag-to-ask is LIVE on answers.viditra.co for all four maths papers (2026-09-18, master)
 
 **Bottom line: both deploys the four sessions above left for the founder are done and verified against the live site, not the repo.** PRs #211–#215 were already merged on origin/master; nothing was left to commit from those desks.

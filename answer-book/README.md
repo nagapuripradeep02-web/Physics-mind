@@ -34,6 +34,19 @@ npm run smoke:answers    # Playwright evidence (needs a build first)
 file to a student. That is why everything is inlined: Chrome blocks `fetch()` and JS modules
 from `file://`.
 
+### Streams and the door (what ships to answers.viditra.co)
+
+The live site is ONE artifact built with `--stream=mpc,mpc_2,bipc_2,mec,mec_2 --gated`
+(`npm run deploy:answers`). A stream is one group-and-year cell of the door and names the
+subject keys it carries (`STREAMS` in `build_answer_book.ts`); the door table (`TRACKS`, same
+file) says which cells are live and what the student is told. A paper two groups both sit is
+declared once in `SHARED_SUBJECTS` and served from one bundle: Physics-II and Chemistry-II for
+MPC and BiPC second year, and the four maths papers for MPC and MEC (since 2026-09-18 — MEC is a
+maths-only book, and its door cells say Economics and Commerce are not inside). Adding a
+stream means editing `STREAMS` + `TRACKS`, the `LABELS` table in `build_og_card.ts`, the
+`STREAM_SUBJECTS` table in `push_answer_content.ts`, the two stream lists in `package.json`
+(`build:answers:gated:live`, `content:push:live`) and the `directory` in `wrangler.answers.toml`.
+
 ## Files
 
 | File | What it is |

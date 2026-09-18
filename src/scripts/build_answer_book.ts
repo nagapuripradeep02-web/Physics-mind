@@ -96,6 +96,28 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
         short: 'BiPC',
         year: 'Second year',
     },
+    // MEC, both years (founder, 2026-09-18). An MEC student sits the SAME four
+    // maths papers an MPC student does — Maths-2A/2B are one paper for both
+    // groups in March 2027, and Maths-1A/1B are the same syllabus and the same
+    // 60 + 15 shape (the board announced a separate MEC question SET for first
+    // year from 2026-27, Telangana Today 14 May 2026, drawn from the one
+    // textbook). So the four maths subjects are declared in SHARED_SUBJECTS and
+    // MEC reads the MPC cards. Economics and Commerce are not in the bank, and
+    // the blurb must not name them: it describes the artifact, not the ambition.
+    mec: {
+        subjects: ['mathematics', 'mathematics_1b'],
+        label: 'Junior Inter MEC',
+        blurb: 'Maths-1A and Maths-1B',
+        short: 'MEC',
+        year: 'First year',
+    },
+    mec_2: {
+        subjects: ['mathematics_2a', 'mathematics_2b'],
+        label: 'Senior Inter MEC',
+        blurb: 'Maths-2A and Maths-2B',
+        short: 'MEC',
+        year: 'Second year',
+    },
 };
 // The DOOR (founder, 2026-08-27): the group-and-year chooser a student meets
 // before the catalog. It exists because answers.viditra.co dropped straight into
@@ -106,9 +128,8 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
 // This table is PRESENTATION ONLY and is deliberately NOT the STREAMS registry
 // above. STREAMS says what a build may contain; TRACKS says what a student may
 // be told exists. Adding `bipc` to STREAMS would make `--stream=bipc` a legal
-// build of a first-year BiPC book nobody has audited yet, and `mec` has no
-// economics/commerce subject anywhere in the bank — so those tiles must never
-// be able to produce an artifact.
+// build of a first-year BiPC book nobody has audited yet — so that tile must
+// never be able to produce an artifact until the audit is done.
 //
 // A year cell is LIVE only when its `stream` equals the stream being built, so
 // the door of any artifact can advertise exactly one live path — its own — and
@@ -124,6 +145,12 @@ const STREAMS: Record<string, { subjects: string[]; label: string; blurb: string
 // units) the same day; every MPC Paper-II now exists, which is why `mpc_2.blurb`
 // and Chemistry" and not "Maths, Physics and Chemistry" — the blurb is what the
 // reader is promised, and it must describe the artifact, not the ambition.
+// MEC went live in BOTH years on 2026-09-18 as a maths-only book: it reads the
+// four maths papers MPC already ships (see STREAMS.mec / mec_2), and its live
+// cells carry a `note` saying Economics and Commerce are not inside — the
+// player prints a live cell's note for exactly this case. The tile's `subjects`
+// line names only the four maths papers, for the same describe-the-artifact
+// reason the blurbs follow.
 const TRACKS: {
     id: string;
     label: string;
@@ -154,13 +181,16 @@ const TRACKS: {
     {
         id: 'mec',
         label: 'MEC',
-        subjects: 'Maths 1A · Maths 1B · Economics · Commerce',
+        subjects: 'Maths 1A · Maths 1B · Maths 2A · Maths 2B',
         years: [
             {
-                id: 'first_year', label: 'First year', stream: null,
-                note: 'Maths 1A and 1B are written. Economics and Commerce are not started.',
+                id: 'first_year', label: 'First year', stream: 'mec',
+                note: 'Maths only. Economics and Commerce are not in this book.',
             },
-            { id: 'second_year', label: 'Second year', stream: null, note: 'Not started yet.' },
+            {
+                id: 'second_year', label: 'Second year', stream: 'mec_2',
+                note: 'Maths only. Economics and Commerce are not in this book.',
+            },
         ],
     },
 ];
@@ -189,9 +219,16 @@ const STREAM_SUBJECTS = STREAM_KEYS.length
 // Chemistry-II are one paper each that every second-year student sits, MPC or
 // BiPC, so the two streams read the same cards — one bundle, one row, one
 // count per door cell (a cell counts its own year's papers, and a student is in
-// exactly one cell). Any OTHER subject appearing in two streams is still an
-// error: it would be a paper served under two names by accident.
-const SHARED_SUBJECTS = new Set(['physics_2', 'chemistry_2']);
+// exactly one cell). The four maths papers are shared the same way between MPC
+// and MEC (2026-09-18): Maths-2A/2B are one paper for both groups, and
+// Maths-1A/1B are one syllabus and one 60 + 15 shape even though the board
+// sets MEC a separate first-year question paper from 2026-27. Any OTHER
+// subject appearing in two streams is still an error: it would be a paper
+// served under two names by accident.
+const SHARED_SUBJECTS = new Set([
+    'physics_2', 'chemistry_2',
+    'mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b',
+]);
 {
     const seen = new Map<string, string>();
     for (const k of STREAM_KEYS) {

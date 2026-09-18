@@ -942,6 +942,53 @@ test('every group reaches the year step, and a year opens exactly when the build
     expect(await page.evaluate(() => localStorage.getItem('pm_track_v1'))).toBeNull();
 });
 
+test('an MEC student opens a maths-only book in either year, and is told so at the door', async ({ page }) => {
+    // MEC went live 2026-09-18 reading the four maths papers MPC ships. The
+    // promise a student meets before opening is that Economics and Commerce
+    // are NOT inside; the promise after opening is that nothing but their
+    // year's two maths papers is offered — no Physics, no Chemistry, not the
+    // other year's maths.
+    const offered = () => page.evaluate(() =>
+        [...document.querySelectorAll('#subjectSelect option')]
+            .map((o) => (o as HTMLOptionElement).value).filter((v) => v && v !== 'ALL').sort());
+    const eyebrow = () => page.evaluate(() =>
+        (document.getElementById('catEyebrow')!.textContent || '').replace(/\s+/g, ' ').trim());
+
+    await forgetTrack(page);
+    await bootGated(page, (body: any) => (body.list
+        ? { ok: true, unlocked: FREE_UNITS, free_available: false, sku: SKU_99 }
+        : { ok: true, locked: true, sku: SKU_99 }));
+    await page.waitForSelector('#doorView:not([hidden])');
+
+    await page.click('[data-door-group="mec"]');
+    await page.waitForSelector('#doorStep2:not([hidden])');
+    const cells = await page.$$eval('[data-door-year]', (ns: Element[]) =>
+        ns.map((n) => ({ id: n.getAttribute('data-door-year'), tag: n.tagName, text: n.textContent || '' })));
+    expect(cells.map((c) => c.id)).toEqual(['first_year', 'second_year']);
+    for (const c of cells) {
+        expect(c.tag).toBe('BUTTON');
+        expect(c.text).toContain('Economics and Commerce are not in this book');
+    }
+
+    await page.click('button[data-door-year="first_year"]');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await eyebrow()).toContain('First year · MEC');
+    expect(await offered()).toEqual(['mathematics', 'mathematics_1b']);
+
+    // Back through the door to the other year: the eyebrow and the picker must
+    // follow the cell, not the first stream the artifact happens to list.
+    await page.evaluate(() => { localStorage.removeItem('pm_track_v1'); });
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#doorView:not([hidden])');
+    await page.click('[data-door-group="mec"]');
+    await page.waitForSelector('#doorStep2:not([hidden])');
+    await page.click('button[data-door-year="second_year"]');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await eyebrow()).toContain('Second year · MEC');
+    expect(await offered()).toEqual(['mathematics_2a', 'mathematics_2b']);
+});
+
 test('the coming-soon tap answers the student, and stays answered', async ({ page }) => {
     await forgetTrack(page);
     await page.goto(URL);

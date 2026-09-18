@@ -41,6 +41,15 @@ const LABELS: Record<string, { title: string; subjects: string }> = {
     // MPC both years and BiPC second year in one artifact (2026-09-11). BiPC first
     // year is not in it, so the card must not say "both years" of BiPC.
     'mpc,mpc_2,bipc_2': { title: 'Telangana IPE · MPC and BiPC', subjects: 'MPC both years · BiPC second year' },
+    // MEC reads the four maths papers MPC ships (2026-09-18); Economics and
+    // Commerce are not in the bank, so a card that named them would advertise a
+    // book the artifact does not contain.
+    mec: { title: 'Junior Inter · MEC', subjects: 'Maths-1A · Maths-1B' },
+    mec_2: { title: 'Senior Inter · MEC', subjects: 'Maths-2A · Maths-2B' },
+    'mpc,mpc_2,bipc_2,mec,mec_2': {
+        title: 'Telangana IPE · MPC, BiPC and MEC',
+        subjects: 'MPC both years · BiPC second year · MEC both years, maths only',
+    },
 };
 
 function fail(msg: string): never {

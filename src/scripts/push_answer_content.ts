@@ -39,6 +39,10 @@ const STREAM_SUBJECTS: Record<string, string[]> = {
     // Senior Inter BiPC, 2026-09-11. physics_2 and chemistry_2 are the SAME units
     // mpc_2 pushes — one bundle per unit key, so a shared paper is pushed once.
     bipc_2: ['botany_2', 'zoology_2', 'physics_2', 'chemistry_2'],
+    // MEC, both years, 2026-09-18. The four maths papers are the SAME units mpc
+    // and mpc_2 push — one bundle per unit key, so nothing new reaches ab_content.
+    mec: ['mathematics', 'mathematics_1b'],
+    mec_2: ['mathematics_2a', 'mathematics_2b'],
 };
 // `--stream` takes a COMMA-SEPARATED list, matching build_answer_book.ts since
 // 2026-08-29: one artifact can carry both years, so its bundles live in one
