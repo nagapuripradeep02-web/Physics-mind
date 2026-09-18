@@ -202,13 +202,15 @@
             "added": true
           },
           {
-            "text": "P(M ∩ St) = 10/25",
+            "text": "P\\left(M\\ \\cap \\ St\\right)\\ = \\ \\dfrac{10}{25}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(proficient in both) = 2/5",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{proficient}\\ \\text{in}\\ \\text{both}\\right)\\ = \\ \\dfrac{2}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -241,12 +243,14 @@
             "style": "eq"
           },
           {
-            "text": "∴ P(M ∩ St) = n(M ∩ St)/n(S) = 10/25",
-            "style": "eq"
+            "text": "\\therefore \\ P\\left(M\\ \\cap \\ St\\right)\\ = \\ \\dfrac{n\\left(M\\ \\cap \\ St\\right)}{n\\left(S\\right)} = \\ \\dfrac{10}{25}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "∴ P(proficient in both) = 2/5",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{proficient}\\ \\text{in}\\ \\text{both}\\right)\\ = \\ \\dfrac{2}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

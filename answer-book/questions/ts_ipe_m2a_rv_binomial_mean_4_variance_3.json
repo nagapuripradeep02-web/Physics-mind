@@ -92,9 +92,21 @@
           "mean = np and variance = npq",
           "Given np = 4 and npq = 3",
           "Write npq as (np)q and put np = 4:",
-          "4q = 3, so q = 3/4",
-          "p = 1 − q = 1 − 3/4 = 1/4",
-          "np = 4 ⇒ n(1/4) = 4 ⇒ n = 16"
+          {
+            "text": "4q\\ = \\ 3,\\ \\text{so}\\ q\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "p\\ = \\ 1\\ - \\ q\\ = \\ 1\\ - \\ \\dfrac{3}{4} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "np\\ = \\ 4\\ \\Rightarrow \\ n\\left(\\dfrac{1}{4}\\right)\\ = \\ 4\\ \\Rightarrow \\ n\\ = \\ 16",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -139,7 +151,9 @@
             "added": true
           },
           {
-            "text": "P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ,",
+            "text": "P\\left(X\\ = \\ r\\right)\\ = \\ {}^{16}C_{r}\\left(\\dfrac{3}{4}\\right)^{16-r}\\left(\\dfrac{1}{4}\\right)^{r},",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -155,12 +169,15 @@
             "added": true
           },
           {
-            "text": "P(X = 0) = ¹⁶C₀ (3/4)¹⁶ (1/4)⁰ = (3/4)¹⁶",
+            "text": "P\\left(X\\ = \\ 0\\right)\\ = \\ {}^{16}C_{0}\\left(\\dfrac{3}{4}\\right)^{16}\\left(\\dfrac{1}{4}\\right)^{0}\\ = \\ \\left(\\dfrac{3}{4}\\right)^{16}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(X ≥ 1) = 1 − (3/4)¹⁶",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(X\\ \\ge \\ 1\\right)\\ = \\ 1\\ - \\ \\left(\\dfrac{3}{4}\\right)^{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -193,11 +210,16 @@
         ],
         "lines_compact": [
           "The distribution is P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
-          "= ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ, r = 0, 1, 2, …, 16",
+          {
+            "text": "= \\ {}^{16}C_{r}\\left(\\dfrac{3}{4}\\right)^{16-r}\\left(\\dfrac{1}{4}\\right)^{r},\\ r\\ = \\ 0,\\ 1,\\ 2,\\ \\dots ,\\ 16",
+            "style": "normal",
+            "render": "katex"
+          },
           "P(X ≥ 1) = 1 − P(X = 0) = 1 − qⁿ",
           {
-            "text": "∴ P(X ≥ 1) = 1 − (3/4)¹⁶",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(X\\ \\ge \\ 1\\right)\\ = \\ 1\\ - \\ \\left(\\dfrac{3}{4}\\right)^{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

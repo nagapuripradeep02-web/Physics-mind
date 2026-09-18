@@ -95,9 +95,15 @@
         "margin_note": "Second mark. ¹⁰C₃ = (10·9·8)/(1·2·3) = 120.",
         "memory_tip": "¹⁰C₃ = (10·9·8)/(1·2·3) = 120.",
         "lines": [
-          "¹⁰C₃ = (10 · 9 · 8)/(1 · 2 · 3)",
           {
-            "text": "= 720/6",
+            "text": "{}^{10}C_{3}\\ = \\ \\dfrac{10\\ \\cdot \\ 9\\ \\cdot \\ 8}{1\\ \\cdot \\ 2\\ \\cdot \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{720}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -132,7 +138,11 @@
           "Leaving the answer as ¹⁰C₇."
         ],
         "lines_compact": [
-          "¹⁰C₃ = (10 · 9 · 8)/(1 · 2 · 3)",
+          {
+            "text": "{}^{10}C_{3}\\ = \\ \\dfrac{10\\ \\cdot \\ 9\\ \\cdot \\ 8}{1\\ \\cdot \\ 2\\ \\cdot \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 120",
             "style": "boxed"

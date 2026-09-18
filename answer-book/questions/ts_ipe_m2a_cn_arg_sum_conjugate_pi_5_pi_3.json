@@ -69,10 +69,26 @@
           "Conjugating a complex number reflects it",
           "in the real axis, so its argument changes sign:",
           "Arg(conjugate of z) = −Arg z",
-          "Given Arg(conjugate of z₁) = π/5:",
-          "−Arg z₁ = π/5",
-          "Arg z₁ = −π/5",
-          "Also Arg z₂ = π/3"
+          {
+            "text": "\\text{Given}\\ Arg\\left(\\text{conjugate}\\ \\text{of}\\ z_{1}\\right)\\ = \\ \\dfrac{\\pi }{5}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- Argz_{1}\\ = \\ \\dfrac{\\pi }{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "Argz_{1}\\ = \\ - \\dfrac{\\pi }{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ Argz_{2}\\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,19 +127,30 @@
         "margin_note": "Second mark. −π/5 + π/3 over the common denominator 15: −3π/15 + 5π/15 = 2π/15.",
         "memory_tip": "−3π/15 + 5π/15 = 2π/15. An answer of 8π/15 means the conjugate was ignored.",
         "lines": [
-          "Arg z₁ + Arg z₂ = −π/5 + π/3",
+          {
+            "text": "Argz_{1}\\ + \\ Argz_{2}\\ = \\ - \\dfrac{\\pi }{5} + \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The common denominator of 5 and 3 is 15:",
             "added": true
           },
           {
-            "text": "= −3π/15 + 5π/15",
+            "text": "= \\ - \\dfrac{3\\pi }{15} + \\ \\dfrac{5\\pi }{15}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−3π + 5π)/15",
           {
-            "text": "∴ Arg z₁ + Arg z₂ = 2π/15",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{ - 3\\pi \\ + \\ 5\\pi }{15}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ Argz_{1}\\ + \\ Argz_{2}\\ = \\ \\dfrac{2\\pi }{15}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -153,11 +180,20 @@
           "Writing 2/15 without the π."
         ],
         "lines_compact": [
-          "Arg z₁ + Arg z₂ = −π/5 + π/3",
-          "= (−3π + 5π)/15",
           {
-            "text": "∴ Arg z₁ + Arg z₂ = 2π/15",
-            "style": "boxed"
+            "text": "Argz_{1}\\ + \\ Argz_{2}\\ = \\ - \\dfrac{\\pi }{5} + \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ - 3\\pi \\ + \\ 5\\pi }{15}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ Argz_{1}\\ + \\ Argz_{2}\\ = \\ \\dfrac{2\\pi }{15}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

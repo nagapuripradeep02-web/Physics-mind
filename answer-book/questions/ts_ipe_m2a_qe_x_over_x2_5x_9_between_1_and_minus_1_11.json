@@ -78,7 +78,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = x/(x² − 5x + 9)",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\dfrac{x}{x^{2}\\ - \\ 5x\\ + \\ 9}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by (x² − 5x + 9):",
           "y(x² − 5x + 9) = x",
           "yx² − 5yx + 9y = x",
@@ -202,14 +206,20 @@
           "11y(y − 1) + 1(y − 1) ≤ 0",
           "(11y + 1)(y − 1) ≤ 0",
           {
-            "text": "The roots are y = −1/11 and y = 1.",
+            "text": "\\text{The}\\ \\text{roots}\\ \\text{are}\\ y\\ = \\ - \\dfrac{1}{11}\\text{and}\\ y\\ = \\ 1.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "A product is ≤ 0 BETWEEN its roots:",
             "added": true
           },
-          "−1/11 ≤ y ≤ 1"
+          {
+            "text": "- \\dfrac{1}{11} \\le \\ y\\ \\le \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -248,7 +258,11 @@
           "⇒ 11y² − 11y + y − 1 ≤ 0",
           "⇒ 11y(y − 1) + 1(y − 1) ≤ 0",
           "⇒ (11y + 1)(y − 1) ≤ 0",
-          "⇒ −1/11 ≤ y ≤ 1"
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{11} \\le \\ y\\ \\le \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -265,12 +279,15 @@
             "added": true
           },
           {
-            "text": "between −1/11 and 1.",
+            "text": "\\text{between}\\ - \\dfrac{1}{11}\\text{and}\\ 1.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ −1/11 ≤ x/(x² − 5x + 9) ≤ 1",
-            "style": "boxed"
+            "text": "\\therefore \\ - \\dfrac{1}{11} \\le \\ \\dfrac{x}{x^{2}\\ - \\ 5x\\ + \\ 9} \\le \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -302,10 +319,15 @@
           "Claiming the expression is strictly between the bounds — both are reached."
         ],
         "lines_compact": [
-          "So the expression lies between −1/11 and 1.",
           {
-            "text": "∴ −1/11 ≤ x/(x² − 5x + 9) ≤ 1",
-            "style": "boxed"
+            "text": "\\text{So}\\ \\text{the}\\ \\text{expression}\\ \\text{lies}\\ \\text{between}\\ - \\dfrac{1}{11}\\text{and}\\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ - \\dfrac{1}{11} \\le \\ \\dfrac{x}{x^{2}\\ - \\ 5x\\ + \\ 9} \\le \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

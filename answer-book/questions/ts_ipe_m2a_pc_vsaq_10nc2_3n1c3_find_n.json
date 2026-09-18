@@ -58,12 +58,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Now ⁿC₂ = n(n − 1)/2!  = n(n − 1)/2",
-          "and ⁽ⁿ⁺¹⁾C₃ = (n + 1)n(n − 1)/3! ",
-          "  = (n + 1)n(n − 1)/6",
+          {
+            "text": "\\text{Now}\\ {}^{n}C_{2}\\ = \\ \\dfrac{n\\left(n\\ - \\ 1\\right)}{2!} = \\ \\dfrac{n\\left(n\\ - \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ {}^{(n+1)}C_{3}\\ = \\ \\dfrac{\\left(n\\ + \\ 1\\right)n\\left(n\\ - \\ 1\\right)}{3!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(n\\ + \\ 1\\right)n\\left(n\\ - \\ 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Given 10 · ⁿC₂ = 3 · ⁽ⁿ⁺¹⁾C₃:",
-          "10 · n(n − 1)/2 = 3 · (n + 1)n(n − 1)/6",
-          "5n(n − 1) = (n + 1)n(n − 1)/2"
+          {
+            "text": "10\\ \\cdot \\ \\dfrac{n\\left(n\\ - \\ 1\\right)}{2} = \\ 3\\ \\cdot \\ \\dfrac{\\left(n\\ + \\ 1\\right)n\\left(n\\ - \\ 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "5n\\left(n\\ - \\ 1\\right)\\ = \\ \\dfrac{\\left(n\\ + \\ 1\\right)n\\left(n\\ - \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +131,9 @@
             "added": true
           },
           {
-            "text": "5 = (n + 1)/2",
+            "text": "5\\ = \\ \\dfrac{n\\ + \\ 1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "10 = n + 1",

@@ -65,7 +65,11 @@
           "Let z = x + iy, where x and y are real.",
           "z + 1 = x + iy + 1 = (x + 1) + iy",
           "z + i = x + iy + i = x + i(y + 1)",
-          "(z + 1)/(z + i) = [(x + 1) + iy] / [x + i(y + 1)]"
+          {
+            "text": "\\dfrac{z\\ + \\ 1}{z\\ + \\ i} = \\ \\dfrac{\\left(x\\ + \\ 1\\right)\\ + \\ iy}{x\\ + \\ i\\left(y\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -201,7 +205,11 @@
             "text": "= [x² + y² + x + y] + i[xy − (x + 1)(y + 1)]",
             "style": "eq"
           },
-          "∴ real part = (x² + y² + x + y)/(x² + (y + 1)²)"
+          {
+            "text": "\\therefore \\ \\text{real}\\ \\text{part}\\ = \\ \\dfrac{x^{2}\\ + \\ y^{2}\\ + \\ x\\ + \\ y}{x^{2}\\ + \\ \\left(y\\ + \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -218,7 +226,9 @@
             "added": true
           },
           {
-            "text": "(x² + y² + x + y)/(x² + (y + 1)²) = 1",
+            "text": "\\dfrac{x^{2}\\ + \\ y^{2}\\ + \\ x\\ + \\ y}{x^{2}\\ + \\ \\left(y\\ + \\ 1\\right)^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "x² + y² + x + y = x² + (y + 1)²",

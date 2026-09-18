@@ -55,7 +55,11 @@
           },
           "(4x² + 5x³)¹⁷ has 17 + 1 = 18 terms",
           "n = 17 is odd, so there are two middle terms,",
-          "the (n + 1)/2 = 9th and the (n + 3)/2 = 10th",
+          {
+            "text": "\\text{the}\\ \\dfrac{n\\ + \\ 1}{2} = \\ 9th\\ \\text{and}\\ \\text{the}\\ \\dfrac{n\\ + \\ 3}{2} = \\ 10th",
+            "style": "normal",
+            "render": "katex"
+          },
           "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
           "9th term: r + 1 = 9 ⇒ r = 8",
           "10th term: r + 1 = 10 ⇒ r = 9"

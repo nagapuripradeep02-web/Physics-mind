@@ -58,12 +58,24 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(3x/7 − 2y)¹⁰ has 10 + 1 = 11 terms",
+          {
+            "text": "\\left(\\dfrac{3x}{7} - \\ 2y\\right)^{10}has10\\ + \\ 1\\ = \\ 11\\ \\text{terms}",
+            "style": "normal",
+            "render": "katex"
+          },
           "n = 10 is even, so there is one middle term,",
-          "the (n/2 + 1)-th = (10/2 + 1)-th = 6th term",
+          {
+            "text": "\\text{the}\\ \\left(\\dfrac{n}{2} + \\ 1\\right) - th\\ = \\ \\left(\\dfrac{10}{2} + \\ 1\\right) - th\\ = \\ 6th\\ \\text{term}",
+            "style": "normal",
+            "render": "katex"
+          },
           "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
           "6th term: r + 1 = 6 ⇒ r = 5",
-          "T₆ = ¹⁰C₅ (3x/7)¹⁰⁻⁵ (−2y)⁵ = ¹⁰C₅ (3x/7)⁵ (−2y)⁵"
+          {
+            "text": "T_{6}\\ = \\ {}^{10}C_{5}\\left(\\dfrac{3x}{7}\\right)^{10-5}\\left( - 2y\\right)^{5}\\ = \\ {}^{10}C_{5}\\left(\\dfrac{3x}{7}\\right)^{5}\\left( - 2y\\right)^{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,7 +114,9 @@
         "memory_tip": "(−2y)⁵ keeps its minus — an odd power preserves the sign. (3/7)⁵ · 2⁵ = (6/7)⁵.",
         "lines": [
           {
-            "text": "(3x/7)⁵ = 3⁵x⁵/7⁵",
+            "text": "\\left(\\dfrac{3x}{7}\\right)^{5}\\ = \\ \\dfrac{3^{5}x^{5}}{7^{5}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -110,20 +124,27 @@
             "added": true
           },
           {
-            "text": "T₆ = ¹⁰C₅ · (3⁵/7⁵) · (−2⁵) · x⁵y⁵",
+            "text": "T_{6}\\ = \\ {}^{10}C_{5}\\ \\cdot \\ \\left(\\dfrac{3^{5}}{7^{5}}\\right)\\ \\cdot \\ \\left( - 2^{5}\\right)\\ \\cdot \\ x^{5}y^{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= −¹⁰C₅ · (3⁵ · 2⁵/7⁵) · x⁵y⁵",
+            "text": "= \\ - {}^{10}C_{5}\\ \\cdot \\ \\left(3^{5}\\ \\cdot \\ \\dfrac{2^{5}}{7^{5}}\\right)\\ \\cdot \\ x^{5}y^{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= −¹⁰C₅ · ((3 · 2)/7)⁵ · x⁵y⁵   [aⁿbⁿ = (ab)ⁿ]",
+            "text": "= \\ - {}^{10}C_{5}\\ \\cdot \\ \\left(\\dfrac{3\\ \\cdot \\ 2}{7}\\right)^{5}\\ \\cdot \\ x^{5}y^{5}\\left[a^{n}b^{n}\\ = \\ \\left(ab\\right)^{n}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ T₆ = −¹⁰C₅ (6/7)⁵ x⁵y⁵",
-            "style": "boxed"
+            "text": "\\therefore \\ T_{6}\\ = \\ - {}^{10}C_{5}\\left(\\dfrac{6}{7}\\right)^{5}x^{5}y^{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -153,10 +174,15 @@
           "Leaving (3/7)⁵ · 2⁵ uncombined when the paper expects (6/7)⁵."
         ],
         "lines_compact": [
-          "= −¹⁰C₅ (3/7)⁵ · 2⁵ · x⁵y⁵",
           {
-            "text": "∴ T₆ = −¹⁰C₅ (6/7)⁵ x⁵y⁵",
-            "style": "boxed"
+            "text": "= \\ - {}^{10}C_{5}\\left(\\dfrac{3}{7}\\right)^{5}\\ \\cdot \\ 2^{5}\\ \\cdot \\ x^{5}y^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ T_{6}\\ = \\ - {}^{10}C_{5}\\left(\\dfrac{6}{7}\\right)^{5}x^{5}y^{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

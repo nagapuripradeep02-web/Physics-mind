@@ -70,8 +70,16 @@
           "and the people are independent, so X is",
           "a binomial variable.",
           "Success = the person is left-handed:",
-          "p = 0.1 = 1/10",
-          "q = 1 − p = 9/10",
+          {
+            "text": "p\\ = \\ 0.1\\ = \\ \\dfrac{1}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "q\\ = \\ 1\\ - \\ p\\ = \\ \\dfrac{9}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The group has n = 10 people."
         ],
         "recall": {
@@ -117,19 +125,30 @@
             "text": "Exactly one left-handed person means r = 1:",
             "added": true
           },
-          "P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10)¹",
+          {
+            "text": "P\\left(X\\ = \\ 1\\right)\\ = \\ {}^{10}C_{1}\\left(\\dfrac{9}{10}\\right)^{9}\\left(\\dfrac{1}{10}\\right)^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "¹⁰C₁ = 10, so",
             "added": true
           },
-          "= 10 · (9/10)⁹ · (1/10)",
           {
-            "text": "The 10 and the 1/10 cancel:",
+            "text": "= \\ 10\\ \\cdot \\ \\left(\\dfrac{9}{10}\\right)^{9}\\ \\cdot \\ \\left(\\dfrac{1}{10}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ 10\\ \\text{and}\\ \\text{the}\\ \\dfrac{1}{10}\\text{cancel}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(X = 1) = (9/10)⁹",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(X\\ = \\ 1\\right)\\ = \\ \\left(\\dfrac{9}{10}\\right)^{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -162,11 +181,20 @@
         ],
         "lines_compact": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
-          "P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10)¹",
-          "= 10 · (9/10)⁹ · (1/10)",
           {
-            "text": "∴ P(X = 1) = (9/10)⁹",
-            "style": "boxed"
+            "text": "P\\left(X\\ = \\ 1\\right)\\ = \\ {}^{10}C_{1}\\left(\\dfrac{9}{10}\\right)^{9}\\left(\\dfrac{1}{10}\\right)^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 10\\ \\cdot \\ \\left(\\dfrac{9}{10}\\right)^{9}\\ \\cdot \\ \\left(\\dfrac{1}{10}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\left(X\\ = \\ 1\\right)\\ = \\ \\left(\\dfrac{9}{10}\\right)^{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

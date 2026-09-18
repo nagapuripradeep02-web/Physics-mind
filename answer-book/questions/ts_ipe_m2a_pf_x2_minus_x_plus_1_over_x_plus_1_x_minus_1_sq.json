@@ -74,8 +74,16 @@
           "(x + 1) is linear and (x − 1) is repeated twice.",
           "A repeated factor gets one term",
           "  for each power:",
-          "(x² − x + 1)/((x + 1)(x − 1)²)",
-          "= A/(x + 1) + B/(x − 1) + C/(x − 1)²"
+          {
+            "text": "\\dfrac{x^{2}\\ - \\ x\\ + \\ 1}{\\left(x\\ + \\ 1\\right)\\left(x\\ - \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ + \\ 1} + \\ \\dfrac{B}{x\\ - \\ 1} + \\ \\dfrac{C}{\\left(x\\ - \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -186,7 +194,9 @@
             "added": true
           },
           {
-            "text": "1 = 2C, so C = 1/2",
+            "text": "1\\ = \\ 2C,\\ \\text{so}\\ C\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -194,7 +204,9 @@
             "added": true
           },
           {
-            "text": "3 = 4A, so A = 3/4",
+            "text": "3\\ = \\ 4A,\\ \\text{so}\\ A\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -210,7 +222,9 @@
             "added": true
           },
           {
-            "text": "B = 1 − 3/4 = 1/4",
+            "text": "B\\ = \\ 1\\ - \\ \\dfrac{3}{4} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -246,9 +260,21 @@
           "Putting x = −1 and getting (−1)² − (−1) + 1 as 1 instead of 3."
         ],
         "lines_compact": [
-          "Put x = 1: 1 = C(2) ⇒ C = 1/2",
-          "Put x = −1: 3 = A(4) ⇒ A = 3/4",
-          "Compare x²: A + B = 1 ⇒ B = 1/4"
+          {
+            "text": "\\text{Put}\\ x\\ = \\ 1:\\ 1\\ = \\ C\\left(2\\right)\\ \\Rightarrow \\ C\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ - 1:\\ 3\\ = \\ A\\left(4\\right)\\ \\Rightarrow \\ A\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Compare}\\ x^{2}:\\ A\\ + \\ B\\ = \\ 1\\ \\Rightarrow \\ B\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -260,10 +286,15 @@
         "margin_note": "Last mark. The three fractional constants go into the denominators: 3/(4(x + 1)), 1/(4(x − 1)), 1/(2(x − 1)²). Write the original fraction on the left.",
         "memory_tip": "The fractional constants go inside the denominators: 3/(4(x + 1)), 1/(4(x − 1)), 1/(2(x − 1)²).",
         "lines": [
-          "∴ (x² − x + 1)/((x + 1)(x − 1)²)",
           {
-            "text": "= 3/(4(x + 1)) + 1/(4(x − 1)) + 1/(2(x − 1)²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{2}\\ - \\ x\\ + \\ 1}{\\left(x\\ + \\ 1\\right)\\left(x\\ - \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3}{4\\left(x\\ + \\ 1\\right)} + \\ \\dfrac{1}{4\\left(x\\ - \\ 1\\right)} + \\ \\dfrac{1}{2\\left(x\\ - \\ 1\\right)^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

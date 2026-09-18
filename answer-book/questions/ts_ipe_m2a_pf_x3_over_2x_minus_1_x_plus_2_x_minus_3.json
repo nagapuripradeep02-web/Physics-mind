@@ -66,11 +66,27 @@
           "improper and a polynomial must come out first.",
           "Numerator degree 3, denominator degree 3.",
           "The denominator's leading term is 2x³,",
-          "so the quotient is the constant 1/2.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{quotient}\\ \\text{is}\\ \\text{the}\\ \\text{constant}\\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "The three factors are linear and different:",
-          "x³/((2x − 1)(x + 2)(x − 3))",
-          "= 1/2 + A/(2x − 1) + B/(x + 2)",
-          "  + C/(x − 3)"
+          {
+            "text": "\\dfrac{x^{3}}{\\left(2x\\ - \\ 1\\right)\\left(x\\ + \\ 2\\right)\\left(x\\ - \\ 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2} + \\ \\dfrac{A}{2x\\ - \\ 1} + \\ \\dfrac{B}{x\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{C}{x\\ - \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,7 +129,11 @@
         "memory_tip": "The 1/2 keeps the whole denominator; each constant keeps the two factors that are not its own.",
         "lines": [
           "Multiply by (2x − 1)(x + 2)(x − 3):",
-          "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
+          {
+            "text": "x^{3}\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left(2x\\ - \\ 1\\right)\\left(x\\ + \\ 2\\right)\\left(x\\ - \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  + A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
           "  + C(2x − 1)(x + 2)",
           {
@@ -153,7 +173,11 @@
         ],
         "lines_compact": [
           "Multiply by (2x − 1)(x + 2)(x − 3):",
-          "x³ = (1/2)(2x − 1)(x + 2)(x − 3)",
+          {
+            "text": "x^{3}\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left(2x\\ - \\ 1\\right)\\left(x\\ + \\ 2\\right)\\left(x\\ - \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "+ A(x + 2)(x − 3) + B(2x − 1)(x − 3)",
           "+ C(2x − 1)(x + 2)"
         ]
@@ -176,15 +200,21 @@
             "added": true
           },
           {
-            "text": "Put x = 1/2: (1/2)³ = A(1/2 + 2)(1/2 − 3)",
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{1}{2}:\\ \\left(\\dfrac{1}{2}\\right)^{3}\\ = \\ A\\left(\\dfrac{1}{2} + \\ 2\\right)\\left(\\dfrac{1}{2} - \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "1/8 = A(5/2)(−5/2) = −25A/4",
+            "text": "\\dfrac{1}{8} = \\ A\\left(\\dfrac{5}{2}\\right)\\left( - \\dfrac{5}{2}\\right)\\ = \\ - \\dfrac{25A}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "A = −4/(8 × 25) = −1/50",
+            "text": "A\\ = \\ - \\dfrac{4}{8\\ \\times \\ 25} = \\ - \\dfrac{1}{50}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -192,7 +222,9 @@
             "added": true
           },
           {
-            "text": "−8 = B(−5)(−5) = 25B, so B = −8/25",
+            "text": "- 8\\ = \\ B\\left( - 5\\right)\\left( - 5\\right)\\ = \\ 25B,\\ \\text{so}\\ B\\ = \\ - \\dfrac{8}{25}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -200,7 +232,9 @@
             "added": true
           },
           {
-            "text": "27 = C(5)(5) = 25C, so C = 27/25",
+            "text": "27\\ = \\ C\\left(5\\right)\\left(5\\right)\\ = \\ 25C,\\ \\text{so}\\ C\\ = \\ \\dfrac{27}{25}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -235,10 +269,26 @@
           "At x = −2 computing (−4 − 1)(−2 − 3) as −25 and getting B = +8/25."
         ],
         "lines_compact": [
-          "Put x = 1/2: 1/8 = A(5/2)(−5/2)",
-          "⇒ 1/8 = −25A/4 ⇒ A = −1/50",
-          "Put x = −2: −8 = B(−5)(−5) ⇒ B = −8/25",
-          "Put x = 3: 27 = C(5)(5) ⇒ C = 27/25"
+          {
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{1}{2}:\\ \\dfrac{1}{8} = \\ A\\left(\\dfrac{5}{2}\\right)\\left( - \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{8} = \\ - \\dfrac{25A}{4} \\Rightarrow \\ A\\ = \\ - \\dfrac{1}{50}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ - 2:\\ - 8\\ = \\ B\\left( - 5\\right)\\left( - 5\\right)\\ \\Rightarrow \\ B\\ = \\ - \\dfrac{8}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ 3:\\ 27\\ = \\ C\\left(5\\right)\\left(5\\right)\\ \\Rightarrow \\ C\\ = \\ \\dfrac{27}{25}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -250,12 +300,25 @@
         "margin_note": "Last mark. 1/2 first, then −1/(50(2x − 1)) − 8/(25(x + 2)) + 27/(25(x − 3)). This matches the answer the book prints for its practice question. The result is too long for one box, so the constants are boxed under it.",
         "memory_tip": "The 1/2 comes first, then the three fractions with their signs. Check x = 0: 0 = 3 + 3/25 − 24/25 − 54/25.",
         "lines": [
-          "∴ x³/((2x − 1)(x + 2)(x − 3))",
-          "= 1/2 − 1/(50(2x − 1)) − 8/(25(x + 2))",
-          "  + 27/(25(x − 3))",
           {
-            "text": "∴ A = −1/50, B = −8/25, C = 27/25",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{3}}{\\left(2x\\ - \\ 1\\right)\\left(x\\ + \\ 2\\right)\\left(x\\ - \\ 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2} - \\ \\dfrac{1}{50\\left(2x\\ - \\ 1\\right)} - \\ \\dfrac{8}{25\\left(x\\ + \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{27}{25\\left(x\\ - \\ 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ A\\ = \\ - \\dfrac{1}{50},\\ B\\ = \\ - \\dfrac{8}{25},\\ C\\ = \\ \\dfrac{27}{25}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

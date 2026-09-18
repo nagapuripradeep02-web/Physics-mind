@@ -70,7 +70,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = (x² + 14x + 9)/(x² + 2x + 3)",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\dfrac{x^{2}\\ + \\ 14x\\ + \\ 9}{x^{2}\\ + \\ 2x\\ + \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by (x² + 2x + 3):",
           "y(x² + 2x + 3) = x² + 14x + 9",
           "yx² + 2yx + 3y = x² + 14x + 9",

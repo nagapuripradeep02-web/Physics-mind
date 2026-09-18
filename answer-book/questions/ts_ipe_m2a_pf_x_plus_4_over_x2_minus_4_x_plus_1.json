@@ -67,8 +67,16 @@
           "linear factors.",
           "Each distinct linear factor gets",
           "  a constant over it:",
-          "(x + 4)/((x + 2)(x − 2)(x + 1))",
-          "= A/(x + 2) + B/(x − 2) + C/(x + 1)"
+          {
+            "text": "\\dfrac{x\\ + \\ 4}{\\left(x\\ + \\ 2\\right)\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ + \\ 2} + \\ \\dfrac{B}{x\\ - \\ 2} + \\ \\dfrac{C}{x\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -174,12 +182,16 @@
           },
           "Put x = −2: 2 = A(−4)(−1) = 4A",
           {
-            "text": "A = 2/4 = 1/2",
+            "text": "A\\ = \\ \\dfrac{2}{4} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Put x = 2: 6 = B(4)(3) = 12B",
           {
-            "text": "B = 6/12 = 1/2",
+            "text": "B\\ = \\ \\dfrac{6}{12} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Put x = −1: 3 = C(1)(−3) = −3C",
@@ -219,8 +231,16 @@
           "Forgetting the third substitution and leaving C unfound."
         ],
         "lines_compact": [
-          "Put x = −2: 2 = A(−4)(−1) ⇒ A = 1/2",
-          "Put x = 2: 6 = B(4)(3) ⇒ B = 1/2",
+          {
+            "text": "\\text{Put}\\ x\\ = \\ - 2:\\ 2\\ = \\ A\\left( - 4\\right)\\left( - 1\\right)\\ \\Rightarrow \\ A\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ 2:\\ 6\\ = \\ B\\left(4\\right)\\left(3\\right)\\ \\Rightarrow \\ B\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = −1: 3 = C(1)(−3) ⇒ C = −1"
         ]
       },
@@ -233,10 +253,15 @@
         "margin_note": "Last mark. A = 1/2 over (x + 2) is written as 1/(2(x + 2)); the 2 goes into the denominator. The minus on C becomes a minus between the fractions.",
         "memory_tip": "A = 1/2 over (x + 2) is written 1/(2(x + 2)), with the 2 inside the denominator. Check x = 0: 4 = −1 + 1 + 4.",
         "lines": [
-          "∴ (x + 4)/((x² − 4)(x + 1))",
           {
-            "text": "= 1/(2(x + 2)) + 1/(2(x − 2)) − 1/(x + 1)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x\\ + \\ 4}{\\left(x^{2}\\ - \\ 4\\right)\\left(x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2\\left(x\\ + \\ 2\\right)} + \\ \\dfrac{1}{2\\left(x\\ - \\ 2\\right)} - \\ \\dfrac{1}{x\\ + \\ 1}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

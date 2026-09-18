@@ -80,8 +80,16 @@
           "Numerator degree 3, denominator degree 3,",
           "and both leading coefficients are 1,",
           "so the quotient is the constant 1.",
-          "x³/((x − a)(x − b)(x − c))",
-          "= 1 + A/(x − a) + B/(x − b) + C/(x − c)"
+          {
+            "text": "\\dfrac{x^{3}}{\\left(x\\ - \\ a\\right)\\left(x\\ - \\ b\\right)\\left(x\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ + \\ \\dfrac{A}{x\\ - \\ a} + \\ \\dfrac{B}{x\\ - \\ b} + \\ \\dfrac{C}{x\\ - \\ c}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -198,13 +206,19 @@
             "text": "a³ = A(a − b)(a − c)",
             "added": true
           },
-          "A = a³/((a − b)(a − c))",
+          {
+            "text": "A\\ = \\ \\dfrac{a^{3}}{\\left(a\\ - \\ b\\right)\\left(a\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Put x = b in the same way:",
             "added": true
           },
           {
-            "text": "B = b³/((b − a)(b − c))",
+            "text": "B\\ = \\ \\dfrac{b^{3}}{\\left(b\\ - \\ a\\right)\\left(b\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -212,7 +226,9 @@
             "added": true
           },
           {
-            "text": "C = c³/((c − a)(c − b))",
+            "text": "C\\ = \\ \\dfrac{c^{3}}{\\left(c\\ - \\ a\\right)\\left(c\\ - \\ b\\right)}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -249,9 +265,21 @@
         ],
         "lines_compact": [
           "Put x = a: a³ = A(a − b)(a − c)",
-          "⇒ A = a³/((a − b)(a − c))",
-          "Put x = b: B = b³/((b − a)(b − c))",
-          "Put x = c: C = c³/((c − a)(c − b))"
+          {
+            "text": "\\Rightarrow \\ A\\ = \\ \\dfrac{a^{3}}{\\left(a\\ - \\ b\\right)\\left(a\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ b:\\ B\\ = \\ \\dfrac{b^{3}}{\\left(b\\ - \\ a\\right)\\left(b\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ c:\\ C\\ = \\ \\dfrac{c^{3}}{\\left(c\\ - \\ a\\right)\\left(c\\ - \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -263,13 +291,30 @@
         "margin_note": "Last mark. The 1 comes first, then each constant over its own factor. The result is four terms and too long for one box, so the constants are boxed under it.",
         "memory_tip": "The 1 comes first, then each constant over its own factor. Test with a, b, c = 1, 2, 3 if unsure.",
         "lines": [
-          "∴ x³/((x − a)(x − b)(x − c)) = 1",
-          "  + a³/((a − b)(a − c)(x − a))",
-          "  + b³/((b − a)(b − c)(x − b))",
-          "  + c³/((c − a)(c − b)(x − c))",
           {
-            "text": "∴ A = a³/((a − b)(a − c)); B, C likewise",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{3}}{\\left(x\\ - \\ a\\right)\\left(x\\ - \\ b\\right)\\left(x\\ - \\ c\\right)} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{a^{3}}{\\left(a\\ - \\ b\\right)\\left(a\\ - \\ c\\right)\\left(x\\ - \\ a\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{b^{3}}{\\left(b\\ - \\ a\\right)\\left(b\\ - \\ c\\right)\\left(x\\ - \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{c^{3}}{\\left(c\\ - \\ a\\right)\\left(c\\ - \\ b\\right)\\left(x\\ - \\ c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ A\\ = \\ \\dfrac{a^{3}}{\\left(a\\ - \\ b\\right)\\left(a\\ - \\ c\\right)};\\ B,\\ C\\ \\text{likewise}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

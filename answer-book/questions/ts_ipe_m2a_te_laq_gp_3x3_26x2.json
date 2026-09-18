@@ -75,7 +75,11 @@
             "style": "heading"
           },
           "The roots are in G.P., so take them as",
-          "a/r, a, ar.",
+          {
+            "text": "\\dfrac{a}{r},\\ a,\\ ar.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Taking them this way makes the product simple:",
           "the r in the denominator cancels the r above.",
           "Comparing 3x³ − 26x² + 52x − 24 = 0 with",
@@ -124,15 +128,21 @@
             "added": true
           },
           {
-            "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Product of the roots S₃ = −a₃/a₀ = 24/3 = 8",
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}} = \\ \\dfrac{24}{3} = \\ 8",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(a/r) · a · (ar) = a³",
+            "text": "\\left(\\dfrac{a}{r}\\right)\\ \\cdot \\ a\\ \\cdot \\ \\left(ar\\right)\\ = \\ a^{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -171,8 +181,16 @@
           "Writing a³ = 8 ⇒ a = 8/3 or some other non-cube-root slip."
         ],
         "lines_compact": [
-          "Product of roots S₃ = −a₃/a₀:",
-          "(a/r)·a·(ar) = a³ = 24/3 = 8",
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{a}{r}\\right) \\cdot a \\cdot \\left(ar\\right)\\ = \\ a^{3}\\ = \\ \\dfrac{24}{3} = \\ 8",
+            "style": "normal",
+            "render": "katex"
+          },
           "a = 2"
         ]
       },
@@ -186,24 +204,40 @@
         "memory_tip": "With a known, put the bracket over r: (1 + r + r²)/r = 13/3, then cross-multiply.",
         "lines": [
           {
-            "text": "Sum of the roots S₁ = −a₁/a₀ = 26/3",
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ \\dfrac{26}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "a/r + a + ar = 26/3",
+          {
+            "text": "\\dfrac{a}{r} + \\ a\\ + \\ ar\\ = \\ \\dfrac{26}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Put a = 2:",
             "added": true
           },
-          "2(1/r + 1 + r) = 26/3",
           {
-            "text": "1/r + 1 + r = 13/3",
+            "text": "2\\left(\\dfrac{1}{r} + \\ 1\\ + \\ r\\right)\\ = \\ \\dfrac{26}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{r} + \\ 1\\ + \\ r\\ = \\ \\dfrac{13}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Multiply both sides by r:",
             "added": true
           },
-          "1 + r + r² = 13r/3",
+          {
+            "text": "1\\ + \\ r\\ + \\ r^{2}\\ = \\ \\dfrac{13r}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply both sides by 3:",
             "added": true
@@ -241,10 +275,26 @@
           "A slip cross-multiplying: it is 3(1 + r + r²) = 13r, not 3(1 + r + r²) = 13."
         ],
         "lines_compact": [
-          "Sum of roots S₁ = −a₁/a₀:",
-          "a/r + a + ar = 26/3",
-          "2(1/r + 1 + r) = 26/3",
-          "(1 + r + r²)/r = 13/3",
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{a}{r} + \\ a\\ + \\ ar\\ = \\ \\dfrac{26}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\left(\\dfrac{1}{r} + \\ 1\\ + \\ r\\right)\\ = \\ \\dfrac{26}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ + \\ r\\ + \\ r^{2}}{r} = \\ \\dfrac{13}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "3 + 3r + 3r² = 13r",
           "3r² − 10r + 3 = 0"
         ]
@@ -265,7 +315,11 @@
           "3r² − 9r − r + 3 = 0",
           "3r(r − 3) − 1(r − 3) = 0",
           "(3r − 1)(r − 3) = 0",
-          "r = 3 or r = 1/3"
+          {
+            "text": "r\\ = \\ 3\\ \\text{or}\\ r\\ = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -299,7 +353,11 @@
           "3r² − 9r − r + 3 = 0",
           "3r(r − 3) − 1(r − 3) = 0",
           "(3r − 1)(r − 3) = 0",
-          "r = 3 or r = 1/3"
+          {
+            "text": "r\\ = \\ 3\\ \\text{or}\\ r\\ = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -320,7 +378,9 @@
             "added": true
           },
           {
-            "text": "a/r = 2/3",
+            "text": "\\dfrac{a}{r} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -332,8 +392,9 @@
             "added": true
           },
           {
-            "text": "∴ roots: 2/3, 2, 6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{roots}:\\ \\dfrac{2}{3},\\ 2,\\ 6",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -366,11 +427,20 @@
           "Not substituting one root back into the equation (each must give 0)."
         ],
         "lines_compact": [
-          "Take r = 3 (r = 1/3 gives the same three roots):",
-          "a/r = 2/3, a = 2, ar = 6",
           {
-            "text": "∴ roots: 2/3, 2, 6",
-            "style": "boxed"
+            "text": "\\text{Take}\\ r\\ = \\ 3\\left(r\\ = \\ \\dfrac{1}{3}\\text{gives}\\ \\text{the}\\ \\text{same}\\ \\text{three}\\ \\text{roots}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{a}{r} = \\ \\dfrac{2}{3},\\ a\\ = \\ 2,\\ ar\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{roots}:\\ \\dfrac{2}{3},\\ 2,\\ 6",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

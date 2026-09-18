@@ -71,8 +71,16 @@
           "of each gap and ignoring its sign.",
           "There are n = 8 values.",
           "Mean x̄ = (sum of the values)/n",
-          "= (6 + 7 + 10 + 12 + 13 + 4 + 12 + 16)/8",
-          "= 80/8 = 10"
+          {
+            "text": "= \\ \\dfrac{6\\ + \\ 7\\ + \\ 10\\ + \\ 12\\ + \\ 13\\ + \\ 4\\ + \\ 12\\ + \\ 16}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{80}{8} = \\ 10",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,10 +133,16 @@
             "added": true
           },
           {
-            "text": "= (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
+            "text": "= \\ \\dfrac{4\\ + \\ 3\\ + \\ 0\\ + \\ 2\\ + \\ 3\\ + \\ 6\\ + \\ 2\\ + \\ 6}{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 26/8 = 3.25",
+          {
+            "text": "= \\ \\dfrac{26}{8} = \\ 3.25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the mean = 3.25",
             "style": "boxed"
@@ -166,7 +180,11 @@
         "lines_compact": [
           "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
           "M.D. = Σ|xᵢ − x̄|/n = (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
-          "= 26/8 = 3.25",
+          {
+            "text": "= \\ \\dfrac{26}{8} = \\ 3.25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the mean = 3.25",
             "style": "boxed"

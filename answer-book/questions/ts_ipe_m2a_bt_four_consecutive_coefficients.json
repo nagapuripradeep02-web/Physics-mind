@@ -112,46 +112,78 @@
         "memory_tip": "Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they give (r + 1)/(n + 1).",
         "lines": [
           {
-            "text": "L.H.S. = a₁/(a₁ + a₂) + a₃/(a₃ + a₄)",
+            "text": "L.H.S.\\ = \\ \\dfrac{a_{1}}{a_{1}\\ + \\ a_{2}} + \\ \\dfrac{a_{3}}{a_{3}\\ + \\ a_{4}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
+          {
+            "text": "= \\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r}\\ + \\ {}^{n}C_{r+1}} + \\ \\dfrac{{}^{n}C_{r+2}}{{}^{n}C_{r+2}\\ + \\ {}^{n}C_{r+3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁",
           {
             "text": "and ⁿCᵣ₊₂ + ⁿCᵣ₊₃ = ⁿ⁺¹Cᵣ₊₃",
             "added": true
           },
-          "L.H.S. = ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
           {
-            "text": "Now ⁿ⁺¹Cᵣ₊₁ = (n + 1)!/((r + 1)!(n − r)!)",
+            "text": "L.H.S.\\ = \\ \\dfrac{{}^{n}C_{r}}{{}^{n+1}C_{r+1}} + \\ \\dfrac{{}^{n}C_{r+2}}{{}^{n+1}C_{r+3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ {}^{n+1}C_{r+1}\\ = \\ \\dfrac{\\left(n\\ + \\ 1\\right)!}{\\left(r\\ + \\ 1\\right)!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ((n + 1)/(r + 1)) · n!/(r!(n − r)!)",
+            "text": "= \\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right)\\ \\cdot \\ \\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ((n + 1)/(r + 1))·ⁿCᵣ",
+            "text": "= \\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right) \\cdot {}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ = (r + 1)/(n + 1)",
+            "text": "\\text{so}\\ \\dfrac{{}^{n}C_{r}}{{}^{n+1}C_{r+1}} = \\ \\dfrac{r\\ + \\ 1}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "In the same way ⁿ⁺¹Cᵣ₊₃ = ((n + 1)/(r + 3))·ⁿCᵣ₊₂",
+            "text": "\\text{In}\\ \\text{the}\\ \\text{same}\\ \\text{way}\\ {}^{n+1}C_{r+3}\\ = \\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 3}\\right) \\cdot {}^{n}C_{r+2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃ = (r + 3)/(n + 1)",
+            "text": "\\text{so}\\ \\dfrac{{}^{n}C_{r+2}}{{}^{n+1}C_{r+3}} = \\ \\dfrac{r\\ + \\ 3}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "L.H.S. = (r + 1)/(n + 1) + (r + 3)/(n + 1)",
           {
-            "text": "= (r + 1 + r + 3)/(n + 1)",
+            "text": "L.H.S.\\ = \\ \\dfrac{r\\ + \\ 1}{n\\ + \\ 1} + \\ \\dfrac{r\\ + \\ 3}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{r\\ + \\ 1\\ + \\ r\\ + \\ 3}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (2r + 4)/(n + 1) = 2(r + 2)/(n + 1) …(1)"
+          {
+            "text": "= \\ \\dfrac{2r\\ + \\ 4}{n\\ + \\ 1} = \\ \\dfrac{2\\left(r\\ + \\ 2\\right)}{n\\ + \\ 1}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -181,12 +213,32 @@
           "Adding the two fractions before reducing them."
         ],
         "lines_compact": [
-          "L.H.S. = ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
-          "= ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
+          {
+            "text": "L.H.S.\\ = \\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r}\\ + \\ {}^{n}C_{r+1}} + \\ \\dfrac{{}^{n}C_{r+2}}{{}^{n}C_{r+2}\\ + \\ {}^{n}C_{r+3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{{}^{n}C_{r}}{{}^{n+1}C_{r+1}} + \\ \\dfrac{{}^{n}C_{r+2}}{{}^{n+1}C_{r+3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁]",
-          "Now ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ, so",
-          "= (r + 1)/(n + 1) + (r + 3)/(n + 1)",
-          "= (2r + 4)/(n + 1) = 2(r + 2)/(n + 1) …(1)"
+          {
+            "text": "\\text{Now}\\ {}^{n+1}C_{r+1}\\ = \\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right) \\cdot {}^{n}C_{r},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{r\\ + \\ 1}{n\\ + \\ 1} + \\ \\dfrac{r\\ + \\ 3}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2r\\ + \\ 4}{n\\ + \\ 1} = \\ \\dfrac{2\\left(r\\ + \\ 2\\right)}{n\\ + \\ 1}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -199,26 +251,40 @@
         "memory_tip": "Same two identities one index higher, and keep the factor 2 in front.",
         "lines": [
           {
-            "text": "R.H.S. = 2a₂/(a₂ + a₃)",
+            "text": "R.H.S.\\ = \\ \\dfrac{2a_{2}}{a_{2}\\ + \\ a_{3}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂)",
+            "text": "= \\ 2 \\cdot \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r+1}\\ + \\ {}^{n}C_{r+2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂   [ⁿCᵣ₊₁ + ⁿCᵣ₊₂ = ⁿ⁺¹Cᵣ₊₂]",
+            "text": "= \\ 2 \\cdot \\dfrac{{}^{n}C_{r+1}}{{}^{n+1}C_{r+2}}\\left[{}^{n}C_{r+1}\\ + \\ {}^{n}C_{r+2}\\ = \\ {}^{n+1}C_{r+2}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Now ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁",
+            "text": "\\text{Now}\\ {}^{n+1}C_{r+2}\\ = \\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 2}\\right) \\cdot {}^{n}C_{r+1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂ = (r + 2)/(n + 1)",
+            "text": "\\text{so}\\ \\dfrac{{}^{n}C_{r+1}}{{}^{n+1}C_{r+2}} = \\ \\dfrac{r\\ + \\ 2}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "R.H.S. = 2(r + 2)/(n + 1) …(2)"
+          {
+            "text": "R.H.S.\\ = \\ \\dfrac{2\\left(r\\ + \\ 2\\right)}{n\\ + \\ 1}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -246,9 +312,21 @@
           "Writing the denominator as ⁿ⁺¹Cᵣ₊₁."
         ],
         "lines_compact": [
-          "R.H.S. = 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂) = 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂",
-          "= 2·ⁿCᵣ₊₁ / (((n + 1)/(r + 2))·ⁿCᵣ₊₁)",
-          "= 2(r + 2)/(n + 1) …(2)"
+          {
+            "text": "R.H.S.\\ = \\ 2 \\cdot \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r+1}\\ + \\ {}^{n}C_{r+2}} = \\ 2 \\cdot \\dfrac{{}^{n}C_{r+1}}{{}^{n+1}C_{r+2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2 \\cdot \\dfrac{{}^{n}C_{r+1}}{\\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 2}\\right) \\cdot {}^{n}C_{r+1}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(r\\ + \\ 2\\right)}{n\\ + \\ 1}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -261,7 +339,9 @@
         "memory_tip": "(1) and (2) are the same expression — write that line, or the last mark is lost.",
         "lines": [
           {
-            "text": "From (1) and (2), both sides equal 2(r + 2)/(n + 1)",
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right),\\ \\text{both}\\ \\text{sides}\\ \\text{equal}\\ \\dfrac{2\\left(r\\ + \\ 2\\right)}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

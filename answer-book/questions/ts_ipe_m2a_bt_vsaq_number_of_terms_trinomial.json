@@ -71,7 +71,11 @@
             "style": "heading"
           },
           "Write (2x + 3y + z)⁷ as [(2x + 3y) + z]⁷",
-          "Number of terms in (a + b + c)ⁿ = (n + 1)(n + 2)/2",
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{terms}\\ \\text{in}\\ \\left(a\\ + \\ b\\ + \\ c\\right)^{n}\\ = \\ \\dfrac{\\left(n\\ + \\ 1\\right)\\left(n\\ + \\ 2\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here n = 7"
         ],
         "recall": {
@@ -111,11 +115,15 @@
         "memory_tip": "(8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
         "lines": [
           {
-            "text": "Number of terms = (7 + 1)(7 + 2)/2",
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{terms}\\ = \\ \\dfrac{\\left(7\\ + \\ 1\\right)\\left(7\\ + \\ 2\\right)}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (8 × 9)/2 = 72/2",
+            "text": "= \\ \\dfrac{8\\ \\times \\ 9}{2} = \\ \\dfrac{72}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -148,7 +156,11 @@
           "Multiplying by the coefficients 2 and 3."
         ],
         "lines_compact": [
-          "For n = 7: (7 + 1)(7 + 2)/2 = (8 × 9)/2",
+          {
+            "text": "\\text{For}\\ n\\ = \\ 7:\\ \\dfrac{\\left(7\\ + \\ 1\\right)\\left(7\\ + \\ 2\\right)}{2} = \\ \\dfrac{8\\ \\times \\ 9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ number of terms = 36",
             "style": "boxed"

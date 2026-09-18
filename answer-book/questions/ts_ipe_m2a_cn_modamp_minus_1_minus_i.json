@@ -56,7 +56,11 @@
           "Let −1 − i = x + iy, so x = −1 and y = −1",
           "The modulus-amplitude form is",
           "z = r(cos θ + i sin θ), where",
-          "r = √(x² + y²) and tan θ = y/x",
+          {
+            "text": "r\\ = \\ \\sqrt{x^{2}\\ + \\ y^{2}}\\ \\text{and}\\ \\tan \\theta \\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r = √((−1)² + (−1)²) = √(1 + 1)",
           "= √2"
         ],
@@ -96,7 +100,11 @@
         "margin_note": "Second mark. tan θ = 1, but (−1, −1) is in the THIRD quadrant, so the principal amplitude is θ = −π + π/4 = −3π/4, not π/4 and not 3π/4. Check: √2 cos(−3π/4) = −1 and √2 sin(−3π/4) = −1.",
         "memory_tip": "tan θ = 1, but (−1, −1) is in the THIRD quadrant: θ = −π + π/4 = −3π/4. The book's 3π/4 gives −1 + i.",
         "lines": [
-          "tan θ = y/x = (−1)/(−1) = 1",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - 1}{ - 1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "The point (−1, −1) lies in the third quadrant,",
           {
             "text": "where the amplitude is taken as",
@@ -106,12 +114,21 @@
             "text": "θ = −π + (the acute angle with tan = 1)",
             "added": true
           },
-          "= −π + π/4 = −3π/4",
           {
-            "text": "∴ −1 − i = √2(cos(−3π/4) + i sin(−3π/4))",
-            "style": "boxed"
+            "text": "= \\ - \\pi \\ + \\ \\dfrac{\\pi }{4} = \\ - \\dfrac{3\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= √2(cos(3π/4) − i sin(3π/4))"
+          {
+            "text": "\\therefore \\ - 1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\left( - \\dfrac{3\\pi }{4}\\right)\\ + \\ i\\sin \\left( - \\dfrac{3\\pi }{4}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{2}\\left(\\cos \\left(\\dfrac{3\\pi }{4}\\right)\\ - \\ i\\sin \\left(\\dfrac{3\\pi }{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -143,13 +160,26 @@
           "Forgetting the r = √2 in front of the bracket."
         ],
         "lines_compact": [
-          "tan θ = y/x = (−1)/(−1) = 1",
-          "(−1, −1) lies in the third quadrant",
-          "⇒ θ = −π + π/4 = −3π/4",
-          "∴ −1 − i = √2(cos(−3π/4) + i sin(−3π/4))",
           {
-            "text": "= √2(cos(3π/4) − i sin(3π/4))",
-            "style": "boxed"
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - 1}{ - 1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(−1, −1) lies in the third quadrant",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ - \\pi \\ + \\ \\dfrac{\\pi }{4} = \\ - \\dfrac{3\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ - 1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\left( - \\dfrac{3\\pi }{4}\\right)\\ + \\ i\\sin \\left( - \\dfrac{3\\pi }{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{2}\\left(\\cos \\left(\\dfrac{3\\pi }{4}\\right)\\ - \\ i\\sin \\left(\\dfrac{3\\pi }{4}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

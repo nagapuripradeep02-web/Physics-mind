@@ -158,8 +158,9 @@
             "added": true
           },
           {
-            "text": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A)",
-            "style": "eq"
+            "text": "P\\left(E_{k}|A\\right)\\ = \\ \\dfrac{P\\left(E_{k}\\ \\cap \\ A\\right)}{P\\left(A\\right)}",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "The top can be rewritten by the",
@@ -176,8 +177,9 @@
             "style": "eq"
           },
           {
-            "text": "∴ P(Eₖ|A) = P(Eₖ)·P(A|Eₖ)/P(A)  …(1)",
-            "style": "eq"
+            "text": "\\therefore \\ P\\left(E_{k}|A\\right)\\ = \\ P\\left(E_{k}\\right) \\cdot \\dfrac{P\\left(A|E_{k}\\right)}{P\\left(A\\right)}\\dots \\left(1\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "It remains to find P(A).",
@@ -219,8 +221,9 @@
             "style": "normal"
           },
           {
-            "text": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A)",
-            "style": "eq"
+            "text": "P\\left(E_{k}|A\\right)\\ = \\ \\dfrac{P\\left(E_{k}\\ \\cap \\ A\\right)}{P\\left(A\\right)}",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "By the multiplication theorem,",
@@ -231,8 +234,9 @@
             "style": "eq"
           },
           {
-            "text": "∴ P(Eₖ|A) = P(Eₖ)·P(A|Eₖ)/P(A)  …(1)",
-            "style": "eq"
+            "text": "\\therefore \\ P\\left(E_{k}|A\\right)\\ = \\ P\\left(E_{k}\\right) \\cdot \\dfrac{P\\left(A|E_{k}\\right)}{P\\left(A\\right)}\\dots \\left(1\\right)",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -379,8 +383,9 @@
             "style": "normal"
           },
           {
-            "text": "P(Eₖ|A) = P(Eₖ)·P(A|Eₖ) / Σ P(Eᵢ)·P(A|Eᵢ)",
-            "style": "boxed"
+            "text": "P\\left(E_{k}|A\\right)\\ = \\ P\\left(E_{k}\\right) \\cdot \\dfrac{P\\left(A|E_{k}\\right)}{\\Sigma }P\\left(E_{i}\\right) \\cdot P\\left(A|E_{i}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "(the sum over i = 1 to n). Hence proved.",

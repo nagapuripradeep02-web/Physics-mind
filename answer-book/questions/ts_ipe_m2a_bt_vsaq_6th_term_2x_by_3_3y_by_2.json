@@ -61,8 +61,16 @@
           "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
           "6th term: r + 1 = 6 ⇒ r = 5",
           "n = 9",
-          "T₆ = ⁹C₅ (2x/3)⁹⁻⁵ (3y/2)⁵",
-          "= ⁹C₅ (2x/3)⁴ (3y/2)⁵"
+          {
+            "text": "T_{6}\\ = \\ {}^{9}C_{5}\\left(\\dfrac{2x}{3}\\right)^{9-5}\\left(\\dfrac{3y}{2}\\right)^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ {}^{9}C_{5}\\left(\\dfrac{2x}{3}\\right)^{4}\\left(\\dfrac{3y}{2}\\right)^{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,11 +109,15 @@
         "memory_tip": "The fractions are built to cancel: (2⁴/3⁴)(3⁵/2⁵) = 3/2, and 126 × 3/2 = 189.",
         "lines": [
           {
-            "text": "= ⁹C₅ · (2⁴x⁴/3⁴) · (3⁵y⁵/2⁵)",
+            "text": "= \\ {}^{9}C_{5}\\ \\cdot \\ \\left(\\dfrac{2^{4}x^{4}}{3^{4}}\\right)\\ \\cdot \\ \\left(\\dfrac{3^{5}y^{5}}{2^{5}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ⁹C₅ · (2⁴/2⁵) · (3⁵/3⁴) · x⁴y⁵",
+            "text": "= \\ {}^{9}C_{5}\\ \\cdot \\ \\left(\\dfrac{2^{4}}{2^{5}}\\right)\\ \\cdot \\ \\left(\\dfrac{3^{5}}{3^{4}}\\right)\\ \\cdot \\ x^{4}y^{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -113,15 +125,21 @@
             "added": true
           },
           {
-            "text": "= ⁹C₅ · 2⁻¹ · 3 · x⁴y⁵ = ⁹C₅ · (3/2) · x⁴y⁵",
+            "text": "= \\ {}^{9}C_{5}\\ \\cdot \\ 2^{-1}\\ \\cdot \\ 3\\ \\cdot \\ x^{4}y^{5}\\ = \\ {}^{9}C_{5}\\ \\cdot \\ \\left(\\dfrac{3}{2}\\right)\\ \\cdot \\ x^{4}y^{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 3024/24 = 126",
+            "text": "{}^{9}C_{5}\\ = \\ {}^{9}C_{4}\\ = \\ \\dfrac{9 \\cdot 8 \\cdot 7 \\cdot 6}{1 \\cdot 2 \\cdot 3 \\cdot 4} = \\ \\dfrac{3024}{24} = \\ 126",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 126 · (3/2) · x⁴y⁵ = 63 · 3 · x⁴y⁵",
+            "text": "= \\ 126\\ \\cdot \\ \\left(\\dfrac{3}{2}\\right)\\ \\cdot \\ x^{4}y^{5}\\ = \\ 63\\ \\cdot \\ 3\\ \\cdot \\ x^{4}y^{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -156,7 +174,11 @@
           "Writing ⁹C₅ = 63."
         ],
         "lines_compact": [
-          "= 126 · (2⁴/3⁴) · (3⁵/2⁵) · x⁴y⁵ = 126 · (3/2) · x⁴y⁵",
+          {
+            "text": "= \\ 126\\ \\cdot \\ \\left(\\dfrac{2^{4}}{3^{4}}\\right)\\ \\cdot \\ \\left(\\dfrac{3^{5}}{2^{5}}\\right)\\ \\cdot \\ x^{4}y^{5}\\ = \\ 126\\ \\cdot \\ \\left(\\dfrac{3}{2}\\right)\\ \\cdot \\ x^{4}y^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ T₆ = 189 x⁴y⁵",
             "style": "boxed"

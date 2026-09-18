@@ -209,23 +209,27 @@
             "added": true
           },
           {
-            "text": "7P(C) = 1 ⇒ P(C) = 1/7",
+            "text": "7P\\left(C\\right)\\ = \\ 1\\ \\Rightarrow \\ P\\left(C\\right)\\ = \\ \\dfrac{1}{7}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "P(B) = 2(1/7) = 2/7",
+            "text": "P\\left(B\\right)\\ = \\ 2\\left(\\dfrac{1}{7}\\right)\\ = \\ \\dfrac{2}{7}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "P(A) = 4(1/7) = 4/7",
+            "text": "P\\left(A\\right)\\ = \\ 4\\left(\\dfrac{1}{7}\\right)\\ = \\ \\dfrac{4}{7}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(A) = 4/7, P(B) = 2/7, P(C) = 1/7",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(A\\right)\\ = \\ \\dfrac{4}{7},\\ P\\left(B\\right)\\ = \\ \\dfrac{2}{7},\\ P\\left(C\\right)\\ = \\ \\dfrac{1}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -259,12 +263,14 @@
             "style": "eq"
           },
           {
-            "text": "⇒ P(C) = 1/7, P(B) = 2/7, P(A) = 4/7",
-            "style": "eq"
+            "text": "\\Rightarrow \\ P\\left(C\\right)\\ = \\ \\dfrac{1}{7},\\ P\\left(B\\right)\\ = \\ \\dfrac{2}{7},\\ P\\left(A\\right)\\ = \\ \\dfrac{4}{7}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "∴ P(A) = 4/7, P(B) = 2/7, P(C) = 1/7",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(A\\right)\\ = \\ \\dfrac{4}{7},\\ P\\left(B\\right)\\ = \\ \\dfrac{2}{7},\\ P\\left(C\\right)\\ = \\ \\dfrac{1}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

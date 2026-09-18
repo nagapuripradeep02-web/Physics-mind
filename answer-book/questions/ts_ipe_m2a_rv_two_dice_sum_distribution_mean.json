@@ -125,19 +125,25 @@
             "style": "indent"
           },
           {
-            "text": "P(X = xᵢ): 1/36  2/36  3/36  4/36  5/36  6/36",
-            "style": "indent"
+            "text": "P\\left(X\\ = \\ x_{i}\\right):\\ \\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{1}{36}2}{36}3}{36}4}{36}5}{36}6}{36}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "X = xᵢ:      8     9    10    11    12",
             "style": "indent"
           },
           {
-            "text": "P(X = xᵢ): 5/36  4/36  3/36  2/36  1/36",
-            "style": "indent"
+            "text": "P\\left(X\\ = \\ x_{i}\\right):\\ \\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{5}{36}4}{36}3}{36}2}{36}1}{36}",
+            "style": "indent",
+            "render": "katex"
           },
           "Check: the counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1",
-          "add to 36, so ΣP(X = xᵢ) = 36/36 = 1."
+          {
+            "text": "\\text{add}\\ \\text{to}\\ 36,\\ \\text{so}\\ \\Sigma P\\left(X\\ = \\ x_{i}\\right)\\ = \\ \\dfrac{36}{36} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -176,19 +182,25 @@
             "style": "indent"
           },
           {
-            "text": "P(X = xᵢ): 1/36  2/36  3/36  4/36  5/36  6/36",
-            "style": "indent"
+            "text": "P\\left(X\\ = \\ x_{i}\\right):\\ \\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{1}{36}2}{36}3}{36}4}{36}5}{36}6}{36}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "X = xᵢ:      8     9    10    11    12",
             "style": "indent"
           },
           {
-            "text": "P(X = xᵢ): 5/36  4/36  3/36  2/36  1/36",
-            "style": "indent"
+            "text": "P\\left(X\\ = \\ x_{i}\\right):\\ \\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{5}{36}4}{36}3}{36}2}{36}1}{36}",
+            "style": "indent",
+            "render": "katex"
           },
           "Check: the counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1",
-          "add to 36, so ΣP(X = xᵢ) = 36/36 = 1."
+          {
+            "text": "\\text{add}\\ \\text{to}\\ 36,\\ \\text{so}\\ \\Sigma P\\left(X\\ = \\ x_{i}\\right)\\ = \\ \\dfrac{36}{36} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -204,16 +216,34 @@
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
             "style": "eq"
           },
-          "= 2(1/36) + 3(2/36) + 4(3/36) + 5(4/36)",
-          "  + 6(5/36) + 7(6/36) + 8(5/36) + 9(4/36)",
-          "  + 10(3/36) + 11(2/36) + 12(1/36)",
           {
-            "text": "Every term has the factor 1/36:",
+            "text": "= \\ 2\\left(\\dfrac{1}{36}\\right)\\ + \\ 3\\left(\\dfrac{2}{36}\\right)\\ + \\ 4\\left(\\dfrac{3}{36}\\right)\\ + \\ 5\\left(\\dfrac{4}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 6\\left(\\dfrac{5}{36}\\right)\\ + \\ 7\\left(\\dfrac{6}{36}\\right)\\ + \\ 8\\left(\\dfrac{5}{36}\\right)\\ + \\ 9\\left(\\dfrac{4}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 10\\left(\\dfrac{3}{36}\\right)\\ + \\ 11\\left(\\dfrac{2}{36}\\right)\\ + \\ 12\\left(\\dfrac{1}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Every}\\ \\text{term}\\ has\\ \\text{the}\\ \\text{factor}\\ \\dfrac{1}{36}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (1/36)(2 + 6 + 12 + 20 + 30 + 42",
           "  + 40 + 36 + 30 + 22 + 12)",
-          "= 252/36 = 7",
+          {
+            "text": "= \\ \\dfrac{252}{36} = \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Mean μ = 7",
             "style": "boxed"
@@ -252,12 +282,28 @@
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
             "style": "eq"
           },
-          "= 2(1/36) + 3(2/36) + 4(3/36) + 5(4/36)",
-          "   + 6(5/36) + 7(6/36) + 8(5/36) + 9(4/36)",
-          "   + 10(3/36) + 11(2/36) + 12(1/36)",
+          {
+            "text": "= \\ 2\\left(\\dfrac{1}{36}\\right)\\ + \\ 3\\left(\\dfrac{2}{36}\\right)\\ + \\ 4\\left(\\dfrac{3}{36}\\right)\\ + \\ 5\\left(\\dfrac{4}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 6\\left(\\dfrac{5}{36}\\right)\\ + \\ 7\\left(\\dfrac{6}{36}\\right)\\ + \\ 8\\left(\\dfrac{5}{36}\\right)\\ + \\ 9\\left(\\dfrac{4}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 10\\left(\\dfrac{3}{36}\\right)\\ + \\ 11\\left(\\dfrac{2}{36}\\right)\\ + \\ 12\\left(\\dfrac{1}{36}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (1/36)(2 + 6 + 12 + 20 + 30 + 42",
           "   + 40 + 36 + 30 + 22 + 12)",
-          "= 252/36 = 7",
+          {
+            "text": "= \\ \\dfrac{252}{36} = \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Mean μ = 7",
             "style": "boxed"

@@ -72,8 +72,16 @@
           "Of these, n lines are the sides themselves,",
           "and the rest are diagonals.",
           "Diagonals = ⁿC₂ − n",
-          "= n(n − 1)/2 − n = n(n − 1 − 2)/2",
-          "= n(n − 3)/2"
+          {
+            "text": "= \\ \\dfrac{n\\left(n\\ - \\ 1\\right)}{2} - \\ n\\ = \\ \\dfrac{n\\left(n\\ - \\ 1\\ - \\ 2\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{n\\left(n\\ - \\ 3\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -117,11 +125,15 @@
             "added": true
           },
           {
-            "text": "= 12(12 − 3)/2 = 12 · 9/2",
+            "text": "= \\ \\dfrac{12\\left(12\\ - \\ 3\\right)}{2} = \\ 12\\ \\cdot \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 108/2",
+            "text": "= \\ \\dfrac{108}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -156,7 +168,11 @@
           "Answering 108 (forgetting the division by 2)."
         ],
         "lines_compact": [
-          "= 12 · 9 / 2",
+          {
+            "text": "= \\ 12\\ \\cdot \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 54",
             "style": "boxed"

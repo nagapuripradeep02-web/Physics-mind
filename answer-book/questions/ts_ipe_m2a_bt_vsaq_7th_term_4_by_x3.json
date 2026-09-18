@@ -62,7 +62,11 @@
           "7th term: r + 1 = 7 ⇒ r = 6",
           "n = 14",
           "T₇ = ¹⁴C₆ x¹⁴⁻⁶ y⁶",
-          "= ¹⁴C₆ (4/x³)⁸ (x²/2)⁶"
+          {
+            "text": "= {}^{14}C_6 \\left(\\dfrac{4}{x^3}\\right)^{8}\\left(\\dfrac{x^2}{2}\\right)^{6}",
+            "style": "eq",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,28 +111,39 @@
             "added": true
           },
           {
-            "text": "= ¹⁴C₆ (4⁸/x²⁴) (x¹²/2⁶)",
+            "text": "= {}^{14}C_6 \\left(\\dfrac{4^8}{x^{24}}\\right)\\left(\\dfrac{x^{12}}{2^6}\\right)",
+            "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ¹⁴C₆ ((2²)⁸/2⁶) (x¹²/x²⁴)   [4 = 2²]",
+            "text": "= {}^{14}C_6 \\dfrac{(2^2)^8}{2^6} \\cdot \\dfrac{x^{12}}{x^{24}} \\qquad [4 = 2^2]",
+            "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ¹⁴C₆ (2¹⁶/2⁶) x¹²⁻²⁴",
+            "text": "= {}^{14}C_6 \\dfrac{2^{16}}{2^6}\\, x^{12-24}",
+            "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ¹⁴C₆ · 2¹⁶⁻⁶ · x⁻¹² = ¹⁴C₆ · 2¹⁰ · x⁻¹²",
+            "text": "= {}^{14}C_6 \\cdot 2^{16-6} \\cdot x^{-12} = {}^{14}C_6 \\cdot 2^{10} \\cdot x^{-12}",
+            "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "2¹⁰ = (2²)⁵ = 4⁵ and x⁻¹² = 1/x¹²",
+            "text": "2^{10} = (2^2)^5 = 4^5 \\quad \\text{and} \\quad x^{-12} = \\dfrac{1}{x^{12}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
-            "style": "boxed"
+            "text": "\\therefore\\; T_7 = {}^{14}C_6 \\cdot \\dfrac{4^5}{x^{12}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -158,11 +173,20 @@
           "Getting x¹² in the numerator by subtracting the wrong way."
         ],
         "lines_compact": [
-          "= ¹⁴C₆ · (4⁸/x²⁴) · (x¹²/2⁶) = ¹⁴C₆ · 4⁸/(2⁶ x¹²)",
-          "4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵",
           {
-            "text": "∴ T₇ = ¹⁴C₆ · 4⁵/x¹²",
-            "style": "boxed"
+            "text": "= \\ {}^{14}C_{6}\\ \\cdot \\ \\left(\\dfrac{4^{8}}{x^{24}}\\right)\\ \\cdot \\ \\left(\\dfrac{x^{12}}{2^{6}}\\right)\\ = \\ {}^{14}C_{6}\\ \\cdot \\ \\dfrac{4^{8}}{2^{6}x^{12}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{4^{8}}{2^{6}} = \\ \\dfrac{2^{16}}{2^{6}} = \\ 2^{10}\\ = \\ 4^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ T_{7}\\ = \\ {}^{14}C_{6}\\ \\cdot \\ \\dfrac{4^{5}}{x^{12}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

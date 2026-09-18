@@ -76,16 +76,25 @@
           },
           "Let X = the number on the upper face.",
           "A cubical die has six faces and is fair,",
-          "so each number has probability 1/6:",
+          {
+            "text": "\\text{so}\\ \\text{each}\\ \\text{number}\\ has\\ \\text{probability}\\ \\dfrac{1}{6}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "X = xᵢ:       1     2     3     4     5     6",
             "style": "indent"
           },
           {
-            "text": "P(X = xᵢ):  1/6   1/6   1/6   1/6   1/6   1/6",
-            "style": "indent"
+            "text": "P\\left(X\\ = \\ x_{i}\\right):\\ \\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{\\dfrac{1}{6}1}{6}1}{6}1}{6}1}{6}1}{6}",
+            "style": "indent",
+            "render": "katex"
           },
-          "Check: the six probabilities add to 6/6 = 1."
+          {
+            "text": "\\text{Check}:\\ \\text{the}\\ \\text{six}\\ \\text{probabilities}\\ \\text{add}\\ \\text{to}\\ \\dfrac{6}{6} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -129,18 +138,32 @@
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
             "style": "eq"
           },
-          "= 1(1/6) + 2(1/6) + 3(1/6)",
-          "  + 4(1/6) + 5(1/6) + 6(1/6)",
           {
-            "text": "Every term has the factor 1/6:",
+            "text": "= \\ 1\\left(\\dfrac{1}{6}\\right)\\ + \\ 2\\left(\\dfrac{1}{6}\\right)\\ + \\ 3\\left(\\dfrac{1}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 4\\left(\\dfrac{1}{6}\\right)\\ + \\ 5\\left(\\dfrac{1}{6}\\right)\\ + \\ 6\\left(\\dfrac{1}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Every}\\ \\text{term}\\ has\\ \\text{the}\\ \\text{factor}\\ \\dfrac{1}{6}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (1/6)(1 + 2 + 3 + 4 + 5 + 6)",
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1\\ + \\ 2\\ + \\ 3\\ + \\ 4\\ + \\ 5\\ + \\ 6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (1/6)(21) = 21/6 = 7/2",
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(21\\right)\\ = \\ \\dfrac{21}{6} = \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -177,9 +200,21 @@
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
             "style": "eq"
           },
-          "= 1(1/6) + 2(1/6) + 3(1/6)",
-          "   + 4(1/6) + 5(1/6) + 6(1/6)",
-          "= (1/6)(1 + 2 + 3 + 4 + 5 + 6) = 21/6 = 7/2"
+          {
+            "text": "= \\ 1\\left(\\dfrac{1}{6}\\right)\\ + \\ 2\\left(\\dfrac{1}{6}\\right)\\ + \\ 3\\left(\\dfrac{1}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 4\\left(\\dfrac{1}{6}\\right)\\ + \\ 5\\left(\\dfrac{1}{6}\\right)\\ + \\ 6\\left(\\dfrac{1}{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1\\ + \\ 2\\ + \\ 3\\ + \\ 4\\ + \\ 5\\ + \\ 6\\right)\\ = \\ \\dfrac{21}{6} = \\ \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -195,10 +230,20 @@
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
             "style": "eq"
           },
-          "= (1/6)(1² + 2² + 3² + 4² + 5² + 6²) − (7/2)²",
-          "= (1/6)(1 + 4 + 9 + 16 + 25 + 36) − 49/4",
           {
-            "text": "= 91/6 − 49/4",
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1^{2}\\ + \\ 2^{2}\\ + \\ 3^{2}\\ + \\ 4^{2}\\ + \\ 5^{2}\\ + \\ 6^{2}\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1\\ + \\ 4\\ + \\ 9\\ + \\ 16\\ + \\ 25\\ + \\ 36\\right)\\ - \\ \\dfrac{49}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{91}{6} - \\ \\dfrac{49}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -206,12 +251,15 @@
             "added": true
           },
           {
-            "text": "= 182/12 − 147/12 = 35/12",
+            "text": "= \\ \\dfrac{182}{12} - \\ \\dfrac{147}{12} = \\ \\dfrac{35}{12}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Mean μ = 7/2, variance σ² = 35/12",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Mean}\\ \\mu \\ = \\ \\dfrac{7}{2},\\ \\text{variance}\\ \\sigma ^{2}\\ = \\ \\dfrac{35}{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -247,12 +295,25 @@
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
             "style": "eq"
           },
-          "= (1/6)(1² + 2² + 3² + 4² + 5² + 6²) − (7/2)²",
-          "= (1/6)(1 + 4 + 9 + 16 + 25 + 36) − 49/4",
-          "= 91/6 − 49/4 = (182 − 147)/12 = 35/12",
           {
-            "text": "∴ Mean μ = 7/2, variance σ² = 35/12",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1^{2}\\ + \\ 2^{2}\\ + \\ 3^{2}\\ + \\ 4^{2}\\ + \\ 5^{2}\\ + \\ 6^{2}\\right)\\ - \\ \\left(\\dfrac{7}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left(1\\ + \\ 4\\ + \\ 9\\ + \\ 16\\ + \\ 25\\ + \\ 36\\right)\\ - \\ \\dfrac{49}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{91}{6} - \\ \\dfrac{49}{4} = \\ \\dfrac{182\\ - \\ 147}{12} = \\ \\dfrac{35}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Mean}\\ \\mu \\ = \\ \\dfrac{7}{2},\\ \\text{variance}\\ \\sigma ^{2}\\ = \\ \\dfrac{35}{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

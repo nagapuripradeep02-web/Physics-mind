@@ -87,9 +87,17 @@
             "style": "heading"
           },
           "The class mark xᵢ is the middle of each class,",
-          "for example (0 + 10)/2 = 5.",
+          {
+            "text": "\\text{for}\\ \\text{example}\\ \\dfrac{0\\ + \\ 10}{2} = \\ 5.",
+            "style": "normal",
+            "render": "katex"
+          },
           "The class marks are large, so use an assumed",
-          "mean A and the step deviation dᵢ = (xᵢ − A)/C.",
+          {
+            "text": "\\text{mean}\\ A\\ \\text{and}\\ \\text{the}\\ \\text{step}\\ \\text{deviation}\\ d_{i}\\ = \\ \\dfrac{x_{i}\\ - \\ A}{C}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Dividing by the class width C keeps the",
           "numbers small; the mean formula puts C back.",
           "Take A = 25 (a middle class mark) and C = 10.",
@@ -164,11 +172,14 @@
         "memory_tip": "x̄ = A + C·(Σfᵢdᵢ/N). The dᵢ were divided by C, so C multiplies back in.",
         "lines": [
           {
-            "text": "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
-            "style": "eq"
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ A\\ + \\ C \\cdot \\left(\\dfrac{\\Sigma f_{i}d_{i}}{N}\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= 25 + 10 · (10/50)",
+            "text": "= \\ 25\\ + \\ 10\\ \\cdot \\ \\left(\\dfrac{10}{50}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -209,8 +220,16 @@
           "Taking A as the mean and skipping this step."
         ],
         "lines_compact": [
-          "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
-          "= 25 + 10·(10/50) = 25 + 2 = 27"
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ A\\ + \\ C \\cdot \\left(\\dfrac{\\Sigma f_{i}d_{i}}{N}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 25\\ + \\ 10 \\cdot \\left(\\dfrac{10}{50}\\right)\\ = \\ 25\\ + \\ 2\\ = \\ 27",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -334,11 +353,14 @@
         "memory_tip": "Divide by N = 50, the total frequency, never by the 5 classes. 472/50 = 9.44.",
         "lines": [
           {
-            "text": "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
-            "style": "eq"
+            "text": "M.D.\\ \\text{about}\\ \\text{the}\\ \\text{mean}\\ = \\ \\left(\\dfrac{1}{N}\\right) \\cdot \\Sigma f_{i}|x_{i}\\ - \\ \\bar{x}|",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= 472/50",
+            "text": "= \\ \\dfrac{472}{50}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -379,8 +401,16 @@
           "Writing the answer without the words 'about the mean'."
         ],
         "lines_compact": [
-          "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
-          "= (1/50)·472 = 9.44",
+          {
+            "text": "M.D.\\ \\text{about}\\ \\text{the}\\ \\text{mean}\\ = \\ \\left(\\dfrac{1}{N}\\right) \\cdot \\Sigma f_{i}|x_{i}\\ - \\ \\bar{x}|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{50}\\right) \\cdot 472\\ = \\ 9.44",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the mean = 9.44",
             "style": "boxed"

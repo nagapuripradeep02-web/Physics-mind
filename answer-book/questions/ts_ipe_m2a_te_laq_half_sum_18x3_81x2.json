@@ -82,7 +82,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the roots be α, β, γ with β = (α + γ)/2.",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{roots}\\ \\text{be}\\ \\alpha ,\\ \\beta ,\\ \\gamma \\ \\text{with}\\ \\beta \\ = \\ \\dfrac{\\alpha \\ + \\ \\gamma }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Then α + γ = 2β, which is the condition for",
           "α, β, γ to be in A.P.",
           "So take the roots as a − d, a, a + d.",
@@ -132,14 +136,22 @@
             "added": true
           },
           {
-            "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Sum of the roots S₁ = −a₁/a₀ = −81/18 = −9/2",
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ - \\dfrac{81}{18} = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(a − d) + a + (a + d) = −9/2",
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ + \\ a\\ + \\ \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The −d and +d cancel:",
             "added": true
@@ -174,8 +186,16 @@
           "Not cancelling the fraction before writing 3a = …"
         ],
         "lines_compact": [
-          "Sum of roots S₁ = −a₁/a₀:",
-          "(a − d) + a + (a + d) = −81/18 = −9/2"
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ + \\ a\\ + \\ \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{81}{18} = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -188,11 +208,15 @@
         "memory_tip": "3a = −9/2 gives a = −3/2, the middle root.",
         "lines": [
           {
-            "text": "3a = −9/2",
+            "text": "3a\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a = −9/6 = −3/2",
+            "text": "a\\ = \\ - \\dfrac{9}{6} = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -221,7 +245,11 @@
           "Writing a = the sum instead of a = the sum divided by 3."
         ],
         "lines_compact": [
-          "3a = −9/2, so a = −3/2"
+          {
+            "text": "3a\\ = \\ - \\dfrac{9}{2},\\ \\text{so}\\ a\\ = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -234,18 +262,26 @@
         "memory_tip": "S₃ = −a₃/a₀ = −60/18 = −10/3, and the product is a(a² − d²).",
         "lines": [
           {
-            "text": "Product of the roots S₃ = −a₃/a₀ = −60/18 = −10/3",
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}} = \\ - \\dfrac{60}{18} = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(a − d) · a · (a + d) = −10/3",
+            "text": "\\left(a\\ - \\ d\\right)\\ \\cdot \\ a\\ \\cdot \\ \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "(a − d)(a + d) = a² − d², so",
             "added": true
           },
-          "a(a² − d²) = −10/3"
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -276,9 +312,21 @@
           "Using the x coefficient a₂ instead of the constant a₃."
         ],
         "lines_compact": [
-          "Product of roots S₃ = −a₃/a₀:",
-          "(a − d)·a·(a + d) = −60/18 = −10/3",
-          "a(a² − d²) = −10/3"
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right) \\cdot a \\cdot \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{60}{18} = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -291,28 +339,50 @@
         "memory_tip": "d² = 9/4 − 20/9 = 1/36, so d = ±1/6. A small d — all three roots sit close together.",
         "lines": [
           {
-            "text": "Put a = −3/2:",
+            "text": "\\text{Put}\\ a\\ = \\ - \\dfrac{3}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(−3/2)((−3/2)² − d²) = −10/3",
-            "added": true
-          },
-          "(−3/2)(9/4 − d²) = −10/3",
-          {
-            "text": "Multiply both sides by −2/3:",
-            "added": true
-          },
-          "9/4 − d² = −10/3 × (−2/3) = 20/9",
-          {
-            "text": "d² = 9/4 − 20/9",
+            "text": "\\left( - \\dfrac{3}{2}\\right)\\left(\\left( - \\dfrac{3}{2}\\right)^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 81/36 − 80/36 = 1/36",
+            "text": "\\left( - \\dfrac{3}{2}\\right)\\left(\\dfrac{9}{4} - \\ d^{2}\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ - \\dfrac{2}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "d = ±1/6"
+          {
+            "text": "\\dfrac{9}{4} - \\ d^{2}\\ = \\ - \\dfrac{10}{3} \\times \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ \\dfrac{20}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ \\dfrac{9}{4} - \\ \\dfrac{20}{9}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{81}{36} - \\ \\dfrac{80}{36} = \\ \\dfrac{1}{36}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "d\\ = \\ \\pm \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -342,10 +412,26 @@
           "Leaving d² = 1/36 as if d were 1/36."
         ],
         "lines_compact": [
-          "(−3/2)(9/4 − d²) = −10/3",
-          "9/4 − d² = −10/3 × (−2/3) = 20/9",
-          "d² = 9/4 − 20/9 = (81 − 80)/36 = 1/36",
-          "d = ±1/6"
+          {
+            "text": "\\left( - \\dfrac{3}{2}\\right)\\left(\\dfrac{9}{4} - \\ d^{2}\\right)\\ = \\ - \\dfrac{10}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{9}{4} - \\ d^{2}\\ = \\ - \\dfrac{10}{3} \\times \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ \\dfrac{20}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ \\dfrac{9}{4} - \\ \\dfrac{20}{9} = \\ \\dfrac{81\\ - \\ 80}{36} = \\ \\dfrac{1}{36}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d\\ = \\ \\pm \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -366,20 +452,27 @@
             "added": true
           },
           {
-            "text": "a − d = −3/2 − 1/6 = −9/6 − 1/6 = −10/6 = −5/3",
+            "text": "a\\ - \\ d\\ = \\ - \\dfrac{3}{2} - \\ \\dfrac{1}{6} = \\ - \\dfrac{9}{6} - \\ \\dfrac{1}{6} = \\ - \\dfrac{10}{6} = \\ - \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a = −3/2",
+            "text": "a\\ = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a + d = −3/2 + 1/6 = −9/6 + 1/6 = −8/6 = −4/3",
+            "text": "a\\ + \\ d\\ = \\ - \\dfrac{3}{2} + \\ \\dfrac{1}{6} = \\ - \\dfrac{9}{6} + \\ \\dfrac{1}{6} = \\ - \\dfrac{8}{6} = \\ - \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ roots: −5/3, −3/2, −4/3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{5}{3},\\ - \\dfrac{3}{2},\\ - \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -411,12 +504,25 @@
           "Leaving the fractions unsimplified so the A.P. is not visible."
         ],
         "lines_compact": [
-          "Take d = 1/6 (d = −1/6 gives the same three roots):",
-          "a − d = −3/2 − 1/6 = −10/6 = −5/3",
-          "a + d = −3/2 + 1/6 = −8/6 = −4/3",
           {
-            "text": "∴ roots: −5/3, −3/2, −4/3",
-            "style": "boxed"
+            "text": "\\text{Take}\\ d\\ = \\ \\dfrac{1}{6}\\left(d\\ = \\ - \\dfrac{1}{6}\\text{gives}\\ \\text{the}\\ \\text{same}\\ \\text{three}\\ \\text{roots}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ - \\ d\\ = \\ - \\dfrac{3}{2} - \\ \\dfrac{1}{6} = \\ - \\dfrac{10}{6} = \\ - \\dfrac{5}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ + \\ d\\ = \\ - \\dfrac{3}{2} + \\ \\dfrac{1}{6} = \\ - \\dfrac{8}{6} = \\ - \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{5}{3},\\ - \\dfrac{3}{2},\\ - \\dfrac{4}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

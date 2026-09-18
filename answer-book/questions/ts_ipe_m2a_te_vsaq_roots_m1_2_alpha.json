@@ -74,8 +74,16 @@
           "a₀x³ + a₁x² + a₂x + a₃ = 0:",
           "a₀ = 2, a₁ = 1, a₂ = −7, a₃ = −6",
           "For a₀x³ + a₁x² + a₂x + a₃ = 0 the root relations are",
-          "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
-          "Sum of the roots S₁ = −a₁/a₀ = −1/2"
+          {
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,15 +126,26 @@
             "text": "The roots are −1, 2 and α, so their sum is",
             "added": true
           },
-          "−1 + 2 + α = −1/2",
-          "1 + α = −1/2",
           {
-            "text": "α = −1/2 − 1 = −1/2 − 2/2",
+            "text": "- 1\\ + \\ 2\\ + \\ \\alpha \\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ \\alpha \\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\alpha \\ = \\ - \\dfrac{1}{2} - \\ 1\\ = \\ - \\dfrac{1}{2} - \\ \\dfrac{2}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ α = −3/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\alpha \\ = \\ - \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,11 +175,20 @@
           "Not checking with the product."
         ],
         "lines_compact": [
-          "−1 + 2 + α = −1/2",
-          "1 + α = −1/2",
           {
-            "text": "∴ α = −3/2",
-            "style": "boxed"
+            "text": "- 1\\ + \\ 2\\ + \\ \\alpha \\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ \\alpha \\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\alpha \\ = \\ - \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

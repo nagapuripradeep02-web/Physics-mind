@@ -71,12 +71,32 @@
             "style": "heading"
           },
           "Use the half-angle identities",
-          "1 + cos θ = 2cos²(θ/2)",
-          "sin θ = 2 sin(θ/2) cos(θ/2)",
+          {
+            "text": "1\\ + \\ \\cos \\theta \\ = \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\theta \\ = \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "1 + cos θ + i sin θ",
-          "= 2cos²(θ/2) + i · 2 sin(θ/2) cos(θ/2)",
-          "Both terms carry 2cos(θ/2), so take it out:",
-          "= 2cos(θ/2)[cos(θ/2) + i sin(θ/2)]"
+          {
+            "text": "= \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\ \\cdot \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{carry}\\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right),\\ \\text{so}\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,23 +139,37 @@
         "lines": [
           "(1 + cos θ + i sin θ)ⁿ",
           {
-            "text": "= [2cos(θ/2)]ⁿ [cos(θ/2) + i sin(θ/2)]ⁿ",
+            "text": "= \\ \\left[2\\cos \\left(\\dfrac{\\theta }{2}\\right)\\right]^{n}\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "By De Moivre's theorem the angle is multiplied:",
             "added": true
           },
           {
-            "text": "[cos(θ/2) + i sin(θ/2)]ⁿ",
+            "text": "\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= cos(nθ/2) + i sin(nθ/2)",
+            "text": "= \\ \\cos \\left(\\dfrac{n\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2ⁿ cosⁿ(θ/2)[cos(nθ/2) + i sin(nθ/2)] …(1)"
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{n\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\theta }{2}\\right)\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -168,8 +202,16 @@
         ],
         "lines_compact": [
           "(1 + cos θ + i sin θ)ⁿ",
-          "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
-          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) + i sin(nθ/2)] …(1)",
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{n\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\theta }{2}\\right)\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(by De Moivre's theorem)"
         ]
       },
@@ -195,7 +237,11 @@
             "added": true
           },
           "(1 + cos θ − i sin θ)ⁿ",
-          "= 2ⁿ cosⁿ(θ/2)[cos(nθ/2) − i sin(nθ/2)] …(2)"
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{n\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{n\\theta }{2}\\right)\\right]\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -228,7 +274,11 @@
         "lines_compact": [
           "Similarly,",
           "(1 + cos θ − i sin θ)ⁿ",
-          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) − i sin(nθ/2)] …(2)"
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{n\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{n\\theta }{2}\\right)\\right]\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,14 +295,19 @@
             "added": true
           },
           "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",
-          "= 2ⁿ cosⁿ(θ/2) · 2cos(nθ/2)",
+          {
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{n\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2ⁿ · 2 = 2ⁿ⁺¹",
             "added": true
           },
           {
-            "text": "= 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
-            "style": "boxed"
+            "text": "= \\ 2^{n+1}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{n\\theta }{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -287,10 +342,15 @@
         "lines_compact": [
           "Adding (1) and (2):",
           "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",
-          "= 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2)",
           {
-            "text": "= 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
-            "style": "boxed"
+            "text": "= \\ 2^{n}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\ \\cdot \\ 2\\cos \\left(\\dfrac{n\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2^{n+1}\\cos ^{n}\\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{n\\theta }{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

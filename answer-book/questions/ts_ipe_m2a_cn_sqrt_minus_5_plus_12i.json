@@ -105,13 +105,21 @@
             "text": "Here b = 12, which is positive, and for b > 0",
             "added": true
           },
-          "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
           {
-            "text": "(r + a)/2 = (13 − 5)/2 = 8/2 = 4",
+            "text": "\\sqrt{a\\ + \\ ib}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{r\\ + \\ a}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{r\\ - \\ a}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{r\\ + \\ a}{2} = \\ \\dfrac{13\\ - \\ 5}{2} = \\ \\dfrac{8}{2} = \\ 4",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(r − a)/2 = (13 + 5)/2 = 18/2 = 9",
+            "text": "\\dfrac{r\\ - \\ a}{2} = \\ \\dfrac{13\\ + \\ 5}{2} = \\ \\dfrac{18}{2} = \\ 9",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -162,12 +170,14 @@
         "lines_compact": [
           "For b > 0:",
           {
-            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
-            "style": "eq"
+            "text": "\\sqrt{a\\ + \\ ib}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{r\\ + \\ a}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{r\\ - \\ a}{2}}\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "√(−5 + 12i) = ±(√((13 − 5)/2) + i·√((13 + 5)/2))",
-            "style": "eq"
+            "text": "\\sqrt{ - 5\\ + \\ 12i}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{13\\ - \\ 5}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{13\\ + \\ 5}{2}}\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           "= ±(√4 + i√9)",
           {

@@ -129,14 +129,22 @@
             "added": true
           },
           {
-            "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Sum of the roots S₁ = −a₁/a₀ = −(−36)/8 = 9/2",
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ - \\dfrac{ - 36}{8} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(a − d) + a + (a + d) = 9/2",
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ + \\ a\\ + \\ \\left(a\\ + \\ d\\right)\\ = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The −d and +d cancel:",
             "added": true
@@ -171,8 +179,16 @@
           "Not cancelling the fraction before writing 3a = …"
         ],
         "lines_compact": [
-          "Sum of roots S₁ = −a₁/a₀:",
-          "(a − d) + a + (a + d) = 36/8 = 9/2"
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ + \\ a\\ + \\ \\left(a\\ + \\ d\\right)\\ = \\ \\dfrac{36}{8} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -185,11 +201,15 @@
         "memory_tip": "3a = 9/2 gives a = 3/2, the middle root.",
         "lines": [
           {
-            "text": "3a = 9/2",
+            "text": "3a\\ = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a = 9/6 = 3/2",
+            "text": "a\\ = \\ \\dfrac{9}{6} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -218,7 +238,11 @@
           "Writing a = the sum instead of a = the sum divided by 3."
         ],
         "lines_compact": [
-          "3a = 9/2, so a = 3/2"
+          {
+            "text": "3a\\ = \\ \\dfrac{9}{2},\\ \\text{so}\\ a\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -231,15 +255,25 @@
         "memory_tip": "S₃ = −a₃/a₀ = −81/8. The product is a(a² − d²), never a³ − d².",
         "lines": [
           {
-            "text": "Product of the roots S₃ = −a₃/a₀ = −81/8",
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}} = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(a − d) · a · (a + d) = −81/8",
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ \\cdot \\ a\\ \\cdot \\ \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a − d)(a + d) = a² − d², so",
             "added": true
           },
-          "a(a² − d²) = −81/8"
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -270,9 +304,21 @@
           "Using the x coefficient a₂ instead of the constant a₃."
         ],
         "lines_compact": [
-          "Product of roots S₃ = −a₃/a₀:",
-          "(a − d)·a·(a + d) = −81/8",
-          "a(a² − d²) = −81/8"
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right) \\cdot a \\cdot \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -285,20 +331,38 @@
         "memory_tip": "Divide out a = 3/2 first, then d² = 9 and d = ±3. Either sign gives the same roots.",
         "lines": [
           {
-            "text": "Put a = 3/2:",
+            "text": "\\text{Put}\\ a\\ = \\ \\dfrac{3}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(3/2)((3/2)² − d²) = −81/8",
+            "text": "\\left(\\dfrac{3}{2}\\right)\\left(\\left(\\dfrac{3}{2}\\right)^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(3/2)(9/4 − d²) = −81/8",
           {
-            "text": "Multiply both sides by 2/3:",
+            "text": "\\left(\\dfrac{3}{2}\\right)\\left(\\dfrac{9}{4} - \\ d^{2}\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\dfrac{2}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "9/4 − d² = −81/8 × 2/3 = −27/4",
-          "d² = 9/4 + 27/4 = 36/4 = 9",
+          {
+            "text": "\\dfrac{9}{4} - \\ d^{2}\\ = \\ - \\dfrac{81}{8} \\times \\ \\dfrac{2}{3} = \\ - \\dfrac{27}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ \\dfrac{9}{4} + \\ \\dfrac{27}{4} = \\ \\dfrac{36}{4} = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           "d = ±3"
         ],
         "recall": {
@@ -329,9 +393,21 @@
           "Leaving d² = 9 as if d were 9."
         ],
         "lines_compact": [
-          "(3/2)(9/4 − d²) = −81/8",
-          "9/4 − d² = −81/8 × 2/3 = −27/4",
-          "d² = 9/4 + 27/4 = 36/4 = 9",
+          {
+            "text": "\\left(\\dfrac{3}{2}\\right)\\left(\\dfrac{9}{4} - \\ d^{2}\\right)\\ = \\ - \\dfrac{81}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{9}{4} - \\ d^{2}\\ = \\ - \\dfrac{81}{8} \\times \\ \\dfrac{2}{3} = \\ - \\dfrac{27}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ \\dfrac{9}{4} + \\ \\dfrac{27}{4} = \\ \\dfrac{36}{4} = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           "d = ±3"
         ]
       },
@@ -353,20 +429,27 @@
             "added": true
           },
           {
-            "text": "a − d = 3/2 − 3 = 3/2 − 6/2 = −3/2",
+            "text": "a\\ - \\ d\\ = \\ \\dfrac{3}{2} - \\ 3\\ = \\ \\dfrac{3}{2} - \\ \\dfrac{6}{2} = \\ - \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a = 3/2",
+            "text": "a\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a + d = 3/2 + 3 = 3/2 + 6/2 = 9/2",
+            "text": "a\\ + \\ d\\ = \\ \\dfrac{3}{2} + \\ 3\\ = \\ \\dfrac{3}{2} + \\ \\dfrac{6}{2} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ roots: −3/2, 3/2, 9/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{3}{2},\\ \\dfrac{3}{2},\\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -399,10 +482,15 @@
         ],
         "lines_compact": [
           "Take d = 3 (d = −3 gives the same three roots):",
-          "a − d = 3/2 − 3 = −3/2, a = 3/2, a + d = 9/2",
           {
-            "text": "∴ roots: −3/2, 3/2, 9/2",
-            "style": "boxed"
+            "text": "a\\ - \\ d\\ = \\ \\dfrac{3}{2} - \\ 3\\ = \\ - \\dfrac{3}{2},\\ a\\ = \\ \\dfrac{3}{2},\\ a\\ + \\ d\\ = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{3}{2},\\ \\dfrac{3}{2},\\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

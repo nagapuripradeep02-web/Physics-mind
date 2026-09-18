@@ -70,20 +70,56 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given t = 4/5 + (4·6)/(5·10)",
-          "  + (4·6·8)/(5·10·15) + …",
+          {
+            "text": "\\text{Given}\\ t\\ = \\ \\dfrac{4}{5} + \\ \\dfrac{4 \\cdot 6}{5 \\cdot 10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{4 \\cdot 6 \\cdot 8}{5 \\cdot 10 \\cdot 15} + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "Look at the denominators: 5 = 5¹·1!",
           "5·10 = (5·1)(5·2) = 5²·(1·2) = 5²·2!",
           "5·10·15 = (5·1)(5·2)(5·3) = 5³·3!",
-          "So 4/5 = (4/1!)(1/5)",
-          "(4·6)/(5·10) = (4·6)/(5²·2!) = (4·6/2!)(1/5)²",
-          "(4·6·8)/(5·10·15) = (4·6·8/3!)(1/5)³",
-          "t = (4/1!)(1/5) + (4·6/2!)(1/5)²",
-          "  + (4·6·8/3!)(1/5)³ + …",
+          {
+            "text": "\\text{So}\\ \\dfrac{4}{5} = \\ \\left(\\dfrac{4}{1!}\\right)\\left(\\dfrac{1}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{4 \\cdot 6}{5 \\cdot 10} = \\ \\dfrac{4 \\cdot 6}{5^{2} \\cdot 2!} = \\ \\left(4 \\cdot \\dfrac{6}{2!}\\right)\\left(\\dfrac{1}{5}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{4 \\cdot 6 \\cdot 8}{5 \\cdot 10 \\cdot 15} = \\ \\left(4 \\cdot 6 \\cdot \\dfrac{8}{3!}\\right)\\left(\\dfrac{1}{5}\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "t\\ = \\ \\left(\\dfrac{4}{1!}\\right)\\left(\\dfrac{1}{5}\\right)\\ + \\ \\left(4 \\cdot \\dfrac{6}{2!}\\right)\\left(\\dfrac{1}{5}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(4 \\cdot 6 \\cdot \\dfrac{8}{3!}\\right)\\left(\\dfrac{1}{5}\\right)^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "The first term, 1, is missing",
           "Adding 1 on both sides:",
-          "1 + t = 1 + (4/1!)(1/5) + (4·6/2!)(1/5)²",
-          "  + (4·6·8/3!)(1/5)³ + …"
+          {
+            "text": "1\\ + \\ t\\ = \\ 1\\ + \\ \\left(\\dfrac{4}{1!}\\right)\\left(\\dfrac{1}{5}\\right)\\ + \\ \\left(4 \\cdot \\dfrac{6}{2!}\\right)\\left(\\dfrac{1}{5}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(4 \\cdot 6 \\cdot \\dfrac{8}{3!}\\right)\\left(\\dfrac{1}{5}\\right)^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,11 +233,15 @@
             "added": true
           },
           {
-            "text": "Match the bracket: x/q = 1/5",
+            "text": "\\text{Match}\\ \\text{the}\\ \\text{bracket}:\\ \\dfrac{x}{q} = \\ \\dfrac{1}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "x = q · 1/5 = 2 · (1/5) = 2/5",
+            "text": "x\\ = \\ q\\ \\cdot \\ \\dfrac{1}{5} = \\ 2\\ \\cdot \\ \\left(\\dfrac{1}{5}\\right)\\ = \\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -233,7 +273,11 @@
         ],
         "lines_compact": [
           "p = 4, p + q = 6 ⇒ q = 2",
-          "x/q = 1/5 ⇒ x = q/5 = 2/5"
+          {
+            "text": "\\dfrac{x}{q} = \\ \\dfrac{1}{5} \\Rightarrow \\ x\\ = \\ \\dfrac{q}{5} = \\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -252,7 +296,9 @@
             "added": true
           },
           {
-            "text": "1 − 2/5 = 3/5, and −4/2 = −2",
+            "text": "1\\ - \\ \\dfrac{2}{5} = \\ \\dfrac{3}{5},\\ \\text{and}\\ - \\dfrac{4}{2} = \\ - 2",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

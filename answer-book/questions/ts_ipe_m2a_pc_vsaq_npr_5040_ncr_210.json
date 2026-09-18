@@ -65,7 +65,11 @@
           "ⁿPᵣ counts arrangements and ⁿCᵣ selections;",
           "each selection of r things can be arranged",
           "in r! ways, so ⁿPᵣ = r! · ⁿCᵣ",
-          "r! = ⁿPᵣ / ⁿCᵣ = 5040/210",
+          {
+            "text": "r!\\ = \\ \\dfrac{^{n}P_{r}}{{}^{n}C_{r}} = \\ \\dfrac{5040}{210}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 24",
           "24 = 4 · 3 · 2 · 1 = 4!",
           "∴ r = 4"

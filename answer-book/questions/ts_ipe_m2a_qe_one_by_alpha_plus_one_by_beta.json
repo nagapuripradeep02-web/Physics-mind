@@ -59,8 +59,16 @@
             "style": "heading"
           },
           "If α, β are the roots of ax² + bx + c = 0,",
-          "then α + β = −b/a and αβ = c/a",
-          "Here α + β = −b/a and αβ = c/a"
+          {
+            "text": "\\text{then}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,14 +114,26 @@
             "text": "Add the two fractions:",
             "added": true
           },
-          "1/α + 1/β = (β + α)/(αβ)",
           {
-            "text": "= (α + β)/(αβ)",
+            "text": "\\dfrac{1}{\\alpha } + \\ \\dfrac{1}{\\beta } = \\ \\dfrac{\\beta \\ + \\ \\alpha }{\\alpha \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\alpha \\ + \\ \\beta }{\\alpha \\beta }",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−b/a) ÷ (c/a)",
           {
-            "text": "= (−b/a) × (a/c)",
+            "text": "= \\ \\left( - \\dfrac{b}{a}\\right)\\ \\div \\ \\left(\\dfrac{c}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - \\dfrac{b}{a}\\right)\\ \\times \\ \\left(\\dfrac{a}{c}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -121,8 +141,9 @@
             "added": true
           },
           {
-            "text": "∴ 1/α + 1/β = −b/c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{1}{\\alpha } + \\ \\dfrac{1}{\\beta } = \\ - \\dfrac{b}{c}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -154,11 +175,20 @@
           "Losing the minus sign: the answer is −b/c, not b/c."
         ],
         "lines_compact": [
-          "1/α + 1/β = (α + β)/(αβ)",
-          "= (−b/a)/(c/a)",
           {
-            "text": "∴ 1/α + 1/β = −b/c",
-            "style": "boxed"
+            "text": "\\dfrac{1}{\\alpha } + \\ \\dfrac{1}{\\beta } = \\ \\dfrac{\\alpha \\ + \\ \\beta }{\\alpha \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ - \\dfrac{b}{a}}{\\dfrac{c}{a}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\alpha } + \\ \\dfrac{1}{\\beta } = \\ - \\dfrac{b}{c}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

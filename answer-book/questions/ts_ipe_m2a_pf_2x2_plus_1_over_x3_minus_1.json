@@ -73,8 +73,16 @@
           "so it has no real factors.",
           "An irreducible quadratic gets",
           "  a linear top (Bx + C):",
-          "(2x² + 1)/((x − 1)(x² + x + 1))",
-          "= A/(x − 1) + (Bx + C)/(x² + x + 1)"
+          {
+            "text": "\\dfrac{2x^{2}\\ + \\ 1}{\\left(x\\ - \\ 1\\right)\\left(x^{2}\\ + \\ x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ - \\ 1} + \\ \\dfrac{Bx\\ + \\ C}{x^{2}\\ + \\ x\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -252,10 +260,15 @@
         "margin_note": "Last mark. With B = 1 and C = 0 the second numerator is just x. Write the original fraction on the left.",
         "memory_tip": "C = 0 is a correct value, so the second numerator is just x. Check with x = 2: 9 = 7 + 2.",
         "lines": [
-          "∴ (2x² + 1)/(x³ − 1)",
           {
-            "text": "= 1/(x − 1) + x/(x² + x + 1)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{2x^{2}\\ + \\ 1}{x^{3}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{x\\ - \\ 1} + \\ \\dfrac{x}{x^{2}\\ + \\ x\\ + \\ 1}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

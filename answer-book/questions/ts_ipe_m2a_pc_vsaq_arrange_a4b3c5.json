@@ -102,7 +102,9 @@
             "added": true
           },
           {
-            "text": "the arrangements are n!/(p!·q!·r!)",
+            "text": "\\text{the}\\ \\text{arrangements}\\ \\text{are}\\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -110,7 +112,9 @@
             "added": true
           },
           {
-            "text": "Arrangements = 12!/(4!·3!·5!)",
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{12!}{4! \\cdot 3! \\cdot 5!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -126,7 +130,9 @@
             "added": true
           },
           {
-            "text": "= 479001600/17280",
+            "text": "= \\ \\dfrac{479001600}{17280}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -162,10 +168,15 @@
           "Computing 5! as 60."
         ],
         "lines_compact": [
-          "Arrangements = n!/(p!·q!·r!)",
           {
-            "text": "= 12!/(4!·3!·5!) = 27,720",
-            "style": "boxed"
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12!}{4! \\cdot 3! \\cdot 5!} = \\ 27,720",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

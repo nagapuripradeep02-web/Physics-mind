@@ -66,17 +66,33 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S. = 1/(1 + 2ω) + 1/(2 + ω)",
+          {
+            "text": "L.H.S.\\ = \\ \\dfrac{1}{1\\ + \\ 2\\omega } + \\ \\dfrac{1}{2\\ + \\ \\omega }",
+            "style": "normal",
+            "render": "katex"
+          },
           "Add the fractions:",
-          "= [(2 + ω) + (1 + 2ω)] / [(1 + 2ω)(2 + ω)]",
+          {
+            "text": "= \\ \\dfrac{\\left(2\\ + \\ \\omega \\right)\\ + \\ \\left(1\\ + \\ 2\\omega \\right)}{\\left(1\\ + \\ 2\\omega \\right)\\left(2\\ + \\ \\omega \\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Top = 3 + 3ω = 3(1 + ω)",
           "Bottom = 2 + ω + 4ω + 2ω² = 2 + 5ω + 2ω²",
           "Write it using 1 + ω + ω² = 0:",
           "2 + 5ω + 2ω² = 2(1 + ω + ω²) + 3ω",
           "= 2(0) + 3ω = 3ω",
-          "= 3(1 + ω)/(3ω) = (1 + ω)/ω",
+          {
+            "text": "= \\ \\dfrac{3\\left(1\\ + \\ \\omega \\right)}{3\\omega } = \\ \\dfrac{1\\ + \\ \\omega }{\\omega }",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now 1 + ω = −ω², so",
-          "= −ω²/ω = −ω"
+          {
+            "text": "= \\ - \\dfrac{\\omega ^{2}}{\\omega } = \\ - \\omega",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +134,9 @@
         "memory_tip": "1 + ω = −ω², so the right side is −1/ω² = −ω as well. The comparison line is the mark.",
         "lines": [
           {
-            "text": "R.H.S. = 1/(1 + ω) = 1/(−ω²)",
+            "text": "R.H.S.\\ = \\ \\dfrac{1}{1\\ + \\ \\omega } = \\ \\dfrac{1}{ - \\omega ^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -126,7 +144,9 @@
             "added": true
           },
           {
-            "text": "= −ω/ω³ = −ω/1 = −ω",
+            "text": "= \\ - \\dfrac{\\omega }{\\omega ^{3}} = \\ - \\dfrac{\\omega }{1} = \\ - \\omega",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -163,7 +183,11 @@
           "Proving only the left side and never touching the right."
         ],
         "lines_compact": [
-          "R.H.S. = 1/(1 + ω) = 1/(−ω²) = −ω/ω³ = −ω",
+          {
+            "text": "R.H.S.\\ = \\ \\dfrac{1}{1\\ + \\ \\omega } = \\ \\dfrac{1}{ - \\omega ^{2}} = \\ - \\dfrac{\\omega }{\\omega ^{3}} = \\ - \\omega",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ L.H.S. = R.H.S.",
             "style": "boxed"

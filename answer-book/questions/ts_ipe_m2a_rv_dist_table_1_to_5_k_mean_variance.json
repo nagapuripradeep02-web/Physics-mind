@@ -86,7 +86,11 @@
           },
           "k + 2k + 3k + 4k + 5k = 1",
           "15k = 1",
-          "k = 1/15"
+          {
+            "text": "k\\ = \\ \\dfrac{1}{15}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -137,10 +141,16 @@
           },
           "= k(1 + 4 + 9 + 16 + 25) = 55k",
           {
-            "text": "Put k = 1/15:",
+            "text": "\\text{Put}\\ k\\ = \\ \\dfrac{1}{15}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 55/15 = 11/3"
+          {
+            "text": "= \\ \\dfrac{55}{15} = \\ \\dfrac{11}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -177,7 +187,11 @@
           },
           "= 1(k) + 2(2k) + 3(3k) + 4(4k) + 5(5k)",
           "= k(1 + 4 + 9 + 16 + 25) = 55k",
-          "= 55/15 = 11/3"
+          {
+            "text": "= \\ \\dfrac{55}{15} = \\ \\dfrac{11}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -200,17 +214,26 @@
           "= 1(k) + 4(2k) + 9(3k) + 16(4k) + 25(5k)",
           "= k(1 + 8 + 27 + 64 + 125) = 225k",
           {
-            "text": "= 225/15 = 15",
+            "text": "= \\ \\dfrac{225}{15} = \\ 15",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "σ² = 15 − (11/3)² = 15 − 121/9",
+            "text": "\\sigma ^{2}\\ = \\ 15\\ - \\ \\left(\\dfrac{11}{3}\\right)^{2}\\ = \\ 15\\ - \\ \\dfrac{121}{9}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 135/9 − 121/9 = 14/9",
           {
-            "text": "∴ k = 1/15, μ = 11/3, σ² = 14/9",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{135}{9} - \\ \\dfrac{121}{9} = \\ \\dfrac{14}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{15},\\ \\mu \\ = \\ \\dfrac{11}{3},\\ \\sigma ^{2}\\ = \\ \\dfrac{14}{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -246,13 +269,30 @@
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",
             "style": "eq"
           },
-          "= 1(k) + 4(2k) + 9(3k) + 16(4k) + 25(5k) − (11/3)²",
-          "= k(1 + 8 + 27 + 64 + 125) − 121/9",
-          "= 225/15 − 121/9 = 15 − 121/9",
-          "= (135 − 121)/9 = 14/9",
           {
-            "text": "∴ k = 1/15, μ = 11/3, σ² = 14/9",
-            "style": "boxed"
+            "text": "= \\ 1\\left(k\\right)\\ + \\ 4\\left(2k\\right)\\ + \\ 9\\left(3k\\right)\\ + \\ 16\\left(4k\\right)\\ + \\ 25\\left(5k\\right)\\ - \\ \\left(\\dfrac{11}{3}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ k\\left(1\\ + \\ 8\\ + \\ 27\\ + \\ 64\\ + \\ 125\\right)\\ - \\ \\dfrac{121}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{225}{15} - \\ \\dfrac{121}{9} = \\ 15\\ - \\ \\dfrac{121}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{135\\ - \\ 121}{9} = \\ \\dfrac{14}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{15},\\ \\mu \\ = \\ \\dfrac{11}{3},\\ \\sigma ^{2}\\ = \\ \\dfrac{14}{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

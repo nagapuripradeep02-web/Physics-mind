@@ -100,7 +100,9 @@
             "added": true
           },
           {
-            "text": "⁸C₃ = (8·7·6)/(1·2·3) = 336/6 = 56",
+            "text": "{}^{8}C_{3}\\ = \\ \\dfrac{8 \\cdot 7 \\cdot 6}{1 \\cdot 2 \\cdot 3} = \\ \\dfrac{336}{6} = \\ 56",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

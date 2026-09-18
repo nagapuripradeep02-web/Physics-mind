@@ -306,7 +306,9 @@
         "memory_tip": "1/a = cis(−α), so the reciprocals sum to 0 as well. Multiply through by abc: ab + bc + ca = 0.",
         "lines": [
           {
-            "text": "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
+            "text": "\\dfrac{1}{a} = \\ \\dfrac{1}{cis}\\alpha \\ = \\ cis\\left( - \\alpha \\right)\\ = \\ \\cos \\alpha \\ - \\ i\\sin \\alpha ,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -314,7 +316,9 @@
             "added": true
           },
           {
-            "text": "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
+            "text": "\\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c} = \\ \\left(\\cos \\alpha \\ + \\ \\cos \\beta \\ + \\ \\cos \\gamma \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -330,7 +334,9 @@
             "added": true
           },
           {
-            "text": "(bc + ca + ab)/abc = 0",
+            "text": "\\dfrac{bc\\ + \\ ca\\ + \\ ab}{abc} = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -379,10 +385,18 @@
           "Writing ab = cis(αβ) instead of cis(α + β)."
         ],
         "lines_compact": [
-          "1/a + 1/b + 1/c = cis(−α) + cis(−β) + cis(−γ)",
+          {
+            "text": "\\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c} = \\ cis\\left( - \\alpha \\right)\\ + \\ cis\\left( - \\beta \\right)\\ + \\ cis\\left( - \\gamma \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (cos α + cos β + cos γ)",
           "− i(sin α + sin β + sin γ) = 0 − i(0) = 0",
-          "⇒ (bc + ca + ab)/abc = 0 ⇒ ab + bc + ca = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{bc\\ + \\ ca\\ + \\ ab}{abc} = \\ 0\\ \\Rightarrow \\ ab\\ + \\ bc\\ + \\ ca\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ cis(α + β) + cis(β + γ) + cis(γ + α) = 0",
           "Equating real parts:",
           {

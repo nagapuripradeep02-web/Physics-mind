@@ -53,11 +53,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The multiplicative inverse of z is 1/z.",
-          "Here z = √5 + 3i, so the inverse is 1/(√5 + 3i).",
+          {
+            "text": "\\text{The}\\ \\text{multiplicative}\\ \\text{inverse}\\ \\text{of}\\ z\\ \\text{is}\\ \\dfrac{1}{z}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ z\\ = \\ \\sqrt{5}\\ + \\ 3i,\\ \\text{so}\\ \\text{the}\\ \\text{inverse}\\ \\text{is}\\ \\dfrac{1}{\\sqrt{5}\\ + \\ 3i}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by the conjugate",
           "of the denominator, √5 − 3i:",
-          "1/(√5 + 3i) = (√5 − 3i) / [(√5 + 3i)(√5 − 3i)]",
+          {
+            "text": "\\dfrac{1}{\\sqrt{5}\\ + \\ 3i} = \\ \\dfrac{\\sqrt{5}\\ - \\ 3i}{\\left(\\sqrt{5}\\ + \\ 3i\\right)\\left(\\sqrt{5}\\ - \\ 3i\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Denominator = (√5)² + 3² = 5 + 9",
           "  [(a + ib)(a − ib) = a² + b²]"
         ],
@@ -103,7 +115,9 @@
             "added": true
           },
           {
-            "text": "So the inverse is (√5 − 3i)/14",
+            "text": "\\text{So}\\ \\text{the}\\ \\text{inverse}\\ \\text{is}\\ \\dfrac{\\sqrt{5}\\ - \\ 3i}{14}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -111,8 +125,9 @@
             "added": true
           },
           {
-            "text": "∴ inverse = √5/14 − (3/14)i",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{inverse}\\ = \\ \\dfrac{\\sqrt{5}}{14} - \\ \\left(\\dfrac{3}{14}\\right)i",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,10 +157,15 @@
           "Trying to 'rationalise' the √5 in the numerator — it is already in simplest form."
         ],
         "lines_compact": [
-          "= (√5 − 3i)/14",
           {
-            "text": "∴ inverse = √5/14 − (3/14)i",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sqrt{5}\\ - \\ 3i}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{inverse}\\ = \\ \\dfrac{\\sqrt{5}}{14} - \\ \\left(\\dfrac{3}{14}\\right)i",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

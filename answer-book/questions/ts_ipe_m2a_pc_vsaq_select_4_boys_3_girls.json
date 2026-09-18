@@ -102,15 +102,21 @@
         "memory_tip": "70 × 10 = 700. Adding gives 80, and ¹³C₇ ignores the split the question fixes.",
         "lines": [
           {
-            "text": "⁸C₄ = (8 · 7 · 6 · 5)/(1 · 2 · 3 · 4)",
+            "text": "{}^{8}C_{4}\\ = \\ \\dfrac{8\\ \\cdot \\ 7\\ \\cdot \\ 6\\ \\cdot \\ 5}{1\\ \\cdot \\ 2\\ \\cdot \\ 3\\ \\cdot \\ 4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 1680/24 = 70",
+            "text": "= \\ \\dfrac{1680}{24} = \\ 70",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⁵C₃ = ⁵C₂ = (5 · 4)/(1 · 2) = 10",
+            "text": "{}^{5}C_{3}\\ = \\ {}^{5}C_{2}\\ = \\ \\dfrac{5\\ \\cdot \\ 4}{1\\ \\cdot \\ 2} = \\ 10",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

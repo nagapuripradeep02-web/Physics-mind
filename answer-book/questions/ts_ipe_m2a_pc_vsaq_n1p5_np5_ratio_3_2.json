@@ -60,7 +60,11 @@
           "⁽ⁿ⁺¹⁾P₅ / ⁿP₅ = 3/2",
           "The factors n(n − 1)(n − 2)(n − 3)",
           "are common to both, so they cancel:",
-          "(n + 1)/(n − 4) = 3/2"
+          {
+            "text": "\\dfrac{n\\ + \\ 1}{n\\ - \\ 4} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

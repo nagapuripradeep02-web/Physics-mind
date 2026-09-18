@@ -84,9 +84,17 @@
           "reciprocal equation, and n = 4 is even.",
           "x = 0 is not a root (the constant is 1 ≠ 0),",
           "so divide every term by x²:",
-          "x² − 10x + 26 − 10/x + 1/x² = 0",
+          {
+            "text": "x^{2}\\ - \\ 10x\\ + \\ 26\\ - \\ \\dfrac{10}{x} + \\ \\dfrac{1}{x^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Group the pairs that match:",
-          "(x² + 1/x²) − 10(x + 1/x) + 26 = 0 … (1)"
+          {
+            "text": "\\left(x^{2}\\ + \\ \\dfrac{1}{x^{2}}\\right)\\ - \\ 10\\left(x\\ + \\ \\dfrac{1}{x}\\right)\\ + \\ 26\\ = \\ 0\\ \\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -127,16 +135,28 @@
         "margin_note": "Second mark. The whole method is the identity x² + 1/x² = t² − 2. Write the squaring line once so the −2 is visible, then the equation is a quadratic in t.",
         "memory_tip": "Write the squaring line once: t² = x² + 2 + 1/x², so x² + 1/x² = t² − 2.",
         "lines": [
-          "Put x + 1/x = t.",
           {
-            "text": "Squaring both sides: (x + 1/x)² = t²",
+            "text": "\\text{Put}\\ x\\ + \\ \\dfrac{1}{x} = \\ t.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Squaring}\\ \\text{both}\\ \\text{sides}:\\ \\left(x\\ + \\ \\dfrac{1}{x}\\right)^{2}\\ = \\ t^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "x² + 2 + 1/x² = t²",
+            "text": "x^{2}\\ + \\ 2\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "So x² + 1/x² = t² − 2",
+          {
+            "text": "\\text{So}\\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}\\ - \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1) becomes (t² − 2) − 10t + 26 = 0",
           "t² − 10t + 24 = 0"
         ],
@@ -170,9 +190,21 @@
           "Substituting for x + 1/x but leaving x² + 1/x² unchanged."
         ],
         "lines_compact": [
-          "Put x + 1/x = t.",
-          "Squaring: x² + 2 + 1/x² = t², so",
-          "x² + 1/x² = t² − 2",
+          {
+            "text": "\\text{Put}\\ x\\ + \\ \\dfrac{1}{x} = \\ t.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Squaring}:\\ x^{2}\\ + \\ 2\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x^{2}\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}\\ - \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1) becomes (t² − 2) − 10t + 26 = 0",
           "t² − 10t + 24 = 0"
         ]
@@ -239,7 +271,11 @@
         "margin_note": "Two marks. Multiply x + 1/x = 4 by x to get x² − 4x + 1 = 0. The discriminant 16 − 4 = 12 = 4 × 3, so √12 = 2√3 and the 2 cancels with the denominator.",
         "memory_tip": "x² − 4x + 1 = 0, discriminant 12 = 4 × 3, so √12 = 2√3 and the 2 cancels: 2 ± √3.",
         "lines": [
-          "If t = 4: x + 1/x = 4",
+          {
+            "text": "\\text{If}\\ t\\ = \\ 4:\\ x\\ + \\ \\dfrac{1}{x} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by x: x² + 1 = 4x",
             "added": true
@@ -249,18 +285,26 @@
             "added": true
           },
           {
-            "text": "x = (4 ± √(16 − 4))/2   [quadratic formula]",
+            "text": "x\\ = \\ \\dfrac{4\\ \\pm \\ \\sqrt{16\\ - \\ 4}}{2}\\left[\\text{quadratic}\\ \\text{formula}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (4 ± √12)/2",
+            "text": "= \\ \\dfrac{4\\ \\pm \\ \\sqrt{12}}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "√12 = √(4 · 3) = 2√3",
             "added": true
           },
-          "= (4 ± 2√3)/2 = 2 ± √3"
+          {
+            "text": "= \\ \\dfrac{4\\ \\pm \\ 2\\sqrt{3}}{2} = \\ 2\\ \\pm \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -292,10 +336,22 @@
           "Not simplifying the surd form of the roots at the end."
         ],
         "lines_compact": [
-          "If t = 4: x + 1/x = 4",
+          {
+            "text": "\\text{If}\\ t\\ = \\ 4:\\ x\\ + \\ \\dfrac{1}{x} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           "x² + 1 = 4x, so x² − 4x + 1 = 0",
-          "x = (4 ± √(16 − 4))/2 = (4 ± √12)/2",
-          "= (4 ± 2√3)/2 = 2 ± √3"
+          {
+            "text": "x\\ = \\ \\dfrac{4\\ \\pm \\ \\sqrt{16\\ - \\ 4}}{2} = \\ \\dfrac{4\\ \\pm \\ \\sqrt{12}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4\\ \\pm \\ 2\\sqrt{3}}{2} = \\ 2\\ \\pm \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -307,7 +363,11 @@
         "margin_note": "Last two marks. x² − 6x + 1 = 0 has discriminant 36 − 4 = 32 = 16 × 2, so √32 = 4√2. Box all four roots together; a check is that their product is 1, the constant term.",
         "memory_tip": "x² − 6x + 1 = 0, discriminant 32 = 16 × 2, so √32 = 4√2: 3 ± 2√2. All four multiply to 1.",
         "lines": [
-          "If t = 6: x + 1/x = 6",
+          {
+            "text": "\\text{If}\\ t\\ = \\ 6:\\ x\\ + \\ \\dfrac{1}{x} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by x: x² + 1 = 6x",
             "added": true
@@ -316,12 +376,20 @@
             "text": "x² − 6x + 1 = 0",
             "added": true
           },
-          "x = (6 ± √(36 − 4))/2 = (6 ± √32)/2",
+          {
+            "text": "x\\ = \\ \\dfrac{6\\ \\pm \\ \\sqrt{36\\ - \\ 4}}{2} = \\ \\dfrac{6\\ \\pm \\ \\sqrt{32}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "√32 = √(16 · 2) = 4√2",
             "added": true
           },
-          "= (6 ± 4√2)/2 = 3 ± 2√2",
+          {
+            "text": "= \\ \\dfrac{6\\ \\pm \\ 4\\sqrt{2}}{2} = \\ 3\\ \\pm \\ 2\\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ roots: 2 ± √3, 3 ± 2√2",
             "style": "boxed"
@@ -357,10 +425,22 @@
           "Not simplifying the surd form of the roots at the end."
         ],
         "lines_compact": [
-          "If t = 6: x + 1/x = 6",
+          {
+            "text": "\\text{If}\\ t\\ = \\ 6:\\ x\\ + \\ \\dfrac{1}{x} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           "x² + 1 = 6x, so x² − 6x + 1 = 0",
-          "x = (6 ± √(36 − 4))/2 = (6 ± √32)/2",
-          "= (6 ± 4√2)/2 = 3 ± 2√2",
+          {
+            "text": "x\\ = \\ \\dfrac{6\\ \\pm \\ \\sqrt{36\\ - \\ 4}}{2} = \\ \\dfrac{6\\ \\pm \\ \\sqrt{32}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{6\\ \\pm \\ 4\\sqrt{2}}{2} = \\ 3\\ \\pm \\ 2\\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ roots: 2 ± √3, 3 ± 2√2",
             "style": "boxed"

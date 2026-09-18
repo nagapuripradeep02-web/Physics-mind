@@ -103,7 +103,9 @@
             "added": true
           },
           {
-            "text": "the arrangements are n!/(p!·q!·r!)",
+            "text": "\\text{the}\\ \\text{arrangements}\\ \\text{are}\\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -111,7 +113,9 @@
             "added": true
           },
           {
-            "text": "Numbers = 7!/(3!·2!·2!)",
+            "text": "\\text{Numbers}\\ = \\ \\dfrac{7!}{3! \\cdot 2! \\cdot 2!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -123,7 +127,9 @@
             "added": true
           },
           {
-            "text": "= 5040/24",
+            "text": "= \\ \\dfrac{5040}{24}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -159,10 +165,15 @@
           "Dividing by 7 (the sum 3 + 2 + 2) instead of 24."
         ],
         "lines_compact": [
-          "Numbers = n!/(p!·q!·r!) = 7!/(3!·2!·2!)",
           {
-            "text": "= 5040/24 = 210",
-            "style": "boxed"
+            "text": "\\text{Numbers}\\ = \\ \\dfrac{n!}{p! \\cdot q! \\cdot r!} = \\ \\dfrac{7!}{3! \\cdot 2! \\cdot 2!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{5040}{24} = \\ 210",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

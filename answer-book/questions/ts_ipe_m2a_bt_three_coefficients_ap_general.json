@@ -123,7 +123,11 @@
             "text": "Dividing both sides by ⁿCᵣ:",
             "added": true
           },
-          "2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ"
+          {
+            "text": "2\\ = \\ \\dfrac{{}^{n}C_{r-1}}{{}^{n}C_{r}} + \\ \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,7 +157,11 @@
         "lines_compact": [
           "2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁",
           "Dividing by ⁿCᵣ:",
-          "2 = ⁿCᵣ₋₁/ⁿCᵣ + ⁿCᵣ₊₁/ⁿCᵣ"
+          {
+            "text": "2\\ = \\ \\dfrac{{}^{n}C_{r-1}}{{}^{n}C_{r}} + \\ \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -166,23 +174,33 @@
         "memory_tip": "ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
         "lines": [
           {
-            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "text": "\\text{Now}\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\left[\\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "text": "\\div \\ \\left[\\dfrac{n!}{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "text": "= \\ \\dfrac{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "text": "= \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}\\left[r!\\ = \\ r\\left(r\\ - \\ 1\\right)!\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1)",
+            "text": "\\text{so}\\ \\dfrac{{}^{n}C_{r-1}}{{}^{n}C_{r}} = \\ \\dfrac{r}{n\\ - \\ r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -190,10 +208,16 @@
             "added": true
           },
           {
-            "text": "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1) = (n − r)/(r + 1)",
+            "text": "\\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{n\\ - \\ \\left(r\\ + \\ 1\\right)\\ + \\ 1}{r\\ + \\ 1} = \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2 = r/(n − r + 1) + (n − r)/(r + 1)"
+          {
+            "text": "2\\ = \\ \\dfrac{r}{n\\ - \\ r\\ + \\ 1} + \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -222,9 +246,21 @@
           "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
         ],
         "lines_compact": [
-          "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
-          "and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)",
-          "2 = r/(n − r + 1) + (n − r)/(r + 1)"
+          {
+            "text": "\\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\ = \\ \\dfrac{r}{n\\ - \\ r\\ + \\ 1} + \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

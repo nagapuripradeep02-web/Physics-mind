@@ -58,17 +58,33 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "First write 5i/(7 + i) in the a + ib form.",
+          {
+            "text": "\\text{First}\\ \\text{write}\\ \\dfrac{5i}{7\\ + \\ i}\\text{in}\\ \\text{the}\\ a\\ + \\ ib\\ \\text{form}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by the conjugate",
           "of the denominator, 7 − i:",
-          "5i/(7 + i) = 5i(7 − i) / [(7 + i)(7 − i)]",
+          {
+            "text": "\\dfrac{5i}{7\\ + \\ i} = \\ \\dfrac{5i\\left(7\\ - \\ i\\right)}{\\left(7\\ + \\ i\\right)\\left(7\\ - \\ i\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = 35i − 5i²",
           "= 35i + 5   [i² = −1]",
           "Denominator = 7² + 1² = 49 + 1 = 50",
           "  [(a + ib)(a − ib) = a² + b²]",
-          "= (5 + 35i)/50",
+          {
+            "text": "= \\ \\dfrac{5\\ + \\ 35i}{50}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide the top and bottom by 5:",
-          "= (1 + 7i)/10"
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ 7i}{10}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,12 +125,15 @@
         "lines": [
           "The conjugate of a + ib is a − ib.",
           {
-            "text": "Here (1 + 7i)/10 = 1/10 + (7/10)i,",
+            "text": "\\text{Here}\\ \\dfrac{1\\ + \\ 7i}{10} = \\ \\dfrac{1}{10} + \\ \\left(\\dfrac{7}{10}\\right)i,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ conjugate = (1 − 7i)/10",
+            "text": "\\therefore \\ \\text{conjugate}\\ = \\ \\dfrac{1\\ - \\ 7i}{10}",
             "style": "boxed",
+            "render": "katex",
             "added": true
           }
         ],
@@ -147,8 +166,9 @@
         "lines_compact": [
           "The conjugate of a + ib is a − ib.",
           {
-            "text": "∴ conjugate of (1 + 7i)/10 is (1 − 7i)/10",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{conjugate}\\ \\text{of}\\ \\dfrac{1\\ + \\ 7i}{10}\\text{is}\\ \\dfrac{1\\ - \\ 7i}{10}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

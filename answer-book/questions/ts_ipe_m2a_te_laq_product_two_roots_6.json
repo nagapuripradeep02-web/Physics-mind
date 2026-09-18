@@ -68,11 +68,19 @@
           },
           "Let the roots be α, β, γ, δ, with αβ = 6.",
           "For a₀x⁴ + a₁x³ + a₂x² + a₃x + a₄ = 0",
-          "the product of all four roots is a₄/a₀.",
+          {
+            "text": "\\text{the}\\ \\text{product}\\ \\text{of}\\ \\text{all}\\ \\text{four}\\ \\text{roots}\\ \\text{is}\\ \\dfrac{a_{4}}{a_{0}}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here a₀ = 1 and a₄ = 48, so",
           "αβγδ = 48",
           "6 · γδ = 48",
-          "γδ = 48/6 = 8"
+          {
+            "text": "\\gamma \\delta \\ = \\ \\dfrac{48}{6} = \\ 8",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

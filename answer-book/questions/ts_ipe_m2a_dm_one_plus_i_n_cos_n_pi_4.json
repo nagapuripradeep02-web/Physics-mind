@@ -81,8 +81,16 @@
           "Write 1 + i in the modulus-amplitude form.",
           "Let 1 + i = x + iy, so x = 1 and y = 1",
           "r = √(x² + y²) = √(1 + 1) = √2",
-          "tan θ = y/x = 1/1 = 1",
-          "(1, 1) is in the first quadrant, so θ = π/4",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{1}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1,\\ 1\\right)\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{first}\\ \\text{quadrant},\\ \\text{so}\\ \\theta \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ 1 + i = √2(cos π/4 + i sin π/4)"
         ],
         "recall": {

@@ -77,9 +77,17 @@
             "style": "eq"
           },
           "Given P(X = 1) = P(X = 2):",
-          "e⁻λ λ/1! = e⁻λ λ²/2!",
+          {
+            "text": "\\dfrac{e^{-}\\lambda \\lambda }{1!} = \\ \\dfrac{e^{-}\\lambda \\lambda ^{2}}{2!}",
+            "style": "normal",
+            "render": "katex"
+          },
           "e⁻λ is never 0, so it cancels:",
-          "λ/1 = λ²/2",
+          {
+            "text": "\\dfrac{\\lambda }{1} = \\ \\dfrac{\\lambda ^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "2λ = λ² ⇒ λ² − 2λ = 0",
           "λ(λ − 2) = 0",
           "λ > 0, so λ = 2"
@@ -123,7 +131,9 @@
         "memory_tip": "e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leave e⁻² as it is; do not use a decimal.",
         "lines": [
           {
-            "text": "P(X = 5) = e⁻² · 2⁵/5!",
+            "text": "P\\left(X\\ = \\ 5\\right)\\ = \\ e^{-2}\\ \\cdot \\ \\dfrac{2^{5}}{5!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -131,7 +141,9 @@
             "added": true
           },
           {
-            "text": "= 32e⁻²/120",
+            "text": "= \\ \\dfrac{32e^{-2}}{120}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -139,8 +151,9 @@
             "added": true
           },
           {
-            "text": "∴ P(X = 5) = 4e⁻²/15",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(X\\ = \\ 5\\right)\\ = \\ \\dfrac{4e^{-2}}{15}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -172,10 +185,15 @@
           "Reducing 32/120 to 8/30 and stopping."
         ],
         "lines_compact": [
-          "P(X = 5) = e⁻² · 2⁵/5! = 32e⁻²/120",
           {
-            "text": "∴ P(X = 5) = 4e⁻²/15",
-            "style": "boxed"
+            "text": "P\\left(X\\ = \\ 5\\right)\\ = \\ e^{-2}\\ \\cdot \\ \\dfrac{2^{5}}{5!} = \\ \\dfrac{32e^{-2}}{120}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\left(X\\ = \\ 5\\right)\\ = \\ \\dfrac{4e^{-2}}{15}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

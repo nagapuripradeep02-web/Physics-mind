@@ -68,7 +68,11 @@
           },
           "The class mark xᵢ is the middle of each class.",
           "The marks are large, so use an assumed mean A",
-          "and the step deviation dᵢ = (xᵢ − A)/C.",
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{step}\\ \\text{deviation}\\ d_{i}\\ = \\ \\dfrac{x_{i}\\ - \\ A}{C}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take A = 65 and C = 10.",
           {
             "text": "Class      fᵢ     xᵢ     dᵢ     dᵢ²     fᵢdᵢ     fᵢdᵢ²",
@@ -161,15 +165,20 @@
             "added": true
           },
           {
-            "text": "σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
-            "style": "eq"
+            "text": "\\sigma ^{2}\\ = \\ C^{2} \\cdot \\left[\\dfrac{\\Sigma f_{i}d_{i}^{2}}{N} - \\ \\left(\\dfrac{\\Sigma f_{i}d_{i}}{N}\\right)^{2}\\right]",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "Σfᵢdᵢ²/N = 105/50 = 2.1",
+            "text": "\\dfrac{\\Sigma f_{i}d_{i}^{2}}{N} = \\ \\dfrac{105}{50} = \\ 2.1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Σfᵢdᵢ/N = −15/50 = −0.3, and (−0.3)² = 0.09",
+            "text": "\\dfrac{\\Sigma f_{i}d_{i}}{N} = \\ - \\dfrac{15}{50} = \\ - 0.3,\\ \\text{and}\\ \\left( - 0.3\\right)^{2}\\ = \\ 0.09",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -216,8 +225,16 @@
           "Using N = 7 (the number of classes) in the divisions."
         ],
         "lines_compact": [
-          "Variance σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
-          "= 100·[105/50 − (−15/50)²]",
+          {
+            "text": "\\text{Variance}\\ \\sigma ^{2}\\ = \\ C^{2} \\cdot \\left[\\dfrac{\\Sigma f_{i}d_{i}^{2}}{N} - \\ \\left(\\dfrac{\\Sigma f_{i}d_{i}}{N}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 100 \\cdot \\left[\\dfrac{105}{50} - \\ \\left( - \\dfrac{15}{50}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 100·[2.1 − 0.09] = 100·(2.01) = 201"
         ]
       },

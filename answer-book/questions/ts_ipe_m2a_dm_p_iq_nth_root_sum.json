@@ -76,7 +76,11 @@
           "Take p > 0, so p + iq lies in the first or",
           "the fourth quadrant and the amplitude is",
           "the principal inverse tangent:",
-          "tan θ = y/x = q/p ⇒ θ = Tan⁻¹(q/p)",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{q}{p} \\Rightarrow \\ \\theta \\ = \\ \\tan ^{-1}\\left(\\dfrac{q}{p}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ p + iq = √(p² + q²)(cos θ + i sin θ)"
         ],
         "recall": {
@@ -124,7 +128,9 @@
             "style": "eq"
           },
           {
-            "text": "The modulus is raised to the power 1/n and,",
+            "text": "\\text{The}\\ \\text{modulus}\\ \\text{is}\\ \\text{raised}\\ \\text{to}\\ \\text{the}\\ \\text{power}\\ \\dfrac{1}{n}\\text{and},",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -263,7 +269,9 @@
             "style": "eq"
           },
           {
-            "text": "Putting θ = Tan⁻¹(q/p) back in:",
+            "text": "\\text{Putting}\\ \\theta \\ = \\ \\tan ^{-1}\\left(\\dfrac{q}{p}\\right)\\ \\text{back}\\ \\text{in}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

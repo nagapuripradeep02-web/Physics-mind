@@ -126,32 +126,50 @@
             "added": true
           },
           {
-            "text": "(ⁿC₂ aⁿ⁻² x²)/(ⁿC₁ aⁿ⁻¹ x¹) = 720/240",
+            "text": "\\dfrac{{}^{n}C_{2}a^{n-2}x^{2}}{{}^{n}C_{1}a^{n-1}x^{1}} = \\ \\dfrac{720}{240}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(ⁿC₂/ⁿC₁) · (aⁿ⁻²/aⁿ⁻¹) · (x²/x¹) = 3",
+            "text": "\\left(\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}}\\right)\\ \\cdot \\ \\left(\\dfrac{a^{n-2}}{a^{n-1}}\\right)\\ \\cdot \\ \\left(\\dfrac{x^{2}}{x^{1}}\\right)\\ = \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(ⁿC₂/ⁿC₁) · a⁽ⁿ⁻²⁾⁻⁽ⁿ⁻¹⁾ · x²⁻¹ = 3",
+            "text": "\\left(\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}}\\right)\\ \\cdot \\ a^{(n-2)-(n-1)}\\ \\cdot \\ x^{2-1}\\ = \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(ⁿC₂/ⁿC₁) · a⁻¹ · x = 3",
-            "added": true
-          },
-          "(ⁿC₂/ⁿC₁) · (x/a) = 3",
-          {
-            "text": "Now ⁿC₁ = n and ⁿC₂ = n(n − 1)/2",
+            "text": "\\left(\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}}\\right)\\ \\cdot \\ a^{-1}\\ \\cdot \\ x\\ = \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "ⁿC₂/ⁿC₁ = [n(n − 1)/2]/n = (n − 1)/2",
+            "text": "\\left(\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}}\\right)\\ \\cdot \\ \\left(\\dfrac{x}{a}\\right)\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ {}^{n}C_{1}\\ = \\ n\\ \\text{and}\\ {}^{n}C_{2}\\ = \\ \\dfrac{n\\left(n\\ - \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "((n − 1)/2) · (x/a) = 3",
+            "text": "\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}} = \\ \\dfrac{\\dfrac{n\\left(n\\ - \\ 1\\right)}{2}}{n} = \\ \\dfrac{n\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\left(\\dfrac{n\\ - \\ 1}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{x}{a}\\right)\\ = \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -187,10 +205,26 @@
           "Dividing (1) by (2) and then treating 1/3 as 3."
         ],
         "lines_compact": [
-          "(2)/(1): (ⁿC₂ aⁿ⁻² x²)/(ⁿC₁ aⁿ⁻¹ x)",
-          "  = 720/240 = 3",
-          "(ⁿC₂/ⁿC₁)(x/a) = 3",
-          "((n − 1)/2)(x/a) = 3   [ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)]",
+          {
+            "text": "\\dfrac{2}{1}:\\ \\dfrac{{}^{n}C_{2}a^{n-2}x^{2}}{{}^{n}C_{1}a^{n-1}x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{720}{240} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{{}^{n}C_{2}}{{}^{n}C_{1}}\\right)\\left(\\dfrac{x}{a}\\right)\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{n\\ - \\ 1}{2}\\right)\\left(\\dfrac{x}{a}\\right)\\ = \\ 3\\left[\\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(n − 1)x = 6a …(4)"
         ]
       },
@@ -208,34 +242,52 @@
             "added": true
           },
           {
-            "text": "(ⁿC₃ aⁿ⁻³ x³)/(ⁿC₂ aⁿ⁻² x²) = 1080/720",
+            "text": "\\dfrac{{}^{n}C_{3}a^{n-3}x^{3}}{{}^{n}C_{2}a^{n-2}x^{2}} = \\ \\dfrac{1080}{720}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(ⁿC₃/ⁿC₂) · a⁽ⁿ⁻³⁾⁻⁽ⁿ⁻²⁾ · x³⁻² = 3/2",
+            "text": "\\left(\\dfrac{{}^{n}C_{3}}{{}^{n}C_{2}}\\right)\\ \\cdot \\ a^{(n-3)-(n-2)}\\ \\cdot \\ x^{3-2}\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(ⁿC₃/ⁿC₂) · (x/a) = 3/2",
+            "text": "\\left(\\dfrac{{}^{n}C_{3}}{{}^{n}C_{2}}\\right)\\ \\cdot \\ \\left(\\dfrac{x}{a}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Now ⁿC₃ = n(n − 1)(n − 2)/6",
+            "text": "\\text{Now}\\ {}^{n}C_{3}\\ = \\ \\dfrac{n\\left(n\\ - \\ 1\\right)\\left(n\\ - \\ 2\\right)}{6}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "ⁿC₃/ⁿC₂ = [n(n − 1)(n − 2)/6] ÷ [n(n − 1)/2]",
+            "text": "\\dfrac{{}^{n}C_{3}}{{}^{n}C_{2}} = \\ \\left[\\dfrac{n\\left(n\\ - \\ 1\\right)\\left(n\\ - \\ 2\\right)}{6}\\right]\\ \\div \\ \\left[\\dfrac{n\\left(n\\ - \\ 1\\right)}{2}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = [n(n − 1)(n − 2)/6] × [2/(n(n − 1))]",
+            "text": "= \\ \\left[\\dfrac{n\\left(n\\ - \\ 1\\right)\\left(n\\ - \\ 2\\right)}{6}\\right]\\ \\times \\ \\left[\\dfrac{2}{n\\left(n\\ - \\ 1\\right)}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = 2(n − 2)/6 = (n − 2)/3",
+            "text": "= \\ \\dfrac{2\\left(n\\ - \\ 2\\right)}{6} = \\ \\dfrac{n\\ - \\ 2}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "((n − 2)/3) · (x/a) = 3/2",
+          {
+            "text": "\\left(\\dfrac{n\\ - \\ 2}{3}\\right)\\ \\cdot \\ \\left(\\dfrac{x}{a}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2(n − 2)x = 3 · 3a",
             "added": true
@@ -269,8 +321,16 @@
           "Writing ⁿC₃/ⁿC₂ as (n − 3)/3."
         ],
         "lines_compact": [
-          "(3)/(2): (ⁿC₃/ⁿC₂)(x/a) = 1080/720 = 3/2",
-          "((n − 2)/3)(x/a) = 3/2",
+          {
+            "text": "\\dfrac{3}{2}:\\ \\left(\\dfrac{{}^{n}C_{3}}{{}^{n}C_{2}}\\right)\\left(\\dfrac{x}{a}\\right)\\ = \\ \\dfrac{1080}{720} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{n\\ - \\ 2}{3}\\right)\\left(\\dfrac{x}{a}\\right)\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "2(n − 2)x = 9a …(5)"
         ]
       },
@@ -292,7 +352,9 @@
             "added": true
           },
           {
-            "text": "2(n − 2)/(n − 1) = 3/2",
+            "text": "\\dfrac{2\\left(n\\ - \\ 2\\right)}{n\\ - \\ 1} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -354,11 +416,15 @@
             "added": true
           },
           {
-            "text": "4x = 6a ⇒ x = 6a/4 = 3a/2 …(6)",
+            "text": "4x\\ = \\ 6a\\ \\Rightarrow \\ x\\ = \\ \\dfrac{6a}{4} = \\ \\dfrac{3a}{2}\\dots \\left(6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put n = 5, x = 3a/2 in (1):",
+            "text": "\\text{Put}\\ n\\ = \\ 5,\\ x\\ = \\ \\dfrac{3a}{2}\\text{in}\\ \\left(1\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -366,19 +432,27 @@
             "added": true
           },
           {
-            "text": "5 · a⁴ · (3a/2) = 240",
+            "text": "5\\ \\cdot \\ a^{4}\\ \\cdot \\ \\left(\\dfrac{3a}{2}\\right)\\ = \\ 240",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(15/2) · a⁴ · a = 240",
+            "text": "\\left(\\dfrac{15}{2}\\right)\\ \\cdot \\ a^{4}\\ \\cdot \\ a\\ = \\ 240",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(15/2) a⁵ = 240",
+            "text": "\\left(\\dfrac{15}{2}\\right)a^{5}\\ = \\ 240",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "a⁵ = 240 × 2/15 = 480/15 = 32",
+            "text": "a^{5}\\ = \\ 240\\ \\times \\ \\dfrac{2}{15} = \\ \\dfrac{480}{15} = \\ 32",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -414,9 +488,21 @@
           "Writing a⁵ = 32 and then a = 32/5."
         ],
         "lines_compact": [
-          "From (4): 4x = 6a ⇒ x = 3a/2 …(6)",
-          "From (1): ⁵C₁ a⁴ x = 240 ⇒ 5a⁴(3a/2) = 240",
-          "a⁵ = (240 × 2)/15 = 32 = 2⁵",
+          {
+            "text": "\\text{From}\\ \\left(4\\right):\\ 4x\\ = \\ 6a\\ \\Rightarrow \\ x\\ = \\ \\dfrac{3a}{2}\\dots \\left(6\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(1\\right):\\ {}^{5}C_{1}a^{4}x\\ = \\ 240\\ \\Rightarrow \\ 5a^{4}\\left(\\dfrac{3a}{2}\\right)\\ = \\ 240",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a^{5}\\ = \\ \\dfrac{240\\ \\times \\ 2}{15} = \\ 32\\ = \\ 2^{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ a = 2"
         ]
       },
@@ -430,7 +516,9 @@
         "memory_tip": "State all THREE values. Check T₂ = 5 · 2⁴ · 3 = 240.",
         "lines": [
           {
-            "text": "Put a = 2 in (6): x = 3(2)/2 = 6/2 = 3",
+            "text": "\\text{Put}\\ a\\ = \\ 2\\ \\text{in}\\ \\left(6\\right):\\ x\\ = \\ \\dfrac{3\\left(2\\right)}{2} = \\ \\dfrac{6}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -468,7 +556,11 @@
           "Not checking against 720 or 1080 when time allows."
         ],
         "lines_compact": [
-          "From (6): x = 3(2)/2 = 3",
+          {
+            "text": "\\text{From}\\ \\left(6\\right):\\ x\\ = \\ \\dfrac{3\\left(2\\right)}{2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ a = 2, x = 3, n = 5",
             "style": "boxed"

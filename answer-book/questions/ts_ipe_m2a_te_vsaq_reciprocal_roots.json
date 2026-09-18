@@ -60,10 +60,26 @@
           },
           "Let f(x) = x⁴ − 3x³ + 7x² + 5x − 2.",
           "If α is a root of f(x) = 0, we want an",
-          "equation having 1/α as a root.",
-          "Putting x = 1/α into f(1/x) gives f(α) = 0,",
-          "so the required equation is f(1/x) = 0:",
-          "1/x⁴ − 3/x³ + 7/x² + 5/x − 2 = 0"
+          {
+            "text": "\\text{equation}\\ \\text{having}\\ \\dfrac{1}{\\alpha }\\text{as}\\ a\\ \\text{root}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ \\dfrac{1}{\\alpha }\\text{into}\\ f\\left(\\dfrac{1}{x}\\right)\\ \\text{gives}\\ f\\left(\\alpha \\right)\\ = \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{required}\\ \\text{equation}\\ \\text{is}\\ f\\left(\\dfrac{1}{x}\\right)\\ = \\ 0:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{x^{4}} - \\ \\dfrac{3}{x^{3}} + \\ \\dfrac{7}{x^{2}} + \\ \\dfrac{5}{x} - \\ 2\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

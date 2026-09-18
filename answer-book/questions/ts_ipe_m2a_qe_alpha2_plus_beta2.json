@@ -59,8 +59,16 @@
             "style": "heading"
           },
           "If α, β are the roots of ax² + bx + c = 0,",
-          "then α + β = −b/a and αβ = c/a",
-          "Here α + β = −b/a and αβ = c/a"
+          {
+            "text": "\\text{then}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,19 +123,30 @@
             "added": true
           },
           "α² + β² = (α + β)² − 2αβ",
-          "= (−b/a)² − 2(c/a)",
-          "= b²/a² − 2c/a",
+          {
+            "text": "= \\ \\left( - \\dfrac{b}{a}\\right)^{2}\\ - \\ 2\\left(\\dfrac{c}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b^{2}}{a^{2}} - \\ \\dfrac{2c}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Take a² as the common denominator:",
             "added": true
           },
           {
-            "text": "= b²/a² − 2ac/a²",
+            "text": "= \\ \\dfrac{b^{2}}{a^{2}} - \\ \\dfrac{2ac}{a^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ α² + β² = (b² − 2ac)/a²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\alpha ^{2}\\ + \\ \\beta ^{2}\\ = \\ \\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -160,11 +179,20 @@
         ],
         "lines_compact": [
           "α² + β² = (α + β)² − 2αβ",
-          "= (−b/a)² − 2(c/a)",
-          "= b²/a² − 2c/a",
           {
-            "text": "∴ α² + β² = (b² − 2ac)/a²",
-            "style": "boxed"
+            "text": "= \\ \\left( - \\dfrac{b}{a}\\right)^{2}\\ - \\ 2\\left(\\dfrac{c}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b^{2}}{a^{2}} - \\ \\dfrac{2c}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\alpha ^{2}\\ + \\ \\beta ^{2}\\ = \\ \\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

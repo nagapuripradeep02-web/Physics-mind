@@ -68,11 +68,27 @@
           },
           "L.H.S. = (C₀ + C₁)(C₁ + C₂)(C₂ + C₃)…(Cₙ₋₁ + Cₙ)",
           "Take the first C out of each bracket:",
-          "C₀ + C₁ = C₀(1 + C₁/C₀)",
-          "C₁ + C₂ = C₁(1 + C₂/C₁)",
-          "… Cₙ₋₁ + Cₙ = Cₙ₋₁(1 + Cₙ/Cₙ₋₁)",
+          {
+            "text": "C_{0}\\ + \\ C_{1}\\ = \\ C_{0}\\left(1\\ + \\ \\dfrac{C_{1}}{C_{0}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "C_{1}\\ + \\ C_{2}\\ = \\ C_{1}\\left(1\\ + \\ \\dfrac{C_{2}}{C_{1}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dots \\ C_{n-1}\\ + \\ C_{n}\\ = \\ C_{n-1}\\left(1\\ + \\ \\dfrac{C_{n}}{C_{n-1}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S. = C₀C₁C₂…Cₙ₋₁",
-          "  × (1 + C₁/C₀)(1 + C₂/C₁)…(1 + Cₙ/Cₙ₋₁)"
+          {
+            "text": "\\times \\ \\left(1\\ + \\ \\dfrac{C_{1}}{C_{0}}\\right)\\left(1\\ + \\ \\dfrac{C_{2}}{C_{1}}\\right)\\dots \\left(1\\ + \\ \\dfrac{C_{n}}{C_{n-1}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,38 +126,56 @@
         "memory_tip": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + that is (n + 1)/r. The same numerator every time.",
         "lines": [
           {
-            "text": "The r-th bracket is 1 + Cᵣ/Cᵣ₋₁, where Cᵣ = ⁿCᵣ",
+            "text": "\\text{The}\\ \\text{r-th}\\ \\text{bracket}\\ \\text{is}\\ 1\\ + \\ \\dfrac{C_{r}}{C_{r-1}},\\ \\text{where}\\ C_{r}\\ = \\ {}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "text": "\\text{Now}\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\left[\\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "text": "\\div \\ \\left[\\dfrac{n!}{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "text": "= \\ \\dfrac{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "text": "= \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}\\left[r!\\ = \\ r\\left(r\\ - \\ 1\\right)!\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "1 + Cᵣ/Cᵣ₋₁ = 1 + (n − r + 1)/r",
+            "text": "1\\ + \\ \\dfrac{C_{r}}{C_{r-1}} = \\ 1\\ + \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (r + n − r + 1)/r = (n + 1)/r",
+            "text": "= \\ \\dfrac{r\\ + \\ n\\ - \\ r\\ + \\ 1}{r} = \\ \\dfrac{n\\ + \\ 1}{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Put r = 1, 2, …, n: the n brackets are",
             "added": true
           },
-          "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
+          {
+            "text": "\\dfrac{n\\ + \\ 1}{1},\\ \\dfrac{n\\ + \\ 1}{2},\\ \\dots ,\\ \\dfrac{n\\ + \\ 1}{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -169,10 +203,22 @@
           "Adding 1 as (n − r + 1 + 1)/r."
         ],
         "lines_compact": [
-          "Cᵣ/Cᵣ₋₁ = ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
-          "1 + Cᵣ/Cᵣ₋₁ = (r + n − r + 1)/r = (n + 1)/r",
+          {
+            "text": "\\dfrac{C_{r}}{C_{r-1}} = \\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ \\dfrac{C_{r}}{C_{r-1}} = \\ \\dfrac{r\\ + \\ n\\ - \\ r\\ + \\ 1}{r} = \\ \\dfrac{n\\ + \\ 1}{r}",
+            "style": "normal",
+            "render": "katex"
+          },
           "So the n brackets are",
-          "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
+          {
+            "text": "\\dfrac{n\\ + \\ 1}{1},\\ \\dfrac{n\\ + \\ 1}{2},\\ \\dots ,\\ \\dfrac{n\\ + \\ 1}{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -185,13 +231,25 @@
         "memory_tip": "Count the brackets: exactly n of them, so (n + 1)ⁿ on top and 1·2·…·n = n! below.",
         "lines": [
           "L.H.S. = C₀C₁…Cₙ₋₁",
-          "  × ((n + 1)/1) · ((n + 1)/2) · … · ((n + 1)/n)",
-          "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/(1 · 2 · … · n)",
+          {
+            "text": "\\times \\ \\left(\\dfrac{n\\ + \\ 1}{1}\\right)\\ \\cdot \\ \\left(\\dfrac{n\\ + \\ 1}{2}\\right)\\ \\cdot \\ \\dots \\ \\cdot \\ \\left(\\dfrac{n\\ + \\ 1}{n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ C_{0}C_{1}\\dots C_{n-1}\\ \\cdot \\ \\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{1\\ \\cdot \\ 2\\ \\cdot \\ \\dots \\ \\cdot \\ n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  [(n + 1) appears n times on top]",
             "added": true
           },
-          "= C₀C₁…Cₙ₋₁ · (n + 1)ⁿ/n!"
+          {
+            "text": "= \\ C_{0}C_{1}\\dots C_{n-1}\\ \\cdot \\ \\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{n!}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -220,9 +278,21 @@
         ],
         "lines_compact": [
           "L.H.S. = C₀C₁…Cₙ₋₁",
-          "  × ((n + 1)/1)((n + 1)/2)…((n + 1)/n)",
-          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/(1·2·…·n)",
-          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/n!"
+          {
+            "text": "\\times \\ \\left(\\dfrac{n\\ + \\ 1}{1}\\right)\\left(\\dfrac{n\\ + \\ 1}{2}\\right)\\dots \\left(\\dfrac{n\\ + \\ 1}{n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ C_{0}C_{1}\\dots C_{n-1} \\cdot \\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{1 \\cdot 2 \\cdot \\dots \\cdot n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ C_{0}C_{1}\\dots C_{n-1} \\cdot \\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{n!}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -243,8 +313,9 @@
             "added": true
           },
           {
-            "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S.\\ = \\ \\left(\\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{n!}\\right) \\cdot C_{1}C_{2}\\dots C_{n}\\ = \\ R.H.S.",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -275,8 +346,9 @@
         "lines_compact": [
           "Since C₀ = Cₙ = 1, C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ",
           {
-            "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S.\\ = \\ \\left(\\dfrac{\\left(n\\ + \\ 1\\right)^{n}}{n!}\\right) \\cdot C_{1}C_{2}\\dots C_{n}\\ = \\ R.H.S.",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

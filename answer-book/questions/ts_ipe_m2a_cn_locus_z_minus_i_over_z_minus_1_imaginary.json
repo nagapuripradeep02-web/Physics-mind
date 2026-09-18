@@ -65,7 +65,11 @@
           "Let z = x + iy, where x and y are real.",
           "z − i = x + iy − i = x + i(y − 1)",
           "z − 1 = x + iy − 1 = (x − 1) + iy",
-          "(z − i)/(z − 1) = [x + i(y − 1)] / [(x − 1) + iy]"
+          {
+            "text": "\\dfrac{z\\ - \\ i}{z\\ - \\ 1} = \\ \\dfrac{x\\ + \\ i\\left(y\\ - \\ 1\\right)}{\\left(x\\ - \\ 1\\right)\\ + \\ iy}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -204,7 +208,11 @@
             "text": "= [x² + y² − x − y] + i[(x − 1)(y − 1) − xy]",
             "style": "eq"
           },
-          "∴ real part = (x² + y² − x − y)/((x − 1)² + y²)"
+          {
+            "text": "\\therefore \\ \\text{real}\\ \\text{part}\\ = \\ \\dfrac{x^{2}\\ + \\ y^{2}\\ - \\ x\\ - \\ y}{\\left(x\\ - \\ 1\\right)^{2}\\ + \\ y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -224,7 +232,11 @@
             "text": "no real part, so the real part is 0:",
             "added": true
           },
-          "(x² + y² − x − y)/((x − 1)² + y²) = 0",
+          {
+            "text": "\\dfrac{x^{2}\\ + \\ y^{2}\\ - \\ x\\ - \\ y}{\\left(x\\ - \\ 1\\right)^{2}\\ + \\ y^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "A fraction is 0 only when its top is 0:",
             "added": true
@@ -278,9 +290,17 @@
           "Writing the answer as an inequality — the condition is an equality, so the locus is a circle, not a region. (Leaving it as x² + y² = x + y is the same locus and is not wrong, but the standard '= 0' form is expected.)"
         ],
         "lines_compact": [
-          "(z − i)/(z − 1) is purely imaginary",
+          {
+            "text": "\\dfrac{z\\ - \\ i}{z\\ - \\ 1}\\text{is}\\ \\text{purely}\\ \\text{imaginary}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ real part = 0",
-          "⇒ (x² + y² − x − y)/((x − 1)² + y²) = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x^{2}\\ + \\ y^{2}\\ - \\ x\\ - \\ y}{\\left(x\\ - \\ 1\\right)^{2}\\ + \\ y^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Locus of P: x² + y² − x − y = 0",
             "style": "boxed"

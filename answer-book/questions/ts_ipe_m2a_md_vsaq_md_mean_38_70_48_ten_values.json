@@ -68,7 +68,11 @@
           "There are n = 10 values.",
           "Σxᵢ = 38 + 70 + 48 + 40 + 42",
           "  + 55 + 63 + 46 + 54 + 44 = 500",
-          "Mean x̄ = Σxᵢ/n = 500/10 = 50"
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ \\dfrac{\\Sigma x_{i}}{n} = \\ \\dfrac{500}{10} = \\ 50",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -122,7 +126,9 @@
             "added": true
           },
           {
-            "text": "= 84/10 = 8.4",
+            "text": "= \\ \\dfrac{84}{10} = \\ 8.4",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

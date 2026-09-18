@@ -53,14 +53,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "First simplify the base (1 + i)/(1 − i).",
+          {
+            "text": "\\text{First}\\ \\text{simplify}\\ \\text{the}\\ \\text{base}\\ \\dfrac{1\\ + \\ i}{1\\ - \\ i}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by the conjugate",
           "of the denominator, 1 + i:",
-          "(1 + i)/(1 − i) = (1 + i)(1 + i) / [(1 − i)(1 + i)]",
+          {
+            "text": "\\dfrac{1\\ + \\ i}{1\\ - \\ i} = \\ \\dfrac{\\left(1\\ + \\ i\\right)\\left(1\\ + \\ i\\right)}{\\left(1\\ - \\ i\\right)\\left(1\\ + \\ i\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = (1 + i)² = 1 + 2i + i²",
           "= 1 + 2i − 1 = 2i   [i² = −1]",
           "Denominator = 1² + 1² = 2",
-          "= 2i/2 = i"
+          {
+            "text": "= \\ \\dfrac{2i}{2} = \\ i",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

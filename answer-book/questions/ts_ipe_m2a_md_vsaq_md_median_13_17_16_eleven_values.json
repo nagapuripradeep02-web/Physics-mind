@@ -65,7 +65,11 @@
           "arrange the values in ascending order:",
           "10, 11, 11, 12, 13, 13, 16, 16, 17, 17, 18",
           "n = 11 is odd, so the median is the single",
-          "middle value, the (n + 1)/2 = 6th one.",
+          {
+            "text": "\\text{middle}\\ \\text{value},\\ \\text{the}\\ \\dfrac{n\\ + \\ 1}{2} = \\ 6th\\ \\text{one}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Median M = 13"
         ],
         "recall": {
@@ -127,7 +131,9 @@
             "added": true
           },
           {
-            "text": "= 27/11 = 2.45",
+            "text": "= \\ \\dfrac{27}{11} = \\ 2.45",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

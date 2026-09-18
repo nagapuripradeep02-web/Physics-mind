@@ -55,10 +55,22 @@
           },
           "Multiply above and below by the conjugate",
           "of the denominator, a + ib:",
-          "(a + ib)/(a − ib)",
-          "= (a + ib)(a + ib) / [(a − ib)(a + ib)]",
+          {
+            "text": "\\dfrac{a\\ + \\ ib}{a\\ - \\ ib}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ ib\\right)\\left(a\\ + \\ ib\\right)}{\\left(a\\ - \\ ib\\right)\\left(a\\ + \\ ib\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Denominator = a² + b²  [(a + ib)(a − ib) = a² + b²]",
-          "= (a + ib)²/(a² + b²)"
+          {
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ ib\\right)^{2}}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,11 +122,15 @@
             "added": true
           },
           {
-            "text": "So (a + ib)/(a − ib)",
+            "text": "\\text{So}\\ \\dfrac{a\\ + \\ ib}{a\\ - \\ ib}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= [(a² − b²) + 2abi]/(a² + b²)",
+            "text": "= \\ \\dfrac{\\left(a^{2}\\ - \\ b^{2}\\right)\\ + \\ 2abi}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -122,11 +138,20 @@
             "added": true
           },
           {
-            "text": "= (a² − b²)/(a² + b²) + i·2ab/(a² + b²)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}} + \\ i \\cdot \\dfrac{2ab}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Real part = (a² − b²)/(a² + b²),",
-          "imaginary part = 2ab/(a² + b²)."
+          {
+            "text": "\\text{Real}\\ \\text{part}\\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{imaginary}\\ \\text{part}\\ = \\ \\dfrac{2ab}{a^{2}\\ + \\ b^{2}}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,15 +183,25 @@
         "lines_compact": [
           "(a + ib)² = a² + 2abi + i²b² = (a² − b²) + 2abi",
           {
-            "text": "∴ (a + ib)/(a − ib) = [(a² − b²) + 2abi]/(a² + b²)",
-            "style": "eq"
+            "text": "\\therefore \\ \\dfrac{a\\ + \\ ib}{a\\ - \\ ib} = \\ \\dfrac{\\left(a^{2}\\ - \\ b^{2}\\right)\\ + \\ 2abi}{a^{2}\\ + \\ b^{2}}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= (a² − b²)/(a² + b²) + i·2ab/(a² + b²)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}} + \\ i \\cdot \\dfrac{2ab}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Real part = (a² − b²)/(a² + b²),",
-          "imaginary part = 2ab/(a² + b²)."
+          {
+            "text": "\\text{Real}\\ \\text{part}\\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{a^{2}\\ + \\ b^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{imaginary}\\ \\text{part}\\ = \\ \\dfrac{2ab}{a^{2}\\ + \\ b^{2}}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

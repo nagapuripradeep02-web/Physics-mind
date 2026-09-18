@@ -97,11 +97,15 @@
         "memory_tip": "³⁰C₂ = 30 × 29/2 = 15 × 29 = 435. An answer of 870 counted every game twice.",
         "lines": [
           {
-            "text": "³⁰C₂ = (30 · 29)/(1 · 2)",
+            "text": "{}^{30}C_{2}\\ = \\ \\dfrac{30\\ \\cdot \\ 29}{1\\ \\cdot \\ 2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 870/2",
+            "text": "= \\ \\dfrac{870}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -136,7 +140,11 @@
           "Computing 15 × 29 as 425."
         ],
         "lines_compact": [
-          "³⁰C₂ = (30 · 29)/2 = 15 · 29",
+          {
+            "text": "{}^{30}C_{2}\\ = \\ \\dfrac{30\\ \\cdot \\ 29}{2} = \\ 15\\ \\cdot \\ 29",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 435",
             "style": "boxed"

@@ -55,7 +55,11 @@
           },
           "Let z = x + iy, where x and y are real.",
           "z − 1 = x + iy − 1 = (x − 1) + iy",
-          "Arg(z − 1) = π/2 means z − 1 points straight up,",
+          {
+            "text": "Arg\\left(z\\ - \\ 1\\right)\\ = \\ \\dfrac{\\pi }{2}\\text{means}\\ z\\ - \\ 1\\ \\text{points}\\ \\text{straight}\\ \\text{up},",
+            "style": "normal",
+            "render": "katex"
+          },
           "along the positive imaginary axis.",
           "A point on that axis has real part 0",
           "and imaginary part greater than 0."

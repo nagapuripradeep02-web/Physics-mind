@@ -138,8 +138,9 @@
             "added": true
           },
           {
-            "text": "P(B|A) = P(A ∩ B)/P(A)",
+            "text": "P\\left(B|A\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(A\\right)}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
@@ -182,8 +183,9 @@
             "style": "normal"
           },
           {
-            "text": "P(B|A) = P(A ∩ B)/P(A)   [P(A) ≠ 0]",
-            "style": "eq"
+            "text": "P\\left(B|A\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(A\\right)}\\left[P\\left(A\\right)\\ \\ne \\ 0\\right]",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "⇒ P(A ∩ B) = P(A)·P(B|A)  …(1)",
@@ -211,8 +213,9 @@
             "added": true
           },
           {
-            "text": "P(A|B) = P(A ∩ B)/P(B)",
+            "text": "P\\left(A|B\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(B\\right)}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
@@ -255,8 +258,9 @@
             "style": "normal"
           },
           {
-            "text": "P(A|B) = P(A ∩ B)/P(B)   [P(B) ≠ 0]",
-            "style": "eq"
+            "text": "P\\left(A|B\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(B\\right)}\\left[P\\left(B\\right)\\ \\ne \\ 0\\right]",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "⇒ P(A ∩ B) = P(B)·P(A|B)  …(2)",

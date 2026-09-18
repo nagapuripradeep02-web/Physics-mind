@@ -113,7 +113,9 @@
             "added": true
           },
           {
-            "text": "√(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2¹⁰⁰⁻⁹⁹ = 2",
+            "text": "\\sqrt{a^{2}\\ + \\ b^{2}}\\ = \\ \\dfrac{2^{100}}{2^{99}} = \\ 2^{100-99}\\ = \\ 2",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Square both sides:",
@@ -150,7 +152,11 @@
           "Stopping at √(a² + b²) = 2 without squaring."
         ],
         "lines_compact": [
-          "⇒ √(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2",
+          {
+            "text": "\\Rightarrow \\ \\sqrt{a^{2}\\ + \\ b^{2}}\\ = \\ \\dfrac{2^{100}}{2^{99}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "Squaring both sides:",
           {
             "text": "∴ a² + b² = 4",

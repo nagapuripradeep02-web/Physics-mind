@@ -92,14 +92,34 @@
           },
           "First add the three fractions.",
           "The common denominator is (3x + 1)(x + 1).",
-          "1/(3x + 1) becomes (x + 1) on top,",
-          "1/(x + 1) becomes (3x + 1) on top,",
+          {
+            "text": "\\dfrac{1}{3x\\ + \\ 1}\\text{becomes}\\ \\left(x\\ + \\ 1\\right)\\ \\text{on}\\ \\text{top},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{x\\ + \\ 1}\\text{becomes}\\ \\left(3x\\ + \\ 1\\right)\\ \\text{on}\\ \\text{top},",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the last term keeps its 1:",
-          "= (x + 1 + 3x + 1 − 1)/((3x + 1)(x + 1))",
-          "= (4x + 1)/((3x + 1)(x + 1))",
+          {
+            "text": "= \\ \\dfrac{x\\ + \\ 1\\ + \\ 3x\\ + \\ 1\\ - \\ 1}{\\left(3x\\ + \\ 1\\right)\\left(x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4x\\ + \\ 1}{\\left(3x\\ + \\ 1\\right)\\left(x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(3x + 1)(x + 1) = 3x² + 3x + x + 1",
           "= 3x² + 4x + 1",
-          "Let y = (4x + 1)/(3x² + 4x + 1)",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\dfrac{4x\\ + \\ 1}{3x^{2}\\ + \\ 4x\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by (3x² + 4x + 1):",
           "3yx² + 4yx + y = 4x + 1",
           "3yx² + (4y − 4)x + (y − 1) = 0 … (1)"

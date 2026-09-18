@@ -147,12 +147,20 @@
             "added": true
           },
           {
-            "text": "ab + bc + ca = abc(1/c + 1/a + 1/b)",
+            "text": "ab\\ + \\ bc\\ + \\ ca\\ = \\ abc\\left(\\dfrac{1}{c} + \\ \\dfrac{1}{a} + \\ \\dfrac{1}{b}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "so a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0",
           {
-            "text": "1/a = 1/cis α = cis(−α) = cos α − i sin α,",
+            "text": "\\text{so}\\ a^{2}\\ + \\ b^{2}\\ + \\ c^{2}\\ + \\ 2abc\\left(\\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{a} = \\ \\dfrac{1}{cis}\\alpha \\ = \\ cis\\left( - \\alpha \\right)\\ = \\ \\cos \\alpha \\ - \\ i\\sin \\alpha ,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -160,7 +168,9 @@
             "added": true
           },
           {
-            "text": "1/a + 1/b + 1/c = (cos α + cos β + cos γ)",
+            "text": "\\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c} = \\ \\left(\\cos \\alpha \\ + \\ \\cos \\beta \\ + \\ \\cos \\gamma \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -204,8 +214,16 @@
         "lines_compact": [
           "a + b + c = 0 ⇒ (a + b + c)² = 0",
           "⇒ a² + b² + c² + 2(ab + bc + ca) = 0",
-          "⇒ a² + b² + c² + 2abc(1/a + 1/b + 1/c) = 0",
-          "Now 1/a + 1/b + 1/c",
+          {
+            "text": "\\Rightarrow \\ a^{2}\\ + \\ b^{2}\\ + \\ c^{2}\\ + \\ 2abc\\left(\\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\dfrac{1}{a} + \\ \\dfrac{1}{b} + \\ \\dfrac{1}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cis(−α) + cis(−β) + cis(−γ)",
           "= (cos α + cos β + cos γ)",
           "− i(sin α + sin β + sin γ) = 0 − i(0) = 0"
@@ -303,8 +321,9 @@
           },
           "2(cos²α + cos²β + cos²γ) = 3",
           {
-            "text": "∴ cos²α + cos²β + cos²γ = 3/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos ^{2}\\alpha \\ + \\ \\cos ^{2}\\beta \\ + \\ \\cos ^{2}\\gamma \\ = \\ \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -340,8 +359,9 @@
           "+ (2cos² γ − 1) = 0  (∵ cos 2θ = 2cos² θ − 1)",
           "⇒ 2(cos² α + cos² β + cos² γ) = 3",
           {
-            "text": "cos² α + cos² β + cos² γ = 3/2",
-            "style": "boxed"
+            "text": "\\cos ^{2}\\alpha \\ + \\ \\cos ^{2}\\beta \\ + \\ \\cos ^{2}\\gamma \\ = \\ \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -369,8 +389,9 @@
           "3 − 2(sin²α + sin²β + sin²γ) = 0",
           "2(sin²α + sin²β + sin²γ) = 3",
           {
-            "text": "∴ sin²α + sin²β + sin²γ = 3/2",
+            "text": "\\therefore \\ \\sin ^{2}\\alpha \\ + \\ \\sin ^{2}\\beta \\ + \\ \\sin ^{2}\\gamma \\ = \\ \\dfrac{3}{2}",
             "style": "boxed",
+            "render": "katex",
             "added": true
           }
         ],
@@ -407,8 +428,9 @@
           "+ (1 − 2sin² γ) = 0  (∵ cos 2θ = 1 − 2sin² θ)",
           "⇒ 2(sin² α + sin² β + sin² γ) = 3",
           {
-            "text": "sin² α + sin² β + sin² γ = 3/2",
-            "style": "boxed"
+            "text": "\\sin ^{2}\\alpha \\ + \\ \\sin ^{2}\\beta \\ + \\ \\sin ^{2}\\gamma \\ = \\ \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }
