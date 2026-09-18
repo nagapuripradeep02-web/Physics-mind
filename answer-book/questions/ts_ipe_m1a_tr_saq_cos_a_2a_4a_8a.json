@@ -62,9 +62,17 @@
             "text": "  so each cosine gets a 2 beside it:",
             "style": "indent"
           },
-          "= (2⁴ sinA)/(2⁴ sinA) · cosA cos2A cos4A cos8A",
+          {
+            "text": "= \\ \\dfrac{2^{4}\\sin A}{2^{4}\\sin A} \\cdot \\ \\cos A\\cos 2A\\cos 4A\\cos 8A",
+            "style": "normal",
+            "render": "katex"
+          },
           "(2⁴ = 16; one 2 and the sinA go with cosA)",
-          "= (1/(16 sinA)) (2 sinA cosA)(2 cos2A)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(2\\sin A\\cos A\\right)\\left(2\\cos 2A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "    · (2 cos4A)(2 cos8A)"
         ],
         "recall": {
@@ -112,22 +120,38 @@
             "text": "(x = A: 2 sinA cosA = sin2A)",
             "added": true
           },
-          "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 2A\\right)\\left(2\\cos 2A\\right)\\left(2\\cos 4A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x = 2A: sin2A · 2 cos2A = sin4A)",
             "added": true
           },
-          "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 4A\\right)\\left(2\\cos 4A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x = 4A: sin4A · 2 cos4A = sin8A)",
             "added": true
           },
-          "= (1/(16 sinA)) (sin8A)(2 cos8A)",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 8A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x = 8A: sin8A · 2 cos8A = sin16A)",
             "added": true
           },
-          "= (1/(16 sinA)) (sin16A)"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 16A\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -159,10 +183,26 @@
         ],
         "memory_tip": "sin2θ = 2 sinθ cosθ applied four times: sinA becomes sin2A, then sin4A, sin8A, sin16A.",
         "lines_compact": [
-          "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
-          "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
-          "= (1/(16 sinA)) (sin8A)(2 cos8A)",
-          "= (1/(16 sinA)) (sin16A)"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 2A\\right)\\left(2\\cos 2A\\right)\\left(2\\cos 4A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 4A\\right)\\left(2\\cos 4A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 8A\\right)\\left(2\\cos 8A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16\\sin A}\\right)\\left(\\sin 16A\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

@@ -53,12 +53,28 @@
             "style": "heading"
           },
           "(e⁰ − 1 = 1 − 1 = 0)",
-          "Putting x = 0 gives 0/0, so the expression is rewritten first.",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{so}\\ \\text{the}\\ \\text{expression}\\ \\text{is}\\ \\text{rewritten}\\ \\text{first}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "The power is 7x, so the denominator is made 7x:",
-          "(7 · 1/(7x) = 1/x, so the value is unchanged)",
-          "(e⁷ˣ − 1)/x = 7 · (e⁷ˣ − 1)/(7x)",
+          {
+            "text": "\\left(7\\ \\cdot \\ \\dfrac{1}{7x} = \\ \\dfrac{1}{x},\\ \\text{so}\\ \\text{the}\\ \\text{value}\\ \\text{is}\\ \\text{unchanged}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{e^{7x}\\ - \\ 1}{x} = \\ 7\\ \\cdot \\ \\dfrac{e^{7x}\\ - \\ 1}{7x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the constant 7 comes outside the limit)",
-          "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7 · lim(x → 0) (e⁷ˣ − 1)/(7x)"
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{x} = \\ 7\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{7x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,15 +118,20 @@
             "text": "(the standard limit lim(t → 0) (eᵗ − 1)/t = 1)",
             "added": true
           },
-          "lim(x → 0) (e⁷ˣ − 1)/(7x) = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{7x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\left(e^{t}\\ - \\ 1\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(7 times the limit 1)",
             "added": true
           },
           "= 7 · 1",
           {
-            "text": "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{x} = \\ 7",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,11 +163,16 @@
         ],
         "lines_compact": [
           "Put t = 7x. As x → 0, t → 0.",
-          "lim(x → 0) (e⁷ˣ − 1)/(7x) = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{7x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\left(e^{t}\\ - \\ 1\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 7 · 1",
           {
-            "text": "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{7x}\\ - \\ 1\\right)}{x} = \\ 7",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

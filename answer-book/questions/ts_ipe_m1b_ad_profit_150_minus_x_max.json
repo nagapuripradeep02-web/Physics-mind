@@ -65,7 +65,11 @@
           "Expanding:  P(x) = 150x − x² − 1600",
           "The coefficient of x² is negative,",
           "so the graph of P is a downward parabola.",
-          "(d/dx of 150x is 150, of x² is 2x, and of 1600 is 0)",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 150x\\ \\text{is}\\ 150,\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{and}\\ \\text{of}\\ 1600\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "P′(x) = 150 − 2x"
         ],
         "recall": {

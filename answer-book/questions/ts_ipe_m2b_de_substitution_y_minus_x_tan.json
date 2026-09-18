@@ -65,11 +65,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx − x tan(y − x) = 1",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ - \\ x\\tan \\left(y\\ - \\ x\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "y − x sits inside tan, so substitute for it.",
-          "Put y − x = t ⇒ dy/dx − 1 = dt/dx",
+          {
+            "text": "\\text{Put}\\ y\\ - \\ x\\ = \\ t\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ - \\ 1\\ = \\ \\dfrac{dt}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(differentiating both sides with respect to x)",
-          "⇒ dy/dx = dt/dx + 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{dt}{dx}\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The awkward term tan(y − x) only makes sense as a function of the single combination y − x, so naming that combination t and rewriting dy/dx in terms of dt/dx removes the mixed x and y dependence.",
         "common_mistakes": [
@@ -87,15 +99,25 @@
         "memory_tip": "1 cancels with 1 once dt/dx + 1 − x tan t = 1 is written out — the constant terms vanish first.",
         "lines": [
           "Hence,",
-          "the given D.E becomes (dt/dx + 1) − x tan t",
+          {
+            "text": "\\text{the}\\ \\text{given}\\ D.E\\ \\text{becomes}\\ \\left(\\dfrac{dt}{dx}\\ + \\ 1\\right)\\ - \\ x\\tan t",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1",
           {
             "text": "The 1s on the two sides cancel:",
             "added": true
           },
-          "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx",
           {
-            "text": "1/tan t = cot t:",
+            "text": "\\Rightarrow \\ \\dfrac{dt}{dx}\\ = \\ x\\tan t\\ \\Rightarrow \\ \\left(\\dfrac{1}{\\tan t}\\right)dt\\ = \\ xdx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\tan t} = \\ \\cot t:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ cot t dt = x dx"
@@ -107,9 +129,17 @@
         ],
         "lines_compact": [
           "Hence,",
-          "the given D.E becomes (dt/dx + 1) − x tan t",
+          {
+            "text": "\\text{the}\\ \\text{given}\\ D.E\\ \\text{becomes}\\ \\left(\\dfrac{dt}{dx}\\ + \\ 1\\right)\\ - \\ x\\tan t",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1",
-          "⇒ dt/dx = x tan t ⇒ (1/tan t) dt = x dx",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dt}{dx}\\ = \\ x\\tan t\\ \\Rightarrow \\ \\left(\\dfrac{1}{\\tan t}\\right)dt\\ = \\ xdx",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ cot t dt = x dx"
         ]
       },
@@ -128,10 +158,16 @@
           },
           "∫ cot t dt = ∫ x dx",
           {
-            "text": "∫cot t dt = log(sin t) and ∫x dx = x²/2:",
+            "text": "\\int \\cot tdt\\ = \\ \\log \\left(\\sin t\\right)\\ \\text{and}\\ \\int xdx\\ = \\ \\dfrac{x^{2}}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ log(sin t) = x²/2 + c"
+          {
+            "text": "\\Rightarrow \\ \\log \\left(\\sin t\\right)\\ = \\ \\dfrac{x^{2}}{2} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "cot t is cos t over sin t, and cos t is the derivative of sin t, so the left integral is the standard log(sin t); the right side is the plain power-rule integral of x.",
         "common_mistakes": [
@@ -140,7 +176,11 @@
         ],
         "lines_compact": [
           "∫ cot t dt = ∫ x dx",
-          "⇒ log(sin t) = x²/2 + c"
+          {
+            "text": "\\Rightarrow \\ \\log \\left(\\sin t\\right)\\ = \\ \\dfrac{x^{2}}{2} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

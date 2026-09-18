@@ -291,20 +291,34 @@
         "margin_note": "The last mark. h² − ab turns out to be a perfect square divided by 4 — and a square is never negative, which is the entire argument.",
         "lines": [
           {
-            "text": "(h = (l₁m₂ + l₂m₁)/2 and ab = l₁l₂m₁m₂)",
+            "text": "\\left(h\\ = \\ \\dfrac{l_{1}m_{2}\\ + \\ l_{2}m_{1}}{2}\\text{and}\\ ab\\ = \\ l_{1}l_{2}m_{1}m_{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
+          {
+            "text": "\\left(b\\right)h^{2}\\ - \\ ab\\ = \\ \\left[\\dfrac{l_{1}m_{2}\\ + \\ l_{2}m_{1}}{2}\\right]^{2}\\ - \\ l_{1}l_{2}m_{1}m_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write both terms over 4)",
             "added": true
           },
-          "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
+          {
+            "text": "= \\ \\dfrac{\\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}\\ - \\ 4l_{1}l_{2}m_{1}m_{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((p + q)² − 4pq = (p − q)²)",
             "added": true
           },
-          "= (l₁m₂ − l₂m₁)²/4  ≥ 0",
+          {
+            "text": "= \\ \\dfrac{\\left(l_{1}m_{2}\\ - \\ l_{2}m_{1}\\right)^{2}}{4} \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a square is never negative)",
             "added": true
@@ -349,9 +363,21 @@
         "mark_note": "Solution",
         "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument.",
         "lines_compact": [
-          "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
-          "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
-          "= (l₁m₂ − l₂m₁)²/4  ≥ 0",
+          {
+            "text": "\\left(b\\right)h^{2}\\ - \\ ab\\ = \\ \\left[\\dfrac{l_{1}m_{2}\\ + \\ l_{2}m_{1}}{2}\\right]^{2}\\ - \\ l_{1}l_{2}m_{1}m_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}\\ - \\ 4l_{1}l_{2}m_{1}m_{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(l_{1}m_{2}\\ - \\ l_{2}m_{1}\\right)^{2}}{4} \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ h² − ab ≥ 0  ⇒  h² ≥ ab",
           {
             "text": "Similarly, g² ≥ ac and f² ≥ bc",

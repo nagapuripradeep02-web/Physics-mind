@@ -59,10 +59,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(d/dt(t − sin t) = 1 − cos t)",
-          "x = a(t − sin t)   ⇒   dx/dt = a(1 − cos t)",
-          "(d/dt(1 + cos t) = 0 − sin t)",
-          "y = a(1 + cos t)   ⇒   dy/dt = −a sin t"
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\left(t\\ - \\ \\sin t\\right)\\ = \\ 1\\ - \\ \\cos t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ a\\left(t\\ - \\ \\sin t\\right)\\ \\Rightarrow \\ \\dfrac{dx}{dt}\\ = \\ a\\left(1\\ - \\ \\cos t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\left(1\\ + \\ \\cos t\\right)\\ = \\ 0\\ - \\ \\sin t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ a\\left(1\\ + \\ \\cos t\\right)\\ \\Rightarrow \\ \\dfrac{dy}{dt}\\ = \\ - a\\sin t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,17 +121,33 @@
             "text": "(this needs 1 − cos t ≠ 0, that is t not a multiple of 2π)",
             "added": true
           },
-          "dy/dx = (dy/dt) / (dx/dt) = −a sin t / [a(1 − cos t)]",
           {
-            "text": "(the double angle formulas with t = 2 · (t/2))",
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ - \\dfrac{a\\sin t}{a\\left(1\\ - \\ \\cos t\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{double}\\ \\text{angle}\\ \\text{formulas}\\ \\text{with}\\ t\\ = \\ 2\\ \\cdot \\ \\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "sin t = 2 sin(t/2) cos(t/2)   and   1 − cos t = 2 sin²(t/2)",
           {
-            "text": "(cancel 2 sin(t/2); cos(t/2)/sin(t/2) = cot(t/2))",
+            "text": "\\sin t\\ = \\ 2\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)\\ \\text{and}\\ 1\\ - \\ \\cos t\\ = \\ 2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{cancel}\\ 2\\sin \\left(\\dfrac{t}{2}\\right);\\ \\dfrac{\\cos \\left(\\dfrac{t}{2}\\right)}{\\sin \\left(\\dfrac{t}{2}\\right)} = \\ \\cot \\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dx = −2 sin(t/2) cos(t/2) / [2 sin²(t/2)] = −cot(t/2)"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\dfrac{2\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)}{2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)} = \\ - \\cot \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,9 +178,21 @@
         ],
         "memory_tip": "1 − cos t = 2 sin²(t/2) and 1 + cos t = 2 cos²(t/2) — the minus goes with the sine.",
         "lines_compact": [
-          "dy/dx = (dy/dt) / (dx/dt) = −a sin t / [a(1 − cos t)]",
-          "sin t = 2 sin(t/2) cos(t/2)   and   1 − cos t = 2 sin²(t/2)",
-          "dy/dx = −2 sin(t/2) cos(t/2) / [2 sin²(t/2)] = −cot(t/2)"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ - \\dfrac{a\\sin t}{a\\left(1\\ - \\ \\cos t\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin t\\ = \\ 2\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)\\ \\text{and}\\ 1\\ - \\ \\cos t\\ = \\ 2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\dfrac{2\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)}{2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)} = \\ - \\cot \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -168,14 +212,19 @@
             "style": "indent",
             "added": true
           },
-          "d/dt (dy/dx) = d/dt[−cot(t/2)]",
+          {
+            "text": "\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{d}{dt}\\left[ - \\cot \\left(\\dfrac{t}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(d/dt(cot u) = −cosec²u · du/dt,",
             "added": true
           },
           {
-            "text": "  with u = t/2 and du/dt = 1/2;",
+            "text": "\\text{with}\\ u\\ = \\ \\dfrac{t}{2}\\text{and}\\ \\dfrac{du}{dt}\\ = \\ \\dfrac{1}{2};",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -183,8 +232,16 @@
             "style": "indent",
             "added": true
           },
-          "= cosec²(t/2) · (1/2)",
-          "= ½ cosec²(t/2)"
+          {
+            "text": "= \\ \\cos ec^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\cos ec^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -215,9 +272,21 @@
         ],
         "memory_tip": "d/dt(cot u) = −cosec²u · du/dt; here u = t/2, so du/dt = ½.",
         "lines_compact": [
-          "d/dt (dy/dx) = d/dt[−cot(t/2)]",
-          "= cosec²(t/2) · (1/2)",
-          "= ½ cosec²(t/2)"
+          {
+            "text": "\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{d}{dt}\\left[ - \\cot \\left(\\dfrac{t}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos ec^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\cos ec^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -237,14 +306,22 @@
             "style": "indent",
             "added": true
           },
-          "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
           {
-            "text": "(put d/dt(dy/dx) = ½ cosec²(t/2) and dx/dt = a(1 − cos t))",
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ \\dfrac{\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{1}{2}\\cos ec^{2}\\left(\\dfrac{t}{2}\\right)\\ \\text{and}\\ \\dfrac{dx}{dt}\\ = \\ a\\left(1\\ - \\ \\cos t\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= ½ cosec²(t/2) / [a(1 − cos t)]",
           {
-            "text": "(1 − cos t = 2 sin²(t/2))",
+            "text": "\\left(1\\ - \\ \\cos t\\ = \\ 2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= ½ cosec²(t/2) / [2a sin²(t/2)]",
@@ -291,7 +368,11 @@
         ],
         "memory_tip": "One division for the first derivative, a second division for the second derivative — one dx/dt per order.",
         "lines_compact": [
-          "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
+          {
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ \\dfrac{\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= ½ cosec²(t/2) / [a(1 − cos t)]",
           "= ½ cosec²(t/2) / [2a sin²(t/2)]",
           {

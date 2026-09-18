@@ -73,8 +73,16 @@
             "render": "katex",
             "style": "normal"
           },
-          "Use ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx, a = π/2.",
-          "By x → π/2 − x: I",
+          {
+            "text": "\\text{Use}\\ \\int _{0}^{a}\\ f\\left(x\\right)dx\\ = \\ \\int _{0}^{a}\\ f\\left(a\\ - \\ x\\right)dx,\\ a\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:\\ I",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\int _{0}^{\\pi /2} (\\pi /2 - x)/(\\sin (\\pi /2 - x) +",
             "render": "katex",
@@ -85,7 +93,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "sin(π/2 − x) = cosx and cos(π/2 − x) = sinx:",
+          {
+            "text": "\\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x\\ \\text{and}\\ \\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi /2} (\\pi /2 - x)/(\\cos x + \\sin x) dx \\dots (2)",
             "render": "katex",
@@ -118,7 +130,9 @@
             "style": "normal"
           },
           {
-            "text": "x + (π/2 − x) = π/2, a constant:",
+            "text": "x\\ + \\ \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\dfrac{\\pi }{2},\\ a\\ \\text{constant}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -170,16 +184,26 @@
         "memory_tip": "sinx + cosx = √2 sin(x + π/4). Dividing by it turns the integrand into a cosecant.",
         "lines": [
           {
-            "text": "sinx + cosx = √2 (sinx·1/√2 + cosx·1/√2)",
+            "text": "\\sin x\\ + \\ \\cos x\\ = \\ \\sqrt{2}\\left(\\sin x \\cdot \\dfrac{1}{\\sqrt{2}} + \\ \\cos x \\cdot \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= √2 (sinx cos(π/4) + cosx sin(π/4))",
+            "text": "= \\ \\sqrt{2}\\left(\\sin x\\cos \\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\cos x\\sin \\left(\\dfrac{\\pi }{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "sinx + cosx = √2 sin(x + π/4)",
           {
-            "text": "So 1/(sinx + cosx) = (1/√2)cosec(x + π/4):",
+            "text": "\\sin x\\ + \\ \\cos x\\ = \\ \\sqrt{2}\\sin \\left(x\\ + \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\dfrac{1}{\\sin x\\ + \\ \\cos x} = \\ \\left(\\dfrac{1}{\\sqrt{2}}\\right)\\cos ec\\left(x\\ + \\ \\dfrac{\\pi }{4}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -187,7 +211,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
+          {
+            "text": "\\left[\\because \\ \\int \\cos ec\\theta d\\theta \\ = \\ \\log \\tan \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= (\\pi /(4\\sqrt{2}))[\\log \\tan ((x + \\pi /4)/2)]_{0}^{\\pi /2}",
             "render": "katex",
@@ -200,13 +228,21 @@
           "Forgetting the 1/√2 factors inside the sine sum."
         ],
         "lines_compact": [
-          "sinx + cosx = √2 sin(x + π/4)",
+          {
+            "text": "\\sin x\\ + \\ \\cos x\\ = \\ \\sqrt{2}\\sin \\left(x\\ + \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I = (\\pi /(4\\sqrt{2}))\\int _{0}^{\\pi /2} \\operatorname{cosec} (x + \\pi /4) dx",
             "render": "katex",
             "style": "normal"
           },
-          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
+          {
+            "text": "\\left[\\because \\ \\int \\cos ec\\theta d\\theta \\ = \\ \\log \\tan \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= (\\pi /(4\\sqrt{2}))[\\log \\tan ((x + \\pi /4)/2)]_{0}^{\\pi /2}",
             "render": "katex",
@@ -224,35 +260,58 @@
         "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1, and their ratio is (√2 + 1)².",
         "lines": [
           {
-            "text": "At x = π/2: (π/2 + π/4)/2 = 3π/8",
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{\\pi }{2}:\\ \\dfrac{\\dfrac{\\pi }{2} + \\ \\dfrac{\\pi }{4}}{2} = \\ \\dfrac{3\\pi }{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "At x = 0: (0 + π/4)/2 = π/8",
+            "text": "\\text{At}\\ x\\ = \\ 0:\\ \\dfrac{0\\ + \\ \\dfrac{\\pi }{4}}{2} = \\ \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (π/(4√2))[log tan(3π/8) − log tan(π/8)]",
           {
-            "text": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1",
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\left[\\log \\tan \\left(\\dfrac{3\\pi }{8}\\right)\\ - \\ \\log \\tan \\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{3\\pi }{8}\\right)\\ = \\ \\sqrt{2}\\ + \\ 1\\ \\text{and}\\ \\tan \\left(\\dfrac{\\pi }{8}\\right)\\ = \\ \\sqrt{2}\\ - \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\log \\left[\\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply above and below by √2 + 1:",
             "added": true
           },
           {
-            "text": "(√2 + 1)/(√2 − 1) = (√2 + 1)²/1",
-            "added": true
-          },
-          "= (π/(4√2)) log[(√2 + 1)²] = (π/(4√2))·2 log(√2 + 1)",
-          {
-            "text": "(π/(4√2))·2 = π/(2√2):",
+            "text": "\\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1} = \\ \\dfrac{\\left(\\sqrt{2}\\ + \\ 1\\right)^{2}}{1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = π/(2√2) · log(√2 + 1)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\log \\left[\\left(\\sqrt{2}\\ + \\ 1\\right)^{2}\\right]\\ = \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right) \\cdot 2\\log \\left(\\sqrt{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right) \\cdot 2\\ = \\ \\dfrac{\\pi }{2\\sqrt{2}}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{2\\sqrt{2}} \\cdot \\ \\log \\left(\\sqrt{2}\\ + \\ 1\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Rationalising the fraction inside the log gives a perfect square, and log(a²) = 2 log(a) cancels the outer factor of 2 with the 4 in the denominator, leaving exactly the result the question asks to show.",
@@ -261,12 +320,25 @@
           "Arriving at a value that is off from the printed result by a factor of 2 — a sign that the log(a²) = 2log(a) step was skipped."
         ],
         "lines_compact": [
-          "= (π/(4√2))[log tan(3π/8) − log tan(π/8)]",
-          "= (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",
-          "= (π/(4√2)) log[(√2 + 1)²] = (π/(4√2))·2 log(√2 + 1)",
           {
-            "text": "∴ I = π/(2√2) · log(√2 + 1)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\left[\\log \\tan \\left(\\dfrac{3\\pi }{8}\\right)\\ - \\ \\log \\tan \\left(\\dfrac{\\pi }{8}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\log \\left[\\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right)\\log \\left[\\left(\\sqrt{2}\\ + \\ 1\\right)^{2}\\right]\\ = \\ \\left(\\dfrac{\\pi }{4\\sqrt{2}}\\right) \\cdot 2\\log \\left(\\sqrt{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{2\\sqrt{2}} \\cdot \\ \\log \\left(\\sqrt{2}\\ + \\ 1\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

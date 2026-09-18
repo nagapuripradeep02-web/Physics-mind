@@ -59,14 +59,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = tan⁻¹((3a²x − x³)/(a(a² − 3x²)))",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\tan ^{-1}\\left(\\dfrac{3a^{2}x\\ - \\ x^{3}}{a\\left(a^{2}\\ - \\ 3x^{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take a > 0; every real x is a tan θ",
           {
             "text": "  for one θ in (−π/2, π/2))",
             "style": "indent"
           },
           "Put x = a tan θ,",
-          "so that tan θ = x/a  and  θ = tan⁻¹(x/a)"
+          {
+            "text": "\\text{so}\\ \\text{that}\\ \\tan \\theta \\ = \\ \\dfrac{x}{a}\\text{and}\\ \\theta \\ = \\ \\tan ^{-1}\\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -138,7 +146,11 @@
             "text": "(cancel a³, which is not 0)",
             "added": true
           },
-          "So the fraction = (3tan θ − tan³θ)/(1 − 3tan²θ) = tan 3θ",
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{fraction}\\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta } = \\ \\tan 3\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "[tangent triple angle formula:",
           "tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
         ],
@@ -178,7 +190,11 @@
             "style": "indent"
           },
           "Denominator = a(a² − 3a²tan²θ) = a³(1 − 3tan²θ)",
-          "So the fraction = (3tan θ − tan³θ)/(1 − 3tan²θ) = tan 3θ",
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{fraction}\\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta } = \\ \\tan 3\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "[tangent triple angle formula:",
           "tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
         ]
@@ -196,8 +212,9 @@
             "added": true
           },
           {
-            "text": "  so θ lies in (−π/6, π/6) and 3θ lies in (−π/2, π/2),",
+            "text": "\\text{so}\\ \\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{6},\\ \\dfrac{\\pi }{6}\\right)\\ \\text{and}\\ 3\\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -206,8 +223,16 @@
             "added": true
           },
           "y = tan⁻¹(tan 3θ) = 3θ",
-          "and θ = tan⁻¹(x/a), so",
-          "∴ y = 3 tan⁻¹(x/a)",
+          {
+            "text": "\\text{and}\\ \\theta \\ = \\ \\tan ^{-1}\\left(\\dfrac{x}{a}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y\\ = \\ 3\\tan ^{-1}\\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(For |x| > a/√3 the two sides differ by π or by −π,",
           "a constant, which does not change the derivative.)"
         ],
@@ -242,8 +267,16 @@
         "memory_tip": "The 3 in tan 3θ moves out in front of the inverse tangent. That single 3 is what makes the final answer 3a and not a.",
         "lines_compact": [
           "y = tan⁻¹(tan 3θ) = 3θ",
-          "and θ = tan⁻¹(x/a), so",
-          "∴ y = 3 tan⁻¹(x/a)",
+          {
+            "text": "\\text{and}\\ \\theta \\ = \\ \\tan ^{-1}\\left(\\dfrac{x}{a}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y\\ = \\ 3\\tan ^{-1}\\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(For |x| > a/√3 the two sides differ by π or by −π,",
           "a constant, which does not change the derivative.)"
         ]
@@ -260,25 +293,48 @@
             "text": "(the chain rule for the inverse tangent)",
             "added": true
           },
-          "d/dx [tan⁻¹u] = (1/(1 + u²))(du/dx),",
-          "with u = x/a and du/dx = 1/a",
           {
-            "text": "(put u = x/a: u² = x²/a², and du/dx = 1/a)",
-            "added": true
-          },
-          "dy/dx = 3 · [1/(1 + x²/a²)] · (1/a)",
-          {
-            "text": "(1 + x²/a² = (a² + x²)/a², whose reciprocal is a²/(a² + x²))",
-            "added": true
-          },
-          "= 3 · [a²/(a² + x²)] · (1/a)",
-          {
-            "text": "(3 · a² · (1/a) = 3a)",
-            "added": true
+            "text": "\\dfrac{d}{dx}\\left[\\tan ^{-1} u\\right]\\ = \\ \\left(\\dfrac{1}{1\\ + \\ u^{2}}\\right)\\left(\\dfrac{du}{dx}\\right),",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ dy/dx = 3a/(a² + x²)",
-            "style": "boxed"
+            "text": "\\text{with}\\ u\\ = \\ \\dfrac{x}{a}\\text{and}\\ \\dfrac{du}{dx}\\ = \\ \\dfrac{1}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ u\\ = \\ \\dfrac{x}{a}:\\ u^{2}\\ = \\ \\dfrac{x^{2}}{a^{2}},\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ \\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 3\\ \\cdot \\ \\left[\\dfrac{1}{1\\ + \\ \\dfrac{x^{2}}{a^{2}}}\\right]\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ + \\ \\dfrac{x^{2}}{a^{2}} = \\ \\dfrac{a^{2}\\ + \\ x^{2}}{a^{2}},\\ \\text{whose}\\ \\text{reciprocal}\\ \\text{is}\\ \\dfrac{a^{2}}{a^{2}\\ + \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ 3\\ \\cdot \\ \\left[\\dfrac{a^{2}}{a^{2}\\ + \\ x^{2}}\\right]\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\cdot \\ a^{2}\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)\\ = \\ 3a\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3a}{a^{2}\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -311,13 +367,30 @@
         ],
         "memory_tip": "This is the standard result d/dx tan⁻¹(x/a) = a/(a² + x²), multiplied by the 3 carried down from the triple angle.",
         "lines_compact": [
-          "d/dx [tan⁻¹u] = (1/(1 + u²))(du/dx),",
-          "with u = x/a and du/dx = 1/a",
-          "dy/dx = 3 · [1/(1 + x²/a²)] · (1/a)",
-          "= 3 · [a²/(a² + x²)] · (1/a)",
           {
-            "text": "∴ dy/dx = 3a/(a² + x²)",
-            "style": "boxed"
+            "text": "\\dfrac{d}{dx}\\left[\\tan ^{-1} u\\right]\\ = \\ \\left(\\dfrac{1}{1\\ + \\ u^{2}}\\right)\\left(\\dfrac{du}{dx}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ u\\ = \\ \\dfrac{x}{a}\\text{and}\\ \\dfrac{du}{dx}\\ = \\ \\dfrac{1}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 3\\ \\cdot \\ \\left[\\dfrac{1}{1\\ + \\ \\dfrac{x^{2}}{a^{2}}}\\right]\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 3\\ \\cdot \\ \\left[\\dfrac{a^{2}}{a^{2}\\ + \\ x^{2}}\\right]\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3a}{a^{2}\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

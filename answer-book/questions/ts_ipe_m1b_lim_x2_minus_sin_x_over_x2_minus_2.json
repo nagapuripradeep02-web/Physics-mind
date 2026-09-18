@@ -52,15 +52,27 @@
             "style": "heading"
           },
           "Divide the numerator and the denominator by x² (x ≠ 0):",
-          "(x²/x² = 1, sin x/x² stays, 2/x² stays)",
-          "(x² − sin x)/(x² − 2) = (1 − (sin x)/x²)/(1 − 2/x²)",
+          {
+            "text": "\\left(\\dfrac{x^{2}}{x^{2}} = \\ 1,\\ \\dfrac{\\sin x}{x^{2}}\\text{stays},\\ \\dfrac{2}{x^{2}}\\text{stays}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x^{2}\\ - \\ \\sin x}{x^{2}\\ - \\ 2} = \\ \\dfrac{1\\ - \\ \\dfrac{\\sin x}{x^{2}}}{1\\ - \\ \\dfrac{2}{x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For every x,  −1 ≤ sin x ≤ 1",
           "(dividing −1 ≤ sin x ≤ 1 by x² > 0 keeps the direction",
           {
             "text": "  of the inequalities)",
             "style": "indent"
           },
-          "∴ −1/x² ≤ (sin x)/x² ≤ 1/x²"
+          {
+            "text": "\\therefore \\ - \\dfrac{1}{x^{2}} \\le \\ \\dfrac{\\sin x}{x^{2}} \\le \\ \\dfrac{1}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,17 +120,36 @@
             "style": "indent",
             "added": true
           },
-          "As x → ∞, 1/x² → 0,",
-          "so by the Sandwich theorem (sin x)/x² → 0",
-          "Also 2/x² → 0",
           {
-            "text": "(put 0 for (sin x)/x² and for 2/x²)",
+            "text": "\\text{As}\\ x\\ \\to \\ \\infty ,\\ \\dfrac{1}{x^{2}} \\to \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{by}\\ \\text{the}\\ \\text{Sandwich}\\ \\text{theorem}\\ \\dfrac{\\sin x}{x^{2}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\dfrac{2}{x^{2}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ 0\\ \\text{for}\\ \\dfrac{\\sin x}{x^{2}}\\text{and}\\ \\text{for}\\ \\dfrac{2}{x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ limit = (1 − 0)/(1 − 0) = 1",
           {
-            "text": "∴ lim(x → ∞) (x² − sin x)/(x² − 2) = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\text{it}\\ = \\ \\dfrac{1\\ - \\ 0}{1\\ - \\ 0} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(x^{2}\\ - \\ \\sin x\\right)}{x^{2}\\ - \\ 2} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,13 +181,30 @@
         ],
         "memory_tip": "Both lines are led by x², so the answer is 1; the sine only adds a correction that approaches 0.",
         "lines_compact": [
-          "As x → ∞, 1/x² → 0,",
-          "so by the Sandwich theorem (sin x)/x² → 0",
-          "Also 2/x² → 0",
-          "∴ limit = (1 − 0)/(1 − 0) = 1",
           {
-            "text": "∴ lim(x → ∞) (x² − sin x)/(x² − 2) = 1",
-            "style": "boxed"
+            "text": "\\text{As}\\ x\\ \\to \\ \\infty ,\\ \\dfrac{1}{x^{2}} \\to \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{by}\\ \\text{the}\\ \\text{Sandwich}\\ \\text{theorem}\\ \\dfrac{\\sin x}{x^{2}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\dfrac{2}{x^{2}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\lim \\text{it}\\ = \\ \\dfrac{1\\ - \\ 0}{1\\ - \\ 0} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ \\infty \\right)\\left(x^{2}\\ - \\ \\sin x\\right)}{x^{2}\\ - \\ 2} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

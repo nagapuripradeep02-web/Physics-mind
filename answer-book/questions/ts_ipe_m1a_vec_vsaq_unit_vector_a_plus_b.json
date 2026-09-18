@@ -112,10 +112,15 @@
             "text": "(a vector divided by its length has length 1)",
             "added": true
           },
-          "∴ Required unit vector = (a + b)/|a + b|",
           {
-            "text": "= (4i + 3j + 3k)/√34",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\dfrac{a\\ + \\ b}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4i\\ + \\ 3j\\ + \\ 3k}{\\sqrt{34}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,10 +150,15 @@
           "Leaving the answer unnormalised."
         ],
         "lines_compact": [
-          "∴ Required unit vector = (a + b)/|a + b|",
           {
-            "text": "= (4i + 3j + 3k)/√34",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\dfrac{a\\ + \\ b}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4i\\ + \\ 3j\\ + \\ 3k}{\\sqrt{34}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

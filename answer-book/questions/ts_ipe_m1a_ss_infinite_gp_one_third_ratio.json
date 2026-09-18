@@ -52,11 +52,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Here a = 1 and r = (1/3)/1 = 1/3",
-          "Check on the next pair:  (1/9)/(1/3) = 1/3",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ 1\\ \\text{and}\\ r\\ = \\ \\dfrac{\\dfrac{1}{3}}{1} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}\\ \\text{on}\\ \\text{the}\\ \\text{next}\\ \\text{pair}:\\ \\dfrac{\\dfrac{1}{9}}{\\dfrac{1}{3}} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the sum to infinity exists only when |r| < 1)",
-          "|r| = 1/3 < 1, so the sum to infinity exists",
-          "S∞ = a/(1 − r)"
+          {
+            "text": "\\left|r\\right|\\ = \\ \\dfrac{1}{3} < \\ 1,\\ \\text{so}\\ \\text{the}\\ \\text{sum}\\ \\text{to}\\ \\text{infinity}\\ \\text{exists}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S\\infty \\ = \\ \\dfrac{a}{1\\ - \\ r}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -96,22 +112,37 @@
         "memory_tip": "One divided by two thirds is three halves.",
         "lines": [
           {
-            "text": "(put a = 1 and r = 1/3)",
-            "added": true
-          },
-          "S∞ = 1/(1 − 1/3)",
-          {
-            "text": "(1 − 1/3 = 2/3)",
-            "added": true
-          },
-          "= 1/(2/3)",
-          {
-            "text": "(dividing by 2/3 is multiplying by 3/2)",
+            "text": "\\left(\\text{put}\\ a\\ = \\ 1\\ \\text{and}\\ r\\ = \\ \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ S∞ = 3/2",
-            "style": "boxed"
+            "text": "S\\infty \\ = \\ \\dfrac{1}{1\\ - \\ \\dfrac{1}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ \\dfrac{1}{3} = \\ \\dfrac{2}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{1}{\\dfrac{2}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{2}{3}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{3}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ S\\infty \\ = \\ \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -141,11 +172,20 @@
           "Taking the first term as 1/3 instead of 1, which gives 1/2."
         ],
         "lines_compact": [
-          "S∞ = 1/(1 − 1/3)",
-          "= 1/(2/3)",
           {
-            "text": "∴ S∞ = 3/2",
-            "style": "boxed"
+            "text": "S\\infty \\ = \\ \\dfrac{1}{1\\ - \\ \\dfrac{1}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{\\dfrac{2}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ S\\infty \\ = \\ \\dfrac{3}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -65,7 +65,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "x² + 3y² = 3 ⇒ x²/3 + y²/1 = 1",
+          {
+            "text": "x^{2}\\ + \\ 3y^{2}\\ = \\ 3\\ \\Rightarrow \\ \\dfrac{x^{2}}{3} + \\ \\dfrac{y^{2}}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide every term by 3)",
           "⇒ a² = 3, b² = 1",
           "Given line: 4x + y + k = 0 ⇒ y = −4x − k",
@@ -92,8 +96,9 @@
             "added": true
           },
           {
-            "text": "  x²/a² + y²/b² = 1 exactly when",
+            "text": "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ \\text{exactly}\\ \\text{when}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Tangency condition: c² = a²m² + b²",

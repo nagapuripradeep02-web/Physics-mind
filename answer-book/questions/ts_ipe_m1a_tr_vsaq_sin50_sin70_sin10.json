@@ -58,9 +58,21 @@
             "style": "heading"
           },
           "L.H.S = (sin50° − sin70°) + sin10°",
-          "Use sin p − sin q = 2 cos((p+q)/2) sin((p−q)/2):",
-          "= 2 cos((50°+70°)/2) sin((50°−70°)/2) + sin10°",
-          "((50° + 70°)/2 = 60° and (50° − 70°)/2 = −10°)",
+          {
+            "text": "\\text{Use}\\ \\sin p\\ - \\ \\sin q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\sin \\left(\\dfrac{p - q}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{50^{\\circ} + 70^{\\circ}}{2}\\right)\\sin \\left(\\dfrac{50^{\\circ} - 70^{\\circ}}{2}\\right)\\ + \\ \\sin 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{50^{\\circ}\\ + \\ 70^{\\circ}}{2} = \\ 60^{\\circ}\\ \\text{and}\\ \\dfrac{50^{\\circ}\\ - \\ 70^{\\circ}}{2} = \\ - 10^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 cos60° sin(−10°) + sin10°"
         ],
         "recall": {
@@ -101,12 +113,20 @@
         "memory_tip": "cos60° = 1/2 cancels the 2, and sin(−10°) = −sin10° cancels the third term exactly.",
         "lines": [
           {
-            "text": "(cos60° = 1/2)",
+            "text": "\\left(\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 × (1/2) × sin(−10°) + sin10°",
           {
-            "text": "(2 × 1/2 = 1)",
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\sin \\left( - 10^{\\circ}\\right)\\ + \\ \\sin 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\dfrac{1}{2} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= sin(−10°) + sin10°",
@@ -148,7 +168,11 @@
           "Writing cos 60° = √3/2."
         ],
         "lines_compact": [
-          "= 2 × (1/2) × sin(−10°) + sin10°",
+          {
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\sin \\left( - 10^{\\circ}\\right)\\ + \\ \\sin 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= sin(−10°) + sin10°",
           "= −sin10° + sin10°",
           {

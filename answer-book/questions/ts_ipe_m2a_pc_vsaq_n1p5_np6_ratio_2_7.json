@@ -60,7 +60,11 @@
           "⁽ⁿ⁺¹⁾P₅ / ⁿP₆ = 2/7",
           "The factors n(n − 1)(n − 2)(n − 3)",
           "are common to both, so they cancel:",
-          "(n + 1)/[(n − 4)(n − 5)] = 2/7"
+          {
+            "text": "\\dfrac{n\\ + \\ 1}{\\left(n\\ - \\ 4\\right)\\left(n\\ - \\ 5\\right)} = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -132,7 +136,9 @@
           },
           "(n − 11)(2n − 3) = 0",
           {
-            "text": "n = 11 or n = 3/2",
+            "text": "n\\ = \\ 11\\ \\text{or}\\ n\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -140,7 +146,9 @@
             "added": true
           },
           {
-            "text": "so n = 3/2 is rejected.",
+            "text": "\\text{so}\\ n\\ = \\ \\dfrac{3}{2}\\text{is}\\ \\text{rejected}.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -181,7 +189,11 @@
           "7n + 7 = 2n² − 18n + 40",
           "2n² − 25n + 33 = 0",
           "(n − 11)(2n − 3) = 0",
-          "n = 3/2 is not a whole number ≥ 6.",
+          {
+            "text": "n\\ = \\ \\dfrac{3}{2}\\text{is}\\ \\text{not}\\ a\\ \\text{whole}\\ \\text{number}\\ \\ge \\ 6.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ n = 11",
             "style": "boxed"

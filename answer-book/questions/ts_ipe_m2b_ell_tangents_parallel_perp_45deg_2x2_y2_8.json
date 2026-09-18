@@ -75,7 +75,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "2x² + y² = 8 ⇒ x²/4 + y²/8 = 1",
+          {
+            "text": "2x^{2}\\ + \\ y^{2}\\ = \\ 8\\ \\Rightarrow \\ \\dfrac{x^{2}}{4} + \\ \\dfrac{y^{2}}{8} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide every term by 8)",
           "⇒ a² = 4, b² = 8",
           "(a² is the number under x² and b² the number",
@@ -101,9 +105,15 @@
         "margin_note": "Second mark. A parallel line has the same slope as the given line.",
         "memory_tip": "Parallel lines share the same m; read m straight off the given line's equation.",
         "lines": [
-          "Slope of x − 2y − 4 = 0 is m = 1/2",
           {
-            "text": "(2y = x − 4 ⇒ y = x/2 − 2)",
+            "text": "\\text{Slope}\\ \\text{of}\\ x\\ - \\ 2y\\ - \\ 4\\ = \\ 0\\ \\text{is}\\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2y\\ = \\ x\\ - \\ 4\\ \\Rightarrow \\ y\\ = \\ \\dfrac{x}{2} - \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -111,7 +121,9 @@
             "added": true
           },
           {
-            "text": "a²m² + b² = 4 · 1/4 + 8 = 1 + 8 = 9",
+            "text": "a^{2}m^{2}\\ + \\ b^{2}\\ = \\ 4\\ \\cdot \\ \\dfrac{1}{4} + \\ 8\\ = \\ 1\\ + \\ 8\\ = \\ 9",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
@@ -135,7 +147,11 @@
           "Losing the factor of 2 when clearing 2y = x ± 6 to standard form."
         ],
         "lines_compact": [
-          "Slope of x − 2y − 4 = 0 is m = 1/2",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ x\\ - \\ 2y\\ - \\ 4\\ = \\ 0\\ \\text{is}\\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y = ½x ± √(4·¼ + 8) = ½x ± √9 = ½x ± 3",
           {
             "text": "x − 2y + 6 = 0 and x − 2y − 6 = 0",

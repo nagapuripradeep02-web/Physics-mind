@@ -69,15 +69,36 @@
             "style": "indent"
           },
           "First take out the coefficient of x²:",
-          "4x² − 4x − 7 = 4[x² − x − 7/4]",
-          "Half the coefficient of x is −1/2, so add",
           {
-            "text": "  and subtract (1/2)²:",
-            "style": "indent"
+            "text": "4x^{2}\\ - \\ 4x\\ - \\ 7\\ = \\ 4\\left[x^{2}\\ - \\ x\\ - \\ \\dfrac{7}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 4[x² − x + (1/2)² − (1/2)² − 7/4]",
-          "−1/4 − 7/4 = −2:",
-          "= 4[(x − 1/2)² − 2]"
+          {
+            "text": "\\text{Half}\\ \\text{the}\\ \\text{coefficient}\\ \\text{of}\\ x\\ \\text{is}\\ - \\dfrac{1}{2},\\ \\text{so}\\ \\text{add}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{subtract}\\ \\left(\\dfrac{1}{2}\\right)^{2}:",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\left[x^{2}\\ - \\ x\\ + \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ \\dfrac{7}{4}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{1}{4} - \\ \\dfrac{7}{4} = \\ - 2:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\left[\\left(x\\ - \\ \\dfrac{1}{2}\\right)^{2}\\ - \\ 2\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With leading coefficient 4, factor it out first; −(1/2)² − 7/4 = −1/4−7/4 = −2 is the constant left inside the bracket, and it comes out NEGATIVE this time.",
         "common_mistakes": [
@@ -94,9 +115,17 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "2 = (√2)², so 4x²−4x−7 = 4[(x−1/2)² − (√2)²]",
+          {
+            "text": "2\\ = \\ \\left(\\sqrt{2}\\right)^{2},\\ \\text{so}\\ 4x^{2} - 4x - 7\\ = \\ 4\\left[\\left(x - \\dfrac{1}{2}\\right)^{2}\\ - \\ \\left(\\sqrt{2}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "This matches x² − a²",
-          "with x written as (x−1/2) and a = √2"
+          {
+            "text": "\\text{with}\\ x\\ \\text{written}\\ \\text{as}\\ \\left(x - \\dfrac{1}{2}\\right)\\ \\text{and}\\ a\\ = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Because the leftover constant inside the bracket is NEGATIVE, the bracket has the form (something)² − a² — a difference of squares, not a sum — which calls for the log formula.",
         "common_mistakes": [
@@ -151,16 +180,26 @@
         "margin_note": "Method",
         "lines": [
           {
-            "text": "The 4 outside comes out as 1/4:",
+            "text": "\\text{The}\\ 4\\ \\text{outside}\\ \\text{comes}\\ \\text{out}\\ \\text{as}\\ \\dfrac{1}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫dx/(4x²−4x−7) = (1/4)∫dx/[(x−1/2)²−(√2)²]",
+          {
+            "text": "\\int \\dfrac{dx}{4x^{2} - 4x - 7} = \\ \\left(\\dfrac{1}{4}\\right)\\int \\dfrac{dx}{\\left(x - \\dfrac{1}{2}\\right)^{2} - \\left(\\sqrt{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Use the formula with a = √2:",
             "added": true
           },
           "=",
-          "(1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]|",
+          {
+            "text": "\\left(\\dfrac{1}{4}\\right) \\cdot \\left(\\dfrac{1}{2\\sqrt{2}}\\right)\\log \\left|\\dfrac{\\left(x - \\dfrac{1}{2}\\right) - \\sqrt{2}}{\\left(x - \\dfrac{1}{2}\\right) + \\sqrt{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           "+ c",
           {
             "text": "Double above and below inside the log",
@@ -171,7 +210,11 @@
             "style": "indent",
             "added": true
           },
-          "= (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sqrt{2}}\\right)\\log \\left|\\dfrac{2x - 1 - 2\\sqrt{2}}{2x - 1 + 2\\sqrt{2}}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The outside 1/4 multiplies the formula's own 1/(2a) coefficient, giving 1/(8√2); clearing the internal halves inside the log turns (x−1/2)−√2 into (2x−1−2√2) after multiplying by 2.",
         "common_mistakes": [
@@ -180,11 +223,23 @@
         ],
         "memory_tip": "(1/4) × (1/(2√2)) = 1/(8√2) — multiply the outside factor straight into the standard coefficient.",
         "lines_compact": [
-          "∫dx/(4x²−4x−7) = (1/4)∫dx/[(x−1/2)²−(√2)²]",
+          {
+            "text": "\\int \\dfrac{dx}{4x^{2} - 4x - 7} = \\ \\left(\\dfrac{1}{4}\\right)\\int \\dfrac{dx}{\\left(x - \\dfrac{1}{2}\\right)^{2} - \\left(\\sqrt{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "=",
-          "(1/4)·(1/(2√2))log|[(x−1/2)−√2]/[(x−1/2)+√2]|",
+          {
+            "text": "\\left(\\dfrac{1}{4}\\right) \\cdot \\left(\\dfrac{1}{2\\sqrt{2}}\\right)\\log \\left|\\dfrac{\\left(x - \\dfrac{1}{2}\\right) - \\sqrt{2}}{\\left(x - \\dfrac{1}{2}\\right) + \\sqrt{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           "+ c",
-          "= (1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{8\\sqrt{2}}\\right)\\log \\left|\\dfrac{2x - 1 - 2\\sqrt{2}}{2x - 1 + 2\\sqrt{2}}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -195,10 +250,15 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "∴ ∫ dx/(4x²−4x−7) =",
           {
-            "text": "(1/(8√2))log|(2x−1−2√2)/(2x−1+2√2)| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{4x^{2} - 4x - 7} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{8\\sqrt{2}}\\right)\\log \\left|\\dfrac{2x - 1 - 2\\sqrt{2}}{2x - 1 + 2\\sqrt{2}}\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "This is the fully simplified closed form — every fraction inside the log cleared to whole numbers over 2x, and the modulus bars kept since the sign of the log's argument depends on x.",

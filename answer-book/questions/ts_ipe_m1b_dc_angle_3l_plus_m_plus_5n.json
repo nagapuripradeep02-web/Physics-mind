@@ -331,7 +331,11 @@
             "added": true
           },
           "If θ is the angle between the lines then from (3), (4), we get",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the d.r's (1, 2, −1) and (2, −1, −1))",
             "added": true
@@ -345,10 +349,15 @@
             "text": "(1 + 4 + 1 = 6 and 4 + 1 + 1 = 6)",
             "added": true
           },
-          "= |2 − 2 + 1| / √((6)(6)) = 1/√36 = 1/6",
           {
-            "text": "∴ Hence angle between the lines is Cos⁻¹(1/6)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|2\\ - \\ 2\\ + \\ 1\\right|}{\\sqrt{\\left(6\\right)\\left(6\\right)}} = \\ \\dfrac{1}{\\sqrt{36}} = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Hence}\\ \\text{angle}\\ \\text{between}\\ \\text{the}\\ \\text{lines}\\ \\text{is}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{6}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -380,16 +389,25 @@
         ],
         "lines_compact": [
           "If θ is the angle between the lines then from (3), (4), we get",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= |1(2) + 2(−1) + (−1)(−1)|",
           {
             "text": "  / √((1²+2²+(−1)²)(2²+(−1)²+(−1)²))",
             "style": "indent"
           },
-          "= |2 − 2 + 1| / √((6)(6)) = 1/√36 = 1/6",
           {
-            "text": "∴ Hence angle between the lines is Cos⁻¹(1/6)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|2\\ - \\ 2\\ + \\ 1\\right|}{\\sqrt{\\left(6\\right)\\left(6\\right)}} = \\ \\dfrac{1}{\\sqrt{36}} = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Hence}\\ \\text{angle}\\ \\text{between}\\ \\text{the}\\ \\text{lines}\\ \\text{is}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{6}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

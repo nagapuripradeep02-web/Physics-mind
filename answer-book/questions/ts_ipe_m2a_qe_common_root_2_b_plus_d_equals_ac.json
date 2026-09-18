@@ -56,10 +56,22 @@
           "Let α be the common root.",
           "x² + ax + b = 0 has EQUAL roots,",
           "so both of its roots are α.",
-          "Sum of its roots = −a/1 = −a:",
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{its}\\ \\text{roots}\\ = \\ - \\dfrac{a}{1} = \\ - a:",
+            "style": "normal",
+            "render": "katex"
+          },
           "α + α = −a",
-          "2α = −a ⇒ α = −a/2",
-          "Product of its roots = b/1 = b:",
+          {
+            "text": "2\\alpha \\ = \\ - a\\ \\Rightarrow \\ \\alpha \\ = \\ - \\dfrac{a}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{its}\\ \\text{roots}\\ = \\ \\dfrac{b}{1} = \\ b:",
+            "style": "normal",
+            "render": "katex"
+          },
           "α · α = b ⇒ α² = b"
         ],
         "recall": {
@@ -105,11 +117,21 @@
           "α is also a root of x² + cx + d = 0:",
           "α² + cα + d = 0",
           {
-            "text": "Put α² = b and α = −a/2:",
+            "text": "\\text{Put}\\ \\alpha ^{2}\\ = \\ b\\ \\text{and}\\ \\alpha \\ = \\ - \\dfrac{a}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "b + c(−a/2) + d = 0",
-          "b + d = ac/2",
+          {
+            "text": "b\\ + \\ c\\left( - \\dfrac{a}{2}\\right)\\ + \\ d\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "b\\ + \\ d\\ = \\ \\dfrac{ac}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply both sides by 2:",
             "added": true
@@ -152,8 +174,16 @@
         "lines_compact": [
           "α is a root of x² + cx + d = 0:",
           "α² + cα + d = 0",
-          "⇒ b + c(−a/2) + d = 0",
-          "⇒ b + d = ac/2",
+          {
+            "text": "\\Rightarrow \\ b\\ + \\ c\\left( - \\dfrac{a}{2}\\right)\\ + \\ d\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ b\\ + \\ d\\ = \\ \\dfrac{ac}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ 2(b + d) = ac",
             "style": "boxed"

@@ -62,7 +62,11 @@
           "= r² (r is the parameter)",
           "There is one parameter, so differentiate once.",
           "Differentiating w.r.to x,",
-          "we get 2x + 2y·dy/dx = 0"
+          {
+            "text": "\\text{we}\\ \\text{get}\\ 2x\\ + \\ 2y \\cdot \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The family of all circles centred at the origin has exactly one arbitrary constant, the radius r, so a single differentiation is what will be needed to eliminate it from the equation.",
         "common_mistakes": [
@@ -83,9 +87,15 @@
             "text": "Divide by 2:",
             "added": true
           },
-          "⇒ x + y·dy/dx = 0",
           {
-            "text": "The highest derivative is dy/dx, the first:",
+            "text": "\\Rightarrow \\ x\\ + \\ y \\cdot \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{highest}\\ \\text{derivative}\\ \\text{is}\\ \\dfrac{dy}{dx},\\ \\text{the}\\ \\text{first}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -99,7 +109,11 @@
           "Leaving the equation as 2x + 2y·dy/dx = 0 and not simplifying, though the order would still read as 1 either way."
         ],
         "lines_compact": [
-          "⇒ x + y·dy/dx = 0",
+          {
+            "text": "\\Rightarrow \\ x\\ + \\ y \\cdot \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Order = 1",
             "style": "boxed"

@@ -62,13 +62,21 @@
           "(the point (3, 2) is on the line: 3(3) − 4(2) − 1 = 0)",
           "Given line is 3x − 4y − 1 = 0",
           "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = −4)",
-          "Its slope  m = −a/b = −3/(−4) = 3/4",
+          {
+            "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{ - 4} = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(tan θ = 3/4 with θ acute: a right triangle with sides",
           {
             "text": "  3 and 4 has hypotenuse √(9 + 16) = 5)",
             "style": "indent"
           },
-          "m = tanθ = 3/4  ⇒  cosθ = 4/5,  sinθ = 3/5"
+          {
+            "text": "m\\ = \\ \\tan \\theta \\ = \\ \\dfrac{3}{4} \\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{4}{5},\\ \\sin \\theta \\ = \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -121,12 +129,20 @@
           "Given point (x₁, y₁) = (3, 2)",
           "Required points (x, y) = (x₁ ± r cosθ, y₁ ± r sinθ)",
           {
-            "text": "(put r = 5, cos θ = 4/5 and sin θ = 3/5)",
+            "text": "\\left(\\text{put}\\ r\\ = \\ 5,\\ \\cos \\theta \\ = \\ \\dfrac{4}{5}\\text{and}\\ \\sin \\theta \\ = \\ \\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (3 ± 5(4/5), 2 ± 5(3/5))",
           {
-            "text": "(5(4/5) = 4 and 5(3/5) = 3)",
+            "text": "= \\ \\left(3\\ \\pm \\ 5\\left(\\dfrac{4}{5}\\right),\\ 2\\ \\pm \\ 5\\left(\\dfrac{3}{5}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(5\\left(\\dfrac{4}{5}\\right)\\ = \\ 4\\ \\text{and}\\ 5\\left(\\dfrac{3}{5}\\right)\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (3 ± 4, 2 ± 3)"
@@ -163,7 +179,11 @@
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (3, 2)",
           "Required points (x, y) = (x₁ ± r cosθ, y₁ ± r sinθ)",
-          "= (3 ± 5(4/5), 2 ± 5(3/5))",
+          {
+            "text": "= \\ \\left(3\\ \\pm \\ 5\\left(\\dfrac{4}{5}\\right),\\ 2\\ \\pm \\ 5\\left(\\dfrac{3}{5}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (3 ± 4, 2 ± 3)"
         ]
       },

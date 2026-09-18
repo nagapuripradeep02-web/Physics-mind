@@ -66,10 +66,26 @@
             "style": "heading"
           },
           "Let the equation of the ellipse be",
-          "x²/a² + y²/b² = 1, (a > b)",
-          "The latus rectum has length 2b²/a.",
-          "Length of latus rectum is 4 ⇒ 2b²/a = 4",
-          "(multiply both sides by a/2)",
+          {
+            "text": "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1,\\ \\left(a\\ > \\ b\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{latus}\\ \\text{rectum}\\ has\\ \\text{length}\\ \\dfrac{2b^{2}}{a}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{latus}\\ \\text{rectum}\\ \\text{is}\\ 4\\ \\Rightarrow \\ \\dfrac{2b^{2}}{a} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\dfrac{a}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ b² = 2a …(1)"
         ],
         "why": "The major axis is given as the X-axis, so a > b, and the latus rectum condition is turned into an equation for b² in terms of a, to be combined with the foci condition next.",
@@ -165,7 +181,11 @@
         "memory_tip": "The final equation can also be cleared of fractions by multiplying through by 16.",
         "lines": [
           "a² = 16, b² = 8",
-          "x²/16 + y²/8 = 1",
+          {
+            "text": "\\dfrac{x^{2}}{16} + \\ \\dfrac{y^{2}}{8} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 16:",
             "added": true
@@ -175,7 +195,9 @@
             "style": "boxed"
           },
           {
-            "text": "Check: 2b²/a = 16/4 = 4, and",
+            "text": "\\text{Check}:\\ \\dfrac{2b^{2}}{a} = \\ \\dfrac{16}{4} = \\ 4,\\ \\text{and}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -191,7 +213,11 @@
         ],
         "lines_compact": [
           "a² = 16, b² = 8",
-          "x²/16 + y²/8 = 1",
+          {
+            "text": "\\dfrac{x^{2}}{16} + \\ \\dfrac{y^{2}}{8} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x² + 2y² = 16",
             "style": "boxed"

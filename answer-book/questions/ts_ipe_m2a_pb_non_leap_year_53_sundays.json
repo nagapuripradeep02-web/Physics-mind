@@ -137,8 +137,9 @@
             "added": true
           },
           {
-            "text": "P(E) = n(E)/n(S) = 1/7",
+            "text": "P\\left(E\\right)\\ = \\ \\dfrac{n\\left(E\\right)}{n\\left(S\\right)} = \\ \\dfrac{1}{7}",
             "style": "eq",
+            "render": "katex",
             "added": true
           }
         ],
@@ -175,8 +176,9 @@
             "style": "normal"
           },
           {
-            "text": "E = {Sun}, n(E) = 1 ⇒ P(E) = n(E)/n(S) = 1/7",
-            "style": "eq"
+            "text": "E\\ = \\ \\{\\text{Sun}\\},\\ n\\left(E\\right)\\ = \\ 1\\ \\Rightarrow \\ P\\left(E\\right)\\ = \\ \\dfrac{n\\left(E\\right)}{n\\left(S\\right)} = \\ \\dfrac{1}{7}",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -203,13 +205,15 @@
             "added": true
           },
           {
-            "text": "= 1 − 1/7 = 6/7",
+            "text": "= \\ 1\\ - \\ \\dfrac{1}{7} = \\ \\dfrac{6}{7}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ (i) 1/7   (ii) 6/7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\dfrac{\\left(i\\right)1}{7}\\left(ii\\right)6}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -247,12 +251,14 @@
             "style": "normal"
           },
           {
-            "text": "P(Eᶜ) = 1 − P(E) = 1 − 1/7",
-            "style": "eq"
+            "text": "P\\left(E^{c}\\right)\\ = \\ 1\\ - \\ P\\left(E\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{7}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "∴ (i) 1/7   (ii) 6/7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\dfrac{\\left(i\\right)1}{7}\\left(ii\\right)6}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

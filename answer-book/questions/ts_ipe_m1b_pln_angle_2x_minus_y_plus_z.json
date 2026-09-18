@@ -121,12 +121,20 @@
             "text": "(put a₁ = 2, b₁ = −1, c₁ = 1 and a₂ = 1, b₂ = 1, c₂ = 2)",
             "added": true
           },
-          "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
+          {
+            "text": "= \\ \\dfrac{\\left|2\\left(1\\right)\\ - \\ 1\\left(1\\right)\\ + \\ 1\\left(2\\right)\\right|}{\\sqrt{\\left(2^{2}\\ + \\ \\left( - 1\\right)^{2}\\ + \\ 1^{2}\\right)\\left(1^{2}\\ + \\ 1^{2}\\ + \\ 2^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((−1)² = 1 and 2² = 4)",
             "added": true
           },
-          "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
+          {
+            "text": "= \\ \\dfrac{\\left|2\\ - \\ 1\\ + \\ 2\\right|}{\\sqrt{\\left(4\\ + \\ 1\\ + \\ 1\\right)\\left(1\\ + \\ 1\\ + \\ 4\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 − 1 + 2 = 3; 4 + 1 + 1 = 6 and 1 + 1 + 4 = 6;",
             "added": true
@@ -136,10 +144,15 @@
             "style": "indent",
             "added": true
           },
-          "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",
           {
-            "text": "∴ cosθ = 1/2  ⇒  θ = 60°",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{3}{\\sqrt{6\\ \\times \\ 6}} = \\ \\dfrac{3}{6} = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{2} \\Rightarrow \\ \\theta \\ = \\ 60^{\\circ}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -175,12 +188,25 @@
             "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
             "style": "indent"
           },
-          "= |2(1) − 1(1) + 1(2)| / √((2² + (−1)² + 1²)(1² + 1² + 2²))",
-          "= |2 − 1 + 2| / √((4 + 1 + 1)(1 + 1 + 4))",
-          "= 3/√(6 × 6) = 3/6 = 1/2 = cos60°",
           {
-            "text": "∴ cosθ = 1/2  ⇒  θ = 60°",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|2\\left(1\\right)\\ - \\ 1\\left(1\\right)\\ + \\ 1\\left(2\\right)\\right|}{\\sqrt{\\left(2^{2}\\ + \\ \\left( - 1\\right)^{2}\\ + \\ 1^{2}\\right)\\left(1^{2}\\ + \\ 1^{2}\\ + \\ 2^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|2\\ - \\ 1\\ + \\ 2\\right|}{\\sqrt{\\left(4\\ + \\ 1\\ + \\ 1\\right)\\left(1\\ + \\ 1\\ + \\ 4\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3}{\\sqrt{6\\ \\times \\ 6}} = \\ \\dfrac{3}{6} = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{2} \\Rightarrow \\ \\theta \\ = \\ 60^{\\circ}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

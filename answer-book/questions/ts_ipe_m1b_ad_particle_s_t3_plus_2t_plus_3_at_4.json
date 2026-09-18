@@ -53,12 +53,32 @@
             "style": "heading"
           },
           "This is a rectilinear motion question.",
-          "Velocity v = dS/dt and acceleration a = dv/dt.",
+          {
+            "text": "\\text{Velocity}\\ v\\ = \\ \\dfrac{dS}{dt}\\ \\text{and}\\ \\text{acceleration}\\ a\\ = \\ \\dfrac{dv}{dt}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "S = t³ + 2t + 3",
-          "(d/dt of t³ is 3t², of 2t is 2, and of 3 is 0)",
-          "v = dS/dt = 3t² + 2",
-          "(d/dt of 3t² is 6t, and d/dt of 2 is 0)",
-          "a = dv/dt = 6t"
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ t^{3}\\ \\text{is}\\ 3t^{2},\\ \\text{of}\\ 2t\\ \\text{is}\\ 2,\\ \\text{and}\\ \\text{of}\\ 3\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "v\\ = \\ \\dfrac{dS}{dt}\\ = \\ 3t^{2}\\ + \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ 3t^{2}\\ \\text{is}\\ 6t,\\ \\text{and}\\ \\dfrac{d}{dt}\\ \\text{of}\\ 2\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ = \\ \\dfrac{dv}{dt}\\ = \\ 6t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,12 +130,14 @@
           },
           "a = 6(4) = 24",
           {
-            "text": "∴ at t = 4 sec, velocity = 50 m/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{at}\\ t\\ = \\ 4\\sec ,\\ \\text{velocity}\\ = \\ \\dfrac{50m}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and acceleration = 24 m/sec²",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{acceleration}\\ = \\ \\dfrac{24m}{\\sec ^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,12 +173,14 @@
           "v = 3(4)² + 2 = 3(16) + 2 = 48 + 2 = 50",
           "a = 6(4) = 24",
           {
-            "text": "∴ at t = 4 sec, velocity = 50 m/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{at}\\ t\\ = \\ 4\\sec ,\\ \\text{velocity}\\ = \\ \\dfrac{50m}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and acceleration = 24 m/sec²",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{acceleration}\\ = \\ \\dfrac{24m}{\\sec ^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

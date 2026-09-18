@@ -70,7 +70,11 @@
           "on the negative real axis, so Arg z₁ = π",
           "z₂ = i is the point (0, 1),",
           "on the positive imaginary axis,",
-          "so Arg z₂ = π/2"
+          {
+            "text": "\\text{so}\\ Argz_{2}\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,18 +122,27 @@
             "added": true
           },
           {
-            "text": "Arg(z₁/z₂) = Arg z₁ − Arg z₂",
+            "text": "Arg\\left(\\dfrac{z_{1}}{z_{2}}\\right)\\ = \\ Argz_{1}\\ - \\ Argz_{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= π − π/2",
+            "text": "= \\ \\pi \\ - \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Arg(z₁/z₂) = π/2",
-            "style": "boxed"
+            "text": "\\therefore \\ Arg\\left(\\dfrac{z_{1}}{z_{2}}\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Check: z₁/z₂ = −1/i = −i/i² = i, Arg i = π/2."
+          {
+            "text": "\\text{Check}:\\ \\dfrac{z_{1}}{z_{2}} = \\ - \\dfrac{1}{i} = \\ - \\dfrac{i}{i^{2}} = \\ i,\\ Argi\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,12 +171,21 @@
           "Subtracting the wrong way round to get −π/2."
         ],
         "lines_compact": [
-          "Arg(z₁/z₂) = Arg z₁ − Arg z₂ = π − π/2",
           {
-            "text": "∴ Arg(z₁/z₂) = π/2",
-            "style": "boxed"
+            "text": "Arg\\left(\\dfrac{z_{1}}{z_{2}}\\right)\\ = \\ Argz_{1}\\ - \\ Argz_{2}\\ = \\ \\pi \\ - \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
           },
-          "Check: z₁/z₂ = −1/i = −i/i² = i, Arg i = π/2."
+          {
+            "text": "\\therefore \\ Arg\\left(\\dfrac{z_{1}}{z_{2}}\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ \\dfrac{z_{1}}{z_{2}} = \\ - \\dfrac{1}{i} = \\ - \\dfrac{i}{i^{2}} = \\ i,\\ Argi\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

@@ -67,8 +67,16 @@
             "style": "indent"
           },
           "Given y = Acos3x + Bsin3x",
-          "d/dx(cos3x) = −3sin3x, d/dx(sin3x) = 3cos3x:",
-          "⇒ dy/dx = −3A·sin3x + 3B·cos3x"
+          {
+            "text": "\\dfrac{d}{dx}\\left(\\cos 3x\\right)\\ = \\ - 3\\sin 3x,\\ \\dfrac{d}{dx}\\left(\\sin 3x\\right)\\ = \\ 3\\cos 3x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - 3A \\cdot \\sin 3x\\ + \\ 3B \\cdot \\cos 3x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Differentiating once brings down a factor of 3 on each term but still leaves both A and B present, so a second differentiation is needed before either constant can be eliminated.",
         "common_mistakes": [
@@ -89,7 +97,11 @@
             "text": "Differentiate again:",
             "added": true
           },
-          "⇒ d²y/dx² = −9A·cos3x − 9B·sin3x",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{d^{2}y}{dx^{2}}\\ = \\ - 9A \\cdot \\cos 3x\\ - \\ 9B \\cdot \\sin 3x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Take out −9; the bracket is y itself:",
             "added": true
@@ -100,8 +112,9 @@
             "added": true
           },
           {
-            "text": "∴ d²y/dx² + 9y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d^{2}y}{dx^{2}}\\ + \\ 9y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Differentiating a second time brings down another factor of 3 on each term, and the result −9Acos3x − 9Bsin3x is exactly −9 times the original y, so both constants disappear at once, leaving a D.E. with no A or B in it.",
@@ -110,11 +123,16 @@
           "Writing the final D.E. with a minus sign as d²y/dx² − 9y = 0 instead of d²y/dx² + 9y = 0."
         ],
         "lines_compact": [
-          "⇒ d²y/dx² = −9A·cos3x − 9B·sin3x",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{d^{2}y}{dx^{2}}\\ = \\ - 9A \\cdot \\cos 3x\\ - \\ 9B \\cdot \\sin 3x",
+            "style": "normal",
+            "render": "katex"
+          },
           "= −9(Acos3x + Bsin3x) = −9y",
           {
-            "text": "∴ d²y/dx² + 9y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d^{2}y}{dx^{2}}\\ + \\ 9y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -65,7 +65,11 @@
           "A chain can also be turned over, so a",
           "clockwise order and its anticlockwise",
           "reverse are the SAME chain.",
-          "Number of chains = (n − 1)!/2"
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(n\\ - \\ 1\\right)!}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,13 +112,19 @@
             "text": "Here n = 7:",
             "added": true
           },
-          "Number of chains = (7 − 1)!/2 = 6!/2",
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(7\\ - \\ 1\\right)!}{2} = \\ \\dfrac{6!}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "6! = 720",
             "added": true
           },
           {
-            "text": "= 720/2",
+            "text": "= \\ \\dfrac{720}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -150,7 +160,11 @@
           "Answering 2520 (using 7!/2)."
         ],
         "lines_compact": [
-          "Number of chains = (7 − 1)!/2 = 6!/2 = 720/2",
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(7\\ - \\ 1\\right)!}{2} = \\ \\dfrac{6!}{2} = \\ \\dfrac{720}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 360",
             "style": "boxed"

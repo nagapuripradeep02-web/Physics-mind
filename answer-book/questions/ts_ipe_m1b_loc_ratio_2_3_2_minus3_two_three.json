@@ -106,7 +106,11 @@
         "margin_note": "First mark, printed in the book's margin. Cross-multiply the ratio, then square BOTH sides at once — a ratio has no cross term, so one squaring clears both roots.",
         "memory_tip": "Cross-multiply the ratio, then square BOTH sides at once. No cross term means one squaring clears both roots.",
         "lines": [
-          "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "\\text{Given}\\ \\text{condition}:\\ \\dfrac{PA}{PB} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 3PB)",
             "added": true
@@ -147,7 +151,11 @@
           "Squaring to 3PA² = 2PB² and forgetting to square the numbers too."
         ],
         "lines_compact": [
-          "Given condition: PA / PB = 2 / 3",
+          {
+            "text": "\\text{Given}\\ \\text{condition}:\\ \\dfrac{PA}{PB} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3 PA = 2 PB",
           "⇒ 9 PA² = 4 PB²"
         ]

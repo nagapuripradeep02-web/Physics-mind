@@ -125,11 +125,15 @@
             "added": true
           },
           {
-            "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Sum of the roots S₁ = −a₁/a₀ = −(−24)/4 = 6",
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ - \\dfrac{ - 24}{4} = \\ 6",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "(a − d) + a + (a + d) = 6",
@@ -167,8 +171,16 @@
           "Not cancelling the fraction before writing 3a = …"
         ],
         "lines_compact": [
-          "Sum of roots S₁ = −a₁/a₀:",
-          "(a − d) + a + (a + d) = 24/4 = 6"
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{roots}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right)\\ + \\ a\\ + \\ \\left(a\\ + \\ d\\right)\\ = \\ \\dfrac{24}{4} = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -227,18 +239,26 @@
         "memory_tip": "S₃ = −a₃/a₀ = −9/2. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
         "lines": [
           {
-            "text": "Product of the roots S₃ = −a₃/a₀ = −18/4 = −9/2",
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}} = \\ - \\dfrac{18}{4} = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(a − d) · a · (a + d) = −9/2",
+            "text": "\\left(a\\ - \\ d\\right)\\ \\cdot \\ a\\ \\cdot \\ \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "(a − d)(a + d) = a² − d², so",
             "added": true
           },
-          "a(a² − d²) = −9/2"
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -269,9 +289,21 @@
           "Using the x coefficient a₂ instead of the constant a₃."
         ],
         "lines_compact": [
-          "Product of roots S₃ = −a₃/a₀:",
-          "(a − d)·a·(a + d) = −18/4 = −9/2",
-          "a(a² − d²) = −9/2"
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{roots}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ - \\ d\\right) \\cdot a \\cdot \\left(a\\ + \\ d\\right)\\ = \\ - \\dfrac{18}{4} = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\left(a^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -288,16 +320,32 @@
             "added": true
           },
           {
-            "text": "2(2² − d²) = −9/2",
+            "text": "2\\left(2^{2}\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2(4 − d²) = −9/2",
-          "4 − d² = −9/4",
           {
-            "text": "d² = 4 + 9/4 = 16/4 + 9/4 = 25/4",
+            "text": "2\\left(4\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4\\ - \\ d^{2}\\ = \\ - \\dfrac{9}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ 4\\ + \\ \\dfrac{9}{4} = \\ \\dfrac{16}{4} + \\ \\dfrac{9}{4} = \\ \\dfrac{25}{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "d = ±5/2"
+          {
+            "text": "d\\ = \\ \\pm \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -327,10 +375,26 @@
           "Leaving d² = 25/4 as if d were 25/4."
         ],
         "lines_compact": [
-          "2(4 − d²) = −9/2",
-          "4 − d² = −9/4",
-          "d² = 4 + 9/4 = 25/4",
-          "d = ±5/2"
+          {
+            "text": "2\\left(4\\ - \\ d^{2}\\right)\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4\\ - \\ d^{2}\\ = \\ - \\dfrac{9}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d^{2}\\ = \\ 4\\ + \\ \\dfrac{9}{4} = \\ \\dfrac{25}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "d\\ = \\ \\pm \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -351,7 +415,9 @@
             "added": true
           },
           {
-            "text": "a − d = 2 − 5/2 = 4/2 − 5/2 = −1/2",
+            "text": "a\\ - \\ d\\ = \\ 2\\ - \\ \\dfrac{5}{2} = \\ \\dfrac{4}{2} - \\ \\dfrac{5}{2} = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -359,12 +425,15 @@
             "added": true
           },
           {
-            "text": "a + d = 2 + 5/2 = 4/2 + 5/2 = 9/2",
+            "text": "a\\ + \\ d\\ = \\ 2\\ + \\ \\dfrac{5}{2} = \\ \\dfrac{4}{2} + \\ \\dfrac{5}{2} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ roots: −1/2, 2, 9/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{1}{2},\\ 2,\\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -396,11 +465,20 @@
           "Leaving the fractions unsimplified so the A.P. is not visible."
         ],
         "lines_compact": [
-          "Take d = 5/2 (−5/2 gives the same three roots):",
-          "a − d = 2 − 5/2 = −1/2, a = 2, a + d = 9/2",
           {
-            "text": "∴ roots: −1/2, 2, 9/2",
-            "style": "boxed"
+            "text": "\\text{Take}\\ d\\ = \\ \\dfrac{5}{2}\\left( - \\dfrac{5}{2}\\text{gives}\\ \\text{the}\\ \\text{same}\\ \\text{three}\\ \\text{roots}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ - \\ d\\ = \\ 2\\ - \\ \\dfrac{5}{2} = \\ - \\dfrac{1}{2},\\ a\\ = \\ 2,\\ a\\ + \\ d\\ = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{roots}:\\ - \\dfrac{1}{2},\\ 2,\\ \\dfrac{9}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

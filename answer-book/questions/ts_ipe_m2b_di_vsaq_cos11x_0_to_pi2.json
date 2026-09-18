@@ -56,7 +56,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫cosⁿx dx from 0 to π/2 has a direct formula,",
+          {
+            "text": "\\int \\cos ^{n} xdx\\ \\text{from}\\ 0\\ \\text{to}\\ \\dfrac{\\pi }{2}hasa\\ \\text{direct}\\ \\text{formula},",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  so no repeated by-parts is needed.",
             "style": "indent"
@@ -66,7 +70,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(n−1)(n−3)···2]/[n(n−2)···3] · 1",
+          {
+            "text": "= \\ \\dfrac{\\left(n - 1\\right)\\left(n - 3\\right) \\cdot \\cdot \\cdot 2}{n\\left(n - 2\\right) \\cdot \\cdot \\cdot 3} \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "[Wallis's formula]"
         ],
         "why": "For an odd power, Wallis's formula ends the descending products at 2 on top and 3 on the bottom, with no extra π/2 factor — unlike the even-n case.",
@@ -93,7 +101,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(10)(8)(6)(4)(2)]/[(11)(9)(7)(5)(3)] · (1)",
+          {
+            "text": "= \\ \\dfrac{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)}{\\left(11\\right)\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Top: 10·8·6·4·2 = 3840",
             "added": true
@@ -103,12 +115,15 @@
             "added": true
           },
           {
-            "text": "Divide both by 15: 3840/10395 = 256/693",
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{by}\\ 15:\\ \\dfrac{3840}{10395} = \\ \\dfrac{256}{693}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 256/693",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{256}{693}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting n=11 gives the descending product 10·8·6·4·2=3840 on top over 11·9·7·5·3=10395 on the bottom, which simplifies to 256/693.",
@@ -122,10 +137,15 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(10)(8)(6)(4)(2)]/[(11)(9)(7)(5)(3)] · (1)",
           {
-            "text": "∴ I = 256/693",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)}{\\left(11\\right)\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{256}{693}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -58,8 +58,16 @@
           "without taking sizes.",
           "There are n = 8 values.",
           "Mean x̄ = (sum of the values)/n",
-          "= (6 + 7 + 10 + 12 + 13 + 4 + 8 + 12)/8",
-          "= 72/8 = 9"
+          {
+            "text": "= \\ \\dfrac{6\\ + \\ 7\\ + \\ 10\\ + \\ 12\\ + \\ 13\\ + \\ 4\\ + \\ 8\\ + \\ 12}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{72}{8} = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,12 +120,15 @@
             "added": true
           },
           {
-            "text": "Variance σ² = Σ(xᵢ − x̄)²/n",
+            "text": "\\text{Variance}\\ \\sigma ^{2}\\ = \\ \\dfrac{\\Sigma \\left(x_{i}\\ - \\ \\bar{x}\\right)^{2}}{n}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 74/8 = 9.25",
+            "text": "= \\ \\dfrac{74}{8} = \\ 9.25",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -158,7 +169,11 @@
         "lines_compact": [
           "xᵢ − x̄ : −3, −2, 1, 3, 4, −5, −1, 3",
           "(xᵢ − x̄)² : 9, 4, 1, 9, 16, 25, 1, 9",
-          "Variance σ² = Σ(xᵢ − x̄)²/n = 74/8 = 9.25",
+          {
+            "text": "\\text{Variance}\\ \\sigma ^{2}\\ = \\ \\dfrac{\\Sigma \\left(x_{i}\\ - \\ \\bar{x}\\right)^{2}}{n} = \\ \\dfrac{74}{8} = \\ 9.25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Variance σ² = 9.25",
             "style": "boxed"

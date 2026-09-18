@@ -73,11 +73,16 @@
           },
           "Both terms need the derivative of the square root,",
           "so write it once,",
-          "d/dx √(a² + x²) = (1/(2√(a² + x²))) · 2x",
+          {
+            "text": "\\dfrac{d}{dx}\\sqrt{a^{2}\\ + \\ x^{2}}\\ = \\ \\left(\\dfrac{1}{2\\sqrt{a^{2}\\ + \\ x^{2}}}\\right)\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the 2s cancel)",
           {
-            "text": "  = x/√(a² + x²)      …(1)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{x}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(1\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           "(√(a² + x²) > √(x²) = |x| ≥ −x when a ≠ 0,",
           {
@@ -136,12 +141,20 @@
             "added": true
           },
           "Let u = x√(a² + x²). By the product rule and (1),",
-          "du/dx = 1 · √(a² + x²) + x · x/√(a² + x²)",
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ 1\\ \\cdot \\ \\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x\\ \\cdot \\ \\dfrac{x}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 · √(a² + x²) = √(a² + x²), and x · x = x²)",
             "added": true
           },
-          "∴ du/dx = √(a² + x²) + x²/√(a² + x²)      …(2)"
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ \\dfrac{x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -173,8 +186,16 @@
         ],
         "lines_compact": [
           "Let u = x√(a² + x²). By the product rule and (1),",
-          "du/dx = 1 · √(a² + x²) + x · x/√(a² + x²)",
-          "∴ du/dx = √(a² + x²) + x²/√(a² + x²)      …(2)"
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ 1\\ \\cdot \\ \\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x\\ \\cdot \\ \\dfrac{x}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ \\dfrac{x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -196,12 +217,20 @@
             "added": true
           },
           "Writing (2) over the single denominator √(a² + x²),",
-          "du/dx = [(a² + x²) + x²] / √(a² + x²)",
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ \\dfrac{\\left(a^{2}\\ + \\ x^{2}\\right)\\ + \\ x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x² + x² = 2x²)",
             "added": true
           },
-          "∴ du/dx = (a² + 2x²)/√(a² + x²)      …(3)"
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\dfrac{a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -233,8 +262,16 @@
         ],
         "lines_compact": [
           "Writing (2) over the single denominator √(a² + x²),",
-          "du/dx = [(a² + x²) + x²] / √(a² + x²)",
-          "∴ du/dx = (a² + 2x²)/√(a² + x²)      …(3)"
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ \\dfrac{\\left(a^{2}\\ + \\ x^{2}\\right)\\ + \\ x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\dfrac{a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -256,7 +293,11 @@
             "added": true
           },
           "Let v = a² log(x + √(a² + x²)). By the chain rule and (1),",
-          "dv/dx = a² · [1 + x/√(a² + x²)] / (x + √(a² + x²))",
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ a^{2}\\ \\cdot \\ \\dfrac{1\\ + \\ \\dfrac{x}{\\sqrt{a^{2}\\ + \\ x^{2}}}}{x\\ + \\ \\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put [√(a² + x²) + x]/√(a² + x²) in place",
             "added": true
@@ -267,8 +308,16 @@
             "added": true
           },
           "The bracket on top over the root",
-          "is  [√(a² + x²) + x]/√(a² + x²), so",
-          "dv/dx = a² · [√(a² + x²) + x]",
+          {
+            "text": "\\text{is}\\ \\dfrac{\\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x}{\\sqrt{a^{2}\\ + \\ x^{2}}},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ a^{2}\\ \\cdot \\ \\left[\\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / [√(a² + x²) · (x + √(a² + x²))]",
             "style": "indent"
@@ -282,7 +331,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ dv/dx = a²/√(a² + x²)      …(4)"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -315,15 +368,31 @@
         ],
         "lines_compact": [
           "Let v = a² log(x + √(a² + x²)). By the chain rule and (1),",
-          "dv/dx = a² · [1 + x/√(a² + x²)] / (x + √(a² + x²))",
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ a^{2}\\ \\cdot \\ \\dfrac{1\\ + \\ \\dfrac{x}{\\sqrt{a^{2}\\ + \\ x^{2}}}}{x\\ + \\ \\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The bracket on top over the root",
-          "is  [√(a² + x²) + x]/√(a² + x²), so",
-          "dv/dx = a² · [√(a² + x²) + x]",
+          {
+            "text": "\\text{is}\\ \\dfrac{\\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x}{\\sqrt{a^{2}\\ + \\ x^{2}}},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ a^{2}\\ \\cdot \\ \\left[\\sqrt{a^{2}\\ + \\ x^{2}}\\ + \\ x\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / [√(a² + x²) · (x + √(a² + x²))]",
             "style": "indent"
           },
-          "∴ dv/dx = a²/√(a² + x²)      …(4)"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}\\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -337,24 +406,37 @@
         "lines": [
           "Adding (3) and (4),",
           "both of which have the same denominator,",
-          "dy/dx = (a² + 2x²)/√(a² + x²) + a²/√(a² + x²)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}} + \\ \\dfrac{a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(add the numerators over the common denominator)",
             "added": true
           },
-          "= (a² + 2x² + a²)/√(a² + x²) = (2a² + 2x²)/√(a² + x²)",
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ 2x^{2}\\ + \\ a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}} = \\ \\dfrac{2a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out 2, and a² + x² = [√(a² + x²)]²)",
             "added": true
           },
-          "= 2(a² + x²)/√(a² + x²) = 2 · [√(a² + x²)]² / √(a² + x²)",
+          {
+            "text": "= \\ \\dfrac{2\\left(a^{2}\\ + \\ x^{2}\\right)}{\\sqrt{a^{2}\\ + \\ x^{2}}} = \\ 2\\ \\cdot \\ \\dfrac{\\left[\\sqrt{a^{2}\\ + \\ x^{2}}\\right]^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(one factor √(a² + x²) cancels)",
             "added": true
           },
           {
-            "text": "∴ dy/dx = 2√(a² + x²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2\\sqrt{a^{2}\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -389,12 +471,25 @@
         "lines_compact": [
           "Adding (3) and (4),",
           "both of which have the same denominator,",
-          "dy/dx = (a² + 2x²)/√(a² + x²) + a²/√(a² + x²)",
-          "= (a² + 2x² + a²)/√(a² + x²) = (2a² + 2x²)/√(a² + x²)",
-          "= 2(a² + x²)/√(a² + x²) = 2 · [√(a² + x²)]² / √(a² + x²)",
           {
-            "text": "∴ dy/dx = 2√(a² + x²)",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}} + \\ \\dfrac{a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ 2x^{2}\\ + \\ a^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}} = \\ \\dfrac{2a^{2}\\ + \\ 2x^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(a^{2}\\ + \\ x^{2}\\right)}{\\sqrt{a^{2}\\ + \\ x^{2}}} = \\ 2\\ \\cdot \\ \\dfrac{\\left[\\sqrt{a^{2}\\ + \\ x^{2}}\\right]^{2}}{\\sqrt{a^{2}\\ + \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 2\\sqrt{a^{2}\\ + \\ x^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -52,15 +52,43 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y = tan x is defined for every x in (−π/2, π/2).",
-          "(tan x = sin x / cos x, and cos x ≠ 0 there)",
-          "x = −π/3, −π/4, 0, π/4, π/3",
+          {
+            "text": "y\\ = \\ \\tan x\\ \\text{is}\\ \\text{defined}\\ \\text{for}\\ \\text{every}\\ x\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan x\\ = \\ \\dfrac{\\sin x}{\\cos x},\\ \\text{and}\\ \\cos x\\ \\ne \\ 0\\ \\text{there}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ - \\dfrac{\\pi }{3},\\ - \\dfrac{\\pi }{4},\\ 0,\\ \\dfrac{\\pi }{4},\\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y = −√3, −1, 0, 1, √3",
-          "(tan(−θ) = −tan θ, tan(π/4) = 1, tan(π/3) = √3)",
-          "As x nears −π/2 from the right, tan x → −∞.",
-          "As x nears π/2 from the left, tan x → +∞.",
+          {
+            "text": "\\left(\\tan \\left( - \\theta \\right)\\ = \\ - \\tan \\theta ,\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,\\ \\tan \\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\sqrt{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ x\\ \\text{nears}\\ - \\dfrac{\\pi }{2}\\text{from}\\ \\text{the}\\ \\text{right},\\ \\tan x\\ \\to \\ - \\infty .",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ x\\ \\text{nears}\\ \\dfrac{\\pi }{2}\\text{from}\\ \\text{the}\\ \\text{left},\\ \\tan x\\ \\to \\ + \\infty .",
+            "style": "normal",
+            "render": "katex"
+          },
           "(at the ends cos x → 0 while sin x → ±1)",
-          "So x = −π/2 and x = π/2 are asymptotes."
+          {
+            "text": "\\text{So}\\ x\\ = \\ - \\dfrac{\\pi }{2}\\text{and}\\ x\\ = \\ \\dfrac{\\pi }{2}\\text{are}\\ \\text{asymptotes}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

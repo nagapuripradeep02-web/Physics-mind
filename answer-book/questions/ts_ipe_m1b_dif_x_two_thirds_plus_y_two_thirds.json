@@ -52,19 +52,28 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given x²⁄³ + y²⁄³ = a²⁄³, where a is a constant.",
+          {
+            "text": "\\text{Given}\\ \\dfrac{x^{2}}{^{3}} + \\ \\dfrac{y^{2}}{^{3}} = \\ \\dfrac{a^{2}}{^{3}},\\ \\text{where}\\ a\\ \\text{is}\\ a\\ \\text{constant}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate both sides with respect to x,",
           "treating y as a function of x:",
           "(d/dx(x²⁄³) = (2/3)x²⁄³⁻¹ = (2/3)x⁻¹⁄³;",
           {
-            "text": "  d/dx(y²⁄³) = (2/3)y⁻¹⁄³ · dy/dx by the chain rule;",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(\\dfrac{y^{2}}{^{3}}\\right)\\ = \\ \\dfrac{\\left(\\dfrac{2}{3}\\right)y^{-1}}{^{3}} \\cdot \\ \\dfrac{dy}{dx}\\ \\text{by}\\ \\text{the}\\ \\text{chain}\\ \\text{rule};",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  this needs x ≠ 0 and y ≠ 0)",
             "style": "indent"
           },
-          "(2/3)x⁻¹⁄³ + (2/3)y⁻¹⁄³ · dy/dx = 0",
+          {
+            "text": "\\dfrac{\\left(\\dfrac{2}{3}\\right)x^{-1}}{^{3}} + \\ \\dfrac{\\left(\\dfrac{2}{3}\\right)y^{-1}}{^{3}} \\cdot \\ \\dfrac{dy}{dx}\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "The right side is a constant, so its derivative is 0."
         ],
         "recall": {
@@ -105,10 +114,16 @@
         "memory_tip": "Converting each negative power to a positive one moves y above the line and x below it, so the answer carries y on top.",
         "lines": [
           {
-            "text": "(move (2/3)x⁻¹⁄³ to the right side)",
+            "text": "\\left(\\text{move}\\ \\dfrac{\\left(\\dfrac{2}{3}\\right)x^{-1}}{^{3}}\\text{to}\\ \\text{the}\\ \\text{right}\\ \\text{side}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(2/3)y⁻¹⁄³ · dy/dx = −(2/3)x⁻¹⁄³",
+          {
+            "text": "\\dfrac{\\left(\\dfrac{2}{3}\\right)y^{-1}}{^{3}} \\cdot \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{\\left(\\dfrac{2}{3}\\right)x^{-1}}{^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by (2/3)y⁻¹⁄³;",
             "added": true
@@ -123,7 +138,11 @@
             "style": "indent",
             "added": true
           },
-          "The factor 2/3 cancels from both sides, so",
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{2}{3}\\text{cancels}\\ \\text{from}\\ \\text{both}\\ \\text{sides},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −y¹⁄³/x¹⁄³ = −(y/x)¹⁄³",
           {
             "text": "((y/x)¹⁄³ = ∛(y/x))",
@@ -162,8 +181,16 @@
           "Writing ∛(y/x) without the minus sign."
         ],
         "lines_compact": [
-          "(2/3)y⁻¹⁄³ · dy/dx = −(2/3)x⁻¹⁄³",
-          "The factor 2/3 cancels from both sides, so",
+          {
+            "text": "\\dfrac{\\left(\\dfrac{2}{3}\\right)y^{-1}}{^{3}} \\cdot \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{\\left(\\dfrac{2}{3}\\right)x^{-1}}{^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{2}{3}\\text{cancels}\\ \\text{from}\\ \\text{both}\\ \\text{sides},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "dy/dx = −x⁻¹⁄³/y⁻¹⁄³ = −y¹⁄³/x¹⁄³ = −(y/x)¹⁄³",
           {
             "text": "∴ dy/dx = −∛(y/x)",

@@ -64,18 +64,46 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The given D.E is x sin²(y/x)dx = ydx − xdy",
-          "Take xdy to the left and x sin²(y/x)dx to the right:",
-          "⇒ xdy = ydx − x sin²(y/x)dx",
+          {
+            "text": "\\text{The}\\ \\text{given}\\ D.E\\ \\text{is}\\ x\\sin ^{2}\\left(\\dfrac{y}{x}\\right)dx\\ = \\ ydx\\ - \\ xdy",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ xdy\\ \\text{to}\\ \\text{the}\\ \\text{left}\\ \\text{and}\\ x\\sin ^{2}\\left(\\dfrac{y}{x}\\right)dx\\ \\text{to}\\ \\text{the}\\ \\text{right}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ xdy\\ = \\ ydx\\ - \\ x\\sin ^{2}\\left(\\dfrac{y}{x}\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide every term by x dx:",
-          "⇒ dy/dx = y/x − sin²(y/x) … (1)",
-          "The right side depends only on y/x, so",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y}{x} - \\ \\sin ^{2}\\left(\\dfrac{y}{x}\\right)\\ \\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{right}\\ \\text{side}\\ \\text{depends}\\ \\text{only}\\ \\text{on}\\ \\dfrac{y}{x},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  (1) is a homogeneous D.E.",
             "style": "indent"
           },
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = v − sin²v"
+          {
+            "text": "\\text{Put}\\ y\\ = \\ vx\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ - \\ \\sin ^{2} v",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The equation is given with dx and dy mixed, so it must first be rearranged into the standard dy/dx = … form; once written that way, the right side depends only on y/x, confirming it is homogeneous and ready for y = vx.",
         "common_mistakes": [
@@ -96,12 +124,22 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = v − sin²v − v = −sin²v",
           {
-            "text": "Divide by sin²v and by x; 1/sin²v = cosec²v:",
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ - \\ \\sin ^{2} v\\ - \\ v\\ = \\ - \\sin ^{2} v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ \\sin ^{2} v\\ \\text{and}\\ \\text{by}\\ x;\\ \\dfrac{1}{\\sin ^{2} v} = \\ \\cos ec^{2}v:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ −cosec²v dv = dx/x"
+          {
+            "text": "\\Rightarrow \\ - \\cos ec^{2}vdv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The two v terms cancel exactly, and dividing both sides by −sin²v and taking the reciprocal turns the equation into −cosec²v dv = dx/x, separated into v-terms and x-terms.",
         "common_mistakes": [
@@ -109,8 +147,16 @@
           "Writing 1/sin²v as sin²v instead of cosec²v."
         ],
         "lines_compact": [
-          "x·dv/dx = v − sin²v − v = −sin²v",
-          "⇒ −cosec²v dv = dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ - \\ \\sin ^{2} v\\ - \\ v\\ = \\ - \\sin ^{2} v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\cos ec^{2}vdv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -126,14 +172,21 @@
             "text": "Integrate both sides:",
             "added": true
           },
-          "∫ −cosec²v dv = ∫ dx/x",
           {
-            "text": "d/dv(cot v) = −cosec²v, so",
+            "text": "\\int \\ - \\cos ec^{2}vdv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dv}\\left(\\cot v\\right)\\ = \\ - \\cos ec^{2}v,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ∫−cosec²v dv = cot v, and ∫dx/x = log x:",
+            "text": "\\int - \\cos ec^{2}vdv\\ = \\ \\cot v,\\ \\text{and}\\ \\int \\dfrac{dx}{x} = \\ \\log x:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "⇒ cot v = log x + c"
@@ -144,7 +197,11 @@
           "Forgetting the constant of integration."
         ],
         "lines_compact": [
-          "∫ −cosec²v dv = ∫ dx/x",
+          {
+            "text": "\\int \\ - \\cos ec^{2}vdv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ cot v = log x + c"
         ]
       },
@@ -159,10 +216,16 @@
         "lines": [
           "⇒ cot v = log x + c … (2)",
           {
-            "text": "v = y/x, so cot v becomes cot(y/x):",
+            "text": "v\\ = \\ \\dfrac{y}{x},\\ \\text{so}\\ \\cot v\\ \\text{becomes}\\ \\cot \\left(\\dfrac{y}{x}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put v = y/x: cot(y/x) = log x + c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\cot \\left(\\dfrac{y}{x}\\right)\\ = \\ \\log x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With cot v already isolated on one side, the substitution v = y/x carries directly into the family of solutions, giving the general relation in the original variables x and y.",
         "common_mistakes": [
@@ -171,7 +234,11 @@
         ],
         "lines_compact": [
           "⇒ cot v = log x + c … (2)",
-          "Put v = y/x: cot(y/x) = log x + c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\cot \\left(\\dfrac{y}{x}\\right)\\ = \\ \\log x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -183,19 +250,32 @@
         "margin_note": "The last mark. Substitute x = 1, y = π/4 to find c, then state the final particular solution.",
         "memory_tip": "log 1 = 0 and cot(π/4) = 1 — both simplify away instantly at this point.",
         "lines": [
-          "If (x, y) = (1, π/4) lies on this curve, then",
           {
-            "text": "y/x = π/4 there, and",
-            "added": true
-          },
-          "cot(π/4) = log 1 + c ⇒ 1 = 0 + c ⇒ c = 1",
-          {
-            "text": "since cot(π/4) = 1 and log 1 = 0.",
-            "added": true
+            "text": "\\text{If}\\ \\left(x,\\ y\\right)\\ = \\ \\left(1,\\ \\dfrac{\\pi }{4}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{this}\\ \\text{curve},\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ cot(y/x) = log x + 1",
-            "style": "boxed"
+            "text": "\\dfrac{y}{x} = \\ \\dfrac{\\pi }{4}\\text{there},\\ \\text{and}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\log 1\\ + \\ c\\ \\Rightarrow \\ 1\\ = \\ 0\\ + \\ c\\ \\Rightarrow \\ c\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\ \\text{and}\\ \\log 1\\ = \\ 0.",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{y}{x}\\right)\\ = \\ \\log x\\ + \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting the given point into the general family (2) fixes the constant c, and putting that value back gives the one curve through (1, π/4) that the question asks for.",
@@ -204,11 +284,20 @@
           "Reading cot(π/4) as 0 instead of 1 — 0 is the value of cot(π/2) — which gives c = 0 and the wrong particular solution cot(y/x) = log x."
         ],
         "lines_compact": [
-          "If (x, y) = (1, π/4) lies on this curve, then",
-          "cot(π/4) = log 1 + c ⇒ 1 = 0 + c ⇒ c = 1",
           {
-            "text": "∴ cot(y/x) = log x + 1",
-            "style": "boxed"
+            "text": "\\text{If}\\ \\left(x,\\ y\\right)\\ = \\ \\left(1,\\ \\dfrac{\\pi }{4}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{this}\\ \\text{curve},\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\log 1\\ + \\ c\\ \\Rightarrow \\ 1\\ = \\ 0\\ + \\ c\\ \\Rightarrow \\ c\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{y}{x}\\right)\\ = \\ \\log x\\ + \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

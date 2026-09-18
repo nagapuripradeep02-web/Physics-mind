@@ -63,13 +63,37 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = Tan⁻¹(2x/(1 − x²))",
-          "and  g(x) = Sin⁻¹(2x/(1 + x²)).",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ g\\left(x\\right)\\ = \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{2x}{1\\ + \\ x^{2}}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "The derivative of f with respect to g",
-          "means df/dg, not df/dx.",
-          "By the chain rule,  df/dx = (df/dg)·(dg/dx),",
-          "so provided dg/dx ≠ 0,",
-          "∴ df/dg = (df/dx)/(dg/dx)",
+          {
+            "text": "\\text{means}\\ \\dfrac{df}{dg},\\ \\text{not}\\ \\dfrac{df}{dx}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{chain}\\ \\text{rule},\\ \\dfrac{df}{dx}\\ = \\ \\left(\\dfrac{df}{dg}\\right) \\cdot \\left(\\dfrac{dg}{dx}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{provided}\\ \\dfrac{dg}{dx}\\ \\ne \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{df}{dg}\\ = \\ \\dfrac{\\dfrac{df}{dx}}{\\dfrac{dg}{dx}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "So f and g are each differentiated with respect to x,",
           "and the two results are divided."
         ],
@@ -112,7 +136,9 @@
         "margin_note": "One mark. Both brackets are standard forms in tan θ, so one substitution serves both. Naming the range −1 < x < 1 here saves the argument in both of the next two steps.",
         "lines": [
           {
-            "text": "(θ = Tan⁻¹x lies in (−π/2, π/2))",
+            "text": "\\left(\\theta \\ = \\ \\operatorname{Tan}^{-1} x\\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Put x = tan θ, so θ = Tan⁻¹x.",
@@ -129,11 +155,27 @@
             "text": "(multiply each part by 2)",
             "added": true
           },
-          "Take −1 < x < 1. Then −π/4 < θ < π/4,",
-          "so −π/2 < 2θ < π/2.",
+          {
+            "text": "\\text{Take}\\ - 1\\ < \\ x\\ < \\ 1.\\ \\text{Then}\\ - \\dfrac{\\pi }{4} < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ - \\dfrac{\\pi }{2} < \\ 2\\theta \\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "That range for 2θ is what both inverse functions need:",
-          "it is inside (−π/2, π/2) for Tan⁻¹",
-          "and inside [−π/2, π/2] for Sin⁻¹."
+          {
+            "text": "\\text{it}\\ \\text{is}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{for}\\ \\operatorname{Tan}^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{inside}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right]\\ \\text{for}\\ \\operatorname{Sin}^{-1}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -166,11 +208,27 @@
         "memory_tip": "1 − x² and 1 + x² with a 2x on top are both tan θ forms. The first is tan 2θ and the second is sin 2θ.",
         "lines_compact": [
           "Put x = tan θ, so θ = Tan⁻¹x.",
-          "Take −1 < x < 1. Then −π/4 < θ < π/4,",
-          "so −π/2 < 2θ < π/2.",
+          {
+            "text": "\\text{Take}\\ - 1\\ < \\ x\\ < \\ 1.\\ \\text{Then}\\ - \\dfrac{\\pi }{4} < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ - \\dfrac{\\pi }{2} < \\ 2\\theta \\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "That range for 2θ is what both inverse functions need:",
-          "it is inside (−π/2, π/2) for Tan⁻¹",
-          "and inside [−π/2, π/2] for Sin⁻¹."
+          {
+            "text": "\\text{it}\\ \\text{is}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{for}\\ \\operatorname{Tan}^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{inside}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right]\\ \\text{for}\\ \\operatorname{Sin}^{-1}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,20 +240,38 @@
         "margin_note": "Two marks. Quote the double angle formula for tangent, cancel the inverse, and only then differentiate. Differentiating Tan⁻¹(2x/(1 − x²)) by the quotient rule is far longer and earns no more.",
         "lines": [
           "The double angle formula for tangent",
-          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
+          {
+            "text": "\\text{is}\\ \\tan 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put tan θ = x)",
             "added": true
           },
-          "With x = tan θ:  2x/(1 − x²) = tan 2θ",
-          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2),",
+          {
+            "text": "\\text{With}\\ x\\ = \\ \\tan \\theta :\\ \\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\tan 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 2\\theta \\right),\\ \\text{and}\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹, so",
           "f = 2θ = 2 Tan⁻¹x",
           {
-            "text": "(d/dx(2 Tan⁻¹x) = 2 · 1/(1 + x²))",
+            "text": "\\left(\\dfrac{d}{dx}\\left(2\\operatorname{Tan}^{-1} x\\right)\\ = \\ 2\\ \\cdot \\ \\dfrac{1}{1\\ + \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ df/dx = 2/(1 + x²)"
+          {
+            "text": "\\therefore \\ \\dfrac{df}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -228,12 +304,28 @@
         "memory_tip": "The derivative of Tan⁻¹x is 1/(1 + x²). The 2 in front of it is the same 2 that came from the double angle.",
         "lines_compact": [
           "The double angle formula for tangent",
-          "is  tan 2θ = 2 tan θ/(1 − tan²θ).",
-          "With x = tan θ:  2x/(1 − x²) = tan 2θ",
-          "f = Tan⁻¹(tan 2θ), and 2θ lies in (−π/2, π/2),",
+          {
+            "text": "\\text{is}\\ \\tan 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta }.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{With}\\ x\\ = \\ \\tan \\theta :\\ \\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\tan 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan 2\\theta \\right),\\ \\text{and}\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹, so",
           "f = 2θ = 2 Tan⁻¹x",
-          "∴ df/dx = 2/(1 + x²)"
+          {
+            "text": "\\therefore \\ \\dfrac{df}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,10 +337,16 @@
         "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ has no working to support it.",
         "lines": [
           {
-            "text": "(put x = tan θ into 2x/(1 + x²))",
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\tan \\theta \\ \\text{into}\\ \\dfrac{2x}{1\\ + \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
+          {
+            "text": "\\text{With}\\ x\\ = \\ \\tan \\theta :\\ \\dfrac{2x}{1\\ + \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by sec²θ is multiplying by cos²θ;",
             "added": true
@@ -259,7 +357,11 @@
             "added": true
           },
           "1 + tan²θ = sec²θ, so",
-          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ",
+          {
+            "text": "\\dfrac{2\\tan \\theta }{\\sec ^{2} \\theta } = \\ 2 \\cdot \\left(\\dfrac{\\sin \\theta }{\\cos \\theta }\\right) \\cdot \\cos ^{2} \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(one cos θ cancels; 2 sin θ cos θ = sin 2θ)",
             "added": true
@@ -268,14 +370,24 @@
             "text": "  = 2 sin θ cos θ = sin 2θ",
             "style": "indent"
           },
-          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2],",
+          {
+            "text": "g\\ = \\ \\operatorname{Sin}^{-1}\\left(\\sin 2\\theta \\right),\\ \\text{and}\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹, so",
           "g = 2θ = 2 Tan⁻¹x",
           {
-            "text": "(d/dx(2 Tan⁻¹x) = 2 · 1/(1 + x²))",
+            "text": "\\left(\\dfrac{d}{dx}\\left(2\\operatorname{Tan}^{-1} x\\right)\\ = \\ 2\\ \\cdot \\ \\dfrac{1}{1\\ + \\ x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dg/dx = 2/(1 + x²)"
+          {
+            "text": "\\therefore \\ \\dfrac{dg}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -307,17 +419,33 @@
         ],
         "memory_tip": "1 minus x squared underneath gives a tangent; 1 plus x squared underneath gives a sine. Both have 2x on top and both give the angle 2θ.",
         "lines_compact": [
-          "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
+          {
+            "text": "\\text{With}\\ x\\ = \\ \\tan \\theta :\\ \\dfrac{2x}{1\\ + \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "1 + tan²θ = sec²θ, so",
-          "2 tan θ/sec²θ = 2·(sin θ/cos θ)·cos²θ",
+          {
+            "text": "\\dfrac{2\\tan \\theta }{\\sec ^{2} \\theta } = \\ 2 \\cdot \\left(\\dfrac{\\sin \\theta }{\\cos \\theta }\\right) \\cdot \\cos ^{2} \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = 2 sin θ cos θ = sin 2θ",
             "style": "indent"
           },
-          "g = Sin⁻¹(sin 2θ), and 2θ lies in [−π/2, π/2],",
+          {
+            "text": "g\\ = \\ \\operatorname{Sin}^{-1}\\left(\\sin 2\\theta \\right),\\ \\text{and}\\ 2\\theta \\ \\text{lies}\\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹, so",
           "g = 2θ = 2 Tan⁻¹x",
-          "∴ dg/dx = 2/(1 + x²)"
+          {
+            "text": "\\therefore \\ \\dfrac{dg}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -329,16 +457,28 @@
         "margin_note": "Last two marks. State that dg/dx is never zero before dividing, then give the answer with the range attached. An answer of exactly 1 is the sign that both reductions were done on the right branch.",
         "lines": [
           {
-            "text": "(1 + x² ≥ 1, so 2/(1 + x²) is never 0)",
+            "text": "\\left(1\\ + \\ x^{2}\\ \\ge \\ 1,\\ \\text{so}\\ \\dfrac{2}{1\\ + \\ x^{2}}\\text{is}\\ \\text{never}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dg/dx = 2/(1 + x²), which is not zero for any real x,",
+          {
+            "text": "\\dfrac{dg}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}},\\ \\text{which}\\ \\text{is}\\ \\text{not}\\ \\text{zero}\\ \\text{for}\\ \\text{any}\\ \\text{real}\\ x,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the division is allowed.",
           {
-            "text": "(put df/dx from step 3 and dg/dx from step 4)",
+            "text": "\\left(\\text{put}\\ \\dfrac{df}{dx}\\ \\text{from}\\ \\text{step}\\ 3\\ \\text{and}\\ \\dfrac{dg}{dx}\\ \\text{from}\\ \\text{step}\\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
+          {
+            "text": "\\dfrac{df}{dg}\\ = \\ \\dfrac{\\dfrac{df}{dx}}{\\dfrac{dg}{dx}} = \\ \\left[\\dfrac{2}{1\\ + \\ x^{2}}\\right]\\ \\div \\ \\left[\\dfrac{2}{1\\ + \\ x^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "On −1 < x < 1 both f and g reduce",
           "to the same function 2 Tan⁻¹x,",
           "so the two derivatives are identical and their ratio is 1.",
@@ -347,8 +487,9 @@
             "added": true
           },
           {
-            "text": "∴ df/dg = 1,  for −1 < x < 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{df}{dg}\\ = \\ 1,\\ \\text{for}\\ - 1\\ < \\ x\\ < \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -382,15 +523,24 @@
         ],
         "memory_tip": "When two functions reduce to the same expression, their derivative with respect to each other is 1. Any other value means one of the two reductions was on the wrong branch.",
         "lines_compact": [
-          "dg/dx = 2/(1 + x²), which is not zero for any real x,",
+          {
+            "text": "\\dfrac{dg}{dx}\\ = \\ \\dfrac{2}{1\\ + \\ x^{2}},\\ \\text{which}\\ \\text{is}\\ \\text{not}\\ \\text{zero}\\ \\text{for}\\ \\text{any}\\ \\text{real}\\ x,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the division is allowed.",
-          "df/dg = (df/dx)/(dg/dx) = [2/(1 + x²)] ÷ [2/(1 + x²)]",
+          {
+            "text": "\\dfrac{df}{dg}\\ = \\ \\dfrac{\\dfrac{df}{dx}}{\\dfrac{dg}{dx}} = \\ \\left[\\dfrac{2}{1\\ + \\ x^{2}}\\right]\\ \\div \\ \\left[\\dfrac{2}{1\\ + \\ x^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "On −1 < x < 1 both f and g reduce",
           "to the same function 2 Tan⁻¹x,",
           "so the two derivatives are identical and their ratio is 1.",
           {
-            "text": "∴ df/dg = 1,  for −1 < x < 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{df}{dg}\\ = \\ 1,\\ \\text{for}\\ - 1\\ < \\ x\\ < \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

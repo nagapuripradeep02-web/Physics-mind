@@ -72,8 +72,16 @@
           "Given equation is √3 sinθ − cosθ = √2",
           "(a = √3 and b = −1)",
           "Divide by √((√3)² + (−1)²) = √(3+1) = √4 = 2:",
-          "(divide each term by 2; √2/2 = 1/√2)",
-          "(√3/2) sinθ − (1/2) cosθ = √2/2 = 1/√2"
+          {
+            "text": "\\left(\\text{divide}\\ \\text{each}\\ \\text{term}\\ \\text{by}\\ 2;\\ \\dfrac{\\sqrt{2}}{2} = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\sin \\theta \\ - \\ \\left(\\dfrac{1}{2}\\right)\\cos \\theta \\ = \\ \\dfrac{\\sqrt{2}}{2} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,15 +120,23 @@
         "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° , in that order. The right side 1/√2 is sin 45°.",
         "lines": [
           {
-            "text": "(√3/2 = cos30°, 1/2 = sin30° and 1/√2 = sin45°)",
+            "text": "\\left(\\dfrac{\\sqrt{3}}{2} = \\ \\cos 30^{\\circ},\\ \\dfrac{1}{2} = \\ \\sin 30^{\\circ}\\ \\text{and}\\ \\dfrac{1}{\\sqrt{2}} = \\ \\sin 45^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ sinθ cos30° − cosθ sin30° = sin45°",
           {
-            "text": "(30° = π/6 and 45° = π/4)",
+            "text": "\\left(30^{\\circ}\\ = \\ \\dfrac{\\pi }{6}\\text{and}\\ 45^{\\circ}\\ = \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\cos \\left(\\dfrac{\\pi }{6}\\right)\\ - \\ \\cos \\theta \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,7 +167,11 @@
         ],
         "lines_compact": [
           "⇒ sinθ cos30° − cosθ sin30° = sin45°",
-          "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\cos \\left(\\dfrac{\\pi }{6}\\right)\\ - \\ \\cos \\theta \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -163,9 +183,17 @@
         "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the equation becomes a single sine equal to a single sine. The principal value is then read off directly.",
         "memory_tip": "sinA cosB − cosA sinB = sin(A − B), so the angle is θ − π/6 and the principal value is π/4.",
         "lines": [
-          "⇒ sin(θ − π/6) = sin(π/4)",
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\theta \\ - \\ \\dfrac{\\pi }{6}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
-          "Here the principal value is α = π/4",
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(π/4 lies between −π/2 and π/2, the range of a",
             "added": true
@@ -204,9 +232,17 @@
           "Taking the principal value as π/6."
         ],
         "lines_compact": [
-          "⇒ sin(θ − π/6) = sin(π/4)",
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\theta \\ - \\ \\dfrac{\\pi }{6}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
-          "Here the principal value is α = π/4"
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -221,17 +257,26 @@
           "For sinθ = sinα, the general solution is",
           "θ = nπ + (−1)ⁿ α,  n ∈ Z",
           {
-            "text": "(here the angle is θ − π/6 and α = π/4)",
-            "added": true
-          },
-          "⇒ θ − π/6 = nπ + (−1)ⁿ (π/4)",
-          {
-            "text": "(add π/6 to both sides)",
+            "text": "\\left(\\text{here}\\ \\text{the}\\ \\text{angle}\\ \\text{is}\\ \\theta \\ - \\ \\dfrac{\\pi }{6}\\text{and}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ θ = nπ + (−1)ⁿ (π/4) + π/6,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\theta \\ - \\ \\dfrac{\\pi }{6} = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{add}\\ \\dfrac{\\pi }{6}\\text{to}\\ \\text{both}\\ \\text{sides}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -266,10 +311,15 @@
         "lines_compact": [
           "For sinθ = sinα, the general solution is",
           "θ = nπ + (−1)ⁿ α,  n ∈ Z",
-          "⇒ θ − π/6 = nπ + (−1)ⁿ (π/4)",
           {
-            "text": "∴ θ = nπ + (−1)ⁿ (π/4) + π/6,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\theta \\ - \\ \\dfrac{\\pi }{6} = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\left( - 1\\right)^{n}\\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

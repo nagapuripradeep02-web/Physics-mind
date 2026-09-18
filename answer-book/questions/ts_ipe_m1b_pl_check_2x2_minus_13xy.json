@@ -66,8 +66,16 @@
           },
           "Comparing with ax² + 2hxy + by² + 2gx + 2fy + c = 0",
           "we get",
-          "a = 2, 2h = −13 ⇒ h = −13/2, b = −7,",
-          "2g = 1 ⇒ g = 1/2, 2f = 23 ⇒ f = 23/2, c = −6"
+          {
+            "text": "a\\ = \\ 2,\\ 2h\\ = \\ - 13\\ \\Rightarrow \\ h\\ = \\ - \\dfrac{13}{2},\\ b\\ = \\ - 7,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2g\\ = \\ 1\\ \\Rightarrow \\ g\\ = \\ \\dfrac{1}{2},\\ 2f\\ = \\ 23\\ \\Rightarrow \\ f\\ = \\ \\dfrac{23}{2},\\ c\\ = \\ - 6",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,23 +123,30 @@
             "text": "(put a = 2, b = −7, c = −6, f = 23/2, g = 1/2, h = −13/2)",
             "added": true
           },
-          "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
           {
-            "text": "  − (−7)(1/2)² − (−6)(−13/2)²",
-            "style": "indent"
+            "text": "= \\ 2\\left( - 7\\right)\\left( - 6\\right)\\ + \\ 2\\left(\\dfrac{23}{2}\\right)\\left(\\dfrac{1}{2}\\right)\\left( - \\dfrac{13}{2}\\right)\\ - \\ 2\\left(\\dfrac{23}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left( - 7\\right)\\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ \\left( - 6\\right)\\left( - \\dfrac{13}{2}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(2(−7)(−6) = 84; 2(23/2)(1/2)(−13/2) = −299/4;",
             "added": true
           },
           {
-            "text": "  2(529/4) = 529/2; (−7)(1/4) = −7/4;",
+            "text": "2\\left(\\dfrac{529}{4}\\right)\\ = \\ \\dfrac{529}{2};\\ \\left( - 7\\right)\\left(\\dfrac{1}{4}\\right)\\ = \\ - \\dfrac{7}{4};",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  (−6)(169/4) = −507/2, and the minus signs in",
+            "text": "\\left( - 6\\right)\\left(\\dfrac{169}{4}\\right)\\ = \\ - \\dfrac{507}{2},\\ \\text{and}\\ \\text{the}\\ \\text{minus}\\ \\text{signs}\\ \\text{in}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -139,17 +154,33 @@
             "style": "indent",
             "added": true
           },
-          "= 84 − 299/4 − 529/2 + 7/4 + 507/2",
           {
-            "text": "(group the halves: −529/2 + 507/2 = −22/2)",
+            "text": "= \\ 84\\ - \\ \\dfrac{299}{4} - \\ \\dfrac{529}{2} + \\ \\dfrac{7}{4} + \\ \\dfrac{507}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{group}\\ \\text{the}\\ \\text{halves}:\\ - \\dfrac{529}{2} + \\ \\dfrac{507}{2} = \\ - \\dfrac{22}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 84 − 299/4 + 7/4 + (507 − 529)/2",
           {
-            "text": "(−299/4 + 7/4 = −292/4 = −73; −22/2 = −11)",
+            "text": "= \\ 84\\ - \\ \\dfrac{299}{4} + \\ \\dfrac{7}{4} + \\ \\dfrac{507\\ - \\ 529}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\dfrac{299}{4} + \\ \\dfrac{7}{4} = \\ - \\dfrac{292}{4} = \\ - 73;\\ - \\dfrac{22}{2} = \\ - 11\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 84 − 292/4 − 22/2 = 84 − 73 − 11 = 0"
+          {
+            "text": "= \\ 84\\ - \\ \\dfrac{292}{4} - \\ \\dfrac{22}{2} = \\ 84\\ - \\ 73\\ - \\ 11\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -182,14 +213,31 @@
         "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two linear factors (real or not).",
         "lines_compact": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
-          "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)²",
           {
-            "text": "  − (−7)(1/2)² − (−6)(−13/2)²",
-            "style": "indent"
+            "text": "= \\ 2\\left( - 7\\right)\\left( - 6\\right)\\ + \\ 2\\left(\\dfrac{23}{2}\\right)\\left(\\dfrac{1}{2}\\right)\\left( - \\dfrac{13}{2}\\right)\\ - \\ 2\\left(\\dfrac{23}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 84 − 299/4 − 529/2 + 7/4 + 507/2",
-          "= 84 − 299/4 + 7/4 + (507 − 529)/2",
-          "= 84 − 292/4 − 22/2 = 84 − 73 − 11 = 0"
+          {
+            "text": "- \\ \\left( - 7\\right)\\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ \\left( - 6\\right)\\left( - \\dfrac{13}{2}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 84\\ - \\ \\dfrac{299}{4} - \\ \\dfrac{529}{2} + \\ \\dfrac{7}{4} + \\ \\dfrac{507}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 84\\ - \\ \\dfrac{299}{4} + \\ \\dfrac{7}{4} + \\ \\dfrac{507\\ - \\ 529}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 84\\ - \\ \\dfrac{292}{4} - \\ \\dfrac{22}{2} = \\ 84\\ - \\ 73\\ - \\ 11\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -200,22 +248,36 @@
         "margin_note": "One mark. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together prove it.",
         "lines": [
           {
-            "text": "((−13/2)² = 169/4; −ab = −2(−7) = +14 = 56/4)",
+            "text": "\\left(\\left( - \\dfrac{13}{2}\\right)^{2}\\ = \\ \\dfrac{169}{4};\\ - ab\\ = \\ - 2\\left( - 7\\right)\\ = \\ + 14\\ = \\ \\dfrac{56}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14",
           {
-            "text": "  = (169 + 56)/4 = 225/4 > 0",
-            "style": "indent"
+            "text": "\\left(ii\\right)h^{2}\\ - \\ ab\\ = \\ \\left( - \\dfrac{13}{2}\\right)^{2}\\ - \\ 2\\left( - 7\\right)\\ = \\ \\dfrac{169}{4} + \\ 14",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "((23/2)² = 529/4; bc = (−7)(−6) = 42 = 168/4)",
+            "text": "= \\ \\dfrac{169\\ + \\ 56}{4} = \\ \\dfrac{225}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{23}{2}\\right)^{2}\\ = \\ \\dfrac{529}{4};\\ bc\\ = \\ \\left( - 7\\right)\\left( - 6\\right)\\ = \\ 42\\ = \\ \\dfrac{168}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42",
           {
-            "text": "  = (529 − 168)/4 = 361/4 > 0",
-            "style": "indent"
+            "text": "\\left(iii\\right)f^{2}\\ - \\ bc\\ = \\ \\left(\\dfrac{23}{2}\\right)^{2}\\ - \\ \\left( - 7\\right)\\left( - 6\\right)\\ = \\ \\dfrac{529}{4} - \\ 42",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{529\\ - \\ 168}{4} = \\ \\dfrac{361}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((1/2)² = 1/4; −ac = −2(−6) = 12 = 48/4,",
@@ -226,7 +288,11 @@
             "style": "indent",
             "added": true
           },
-          "(iv) g² − ac = (1/2)² − 2(−6) = 1/4 + 12 = 49/4 > 0",
+          {
+            "text": "\\left(iv\\right)g^{2}\\ - \\ ac\\ = \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ 2\\left( - 6\\right)\\ = \\ \\dfrac{1}{4} + \\ 12\\ = \\ \\dfrac{49}{4} > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "All the four conditions are satisfied.",
           "So, the given equation represents a pair of straight lines."
         ],
@@ -260,17 +326,31 @@
         "mark_note": "Method",
         "memory_tip": "Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL.",
         "lines_compact": [
-          "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14",
           {
-            "text": "  = (169 + 56)/4 = 225/4 > 0",
-            "style": "indent"
+            "text": "\\left(ii\\right)h^{2}\\ - \\ ab\\ = \\ \\left( - \\dfrac{13}{2}\\right)^{2}\\ - \\ 2\\left( - 7\\right)\\ = \\ \\dfrac{169}{4} + \\ 14",
+            "style": "normal",
+            "render": "katex"
           },
-          "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42",
           {
-            "text": "  = (529 − 168)/4 = 361/4 > 0",
-            "style": "indent"
+            "text": "= \\ \\dfrac{169\\ + \\ 56}{4} = \\ \\dfrac{225}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
-          "(iv) g² − ac = (1/2)² − 2(−6) = 1/4 + 12 = 49/4 > 0",
+          {
+            "text": "\\left(iii\\right)f^{2}\\ - \\ bc\\ = \\ \\left(\\dfrac{23}{2}\\right)^{2}\\ - \\ \\left( - 7\\right)\\left( - 6\\right)\\ = \\ \\dfrac{529}{4} - \\ 42",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{529\\ - \\ 168}{4} = \\ \\dfrac{361}{4} > \\ 0",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(iv\\right)g^{2}\\ - \\ ac\\ = \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ 2\\left( - 6\\right)\\ = \\ \\dfrac{1}{4} + \\ 12\\ = \\ \\dfrac{49}{4} > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "All the four conditions are satisfied.",
           "So, the given equation represents a pair of straight lines."
         ]
@@ -287,7 +367,11 @@
             "added": true
           },
           "Point of intersection",
-          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}},\\ \\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((−13/2)(23/2) = −299/4, and −(−7)(1/2)",
             "added": true
@@ -297,46 +381,78 @@
             "style": "indent",
             "added": true
           },
-          "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4",
           {
-            "text": "  = −285/4",
-            "style": "indent"
+            "text": "hf\\ - \\ bg\\ = \\ \\left( - \\dfrac{13}{2}\\right)\\left(\\dfrac{23}{2}\\right)\\ - \\ \\left( - 7\\right)\\left(\\dfrac{1}{2}\\right)\\ = \\ - \\dfrac{299}{4} + \\ \\dfrac{14}{4}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(2(−7) = −14 = −56/4)",
+            "text": "= \\ - \\dfrac{285}{4}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\left( - 7\\right)\\ = \\ - 14\\ = \\ - \\dfrac{56}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4",
           {
-            "text": "  = (−56 − 169)/4 = −225/4",
-            "style": "indent"
+            "text": "ab\\ - \\ h^{2}\\ = \\ 2\\left( - 7\\right)\\ - \\ \\left( - \\dfrac{13}{2}\\right)^{2}\\ = \\ - 14\\ - \\ \\dfrac{169}{4}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(the 4s cancel; 285/225 = 19/15, dividing by 15)",
+            "text": "= \\ \\dfrac{ - 56\\ - \\ 169}{4} = \\ - \\dfrac{225}{4}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ 4s\\ \\text{cancel};\\ \\dfrac{285}{225} = \\ \\dfrac{19}{15},\\ \\text{dividing}\\ \\text{by}\\ 15\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x = (−285/4)/(−225/4) = 285/225 = 19/15",
           {
-            "text": "((1/2)(−13/2) = −13/4 and 2(23/2) = 23 = 92/4)",
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{ - \\dfrac{285}{4}}{ - \\dfrac{225}{4}} = \\ \\dfrac{285}{225} = \\ \\dfrac{19}{15}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{1}{2}\\right)\\left( - \\dfrac{13}{2}\\right)\\ = \\ - \\dfrac{13}{4}\\text{and}\\ 2\\left(\\dfrac{23}{2}\\right)\\ = \\ 23\\ = \\ \\dfrac{92}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4",
           {
-            "text": "  = −105/4",
-            "style": "indent"
+            "text": "gh\\ - \\ af\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left( - \\dfrac{13}{2}\\right)\\ - \\ 2\\left(\\dfrac{23}{2}\\right)\\ = \\ - \\dfrac{13}{4} - \\ \\dfrac{92}{4}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(105/225 = 7/15, dividing by 15)",
+            "text": "= \\ - \\dfrac{105}{4}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{105}{225} = \\ \\dfrac{7}{15},\\ \\text{dividing}\\ \\text{by}\\ 15\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ y = (−105/4)/(−225/4) = 105/225 = 7/15",
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{ - \\dfrac{105}{4}}{ - \\dfrac{225}{4}} = \\ \\dfrac{105}{225} = \\ \\dfrac{7}{15}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: the equation factorises as (2x + y − 3)(x − 7y + 2),",
             "added": true
           },
           {
-            "text": "  and (19/15, 7/15) satisfies 2x + y = 3",
+            "text": "\\text{and}\\ \\left(\\dfrac{19}{15},\\ \\dfrac{7}{15}\\right)\\ \\text{satisfies}\\ 2x\\ + \\ y\\ = \\ 3",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -345,8 +461,9 @@
             "added": true
           },
           {
-            "text": "∴ Point of intersection = (19/15, 7/15)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Point}\\ \\text{of}\\ \\text{intersection}\\ = \\ \\left(\\dfrac{19}{15},\\ \\dfrac{7}{15}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -380,27 +497,55 @@
         "memory_tip": "A formula in the same six coefficients gives the meeting point — no factorising, no solving.",
         "lines_compact": [
           "Point of intersection",
-          "P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
-          "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4",
           {
-            "text": "  = −285/4",
-            "style": "indent"
+            "text": "P\\ = \\ \\left(\\dfrac{hf\\ - \\ bg}{ab\\ - \\ h^{2}},\\ \\dfrac{gh\\ - \\ af}{ab\\ - \\ h^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "ab − h² = 2(−7) − (−13/2)² = −14 − 169/4",
           {
-            "text": "  = (−56 − 169)/4 = −225/4",
-            "style": "indent"
+            "text": "hf\\ - \\ bg\\ = \\ \\left( - \\dfrac{13}{2}\\right)\\left(\\dfrac{23}{2}\\right)\\ - \\ \\left( - 7\\right)\\left(\\dfrac{1}{2}\\right)\\ = \\ - \\dfrac{299}{4} + \\ \\dfrac{14}{4}",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ x = (−285/4)/(−225/4) = 285/225 = 19/15",
-          "gh − af = (1/2)(−13/2) − 2(23/2) = −13/4 − 92/4",
           {
-            "text": "  = −105/4",
-            "style": "indent"
+            "text": "= \\ - \\dfrac{285}{4}",
+            "style": "indent",
+            "render": "katex"
           },
-          "⇒ y = (−105/4)/(−225/4) = 105/225 = 7/15",
           {
-            "text": "∴ Point of intersection = (19/15, 7/15)",
-            "style": "boxed"
+            "text": "ab\\ - \\ h^{2}\\ = \\ 2\\left( - 7\\right)\\ - \\ \\left( - \\dfrac{13}{2}\\right)^{2}\\ = \\ - 14\\ - \\ \\dfrac{169}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ - 56\\ - \\ 169}{4} = \\ - \\dfrac{225}{4}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{ - \\dfrac{285}{4}}{ - \\dfrac{225}{4}} = \\ \\dfrac{285}{225} = \\ \\dfrac{19}{15}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "gh\\ - \\ af\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left( - \\dfrac{13}{2}\\right)\\ - \\ 2\\left(\\dfrac{23}{2}\\right)\\ = \\ - \\dfrac{13}{4} - \\ \\dfrac{92}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{105}{4}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\dfrac{ - \\dfrac{105}{4}}{ - \\dfrac{225}{4}} = \\ \\dfrac{105}{225} = \\ \\dfrac{7}{15}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Point}\\ \\text{of}\\ \\text{intersection}\\ = \\ \\left(\\dfrac{19}{15},\\ \\dfrac{7}{15}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -421,28 +566,42 @@
             "added": true
           },
           "The angle between the pair is given by",
-          "tanθ = 2√(h² − ab) / |a + b|",
           {
-            "text": "(√(225/4) = 15/2; |2 − 7| = 5)",
+            "text": "\\tan \\theta \\ = \\ \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{225}{4}}\\ = \\ \\dfrac{15}{2};\\ \\left|2\\ - \\ 7\\right|\\ = \\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",
+          {
+            "text": "= \\ \\dfrac{2\\sqrt{\\dfrac{225}{4}}}{\\left|2\\ + \\ \\left( - 7\\right)\\right|} = \\ \\dfrac{2\\left(\\dfrac{15}{2}\\right)}{5} = \\ \\dfrac{15}{5} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 + tan²θ = sec²θ: 1 + 9 = 10)",
             "added": true
           },
           "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
           {
-            "text": "(cos θ = 1/sec θ)",
+            "text": "\\left(\\cos \\theta \\ = \\ \\dfrac{1}{\\sec \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ⇒  cosθ = 1/√10",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "∴ Angle between them is θ = Cos⁻¹(1/√10)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{them}\\ \\text{is}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{\\sqrt{10}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -476,16 +635,26 @@
         "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed.",
         "lines_compact": [
           "The angle between the pair is given by",
-          "tanθ = 2√(h² − ab) / |a + b|",
-          "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",
-          "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
           {
-            "text": "  ⇒  cosθ = 1/√10",
-            "style": "indent"
+            "text": "\\tan \\theta \\ = \\ \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ Angle between them is θ = Cos⁻¹(1/√10)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{2\\sqrt{\\dfrac{225}{4}}}{\\left|2\\ + \\ \\left( - 7\\right)\\right|} = \\ \\dfrac{2\\left(\\dfrac{15}{2}\\right)}{5} = \\ \\dfrac{15}{5} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          "⇒ tanθ = 3  ⇒  secθ = √(1 + tan²θ) = √10",
+          {
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Angle}\\ \\text{between}\\ \\text{them}\\ \\text{is}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{1}{\\sqrt{10}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

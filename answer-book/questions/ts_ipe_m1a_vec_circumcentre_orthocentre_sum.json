@@ -108,7 +108,9 @@
         "lines": [
           "Let D be the midpoint of BC.",
           {
-            "text": "(OD = (OB + OC)/2, the midpoint rule)",
+            "text": "\\left(OD\\ = \\ \\dfrac{OB\\ + \\ OC}{2},\\ \\text{the}\\ \\text{midpoint}\\ \\text{rule}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Then OB + OC = 2 OD.   ……(2)",
@@ -183,7 +185,9 @@
         "lines": [
           "Let E be the midpoint of CA.",
           {
-            "text": "(OE = (OC + OA)/2)",
+            "text": "\\left(OE\\ = \\ \\dfrac{OC\\ + \\ OA}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Then OC + OA = 2 OE.",

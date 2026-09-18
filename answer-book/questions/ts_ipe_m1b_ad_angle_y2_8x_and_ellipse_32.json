@@ -116,22 +116,38 @@
             "text": "(differentiate (i) with respect to x)",
             "added": true
           },
-          "From (i):  2y (dy/dx) = 8  ⇒  dy/dx = 4/y",
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 8\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{4}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put y = 4)",
             "added": true
           },
-          "At P(2, 4):  m₁ = 4/4 = 1",
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ 4\\right):\\ m_{1}\\ = \\ \\dfrac{4}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(differentiate (ii); then divide both sides by 2y)",
             "added": true
           },
-          "From (ii):  8x + 2y (dy/dx) = 0  ⇒  dy/dx = −4x/y",
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 8x\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{4x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x = 2 and y = 4)",
             "added": true
           },
-          "At P(2, 4):  m₂ = −4(2)/4 = −2"
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ 4\\right):\\ m_{2}\\ = \\ - \\dfrac{4\\left(2\\right)}{4} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -165,10 +181,26 @@
         ],
         "memory_tip": "For any curve Ax² + By² = C the slope is −Ax/(By) — the circle case A = B = 1 is just the simplest example.",
         "lines_compact": [
-          "From (i):  2y (dy/dx) = 8  ⇒  dy/dx = 4/y",
-          "At P(2, 4):  m₁ = 4/4 = 1",
-          "From (ii):  8x + 2y (dy/dx) = 0  ⇒  dy/dx = −4x/y",
-          "At P(2, 4):  m₂ = −4(2)/4 = −2"
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 8\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{4}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ 4\\right):\\ m_{1}\\ = \\ \\dfrac{4}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 8x\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{4x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2,\\ 4\\right):\\ m_{2}\\ = \\ - \\dfrac{4\\left(2\\right)}{4} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -198,17 +230,29 @@
             "style": "indent",
             "added": true
           },
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put m₁ = 1 and m₂ = −2)",
             "added": true
           },
-          "= |(1 − (−2))/(1 + (1)(−2))|",
+          {
+            "text": "= \\ \\left|\\dfrac{1\\ - \\ \\left( - 2\\right)}{1\\ + \\ \\left(1\\right)\\left( - 2\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 + 2 = 3; (1)(−2) = −2, so 1 − 2 = −1)",
             "added": true
           },
-          "= |3/(−1)| = 3",
+          {
+            "text": "= \\ \\left|\\dfrac{3}{ - 1}\\right|\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|3/(−1)| = |−3| = 3; a calculator gives",
             "added": true
@@ -256,9 +300,21 @@
         "memory_tip": "The difference of the slopes on top, one plus their product underneath, and the modulus of the fraction.",
         "lines_compact": [
           "If θ is the angle between the curves at P, then",
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "= |(1 − (−2))/(1 + (1)(−2))|",
-          "= |3/(−1)| = 3",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{1\\ - \\ \\left( - 2\\right)}{1\\ + \\ \\left(1\\right)\\left( - 2\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{3}{ - 1}\\right|\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
             "style": "boxed"

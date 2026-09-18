@@ -51,12 +51,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The derivative of logx is 1/x, and that",
+          {
+            "text": "\\text{The}\\ \\text{derivative}\\ \\text{of}\\ \\log x\\ \\text{is}\\ \\dfrac{1}{x},\\ \\text{and}\\ \\text{that}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  factor is already present:",
             "style": "indent"
           },
-          "Put logx = t ⇒ (1/x)dx = dt",
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\left(\\dfrac{1}{x}\\right)dx\\ = \\ dt",
+            "style": "normal",
+            "render": "katex"
+          },
           "I = ∫ cott dt"
         ],
         "why": "The substitution t = logx makes 1/x dx become dt, leaving a plain ∫cot t dt to integrate.",
@@ -83,8 +91,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [cot(logx)/x] dx = log|sin(logx)| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\cot \\left(\\log x\\right)}{x}\\right]dx\\ = \\ \\log \\left|\\sin \\left(\\log x\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫cott dt = log|sint| + c is a standard result, and substituting t=logx back in returns the answer in terms of x.",
@@ -95,8 +104,9 @@
         "memory_tip": "∫cott dt = log|sint| (sine); ∫tant dt = −log|cost| (cosine, with a minus) — different results, easy to swap.",
         "lines_compact": [
           {
-            "text": "∴ ∫ [cot(logx)/x] dx = log|sin(logx)| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\cot \\left(\\log x\\right)}{x}\\right]dx\\ = \\ \\log \\left|\\sin \\left(\\log x\\right)\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -485,12 +485,22 @@
             "style": "indent",
             "added": true
           },
-          "(2) + [2×(1)] ⇒ 6x − 9 = 0   ⇒   x = 9/6 = 3/2",
           {
-            "text": "(put x = 3/2 in (1): y = 3/2 + 1 = 5/2)",
+            "text": "\\left(2\\right)\\ + \\ \\left[2 \\times \\left(1\\right)\\right]\\ \\Rightarrow \\ 6x\\ - \\ 9\\ = \\ 0\\ \\Rightarrow \\ x\\ = \\ \\dfrac{9}{6} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\dfrac{3}{2}\\text{in}\\ \\left(1\\right):\\ y\\ = \\ \\dfrac{3}{2} + \\ 1\\ = \\ \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1) ⇒ 3/2 − y + 1 = 0   ⇒   y = 5/2",
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ \\dfrac{3}{2} - \\ y\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: SA² = (7/2)² + (−1/2)² = 50/4",
             "added": true
@@ -501,8 +511,9 @@
             "added": true
           },
           {
-            "text": "∴ Circumcentre S(x, y) = (3/2, 5/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\left(x,\\ y\\right)\\ = \\ \\left(\\dfrac{3}{2},\\ \\dfrac{5}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -537,11 +548,20 @@
           "Step-3: Solving (1) and (2), we get S;",
           "(1) ⇒ x − y + 1 = 0;   (2) ⇒ 4x + 2y − 11 = 0",
           "2×(1) ⇒ 2x − 2y + 2 = 0",
-          "(2) + [2×(1)] ⇒ 6x − 9 = 0   ⇒   x = 9/6 = 3/2",
-          "(1) ⇒ 3/2 − y + 1 = 0   ⇒   y = 5/2",
           {
-            "text": "∴ Circumcentre S(x, y) = (3/2, 5/2)",
-            "style": "boxed"
+            "text": "\\left(2\\right)\\ + \\ \\left[2 \\times \\left(1\\right)\\right]\\ \\Rightarrow \\ 6x\\ - \\ 9\\ = \\ 0\\ \\Rightarrow \\ x\\ = \\ \\dfrac{9}{6} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ \\dfrac{3}{2} - \\ y\\ + \\ 1\\ = \\ 0\\ \\Rightarrow \\ y\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Circumcentre}\\ S\\left(x,\\ y\\right)\\ = \\ \\left(\\dfrac{3}{2},\\ \\dfrac{5}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

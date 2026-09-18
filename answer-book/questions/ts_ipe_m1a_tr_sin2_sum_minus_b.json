@@ -118,10 +118,20 @@
             "text": "Use the sum formula with p = 2A, q = 2C:",
             "added": true
           },
-          "= 2 sin((2A+2C)/2) cos((2A−2C)/2) − sin 2B",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "((2A+2C)/2 = A + C and (2A−2C)/2 = A − C)",
+            "text": "= \\ 2\\sin \\left(\\dfrac{2A + 2C}{2}\\right)\\cos \\left(\\dfrac{2A - 2C}{2}\\right)\\ - \\ \\sin 2B",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2A + 2C}{2} = \\ A\\ + \\ C\\ \\text{and}\\ \\dfrac{2A - 2C}{2} = \\ A\\ - \\ C\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -162,8 +172,16 @@
         "lines_compact": [
           "L.H.S = sin 2A − sin 2B + sin 2C",
           "= sin 2A + sin 2C − sin 2B",
-          "= 2 sin((2A+2C)/2) cos((2A−2C)/2) − sin 2B",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{2A + 2C}{2}\\right)\\cos \\left(\\dfrac{2A - 2C}{2}\\right)\\ - \\ \\sin 2B",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 sin(A+C) cos(A−C) − 2 sinB cosB",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ]

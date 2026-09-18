@@ -185,7 +185,11 @@
             "text": "(R is the circumradius, and abc = 4RΔ)",
             "added": true
           },
-          "(i) R = abc/(4Δ) = (13 × 14 × 15)/(4 × 84)",
+          {
+            "text": "\\left(i\\right)R\\ = \\ \\dfrac{abc}{4\\Delta } = \\ \\dfrac{13\\ \\times \\ 14\\ \\times \\ 15}{4\\ \\times \\ 84}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(13 × 14 × 15 = 2730 and 4 × 84 = 336;",
             "added": true
@@ -195,7 +199,11 @@
             "style": "indent",
             "added": true
           },
-          "= 2730/336 = 65/8"
+          {
+            "text": "= \\ \\dfrac{2730}{336} = \\ \\dfrac{65}{8}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -225,8 +233,16 @@
         ],
         "memory_tip": "R = abc/(4Δ), the circumradius. 65/8 does not simplify further.",
         "lines_compact": [
-          "(i) R = abc/(4Δ) = (13 × 14 × 15)/(4 × 84)",
-          "= 2730/336 = 65/8"
+          {
+            "text": "\\left(i\\right)R\\ = \\ \\dfrac{abc}{4\\Delta } = \\ \\dfrac{13\\ \\times \\ 14\\ \\times \\ 15}{4\\ \\times \\ 84}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2730}{336} = \\ \\dfrac{65}{8}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -240,7 +256,11 @@
             "text": "(r is the inradius, and Δ = rs)",
             "added": true
           },
-          "(ii) r = Δ/s = 84/21 = 4"
+          {
+            "text": "\\left(ii\\right)r\\ = \\ \\dfrac{\\Delta }{s} = \\ \\dfrac{84}{21} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -270,7 +290,11 @@
         ],
         "memory_tip": "r = Δ/s, the in-radius and the simplest of the five.",
         "lines_compact": [
-          "(ii) r = Δ/s = 84/21 = 4"
+          {
+            "text": "\\left(ii\\right)r\\ = \\ \\dfrac{\\Delta }{s} = \\ \\dfrac{84}{21} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -284,7 +308,11 @@
             "text": "(r₁ is the exradius opposite A, and Δ = r₁(s − a))",
             "added": true
           },
-          "(iii) r₁ = Δ/(s−a) = 84/(21−13) = 84/8 = 21/2"
+          {
+            "text": "\\left(iii\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} = \\ \\dfrac{84}{21 - 13} = \\ \\dfrac{84}{8} = \\ \\dfrac{21}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -314,7 +342,11 @@
         ],
         "memory_tip": "r₁ = Δ/(s − a) — same shape as r, with s − a underneath.",
         "lines_compact": [
-          "(iii) r₁ = Δ/(s−a) = 84/(21−13) = 84/8 = 21/2"
+          {
+            "text": "\\left(iii\\right)r_{1}\\ = \\ \\dfrac{\\Delta }{s - a} = \\ \\dfrac{84}{21 - 13} = \\ \\dfrac{84}{8} = \\ \\dfrac{21}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -328,7 +360,11 @@
             "text": "(r₂ is the exradius opposite B, and Δ = r₂(s − b))",
             "added": true
           },
-          "(iv) r₂ = Δ/(s−b) = 84/(21−14) = 84/7 = 12"
+          {
+            "text": "\\left(iv\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} = \\ \\dfrac{84}{21 - 14} = \\ \\dfrac{84}{7} = \\ 12",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -358,7 +394,11 @@
         ],
         "memory_tip": "Same again with s − b: r₂ = Δ/(s − b).",
         "lines_compact": [
-          "(iv) r₂ = Δ/(s−b) = 84/(21−14) = 84/7 = 12"
+          {
+            "text": "\\left(iv\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} = \\ \\dfrac{84}{21 - 14} = \\ \\dfrac{84}{7} = \\ 12",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -373,10 +413,15 @@
             "text": "(r₃ is the exradius opposite C, and Δ = r₃(s − c))",
             "added": true
           },
-          "(v) r₃ = Δ/(s−c) = 84/(21−15) = 84/6 = 14",
           {
-            "text": "∴ R = 65/8, r = 4, r₁ = 21/2, r₂ = 12, r₃ = 14",
-            "style": "boxed"
+            "text": "\\left(v\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} = \\ \\dfrac{84}{21 - 15} = \\ \\dfrac{84}{6} = \\ 14",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ R\\ = \\ \\dfrac{65}{8},\\ r\\ = \\ 4,\\ r_{1}\\ = \\ \\dfrac{21}{2},\\ r_{2}\\ = \\ 12,\\ r_{3}\\ = \\ 14",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -408,10 +453,15 @@
         ],
         "memory_tip": "Same with s − c, then state all FIVE together as the question asked.",
         "lines_compact": [
-          "(v) r₃ = Δ/(s−c) = 84/(21−15) = 84/6 = 14",
           {
-            "text": "∴ R = 65/8, r = 4, r₁ = 21/2, r₂ = 12, r₃ = 14",
-            "style": "boxed"
+            "text": "\\left(v\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} = \\ \\dfrac{84}{21 - 15} = \\ \\dfrac{84}{6} = \\ 14",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ R\\ = \\ \\dfrac{65}{8},\\ r\\ = \\ 4,\\ r_{1}\\ = \\ \\dfrac{21}{2},\\ r_{2}\\ = \\ 12,\\ r_{3}\\ = \\ 14",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -113,8 +113,9 @@
             "added": true
           },
           {
-            "text": "= cos60° = 1/2 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -149,8 +150,9 @@
           "= cos20° cos40° − sin20° sin40°",
           "= cos(20° + 40°)   [∵ cosA cosB − sinA sinB = cos(A+B)]",
           {
-            "text": "= cos60° = 1/2 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

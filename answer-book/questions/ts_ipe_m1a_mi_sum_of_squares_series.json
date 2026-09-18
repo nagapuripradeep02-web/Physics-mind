@@ -65,9 +65,17 @@
         "lines": [
           "nth term = 1² + 2² + … + n²",
           "(the nth term is the sum of the first n squares)",
-          "        = n(n+1)(2n+1)/6",
+          {
+            "text": "= \\ \\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let S(n): 1² + (1² + 2²) + …",
-          "        + n(n+1)(2n+1)/6 = n(n+1)²(n+2)/12"
+          {
+            "text": "+ \\ \\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6} = \\ \\dfrac{n\\left(n + 1\\right)^{2}\\left(n + 2\\right)}{12}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +119,11 @@
             "added": true
           },
           "L.H.S of S(1) = 1² = 1",
-          "R.H.S of S(1) = 1(2)²(3)/12 = 12/12 = 1",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1\\left(2\\right)^{2}\\left(3\\right)}{12} = \\ \\dfrac{12}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ],
         "recall": {
@@ -145,7 +157,11 @@
         "lines_compact": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1² = 1",
-          "R.H.S of S(1) = 1(2)²(3)/12 = 12/12 = 1",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1\\left(2\\right)^{2}\\left(3\\right)}{12} = \\ \\dfrac{12}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ]
       },
@@ -163,8 +179,16 @@
             "added": true
           },
           "S(k): 1² + (1² + 2²) + …",
-          "        + k(k+1)(2k+1)/6",
-          "        = k(k+1)²(k+2)/12   …(1)"
+          {
+            "text": "+ \\ \\dfrac{k\\left(k + 1\\right)\\left(2k + 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)}{12}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,8 +221,16 @@
         "lines_compact": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1² + (1² + 2²) + …",
-          "        + k(k+1)(2k+1)/6",
-          "        = k(k+1)²(k+2)/12   …(1)"
+          {
+            "text": "+ \\ \\dfrac{k\\left(k + 1\\right)\\left(2k + 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)}{12}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -211,31 +243,57 @@
         "lines": [
           "Step 3 — show S(k+1) is true",
           {
-            "text": "(put n = k + 1 in n(n + 1)(2n + 1)/6)",
+            "text": "\\left(\\text{put}\\ n\\ = \\ k\\ + \\ 1\\ \\text{in}\\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 1\\right)}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(k+1)th term = (k+1)(k+2)(2k+3)/6",
-          "L.H.S = k(k+1)²(k+2)/12 + (k+1)(k+2)(2k+3)/6",
+          {
+            "text": "\\left(k + 1\\right)th\\ \\text{term}\\ = \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)}{12} + \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write both parts over 12)",
             "added": true
           },
-          "= [k(k+1)²(k+2) + 2(k+1)(k+2)(2k+3)]/12",
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)\\ + \\ 2\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out (k + 1)(k + 2))",
             "added": true
           },
-          "= (k+1)(k+2)[k(k+1) + 2(2k+3)]/12",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left[k\\left(k + 1\\right)\\ + \\ 2\\left(2k + 3\\right)\\right]}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(k(k + 1) + 2(2k + 3) = k² + 5k + 6)",
             "added": true
           },
-          "= (k+1)(k+2)(k² + 5k + 6)/12",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(k^{2}\\ + \\ 5k\\ + \\ 6\\right)}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(k² + 5k + 6 = (k + 2)(k + 3))",
             "added": true
           },
-          "= (k+1)(k+2)²(k+3)/12 = R.H.S",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)^{2}\\left(k + 3\\right)}{12} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ],
         "recall": {
@@ -269,12 +327,36 @@
         "memory_tip": "Write the (k+1)th term first, put everything over 12, then factor out (k+1)(k+2). k² + 5k + 6 = (k+2)(k+3).",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
-          "(k+1)th term = (k+1)(k+2)(2k+3)/6",
-          "L.H.S = k(k+1)²(k+2)/12 + (k+1)(k+2)(2k+3)/6",
-          "= [k(k+1)²(k+2) + 2(k+1)(k+2)(2k+3)]/12",
-          "= (k+1)(k+2)[k(k+1) + 2(2k+3)]/12",
-          "= (k+1)(k+2)(k² + 5k + 6)/12",
-          "= (k+1)(k+2)²(k+3)/12 = R.H.S",
+          {
+            "text": "\\left(k + 1\\right)th\\ \\text{term}\\ = \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)}{12} + \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k\\left(k + 1\\right)^{2}\\left(k + 2\\right)\\ + \\ 2\\left(k + 1\\right)\\left(k + 2\\right)\\left(2k + 3\\right)}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left[k\\left(k + 1\\right)\\ + \\ 2\\left(2k + 3\\right)\\right]}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)\\left(k^{2}\\ + \\ 5k\\ + \\ 6\\right)}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)\\left(k + 2\\right)^{2}\\left(k + 3\\right)}{12} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ]
       },

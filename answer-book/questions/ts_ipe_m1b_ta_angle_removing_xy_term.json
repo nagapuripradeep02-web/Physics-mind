@@ -279,7 +279,11 @@
             "text": "(sin 2θ/cos 2θ = tan 2θ)",
             "added": true
           },
-          "⇒ tan2θ = 2h / (a − b)   ⇒   2θ = Tan⁻¹(2h/(a − b))",
+          {
+            "text": "\\Rightarrow \\ \\tan 2\\theta \\ = \\ \\dfrac{2h}{a\\ - \\ b} \\Rightarrow \\ 2\\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2h}{a\\ - \\ b}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 2; if a = b then 2h cos 2θ = 0,",
             "added": true
@@ -290,12 +294,14 @@
             "added": true
           },
           {
-            "text": "∴ θ = ½ Tan⁻¹(2h/(a − b)),",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ \\dfrac{1}{2}\\operatorname{Tan}^{-1}\\left(\\dfrac{2h}{a\\ - \\ b}\\right),",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and if a = b then θ = ½(π/2) = π/4",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{if}\\ a\\ = \\ b\\ \\text{then}\\ \\theta \\ = \\ \\dfrac{1}{2}\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -329,14 +335,20 @@
         "lines_compact": [
           "⇒ sin2θ (a − b) = 2h cos2θ",
           "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
-          "⇒ tan2θ = 2h / (a − b)   ⇒   2θ = Tan⁻¹(2h/(a − b))",
           {
-            "text": "∴ θ = ½ Tan⁻¹(2h/(a − b)),",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\tan 2\\theta \\ = \\ \\dfrac{2h}{a\\ - \\ b} \\Rightarrow \\ 2\\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2h}{a\\ - \\ b}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and if a = b then θ = ½(π/2) = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ \\dfrac{1}{2}\\operatorname{Tan}^{-1}\\left(\\dfrac{2h}{a\\ - \\ b}\\right),",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{if}\\ a\\ = \\ b\\ \\text{then}\\ \\theta \\ = \\ \\dfrac{1}{2}\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

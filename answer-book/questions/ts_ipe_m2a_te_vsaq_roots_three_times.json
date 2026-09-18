@@ -56,9 +56,21 @@
           "Let f(x) = 6x⁴ − 7x³ + 8x² − 7x + 2.",
           "If α is a root, we want an equation with",
           "3α as a root.",
-          "Putting x = 3α into f(x/3) gives f(α) = 0,",
-          "so the required equation is f(x/3) = 0:",
-          "6x⁴/81 − 7x³/27 + 8x²/9 − 7x/3 + 2 = 0"
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 3\\alpha \\ \\text{into}\\ f\\left(\\dfrac{x}{3}\\right)\\ \\text{gives}\\ f\\left(\\alpha \\right)\\ = \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{required}\\ \\text{equation}\\ \\text{is}\\ f\\left(\\dfrac{x}{3}\\right)\\ = \\ 0:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{6x^{4}}{81} - \\ \\dfrac{7x^{3}}{27} + \\ \\dfrac{8x^{2}}{9} - \\ \\dfrac{7x}{3} + \\ 2\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

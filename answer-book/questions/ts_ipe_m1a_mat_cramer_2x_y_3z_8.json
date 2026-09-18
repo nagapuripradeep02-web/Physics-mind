@@ -465,9 +465,21 @@
             "text": "(each unknown is its own Δ divided by Δ)",
             "added": true
           },
-          "x = Δ₁/Δ = (−76)/(−38) = 2",
-          "y = Δ₂/Δ = (−76)/(−38) = 2",
-          "z = Δ₃/Δ = (−76)/(−38) = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "Substitute back into the three equations:",
           "2(2) − 2 + 3(2) = 8  ✓",
           "−2 + 2(2) + 2 = 4  ✓",
@@ -509,9 +521,21 @@
         ],
         "lines_compact": [
           "By Cramer's rule:",
-          "x = Δ₁/Δ = (−76)/(−38) = 2",
-          "y = Δ₂/Δ = (−76)/(−38) = 2",
-          "z = Δ₃/Δ = (−76)/(−38) = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{ - 76}{ - 38} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "Substitute back into the three equations:",
           "2(2) − 2 + 3(2) = 8  ✓",
           "−2 + 2(2) + 2 = 4  ✓",

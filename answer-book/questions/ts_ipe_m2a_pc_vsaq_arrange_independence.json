@@ -107,7 +107,9 @@
             "added": true
           },
           {
-            "text": "the arrangements are n!/(p!·q!·r!)",
+            "text": "\\text{the}\\ \\text{arrangements}\\ \\text{are}\\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -115,7 +117,9 @@
             "added": true
           },
           {
-            "text": "Arrangements = 12!/(4!·3!·2!)",
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{12!}{4! \\cdot 3! \\cdot 2!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -131,7 +135,9 @@
             "added": true
           },
           {
-            "text": "= 479001600/288",
+            "text": "= \\ \\dfrac{479001600}{288}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -167,10 +173,15 @@
           "Dividing by 9! (the sum 4 + 3 + 2) instead of the product of factorials."
         ],
         "lines_compact": [
-          "Arrangements = n!/(p!·q!·r!)",
           {
-            "text": "= 12!/(4!·3!·2!) = 16,63,200",
-            "style": "boxed"
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12!}{4! \\cdot 3! \\cdot 2!} = \\ 16,63,200",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

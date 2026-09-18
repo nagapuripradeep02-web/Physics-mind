@@ -54,19 +54,43 @@
           },
           "Let the two numbers be a and b, with a ≠ b",
           "so that (√a − √b)² ≠ 0 below.",
-          "(A.M. = (a + b)/2 and G.M. = √(ab), with a, b > 0)",
-          "A.M. : G.M. = m : n  ⇒  (a + b)/(2√(ab)) = m/n",
-          "(p/q = m/n gives (p + q)/(p − q) = (m + n)/(m − n))",
+          {
+            "text": "\\left(A.M.\\ = \\ \\dfrac{a\\ + \\ b}{2}\\text{and}\\ G.M.\\ = \\ \\sqrt{ab},\\ \\text{with}\\ a,\\ b\\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "A.M.\\ :\\ G.M.\\ = \\ m\\ :\\ n\\ \\Rightarrow \\ \\dfrac{a\\ + \\ b}{2\\sqrt{ab}} = \\ \\dfrac{m}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{p}{q} = \\ \\dfrac{m}{n}\\text{gives}\\ \\dfrac{p\\ + \\ q}{p\\ - \\ q} = \\ \\dfrac{m\\ + \\ n}{m\\ - \\ n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "By componendo and dividendo,",
-          "(a + b + 2√(ab))/(a + b − 2√(ab)) = (m + n)/(m − n)",
+          {
+            "text": "\\dfrac{a\\ + \\ b\\ + \\ 2\\sqrt{ab}}{a\\ + \\ b\\ - \\ 2\\sqrt{ab}} = \\ \\dfrac{m\\ + \\ n}{m\\ - \\ n}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a + b ± 2√(ab) = (√a ± √b)²)",
-          "(√a + √b)²/(√a − √b)² = (m + n)/(m − n)",
+          {
+            "text": "\\dfrac{\\left(\\sqrt{a}\\ + \\ \\sqrt{b}\\right)^{2}}{\\left(\\sqrt{a}\\ - \\ \\sqrt{b}\\right)^{2}} = \\ \\dfrac{m\\ + \\ n}{m\\ - \\ n}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take a > b, so √a − √b > 0; A.M. > G.M. for a ≠ b,",
           {
             "text": "  so m > n > 0 and √(m − n) is real)",
             "style": "indent"
           },
-          "(√a + √b)/(√a − √b) = √(m + n)/√(m − n)"
+          {
+            "text": "\\dfrac{\\sqrt{a}\\ + \\ \\sqrt{b}}{\\sqrt{a}\\ - \\ \\sqrt{b}} = \\ \\dfrac{\\sqrt{m\\ + \\ n}}{\\sqrt{m\\ - \\ n}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,9 +130,15 @@
         "memory_tip": "(m + n) + (m − n) = 2m, and the cross term contains √(m² − n²).",
         "lines": [
           "By componendo and dividendo again,",
-          "√a/√b = (√(m + n) + √(m − n))/(√(m + n) − √(m − n))",
           {
-            "text": "(the left side gives 2√a/(2√b) = √a/√b)",
+            "text": "\\dfrac{\\sqrt{a}}{\\sqrt{b}} = \\ \\dfrac{\\sqrt{m\\ + \\ n}\\ + \\ \\sqrt{m\\ - \\ n}}{\\sqrt{m\\ + \\ n}\\ - \\ \\sqrt{m\\ - \\ n}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{left}\\ \\text{side}\\ \\text{gives}\\ \\dfrac{2\\sqrt{a}}{2\\sqrt{b}} = \\ \\dfrac{\\sqrt{a}}{\\sqrt{b}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -121,7 +151,11 @@
             "added": true
           },
           "Squaring both sides,",
-          "a/b = [(m + n) + (m − n) + 2√((m + n)(m − n))]",
+          {
+            "text": "\\dfrac{a}{b} = \\ \\left[\\left(m\\ + \\ n\\right)\\ + \\ \\left(m\\ - \\ n\\right)\\ + \\ 2\\sqrt{\\left(m\\ + \\ n\\right)\\left(m\\ - \\ n\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "/ [(m + n) + (m − n) − 2√((m + n)(m − n))]",
             "style": "indent"
@@ -130,7 +164,11 @@
             "text": "((m + n) + (m − n) = 2m and (m + n)(m − n) = m² − n²)",
             "added": true
           },
-          "= (2m + 2√(m² − n²))/(2m − 2√(m² − n²))",
+          {
+            "text": "= \\ \\dfrac{2m\\ + \\ 2\\sqrt{m^{2}\\ - \\ n^{2}}}{2m\\ - \\ 2\\sqrt{m^{2}\\ - \\ n^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel the 2 from the top and the bottom)",
             "added": true
@@ -169,14 +207,26 @@
         ],
         "lines_compact": [
           "By componendo and dividendo again,",
-          "√a/√b = (√(m + n) + √(m − n))/(√(m + n) − √(m − n))",
+          {
+            "text": "\\dfrac{\\sqrt{a}}{\\sqrt{b}} = \\ \\dfrac{\\sqrt{m\\ + \\ n}\\ + \\ \\sqrt{m\\ - \\ n}}{\\sqrt{m\\ + \\ n}\\ - \\ \\sqrt{m\\ - \\ n}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Squaring both sides,",
-          "a/b = [(m + n) + (m − n) + 2√((m + n)(m − n))]",
+          {
+            "text": "\\dfrac{a}{b} = \\ \\left[\\left(m\\ + \\ n\\right)\\ + \\ \\left(m\\ - \\ n\\right)\\ + \\ 2\\sqrt{\\left(m\\ + \\ n\\right)\\left(m\\ - \\ n\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "/ [(m + n) + (m − n) − 2√((m + n)(m − n))]",
             "style": "indent"
           },
-          "= (2m + 2√(m² − n²))/(2m − 2√(m² − n²))",
+          {
+            "text": "= \\ \\dfrac{2m\\ + \\ 2\\sqrt{m^{2}\\ - \\ n^{2}}}{2m\\ - \\ 2\\sqrt{m^{2}\\ - \\ n^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ a : b = m + √(m² − n²) : m − √(m² − n²)",
             "style": "boxed"

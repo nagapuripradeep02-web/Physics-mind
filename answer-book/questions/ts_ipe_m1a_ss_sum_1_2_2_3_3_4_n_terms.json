@@ -54,8 +54,16 @@
           },
           "The terms are 1·2, 2·3, 3·4, …, so the nth term is",
           "tₙ = n(n + 1) = n² + n",
-          "(Σn² = n(n + 1)(2n + 1)/6 and Σn = n(n + 1)/2)",
-          "Sₙ = Σn² + Σn = n(n + 1)(2n + 1)/6 + n(n + 1)/2"
+          {
+            "text": "\\left(\\Sigma n^{2}\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 1\\right)}{6}\\text{and}\\ \\Sigma n\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S_{n}\\ = \\ \\Sigma n^{2}\\ + \\ \\Sigma n\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 1\\right)}{6} + \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -94,24 +102,41 @@
         "margin_note": "Second mark. The factored form is the expected answer. Test it with n = 2: 2 × 3 × 4/3 = 8, and 1·2 + 2·3 = 8.",
         "memory_tip": "The answer uses the next consecutive number: n(n + 1)(n + 2) divided by 3.",
         "lines": [
-          "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
           {
-            "text": "(take out the common factor n(n + 1); 1/2 = 3/6)",
+            "text": "S_{n}\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 1\\right)}{6} + \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\text{the}\\ \\text{common}\\ \\text{factor}\\ n\\left(n\\ + \\ 1\\right);\\ \\dfrac{1}{2} = \\ \\dfrac{3}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",
+          {
+            "text": "= \\ n\\left(n\\ + \\ 1\\right)\\left[\\dfrac{2n\\ + \\ 1}{6} + \\ \\dfrac{1}{2}\\right]\\ = \\ n\\left(n\\ + \\ 1\\right)\\left[\\dfrac{2n\\ + \\ 1\\ + \\ 3}{6}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2n + 4 = 2(n + 2))",
             "added": true
           },
-          "= n(n + 1)(2n + 4)/6 = 2n(n + 1)(n + 2)/6",
           {
-            "text": "(2/6 = 1/3)",
+            "text": "= \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 4\\right)}{6} = \\ \\dfrac{2n\\left(n\\ + \\ 1\\right)\\left(n\\ + \\ 2\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{6} = \\ \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Sₙ = n(n + 1)(n + 2)/3",
-            "style": "boxed"
+            "text": "\\therefore \\ S_{n}\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(n\\ + \\ 2\\right)}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,12 +167,25 @@
           "Leaving the answer as n(n + 1)(2n + 4)/6 without cancelling the 2."
         ],
         "lines_compact": [
-          "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
-          "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",
-          "= n(n + 1)(2n + 4)/6 = 2n(n + 1)(n + 2)/6",
           {
-            "text": "∴ Sₙ = n(n + 1)(n + 2)/3",
-            "style": "boxed"
+            "text": "S_{n}\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 1\\right)}{6} + \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ n\\left(n\\ + \\ 1\\right)\\left[\\dfrac{2n\\ + \\ 1}{6} + \\ \\dfrac{1}{2}\\right]\\ = \\ n\\left(n\\ + \\ 1\\right)\\left[\\dfrac{2n\\ + \\ 1\\ + \\ 3}{6}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(2n\\ + \\ 4\\right)}{6} = \\ \\dfrac{2n\\left(n\\ + \\ 1\\right)\\left(n\\ + \\ 2\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ S_{n}\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)\\left(n\\ + \\ 2\\right)}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

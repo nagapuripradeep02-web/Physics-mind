@@ -57,10 +57,18 @@
           },
           "Given curve:   y² = 4ax   (a parabola).",
           "(the standard formula for the subnormal)",
-          "At a point (x, y) on a curve, with m = dy/dx:",
+          {
+            "text": "\\text{At}\\ a\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{on}\\ a\\ \\text{curve},\\ \\text{with}\\ m\\ = \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "length of the subnormal = y · m",
           "So the whole question is about the value",
-          "of the product y(dy/dx)."
+          {
+            "text": "\\text{of}\\ \\text{the}\\ \\text{product}\\ y\\left(\\dfrac{dy}{dx}\\right).",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,17 +112,33 @@
           "y is not given in terms of x,",
           "so differentiate both sides with respect to x.",
           {
-            "text": "(y depends on x; d/dx of 4ax is 4a)",
+            "text": "\\left(y\\ \\text{depends}\\ \\text{on}\\ x;\\ \\dfrac{d}{dx}\\ \\text{of}\\ 4ax\\ \\text{is}\\ 4a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "By the chain rule, d/dx of y² is 2y · dy/dx:",
-          "2y (dy/dx) = 4a",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{chain}\\ \\text{rule},\\ \\dfrac{d}{dx}\\ \\text{of}\\ y^{2}\\ \\text{is}\\ 2y\\ \\cdot \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 4a",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide both sides by 2:",
           {
-            "text": "(4a/2 = 2a)",
+            "text": "\\left(\\dfrac{4a}{2} = \\ 2a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y (dy/dx) = 2a",
+          {
+            "text": "y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 2a",
+            "style": "normal",
+            "render": "katex"
+          },
           "The left side is exactly y · m."
         ],
         "recall": {
@@ -150,10 +174,22 @@
         "lines_compact": [
           "y is not given in terms of x,",
           "so differentiate both sides with respect to x.",
-          "By the chain rule, d/dx of y² is 2y · dy/dx:",
-          "2y (dy/dx) = 4a",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{chain}\\ \\text{rule},\\ \\dfrac{d}{dx}\\ \\text{of}\\ y^{2}\\ \\text{is}\\ 2y\\ \\cdot \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 4a",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide both sides by 2:",
-          "y (dy/dx) = 2a",
+          {
+            "text": "y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 2a",
+            "style": "normal",
+            "render": "katex"
+          },
           "The left side is exactly y · m."
         ]
       },

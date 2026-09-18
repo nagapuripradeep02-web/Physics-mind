@@ -74,7 +74,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = (x − p)/(x² − 3x + 2)",
+          {
+            "text": "\\text{Let}\\ y\\ = \\ \\dfrac{x\\ - \\ p}{x^{2}\\ - \\ 3x\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by (x² − 3x + 2):",
           "y(x² − 3x + 2) = x − p",
           "yx² − 3yx + 2y = x − p",
@@ -273,11 +277,15 @@
             "added": true
           },
           {
-            "text": "the fraction is (x − 1)/[(x − 1)(x − 2)],",
+            "text": "\\text{the}\\ \\text{fraction}\\ \\text{is}\\ \\dfrac{x\\ - \\ 1}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)},",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "and at p = 2 it is (x − 2)/[(x − 1)(x − 2)].",
+            "text": "\\text{and}\\ \\text{at}\\ p\\ = \\ 2\\ \\text{it}\\ \\text{is}\\ \\dfrac{x\\ - \\ 2}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)}.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

@@ -118,10 +118,15 @@
             "style": "indent",
             "added": true
           },
-          "Opposite unit vector = −(a + b + c)/|a + b + c|",
           {
-            "text": "= −(3i + 6j − 2k)/7",
-            "style": "boxed"
+            "text": "\\text{Opposite}\\ \\text{unit}\\ \\text{vector}\\ = \\ - \\dfrac{a\\ + \\ b\\ + \\ c}{\\left|a\\ + \\ b\\ + \\ c\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{3i\\ + \\ 6j\\ - \\ 2k}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,10 +157,15 @@
           "Negating only one component instead of the whole vector."
         ],
         "lines_compact": [
-          "Opposite unit vector = −(a + b + c)/|a + b + c|",
           {
-            "text": "= −(3i + 6j − 2k)/7",
-            "style": "boxed"
+            "text": "\\text{Opposite}\\ \\text{unit}\\ \\text{vector}\\ = \\ - \\dfrac{a\\ + \\ b\\ + \\ c}{\\left|a\\ + \\ b\\ + \\ c\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{3i\\ + \\ 6j\\ - \\ 2k}{7}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

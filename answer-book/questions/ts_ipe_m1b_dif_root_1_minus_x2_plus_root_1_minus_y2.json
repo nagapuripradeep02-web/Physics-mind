@@ -74,7 +74,11 @@
           },
           "Put x = sin A and y = sin B, so A = Sin⁻¹x",
           "and B = Sin⁻¹y.",
-          "A and B lie in [−π/2, π/2], where cos A ≥ 0",
+          {
+            "text": "A\\ \\text{and}\\ B\\ \\text{lie}\\ \\text{in}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],\\ \\text{where}\\ \\cos A\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "and cos B ≥ 0.",
           "(1 − sin²A = cos²A, and √(cos²A) = |cos A| = cos A",
           {
@@ -131,17 +135,30 @@
         "margin_note": "Two marks. Write both named formulas before using them — the examiner marks the stated forms, not only the line that follows them.",
         "lines": [
           "Use the two standard forms, with C = A and D = B:",
-          "cos C + cos D = 2 cos((C + D)/2) · cos((C − D)/2)",
-          "sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
+          {
+            "text": "\\cos C\\ + \\ \\cos D\\ = \\ 2\\cos \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\cos \\left(\\dfrac{C\\ - \\ D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin C\\ - \\ \\sin D\\ = \\ 2\\cos \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{C\\ - \\ D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The equation cos A + cos B = a(sin A − sin B) becomes",
           {
             "text": "(put the two forms into each side, with C = A and D = B)",
             "added": true
           },
-          "2 cos((A + B)/2) · cos((A − B)/2)",
           {
-            "text": "  = a · 2 cos((A + B)/2) · sin((A − B)/2)",
-            "style": "indent"
+            "text": "2\\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\cdot \\ \\cos \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ a\\ \\cdot \\ 2\\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -176,13 +193,26 @@
         "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine takes the cosine of the half sum and the sine of the half difference.",
         "lines_compact": [
           "Use the two standard forms, with C = A and D = B:",
-          "cos C + cos D = 2 cos((C + D)/2) · cos((C − D)/2)",
-          "sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
-          "The equation cos A + cos B = a(sin A − sin B) becomes",
-          "2 cos((A + B)/2) · cos((A − B)/2)",
           {
-            "text": "  = a · 2 cos((A + B)/2) · sin((A − B)/2)",
-            "style": "indent"
+            "text": "\\cos C\\ + \\ \\cos D\\ = \\ 2\\cos \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\cos \\left(\\dfrac{C\\ - \\ D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin C\\ - \\ \\sin D\\ = \\ 2\\cos \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{C\\ - \\ D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          "The equation cos A + cos B = a(sin A − sin B) becomes",
+          {
+            "text": "2\\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\cdot \\ \\cos \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ a\\ \\cdot \\ 2\\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -197,14 +227,28 @@
           "cos A ≥ 0 and cos B ≥ 0,",
           "so cos A + cos B = 0 would need cos A = cos B = 0,",
           "that is x = ±1 and y = ±1.",
-          "At those points 1 − x² = 0 and dy/dx has no value,",
-          "so everywhere else cos((A + B)/2) ≠ 0",
+          {
+            "text": "\\text{At}\\ \\text{those}\\ \\text{points}\\ 1\\ - \\ x^{2}\\ = \\ 0\\ \\text{and}\\ \\dfrac{dy}{dx}has\\ \\text{no}\\ \\text{value},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{everywhere}\\ \\text{else}\\ \\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "and may be cancelled from both sides:",
           {
-            "text": "(cancel 2 cos((A + B)/2) from both sides)",
+            "text": "\\left(\\text{cancel}\\ 2\\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\text{from}\\ \\text{both}\\ \\text{sides}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "cos((A − B)/2) = a sin((A − B)/2)",
+          {
+            "text": "\\cos \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a\\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(this needs sin((A − B)/2) ≠ 0: if A = B then x = y,",
             "added": true
@@ -219,12 +263,22 @@
             "style": "indent",
             "added": true
           },
-          "Divide both sides by sin((A − B)/2):",
           {
-            "text": "(cos/sin = cot)",
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\cos }{\\sin } = \\ \\cot \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ cot((A − B)/2) = a"
+          {
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -260,12 +314,32 @@
           "cos A ≥ 0 and cos B ≥ 0,",
           "so cos A + cos B = 0 would need cos A = cos B = 0,",
           "that is x = ±1 and y = ±1.",
-          "At those points 1 − x² = 0 and dy/dx has no value,",
-          "so everywhere else cos((A + B)/2) ≠ 0",
+          {
+            "text": "\\text{At}\\ \\text{those}\\ \\text{points}\\ 1\\ - \\ x^{2}\\ = \\ 0\\ \\text{and}\\ \\dfrac{dy}{dx}has\\ \\text{no}\\ \\text{value},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{everywhere}\\ \\text{else}\\ \\cos \\left(\\dfrac{A\\ + \\ B}{2}\\right)\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "and may be cancelled from both sides:",
-          "cos((A − B)/2) = a sin((A − B)/2)",
-          "Divide both sides by sin((A − B)/2):",
-          "∴ cot((A − B)/2) = a"
+          {
+            "text": "\\cos \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a\\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\sin \\left(\\dfrac{A\\ - \\ B}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -290,8 +364,16 @@
             "style": "indent",
             "added": true
           },
-          "cot((A − B)/2) = a, so (A − B)/2 = Cot⁻¹a when a > 0,",
-          "and (A − B)/2 = Cot⁻¹a − π when a < 0",
+          {
+            "text": "\\cot \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a,\\ \\text{so}\\ \\dfrac{A\\ - \\ B}{2} = \\ \\operatorname{Cot}^{-1} a\\ \\text{when}\\ a\\ > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{A\\ - \\ B}{2} = \\ \\operatorname{Cot}^{-1} a\\ - \\ \\pi \\ \\text{when}\\ a\\ < \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 2)",
             "added": true
@@ -331,8 +413,16 @@
         ],
         "memory_tip": "An inverse function of a constant is itself a constant, so its derivative is zero. That is why the right side contributes nothing.",
         "lines_compact": [
-          "cot((A − B)/2) = a, so (A − B)/2 = Cot⁻¹a when a > 0,",
-          "and (A − B)/2 = Cot⁻¹a − π when a < 0",
+          {
+            "text": "\\cot \\left(\\dfrac{A\\ - \\ B}{2}\\right)\\ = \\ a,\\ \\text{so}\\ \\dfrac{A\\ - \\ B}{2} = \\ \\operatorname{Cot}^{-1} a\\ \\text{when}\\ a\\ > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{A\\ - \\ B}{2} = \\ \\operatorname{Cot}^{-1} a\\ - \\ \\pi \\ \\text{when}\\ a\\ < \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ A − B = 2 Cot⁻¹a  or  A − B = 2 Cot⁻¹a − 2π",
           "a is a constant, so A − B is a constant, c say.",
           "Putting back A = Sin⁻¹x and B = Sin⁻¹y:",
@@ -354,8 +444,9 @@
             "added": true
           },
           {
-            "text": "  d/dx(Sin⁻¹y) = (1/√(1 − y²)) · dy/dx by",
+            "text": "\\dfrac{d}{dx}\\left(\\operatorname{Sin}^{-1} y\\right)\\ = \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ y^{2}}}\\right)\\ \\cdot \\ \\dfrac{dy}{dx}\\ \\text{by}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -363,24 +454,41 @@
             "style": "indent",
             "added": true
           },
-          "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",
           {
-            "text": "(move the dy/dx term to the right side)",
+            "text": "\\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}} - \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ y^{2}}}\\right) \\cdot \\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{move}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{term}\\ \\text{to}\\ \\text{the}\\ \\text{right}\\ \\text{side}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1/√(1 − y²))·(dy/dx) = 1/√(1 − x²)",
+          {
+            "text": "\\left(\\dfrac{1}{\\sqrt{1\\ - \\ y^{2}}}\\right) \\cdot \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by √(1 − y²))",
             "added": true
           },
-          "dy/dx = √(1 − y²)/√(1 − x²)",
           {
-            "text": "(√p/√q = √(p/q) for p ≥ 0 and q > 0)",
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sqrt{1\\ - \\ y^{2}}}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sqrt{p}}{\\sqrt{q}} = \\ \\sqrt{\\dfrac{p}{q}}\\ \\text{for}\\ p\\ \\ge \\ 0\\ \\text{and}\\ q\\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = √((1 − y²)/(1 − x²))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sqrt{\\dfrac{1\\ - \\ y^{2}}{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -415,12 +523,25 @@
         "lines_compact": [
           "Differentiate Sin⁻¹x − Sin⁻¹y = c",
           "with respect to x, taking y as a function of x:",
-          "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",
-          "(1/√(1 − y²))·(dy/dx) = 1/√(1 − x²)",
-          "dy/dx = √(1 − y²)/√(1 − x²)",
           {
-            "text": "∴ dy/dx = √((1 − y²)/(1 − x²))",
-            "style": "boxed"
+            "text": "\\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}} - \\ \\left(\\dfrac{1}{\\sqrt{1\\ - \\ y^{2}}}\\right) \\cdot \\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\sqrt{1\\ - \\ y^{2}}}\\right) \\cdot \\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\dfrac{1}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sqrt{1\\ - \\ y^{2}}}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sqrt{\\dfrac{1\\ - \\ y^{2}}{1\\ - \\ x^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

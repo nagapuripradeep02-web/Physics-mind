@@ -127,21 +127,27 @@
           "Angle of rotation θ = 45°, then",
           "X = xcosθ + ysinθ = xcos45° + ysin45°",
           {
-            "text": "(cos 45° = sin 45° = 1/√2)",
+            "text": "\\left(\\cos 45^{\\circ}\\ = \\ \\sin 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ⇒  X = (x + y)/√2",
-            "style": "indent"
+            "text": "\\Rightarrow \\ X\\ = \\ \\dfrac{x\\ + \\ y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "Y = ycosθ − xsinθ = ycos45° − xsin45°",
           {
-            "text": "(sin 45° = cos 45° = 1/√2)",
+            "text": "\\left(\\sin 45^{\\circ}\\ = \\ \\cos 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ⇒  Y = (y − x)/√2",
-            "style": "indent"
+            "text": "\\Rightarrow \\ Y\\ = \\ \\dfrac{y\\ - \\ x}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -175,13 +181,15 @@
           "Angle of rotation θ = 45°, then",
           "X = xcosθ + ysinθ = xcos45° + ysin45°",
           {
-            "text": "  ⇒  X = (x + y)/√2",
-            "style": "indent"
+            "text": "\\Rightarrow \\ X\\ = \\ \\dfrac{x\\ + \\ y}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "Y = ycosθ − xsinθ = ycos45° − xsin45°",
           {
-            "text": "  ⇒  Y = (y − x)/√2",
-            "style": "indent"
+            "text": "\\Rightarrow \\ Y\\ = \\ \\dfrac{y\\ - \\ x}{\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -195,14 +203,21 @@
         "memory_tip": "(x + y)(y − x) is a difference of two squares — spot that before expanding.",
         "lines": [
           {
-            "text": "(put X = (x + y)/√2 and Y = (y − x)/√2 into (1))",
+            "text": "\\left(\\text{put}\\ X\\ = \\ \\dfrac{x\\ + \\ y}{\\sqrt{2}}\\text{and}\\ Y\\ = \\ \\dfrac{y\\ - \\ x}{\\sqrt{2}}\\text{into}\\ \\left(1\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "From (1), original equation is",
-          "17((x + y)/√2)² − 16((x + y)/√2)((y − x)/√2)",
           {
-            "text": "  + 17((y − x)/√2)² = 225",
-            "style": "indent"
+            "text": "17\\left(\\dfrac{x\\ + \\ y}{\\sqrt{2}}\\right)^{2}\\ - \\ 16\\left(\\dfrac{x\\ + \\ y}{\\sqrt{2}}\\right)\\left(\\dfrac{y\\ - \\ x}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 17\\left(\\dfrac{y\\ - \\ x}{\\sqrt{2}}\\right)^{2}\\ = \\ 225",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "((1/√2)² = 1/2; (x + y)² = x² + y² + 2xy,",
@@ -213,10 +228,15 @@
             "style": "indent",
             "added": true
           },
-          "⇒ 17(x² + y² + 2xy)/2 − 16(y² − x²)/2",
           {
-            "text": "  + 17(y² + x² − 2xy)/2 = 225",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\dfrac{17\\left(x^{2}\\ + \\ y^{2}\\ + \\ 2xy\\right)}{2} - \\ \\dfrac{16\\left(y^{2}\\ - \\ x^{2}\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{17\\left(y^{2}\\ + \\ x^{2}\\ - \\ 2xy\\right)}{2} = \\ 225",
+            "style": "indent",
+            "render": "katex"
           },
           "  [∵ (x + y)(y − x) = y² − x²]"
         ],
@@ -249,15 +269,25 @@
         ],
         "lines_compact": [
           "From (1), original equation is",
-          "17((x + y)/√2)² − 16((x + y)/√2)((y − x)/√2)",
           {
-            "text": "  + 17((y − x)/√2)² = 225",
-            "style": "indent"
+            "text": "17\\left(\\dfrac{x\\ + \\ y}{\\sqrt{2}}\\right)^{2}\\ - \\ 16\\left(\\dfrac{x\\ + \\ y}{\\sqrt{2}}\\right)\\left(\\dfrac{y\\ - \\ x}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ 17(x² + y² + 2xy)/2 − 16(y² − x²)/2",
           {
-            "text": "  + 17(y² + x² − 2xy)/2 = 225",
-            "style": "indent"
+            "text": "+ \\ 17\\left(\\dfrac{y\\ - \\ x}{\\sqrt{2}}\\right)^{2}\\ = \\ 225",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{17\\left(x^{2}\\ + \\ y^{2}\\ + \\ 2xy\\right)}{2} - \\ \\dfrac{16\\left(y^{2}\\ - \\ x^{2}\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{17\\left(y^{2}\\ + \\ x^{2}\\ - \\ 2xy\\right)}{2} = \\ 225",
+            "style": "indent",
+            "render": "katex"
           },
           "  [∵ (x + y)(y − x) = y² − x²]"
         ]
@@ -294,7 +324,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (50x² + 18y²)/2 = 225   ⇒   50x² + 18y² = 450",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{50x^{2}\\ + \\ 18y^{2}}{2} = \\ 225\\ \\Rightarrow \\ 50x^{2}\\ + \\ 18y^{2}\\ = \\ 450",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 2)",
             "added": true
@@ -337,7 +371,11 @@
             "text": "  + 17y² + 17x² − 34xy] / 2 = 225",
             "style": "indent"
           },
-          "⇒ (50x² + 18y²)/2 = 225   ⇒   50x² + 18y² = 450",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{50x^{2}\\ + \\ 18y^{2}}{2} = \\ 225\\ \\Rightarrow \\ 50x^{2}\\ + \\ 18y^{2}\\ = \\ 450",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Original equation is 25x² + 9y² = 225",
             "style": "boxed"

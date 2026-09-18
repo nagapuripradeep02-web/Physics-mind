@@ -104,18 +104,34 @@
             "text": "(cosine rule)",
             "added": true
           },
-          "cos A = (b² + c² − a²)/(2bc)",
-          "= ((8k)² + (9k)² − (7k)²)/(2(8k)(9k))",
+          {
+            "text": "\\cos A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(8k\\right)^{2}\\ + \\ \\left(9k\\right)^{2}\\ - \\ \\left(7k\\right)^{2}}{2\\left(8k\\right)\\left(9k\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out k² from the top and the bottom)",
             "added": true
           },
-          "= k²(64 + 81 − 49)/(2 · 8 · 9 · k²)",
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(64\\ + \\ 81\\ - \\ 49\\right)}{2\\ \\cdot \\ 8\\ \\cdot \\ 9\\ \\cdot \\ k^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(64 + 81 − 49 = 96 and 2 · 8 · 9 = 144)",
             "added": true
           },
-          "= 96/144 = 2/3"
+          {
+            "text": "= \\ \\dfrac{96}{144} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,10 +162,26 @@
         ],
         "memory_tip": "The cosine rule, with k² cancelling top and bottom. Every cosine works the same way.",
         "lines_compact": [
-          "cos A = (b² + c² − a²)/(2bc)",
-          "= ((8k)² + (9k)² − (7k)²)/(2(8k)(9k))",
-          "= k²(64 + 81 − 49)/(2 · 8 · 9 · k²)",
-          "= 96/144 = 2/3"
+          {
+            "text": "\\cos A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(8k\\right)^{2}\\ + \\ \\left(9k\\right)^{2}\\ - \\ \\left(7k\\right)^{2}}{2\\left(8k\\right)\\left(9k\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(64\\ + \\ 81\\ - \\ 49\\right)}{2\\ \\cdot \\ 8\\ \\cdot \\ 9\\ \\cdot \\ k^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{96}{144} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -163,19 +195,29 @@
             "text": "(the k² cancels in the same way)",
             "added": true
           },
-          "cos B = (c² + a² − b²)/(2ca)",
           {
-            "text": "= (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
-            "style": "indent"
+            "text": "\\cos B\\ = \\ \\dfrac{c^{2}\\ + \\ a^{2}\\ - \\ b^{2}}{2ca}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{81\\ + \\ 49\\ - \\ 64}{2\\ \\cdot \\ 9\\ \\cdot \\ 7} = \\ \\dfrac{66}{126} = \\ \\dfrac{11}{21}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(divide 66 and 126 by 6)",
             "added": true
           },
-          "cos C = (a² + b² − c²)/(2ab)",
           {
-            "text": "= (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7",
-            "style": "indent"
+            "text": "\\cos C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{49\\ + \\ 64\\ - \\ 81}{2\\ \\cdot \\ 7\\ \\cdot \\ 8} = \\ \\dfrac{32}{112} = \\ \\dfrac{2}{7}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(divide 32 and 112 by 16)",
@@ -211,15 +253,25 @@
         ],
         "memory_tip": "Rotate which side is SUBTRACTED: b² for cos B, c² for cos C.",
         "lines_compact": [
-          "cos B = (c² + a² − b²)/(2ca)",
           {
-            "text": "= (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
-            "style": "indent"
+            "text": "\\cos B\\ = \\ \\dfrac{c^{2}\\ + \\ a^{2}\\ - \\ b^{2}}{2ca}",
+            "style": "normal",
+            "render": "katex"
           },
-          "cos C = (a² + b² − c²)/(2ab)",
           {
-            "text": "= (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7",
-            "style": "indent"
+            "text": "= \\ \\dfrac{81\\ + \\ 49\\ - \\ 64}{2\\ \\cdot \\ 9\\ \\cdot \\ 7} = \\ \\dfrac{66}{126} = \\ \\dfrac{11}{21}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{49\\ + \\ 64\\ - \\ 81}{2\\ \\cdot \\ 7\\ \\cdot \\ 8} = \\ \\dfrac{32}{112} = \\ \\dfrac{2}{7}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -231,13 +283,21 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. The three fractions have denominators 3, 21 and 7 — all divide 21, so multiplying every term by 21 clears them at once.",
         "lines": [
-          "cos A : cos B : cos C = 2/3 : 11/21 : 2/7",
+          {
+            "text": "\\cos A\\ :\\ \\cos B\\ :\\ \\cos C\\ = \\ \\dfrac{2}{3}:\\ \\dfrac{11}{21}:\\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiplying every term of a ratio by 21 keeps it)",
             "added": true
           },
           "Multiplying each by 21:",
-          "= 21(2/3) : 21(11/21) : 21(2/7)",
+          {
+            "text": "= \\ 21\\left(\\dfrac{2}{3}\\right)\\ :\\ 21\\left(\\dfrac{11}{21}\\right)\\ :\\ 21\\left(\\dfrac{2}{7}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 14 : 11 : 6",
             "style": "boxed"
@@ -273,9 +333,17 @@
         ],
         "memory_tip": "The denominators 3, 21 and 7 all divide 21, so multiplying every term by 21 clears them at once.",
         "lines_compact": [
-          "cos A : cos B : cos C = 2/3 : 11/21 : 2/7",
+          {
+            "text": "\\cos A\\ :\\ \\cos B\\ :\\ \\cos C\\ = \\ \\dfrac{2}{3}:\\ \\dfrac{11}{21}:\\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiplying each by 21:",
-          "= 21(2/3) : 21(11/21) : 21(2/7)",
+          {
+            "text": "= \\ 21\\left(\\dfrac{2}{3}\\right)\\ :\\ 21\\left(\\dfrac{11}{21}\\right)\\ :\\ 21\\left(\\dfrac{2}{7}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 14 : 11 : 6",
             "style": "boxed"

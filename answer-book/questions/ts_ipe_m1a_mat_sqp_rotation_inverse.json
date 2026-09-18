@@ -107,7 +107,11 @@
         "margin_note": "Second mark. Dividing by 1 changes nothing, so the inverse IS the adjoint — and it is also A transposed, which is worth noticing.",
         "memory_tip": "Dividing by 1 changes nothing, so the inverse IS the adjoint — and it is also A transposed.",
         "lines": [
-          "A⁻¹ = (1/|A|)(Adj A) = (1/1)(Adj A)",
+          {
+            "text": "A^{-1}\\ = \\ \\left(\\dfrac{1}{\\left|A\\right|}\\right)\\left(\\operatorname{Adj} A\\right)\\ = \\ \\left(\\dfrac{1}{1}\\right)\\left(\\operatorname{Adj} A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|A| = 1, so A⁻¹ = Adj A)",
             "added": true
@@ -150,7 +154,11 @@
           "Missing that the answer is also Aᵀ."
         ],
         "lines_compact": [
-          "A⁻¹ = (1/|A|)(Adj A) = (1/1)(Adj A)",
+          {
+            "text": "A^{-1}\\ = \\ \\left(\\dfrac{1}{\\left|A\\right|}\\right)\\left(\\operatorname{Adj} A\\right)\\ = \\ \\left(\\dfrac{1}{1}\\right)\\left(\\operatorname{Adj} A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ A^{-1} = \\begin{bmatrix} \\cos\\alpha & \\sin\\alpha \\\\ -\\sin\\alpha & \\cos\\alpha \\end{bmatrix} = A^{T}",
             "render": "katex",

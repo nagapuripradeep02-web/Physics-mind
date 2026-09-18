@@ -115,11 +115,15 @@
             "added": true
           },
           {
-            "text": "⁶C₄ = ⁶C₂ = (6 · 5)/(1 · 2) = 15",
+            "text": "{}^{6}C_{4}\\ = \\ {}^{6}C_{2}\\ = \\ \\dfrac{6\\ \\cdot \\ 5}{1\\ \\cdot \\ 2} = \\ 15",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⁷C₅ = ⁷C₂ = (7 · 6)/(1 · 2) = 21",
+            "text": "{}^{7}C_{5}\\ = \\ {}^{7}C_{2}\\ = \\ \\dfrac{7\\ \\cdot \\ 6}{1\\ \\cdot \\ 2} = \\ 21",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "²C₂ · ⁶C₄ · ⁷C₅ = 1 · 15 · 21 = 315",
@@ -132,7 +136,9 @@
             "added": true
           },
           {
-            "text": "⁷C₄ = ⁷C₃ = (7 · 6 · 5)/(1 · 2 · 3) = 210/6 = 35",
+            "text": "{}^{7}C_{4}\\ = \\ {}^{7}C_{3}\\ = \\ \\dfrac{7\\ \\cdot \\ 6\\ \\cdot \\ 5}{1\\ \\cdot \\ 2\\ \\cdot \\ 3} = \\ \\dfrac{210}{6} = \\ 35",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "²C₂ · ⁶C₅ · ⁷C₄ = 1 · 6 · 35 = 210",

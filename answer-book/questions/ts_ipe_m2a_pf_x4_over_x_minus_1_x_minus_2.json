@@ -83,11 +83,27 @@
           "7x² ÷ x² gives 7:",
           "7x² − 6x − 7(x² − 3x + 2) = 15x − 14",
           "Quotient x² + 3x + 7, remainder 15x − 14:",
-          "x⁴/((x − 1)(x − 2)) = x² + 3x + 7",
-          "  + (15x − 14)/((x − 1)(x − 2))",
+          {
+            "text": "\\dfrac{x^{4}}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)} = \\ x^{2}\\ + \\ 3x\\ + \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{15x\\ - \\ 14}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now split the proper fraction:",
-          "(15x − 14)/((x − 1)(x − 2))",
-          "= A/(x − 1) + B/(x − 2)"
+          {
+            "text": "\\dfrac{15x\\ - \\ 14}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ - \\ 1} + \\ \\dfrac{B}{x\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -251,10 +267,15 @@
         "margin_note": "Last mark. The quotient x² + 3x + 7 comes first, then −1/(x − 1) + 16/(x − 2). Write the original fraction on the left.",
         "memory_tip": "The quotient x² + 3x + 7 comes first, then −1/(x − 1) + 16/(x − 2). Check x = 0: −14 = 2 − 16.",
         "lines": [
-          "∴ x⁴/((x − 1)(x − 2))",
           {
-            "text": "= x² + 3x + 7 − 1/(x − 1) + 16/(x − 2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{4}}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ x^{2}\\ + \\ 3x\\ + \\ 7\\ - \\ \\dfrac{1}{x\\ - \\ 1} + \\ \\dfrac{16}{x\\ - \\ 2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

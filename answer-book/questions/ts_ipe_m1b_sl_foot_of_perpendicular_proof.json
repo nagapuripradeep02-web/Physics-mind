@@ -70,7 +70,11 @@
             "text": "  (y₂ − y₁)/(x₂ − x₁); here the second point is Q(h, k))",
             "style": "indent"
           },
-          "Slope of PQ is  m₁ = (y₂ − y₁)/(x₂ − x₁) = (k − y₁)/(h − x₁)",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ PQ\\ \\text{is}\\ m_{1}\\ = \\ \\dfrac{y_{2}\\ - \\ y_{1}}{x_{2}\\ - \\ x_{1}} = \\ \\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the slope of ax + by + c = 0 is −a/b; the working",
           {
             "text": "  takes a ≠ 0 and b ≠ 0, so the line is neither",
@@ -80,7 +84,11 @@
             "text": "  horizontal nor vertical)",
             "style": "indent"
           },
-          "Slope of the line ax + by + c = 0 is  m₂ = −a/b"
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{line}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ m_{2}\\ = \\ - \\dfrac{a}{b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -229,10 +237,15 @@
             "style": "indent",
             "added": true
           },
-          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
           {
-            "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\left[\\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}}\\right]\\ \\cdot \\ \\left( - \\dfrac{a}{b}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left[\\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}}\\right]\\left(\\dfrac{a}{b}\\right)\\ = \\ 1",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(multiply both sides by b/a; then cross-multiply:",
@@ -243,12 +256,20 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}} = \\ \\dfrac{b}{a} \\Rightarrow \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(call this common value r)",
             "added": true
           },
-          "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
+          {
+            "text": "\\text{We}\\ \\text{take}\\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b} = \\ r\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -280,13 +301,26 @@
         "mark_note": "Method",
         "lines_compact": [
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
-          "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1",
           {
-            "text": "  ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
-            "style": "indent"
+            "text": "\\Rightarrow \\ \\left[\\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}}\\right]\\ \\cdot \\ \\left( - \\dfrac{a}{b}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ (k − y₁)/(h − x₁) = b/a   ⇒   (h − x₁)/a = (k − y₁)/b",
-          "We take  (h − x₁)/a = (k − y₁)/b = r  ……(1)"
+          {
+            "text": "\\Rightarrow \\ \\left[\\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}}\\right]\\left(\\dfrac{a}{b}\\right)\\ = \\ 1",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{k\\ - \\ y_{1}}{h\\ - \\ x_{1}} = \\ \\dfrac{b}{a} \\Rightarrow \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{We}\\ \\text{take}\\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b} = \\ r\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -298,15 +332,25 @@
         "memory_tip": "Each of h and k is its P-coordinate plus a multiple of r, so Q is fixed by one number.",
         "lines": [
           {
-            "text": "(multiply (h − x₁)/a = r by a, then add x₁)",
+            "text": "\\left(\\text{multiply}\\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ r\\ \\text{by}\\ a,\\ \\text{then}\\ \\text{add}\\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
+          {
+            "text": "\\therefore \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ r\\ \\Rightarrow \\ h\\ - \\ x_{1}\\ = \\ ar\\ \\Rightarrow \\ h\\ = \\ x_{1}\\ + \\ ar",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(in the same way, multiply by b and then add y₁)",
             "added": true
           },
-          "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
+          {
+            "text": "\\dfrac{k\\ - \\ y_{1}}{b} = \\ r\\ \\Rightarrow \\ k\\ - \\ y_{1}\\ = \\ br\\ \\Rightarrow \\ k\\ = \\ y_{1}\\ + \\ br",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -336,8 +380,16 @@
         ],
         "mark_note": "Method",
         "lines_compact": [
-          "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
-          "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
+          {
+            "text": "\\therefore \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ r\\ \\Rightarrow \\ h\\ - \\ x_{1}\\ = \\ ar\\ \\Rightarrow \\ h\\ = \\ x_{1}\\ + \\ ar",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{k\\ - \\ y_{1}}{b} = \\ r\\ \\Rightarrow \\ k\\ - \\ y_{1}\\ = \\ br\\ \\Rightarrow \\ k\\ = \\ y_{1}\\ + \\ br",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -382,15 +434,21 @@
             "text": "(divide by a² + b², which is not 0)",
             "added": true
           },
-          "⇒ r = −(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
+          {
+            "text": "\\Rightarrow \\ r\\ = \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}\\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1) & (2),",
           {
-            "text": "∴ (h − x₁)/a = (k − y₁)/b",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "= −(ax₁ + by₁ + c)/(a² + b²)",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -427,15 +485,21 @@
           "⇒ a(x₁ + ar) + b(y₁ + br) + c = 0",
           "⇒ ax₁ + a²r + by₁ + b²r + c = 0",
           "⇒ r(a² + b²) = −(ax₁ + by₁ + c)",
-          "⇒ r = −(ax₁ + by₁ + c)/(a² + b²)  ……(2)",
+          {
+            "text": "\\Rightarrow \\ r\\ = \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}\\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1) & (2),",
           {
-            "text": "∴ (h − x₁)/a = (k − y₁)/b",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{h\\ - \\ x_{1}}{a} = \\ \\dfrac{k\\ - \\ y_{1}}{b}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "= −(ax₁ + by₁ + c)/(a² + b²)",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{ax_{1}\\ + \\ by_{1}\\ + \\ c}{a^{2}\\ + \\ b^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

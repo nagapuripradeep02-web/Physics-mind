@@ -56,8 +56,16 @@
           "Domain = R, codomain = (0, ∞)",
           "(one one: equal images must come from equal inputs)",
           "Let f(a) = f(b), where a, b ∈ R",
-          "⇒ 2ᵃ = 2ᵇ ⇒ 2ᵃ/2ᵇ = 1 ⇒ 2ᵃ⁻ᵇ = 2⁰",
-          "(2ᵃ/2ᵇ = 2ᵃ⁻ᵇ, and 2ᵗ = 1 only when t = 0)",
+          {
+            "text": "\\Rightarrow \\ 2^{a}\\ = \\ 2^{b}\\ \\Rightarrow \\ \\dfrac{2^{a}}{2^{b}} = \\ 1\\ \\Rightarrow \\ 2^{a-b}\\ = \\ 2^{0}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2^{a}}{2^{b}} = \\ 2^{a-b},\\ \\text{and}\\ 2^{t}\\ = \\ 1\\ \\text{only}\\ \\text{when}\\ t\\ = \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ a − b = 0 ⇒ a = b",
           "∴ f is one one (an injection)."
         ],

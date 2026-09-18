@@ -131,10 +131,16 @@
           "∴ 2gg″ + 2ff″ = c + c″",
           "2g(0) + 2f(6) = 0 + 6",
           {
-            "text": "12f = 6 ⇒ f = 6/12",
+            "text": "12f\\ = \\ 6\\ \\Rightarrow \\ f\\ = \\ \\dfrac{6}{12}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ f = 1/2"
+          {
+            "text": "\\Rightarrow \\ f\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Applying the orthogonality test to the second circle gives a second equation; because that circle has no x term, this equation solves for f immediately.",
         "common_mistakes": [
@@ -146,7 +152,11 @@
           "S is orthogonal to x² + y² + 12y + 6 = 0",
           "∴ 2gg″ + 2ff″ = c + c″",
           "2g(0) + 2f(6) = 0 + 6",
-          "⇒ f = 1/2"
+          {
+            "text": "\\Rightarrow \\ f\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -157,18 +167,32 @@
         "mark_note": "Solution",
         "margin_note": "Fourth mark, for substituting g, f, c back into the general circle.",
         "lines": [
-          "From (1), 4g = 6f − 10 = 6(1/2) − 10 = −7",
           {
-            "text": "(6 · 1/2 = 3, and 3 − 10 = −7)",
-            "added": true
-          },
-          "⇒ 2g = −7/2",
-          {
-            "text": "and 2f = 2 · 1/2 = 1, c = 0:",
-            "added": true
+            "text": "\\text{From}\\ \\left(1\\right),\\ 4g\\ = \\ 6f\\ - \\ 10\\ = \\ 6\\left(\\dfrac{1}{2}\\right)\\ - \\ 10\\ = \\ - 7",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "x² + y² − (7/2)x + y = 0",
+            "text": "\\left(6\\ \\cdot \\ \\dfrac{1}{2} = \\ 3,\\ \\text{and}\\ 3\\ - \\ 10\\ = \\ - 7\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\Rightarrow \\ 2g\\ = \\ - \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ 2f\\ = \\ 2\\ \\cdot \\ \\dfrac{1}{2} = \\ 1,\\ c\\ = \\ 0:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "x^{2}\\ + \\ y^{2}\\ - \\ \\left(\\dfrac{7}{2}\\right)x\\ + \\ y\\ = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Substituting 2g, 2f, c in S = 0,",
@@ -192,8 +216,16 @@
         ],
         "memory_tip": "Always substitute 2g and 2f, not g and f, since those are the actual coefficients of x and y in the circle's equation.",
         "lines_compact": [
-          "From (1), 4g = 6f − 10 = 6(1/2) − 10 = −7",
-          "⇒ 2g = −7/2",
+          {
+            "text": "\\text{From}\\ \\left(1\\right),\\ 4g\\ = \\ 6f\\ - \\ 10\\ = \\ 6\\left(\\dfrac{1}{2}\\right)\\ - \\ 10\\ = \\ - 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2g\\ = \\ - \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Substituting 2g, 2f, c in S = 0,",
           {
             "text": "2x² + 2y² − 7x + 2y = 0",

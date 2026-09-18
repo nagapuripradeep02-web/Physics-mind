@@ -106,7 +106,11 @@
         "mark_note": "Method",
         "margin_note": "The next two marks. Quote x/a + y/b = 1, move the constant to the right, and divide every term by it.",
         "lines": [
-          "(b) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(b\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move 10 to the right side)",
             "added": true
@@ -117,7 +121,11 @@
             "added": true
           },
           "Dividing by −10,",
-          "√3x/(−10) + y/(−10) = 1",
+          {
+            "text": "\\dfrac{\\sqrt{3}x}{ - 10} + \\ \\dfrac{y}{ - 10} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√3x/(−10) = x ÷ (−10/√3), because dividing by −10/√3",
             "added": true
@@ -127,12 +135,22 @@
             "style": "indent",
             "added": true
           },
-          "⇒ x/(−10/√3) + y/(−10) = 1",
           {
-            "text": "(multiply the top and the bottom of −10/√3 by √3)",
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{10}{\\sqrt{3}}} + \\ \\dfrac{y}{ - 10} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ \\text{the}\\ \\text{top}\\ \\text{and}\\ \\text{the}\\ \\text{bottom}\\ \\text{of}\\ - \\dfrac{10}{\\sqrt{3}}\\text{by}\\ \\sqrt{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ a = −10/√3 = −10√3/3  and  b = −10"
+          {
+            "text": "\\therefore \\ a\\ = \\ - \\dfrac{10}{\\sqrt{3}} = \\ - \\dfrac{10\\sqrt{3}}{3}\\text{and}\\ b\\ = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -163,12 +181,28 @@
         ],
         "memory_tip": "x/a + y/b = 1 needs 1 on the right, so divide by the constant and then move the √3 into the denominator.",
         "lines_compact": [
-          "(b) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(b\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "√3x + y + 10 = 0  ⇒  √3x + y = −10",
           "Dividing by −10,",
-          "√3x/(−10) + y/(−10) = 1",
-          "⇒ x/(−10/√3) + y/(−10) = 1",
-          "∴ a = −10/√3 = −10√3/3  and  b = −10"
+          {
+            "text": "\\dfrac{\\sqrt{3}x}{ - 10} + \\ \\dfrac{y}{ - 10} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - \\dfrac{10}{\\sqrt{3}}} + \\ \\dfrac{y}{ - 10} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ a\\ = \\ - \\dfrac{10}{\\sqrt{3}} = \\ - \\dfrac{10\\sqrt{3}}{3}\\text{and}\\ b\\ = \\ - 10",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -251,16 +285,26 @@
           },
           "Here √((−√3)² + (−1)²) = √(3 + 1) = 2.",
           {
-            "text": "(−√3/2 and −1/2 for x and y, and 10/2 = 5)",
+            "text": "\\left( - \\dfrac{\\sqrt{3}}{2}\\text{and}\\ - \\dfrac{1}{2}\\text{for}\\ x\\ \\text{and}\\ y,\\ \\text{and}\\ \\dfrac{10}{2} = \\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "On dividing by 2, we get",
-          "x(−√3/2) + y(−1/2) = 10/2 = 5",
+          {
+            "text": "x\\left( - \\dfrac{\\sqrt{3}}{2}\\right)\\ + \\ y\\left( - \\dfrac{1}{2}\\right)\\ = \\ \\dfrac{10}{2} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(compare with x cos α + y sin α = p)",
             "added": true
           },
-          "∴ cos α = −√3/2,  sin α = −1/2,  p = 5"
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ - \\dfrac{\\sqrt{3}}{2},\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{2},\\ p\\ = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -293,8 +337,16 @@
         "lines_compact": [
           "Here √((−√3)² + (−1)²) = √(3 + 1) = 2.",
           "On dividing by 2, we get",
-          "x(−√3/2) + y(−1/2) = 10/2 = 5",
-          "∴ cos α = −√3/2,  sin α = −1/2,  p = 5"
+          {
+            "text": "x\\left( - \\dfrac{\\sqrt{3}}{2}\\right)\\ + \\ y\\left( - \\dfrac{1}{2}\\right)\\ = \\ \\dfrac{10}{2} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ - \\dfrac{\\sqrt{3}}{2},\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{2},\\ p\\ = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -323,7 +375,9 @@
           "The related acute angle is 30°,",
           "so α = 180° + 30° = 210°",
           {
-            "text": "(check: cos 210° = −√3/2 and sin 210° = −1/2)",
+            "text": "\\left(\\text{check}:\\ \\cos 210^{\\circ}\\ = \\ - \\dfrac{\\sqrt{3}}{2}\\text{and}\\ \\sin 210^{\\circ}\\ = \\ - \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

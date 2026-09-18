@@ -103,7 +103,9 @@
         "margin_note": "Two marks: one for S′(x) = 0 solved, one for the second derivative test. To prove a MINIMUM by this test, the second derivative must be POSITIVE — that is the sign the examiner checks.",
         "lines": [
           {
-            "text": "(d/dx of 2x² is 4x, of 30x is 30, and of 225 is 0)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 2x^{2}\\ \\text{is}\\ 4x,\\ \\text{of}\\ 30x\\ \\text{is}\\ 30,\\ \\text{and}\\ \\text{of}\\ 225\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "S′(x) = 4x − 30",
@@ -111,7 +113,11 @@
             "text": "(add 30 to both sides and divide by 4)",
             "added": true
           },
-          "S′(x) = 0   ⇒   4x = 30   ⇒   x = 15/2",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ 4x\\ = \\ 30\\ \\Rightarrow \\ x\\ = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(differentiate S′(x) = 4x − 30 again)",
             "added": true
@@ -120,10 +126,16 @@
           "A positive second derivative means the stationary point",
           "is a minimum.",
           {
-            "text": "(0 < 15/2 < 15, so x = 15/2 is in the domain)",
+            "text": "\\left(0\\ < \\ \\dfrac{15}{2} < \\ 15,\\ \\text{so}\\ x\\ = \\ \\dfrac{15}{2}\\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{domain}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "So the sum of squares is least at x = 15/2."
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ \\text{is}\\ \\text{least}\\ \\text{at}\\ x\\ = \\ \\dfrac{15}{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -156,11 +168,19 @@
         "memory_tip": "If S″ > 0 at a stationary point, it is a local minimum; if S″ < 0, it is a local maximum — a minimum. Negative bends it downward and gives a peak.",
         "lines_compact": [
           "S′(x) = 4x − 30",
-          "S′(x) = 0   ⇒   4x = 30   ⇒   x = 15/2",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ 4x\\ = \\ 30\\ \\Rightarrow \\ x\\ = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "S″(x) = 4, which is positive for every x.",
           "A positive second derivative means the stationary point",
           "is a minimum.",
-          "So the sum of squares is least at x = 15/2."
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ \\text{is}\\ \\text{least}\\ \\text{at}\\ x\\ = \\ \\dfrac{15}{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -171,30 +191,49 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. Give both numbers. Adding the least value 225/2 costs one line and shows the working was carried through.",
         "lines": [
-          "x = 15/2   ⇒   the other number is 15 − 15/2 = 15/2",
-          "So the two numbers are equal, each 15/2 = 7.5.",
           {
-            "text": "((15/2)² = 225/4)",
-            "added": true
-          },
-          "Least sum of squares = (15/2)² + (15/2)²",
-          {
-            "text": "(225/4 + 225/4 = 450/4 = 225/2 = 112.5)",
-            "added": true
+            "text": "x\\ = \\ \\dfrac{15}{2} \\Rightarrow \\ \\text{the}\\ \\text{other}\\ \\text{number}\\ \\text{is}\\ 15\\ - \\ \\dfrac{15}{2} = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  = 225/4 + 225/4 = 225/2 = 112.5",
-            "style": "indent"
+            "text": "\\text{So}\\ \\text{the}\\ \\text{two}\\ \\text{numbers}\\ \\text{are}\\ \\text{equal},\\ \\text{each}\\ \\dfrac{15}{2} = \\ 7.5.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{15}{2}\\right)^{2}\\ = \\ \\dfrac{225}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{Least}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ = \\ \\left(\\dfrac{15}{2}\\right)^{2}\\ + \\ \\left(\\dfrac{15}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{225}{4} + \\ \\dfrac{225}{4} = \\ \\dfrac{450}{4} = \\ \\dfrac{225}{2} = \\ 112.5\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{225}{4} + \\ \\dfrac{225}{4} = \\ \\dfrac{225}{2} = \\ 112.5",
+            "style": "indent",
+            "render": "katex"
           },
           "Check: 7 and 8 give 49 + 64 = 113,",
           "which is larger than 112.5.",
           {
-            "text": "∴ the two numbers are 15/2 and 15/2,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{two}\\ \\text{numbers}\\ \\text{are}\\ \\dfrac{15}{2}\\text{and}\\ \\dfrac{15}{2},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and the least sum of squares is 225/2",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{the}\\ \\text{least}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ \\text{is}\\ \\dfrac{225}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -227,22 +266,37 @@
         ],
         "memory_tip": "When a sum is fixed, the sum of squares is least when the two numbers are equal. Equal split for the smallest sum of squares is worth remembering as a check.",
         "lines_compact": [
-          "x = 15/2   ⇒   the other number is 15 − 15/2 = 15/2",
-          "So the two numbers are equal, each 15/2 = 7.5.",
-          "Least sum of squares = (15/2)² + (15/2)²",
           {
-            "text": "  = 225/4 + 225/4 = 225/2 = 112.5",
-            "style": "indent"
+            "text": "x\\ = \\ \\dfrac{15}{2} \\Rightarrow \\ \\text{the}\\ \\text{other}\\ \\text{number}\\ \\text{is}\\ 15\\ - \\ \\dfrac{15}{2} = \\ \\dfrac{15}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{two}\\ \\text{numbers}\\ \\text{are}\\ \\text{equal},\\ \\text{each}\\ \\dfrac{15}{2} = \\ 7.5.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Least}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ = \\ \\left(\\dfrac{15}{2}\\right)^{2}\\ + \\ \\left(\\dfrac{15}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{225}{4} + \\ \\dfrac{225}{4} = \\ \\dfrac{225}{2} = \\ 112.5",
+            "style": "indent",
+            "render": "katex"
           },
           "Check: 7 and 8 give 49 + 64 = 113,",
           "which is larger than 112.5.",
           {
-            "text": "∴ the two numbers are 15/2 and 15/2,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{two}\\ \\text{numbers}\\ \\text{are}\\ \\dfrac{15}{2}\\text{and}\\ \\dfrac{15}{2},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "and the least sum of squares is 225/2",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{the}\\ \\text{least}\\ \\text{sum}\\ \\text{of}\\ \\text{squares}\\ \\text{is}\\ \\dfrac{225}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

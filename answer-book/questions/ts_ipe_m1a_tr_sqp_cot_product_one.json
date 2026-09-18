@@ -50,15 +50,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = cot(π/16)·cot(2π/16)·cot(3π/16)·cot(4π/16)",
-          "      ·cot(5π/16)·cot(6π/16)·cot(7π/16)",
+          {
+            "text": "L.H.S\\ = \\ \\cot \\left(\\dfrac{\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{2\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{3\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{4\\pi }{16}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\cot \\left(\\dfrac{5\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{6\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{7\\pi }{16}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Pair the first with the last, the second with",
           {
             "text": "  the second-last, and so on:",
             "style": "indent"
           },
-          "= [cot(π/16)·cot(7π/16)] [cot(2π/16)·cot(6π/16)]",
-          "  · [cot(3π/16)·cot(5π/16)] · cot(4π/16)"
+          {
+            "text": "= \\ \\left[\\cot \\left(\\dfrac{\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{7\\pi }{16}\\right)\\right]\\left[\\cot \\left(\\dfrac{2\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{6\\pi }{16}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\cot \\left(\\dfrac{3\\pi }{16}\\right) \\cdot \\cot \\left(\\dfrac{5\\pi }{16}\\right)\\right]\\ \\cdot \\ \\cot \\left(\\dfrac{4\\pi }{16}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,16 +114,46 @@
         "margin_note": "First mark. In each pair the larger angle is π/2 minus the smaller — for example 7π/16 = (8π − π)/16 = π/2 − π/16.",
         "lines": [
           {
-            "text": "Each larger angle is π/2 minus its partner:",
+            "text": "\\text{Each}\\ \\text{larger}\\ \\text{angle}\\ \\text{is}\\ \\dfrac{\\pi }{2}\\text{minus}\\ \\text{its}\\ \\text{partner}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "7π/16 = (8π − π)/16 = π/2 − π/16",
-          "6π/16 = (8π − 2π)/16 = π/2 − 2π/16",
-          "5π/16 = (8π − 3π)/16 = π/2 − 3π/16",
-          "and cot(4π/16) = cot(π/4) = 1",
-          "Using cot(π/2 − θ) = tan θ:",
-          "= [cot(π/16)·tan(π/16)] [cot(2π/16)·tan(2π/16)]",
-          "  · [cot(3π/16)·tan(3π/16)] · 1"
+          {
+            "text": "\\dfrac{7\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ \\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{6\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ 2\\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{2\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ 3\\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{3\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cot \\left(\\dfrac{4\\pi }{16}\\right)\\ = \\ \\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Using}\\ \\cot \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\tan \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\cot \\left(\\dfrac{\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{\\pi }{16}\\right)\\right]\\left[\\cot \\left(\\dfrac{2\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{2\\pi }{16}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\cot \\left(\\dfrac{3\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{3\\pi }{16}\\right)\\right]\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -138,13 +184,41 @@
         ],
         "memory_tip": "In each pair the larger angle is π/2 minus the smaller, and cot(π/2 − θ) = tan θ.",
         "lines_compact": [
-          "7π/16 = (8π − π)/16 = π/2 − π/16",
-          "6π/16 = (8π − 2π)/16 = π/2 − 2π/16",
-          "5π/16 = (8π − 3π)/16 = π/2 − 3π/16",
-          "and cot(4π/16) = cot(π/4) = 1",
-          "Using cot(π/2 − θ) = tan θ:",
-          "= [cot(π/16)·tan(π/16)] [cot(2π/16)·tan(2π/16)]",
-          "  · [cot(3π/16)·tan(3π/16)] · 1"
+          {
+            "text": "\\dfrac{7\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ \\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{6\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ 2\\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{2\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5\\pi }{16} = \\ \\dfrac{8\\pi \\ - \\ 3\\pi }{16} = \\ \\dfrac{\\pi }{2} - \\ \\dfrac{3\\pi }{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cot \\left(\\dfrac{4\\pi }{16}\\right)\\ = \\ \\cot \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Using}\\ \\cot \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\tan \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\cot \\left(\\dfrac{\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{\\pi }{16}\\right)\\right]\\left[\\cot \\left(\\dfrac{2\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{2\\pi }{16}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\cot \\left(\\dfrac{3\\pi }{16}\\right) \\cdot \\tan \\left(\\dfrac{3\\pi }{16}\\right)\\right]\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -157,7 +231,9 @@
         "lines": [
           "cot θ · tan θ = 1 for each pair.",
           {
-            "text": "(cot θ = 1/tan θ)",
+            "text": "\\left(\\cot \\theta \\ = \\ \\dfrac{1}{\\tan \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ L.H.S = 1 · 1 · 1 · 1 = 1 = R.H.S",

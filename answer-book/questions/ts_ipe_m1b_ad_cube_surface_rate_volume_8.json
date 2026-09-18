@@ -51,7 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dV/dt = 8 cm³/sec.  Asked: dS/dt when a = 12 cm.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dV}{dt}\\ = \\ \\dfrac{8cm^{3}}{\\sec }.\\ \\text{Asked}:\\ \\dfrac{dS}{dt}\\ \\text{when}\\ a\\ = \\ 12cm.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let a be the length of a side (edge) at time t. Then",
           "(volume of a cube = a³; its surface is 6 squares,",
           {
@@ -60,13 +64,37 @@
           },
           "V = a³   and   S = 6a²",
           "Differentiate V = a³ with respect to time t:",
-          "(chain rule: d/dt of a³ is 3a² · (da/dt))",
-          "dV/dt = 3a²(da/dt)",
-          "Put a = 12 and dV/dt = 8:",
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dt}\\ \\text{of}\\ a^{3}\\ \\text{is}\\ 3a^{2}\\ \\cdot \\ \\left(\\dfrac{da}{dt}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ 3a^{2}\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 12\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 8:",
+            "style": "normal",
+            "render": "katex"
+          },
           "(12² = 144 and 3 × 144 = 432)",
-          "8 = 3(12²)(da/dt) = 432(da/dt)",
-          "(divide both sides by 432; 8/432 = 1/54)",
-          "∴ da/dt = 8/432 = 1/54 cm/sec"
+          {
+            "text": "8\\ = \\ 3\\left(12^{2}\\right)\\left(\\dfrac{da}{dt}\\right)\\ = \\ 432\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 432;\\ \\dfrac{8}{432} = \\ \\dfrac{1}{54}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{da}{dt}\\ = \\ \\dfrac{8}{432} = \\ \\dfrac{\\dfrac{1}{54}cm}{\\sec }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,23 +138,42 @@
         "lines": [
           "Differentiate S = 6a² with respect to time t:",
           {
-            "text": "(chain rule: d/dt of 6a² is 6 · 2a · (da/dt) = 12a(da/dt))",
-            "added": true
-          },
-          "dS/dt = 12a(da/dt)",
-          "Put a = 12 and da/dt = 1/54:",
-          {
-            "text": "(12 × 12 = 144; 144/54 = (18 × 8)/(18 × 3) = 8/3)",
-            "added": true
-          },
-          "dS/dt = 12(12)(1/54) = 144/54 = 8/3",
-          {
-            "text": "(8/3 = 2.666… ≈ 2.67)",
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dt}\\ \\text{of}\\ 6a^{2}\\ \\text{is}\\ 6\\ \\cdot \\ 2a\\ \\cdot \\ \\left(\\dfrac{da}{dt}\\right)\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dS/dt = 8/3 cm²/sec ≈ 2.67 cm²/sec",
-            "style": "boxed"
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 12\\ \\text{and}\\ \\dfrac{da}{dt}\\ = \\ \\dfrac{1}{54}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(12\\ \\times \\ 12\\ = \\ 144;\\ \\dfrac{144}{54} = \\ \\dfrac{18\\ \\times \\ 8}{18\\ \\times \\ 3} = \\ \\dfrac{8}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12\\left(12\\right)\\left(\\dfrac{1}{54}\\right)\\ = \\ \\dfrac{144}{54} = \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{8}{3} = \\ 2.666\\dots \\ \\approx \\ 2.67\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dS}{dt}\\ = \\ \\dfrac{\\dfrac{8}{3}cm^{2}}{\\sec } \\approx \\ \\dfrac{2.67cm^{2}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -162,12 +209,25 @@
         "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a.",
         "lines_compact": [
           "Differentiate S = 6a² with respect to time t:",
-          "dS/dt = 12a(da/dt)",
-          "Put a = 12 and da/dt = 1/54:",
-          "dS/dt = 12(12)(1/54) = 144/54 = 8/3",
           {
-            "text": "∴ dS/dt = 8/3 cm²/sec ≈ 2.67 cm²/sec",
-            "style": "boxed"
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 12\\ \\text{and}\\ \\dfrac{da}{dt}\\ = \\ \\dfrac{1}{54}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12\\left(12\\right)\\left(\\dfrac{1}{54}\\right)\\ = \\ \\dfrac{144}{54} = \\ \\dfrac{8}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dS}{dt}\\ = \\ \\dfrac{\\dfrac{8}{3}cm^{2}}{\\sec } \\approx \\ \\dfrac{2.67cm^{2}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

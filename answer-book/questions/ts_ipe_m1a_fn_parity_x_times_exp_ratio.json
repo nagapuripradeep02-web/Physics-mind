@@ -52,14 +52,30 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = x(eˣ − 1)/(eˣ + 1)",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x\\left(e^{x}\\ - \\ 1\\right)}{e^{x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "eˣ + 1 > 0 for every x, so the domain is R,",
           "and −x is in the domain whenever x is.",
           "(to test even or odd, compare f(−x) with f(x))",
-          "f(−x) = −x(e⁻ˣ − 1)/(e⁻ˣ + 1)",
-          "e⁻ˣ = 1/eˣ. Multiply top and bottom by eˣ:",
+          {
+            "text": "f\\left( - x\\right)\\ = \\ - \\dfrac{x\\left(e^{-x}\\ - \\ 1\\right)}{e^{-x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e^{-x}\\ = \\ \\dfrac{1}{e^{x}}.\\ \\text{Multiply}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ e^{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "((e⁻ˣ − 1)eˣ = 1 − eˣ and (e⁻ˣ + 1)eˣ = 1 + eˣ)",
-          "f(−x) = −x(1 − eˣ)/(1 + eˣ)"
+          {
+            "text": "f\\left( - x\\right)\\ = \\ - \\dfrac{x\\left(1\\ - \\ e^{x}\\right)}{1\\ + \\ e^{x}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,12 +117,20 @@
         "memory_tip": "Two sign changes make no sign change: the outside −x and the flipped fraction 1 − eˣ cancel each other, so the function is even.",
         "lines": [
           "1 − eˣ = −(eˣ − 1), so",
-          "f(−x) = (−x)·[−(eˣ − 1)/(eˣ + 1)]",
+          {
+            "text": "f\\left( - x\\right)\\ = \\ \\left( - x\\right) \\cdot \\left[ - \\dfrac{e^{x}\\ - \\ 1}{e^{x}\\ + \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(minus times minus is plus)",
             "added": true
           },
-          "= x(eˣ − 1)/(eˣ + 1)",
+          {
+            "text": "= \\ \\dfrac{x\\left(e^{x}\\ - \\ 1\\right)}{e^{x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= f(x) for every x ∈ R",
           {
             "text": "∴ f is an even function on R.",
@@ -143,8 +167,16 @@
         ],
         "lines_compact": [
           "1 − eˣ = −(eˣ − 1), so",
-          "f(−x) = (−x)·[−(eˣ − 1)/(eˣ + 1)]",
-          "= x(eˣ − 1)/(eˣ + 1)",
+          {
+            "text": "f\\left( - x\\right)\\ = \\ \\left( - x\\right) \\cdot \\left[ - \\dfrac{e^{x}\\ - \\ 1}{e^{x}\\ + \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{x\\left(e^{x}\\ - \\ 1\\right)}{e^{x}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= f(x) for every x ∈ R",
           {
             "text": "∴ f is an even function on R.",

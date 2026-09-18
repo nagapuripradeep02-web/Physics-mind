@@ -330,11 +330,20 @@
             "text": "(|OP| = |CL| = √(1 + 1 + 1) = √3)",
             "added": true
           },
-          "= [(1)(1) + (1)(1) + (1)(−1)] / (√3 · √3)",
-          "= (1 + 1 − 1)/3",
           {
-            "text": "∴ cos θ = 1/3",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(1\\right)\\left(1\\right)\\ + \\ \\left(1\\right)\\left(1\\right)\\ + \\ \\left(1\\right)\\left( - 1\\right)}{\\sqrt{3}\\ \\cdot \\ \\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ 1\\ - \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -372,11 +381,20 @@
             "render": "katex",
             "style": "eq"
           },
-          "= [(1)(1) + (1)(1) + (1)(−1)] / (√3 · √3)",
-          "= (1 + 1 − 1)/3",
           {
-            "text": "∴ cos θ = 1/3",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(1\\right)\\left(1\\right)\\ + \\ \\left(1\\right)\\left(1\\right)\\ + \\ \\left(1\\right)\\left( - 1\\right)}{\\sqrt{3}\\ \\cdot \\ \\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ 1\\ - \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{1}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

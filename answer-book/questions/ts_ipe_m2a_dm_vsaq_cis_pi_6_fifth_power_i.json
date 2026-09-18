@@ -56,9 +56,17 @@
           "cos π/6 = √3/2 and sin π/6 = 1/2, so",
           "√3/2 + i/2 = cos π/6 + i sin π/6",
           "By De Moivre's theorem the angle is multiplied:",
-          "(√3/2 + i/2)⁵ = cos(5π/6) + i sin(5π/6)",
+          {
+            "text": "\\left(\\dfrac{\\sqrt{3}}{2} + \\ \\dfrac{i}{2}\\right)^{5}\\ = \\ \\cos \\left(\\dfrac{5\\pi }{6}\\right)\\ + \\ i\\sin \\left(\\dfrac{5\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The second number is its conjugate, so",
-          "(√3/2 − i/2)⁵ = cos(5π/6) − i sin(5π/6)"
+          {
+            "text": "\\left(\\dfrac{\\sqrt{3}}{2} - \\ \\dfrac{i}{2}\\right)^{5}\\ = \\ \\cos \\left(\\dfrac{5\\pi }{6}\\right)\\ - \\ i\\sin \\left(\\dfrac{5\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,19 +116,27 @@
             "added": true
           },
           {
-            "text": "Difference = 2i sin(5π/6)",
+            "text": "\\text{Difference}\\ = \\ 2i\\sin \\left(\\dfrac{5\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "5π/6 = π − π/6, and sin(π − A) = sin A, so",
+            "text": "\\dfrac{5\\pi }{6} = \\ \\pi \\ - \\ \\dfrac{\\pi }{6},\\ \\text{and}\\ \\sin \\left(\\pi \\ - \\ A\\right)\\ = \\ \\sin A,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "sin(5π/6) = sin(π/6) = 1/2",
+            "text": "\\sin \\left(\\dfrac{5\\pi }{6}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 2i × 1/2",
+            "text": "= \\ 2i\\ \\times \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -157,10 +173,15 @@
           "Dropping the i."
         ],
         "lines_compact": [
-          "Difference = 2i sin(5π/6) = 2i sin(π − π/6)",
           {
-            "text": "= 2i sin(π/6) = 2i · 1/2 = i",
-            "style": "boxed"
+            "text": "\\text{Difference}\\ = \\ 2i\\sin \\left(\\dfrac{5\\pi }{6}\\right)\\ = \\ 2i\\sin \\left(\\pi \\ - \\ \\dfrac{\\pi }{6}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2i\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ 2i\\ \\cdot \\ \\dfrac{1}{2} = \\ i",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

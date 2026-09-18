@@ -52,12 +52,28 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is x·dy/dx − y = 2x²sec²2x",
-          "⇒ dy/dx + y·(−1/x) = 2x·sec²2x",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ x \\cdot \\dfrac{dy}{dx}\\ - \\ y\\ = \\ 2x^{2}\\sec ^{2} 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y \\cdot \\left( - \\dfrac{1}{x}\\right)\\ = \\ 2x \\cdot \\sec ^{2} 2x",
+            "style": "normal",
+            "render": "katex"
+          },
           "[dividing throughout by x]",
           "since 2x²/x = 2x and −y/x = y·(−1/x)",
-          "This is in the form dy/dx + yP(x) = Q(x).",
-          "Here P = −1/x"
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ P\\ = \\ - \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing every term by x makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and it leaves a negative coefficient P = −1/x on the y term.",
         "common_mistakes": [
@@ -74,10 +90,20 @@
         "margin_note": "The last mark. I.F. = e to the power ∫P dx; ∫(−1/x)dx = −logx = log(1/x).",
         "memory_tip": "e to the power −logx = e to the power log(x⁻¹) = x⁻¹ = 1/x — a negative P always turns the I.F. into a reciprocal, never x itself.",
         "lines": [
-          "Here P = −1/x",
-          "⇒ ∫P dx = ∫(−1/x)dx = −logx = log(1/x)",
           {
-            "text": "since −logx = log(x⁻¹) = log(1/x).",
+            "text": "\\text{Here}\\ P\\ = \\ - \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\int Pdx\\ = \\ \\int \\left( - \\dfrac{1}{x}\\right)dx\\ = \\ - \\log x\\ = \\ \\log \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\ - \\log x\\ = \\ \\log \\left(x^{-1}\\right)\\ = \\ \\log \\left(\\dfrac{1}{x}\\right).",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -96,8 +122,16 @@
           "Writing e to the power −logx as −x by treating the exponent's minus sign as multiplying the result, instead of inverting it."
         ],
         "lines_compact": [
-          "Here P = −1/x",
-          "⇒ ∫P dx = ∫(−1/x)dx = −logx = log(1/x)",
+          {
+            "text": "\\text{Here}\\ P\\ = \\ - \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\int Pdx\\ = \\ \\int \\left( - \\dfrac{1}{x}\\right)dx\\ = \\ - \\log x\\ = \\ \\log \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\text{ I.F. }\\ = e^{\\int P dx} = e^{\\log (1/x)} = 1/x",
             "render": "katex",

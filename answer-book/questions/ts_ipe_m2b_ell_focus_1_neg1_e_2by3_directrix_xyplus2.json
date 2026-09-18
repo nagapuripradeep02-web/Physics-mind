@@ -72,7 +72,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: focus S(1, −1), e = 2/3,",
+          {
+            "text": "\\text{Given}:\\ \\text{focus}\\ S\\left(1,\\ - 1\\right),\\ e\\ = \\ \\dfrac{2}{3},",
+            "style": "normal",
+            "render": "katex"
+          },
           "directrix x + y + 2 = 0",
           "Let P(x₁, y₁) be any point on the ellipse",
           "⇒ SP = e·PM",
@@ -82,8 +86,16 @@
             "style": "indent"
           },
           "SP = √((x₁−1)² + (y₁+1)²)  (distance formula)",
-          "PM = |x₁+y₁+2| / √(1² + 1²) = |x₁+y₁+2| / √2",
-          "√((x₁−1)² + (y₁+1)²) = (2/3) · |x₁+y₁+2| / √2"
+          {
+            "text": "PM\\ = \\ \\dfrac{\\left|x_{1} + y_{1} + 2\\right|}{\\sqrt{1^{2}\\ + \\ 1^{2}}} = \\ \\dfrac{\\left|x_{1} + y_{1} + 2\\right|}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sqrt{\\left(x_{1} - 1\\right)^{2}\\ + \\ \\left(y_{1} + 1\\right)^{2}}\\ = \\ \\left(\\dfrac{2}{3}\\right)\\ \\cdot \\ \\dfrac{\\left|x_{1} + y_{1} + 2\\right|}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The focus-directrix property defines the ellipse directly: the distance from any point P to the focus, divided by its perpendicular distance to the directrix, is always the constant e.",
         "common_mistakes": [
@@ -105,11 +117,15 @@
             "added": true
           },
           {
-            "text": "(x₁−1)² + (y₁+1)² = (4/9) · (x₁+y₁+2)² / 2",
+            "text": "\\left(x_{1} - 1\\right)^{2}\\ + \\ \\left(y_{1} + 1\\right)^{2}\\ = \\ \\left(\\dfrac{4}{9}\\right)\\ \\cdot \\ \\dfrac{\\left(x_{1} + y_{1} + 2\\right)^{2}}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(4/9) ÷ 2 = 2/9, so multiply both sides by 9:",
+            "text": "\\left(\\dfrac{4}{9}\\right)\\ \\div \\ 2\\ = \\ \\dfrac{2}{9},\\ \\text{so}\\ \\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 9:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "9[(x₁−1)² + (y₁+1)²] = 2(x₁+y₁+2)²"

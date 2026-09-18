@@ -65,7 +65,11 @@
           },
           "Given line:  3x − y + 4 = 0",
           "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = −1)",
-          "Its slope  m₁ = −a/b = −3/(−1) = 3",
+          {
+            "text": "\\text{Its}\\ \\text{slope}\\ m_{1}\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{ - 1} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let the slope of a required line be m.",
           "Each required line passes through (−3, 2)."
         ],
@@ -116,12 +120,20 @@
             "added": true
           },
           "The angle between the two lines is 45°, so",
-          "tan 45° = |(m − m₁)/(1 + m m₁)|",
+          {
+            "text": "\\tan 45^{\\circ}\\ = \\ \\left|\\dfrac{m\\ - \\ m_{1}}{1\\ + \\ mm_{1}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(tan 45° = 1; m − 3 on top and 1 + m(3) = 1 + 3m below)",
             "added": true
           },
-          "⇒ 1 = |(m − 3)/(1 + 3m)|"
+          {
+            "text": "\\Rightarrow \\ 1\\ = \\ \\left|\\dfrac{m\\ - \\ 3}{1\\ + \\ 3m}\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -153,8 +165,16 @@
         "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 45° = 1, so the modulus itself equals 1.",
         "lines_compact": [
           "The angle between the two lines is 45°, so",
-          "tan 45° = |(m − m₁)/(1 + m m₁)|",
-          "⇒ 1 = |(m − 3)/(1 + 3m)|"
+          {
+            "text": "\\tan 45^{\\circ}\\ = \\ \\left|\\dfrac{m\\ - \\ m_{1}}{1\\ + \\ mm_{1}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 1\\ = \\ \\left|\\dfrac{m\\ - \\ 3}{1\\ + \\ 3m}\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -245,7 +265,11 @@
             "text": "(m + 3m = 4m and −1 + 3 = 2; divide by 4)",
             "added": true
           },
-          "⇒ 4m = 2  ⇒  m = 1/2"
+          {
+            "text": "\\Rightarrow \\ 4m\\ = \\ 2\\ \\Rightarrow \\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -279,7 +303,11 @@
           "Taking +:  m − 3 = 1 + 3m",
           "⇒ −2m = 4  ⇒  m = −2",
           "Taking −:  m − 3 = −1 − 3m",
-          "⇒ 4m = 2  ⇒  m = 1/2"
+          {
+            "text": "\\Rightarrow \\ 4m\\ = \\ 2\\ \\Rightarrow \\ m\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -305,7 +333,11 @@
             "added": true
           },
           "y − 2 = −2(x + 3)  ⇒  2x + y + 4 = 0",
-          "Through (−3, 2) with m = 1/2:",
+          {
+            "text": "\\text{Through}\\ \\left( - 3,\\ 2\\right)\\ \\text{with}\\ m\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply y − 2 = (1/2)(x + 3) by 2: 2y − 4 = x + 3,",
             "added": true
@@ -353,7 +385,11 @@
         "lines_compact": [
           "Through (−3, 2) with m = −2:",
           "y − 2 = −2(x + 3)  ⇒  2x + y + 4 = 0",
-          "Through (−3, 2) with m = 1/2:",
+          {
+            "text": "\\text{Through}\\ \\left( - 3,\\ 2\\right)\\ \\text{with}\\ m\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "2(y − 2) = x + 3  ⇒  x − 2y + 7 = 0",
           "∴ The two lines are",
           {

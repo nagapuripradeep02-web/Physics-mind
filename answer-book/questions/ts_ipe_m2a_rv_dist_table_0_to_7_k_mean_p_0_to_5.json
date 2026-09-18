@@ -116,10 +116,18 @@
           "10k² + 10k − k − 1 = 0",
           "10k(k + 1) − 1(k + 1) = 0",
           "(10k − 1)(k + 1) = 0",
-          "k = 1/10 or k = −1",
+          {
+            "text": "k\\ = \\ \\dfrac{1}{10}\\text{or}\\ k\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "A probability cannot be negative,",
           "so k = −1 is rejected.",
-          "(i) k = 1/10"
+          {
+            "text": "\\left(i\\right)k\\ = \\ \\dfrac{1}{10}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -176,11 +184,15 @@
             "added": true
           },
           {
-            "text": "Put k = 1/10:",
+            "text": "\\text{Put}\\ k\\ = \\ \\dfrac{1}{10}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 66(1/100) + 30(1/10) = 0.66 + 3",
+            "text": "= \\ 66\\left(\\dfrac{1}{100}\\right)\\ + \\ 30\\left(\\dfrac{1}{10}\\right)\\ = \\ 0.66\\ + \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "(ii) μ = 3.66"
@@ -222,7 +234,11 @@
           "   + 5(k²) + 6(2k²) + 7(7k² + k)",
           "= k + 4k + 6k + 12k + 5k² + 12k² + 49k² + 7k",
           "= 30k + 66k²",
-          "= 30(1/10) + 66(1/100) = 3 + 0.66",
+          {
+            "text": "= \\ 30\\left(\\dfrac{1}{10}\\right)\\ + \\ 66\\left(\\dfrac{1}{100}\\right)\\ = \\ 3\\ + \\ 0.66",
+            "style": "normal",
+            "render": "katex"
+          },
           "(ii) μ = 3.66"
         ]
       },
@@ -245,10 +261,15 @@
           },
           "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",
           "= k + 2k + 2k + 3k = 8k",
-          "= 8(1/10) = 8/10 = 4/5",
           {
-            "text": "∴ k = 1/10, μ = 3.66, P(0 < X < 5) = 4/5",
-            "style": "boxed"
+            "text": "= \\ 8\\left(\\dfrac{1}{10}\\right)\\ = \\ \\dfrac{8}{10} = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{10},\\ \\mu \\ = \\ 3.66,\\ P\\left(0\\ < \\ X\\ < \\ 5\\right)\\ = \\ \\dfrac{4}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -283,10 +304,15 @@
           "(iii) P(0 < X < 5)",
           "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",
           "= k + 2k + 2k + 3k = 8k",
-          "= 8(1/10) = 8/10 = 4/5",
           {
-            "text": "∴ k = 1/10, μ = 3.66, P(0 < X < 5) = 4/5",
-            "style": "boxed"
+            "text": "= \\ 8\\left(\\dfrac{1}{10}\\right)\\ = \\ \\dfrac{8}{10} = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{1}{10},\\ \\mu \\ = \\ 3.66,\\ P\\left(0\\ < \\ X\\ < \\ 5\\right)\\ = \\ \\dfrac{4}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -61,8 +61,16 @@
             "text": "  make the denominator a single square:",
             "style": "indent"
           },
-          "1/(1+cosx) = (1−cosx)/[(1+cosx)(1−cosx)]",
-          "= (1−cosx)/(1−cos²x) = (1−cosx)/sin²x"
+          {
+            "text": "\\dfrac{1}{1 + \\cos x} = \\ \\dfrac{1 - \\cos x}{\\left(1 + \\cos x\\right)\\left(1 - \\cos x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1 - \\cos x}{1 - \\cos ^{2} x} = \\ \\dfrac{1 - \\cos x}{\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Multiplying top and bottom by the conjugate (1−cosx) uses 1−cos²x=sin²x to turn the denominator into a single squared sine, which can then be split into two standard pieces.",
         "common_mistakes": [
@@ -79,9 +87,15 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "(1−cosx)/sin²x = 1/sin²x − cosx/sin²x",
           {
-            "text": "and cosx/sin²x = (1/sinx)(cosx/sinx):",
+            "text": "\\dfrac{1 - \\cos x}{\\sin ^{2} x} = \\ \\dfrac{1}{\\sin ^{2} x} - \\ \\dfrac{\\cos x}{\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\cos x}{\\sin ^{2} x} = \\ \\left(\\dfrac{1}{\\sin x}\\right)\\left(\\dfrac{\\cos x}{\\sin x}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= cosec²x − cosecx·cotx",
@@ -95,8 +109,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ dx/(1+cosx) = −cotx + cosecx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + \\cos x} = \\ - \\cot x\\ + \\ \\operatorname{cosec} x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫cosec²x dx = −cotx and ∫cosecx cotx dx = −cosecx are both standard derivatives, so subtracting the second integral flips its sign to give the +cosecx in the final answer.",
@@ -106,11 +121,16 @@
         ],
         "memory_tip": "∫cosecx cotx dx = −cosecx; subtracting THIS integral flips its sign to +cosecx in the final line — two minus signs, easy to lose track of.",
         "lines_compact": [
-          "(1−cosx)/sin²x = 1/sin²x − cosx/sin²x",
+          {
+            "text": "\\dfrac{1 - \\cos x}{\\sin ^{2} x} = \\ \\dfrac{1}{\\sin ^{2} x} - \\ \\dfrac{\\cos x}{\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cosec²x − cosecx·cotx",
           {
-            "text": "∴ ∫ dx/(1+cosx) = −cotx + cosecx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + \\cos x} = \\ - \\cot x\\ + \\ \\operatorname{cosec} x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

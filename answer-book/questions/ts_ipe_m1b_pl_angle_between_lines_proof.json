@@ -74,7 +74,11 @@
           "Then ax² + 2hxy + by² ≡ b(y − m₁x)(y − m₂x)",
           "(x² terms: a = bm₁m₂; xy terms: 2h = −b(m₁ + m₂))",
           "On equating like term coeff., we get",
-          "m₁ + m₂ = −2h/b,   m₁m₂ = a/b   ……(1)"
+          {
+            "text": "m_{1}\\ + \\ m_{2}\\ = \\ - \\dfrac{2h}{b},\\ m_{1}m_{2}\\ = \\ \\dfrac{a}{b}\\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +122,11 @@
             "added": true
           },
           "θ is the angle between the two lines, so",
-          "tan θ = ±(m₁ − m₂) / (1 + m₁m₂)",
+          {
+            "text": "\\tan \\theta \\ = \\ \\pm \\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((m₁ + m₂)² = m₁² + 2m₁m₂ + m₂²,",
             "added": true
@@ -159,7 +167,11 @@
         ],
         "lines_compact": [
           "θ is the angle between the two lines, so",
-          "tan θ = ±(m₁ − m₂) / (1 + m₁m₂)",
+          {
+            "text": "\\tan \\theta \\ = \\ \\pm \\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂"
         ]
       },
@@ -181,7 +193,11 @@
             "style": "indent",
             "added": true
           },
-          "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
+          {
+            "text": "= \\ \\left( - \\dfrac{2h}{b}\\right)^{2}\\ - \\ 4\\left(\\dfrac{a}{b}\\right)\\ = \\ \\dfrac{4h^{2}\\ - \\ 4ab}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take the square root: √(4(h² − ab)/b²) = 2√(h² − ab)/|b|,",
             "added": true
@@ -191,17 +207,33 @@
             "style": "indent",
             "added": true
           },
-          "⇒ m₁ − m₂ = ±2√(h² − ab) / b",
           {
-            "text": "(put m₁m₂ = a/b; 1 = b/b)",
+            "text": "\\Rightarrow \\ m_{1}\\ - \\ m_{2}\\ = \\ \\pm \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ m_{1}m_{2}\\ = \\ \\dfrac{a}{b};\\ 1\\ = \\ \\dfrac{b}{b}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 + m₁m₂ = 1 + a/b = (a + b)/b",
           {
-            "text": "(divide ±2√(h² − ab)/b by (a + b)/b; the b's cancel)",
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\dfrac{a}{b} = \\ \\dfrac{a\\ + \\ b}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\pm \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{b}\\text{by}\\ \\dfrac{a\\ + \\ b}{b};\\ \\text{the}\\ b's\\ \\text{cancel}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ tan θ = ±2√(h² − ab) / (a + b)"
+          {
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\pm \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{a\\ + \\ b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -231,10 +263,26 @@
           "Cancelling only one of the two b factors."
         ],
         "lines_compact": [
-          "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
-          "⇒ m₁ − m₂ = ±2√(h² − ab) / b",
-          "1 + m₁m₂ = 1 + a/b = (a + b)/b",
-          "∴ tan θ = ±2√(h² − ab) / (a + b)"
+          {
+            "text": "= \\ \\left( - \\dfrac{2h}{b}\\right)^{2}\\ - \\ 4\\left(\\dfrac{a}{b}\\right)\\ = \\ \\dfrac{4h^{2}\\ - \\ 4ab}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ m_{1}\\ - \\ m_{2}\\ = \\ \\pm \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\dfrac{a}{b} = \\ \\dfrac{a\\ + \\ b}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\pm \\dfrac{2\\sqrt{h^{2}\\ - \\ ab}}{a\\ + \\ b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -255,7 +303,11 @@
             "style": "indent",
             "added": true
           },
-          "If tan θ = p/q then cos θ = q/√(p² + q²)",
+          {
+            "text": "\\text{If}\\ \\tan \\theta \\ = \\ \\dfrac{p}{q}\\text{then}\\ \\cos \\theta \\ = \\ \\dfrac{q}{\\sqrt{p^{2}\\ + \\ q^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here p = 2√(h² − ab) and q = a + b",
           {
             "text": "((2√(h² − ab))² = 4(h² − ab) and (a + b)²",
@@ -282,8 +334,9 @@
             "added": true
           },
           {
-            "text": "∴ cos θ = ±(a + b)/√((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\pm \\dfrac{a\\ + \\ b}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -314,13 +367,18 @@
           "Leaving (a + b)² under the root instead of (a − b)²."
         ],
         "lines_compact": [
-          "If tan θ = p/q then cos θ = q/√(p² + q²)",
+          {
+            "text": "\\text{If}\\ \\tan \\theta \\ = \\ \\dfrac{p}{q}\\text{then}\\ \\cos \\theta \\ = \\ \\dfrac{q}{\\sqrt{p^{2}\\ + \\ q^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here p = 2√(h² − ab) and q = a + b",
           "p² + q² = 4h² − 4ab + a² + 2ab + b²",
           "        = (a − b)² + 4h²",
           {
-            "text": "∴ cos θ = ±(a + b)/√((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\pm \\dfrac{a\\ + \\ b}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

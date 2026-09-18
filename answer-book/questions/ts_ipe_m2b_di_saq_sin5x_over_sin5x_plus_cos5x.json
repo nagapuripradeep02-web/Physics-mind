@@ -66,7 +66,11 @@
             "style": "heading"
           },
           "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
-          "Here a = π/2.",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore I = \\int _{0}^{\\pi /2} \\sin ^{5}x/(\\sin ^{5}x + \\cos ^{5}x) dx \\dots (1)",
             "render": "katex",
@@ -88,7 +92,11 @@
         "margin_note": "One more mark. sin⁵x turns into cos⁵x — check this line carefully, it is easy to leave it unchanged by mistake.",
         "memory_tip": "sin(π/2 − x) = cosx, so sin⁵(π/2 − x) = cos⁵x — the base swaps, the power 5 stays.",
         "lines": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2} \\sin ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
@@ -101,7 +109,9 @@
             "style": "normal"
           },
           {
-            "text": "cos(π/2 − x) = sinx and sin(π/2 − x) = cosx:",
+            "text": "\\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x\\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -116,7 +126,11 @@
           "Forgetting that the denominator, being a sum of both terms, is unaffected by the swap."
         ],
         "lines_compact": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           {
             "text": "= \\int _{0}^{\\pi /2} \\sin ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
@@ -168,8 +182,9 @@
             "added": true
           },
           {
-            "text": "∴ I = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The added numerator matches the denominator exactly, so the integrand is 1 for every x, reducing the integral to the length of the interval.",
@@ -190,8 +205,9 @@
             "style": "normal"
           },
           {
-            "text": "∴ I = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

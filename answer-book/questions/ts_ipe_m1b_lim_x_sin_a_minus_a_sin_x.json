@@ -52,7 +52,11 @@
             "style": "heading"
           },
           "At x = a the numerator is a sin a − a sin a = 0",
-          "and x − a = 0, so the form is 0/0.",
+          {
+            "text": "\\text{and}\\ x\\ - \\ a\\ = \\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Add and subtract a sin a in the numerator.",
           "(− a sin a + a sin a = 0, so the value is unchanged)",
           "x sin a − a sin x = (x sin a − a sin a) + (a sin a − a sin x)",
@@ -110,10 +114,15 @@
             "style": "indent",
             "added": true
           },
-          "(x sin a − a sin x)/(x − a)",
           {
-            "text": "  = sin a − a · [(sin x − sin a)/(x − a)]",
-            "style": "indent"
+            "text": "\\dfrac{x\\sin a\\ - \\ a\\sin x}{x\\ - \\ a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin a\\ - \\ a\\ \\cdot \\ \\left[\\dfrac{\\sin x\\ - \\ \\sin a}{x\\ - \\ a}\\right]",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2),",
@@ -124,9 +133,17 @@
             "style": "indent",
             "added": true
           },
-          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),",
+          {
+            "text": "\\text{Now}\\ \\sin x\\ - \\ \\sin a\\ = \\ 2\\cos \\left(\\dfrac{x\\ + \\ a}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{x\\ - \\ a}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "so dividing by (x − a) gives",
-          "cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
+          {
+            "text": "\\cos \\left(\\dfrac{x\\ + \\ a}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{x\\ - \\ a}{2}\\right)}{\\dfrac{x\\ - \\ a}{2}}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos is continuous, so cos((x + a)/2) → cos((a + a)/2)",
             "added": true
@@ -136,7 +153,11 @@
             "style": "indent",
             "added": true
           },
-          "As x → a the angle (x − a)/2 → 0,",
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ a\\ \\text{the}\\ \\text{angle}\\ \\dfrac{x\\ - \\ a}{2} \\to \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so this tends to cos a · 1 = cos a",
           "(it is also the derivative of sin x at x = a).",
           {
@@ -145,8 +166,9 @@
           },
           "∴ the limit = sin a − a cos a",
           {
-            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(x\\sin a\\ - \\ a\\sin x\\right)}{x\\ - \\ a}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "= sin a − a cos a",
@@ -183,21 +205,39 @@
         "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries.",
         "lines_compact": [
           "Divide both pieces by (x − a):",
-          "(x sin a − a sin x)/(x − a)",
           {
-            "text": "  = sin a − a · [(sin x − sin a)/(x − a)]",
-            "style": "indent"
+            "text": "\\dfrac{x\\sin a\\ - \\ a\\sin x}{x\\ - \\ a}",
+            "style": "normal",
+            "render": "katex"
           },
-          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),",
+          {
+            "text": "= \\ \\sin a\\ - \\ a\\ \\cdot \\ \\left[\\dfrac{\\sin x\\ - \\ \\sin a}{x\\ - \\ a}\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\sin x\\ - \\ \\sin a\\ = \\ 2\\cos \\left(\\dfrac{x\\ + \\ a}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{x\\ - \\ a}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "so dividing by (x − a) gives",
-          "cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
-          "As x → a the angle (x − a)/2 → 0,",
+          {
+            "text": "\\cos \\left(\\dfrac{x\\ + \\ a}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{x\\ - \\ a}{2}\\right)}{\\dfrac{x\\ - \\ a}{2}}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ a\\ \\text{the}\\ \\text{angle}\\ \\dfrac{x\\ - \\ a}{2} \\to \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so this tends to cos a · 1 = cos a",
           "(it is also the derivative of sin x at x = a).",
           "∴ the limit = sin a − a cos a",
           {
-            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(x\\sin a\\ - \\ a\\sin x\\right)}{x\\ - \\ a}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "= sin a − a cos a",

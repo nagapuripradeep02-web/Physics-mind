@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let θ = x + π/3. As x takes every real",
+          {
+            "text": "\\text{Let}\\ \\theta \\ = \\ x\\ + \\ \\dfrac{\\pi }{3}.\\ \\text{As}\\ x\\ \\text{takes}\\ \\text{every}\\ \\text{real}",
+            "style": "normal",
+            "render": "katex"
+          },
           "value, so does θ.",
           "f = cos θ + 2√2 sin θ − 3",
           "Compare with a cos θ + b sin θ + c:",

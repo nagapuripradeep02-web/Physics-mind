@@ -54,7 +54,11 @@
           },
           "Here n ≠ 0, else sin² nx is zero for all x.",
           "(1 − cos 0 = 0 and sin² 0 = 0)",
-          "Putting x = 0 gives 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the expression must be rewritten first.",
           "(the double angle formula cos 2θ = 1 − 2sin²θ)",
           "We know 1 − cos 2θ = 2sin²θ",
@@ -62,8 +66,9 @@
           "(put 2sin²(mx) in place of 1 − cos 2mx)",
           "∴ lim(x → 0) (1 − cos 2mx)/sin² nx",
           {
-            "text": "  = lim(x → 0) 2sin²(mx)/sin²(nx)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)2\\sin ^{2}\\left(mx\\right)}{\\sin ^{2}\\left(nx\\right)}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -113,12 +118,22 @@
             "style": "indent",
             "added": true
           },
-          "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
           {
-            "text": "(sin(mx)/x = m · sin(mx)/(mx), and the same with n)",
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{\\sin \\left(mx\\right)}{x}\\right]^{2}}{\\left[\\dfrac{\\sin \\left(nx\\right)}{x}\\right]^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin \\left(mx\\right)}{x} = \\ m\\ \\cdot \\ \\dfrac{\\sin \\left(mx\\right)}{mx},\\ \\text{and}\\ \\text{the}\\ \\text{same}\\ \\text{with}\\ n\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]²",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left[m\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(mx\\right)}{mx}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / [n · lim(x → 0) sin(nx)/(nx)]²",
             "style": "indent"
@@ -142,9 +157,15 @@
             "style": "indent",
             "added": true
           },
-          "= 2 · (m · 1)² / (n · 1)²",
           {
-            "text": "(2 · m²/n² = 2m²/n²)",
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\left(m\\ \\cdot \\ 1\\right)^{2}}{\\left(n\\ \\cdot \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{m^{2}}{n^{2}} = \\ \\dfrac{2m^{2}}{n^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -181,13 +202,25 @@
         ],
         "lines_compact": [
           "Divide the numerator and the denominator by x²:",
-          "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
-          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]²",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{\\sin \\left(mx\\right)}{x}\\right]^{2}}{\\left[\\dfrac{\\sin \\left(nx\\right)}{x}\\right]^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left[m\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(mx\\right)}{mx}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  / [n · lim(x → 0) sin(nx)/(nx)]²",
             "style": "indent"
           },
-          "= 2 · (m · 1)² / (n · 1)²",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\left(m\\ \\cdot \\ 1\\right)^{2}}{\\left(n\\ \\cdot \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
             "style": "boxed"

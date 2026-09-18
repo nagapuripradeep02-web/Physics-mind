@@ -55,8 +55,16 @@
           "20° and 40° add up to a standard angle:",
           "We take 20° + 40° = 60°",
           "⇒ tan(20° + 40°) = tan60° = √3",
-          "  [∵ tan(A+B) = (tanA + tanB)/(1 − tanA tanB)]",
-          "∴ (tan20° + tan40°)/(1 − tan20° tan40°) = √3"
+          {
+            "text": "\\left[\\because \\ \\tan \\left(A + B\\right)\\ = \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\tan 20^{\\circ}\\ + \\ \\tan 40^{\\circ}}{1\\ - \\ \\tan 20^{\\circ}\\tan 40^{\\circ}} = \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

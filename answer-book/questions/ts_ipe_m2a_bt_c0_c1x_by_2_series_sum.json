@@ -78,12 +78,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S = C₀ + C₁(x/2) + C₂(x²/3) + …",
-          "  + Cₙ(xⁿ/(n + 1))",
+          {
+            "text": "\\text{Let}\\ S\\ = \\ C_{0}\\ + \\ C_{1}\\left(\\dfrac{x}{2}\\right)\\ + \\ C_{2}\\left(\\dfrac{x^{2}}{3}\\right)\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ C_{n}\\left(\\dfrac{x^{n}}{n\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here Cᵣ means ⁿCᵣ, so",
-          "S = ⁿC₀ + ⁿC₁(x/2) + ⁿC₂(x²/3) + …",
-          "  + ⁿCₙ(xⁿ/(n + 1))",
-          "The r-th bracket is ⁿCᵣ·xʳ/(r + 1)"
+          {
+            "text": "S\\ = \\ {}^{n}C_{0}\\ + \\ {}^{n}C_{1}\\left(\\dfrac{x}{2}\\right)\\ + \\ {}^{n}C_{2}\\left(\\dfrac{x^{2}}{3}\\right)\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ {}^{n}C_{n}\\left(\\dfrac{x^{n}}{n\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{r-th}\\ \\text{bracket}\\ \\text{is}\\ {}^{n}C_{r} \\cdot \\dfrac{x^{r}}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -124,17 +144,39 @@
             "text": "Multiplying both sides by x:",
             "added": true
           },
-          "xS = ⁿC₀x + ⁿC₁(x²/2) + ⁿC₂(x³/3) + …",
-          "  + ⁿCₙ(xⁿ⁺¹/(n + 1))",
+          {
+            "text": "xS\\ = \\ {}^{n}C_{0}x\\ + \\ {}^{n}C_{1}\\left(\\dfrac{x^{2}}{2}\\right)\\ + \\ {}^{n}C_{2}\\left(\\dfrac{x^{3}}{3}\\right)\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ {}^{n}C_{n}\\left(\\dfrac{x^{n+1}}{n\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiplying both sides by (n + 1):",
             "added": true
           },
-          "(n + 1)xS = (n + 1)ⁿC₀x + ((n + 1)/2)ⁿC₁x²",
-          "  + ((n + 1)/3)ⁿC₂x³ + …",
-          "  + ((n + 1)/(n + 1))ⁿCₙxⁿ⁺¹",
           {
-            "text": "Each term has the shape ((n + 1)/(r + 1))ⁿCᵣ·xʳ⁺¹",
+            "text": "\\left(n\\ + \\ 1\\right)xS\\ = \\ \\left(n\\ + \\ 1\\right){}^{n}C_{0}x\\ + \\ \\left(\\dfrac{n\\ + \\ 1}{2}\\right){}^{n}C_{1}x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{3}\\right){}^{n}C_{2}x^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{n\\ + \\ 1}\\right){}^{n}C_{n}x^{n+1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Each}\\ \\text{term}\\ has\\ \\text{the}\\ \\text{shape}\\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right){}^{n}C_{r} \\cdot x^{r+1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -164,11 +206,31 @@
           "Writing the last factor as (n + 1)/n."
         ],
         "lines_compact": [
-          "xS = ⁿC₀x + ⁿC₁(x²/2) + ⁿC₂(x³/3) + …",
-          "  + ⁿCₙ(xⁿ⁺¹/(n + 1))",
-          "(n + 1)xS = ((n + 1)/1)ⁿC₀x + ((n + 1)/2)ⁿC₁x²",
-          "  + ((n + 1)/3)ⁿC₂x³ + …",
-          "  + ((n + 1)/(n + 1))ⁿCₙxⁿ⁺¹"
+          {
+            "text": "xS\\ = \\ {}^{n}C_{0}x\\ + \\ {}^{n}C_{1}\\left(\\dfrac{x^{2}}{2}\\right)\\ + \\ {}^{n}C_{2}\\left(\\dfrac{x^{3}}{3}\\right)\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ {}^{n}C_{n}\\left(\\dfrac{x^{n+1}}{n\\ + \\ 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(n\\ + \\ 1\\right)xS\\ = \\ \\left(\\dfrac{n\\ + \\ 1}{1}\\right){}^{n}C_{0}x\\ + \\ \\left(\\dfrac{n\\ + \\ 1}{2}\\right){}^{n}C_{1}x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{3}\\right){}^{n}C_{2}x^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{n\\ + \\ 1}\\right){}^{n}C_{n}x^{n+1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -181,19 +243,27 @@
         "memory_tip": "((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁. The sum becomes (1 + x)ⁿ⁺¹ with its first term missing.",
         "lines": [
           {
-            "text": "Now ⁿCᵣ = n!/(r!(n − r)!)",
+            "text": "\\text{Now}\\ {}^{n}C_{r}\\ = \\ \\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "((n + 1)/(r + 1))ⁿCᵣ",
+            "text": "\\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right){}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n + 1)·n!/((r + 1)·r!·(n − r)!)",
+            "text": "= \\ \\left(n\\ + \\ 1\\right) \\cdot \\dfrac{n!}{\\left(r\\ + \\ 1\\right) \\cdot r! \\cdot \\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n + 1)!/((r + 1)!(n − r)!) = ⁿ⁺¹Cᵣ₊₁",
+            "text": "= \\ \\dfrac{\\left(n\\ + \\ 1\\right)!}{\\left(r\\ + \\ 1\\right)!\\left(n\\ - \\ r\\right)!} = \\ {}^{n+1}C_{r+1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -236,7 +306,11 @@
         ],
         "lines_compact": [
           "= ⁿ⁺¹C₁x + ⁿ⁺¹C₂x² + ⁿ⁺¹C₃x³ + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹",
-          "  [((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁]"
+          {
+            "text": "\\left[\\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right) \\cdot {}^{n}C_{r}\\ = \\ {}^{n+1}C_{r+1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -269,8 +343,9 @@
             "added": true
           },
           {
-            "text": "∴ S = ((1 + x)ⁿ⁺¹ − 1)/((n + 1)x)",
-            "style": "boxed"
+            "text": "\\therefore \\ S\\ = \\ \\dfrac{\\left(1\\ + \\ x\\right)^{n+1}\\ - \\ 1}{\\left(n\\ + \\ 1\\right)x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -303,8 +378,9 @@
           "= (1 + x)ⁿ⁺¹ − 1",
           "  [ⁿ⁺¹C₀ + ⁿ⁺¹C₁x + … + ⁿ⁺¹Cₙ₊₁xⁿ⁺¹ = (1 + x)ⁿ⁺¹]",
           {
-            "text": "∴ S = ((1 + x)ⁿ⁺¹ − 1)/((n + 1)x)",
-            "style": "boxed"
+            "text": "\\therefore \\ S\\ = \\ \\dfrac{\\left(1\\ + \\ x\\right)^{n+1}\\ - \\ 1}{\\left(n\\ + \\ 1\\right)x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -64,16 +64,25 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given A + B + C = 180° ⇒ (A + B + C)/2 = 90°",
+          {
+            "text": "\\text{Given}\\ A\\ + \\ B\\ + \\ C\\ = \\ 180^{\\circ}\\ \\Rightarrow \\ \\dfrac{A\\ + \\ B\\ + \\ C}{2} = \\ 90^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(A, B, C are the angles of a triangle.)",
           "L.H.S = (sin A + sin B) − sin C",
           "Pair the first two with the sum formula:",
           {
-            "text": "  sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)",
-            "style": "indent"
+            "text": "\\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           "(here p = A and q = B)",
-          "= 2 sin((A+B)/2) cos((A−B)/2) − sin C"
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,16 +121,30 @@
         "memory_tip": "(A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
         "lines": [
           {
-            "text": "Move C/2 across in the halved sum:",
+            "text": "\\text{Move}\\ \\dfrac{C}{2}\\text{across}\\ \\text{in}\\ \\text{the}\\ \\text{halved}\\ \\text{sum}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(A + B)/2 = 90° − C/2",
-          "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          {
+            "text": "\\dfrac{A\\ + \\ B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin(90° − θ) = cos θ)",
             "added": true
           },
-          "L.H.S = 2 cos(C/2) cos((A−B)/2) − sin C"
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,9 +173,21 @@
           "Using (A+B)/2 = 180° − C/2."
         ],
         "lines_compact": [
-          "(A + B)/2 = 90° − C/2",
-          "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
-          "L.H.S = 2 cos(C/2) cos((A−B)/2) − sin C"
+          {
+            "text": "\\dfrac{A\\ + \\ B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -165,22 +200,43 @@
         "memory_tip": "sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
         "lines": [
           {
-            "text": "Write sin C with half-angles (θ = C/2), so it",
+            "text": "\\text{Write}\\ \\sin C\\ \\text{with}\\ \\text{half} - \\text{angles}\\ \\left(\\theta \\ = \\ \\dfrac{C}{2}\\right),\\ \\text{so}\\ \\text{it}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  shares cos(C/2) with the first term:",
+            "text": "\\text{shares}\\ \\cos \\left(\\dfrac{C}{2}\\right)\\ \\text{with}\\ \\text{the}\\ \\text{first}\\ \\text{term}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "sin C = 2 sin(C/2) cos(C/2)",
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "      − 2 sin(C/2) cos(C/2)",
           {
-            "text": "Both terms have 2 cos(C/2); take it out:",
+            "text": "\\sin C\\ = \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{have}\\ 2\\cos \\left(\\dfrac{C}{2}\\right);\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 cos(C/2) [cos((A−B)/2) − sin(C/2)]"
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -210,10 +266,26 @@
           "Factoring 2 sin(C/2) instead."
         ],
         "lines_compact": [
-          "sin C = 2 sin(C/2) cos(C/2)",
-          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
-          "      − 2 sin(C/2) cos(C/2)",
-          "= 2 cos(C/2) [cos((A−B)/2) − sin(C/2)]"
+          {
+            "text": "\\sin C\\ = \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -229,9 +301,21 @@
             "text": "Use the halved sum again, inside the bracket:",
             "added": true
           },
-          "Inside the bracket, C/2 = 90° − (A+B)/2, so",
-          "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
-          "Bracket = cos((A−B)/2) − cos((A+B)/2)"
+          {
+            "text": "\\text{Inside}\\ \\text{the}\\ \\text{bracket},\\ \\dfrac{C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{A + B}{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{A + B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Bracket}\\ = \\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -260,9 +344,21 @@
           "Writing sin(C/2) = cos(C/2)."
         ],
         "lines_compact": [
-          "Inside the bracket, C/2 = 90° − (A+B)/2, so",
-          "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
-          "Bracket = cos((A−B)/2) − cos((A+B)/2)"
+          {
+            "text": "\\text{Inside}\\ \\text{the}\\ \\text{bracket},\\ \\dfrac{C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{A + B}{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\sin \\left(90^{\\circ}\\ - \\ \\dfrac{A + B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Bracket}\\ = \\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -279,19 +375,29 @@
             "added": true
           },
           {
-            "text": "  with x = A/2 and y = B/2:",
+            "text": "\\text{with}\\ x\\ = \\ \\dfrac{A}{2}\\text{and}\\ y\\ = \\ \\dfrac{B}{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
-          "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
+          {
+            "text": "\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply 2 × 2 = 4 and reorder:",
             "added": true
           },
           {
-            "text": "= 4 sin(A/2) sin(B/2) cos(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 4\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -321,11 +427,20 @@
           "Getting the bracket order backwards and losing a sign."
         ],
         "lines_compact": [
-          "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
-          "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",
           {
-            "text": "= 4 sin(A/2) sin(B/2) cos(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\ \\cdot \\ 2\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

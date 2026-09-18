@@ -107,7 +107,11 @@
             "text": "(add the fractions and multiply both sides by a)",
             "added": true
           },
-          "x/a + y/a = 1  ⇒  x + y = a  ……(3)",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{a} = \\ 1\\ \\Rightarrow \\ x\\ + \\ y\\ = \\ a\\ \\dots \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x = −23 and y = −9 in (3))",
             "added": true
@@ -151,7 +155,11 @@
         "lines_compact": [
           "Intercepts are equal and non-zero, so take",
           "them as a, a in the intercept form:",
-          "x/a + y/a = 1  ⇒  x + y = a  ……(3)",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{a} = \\ 1\\ \\Rightarrow \\ x\\ + \\ y\\ = \\ a\\ \\dots \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(−23, −9) lies on (3)",
           "⇒ −23 − 9 = a  ⇒  a = −32",
           {

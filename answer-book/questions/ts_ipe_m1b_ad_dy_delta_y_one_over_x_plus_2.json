@@ -51,18 +51,42 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y = 1/(x + 2),  x = 8,  Δx = 0.02",
+          {
+            "text": "y\\ = \\ \\dfrac{1}{x\\ + \\ 2},\\ x\\ = \\ 8,\\ \\Delta x\\ = \\ 0.02",
+            "style": "normal",
+            "render": "katex"
+          },
           "(y = (x + 2)⁻¹; by the chain rule",
           {
             "text": "  dy/dx = −1 · (x + 2)⁻² · 1)",
             "style": "indent"
           },
-          "dy/dx = −1/(x + 2)²",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\dfrac{1}{\\left(x\\ + \\ 2\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put 8 in place of x: (8 + 2)² = 10² = 100)",
-          "At x = 8:  dy/dx = −1/(8 + 2)² = −1/100",
-          "(the differential: dy = (dy/dx) · Δx)",
-          "dy = (dy/dx)·Δx = (−1/100)(0.02)",
-          "((−1/100)(0.02) = −0.02/100 = −0.0002)",
+          {
+            "text": "\\text{At}\\ x\\ = \\ 8:\\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{1}{\\left(8\\ + \\ 2\\right)^{2}} = \\ - \\dfrac{1}{100}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{differential}:\\ dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\cdot \\ \\Delta x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dy\\ = \\ \\left(\\dfrac{dy}{dx}\\right) \\cdot \\Delta x\\ = \\ \\left( - \\dfrac{1}{100}\\right)\\left(0.02\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left( - \\dfrac{1}{100}\\right)\\left(0.02\\right)\\ = \\ - \\dfrac{0.02}{100} = \\ - 0.0002\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dy = −0.0002"
         ],
         "recall": {
@@ -108,17 +132,29 @@
           },
           "Δy = f(x + Δx) − f(x) = f(8.02) − f(8)",
           {
-            "text": "(put 8.02 and 8 in place of x in 1/(x + 2))",
+            "text": "\\left(\\text{put}\\ 8.02\\ \\text{and}\\ 8\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ x\\ \\text{in}\\ \\dfrac{1}{x\\ + \\ 2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1/(8.02 + 2) − 1/(8 + 2) = 1/10.02 − 1/10",
+          {
+            "text": "= \\ \\dfrac{1}{8.02\\ + \\ 2} - \\ \\dfrac{1}{8\\ + \\ 2} = \\ \\dfrac{1}{10.02} - \\ \\dfrac{1}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator 10.02 × 10 = 100.2)",
             "added": true
           },
-          "= (10 − 10.02)/(10.02 × 10) = −0.02/100.2",
           {
-            "text": "(0.02/100.2 = 0.00019960…)",
+            "text": "= \\ \\dfrac{10\\ - \\ 10.02}{10.02\\ \\times \\ 10} = \\ - \\dfrac{0.02}{100.2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{0.02}{100.2} = \\ 0.00019960\\dots \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Δy = −0.0001996  (to 7 decimal places)",
@@ -157,8 +193,16 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down.",
         "lines_compact": [
           "Δy = f(x + Δx) − f(x) = f(8.02) − f(8)",
-          "= 1/(8.02 + 2) − 1/(8 + 2) = 1/10.02 − 1/10",
-          "= (10 − 10.02)/(10.02 × 10) = −0.02/100.2",
+          {
+            "text": "= \\ \\dfrac{1}{8.02\\ + \\ 2} - \\ \\dfrac{1}{8\\ + \\ 2} = \\ \\dfrac{1}{10.02} - \\ \\dfrac{1}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{10\\ - \\ 10.02}{10.02\\ \\times \\ 10} = \\ - \\dfrac{0.02}{100.2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Δy = −0.0001996  (to 7 decimal places)",
           {
             "text": "∴ dy = −0.0002  and  Δy = −0.0001996",

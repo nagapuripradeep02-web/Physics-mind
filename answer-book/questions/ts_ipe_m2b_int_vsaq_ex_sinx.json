@@ -95,8 +95,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ eˣ sinx dx = eˣ(sinx−cosx)/2 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ e^{x}\\sin xdx\\ = \\ \\dfrac{e^{x}\\left(\\sin x - \\cos x\\right)}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "With I appearing on both sides, collecting the two I terms on the left gives 2I, and dividing by 2 gives the final closed form.",
@@ -108,8 +109,9 @@
         "lines_compact": [
           "2I = eˣ(sinx−cosx)",
           {
-            "text": "∴ ∫ eˣ sinx dx = eˣ(sinx−cosx)/2 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ e^{x}\\sin xdx\\ = \\ \\dfrac{e^{x}\\left(\\sin x - \\cos x\\right)}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

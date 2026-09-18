@@ -53,11 +53,27 @@
             "style": "heading"
           },
           "Let r be the radius",
-          "and V = (4/3)πr³ the volume of the sphere.",
+          {
+            "text": "\\text{and}\\ V\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}\\ \\text{the}\\ \\text{volume}\\ \\text{of}\\ \\text{the}\\ \\text{sphere}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here r = 7 cm and dr = 7.02 − 7 = 0.02 cm",
-          "(d/dr of (4/3)πr³ is (4/3)π · 3r² = 4πr²)",
-          "dV/dr = (4/3)π · 3r² = 4πr²",
-          "(dV = (dV/dr) · dr)",
+          {
+            "text": "\\left(\\dfrac{d}{dr}\\ \\text{of}\\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}\\ \\text{is}\\ \\left(\\dfrac{4}{3}\\right)\\pi \\ \\cdot \\ 3r^{2}\\ = \\ 4\\pi r^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dV}{dr}\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi \\ \\cdot \\ 3r^{2}\\ = \\ 4\\pi r^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(dV\\ = \\ \\left(\\dfrac{dV}{dr}\\right)\\ \\cdot \\ dr\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dV = 4πr² · dr"
         ],
         "recall": {

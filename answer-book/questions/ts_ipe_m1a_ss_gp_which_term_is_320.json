@@ -53,8 +53,16 @@
             "style": "heading"
           },
           "(r is a term divided by the term before it)",
-          "Here a = 5 and r = −10/5 = −2",
-          "Check on the next pair:  20/(−10) = −2",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ 5\\ \\text{and}\\ r\\ = \\ - \\dfrac{10}{5} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}\\ \\text{on}\\ \\text{the}\\ \\text{next}\\ \\text{pair}:\\ \\dfrac{20}{ - 10} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "For a G.P., the nth term is  aₙ = a rⁿ⁻¹",
           "Let the nth term be 320:  5(−2)ⁿ⁻¹ = 320"
         ],
@@ -99,7 +107,11 @@
             "text": "(divide both sides by 5)",
             "added": true
           },
-          "(−2)ⁿ⁻¹ = 320/5 = 64",
+          {
+            "text": "\\left( - 2\\right)^{n-1}\\ = \\ \\dfrac{320}{5} = \\ 64",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(an even power of −2 is positive: (−2)⁶ = 64)",
             "added": true
@@ -144,7 +156,11 @@
           "Saying no term equals 320 because the ratio is negative."
         ],
         "lines_compact": [
-          "(−2)ⁿ⁻¹ = 320/5 = 64",
+          {
+            "text": "\\left( - 2\\right)^{n-1}\\ = \\ \\dfrac{320}{5} = \\ 64",
+            "style": "normal",
+            "render": "katex"
+          },
           "64 is positive, and 64 = 2⁶, so (−2)ⁿ⁻¹ = (−2)⁶",
           "n − 1 = 6  ⇒  n = 7",
           "Check:  a₇ = 5(−2)⁶ = 5 × 64 = 320",

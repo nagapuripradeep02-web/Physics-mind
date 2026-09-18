@@ -61,11 +61,27 @@
             "text": "  so split x² as (x² − 1) + 1.",
             "style": "indent"
           },
-          "I = ∫₀⁴ x²/(1+x) dx",
-          "= ∫₀⁴ [(x² − 1) + 1]/(1+x) dx",
+          {
+            "text": "I\\ = \\ \\int _{0}^{4}\\ \\dfrac{x^{2}}{1 + x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int _{0}^{4}\\ \\dfrac{\\left(x^{2}\\ - \\ 1\\right)\\ + \\ 1}{1 + x}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "x² − 1 = (x−1)(x+1):",
-          "= ∫₀⁴ (x−1)(x+1)/(1+x) dx + ∫₀⁴ dx/(1+x)",
-          "= ∫₀⁴ (x−1) dx + ∫₀⁴ dx/(1+x)"
+          {
+            "text": "= \\ \\int _{0}^{4}\\ \\dfrac{\\left(x - 1\\right)\\left(x + 1\\right)}{1 + x}dx\\ + \\ \\int _{0}^{4}\\ \\dfrac{dx}{1 + x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int _{0}^{4}\\ \\left(x - 1\\right)dx\\ + \\ \\int _{0}^{4}\\ \\dfrac{dx}{1 + x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Adding and subtracting 1 in the numerator creates x²−1, which factors as (x−1)(x+1); the (x+1) factor cancels the denominator (1+x), leaving a plain polynomial plus one standard log term.",
         "common_mistakes": [
@@ -83,13 +99,25 @@
         "memory_tip": "16/2 − 4 = 8 − 4 = 4 — check this arithmetic before combining with log5.",
         "lines": [
           {
-            "text": "∫(x−1)dx = x²/2 − x and ∫dx/(1+x) = log(1+x):",
+            "text": "\\int \\left(x - 1\\right)dx\\ = \\ \\dfrac{x^{2}}{2} - \\ x\\ \\text{and}\\ \\int \\dfrac{dx}{1 + x} = \\ \\log \\left(1 + x\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [x²/2 − x]₀⁴ + [log(1+x)]₀⁴",
-          "= (16/2 − 4) + (log5 − log1)",
           {
-            "text": "16/2 − 4 = 4 and log1 = 0:",
+            "text": "= \\ \\left[\\dfrac{x^{2}}{2} - \\ x\\right]_{0}^{4}\\ + \\ \\left[\\log \\left(1 + x\\right)\\right]_{0}^{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{16}{2} - \\ 4\\right)\\ + \\ \\left(\\log 5\\ - \\ \\log 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{16}{2} - \\ 4\\ = \\ 4\\ \\text{and}\\ \\log 1\\ = \\ 0:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -103,8 +131,16 @@
           "An arithmetic slip in 16/2−4, e.g. writing 12 by forgetting to halve the 16, instead of the correct value 4."
         ],
         "lines_compact": [
-          "= [x²/2 − x]₀⁴ + [log(1+x)]₀⁴",
-          "= (16/2 − 4) + (log5 − log1)",
+          {
+            "text": "= \\ \\left[\\dfrac{x^{2}}{2} - \\ x\\right]_{0}^{4}\\ + \\ \\left[\\log \\left(1 + x\\right)\\right]_{0}^{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{16}{2} - \\ 4\\right)\\ + \\ \\left(\\log 5\\ - \\ \\log 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ I = 4 + log5",
             "style": "boxed"

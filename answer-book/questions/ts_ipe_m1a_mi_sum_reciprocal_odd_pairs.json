@@ -66,9 +66,21 @@
           "(the nth term of an A.P. is a + (n − 1)d)",
           "1, 3, 5, … is an A.P: a = 1, d = 2 ⇒ 2n − 1",
           "3, 5, 7, … is an A.P: a = 3, d = 2 ⇒ 2n + 1",
-          "nth term = 1/((2n − 1)(2n + 1))",
-          "Let S(n): 1/(1·3) + … + 1/((2n−1)(2n+1))",
-          "        = n/(2n + 1)"
+          {
+            "text": "\\text{nth}\\ \\text{term}\\ = \\ \\dfrac{1}{\\left(2n\\ - \\ 1\\right)\\left(2n\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Let}\\ S\\left(n\\right):\\ \\dfrac{1}{1 \\cdot 3} + \\ \\dots \\ + \\ \\dfrac{1}{\\left(2n - 1\\right)\\left(2n + 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{n}{2n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,8 +124,16 @@
             "text": "(put n = 1 on both sides)",
             "added": true
           },
-          "L.H.S of S(1) = 1/(1·3) = 1/3",
-          "R.H.S of S(1) = 1/(2 + 1) = 1/3",
+          {
+            "text": "L.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1}{1 \\cdot 3} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1}{2\\ + \\ 1} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ],
         "recall": {
@@ -145,8 +165,16 @@
         "memory_tip": "Both sides come to one third.",
         "lines_compact": [
           "Step 1 — check S(1)",
-          "L.H.S of S(1) = 1/(1·3) = 1/3",
-          "R.H.S of S(1) = 1/(2 + 1) = 1/3",
+          {
+            "text": "L.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1}{1 \\cdot 3} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1}{2\\ + \\ 1} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ]
       },
@@ -163,8 +191,16 @@
             "text": "(take S(k) as true for one natural number k)",
             "added": true
           },
-          "S(k): 1/(1·3) + … + 1/((2k−1)(2k+1))",
-          "        = k/(2k + 1)   …(1)"
+          {
+            "text": "S\\left(k\\right):\\ \\dfrac{1}{1 \\cdot 3} + \\ \\dots \\ + \\ \\dfrac{1}{\\left(2k - 1\\right)\\left(2k + 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k}{2k\\ + \\ 1}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -196,8 +232,16 @@
         "memory_tip": "Assume for k and number the line (1) so Step 3 can quote it.",
         "lines_compact": [
           "Step 2 — assume S(k) is true, k ∈ N",
-          "S(k): 1/(1·3) + … + 1/((2k−1)(2k+1))",
-          "        = k/(2k + 1)   …(1)"
+          {
+            "text": "S\\left(k\\right):\\ \\dfrac{1}{1 \\cdot 3} + \\ \\dots \\ + \\ \\dfrac{1}{\\left(2k - 1\\right)\\left(2k + 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k}{2k\\ + \\ 1}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -213,28 +257,52 @@
             "text": "(put n = k + 1: 2k + 1 and 2k + 3)",
             "added": true
           },
-          "(k+1)th term = 1/((2k+1)(2k+3))",
-          "L.H.S = k/(2k+1) + 1/((2k+1)(2k+3))",
+          {
+            "text": "\\left(k + 1\\right)th\\ \\text{term}\\ = \\ \\dfrac{1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k}{2k + 1} + \\ \\dfrac{1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator (2k + 1)(2k + 3))",
             "added": true
           },
-          "= [k(2k+3) + 1]/((2k+1)(2k+3))",
+          {
+            "text": "= \\ \\dfrac{k\\left(2k + 3\\right)\\ + \\ 1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(open the bracket)",
             "added": true
           },
-          "= (2k² + 3k + 1)/((2k+1)(2k+3))",
+          {
+            "text": "= \\ \\dfrac{2k^{2}\\ + \\ 3k\\ + \\ 1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2k² + 3k + 1 = (2k + 1)(k + 1))",
             "added": true
           },
-          "= (2k+1)(k+1)/((2k+1)(2k+3))",
+          {
+            "text": "= \\ \\dfrac{\\left(2k + 1\\right)\\left(k + 1\\right)}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the (2k + 1) cancels; 2k + 3 = 2(k + 1) + 1)",
             "added": true
           },
-          "= (k+1)/(2k+3) = (k+1)/(2(k+1)+1) = R.H.S",
+          {
+            "text": "= \\ \\dfrac{k + 1}{2k + 3} = \\ \\dfrac{k + 1}{2\\left(k + 1\\right) + 1} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ],
         "recall": {
@@ -268,12 +336,36 @@
         "memory_tip": "Add the (k+1)th term over the common denominator; 2k² + 3k + 1 = (2k+1)(k+1) is what cancels.",
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
-          "(k+1)th term = 1/((2k+1)(2k+3))",
-          "L.H.S = k/(2k+1) + 1/((2k+1)(2k+3))",
-          "= [k(2k+3) + 1]/((2k+1)(2k+3))",
-          "= (2k² + 3k + 1)/((2k+1)(2k+3))",
-          "= (2k+1)(k+1)/((2k+1)(2k+3))",
-          "= (k+1)/(2k+3) = (k+1)/(2(k+1)+1) = R.H.S",
+          {
+            "text": "\\left(k + 1\\right)th\\ \\text{term}\\ = \\ \\dfrac{1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k}{2k + 1} + \\ \\dfrac{1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k\\left(2k + 3\\right)\\ + \\ 1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2k^{2}\\ + \\ 3k\\ + \\ 1}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(2k + 1\\right)\\left(k + 1\\right)}{\\left(2k + 1\\right)\\left(2k + 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k + 1}{2k + 3} = \\ \\dfrac{k + 1}{2\\left(k + 1\\right) + 1} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ]
       },

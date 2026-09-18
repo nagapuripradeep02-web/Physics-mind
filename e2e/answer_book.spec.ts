@@ -2028,8 +2028,11 @@ test('the catalog filters by subject and each section shows its own mark value',
 });
 
 test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
-    test.setTimeout(360_000);   // fleet sweep — cost grows with every typeset question; raised deliberately at Maths-2A (fractional exponents and e^{-λ} lines), as before
-                                // when Maths-1A Unit 3 (Matrices) took the book from 2 typeset questions to 39.
+    test.setTimeout(1_800_000); // fleet sweep — cost grows with every typeset question. 360s was set when
+                                // Maths-2A brought the count to a few hundred; the stacked-fraction pass
+                                // (2026-09-18) made 1,168 cards typeset, and one browser pass over them at
+                                // BOTH answer lengths measures ~12 minutes on a laptop. This is now the
+                                // longest test in the suite by a wide margin — and the only guard there is.
                                 // NEVER trim the sweep instead: .kx-clip is overflow:hidden, so an over-wide
                                 // typeset line is truncated with NO other symptom, and this is the only guard.
     await page.goto(URL);
@@ -2049,10 +2052,23 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
             .map((q) => q.question_id));
     if (!withKatex.length) return;              // a book with no typeset line is legal
 
+    // The faces load ONCE, not per card — and a width measured before they
+    // settle is a different width entirely, which is why this is awaited here
+    // and not traded away with the per-card sleeps below.
+    await page.evaluate(() => document.fonts.ready);
+    // Two animation frames: layout has been applied and painted. This replaces a
+    // flat 700 ms per card per length — at 1,168 typeset cards (the stacked
+    // fraction pass, 2026-09-18) those sleeps alone were over 27 minutes, and
+    // the sweep timed out without measuring the last cards at all. Coverage is
+    // unchanged: every card, both lengths, every line.
+    const settle = () => page.evaluate(() => new Promise<void>((r) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => r()));
+    }));
+
     for (const id of withKatex) {
         await openQ(page, id);
         await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
-        await page.waitForTimeout(700);
+        await settle();
         const probe = () => page.evaluate(() => {
             const clips = [...document.querySelectorAll('.kx-clip')] as HTMLElement[];
             return {
@@ -2101,7 +2117,7 @@ test('a typeset line renders as math, sits on whole rules, and never shows raw T
                 ids.forEach((sid) => (window as any).PM_ANSWER.setStepDetail(sid, 'full'));
             }, expandable);
             await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
-            await page.waitForTimeout(700);
+            await settle();
             full = await probe();
             check(full, 'written out in full');
         }

@@ -105,23 +105,36 @@
             "text": "Wallis's formula, m = 4 and n = 6 both even:",
             "added": true
           },
-          "= 4 · [(3)(1)][(5)(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
+          {
+            "text": "= \\ 4\\ \\cdot \\ \\dfrac{\\left[\\left(3\\right)\\left(1\\right)\\right]\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]}{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3)(1) = 3, (5)(3)(1) = 15, 10·8·6·4·2 = 3840",
             "added": true
           },
-          "= 4 · (3)(15)/3840 · π/2",
           {
-            "text": "4 · 45 = 180 and 180/3840 = 3/64:",
+            "text": "= \\ 4\\ \\cdot \\ \\dfrac{\\left(3\\right)\\left(15\\right)}{3840} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4\\ \\cdot \\ 45\\ = \\ 180\\ \\text{and}\\ \\dfrac{180}{3840} = \\ \\dfrac{3}{64}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(3/64)(π/2) = 3π/128",
+            "text": "\\left(\\dfrac{3}{64}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{3\\pi }{128}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 3π/128",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{128}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Wallis's mixed-power formula for m=4, n=6 (both even, so K=π/2) gives 45/3840·π/2, and multiplying by the outer factor 4 from the range reduction gives the final value 3π/128.",
@@ -130,11 +143,20 @@
           "Mixing up which power (4 or 6) belongs to sin and which to cos."
         ],
         "lines_compact": [
-          "= 4 · [(3)(1)][(5)(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
-          "= 4 · (3)(15)/3840 · π/2",
           {
-            "text": "∴ I = 3π/128",
-            "style": "boxed"
+            "text": "= \\ 4\\ \\cdot \\ \\dfrac{\\left[\\left(3\\right)\\left(1\\right)\\right]\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]}{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\ \\cdot \\ \\dfrac{\\left(3\\right)\\left(15\\right)}{3840} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{128}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

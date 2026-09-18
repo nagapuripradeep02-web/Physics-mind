@@ -56,7 +56,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (sin 2x)/x   for x ≠ 0,   and f(0) = 1",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\dfrac{\\sin 2x}{x}\\text{for}\\ x\\ \\ne \\ 0,\\ \\text{and}\\ f\\left(0\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the definition of continuity at x = 0)",
           "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
           "The same formula applies for x < 0 and for x > 0,",
@@ -101,21 +105,35 @@
         "memory_tip": "sin(2x)/x is sin(2x)/(2x) times 2 — write the 2 outside first, then the standard limit is ready to use.",
         "lines": [
           {
-            "text": "(2 · 1/(2x) = 1/x, so the value is unchanged)",
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{1}{2x} = \\ \\dfrac{1}{x},\\ \\text{so}\\ \\text{the}\\ \\text{value}\\ \\text{is}\\ \\text{unchanged}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
+          {
+            "text": "\\text{For}\\ x\\ \\ne \\ 0,\\ \\dfrac{\\sin 2x}{x} = \\ 2\\ \\cdot \\ \\dfrac{\\sin 2x}{2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2x → 0 as x → 0)",
             "added": true
           },
           "Put θ = 2x. As x → 0, θ → 0 as well.",
-          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
+          {
+            "text": "\\text{Standard}\\ \\lim \\text{it}:\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put θ = 2x, and the constant 2 comes outside)",
             "added": true
           },
-          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ",
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin 2x\\right)}{x} = \\ 2\\ \\cdot \\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = 2 · 1 = 2",
             "style": "indent"
@@ -160,10 +178,22 @@
           "Cancelling the 2 wrongly and getting ½ instead of 2."
         ],
         "lines_compact": [
-          "For x ≠ 0,   (sin 2x)/x = 2 · (sin 2x)/(2x)",
+          {
+            "text": "\\text{For}\\ x\\ \\ne \\ 0,\\ \\dfrac{\\sin 2x}{x} = \\ 2\\ \\cdot \\ \\dfrac{\\sin 2x}{2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put θ = 2x. As x → 0, θ → 0 as well.",
-          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1",
-          "∴ lim(x → 0) (sin 2x)/x = 2 · lim(θ → 0) (sin θ)/θ",
+          {
+            "text": "\\text{Standard}\\ \\lim \\text{it}:\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin 2x\\right)}{x} = \\ 2\\ \\cdot \\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = 2 · 1 = 2",
             "style": "indent"

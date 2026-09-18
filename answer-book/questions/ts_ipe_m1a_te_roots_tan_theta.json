@@ -76,15 +76,24 @@
           "Given a cos2θ + b sin2θ = c",
           "(the formulas for cos2θ and sin2θ in terms of tanθ,",
           {
-            "text": "  true when cosθ ≠ 0; with c + a ≠ 0, θ = π/2 + nπ",
-            "style": "indent"
+            "text": "\\text{true}\\ \\text{when}\\ \\cos \\theta \\ \\ne \\ 0;\\ \\text{with}\\ c\\ + \\ a\\ \\ne \\ 0,\\ \\theta \\ = \\ \\dfrac{\\pi }{2} + \\ n\\pi",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  is not a solution)",
             "style": "indent"
           },
-          "Using cos2θ = (1 − tan²θ)/(1 + tan²θ) and",
-          "sin2θ = 2tanθ/(1 + tan²θ):",
+          {
+            "text": "\\text{Using}\\ \\cos 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{1\\ + \\ \\tan ^{2} \\theta }\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }:",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply both sides by 1 + tan²θ, which is never 0)",
           "⇒ a(1 − tan²θ) + b(2tanθ) = c(1 + tan²θ)",
           "(open the brackets)",
@@ -139,14 +148,19 @@
             "style": "indent",
             "added": true
           },
-          "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
+          {
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ \\text{of}\\ Ax^{2}\\ + \\ Bx\\ + \\ C\\ = \\ 0\\ \\text{is}\\ - \\dfrac{B}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(here A = c + a and B = −2b)",
             "added": true
           },
           {
-            "text": "∴ tanθ₁ + tanθ₂ = 2b/(c + a)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}\\ = \\ \\dfrac{2b}{c\\ + \\ a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -177,10 +191,15 @@
         ],
         "lines_compact": [
           "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
-          "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
           {
-            "text": "∴ tanθ₁ + tanθ₂ = 2b/(c + a)",
-            "style": "boxed"
+            "text": "\\text{Sum}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ \\text{of}\\ Ax^{2}\\ + \\ Bx\\ + \\ C\\ = \\ 0\\ \\text{is}\\ - \\dfrac{B}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}\\ = \\ \\dfrac{2b}{c\\ + \\ a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -197,18 +216,34 @@
             "text": "(here C = c − a)",
             "added": true
           },
-          "Product of the roots is C/A:",
-          "tanθ₁ · tanθ₂ = (c − a)/(c + a)",
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ \\text{is}\\ \\dfrac{C}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\theta _{1}\\ \\cdot \\ \\tan \\theta _{2}\\ = \\ \\dfrac{c\\ - \\ a}{c\\ + \\ a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the tan(A + B) formula)",
             "added": true
           },
-          "Now tan(θ₁+θ₂) = (tanθ₁ + tanθ₂)/(1 − tanθ₁tanθ₂)",
+          {
+            "text": "\\text{Now}\\ \\tan \\left(\\theta _{1} + \\theta _{2}\\right)\\ = \\ \\dfrac{\\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}}{1\\ - \\ \\tan \\theta _{1}\\tan \\theta _{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put in the sum and the product)",
             "added": true
           },
-          "= [2b/(c+a)] / [1 − (c−a)/(c+a)]",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{2b}{c + a}}{1\\ - \\ \\dfrac{c - a}{c + a}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 − (c − a)/(c + a) = [(c + a) − (c − a)]/(c + a)",
             "added": true
@@ -218,7 +253,11 @@
             "style": "indent",
             "added": true
           },
-          "= [2b/(c+a)] / [2a/(c+a)]",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{2b}{c + a}}{\\dfrac{2a}{c + a}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the (c + a) cancels)",
             "added": true
@@ -256,11 +295,31 @@
           "Cancelling before combining, and losing the 2a."
         ],
         "lines_compact": [
-          "Product of the roots is C/A:",
-          "tanθ₁ · tanθ₂ = (c − a)/(c + a)",
-          "Now tan(θ₁+θ₂) = (tanθ₁ + tanθ₂)/(1 − tanθ₁tanθ₂)",
-          "= [2b/(c+a)] / [1 − (c−a)/(c+a)]",
-          "= [2b/(c+a)] / [2a/(c+a)]",
+          {
+            "text": "\\text{Product}\\ \\text{of}\\ \\text{the}\\ \\text{roots}\\ \\text{is}\\ \\dfrac{C}{A}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\theta _{1}\\ \\cdot \\ \\tan \\theta _{2}\\ = \\ \\dfrac{c\\ - \\ a}{c\\ + \\ a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\tan \\left(\\theta _{1} + \\theta _{2}\\right)\\ = \\ \\dfrac{\\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}}{1\\ - \\ \\tan \\theta _{1}\\tan \\theta _{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{2b}{c + a}}{1\\ - \\ \\dfrac{c - a}{c + a}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{2b}{c + a}}{\\dfrac{2a}{c + a}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
             "style": "boxed"

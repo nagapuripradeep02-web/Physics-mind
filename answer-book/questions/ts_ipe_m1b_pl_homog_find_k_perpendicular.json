@@ -75,7 +75,11 @@
           },
           "The given line is x + 2y = k",
           "(divide both sides by k, which is not 0)",
-          "⇒ (x + 2y)/k = 1  ……(1)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ + \\ 2y}{k} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,13 +148,20 @@
           "Homogenising (1) & (2), we get",
           "2x² − 2xy + 3y² + 2x(1) − y(1) − (1)² = 0",
           {
-            "text": "(put 1 = (x + 2y)/k)",
+            "text": "\\left(\\text{put}\\ 1\\ = \\ \\dfrac{x\\ + \\ 2y}{k}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 2x² − 2xy + 3y² + 2x[(x+2y)/k] − y[(x+2y)/k]",
           {
-            "text": "  − [(x+2y)/k]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ 2x^{2}\\ - \\ 2xy\\ + \\ 3y^{2}\\ + \\ 2x\\left[\\dfrac{x + 2y}{k}\\right]\\ - \\ y\\left[\\dfrac{x + 2y}{k}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left[\\dfrac{x + 2y}{k}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -186,10 +197,15 @@
           "Given curve is 2x² − 2xy + 3y² + 2x − y − 1 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
           "2x² − 2xy + 3y² + 2x(1) − y(1) − (1)² = 0",
-          "⇒ 2x² − 2xy + 3y² + 2x[(x+2y)/k] − y[(x+2y)/k]",
           {
-            "text": "  − [(x+2y)/k]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ 2x^{2}\\ - \\ 2xy\\ + \\ 3y^{2}\\ + \\ 2x\\left[\\dfrac{x + 2y}{k}\\right]\\ - \\ y\\left[\\dfrac{x + 2y}{k}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left[\\dfrac{x + 2y}{k}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -205,8 +221,9 @@
             "added": true
           },
           {
-            "text": "  y(x + 2y)/k = k(xy + 2y²)/k²",
+            "text": "\\dfrac{y\\left(x\\ + \\ 2y\\right)}{k} = \\ \\dfrac{k\\left(xy\\ + \\ 2y^{2}\\right)}{k^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {

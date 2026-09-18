@@ -61,7 +61,11 @@
           "Let −√7 + i√21 = x + iy, so x = −√7 and y = √21",
           "The modulus-amplitude form is",
           "z = r(cos θ + i sin θ), where",
-          "r = √(x² + y²) and tan θ = y/x",
+          {
+            "text": "r\\ = \\ \\sqrt{x^{2}\\ + \\ y^{2}}\\ \\text{and}\\ \\tan \\theta \\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r = √((−√7)² + (√21)²) = √(7 + 21)",
           "= √28 = 2√7"
         ],
@@ -101,7 +105,11 @@
         "margin_note": "Second mark. tan θ = y/x = −√3, but that alone gives two candidate angles. The point (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
         "memory_tip": "tan θ = −√3 also fits −π/3. (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
         "lines": [
-          "tan θ = y/x = √21/(−√7) = −√3",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{\\sqrt{21}}{ - \\sqrt{7}} = \\ - \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The point (−√7, √21) lies in the second quadrant,",
           {
             "text": "where the amplitude is taken as",
@@ -111,10 +119,15 @@
             "text": "θ = π − (the acute angle with tan = √3)",
             "added": true
           },
-          "= π − π/3 = 2π/3",
           {
-            "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
-            "style": "boxed"
+            "text": "= \\ \\pi \\ - \\ \\dfrac{\\pi }{3} = \\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ z\\ = \\ 2\\sqrt{7}\\left(\\cos \\left(\\dfrac{2\\pi }{3}\\right)\\ + \\ i\\sin \\left(\\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,12 +159,21 @@
           "Writing cos 2π/3 − i sin 2π/3, which flips the sign of y."
         ],
         "lines_compact": [
-          "tan θ = y/x = √21/(−√7) = −√3",
-          "(−√7, √21) lies in the second quadrant",
-          "⇒ θ = π − π/3 = 2π/3",
           {
-            "text": "∴ z = 2√7(cos(2π/3) + i sin(2π/3))",
-            "style": "boxed"
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{\\sqrt{21}}{ - \\sqrt{7}} = \\ - \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(−√7, √21) lies in the second quadrant",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ \\pi \\ - \\ \\dfrac{\\pi }{3} = \\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ z\\ = \\ 2\\sqrt{7}\\left(\\cos \\left(\\dfrac{2\\pi }{3}\\right)\\ + \\ i\\sin \\left(\\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

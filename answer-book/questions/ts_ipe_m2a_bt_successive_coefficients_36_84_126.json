@@ -109,26 +109,40 @@
         "memory_tip": "The LOWER ratio is ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r. Here 84/36 = 7/3.",
         "lines": [
           {
-            "text": "Dividing (2) by (1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
+            "text": "\\text{Dividing}\\ \\left(2\\right)\\ \\text{by}\\ \\left(1\\right):\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\dfrac{84}{36} = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "text": "\\text{Now}\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\left[\\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "text": "\\div \\ \\left[\\dfrac{n!}{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "text": "= \\ \\dfrac{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "text": "= \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}\\left[r!\\ = \\ r\\left(r\\ - \\ 1\\right)!\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(n − r + 1)/r = 7/3",
+          {
+            "text": "\\dfrac{n\\ - \\ r\\ + \\ 1}{r} = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "3(n − r + 1) = 7r",
             "added": true
@@ -169,8 +183,16 @@
           "Simplifying 84/36 to 7/3 wrongly as 2/1."
         ],
         "lines_compact": [
-          "(2)/(1): ⁿCᵣ/ⁿCᵣ₋₁ = 84/36 = 7/3",
-          "(n − r + 1)/r = 7/3",
+          {
+            "text": "\\dfrac{2}{1}:\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\dfrac{84}{36} = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{n\\ - \\ r\\ + \\ 1}{r} = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "3n − 3r + 3 = 7r ⇒ 3n − 10r = −3 …(4)"
         ]
       },
@@ -184,7 +206,9 @@
         "memory_tip": "The UPPER ratio has a different formula: ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1). Here 126/84 = 3/2.",
         "lines": [
           {
-            "text": "Dividing (3) by (2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
+            "text": "\\text{Dividing}\\ \\left(3\\right)\\ \\text{by}\\ \\left(2\\right):\\ \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{126}{84} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -192,14 +216,22 @@
             "added": true
           },
           {
-            "text": "ⁿCᵣ₊₁/ⁿCᵣ = (n − (r + 1) + 1)/(r + 1)",
+            "text": "\\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{n\\ - \\ \\left(r\\ + \\ 1\\right)\\ + \\ 1}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n − r)/(r + 1)",
+            "text": "= \\ \\dfrac{n\\ - \\ r}{r\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(n − r)/(r + 1) = 3/2",
+          {
+            "text": "\\dfrac{n\\ - \\ r}{r\\ + \\ 1} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2(n − r) = 3(r + 1)",
             "added": true
@@ -240,8 +272,16 @@
           "Reducing 126/84 to 3/1."
         ],
         "lines_compact": [
-          "(3)/(2): ⁿCᵣ₊₁/ⁿCᵣ = 126/84 = 3/2",
-          "(n − r)/(r + 1) = 3/2",
+          {
+            "text": "\\dfrac{3}{2}:\\ \\dfrac{{}^{n}C_{r+1}}{{}^{n}C_{r}} = \\ \\dfrac{126}{84} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{n\\ - \\ r}{r\\ + \\ 1} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "2n − 2r = 3r + 3 ⇒ 2n − 5r = 3 …(5)"
         ]
       },

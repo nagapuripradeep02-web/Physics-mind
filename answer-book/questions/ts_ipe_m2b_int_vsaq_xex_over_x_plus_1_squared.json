@@ -56,8 +56,16 @@
             "text": "  into a function and its own derivative:",
             "style": "indent"
           },
-          "x/(x+1)² = (x+1−1)/(x+1)² = 1/(x+1) − 1/(x+1)²",
-          "Here f(x) = 1/(x+1) ⇒ f′(x) = −1/(x+1)²"
+          {
+            "text": "\\dfrac{x}{\\left(x + 1\\right)^{2}} = \\ \\dfrac{x + 1 - 1}{\\left(x + 1\\right)^{2}} = \\ \\dfrac{1}{x + 1} - \\ \\dfrac{1}{\\left(x + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ f\\left(x\\right)\\ = \\ \\dfrac{1}{x + 1} \\Rightarrow \\ f'\\left(x\\right)\\ = \\ - \\dfrac{1}{\\left(x + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing x as (x+1)−1 splits the fraction into 1/(x+1) and −1/(x+1)², which are exactly f(x) and f′(x) for f(x)=1/(x+1) — the derivative of 1/(x+1) genuinely is −1/(x+1)².",
         "common_mistakes": [
@@ -79,12 +87,15 @@
             "added": true
           },
           {
-            "text": "With f(x) = 1/(x+1):",
+            "text": "\\text{With}\\ f\\left(x\\right)\\ = \\ \\dfrac{1}{x + 1}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ ∫ [xeˣ/(x+1)²] dx = eˣ/(x+1) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{xe^{x}}{\\left(x + 1\\right)^{2}}\\right]dx\\ = \\ \\dfrac{e^{x}}{x + 1} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "With f(x)=1/(x+1) identified, the standard eˣ[f+f′] result gives eˣ/(x+1) directly.",
@@ -95,8 +106,9 @@
         "memory_tip": "The answer is eˣ times f(x) = 1/(x+1), the term with the SMALLER power in the denominator.",
         "lines_compact": [
           {
-            "text": "∴ ∫ [xeˣ/(x+1)²] dx = eˣ/(x+1) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{xe^{x}}{\\left(x + 1\\right)^{2}}\\right]dx\\ = \\ \\dfrac{e^{x}}{x + 1} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

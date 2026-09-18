@@ -63,7 +63,11 @@
             "text": "  grows by π/|k|)",
             "style": "indent"
           },
-          "Period of tan kx = π/|k|"
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\tan kx\\ = \\ \\dfrac{\\pi }{\\left|k\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,11 +108,14 @@
         "lines": [
           "Here k = 5",
           {
-            "text": "∴ Period = π/|5| = π/5",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{\\pi }{\\left|5\\right|} = \\ \\dfrac{\\pi }{5}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "Check: tan(5(x + π/5)) = tan(5x + π) = tan 5x",
+            "text": "\\text{Check}:\\ \\tan \\left(5\\left(x\\ + \\ \\dfrac{\\pi }{5}\\right)\\right)\\ = \\ \\tan \\left(5x\\ + \\ \\pi \\right)\\ = \\ \\tan 5x",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -140,8 +147,9 @@
         "lines_compact": [
           "Here k = 5",
           {
-            "text": "∴ Period = π/|5| = π/5",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{\\pi }{\\left|5\\right|} = \\ \\dfrac{\\pi }{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

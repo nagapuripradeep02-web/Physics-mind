@@ -146,8 +146,9 @@
             "added": true
           },
           {
-            "text": "P(B|A) = P(A ∩ B) / P(A)",
-            "style": "boxed"
+            "text": "P\\left(B|A\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(A\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -185,8 +186,9 @@
             "style": "normal"
           },
           {
-            "text": "P(B|A) = P(A ∩ B) / P(A)",
-            "style": "boxed"
+            "text": "P\\left(B|A\\right)\\ = \\ \\dfrac{P\\left(A\\ \\cap \\ B\\right)}{P\\left(A\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

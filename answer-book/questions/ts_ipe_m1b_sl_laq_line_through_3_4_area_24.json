@@ -67,7 +67,11 @@
             "text": "  and the y-axis at (0, q))",
             "style": "indent"
           },
-          "Let the line be x/p + y/q = 1",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{line}\\ \\text{be}\\ \\dfrac{x}{p} + \\ \\dfrac{y}{q} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "p = x-intercept, q = y-intercept",
           "Triangle is in the first quadrant",
           "⇒ p > 0 and q > 0"
@@ -110,11 +114,17 @@
         "margin_note": "One mark. The line passes through (3, 4), so those coordinates satisfy the intercept form. This is the first of the two conditions.",
         "lines": [
           {
-            "text": "(put x = 3 and y = 4 in x/p + y/q = 1)",
+            "text": "\\left(\\text{put}\\ x\\ = \\ 3\\ \\text{and}\\ y\\ = \\ 4\\ \\text{in}\\ \\dfrac{x}{p} + \\ \\dfrac{y}{q} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The line passes through (3, 4), so",
-          "3/p + 4/q = 1 ……(1)"
+          {
+            "text": "\\dfrac{3}{p} + \\ \\dfrac{4}{q} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,7 +157,11 @@
         "memory_tip": "Two unknowns need two conditions: the POINT gives the first.",
         "lines_compact": [
           "The line passes through (3, 4), so",
-          "3/p + 4/q = 1 ……(1)"
+          {
+            "text": "\\dfrac{3}{p} + \\ \\dfrac{4}{q} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -166,17 +180,29 @@
             "style": "indent",
             "added": true
           },
-          "Area of the triangle = (1/2) p q",
+          {
+            "text": "\\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ = \\ \\left(\\dfrac{1}{2}\\right)pq",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 2)",
             "added": true
           },
-          "⇒ (1/2) p q = 24  ⇒  pq = 48",
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{1}{2}\\right)pq\\ = \\ 24\\ \\Rightarrow \\ pq\\ = \\ 48",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by p, which is not 0)",
             "added": true
           },
-          "∴ q = 48/p ……(2)"
+          {
+            "text": "\\therefore \\ q\\ = \\ \\dfrac{48}{p}\\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -208,9 +234,21 @@
         "mark_note": "Method",
         "memory_tip": "The legs of the triangle ARE the two intercepts, so area = (1/2)pq.",
         "lines_compact": [
-          "Area of the triangle = (1/2) p q",
-          "⇒ (1/2) p q = 24  ⇒  pq = 48",
-          "∴ q = 48/p ……(2)"
+          {
+            "text": "\\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ = \\ \\left(\\dfrac{1}{2}\\right)pq",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(\\dfrac{1}{2}\\right)pq\\ = \\ 24\\ \\Rightarrow \\ pq\\ = \\ 48",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ q\\ = \\ \\dfrac{48}{p}\\dots \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -221,17 +259,31 @@
         "margin_note": "Two more marks. Put (2) into (1), clear the fractions by multiplying by 12p, and the quadratic turns out to be a perfect square — one repeated root, so one line.",
         "lines": [
           {
-            "text": "(write 48/p in place of q in (1): 4 ÷ (48/p) = 4p/48)",
+            "text": "\\left(\\text{write}\\ \\dfrac{48}{p}\\text{in}\\ \\text{place}\\ \\text{of}\\ q\\ \\text{in}\\ \\left(1\\right):\\ 4\\ \\div \\ \\left(\\dfrac{48}{p}\\right)\\ = \\ \\dfrac{4p}{48}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put (2) in (1):  3/p + 4p/48 = 1",
           {
-            "text": "(4/48 = 1/12)",
+            "text": "\\text{Put}\\ \\left(2\\right)\\ \\text{in}\\ \\left(1\\right):\\ \\dfrac{3}{p} + \\ \\dfrac{4p}{48} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4}{48} = \\ \\dfrac{1}{12}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 3/p + p/12 = 1",
           {
-            "text": "(12p × 3/p = 36, 12p × p/12 = p², and 12p × 1 = 12p)",
+            "text": "\\Rightarrow \\ \\dfrac{3}{p} + \\ \\dfrac{p}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(12p\\ \\times \\ \\dfrac{3}{p} = \\ 36,\\ 12p\\ \\times \\ \\dfrac{p}{12} = \\ p^{2},\\ \\text{and}\\ 12p\\ \\times \\ 1\\ = \\ 12p\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Multiply by 12p:  36 + p² = 12p",
@@ -249,7 +301,11 @@
             "text": "(a square is 0 only when the number squared is 0)",
             "added": true
           },
-          "∴ p = 6 (repeated), and q = 48/6 = 8"
+          {
+            "text": "\\therefore \\ p\\ = \\ 6\\left(\\text{repeated}\\right),\\ \\text{and}\\ q\\ = \\ \\dfrac{48}{6} = \\ 8",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -281,11 +337,23 @@
         "mark_note": "Method",
         "memory_tip": "A perfect square means ONE line, not none — 24 is the smallest area possible here.",
         "lines_compact": [
-          "Put (2) in (1):  3/p + 4p/48 = 1",
-          "⇒ 3/p + p/12 = 1",
+          {
+            "text": "\\text{Put}\\ \\left(2\\right)\\ \\text{in}\\ \\left(1\\right):\\ \\dfrac{3}{p} + \\ \\dfrac{4p}{48} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3}{p} + \\ \\dfrac{p}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 12p:  36 + p² = 12p",
           "⇒ p² − 12p + 36 = 0  ⇒  (p − 6)² = 0",
-          "∴ p = 6 (repeated), and q = 48/6 = 8"
+          {
+            "text": "\\therefore \\ p\\ = \\ 6\\left(\\text{repeated}\\right),\\ \\text{and}\\ q\\ = \\ \\dfrac{48}{6} = \\ 8",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -296,12 +364,22 @@
         "margin_note": "The last two marks. Put p and q back into the intercept form, clear it, then test both given conditions on the answer — the point and the area.",
         "lines": [
           {
-            "text": "(multiply x/6 + y/8 = 1 by 24: 4x + 3y = 24)",
+            "text": "\\left(\\text{multiply}\\ \\dfrac{x}{6} + \\ \\dfrac{y}{8} = \\ 1\\ \\text{by}\\ 24:\\ 4x\\ + \\ 3y\\ = \\ 24\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Line: x/6 + y/8 = 1  ⇒  4x + 3y = 24",
+          {
+            "text": "\\text{Line}:\\ \\dfrac{x}{6} + \\ \\dfrac{y}{8} = \\ 1\\ \\Rightarrow \\ 4x\\ + \\ 3y\\ = \\ 24",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check (3, 4):  4(3) + 3(4) = 24, correct.",
-          "Check area:  (1/2)(6)(8) = 24 sq. units",
+          {
+            "text": "\\text{Check}\\ \\text{area}:\\ \\left(\\dfrac{1}{2}\\right)\\left(6\\right)\\left(8\\right)\\ = \\ 24sq.\\ \\text{units}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Required line is 4x + 3y − 24 = 0",
             "style": "boxed"
@@ -337,9 +415,17 @@
         "mark_note": "Method",
         "memory_tip": "Test BOTH given conditions on the finished line: the point and the area.",
         "lines_compact": [
-          "Line: x/6 + y/8 = 1  ⇒  4x + 3y = 24",
+          {
+            "text": "\\text{Line}:\\ \\dfrac{x}{6} + \\ \\dfrac{y}{8} = \\ 1\\ \\Rightarrow \\ 4x\\ + \\ 3y\\ = \\ 24",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check (3, 4):  4(3) + 3(4) = 24, correct.",
-          "Check area:  (1/2)(6)(8) = 24 sq. units",
+          {
+            "text": "\\text{Check}\\ \\text{area}:\\ \\left(\\dfrac{1}{2}\\right)\\left(6\\right)\\left(8\\right)\\ = \\ 24sq.\\ \\text{units}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Required line is 4x + 3y − 24 = 0",
             "style": "boxed"

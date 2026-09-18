@@ -86,8 +86,16 @@
           "so it has no real factors.",
           "An irreducible quadratic gets",
           "  a linear top (Bx + C):",
-          "(x² − 3)/((x + 2)(x² + 1))",
-          "= A/(x + 2) + (Bx + C)/(x² + 1)"
+          {
+            "text": "\\dfrac{x^{2}\\ - \\ 3}{\\left(x\\ + \\ 2\\right)\\left(x^{2}\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ + \\ 2} + \\ \\dfrac{Bx\\ + \\ C}{x^{2}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -193,7 +201,9 @@
             "added": true
           },
           {
-            "text": "1 = 5A, so A = 1/5",
+            "text": "1\\ = \\ 5A,\\ \\text{so}\\ A\\ = \\ \\dfrac{1}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -201,11 +211,15 @@
             "added": true
           },
           {
-            "text": "−3 = 1/5 + 2C",
+            "text": "- 3\\ = \\ \\dfrac{1}{5} + \\ 2C",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "2C = −3 − 1/5 = −16/5, so C = −8/5",
+            "text": "2C\\ = \\ - 3\\ - \\ \\dfrac{1}{5} = \\ - \\dfrac{16}{5},\\ \\text{so}\\ C\\ = \\ - \\dfrac{8}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -217,7 +231,9 @@
             "added": true
           },
           {
-            "text": "B = 1 − 1/5 = 4/5",
+            "text": "B\\ = \\ 1\\ - \\ \\dfrac{1}{5} = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -252,10 +268,26 @@
           "Writing B = 1 by forgetting A in the x² coefficient."
         ],
         "lines_compact": [
-          "Put x = −2: 1 = A(5) ⇒ A = 1/5",
-          "Put x = 0: −3 = A + 2C ⇒ 2C = −16/5",
-          "⇒ C = −8/5",
-          "Compare x²: A + B = 1 ⇒ B = 4/5"
+          {
+            "text": "\\text{Put}\\ x\\ = \\ - 2:\\ 1\\ = \\ A\\left(5\\right)\\ \\Rightarrow \\ A\\ = \\ \\dfrac{1}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ = \\ 0:\\ - 3\\ = \\ A\\ + \\ 2C\\ \\Rightarrow \\ 2C\\ = \\ - \\dfrac{16}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ C\\ = \\ - \\dfrac{8}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Compare}\\ x^{2}:\\ A\\ + \\ B\\ = \\ 1\\ \\Rightarrow \\ B\\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -267,10 +299,15 @@
         "margin_note": "Last mark. Bx + C = (4/5)x − 8/5 = (4x − 8)/5, so the second fraction is (4x − 8)/(5(x² + 1)). The first is 1/(5(x + 2)).",
         "memory_tip": "Every constant is a fifth: (4/5)x − 8/5 becomes (4x − 8)/5. Check x = 1: −2 = 2/5 − 12/5.",
         "lines": [
-          "∴ (x² − 3)/((x + 2)(x² + 1))",
           {
-            "text": "= 1/(5(x + 2)) + (4x − 8)/(5(x² + 1))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{2}\\ - \\ 3}{\\left(x\\ + \\ 2\\right)\\left(x^{2}\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{5\\left(x\\ + \\ 2\\right)} + \\ \\dfrac{4x\\ - \\ 8}{5\\left(x^{2}\\ + \\ 1\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

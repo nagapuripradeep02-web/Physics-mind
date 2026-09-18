@@ -68,8 +68,16 @@
             "style": "indent"
           },
           "Length of transverse axis = 2a = 8 ⇒ a = 4",
-          "So e = 5/4",
-          "(e = ae ÷ a = 5/4)"
+          {
+            "text": "\\text{So}\\ e\\ = \\ \\dfrac{5}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(e\\ = \\ ae\\ \\div \\ a\\ = \\ \\dfrac{5}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The foci give ae directly, and the transverse-axis length gives a on its own — dividing the two recovers e without needing b at all yet.",
         "common_mistakes": [
@@ -90,18 +98,27 @@
             "text": "For a hyperbola, b² = a²(e² − 1):",
             "added": true
           },
-          "b² = a²(e² − 1) = 16(25/16 − 1) = 16(9/16) = 9",
           {
-            "text": "(25/16 − 16/16 = 9/16, and 16 × 9/16 = 9)",
+            "text": "b^{2}\\ = \\ a^{2}\\left(e^{2}\\ - \\ 1\\right)\\ = \\ 16\\left(\\dfrac{25}{16} - \\ 1\\right)\\ = \\ 16\\left(\\dfrac{9}{16}\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{25}{16} - \\ \\dfrac{16}{16} = \\ \\dfrac{9}{16},\\ \\text{and}\\ 16\\ \\times \\ \\dfrac{9}{16} = \\ 9\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put a² = 16 and b² = 9 in x²/a² − y²/b² = 1:",
+            "text": "\\text{Put}\\ a^{2}\\ = \\ 16\\ \\text{and}\\ b^{2}\\ = \\ 9\\ \\text{in}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ 1:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Equation of the hyperbola: x²/16 − y²/9 = 1",
-            "style": "boxed"
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{hyperbola}:\\ \\dfrac{x^{2}}{16} - \\ \\dfrac{y^{2}}{9} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "Check: ae = √(a² + b²) = √25 = 5.",
@@ -114,10 +131,15 @@
           "Forgetting to square a before substituting into the standard form (writing x²/4 instead of x²/16)."
         ],
         "lines_compact": [
-          "b² = a²(e² − 1) = 16(25/16 − 1) = 16(9/16) = 9",
           {
-            "text": "Equation of the hyperbola: x²/16 − y²/9 = 1",
-            "style": "boxed"
+            "text": "b^{2}\\ = \\ a^{2}\\left(e^{2}\\ - \\ 1\\right)\\ = \\ 16\\left(\\dfrac{25}{16} - \\ 1\\right)\\ = \\ 16\\left(\\dfrac{9}{16}\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{hyperbola}:\\ \\dfrac{x^{2}}{16} - \\ \\dfrac{y^{2}}{9} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

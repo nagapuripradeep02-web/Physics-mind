@@ -65,9 +65,17 @@
             "text": "  is (1/2)x⁻¹⁄² = 1/(2√x))",
             "style": "indent"
           },
-          "f′(x) = 1/(2√x)",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(√81 = 9)",
-          "f′(81) = 1/(2 × 9) = 1/18"
+          {
+            "text": "f'\\left(81\\right)\\ = \\ \\dfrac{1}{2\\ \\times \\ 9} = \\ \\dfrac{1}{18}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,12 +120,20 @@
           },
           "√82 = f(81 + 1) ≈ f(81) + f′(81)·(1)",
           {
-            "text": "(f(81) = √81 = 9 and f′(81) = 1/18)",
+            "text": "\\left(f\\left(81\\right)\\ = \\ \\sqrt{81}\\ = \\ 9\\ \\text{and}\\ f'\\left(81\\right)\\ = \\ \\dfrac{1}{18}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 9 + (1/18)(1)",
           {
-            "text": "(1/18 = 0.055556, to six decimal places)",
+            "text": "= \\ 9\\ + \\ \\left(\\dfrac{1}{18}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{18} = \\ 0.055556,\\ \\text{to}\\ \\text{six}\\ \\text{decimal}\\ \\text{places}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 9 + 0.055556",
@@ -165,7 +181,11 @@
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds.",
         "lines_compact": [
           "√82 = f(81 + 1) ≈ f(81) + f′(81)·(1)",
-          "= 9 + (1/18)(1)",
+          {
+            "text": "= \\ 9\\ + \\ \\left(\\dfrac{1}{18}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 9 + 0.055556",
           "= 9.055556",
           {

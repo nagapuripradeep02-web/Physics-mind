@@ -52,14 +52,30 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "In the first quadrant 0 < x < π/2.",
+          {
+            "text": "\\text{In}\\ \\text{the}\\ \\text{first}\\ \\text{quadrant}\\ 0\\ < \\ x\\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "There tan x is defined, and",
-          "(2 tan x)/(1 − tan²x) = tan 2x",
+          {
+            "text": "\\dfrac{2\\tan x}{1\\ - \\ \\tan ^{2} x} = \\ \\tan 2x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(this is the double-angle formula for tan)",
           "This needs 1 − tan²x ≠ 0, so tan x ≠ 1.",
           "(tan x > 0 in the first quadrant, so tan x ≠ −1)",
-          "At x = π/4, tan x = 1 and the expression",
-          "has no value, so x = π/4 is left out."
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{\\pi }{4},\\ \\tan x\\ = \\ 1\\ \\text{and}\\ \\text{the}\\ \\text{expression}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "has\\ \\text{no}\\ \\text{value},\\ \\text{so}\\ x\\ = \\ \\dfrac{\\pi }{4}\\text{is}\\ \\text{left}\\ \\text{out}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,18 +118,35 @@
             "text": "Double the range of x:",
             "added": true
           },
-          "0 < x < π/2 gives 0 < 2x < π.",
+          {
+            "text": "0\\ < \\ x\\ < \\ \\dfrac{\\pi }{2}\\text{gives}\\ 0\\ < \\ 2x\\ < \\ \\pi .",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "tan is positive in Q₁ and negative in Q₂:",
             "added": true
           },
-          "tan 2x is positive only for 0 < 2x < π/2,",
-          "that is for 0 < x < π/4.",
-          "For π/4 < x < π/2, 2x lies in the second",
+          {
+            "text": "\\tan 2x\\ \\text{is}\\ \\text{positive}\\ \\text{only}\\ \\text{for}\\ 0\\ < \\ 2x\\ < \\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\text{for}\\ 0\\ < \\ x\\ < \\ \\dfrac{\\pi }{4}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{For}\\ \\dfrac{\\pi }{4} < \\ x\\ < \\ \\dfrac{\\pi }{2},\\ 2x\\ \\text{lies}\\ \\text{in}\\ \\text{the}\\ \\text{second}",
+            "style": "normal",
+            "render": "katex"
+          },
           "quadrant and tan 2x is negative.",
           {
-            "text": "∴ x ∈ (0, π/4), that is 0° < x < 45°",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{4}\\right),\\ \\text{that}\\ \\text{is}\\ 0^{\\circ}\\ < \\ x\\ < \\ 45^{\\circ}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,14 +178,31 @@
           "Writing 0 ≤ x, although the value at x = 0 is 0 and 0 is not positive."
         ],
         "lines_compact": [
-          "0 < x < π/2 gives 0 < 2x < π.",
-          "tan 2x is positive only for 0 < 2x < π/2,",
-          "that is for 0 < x < π/4.",
-          "For π/4 < x < π/2, 2x lies in the second",
+          {
+            "text": "0\\ < \\ x\\ < \\ \\dfrac{\\pi }{2}\\text{gives}\\ 0\\ < \\ 2x\\ < \\ \\pi .",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan 2x\\ \\text{is}\\ \\text{positive}\\ \\text{only}\\ \\text{for}\\ 0\\ < \\ 2x\\ < \\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\text{for}\\ 0\\ < \\ x\\ < \\ \\dfrac{\\pi }{4}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{For}\\ \\dfrac{\\pi }{4} < \\ x\\ < \\ \\dfrac{\\pi }{2},\\ 2x\\ \\text{lies}\\ \\text{in}\\ \\text{the}\\ \\text{second}",
+            "style": "normal",
+            "render": "katex"
+          },
           "quadrant and tan 2x is negative.",
           {
-            "text": "∴ x ∈ (0, π/4), that is 0° < x < 45°",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{4}\\right),\\ \\text{that}\\ \\text{is}\\ 0^{\\circ}\\ < \\ x\\ < \\ 45^{\\circ}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -69,16 +69,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given cosh x = 5/2",
+          {
+            "text": "\\text{Given}\\ \\cos hx\\ = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sinh²x = cosh²x − 1; take x > 0, so sinh x > 0;",
           {
             "text": "  for x < 0, sinh x and sinh 2x are negative)",
             "style": "indent"
           },
           "sinh x = √(cosh²x − 1)   [∵ cosh²x − sinh²x = 1]",
-          "(25/4 − 1 = 25/4 − 4/4 = 21/4)",
-          "= √((5/2)² − 1) = √(25/4 − 1)",
-          "= √(21/4) = √21/2"
+          {
+            "text": "\\left(\\dfrac{25}{4} - \\ 1\\ = \\ \\dfrac{25}{4} - \\ \\dfrac{4}{4} = \\ \\dfrac{21}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\left(\\dfrac{5}{2}\\right)^{2}\\ - \\ 1}\\ = \\ \\sqrt{\\dfrac{25}{4} - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{21}{4}}\\ = \\ \\dfrac{\\sqrt{21}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,20 +134,37 @@
         "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd is not in cosh 2x but stays in sinh 2x.",
         "lines": [
           {
-            "text": "(cosh²x = 25/4 and sinh²x = 21/4)",
+            "text": "\\left(\\cos h^{2}x\\ = \\ \\dfrac{25}{4}\\text{and}\\ \\sin h^{2}x\\ = \\ \\dfrac{21}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
           {
-            "text": "(2 × (√21/2) × (5/2) = 5√21/2)",
+            "text": "\\cos h2x\\ = \\ \\cos h^{2}x\\ + \\ \\sin h^{2}x\\ = \\ \\dfrac{25}{4} + \\ \\dfrac{21}{4} = \\ \\dfrac{46}{4} = \\ \\dfrac{23}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\left(\\dfrac{\\sqrt{21}}{2}\\right)\\ \\times \\ \\left(\\dfrac{5}{2}\\right)\\ = \\ \\dfrac{5\\sqrt{21}}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
           {
-            "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
-            "style": "boxed"
+            "text": "\\sin h2x\\ = \\ 2\\sin hx\\cos hx\\ = \\ 2\\left(\\dfrac{\\sqrt{21}}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\ = \\ \\dfrac{5\\sqrt{21}}{2}",
+            "style": "normal",
+            "render": "katex"
           },
-          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
+          {
+            "text": "\\therefore \\ \\cos h2x\\ = \\ \\dfrac{23}{2},\\ \\sin h2x\\ = \\ \\dfrac{5\\sqrt{21}}{2}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{taking}\\ x\\ > \\ 0;\\ \\text{for}\\ x\\ < \\ 0,\\ \\sin h2x\\ = \\ - \\dfrac{5\\sqrt{21}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -161,13 +194,26 @@
           "Giving only cosh 2x."
         ],
         "lines_compact": [
-          "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
-          "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",
           {
-            "text": "∴ cosh 2x = 23/2,  sinh 2x = 5√21/2",
-            "style": "boxed"
+            "text": "\\cos h2x\\ = \\ \\cos h^{2}x\\ + \\ \\sin h^{2}x\\ = \\ \\dfrac{25}{4} + \\ \\dfrac{21}{4} = \\ \\dfrac{46}{4} = \\ \\dfrac{23}{2}",
+            "style": "normal",
+            "render": "katex"
           },
-          "(taking x > 0; for x < 0, sinh 2x = −5√21/2)"
+          {
+            "text": "\\sin h2x\\ = \\ 2\\sin hx\\cos hx\\ = \\ 2\\left(\\dfrac{\\sqrt{21}}{2}\\right)\\left(\\dfrac{5}{2}\\right)\\ = \\ \\dfrac{5\\sqrt{21}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos h2x\\ = \\ \\dfrac{23}{2},\\ \\sin h2x\\ = \\ \\dfrac{5\\sqrt{21}}{2}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{taking}\\ x\\ > \\ 0;\\ \\text{for}\\ x\\ < \\ 0,\\ \\sin h2x\\ = \\ - \\dfrac{5\\sqrt{21}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

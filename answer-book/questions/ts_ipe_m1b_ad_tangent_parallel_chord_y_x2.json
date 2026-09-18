@@ -59,10 +59,18 @@
             "text": "  is (y₂ − y₁)/(x₂ − x₁))",
             "style": "indent"
           },
-          "Slope of the chord AB = (1 − 0)/(1 − 0) = 1",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{chord}\\ AB\\ = \\ \\dfrac{1\\ - \\ 0}{1\\ - \\ 0} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(parallel lines have equal slopes)",
           "A tangent parallel to AB has the same slope,",
-          "so we need dy/dx = 1."
+          {
+            "text": "\\text{so}\\ \\text{we}\\ \\text{need}\\ \\dfrac{dy}{dx}\\ = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,20 +112,38 @@
         "memory_tip": "Solve for x from the derivative, then put that x back into the curve to get y.",
         "lines": [
           {
-            "text": "(power rule: d/dx of x² is 2x)",
+            "text": "\\left(\\text{power}\\ \\text{rule}:\\ \\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y = x² ⇒ dy/dx = 2x",
           {
-            "text": "(put dy/dx = 1, then divide by 2)",
-            "added": true
+            "text": "y\\ = \\ x^{2}\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ 2x",
+            "style": "normal",
+            "render": "katex"
           },
-          "2x = 1 ⇒ x = 1/2",
           {
-            "text": "(put 1/2 in place of x in y = x²)",
+            "text": "\\left(\\text{put}\\ \\dfrac{dy}{dx}\\ = \\ 1,\\ \\text{then}\\ \\text{divide}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At x = 1/2, y = (1/2)² = 1/4",
+          {
+            "text": "2x\\ = \\ 1\\ \\Rightarrow \\ x\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{2}\\text{in}\\ \\text{place}\\ \\text{of}\\ x\\ \\text{in}\\ y\\ = \\ x^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{1}{2},\\ y\\ = \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(Lagrange's theorem on [0, 1] gives such a point",
             "added": true
@@ -127,11 +153,16 @@
             "style": "indent",
             "added": true
           },
-          "x = 1/2 lies between 0 and 1,",
+          {
+            "text": "x\\ = \\ \\dfrac{1}{2}\\text{lies}\\ \\text{between}\\ 0\\ \\text{and}\\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "as Lagrange's mean value theorem states it must.",
           {
-            "text": "∴ the required point is (1/2, 1/4)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{required}\\ \\text{point}\\ \\text{is}\\ \\left(\\dfrac{1}{2},\\ \\dfrac{1}{4}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -163,14 +194,31 @@
           "Giving the answer as x = 1/2 alone when a point was asked for."
         ],
         "lines_compact": [
-          "y = x² ⇒ dy/dx = 2x",
-          "2x = 1 ⇒ x = 1/2",
-          "At x = 1/2, y = (1/2)² = 1/4",
-          "x = 1/2 lies between 0 and 1,",
+          {
+            "text": "y\\ = \\ x^{2}\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2x\\ = \\ 1\\ \\Rightarrow \\ x\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{1}{2},\\ y\\ = \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ \\dfrac{1}{2}\\text{lies}\\ \\text{between}\\ 0\\ \\text{and}\\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "as Lagrange's mean value theorem states it must.",
           {
-            "text": "∴ the required point is (1/2, 1/4)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{required}\\ \\text{point}\\ \\text{is}\\ \\left(\\dfrac{1}{2},\\ \\dfrac{1}{4}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

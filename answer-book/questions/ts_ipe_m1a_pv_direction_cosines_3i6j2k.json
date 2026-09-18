@@ -108,7 +108,11 @@
             "text": "(v·i = |v||i| cos α, and |i| = 1)",
             "added": true
           },
-          "cos α = (v·i)/(|v||i|) = (v·i)/|v|",
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{v \\cdot i}{\\left|v\\right|\\left|i\\right|} = \\ \\dfrac{v \\cdot i}{\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the same for j and k.",
           "So cos α, cos β, cos γ are the components",
           "of the unit vector along v."
@@ -143,7 +147,11 @@
         "lines_compact": [
           "α, β, γ are the angles v makes with the",
           "positive x, y and z axes.",
-          "cos α = (v·i)/(|v||i|) = (v·i)/|v|",
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{v \\cdot i}{\\left|v\\right|\\left|i\\right|} = \\ \\dfrac{v \\cdot i}{\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and the same for j and k.",
           "So cos α, cos β, cos γ are the components",
           "of the unit vector along v."
@@ -158,15 +166,35 @@
         "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the y component of the vector is negative, so it makes an obtuse angle with the positive y axis.",
         "memory_tip": "Divide each component by 7 and KEEP its sign.",
         "lines": [
-          "Unit vector along v = v/|v|",
+          {
+            "text": "\\text{Unit}\\ \\text{vector}\\ \\text{along}\\ v\\ = \\ \\dfrac{v}{\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide each component by 7)",
             "added": true
           },
-          "  = (3i − 6j + 2k)/7",
-          "cos α = 3/7",
-          "cos β = −6/7",
-          "cos γ = 2/7"
+          {
+            "text": "= \\ \\dfrac{3i\\ - \\ 6j\\ + \\ 2k}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{3}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\beta \\ = \\ - \\dfrac{6}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -196,11 +224,31 @@
           "Pairing the values with the wrong axes."
         ],
         "lines_compact": [
-          "Unit vector along v = v/|v|",
-          "  = (3i − 6j + 2k)/7",
-          "cos α = 3/7",
-          "cos β = −6/7",
-          "cos γ = 2/7"
+          {
+            "text": "\\text{Unit}\\ \\text{vector}\\ \\text{along}\\ v\\ = \\ \\dfrac{v}{\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3i\\ - \\ 6j\\ + \\ 2k}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{3}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\beta \\ = \\ - \\dfrac{6}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -217,15 +265,25 @@
             "added": true
           },
           "cos²α + cos²β + cos²γ",
-          "  = (9 + 36 + 4)/49",
-          "  = 49/49 = 1",
           {
-            "text": "∴ cos α = 3/7, cos β = −6/7,",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{9\\ + \\ 36\\ + \\ 4}{49}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "cos γ = 2/7",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{49}{49} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ \\dfrac{3}{7},\\ \\cos \\beta \\ = \\ - \\dfrac{6}{7},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{2}{7}",
+            "style": "boxed",
+            "render": "katex"
           },
           "cos β is negative, so β is obtuse. That is",
           "right, since the j component of v, −6, is negative."
@@ -259,15 +317,25 @@
         ],
         "lines_compact": [
           "cos²α + cos²β + cos²γ",
-          "  = (9 + 36 + 4)/49",
-          "  = 49/49 = 1",
           {
-            "text": "∴ cos α = 3/7, cos β = −6/7,",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{9\\ + \\ 36\\ + \\ 4}{49}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "cos γ = 2/7",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{49}{49} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ \\dfrac{3}{7},\\ \\cos \\beta \\ = \\ - \\dfrac{6}{7},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\gamma \\ = \\ \\dfrac{2}{7}",
+            "style": "boxed",
+            "render": "katex"
           },
           "cos β is negative, so β is obtuse. That is",
           "right, since the j component of v, −6, is negative."

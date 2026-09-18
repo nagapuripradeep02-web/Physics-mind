@@ -157,13 +157,25 @@
         "memory_tip": "cos θ = (a·b)/(|a||b|) — the lengths MULTIPLY underneath.",
         "lines": [
           "Let θ be the angle between a and b.",
-          "cos θ = (a·b)/(|a||b|)",
-          "  = 12/(7 × 11)",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|\\left|b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12}{7\\ \\times \\ 11}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(7 × 11 = 77)",
             "added": true
           },
-          "  = 12/77"
+          {
+            "text": "= \\ \\dfrac{12}{77}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -193,9 +205,21 @@
         ],
         "lines_compact": [
           "Let θ be the angle between a and b.",
-          "cos θ = (a·b)/(|a||b|)",
-          "  = 12/(7 × 11)",
-          "  = 12/77"
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|\\left|b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12}{7\\ \\times \\ 11}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12}{77}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -208,14 +232,19 @@
         "memory_tip": "Two things were asked, so two things go in the final answer.",
         "lines": [
           {
-            "text": "∴ a·b = 12 and θ = Cos⁻¹(12/77)",
-            "style": "boxed"
+            "text": "\\therefore \\ a \\cdot b\\ = \\ 12\\ \\text{and}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{12}{77}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "(Cos⁻¹ of a positive number lies between 0° and 90°)",
             "added": true
           },
-          "12/77 ≈ 0.156, which is positive and",
+          {
+            "text": "\\dfrac{12}{77} \\approx \\ 0.156,\\ \\text{which}\\ \\text{is}\\ \\text{positive}\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           "small, so θ is a little under 90°:",
           "θ ≈ 81°."
         ],
@@ -248,10 +277,15 @@
         ],
         "lines_compact": [
           {
-            "text": "∴ a·b = 12 and θ = Cos⁻¹(12/77)",
-            "style": "boxed"
+            "text": "\\therefore \\ a \\cdot b\\ = \\ 12\\ \\text{and}\\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{12}{77}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
-          "12/77 ≈ 0.156, which is positive and",
+          {
+            "text": "\\dfrac{12}{77} \\approx \\ 0.156,\\ \\text{which}\\ \\text{is}\\ \\text{positive}\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           "small, so θ is a little under 90°:",
           "θ ≈ 81°."
         ]

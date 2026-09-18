@@ -54,7 +54,11 @@
           },
           "Let y = Sinh⁻¹x, so x = sinh y",
           "(the definition of sinh y)",
-          "x = (eʸ − e⁻ʸ)/2 ⇒ 2x = eʸ − e⁻ʸ",
+          {
+            "text": "x\\ = \\ \\dfrac{e^{y}\\ - \\ e^{-y}}{2} \\Rightarrow \\ 2x\\ = \\ e^{y}\\ - \\ e^{-y}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(eʸ × e⁻ʸ = 1)",
           "Multiply throughout by eʸ:",
           "2x·eʸ = e²ʸ − 1",
@@ -102,7 +106,11 @@
             "text": "(the quadratic formula with a = 1, b = −2x, c = −1)",
             "added": true
           },
-          "eʸ = (2x ± √(4x² + 4))/2",
+          {
+            "text": "e^{y}\\ = \\ \\dfrac{2x\\ \\pm \\ \\sqrt{4x^{2}\\ + \\ 4}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√(4x² + 4) = 2√(x² + 1); divide by 2)",
             "added": true
@@ -156,7 +164,11 @@
           "Choosing the minus root, whose logarithm does not exist."
         ],
         "lines_compact": [
-          "eʸ = (2x ± √(4x² + 4))/2",
+          {
+            "text": "e^{y}\\ = \\ \\dfrac{2x\\ \\pm \\ \\sqrt{4x^{2}\\ + \\ 4}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= x ± √(x² + 1)",
           "For every real x, √(x² + 1) > x",
           "So x − √(x² + 1) < 0, but eʸ > 0",

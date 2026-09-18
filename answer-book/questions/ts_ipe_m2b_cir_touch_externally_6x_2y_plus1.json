@@ -203,17 +203,30 @@
             "added": true
           },
           {
-            "text": "  ((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n))",
+            "text": "\\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m\\ + \\ n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m\\ + \\ n}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Here m = 3, n = 2, C₁ = (3, 1), C₂ = (−1, 4)",
             "added": true
           },
-          "P = ((3(−1) + 2(3))/5, (3(4) + 2(1))/5)",
-          "= ((−3 + 6)/5, (12 + 2)/5)",
-          "∴ P = (3/5, 14/5)"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{3\\left( - 1\\right)\\ + \\ 2\\left(3\\right)}{5},\\ \\dfrac{3\\left(4\\right)\\ + \\ 2\\left(1\\right)}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{ - 3\\ + \\ 6}{5},\\ \\dfrac{12\\ + \\ 2}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\dfrac{3}{5},\\ \\dfrac{14}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "For circles touching externally the contact point sits on the segment joining the centres, at distance r₁ from C₁ and r₂ from C₂. That is exactly internal division in the ratio r₁ : r₂.",
         "common_mistakes": [
@@ -223,9 +236,21 @@
         "lines_compact": [
           "The point of contact P lies on C₁C₂ and",
           "divides it internally in the ratio 3 : 2",
-          "P = ((3(−1) + 2(3))/5, (3(4) + 2(1))/5)",
-          "= ((−3 + 6)/5, (12 + 2)/5)",
-          "∴ P = (3/5, 14/5)"
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{3\\left( - 1\\right)\\ + \\ 2\\left(3\\right)}{5},\\ \\dfrac{3\\left(4\\right)\\ + \\ 2\\left(1\\right)}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{ - 3\\ + \\ 6}{5},\\ \\dfrac{12\\ + \\ 2}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(\\dfrac{3}{5},\\ \\dfrac{14}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -265,7 +290,9 @@
             "style": "boxed"
           },
           {
-            "text": "Check P(3/5, 14/5): 12/5 − 42/5 + 30/5 = 0",
+            "text": "\\text{Check}\\ P\\left(\\dfrac{3}{5},\\ \\dfrac{14}{5}\\right):\\ \\dfrac{12}{5} - \\ \\dfrac{42}{5} + \\ \\dfrac{30}{5} = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],

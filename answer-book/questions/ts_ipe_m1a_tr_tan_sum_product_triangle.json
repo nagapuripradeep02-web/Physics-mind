@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: no angle of the triangle is π/2,",
+          {
+            "text": "\\text{Given}:\\ \\text{no}\\ \\text{angle}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so tan A, tan B and tan C all exist.",
           "In a triangle A + B + C = π",
           "⇒ A + B = π − C",
@@ -101,9 +105,17 @@
             "text": "Expand tan(A + B) with its formula:",
             "added": true
           },
-          "⇒ (tan A + tan B)/(1 − tan A tan B) = −tan C",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B} = \\ - \\tan C",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here 1 − tan A tan B ≠ 0, because that",
-          "would mean A + B = π/2, that is C = π/2.",
+          {
+            "text": "\\text{would}\\ \\text{mean}\\ A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2},\\ \\text{that}\\ \\text{is}\\ C\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           {
             "text": "(multiply both sides by 1 − tan A tan B and",
@@ -153,9 +165,17 @@
           "Leaving the answer as a fraction instead of the product form."
         ],
         "lines_compact": [
-          "⇒ (tan A + tan B)/(1 − tan A tan B) = −tan C",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan A\\ + \\ \\tan B}{1\\ - \\ \\tan A\\tan B} = \\ - \\tan C",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here 1 − tan A tan B ≠ 0, because that",
-          "would mean A + B = π/2, that is C = π/2.",
+          {
+            "text": "\\text{would}\\ \\text{mean}\\ A\\ + \\ B\\ = \\ \\dfrac{\\pi }{2},\\ \\text{that}\\ \\text{is}\\ C\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           "tan A + tan B = −tan C + tan A tan B tan C",
           {

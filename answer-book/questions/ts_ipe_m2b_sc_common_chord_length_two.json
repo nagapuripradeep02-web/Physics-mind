@@ -98,19 +98,31 @@
           },
           "For the circle S ≡ x² + y² + 3x + 5y + 4 = 0",
           {
-            "text": "2g = 3 ⇒ g = 3/2; 2f = 5 ⇒ f = 5/2; c = 4",
+            "text": "2g\\ = \\ 3\\ \\Rightarrow \\ g\\ = \\ \\dfrac{3}{2};\\ 2f\\ = \\ 5\\ \\Rightarrow \\ f\\ = \\ \\dfrac{5}{2};\\ c\\ = \\ 4",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "The centre is (−g, −f):",
             "added": true
           },
-          "centre C(−3/2, −5/2)",
           {
-            "text": "g² + f² − c = 9/4 + 25/4 − 16/4 = 18/4 = 9/2",
+            "text": "\\text{centre}\\ C\\left( - \\dfrac{3}{2},\\ - \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g^{2}\\ + \\ f^{2}\\ - \\ c\\ = \\ \\dfrac{9}{4} + \\ \\dfrac{25}{4} - \\ \\dfrac{16}{4} = \\ \\dfrac{18}{4} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "radius r = √(9/4 + 25/4 − 4) = √(9/2) = 3/√2"
+          {
+            "text": "\\text{radius}\\ r\\ = \\ \\sqrt{\\dfrac{9}{4} + \\ \\dfrac{25}{4} - \\ 4}\\ = \\ \\sqrt{\\dfrac{9}{2}}\\ = \\ \\dfrac{3}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Centre and radius come from writing the circle as x² + y² + 2gx + 2fy + c = 0 and reading off centre (−g, −f) and radius √(g² + f² − c).",
         "common_mistakes": [
@@ -120,8 +132,16 @@
         "memory_tip": "g = 3/2, f = 5/2 here — halve each coefficient, then negate for the centre.",
         "lines_compact": [
           "For the circle S ≡ x² + y² + 3x + 5y + 4 = 0",
-          "centre C(−3/2, −5/2)",
-          "radius r = √(9/4 + 25/4 − 4) = √(9/2) = 3/√2"
+          {
+            "text": "\\text{centre}\\ C\\left( - \\dfrac{3}{2},\\ - \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{radius}\\ r\\ = \\ \\sqrt{\\dfrac{9}{4} + \\ \\dfrac{25}{4} - \\ 4}\\ = \\ \\sqrt{\\dfrac{9}{2}}\\ = \\ \\dfrac{3}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -137,8 +157,9 @@
             "added": true
           },
           {
-            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "text": "\\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Length of the perpendicular from C(−3/2,",
@@ -148,9 +169,15 @@
             "text": "Here a = 1, b = −1 and c = 0:",
             "added": true
           },
-          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2",
           {
-            "text": "(−3/2 + 5/2 = 2/2 = 1)",
+            "text": "p\\ = \\ \\dfrac{\\left| - \\dfrac{3}{2} - \\ \\left( - \\dfrac{5}{2}\\right)\\right|}{\\sqrt{1\\ + \\ 1}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - \\dfrac{3}{2} + \\ \\dfrac{5}{2} = \\ \\dfrac{2}{2} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -164,7 +191,11 @@
           "Length of the perpendicular from C(−3/2,",
           "−5/2)",
           "to the line x − y = 0 is",
-          "p = |−3/2 − (−5/2)| / √(1 + 1) = 1/√2"
+          {
+            "text": "p\\ = \\ \\dfrac{\\left| - \\dfrac{3}{2} - \\ \\left( - \\dfrac{5}{2}\\right)\\right|}{\\sqrt{1\\ + \\ 1}} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -185,17 +216,22 @@
             "added": true
           },
           {
-            "text": "r² = 9/2 and p² = 1/2",
+            "text": "r^{2}\\ = \\ \\dfrac{9}{2}\\text{and}\\ p^{2}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "9/2 − 1/2 = 8/2 = 4, and 2√4 = 2 × 2 = 4",
+            "text": "\\dfrac{9}{2} - \\ \\dfrac{1}{2} = \\ \\dfrac{8}{2} = \\ 4,\\ \\text{and}\\ 2\\sqrt{4}\\ = \\ 2\\ \\times \\ 2\\ = \\ 4",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Length of the common chord",
           {
-            "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units",
-            "style": "boxed"
+            "text": "= \\ 2\\sqrt{r^{2}\\ - \\ p^{2}}\\ = \\ 2\\sqrt{\\dfrac{9}{2} - \\ \\dfrac{1}{2}}\\ = \\ 4\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Pythagoras on the right triangle formed by the radius, the perpendicular distance, and half the chord gives half the chord as √(r² − p²).",
@@ -207,8 +243,9 @@
         "lines_compact": [
           "Length of the common chord",
           {
-            "text": "= 2√(r² − p²) = 2√(9/2 − 1/2) = 4 units",
-            "style": "boxed"
+            "text": "= \\ 2\\sqrt{r^{2}\\ - \\ p^{2}}\\ = \\ 2\\sqrt{\\dfrac{9}{2} - \\ \\dfrac{1}{2}}\\ = \\ 4\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -62,8 +62,16 @@
           },
           "Sin⁻¹k needs |k| ≤ 1, so here",
           "(the sine of an angle lies between −1 and 1)",
-          "|5/x| ≤ 1 and |12/x| ≤ 1, with x ≠ 0.",
-          "(|5/x| ≤ 1 means |x| ≥ 5; |12/x| ≤ 1 means |x| ≥ 12)",
+          {
+            "text": "\\left|\\dfrac{5}{x}\\right|\\ \\le \\ 1\\ \\text{and}\\ \\left|\\dfrac{12}{x}\\right|\\ \\le \\ 1,\\ \\text{with}\\ x\\ \\ne \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left|\\dfrac{5}{x}\\right|\\ \\le \\ 1\\ \\text{means}\\ \\left|x\\right|\\ \\ge \\ 5;\\ \\left|\\dfrac{12}{x}\\right|\\ \\le \\ 1\\ \\text{means}\\ \\left|x\\right|\\ \\ge \\ 12\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ |x| ≥ 5 and |x| ≥ 12",
           "(both conditions must hold at once)",
           "⇒ |x| ≥ 12"
@@ -106,21 +114,35 @@
         "memory_tip": "sin(π/2 − θ) = cosθ, and cos(Sin⁻¹k) = √(1 − k²), always the positive root.",
         "lines": [
           {
-            "text": "(take Sin⁻¹(12/x) to the other side of the given equation)",
+            "text": "\\left(\\text{take}\\ \\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)\\ \\text{to}\\ \\text{the}\\ \\text{other}\\ \\text{side}\\ \\text{of}\\ \\text{the}\\ \\text{given}\\ \\text{equation}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Sin⁻¹(5/x) = π/2 − Sin⁻¹(12/x)",
+          {
+            "text": "\\operatorname{Sin}^{-1}\\left(\\dfrac{5}{x}\\right)\\ = \\ \\dfrac{\\pi }{2} - \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take the sine of both sides:",
           {
             "text": "(sin(Sin⁻¹k) = k)",
             "added": true
           },
-          "5/x = sin(π/2 − Sin⁻¹(12/x))",
+          {
+            "text": "\\dfrac{5}{x} = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin(π/2 − φ) = cos φ, and cos(Sin⁻¹k) = √(1 − k²) ≥ 0)",
             "added": true
           },
-          "= cos(Sin⁻¹(12/x)) = √(1 − 144/x²)"
+          {
+            "text": "= \\ \\cos \\left(\\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)\\right)\\ = \\ \\sqrt{1\\ - \\ \\dfrac{144}{x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,10 +172,22 @@
           "Taking the negative square root."
         ],
         "lines_compact": [
-          "Sin⁻¹(5/x) = π/2 − Sin⁻¹(12/x)",
+          {
+            "text": "\\operatorname{Sin}^{-1}\\left(\\dfrac{5}{x}\\right)\\ = \\ \\dfrac{\\pi }{2} - \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take the sine of both sides:",
-          "5/x = sin(π/2 − Sin⁻¹(12/x))",
-          "= cos(Sin⁻¹(12/x)) = √(1 − 144/x²)"
+          {
+            "text": "\\dfrac{5}{x} = \\ \\sin \\left(\\dfrac{\\pi }{2} - \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos \\left(\\operatorname{Sin}^{-1}\\left(\\dfrac{12}{x}\\right)\\right)\\ = \\ \\sqrt{1\\ - \\ \\dfrac{144}{x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -175,7 +209,11 @@
             "style": "indent",
             "added": true
           },
-          "25/x² = 1 − 144/x²",
+          {
+            "text": "\\dfrac{25}{x^{2}} = \\ 1\\ - \\ \\dfrac{144}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply by x² and move 144 across)",
             "added": true
@@ -212,7 +250,11 @@
         ],
         "lines_compact": [
           "Square both sides:",
-          "25/x² = 1 − 144/x²",
+          {
+            "text": "\\dfrac{25}{x^{2}} = \\ 1\\ - \\ \\dfrac{144}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 25 + 144 = x²",
           "⇒ x² = 169 ⇒ x = 13 or x = −13"
         ]
@@ -229,9 +271,17 @@
           "Both candidates satisfy |x| ≥ 12,",
           "so test the equation itself.",
           "x = 13: 5/13 = √(1 − 144/169) = 5/13  ✓",
-          "x = −13: then 5/x = −5/13,",
+          {
+            "text": "x\\ = \\ - 13:\\ \\text{then}\\ \\dfrac{5}{x} = \\ - \\dfrac{5}{13},",
+            "style": "normal",
+            "render": "katex"
+          },
           "but a square root is never negative, so it fails.",
-          "In fact Sin⁻¹(−5/13) + Sin⁻¹(−12/13) = −π/2.",
+          {
+            "text": "\\text{In}\\ \\text{fact}\\ \\operatorname{Sin}^{-1}\\left( - \\dfrac{5}{13}\\right)\\ + \\ \\operatorname{Sin}^{-1}\\left( - \\dfrac{12}{13}\\right)\\ = \\ - \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ x = 13",
             "style": "boxed"

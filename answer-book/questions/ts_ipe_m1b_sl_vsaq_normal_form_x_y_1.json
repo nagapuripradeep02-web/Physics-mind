@@ -112,13 +112,25 @@
             "added": true
           },
           "On dividing by √((−1)² + (−1)²) = √2, we get",
-          "−(1/√2)x − (1/√2)y = 1/√2",
-          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
+          {
+            "text": "- \\left(\\dfrac{1}{\\sqrt{2}}\\right)x\\ - \\ \\left(\\dfrac{1}{\\sqrt{2}}\\right)y\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ x\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ y\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(compare with x cos α + y sin α = p)",
             "added": true
           },
-          "Here cosα = −1/√2 and sinα = −1/√2, both negative",
+          {
+            "text": "\\text{Here}\\ \\cos \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}}\\text{and}\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\text{both}\\ \\text{negative}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ⇒ α is in the third quadrant",
             "style": "indent"
@@ -134,12 +146,15 @@
           },
           "⇒ α = 225°",
           {
-            "text": "(p = 1/√2 > 0)",
+            "text": "\\left(p\\ = \\ \\dfrac{1}{\\sqrt{2}} > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⇒ x cos225° + y sin225° = 1/√2",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\cos 225^{\\circ}\\ + \\ y\\sin 225^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -173,17 +188,30 @@
         "mark_note": "Solution",
         "lines_compact": [
           "On dividing by √((−1)² + (−1)²) = √2, we get",
-          "−(1/√2)x − (1/√2)y = 1/√2",
-          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
-          "Here cosα = −1/√2 and sinα = −1/√2, both negative",
+          {
+            "text": "- \\left(\\dfrac{1}{\\sqrt{2}}\\right)x\\ - \\ \\left(\\dfrac{1}{\\sqrt{2}}\\right)y\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{is}\\ x\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ + \\ y\\left( - \\dfrac{1}{\\sqrt{2}}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\cos \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}}\\text{and}\\ \\sin \\alpha \\ = \\ - \\dfrac{1}{\\sqrt{2}},\\ \\text{both}\\ \\text{negative}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ⇒ α is in the third quadrant",
             "style": "indent"
           },
           "⇒ α = 225°",
           {
-            "text": "⇒ x cos225° + y sin225° = 1/√2",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\cos 225^{\\circ}\\ + \\ y\\sin 225^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

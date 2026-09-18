@@ -100,7 +100,9 @@
         "memory_tip": "The lowest point of x² + 4 is at x = 0, and the tangent at the lowest point of a parabola is horizontal.",
         "lines": [
           {
-            "text": "(d/dx of x² is 2x, and d/dx of 4 is 0)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{and}\\ \\dfrac{d}{dx}\\ \\text{of}\\ 4\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 2x",

@@ -55,7 +55,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given parabola y² = 2x ⇒ 4a = 2 ⇒ a = 1/2",
+          {
+            "text": "\\text{Given}\\ \\text{parabola}\\ y^{2}\\ = \\ 2x\\ \\Rightarrow \\ 4a\\ = \\ 2\\ \\Rightarrow \\ a\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(compare with y² = 4ax)",
           "Focal distance SP = x₁ + a.",
           "(SP equals the distance from P(x₁, y₁) to the",
@@ -63,8 +67,16 @@
             "text": "  directrix x = −a, which is x₁ + a)",
             "style": "indent"
           },
-          "Given SP = 5/2 ⇒ x₁ + 1/2 = 5/2 ⇒ x₁ = 2",
-          "(5/2 − 1/2 = 4/2 = 2)"
+          {
+            "text": "\\text{Given}\\ SP\\ = \\ \\dfrac{5}{2} \\Rightarrow \\ x_{1}\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{5}{2} \\Rightarrow \\ x_{1}\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{2} - \\ \\dfrac{1}{2} = \\ \\dfrac{4}{2} = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The focal distance of any point on y² = 4ax is always x₁ + a, the same rule as 121.1 applied with a smaller a.",
         "common_mistakes": [
@@ -95,12 +107,15 @@
             "style": "boxed"
           },
           {
-            "text": "Check: from the focus (1/2, 0) to (2, 2) is",
+            "text": "\\text{Check}:\\ \\text{from}\\ \\text{the}\\ \\text{focus}\\ \\left(\\dfrac{1}{2},\\ 0\\right)\\ \\text{to}\\ \\left(2,\\ 2\\right)\\ \\text{is}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  √((3/2)² + 2²) = √(25/4) = 5/2.",
+            "text": "\\sqrt{\\left(\\dfrac{3}{2}\\right)^{2}\\ + \\ 2^{2}}\\ = \\ \\sqrt{\\dfrac{25}{4}}\\ = \\ \\dfrac{5}{2}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           }
         ],

@@ -55,7 +55,11 @@
           },
           "(i) In (1 + x)²⁴, n = 24 is even",
           "When n is even there is one middle coefficient,",
-          "with r = n/2 = 24/2 = 12",
+          {
+            "text": "\\text{with}\\ r\\ = \\ \\dfrac{n}{2} = \\ \\dfrac{24}{2} = \\ 12",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ the largest coefficient is ²⁴C₁₂"
         ],
         "recall": {
@@ -102,11 +106,15 @@
             "added": true
           },
           {
-            "text": "with r = (n − 1)/2 and r = (n + 1)/2",
+            "text": "\\text{with}\\ r\\ = \\ \\dfrac{n\\ - \\ 1}{2}\\text{and}\\ r\\ = \\ \\dfrac{n\\ + \\ 1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "r = (19 − 1)/2 = 9 and r = (19 + 1)/2 = 10",
+            "text": "r\\ = \\ \\dfrac{19\\ - \\ 1}{2} = \\ 9\\ \\text{and}\\ r\\ = \\ \\dfrac{19\\ + \\ 1}{2} = \\ 10",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

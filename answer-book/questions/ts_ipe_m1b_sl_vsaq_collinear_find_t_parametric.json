@@ -138,7 +138,11 @@
             "style": "boxed"
           },
           "Check at t = 2: A(2, 4), B(4, 12), C(3, 8);",
-          "slope AB = 8/2 = 4 and slope BC = −4/−1 = 4.",
+          {
+            "text": "\\text{slope}\\ AB\\ = \\ \\dfrac{8}{2} = \\ 4\\ \\text{and}\\ \\text{slope}\\ BC\\ = \\ - \\dfrac{4}{-1} = \\ 4.",
+            "style": "normal",
+            "render": "katex"
+          },
           "At t = 0 both A and B become (0, 0), so the",
           "three points still lie on one line."
         ],
@@ -179,7 +183,11 @@
             "style": "boxed"
           },
           "Check at t = 2: A(2, 4), B(4, 12), C(3, 8);",
-          "slope AB = 8/2 = 4 and slope BC = −4/−1 = 4.",
+          {
+            "text": "\\text{slope}\\ AB\\ = \\ \\dfrac{8}{2} = \\ 4\\ \\text{and}\\ \\text{slope}\\ BC\\ = \\ - \\dfrac{4}{-1} = \\ 4.",
+            "style": "normal",
+            "render": "katex"
+          },
           "At t = 0 both A and B become (0, 0), so the",
           "three points still lie on one line."
         ]

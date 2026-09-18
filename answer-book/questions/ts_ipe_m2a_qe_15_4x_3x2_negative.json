@@ -62,7 +62,11 @@
           "3x² − 9x + 5x − 15 = 0",
           "3x(x − 3) + 5(x − 3) = 0",
           "(3x + 5)(x − 3) = 0",
-          "x = −5/3 or x = 3",
+          {
+            "text": "x\\ = \\ - \\dfrac{5}{3}\\text{or}\\ x\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "a = −3 < 0, and for x OUTSIDE the roots",
           "the expression takes the sign of a."
         ],
@@ -110,12 +114,15 @@
             "added": true
           },
           {
-            "text": "x < −5/3 or x > 3",
+            "text": "x\\ < \\ - \\dfrac{5}{3}\\text{or}\\ x\\ > \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x ∈ (−∞, −5/3) ∪ (3, ∞)",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ \\in \\ \\left( - \\infty ,\\ - \\dfrac{5}{3}\\right)\\ \\cup \\ \\left(3,\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -148,10 +155,15 @@
           "Writing the root as 5/3 instead of −5/3."
         ],
         "lines_compact": [
-          "⇒ 15 + 4x − 3x² < 0 for x < −5/3 or x > 3",
           {
-            "text": "∴ x ∈ (−∞, −5/3) ∪ (3, ∞)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ 15\\ + \\ 4x\\ - \\ 3x^{2}\\ < \\ 0\\ \\text{for}\\ x\\ < \\ - \\dfrac{5}{3}\\text{or}\\ x\\ > \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ \\in \\ \\left( - \\infty ,\\ - \\dfrac{5}{3}\\right)\\ \\cup \\ \\left(3,\\ \\infty \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

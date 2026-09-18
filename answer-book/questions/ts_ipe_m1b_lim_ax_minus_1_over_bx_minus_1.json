@@ -53,17 +53,26 @@
           },
           "(a⁰ = 1 and b⁰ = 1)",
           "At x = 0, aˣ − 1 = 0 and bˣ − 1 = 0,",
-          "so the expression is of the indeterminate form 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{expression}\\ \\text{is}\\ \\text{of}\\ \\text{the}\\ \\text{indeterminate}\\ \\text{form}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "For x ≠ 0 divide the numerator and the denominator by x.",
           "(dividing the top and the bottom by x ≠ 0 does not",
           {
             "text": "  change the fraction)",
             "style": "indent"
           },
-          "lim(x → 0) (aˣ − 1)/(bˣ − 1)",
           {
-            "text": "  =  lim(x → 0) [(aˣ − 1)/x] / [(bˣ − 1)/x]",
-            "style": "indent"
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(a^{x}\\ - \\ 1\\right)}{b^{x}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{a^{x}\\ - \\ 1}{x}\\right]}{\\dfrac{b^{x}\\ - \\ 1}{x}}",
+            "style": "indent",
+            "render": "katex"
           },
           "The standard limit is",
           "lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0."

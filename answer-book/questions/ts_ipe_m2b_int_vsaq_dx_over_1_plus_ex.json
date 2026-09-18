@@ -61,7 +61,11 @@
             "text": "  that the fraction splits in two:",
             "style": "indent"
           },
-          "1/(1+eˣ) = (1+eˣ−eˣ)/(1+eˣ) = 1 − eˣ/(1+eˣ)"
+          {
+            "text": "\\dfrac{1}{1 + e^{x}} = \\ \\dfrac{1 + e^{x} - e^{x}}{1 + e^{x}} = \\ 1\\ - \\ \\dfrac{e^{x}}{1 + e^{x}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Adding and subtracting eˣ in the numerator splits the fraction into a plain 1 and an f′(x)/f(x) form for f(x)=1+eˣ, since d/dx(1+eˣ)=eˣ exactly.",
         "common_mistakes": [
@@ -88,7 +92,9 @@
             "added": true
           },
           {
-            "text": "∫eˣ/(1+eˣ) dx = log(1+eˣ)",
+            "text": "\\int \\dfrac{e^{x}}{1 + e^{x}}dx\\ = \\ \\log \\left(1 + e^{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -96,8 +102,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ dx/(1+eˣ) = x − log(1+eˣ) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + e^{x}} = \\ x\\ - \\ \\log \\left(1 + e^{x}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫1 dx = x and ∫eˣ/(1+eˣ) dx = log(1+eˣ) (an f′/f form, no modulus needed since 1+eˣ is always positive), subtracted as the split in step 1 requires.",
@@ -108,8 +115,9 @@
         "memory_tip": "1+eˣ is ALWAYS positive (eˣ>0 for every x), so this is the one log in the chapter that genuinely needs no modulus bars.",
         "lines_compact": [
           {
-            "text": "∴ ∫ dx/(1+eˣ) = x − log(1+eˣ) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{1 + e^{x}} = \\ x\\ - \\ \\log \\left(1 + e^{x}\\right)\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

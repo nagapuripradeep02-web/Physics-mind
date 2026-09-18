@@ -52,10 +52,22 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = (1 − x²)/(1 + x²)",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{1\\ - \\ x^{2}}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = tan θ, taking θ so that tan θ exists,",
-          "that is θ ≠ (2n + 1)π/2, n ∈ Z.",
-          "f(tan θ) = (1 − tan²θ)/(1 + tan²θ)"
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\theta \\ \\ne \\ \\dfrac{\\left(2n\\ + \\ 1\\right)\\pi }{2},\\ n\\ \\in \\ Z.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\tan \\theta \\right)\\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{1\\ + \\ \\tan ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -96,14 +108,26 @@
         "margin_note": "Second mark is the reduction. Check with θ = 30°: tan 30° = 1/√3, so f = (1 − 1/3)/(1 + 1/3) = 1/2, and cos 60° = 1/2.",
         "memory_tip": "Multiply the top and the bottom by cos²θ. The bottom becomes 1 and the top becomes cos²θ − sin²θ, which is cos 2θ.",
         "lines": [
-          "Write tan θ = sin θ/cos θ, then multiply the",
+          {
+            "text": "\\text{Write}\\ \\tan \\theta \\ = \\ \\dfrac{\\sin \\theta }{\\cos \\theta },\\ \\text{then}\\ \\text{multiply}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex"
+          },
           "numerator and the denominator by cos²θ:",
-          "= (cos²θ − sin²θ)/(cos²θ + sin²θ)",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta }{\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin²θ + cos²θ = 1)",
             "added": true
           },
-          "= (cos²θ − sin²θ)/1",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta }{1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos²θ − sin²θ = cos 2θ",
           {
             "text": "(cos 2θ = cos²θ − sin²θ)",
@@ -144,10 +168,22 @@
           "Reading cos²θ − sin²θ as cos²2θ."
         ],
         "lines_compact": [
-          "Write tan θ = sin θ/cos θ, then multiply the",
+          {
+            "text": "\\text{Write}\\ \\tan \\theta \\ = \\ \\dfrac{\\sin \\theta }{\\cos \\theta },\\ \\text{then}\\ \\text{multiply}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex"
+          },
           "numerator and the denominator by cos²θ:",
-          "= (cos²θ − sin²θ)/(cos²θ + sin²θ)",
-          "= (cos²θ − sin²θ)/1",
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta }{\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos ^{2} \\theta \\ - \\ \\sin ^{2} \\theta }{1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos²θ − sin²θ = cos 2θ",
           {
             "text": "∴ f(tan θ) = cos 2θ",

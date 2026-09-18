@@ -56,8 +56,16 @@
           "so (α, β) is the image of (3, −4) in it.",
           "(the image formula from the image-of-a-point proof)",
           "For P(x₁, y₁) and ax + by + c = 0,",
-          "(α − x₁)/a = (β − y₁)/b = r,  where",
-          "r = −2(ax₁ + by₁ + c)/(a² + b²)",
+          {
+            "text": "\\dfrac{\\alpha \\ - \\ x_{1}}{a} = \\ \\dfrac{\\beta \\ - \\ y_{1}}{b} = \\ r,\\ \\text{where}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ - \\dfrac{2\\left(ax_{1}\\ + \\ by_{1}\\ + \\ c\\right)}{a^{2}\\ + \\ b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here a = 2, b = −3, c = −5, P = (3, −4)"
         ],
         "recall": {
@@ -109,10 +117,16 @@
           },
           "a² + b² = 4 + 9 = 13",
           {
-            "text": "(−2 × 13 = −26, and −26/13 = −2)",
+            "text": "\\left( - 2\\ \\times \\ 13\\ = \\ - 26,\\ \\text{and}\\ - \\dfrac{26}{13} = \\ - 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ r = −2(13)/13 = −2",
+          {
+            "text": "\\therefore \\ r\\ = \\ - \\dfrac{2\\left(13\\right)}{13} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(α − x₁ = ar, so α = x₁ + ar)",
             "added": true
@@ -168,7 +182,11 @@
           "ax₁ + by₁ + c = 2(3) − 3(−4) − 5",
           "= 6 + 12 − 5 = 13",
           "a² + b² = 4 + 9 = 13",
-          "∴ r = −2(13)/13 = −2",
+          {
+            "text": "\\therefore \\ r\\ = \\ - \\dfrac{2\\left(13\\right)}{13} = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "α = x₁ + ar = 3 + 2(−2) = −1",
           "β = y₁ + br = −4 + (−3)(−2) = 2",
           {

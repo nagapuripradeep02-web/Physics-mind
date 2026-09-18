@@ -54,17 +54,46 @@
           },
           "y = log(sin(log x)) is a function of a function of a function.",
           "By the chain rule, differentiate the outer log first:",
-          "(d/dx(log u) = (1/u) · du/dx, with u = sin(log x))",
-          "dy/dx = [1/sin(log x)] · d/dx[sin(log x)]",
-          "(d/dx(sin v) = cos v · dv/dx, with v = log x)",
-          "d/dx[sin(log x)] = cos(log x) · d/dx(log x)",
-          "(d/dx(log x) = 1/x)",
           {
-            "text": "  = cos(log x) · (1/x)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\log u\\right)\\ = \\ \\left(\\dfrac{1}{u}\\right)\\ \\cdot \\ \\dfrac{du}{dx},\\ \\text{with}\\ u\\ = \\ \\sin \\left(\\log x\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "(put this derivative into the line for dy/dx)",
-          "∴ dy/dx = [1/sin(log x)] · cos(log x) · (1/x)"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\left[\\dfrac{1}{\\sin \\left(\\log x\\right)}\\right]\\ \\cdot \\ \\dfrac{d}{dx}\\left[\\sin \\left(\\log x\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\sin v\\right)\\ = \\ \\cos v\\ \\cdot \\ \\dfrac{dv}{dx},\\ \\text{with}\\ v\\ = \\ \\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dx}\\left[\\sin \\left(\\log x\\right)\\right]\\ = \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\dfrac{d}{dx}\\left(\\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\text{this}\\ \\text{derivative}\\ \\text{into}\\ \\text{the}\\ \\text{line}\\ \\text{for}\\ \\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left[\\dfrac{1}{\\sin \\left(\\log x\\right)}\\right]\\ \\cdot \\ \\cos \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,18 +134,31 @@
         "memory_tip": "cos over sin of the same angle is always cot, whatever the angle is written as.",
         "lines": [
           {
-            "text": "(cot θ = cos θ/sin θ, with θ = log x)",
-            "added": true
-          },
-          "cos(log x)/sin(log x) = cot(log x)",
-          "∴ dy/dx = cot(log x) · (1/x)",
-          {
-            "text": "(cot(log x) · (1/x) = cot(log x)/x)",
+            "text": "\\left(\\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta },\\ \\text{with}\\ \\theta \\ = \\ \\log x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = cot(log x)/x",
-            "style": "boxed"
+            "text": "\\dfrac{\\cos \\left(\\log x\\right)}{\\sin \\left(\\log x\\right)} = \\ \\cot \\left(\\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\cot \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cot \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ \\dfrac{\\cot \\left(\\log x\\right)}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\cot \\left(\\log x\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           },
           "This working needs sin(log x) > 0, that is log x in (0, π),",
           "or in any interval (2kπ, (2k + 1)π), k ∈ Z."
@@ -149,11 +191,20 @@
           "Putting the x inside the cotangent as cot(log x/x)."
         ],
         "lines_compact": [
-          "cos(log x)/sin(log x) = cot(log x)",
-          "∴ dy/dx = cot(log x) · (1/x)",
           {
-            "text": "∴ dy/dx = cot(log x)/x",
-            "style": "boxed"
+            "text": "\\dfrac{\\cos \\left(\\log x\\right)}{\\sin \\left(\\log x\\right)} = \\ \\cot \\left(\\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\cot \\left(\\log x\\right)\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\cot \\left(\\log x\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           },
           "This working needs sin(log x) > 0, that is log x in (0, π),",
           "or in any interval (2kπ, (2k + 1)π), k ∈ Z."

@@ -53,12 +53,32 @@
             "style": "heading"
           },
           "For tan A and tan B to exist, neither A",
-          "nor B is an odd multiple of π/2.",
-          "Given A − B = 3π/4",
-          "⇒ tan(A − B) = tan(3π/4) = −1",
-          "(3π/4 = 135°, and tan 135° = −tan 45° = −1)",
+          {
+            "text": "\\text{nor}\\ B\\ \\text{is}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Given}\\ A\\ - \\ B\\ = \\ \\dfrac{3\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(A\\ - \\ B\\right)\\ = \\ \\tan \\left(\\dfrac{3\\pi }{4}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3\\pi }{4} = \\ 135^{\\circ},\\ \\text{and}\\ \\tan 135^{\\circ}\\ = \\ - \\tan 45^{\\circ}\\ = \\ - 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Expand with the difference formula:",
-          "∴ (tan A − tan B)/(1 + tan A tan B) = −1",
+          {
+            "text": "\\therefore \\ \\dfrac{\\tan A\\ - \\ \\tan B}{1\\ + \\ \\tan A\\tan B} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by (1 + tan A tan B):",
           "⇒ tan A − tan B = −1 − tan A tan B"
         ],

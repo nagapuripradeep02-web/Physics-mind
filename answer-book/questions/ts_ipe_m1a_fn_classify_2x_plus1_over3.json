@@ -52,11 +52,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f: R→R, f(x) = (2x + 1)/3",
+          {
+            "text": "f:\\ R \\to R,\\ f\\left(x\\right)\\ = \\ \\dfrac{2x\\ + \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Domain = R, codomain = R",
           "(one one: equal images must come from equal inputs)",
           "Let f(x₁) = f(x₂), where x₁, x₂ ∈ R",
-          "⇒ (2x₁ + 1)/3 = (2x₂ + 1)/3",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2x_{1}\\ + \\ 1}{3} = \\ \\dfrac{2x_{2}\\ + \\ 1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply by 3, take away 1, divide by 2)",
           "⇒ 2x₁ + 1 = 2x₂ + 1 ⇒ x₁ = x₂",
           "∴ f is one one (an injection)."
@@ -105,13 +113,21 @@
             "added": true
           },
           "Let y ∈ R, the codomain.",
-          "Put (2x + 1)/3 = y ⇒ x = (3y − 1)/2",
+          {
+            "text": "\\text{Put}\\ \\dfrac{2x\\ + \\ 1}{3} = \\ y\\ \\Rightarrow \\ x\\ = \\ \\dfrac{3y\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3y = 2x + 1, so 2x = 3y − 1)",
             "added": true
           },
           "This x is real for every real y, so x ∈ R,",
-          "and f(x) = (2·(3y − 1)/2 + 1)/3 = y.",
+          {
+            "text": "\\text{and}\\ f\\left(x\\right)\\ = \\ \\dfrac{2 \\cdot \\dfrac{3y\\ - \\ 1}{2} + \\ 1}{3} = \\ y.",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ every y ∈ R has a pre-image; f is onto."
         ],
         "recall": {
@@ -145,9 +161,17 @@
         ],
         "lines_compact": [
           "Let y ∈ R, the codomain.",
-          "Put (2x + 1)/3 = y ⇒ x = (3y − 1)/2",
+          {
+            "text": "\\text{Put}\\ \\dfrac{2x\\ + \\ 1}{3} = \\ y\\ \\Rightarrow \\ x\\ = \\ \\dfrac{3y\\ - \\ 1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This x is real for every real y, so x ∈ R,",
-          "and f(x) = (2·(3y − 1)/2 + 1)/3 = y.",
+          {
+            "text": "\\text{and}\\ f\\left(x\\right)\\ = \\ \\dfrac{2 \\cdot \\dfrac{3y\\ - \\ 1}{2} + \\ 1}{3} = \\ y.",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ every y ∈ R has a pre-image; f is onto."
         ]
       },

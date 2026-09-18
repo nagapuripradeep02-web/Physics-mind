@@ -61,7 +61,11 @@
           "(take away b)",
           "ax + b = y ⇒ ax = y − b",
           "(divide by a, which is allowed because a ≠ 0)",
-          "⇒ x = (y − b)/a   (a ≠ 0)"
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{y\\ - \\ b}{a}\\left(a\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,17 +104,24 @@
         "margin_note": "The second mark is the finished function, renamed in x.",
         "memory_tip": "Rename the variable back to x: f⁻¹(x) = (x − b)/a.",
         "lines": [
-          "⇒ f⁻¹(y) = (y − b)/a",
+          {
+            "text": "\\Rightarrow \\ f^{-1}\\left(y\\right)\\ = \\ \\dfrac{y\\ - \\ b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Rename y as x:",
             "added": true
           },
           {
-            "text": "∴ f⁻¹(x) = (x − b)/a",
-            "style": "boxed"
+            "text": "\\therefore \\ f^{-1}\\left(x\\right)\\ = \\ \\dfrac{x\\ - \\ b}{a}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "Check: f((x − b)/a) = a × (x − b)/a + b = x",
+            "text": "\\text{Check}:\\ f\\left(\\dfrac{x\\ - \\ b}{a}\\right)\\ = \\ a\\ \\times \\ \\dfrac{x\\ - \\ b}{a} + \\ b\\ = \\ x",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -142,10 +153,15 @@
           "Writing (x + b)/a."
         ],
         "lines_compact": [
-          "⇒ f⁻¹(y) = (y − b)/a",
           {
-            "text": "∴ f⁻¹(x) = (x − b)/a",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ f^{-1}\\left(y\\right)\\ = \\ \\dfrac{y\\ - \\ b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f^{-1}\\left(x\\right)\\ = \\ \\dfrac{x\\ - \\ b}{a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -274,8 +274,9 @@
             "added": true
           },
           {
-            "text": "∴ I = π²/2 − π",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi ^{2}}{2} - \\ \\pi",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting the value 2, found in the previous step, back into 2I = π² − π∫dx/(1+sinx) and dividing by 2 gives the final answer directly.",
@@ -286,8 +287,9 @@
         "lines_compact": [
           "From (3): 2I = π² − π(2) = π² − 2π",
           {
-            "text": "∴ I = π²/2 − π",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi ^{2}}{2} - \\ \\pi",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

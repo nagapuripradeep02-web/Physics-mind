@@ -54,10 +54,18 @@
           },
           "(a plane cutting the axes at (a, 0, 0), (0, b, 0) and (0, 0, c))",
           "The equation of the plane with intercepts a, b, c",
-          "is  x/a + y/b + z/c = 1",
+          {
+            "text": "\\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} + \\ \\dfrac{z}{c} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put a = 2, b = 3, c = 4)",
           "∴ the required equation of the plane",
-          "is  x/2 + y/3 + z/4 = 1"
+          {
+            "text": "\\text{is}\\ \\dfrac{x}{2} + \\ \\dfrac{y}{3} + \\ \\dfrac{z}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,8 +109,9 @@
             "added": true
           },
           {
-            "text": "  3 and 4 is 12: x/2 = 6x/12,",
+            "text": "3\\ \\text{and}\\ 4\\ \\text{is}\\ 12:\\ \\dfrac{x}{2} = \\ \\dfrac{6x}{12},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -110,7 +119,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (6x + 4y + 3z)/12 = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{6x\\ + \\ 4y\\ + \\ 3z}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 12)",
             "added": true
@@ -148,7 +161,11 @@
           "Writing x/2 as 3x/12 instead of 6x/12."
         ],
         "lines_compact": [
-          "⇒ (6x + 4y + 3z)/12 = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{6x\\ + \\ 4y\\ + \\ 3z}{12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ 6x + 4y + 3z = 12",
             "style": "boxed"

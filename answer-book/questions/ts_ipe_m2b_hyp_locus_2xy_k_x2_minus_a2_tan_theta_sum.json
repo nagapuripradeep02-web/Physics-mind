@@ -73,7 +73,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the hyperbola be x²/a² − y²/b² = 1",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{hyperbola}\\ \\text{be}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let P(x₁, y₁) be a point on the locus.",
           "(P is the point where the two tangents meet.)",
           "Tangent with slope m: y = mx ± √(a²m² − b²)",
@@ -152,12 +156,17 @@
             "added": true
           },
           {
-            "text": "  is −B/A. Here A = x₁² − a² and B = −2x₁y₁.",
+            "text": "\\text{is}\\ - \\dfrac{B}{A}.\\ \\text{Here}\\ A\\ = \\ x_{1}^{2}\\ - \\ a^{2}\\ \\text{and}\\ B\\ = \\ - 2x_{1}y_{1}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Sum of roots of (1):",
-          "m₁ + m₂ = 2x₁y₁ / (x₁² − a²)"
+          {
+            "text": "m_{1}\\ + \\ m_{2}\\ = \\ \\dfrac{2x_{1}y_{1}}{x_{1}^{2}\\ - \\ a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Slope equals the tangent of the angle a line makes with the x-axis, which here IS the transverse axis, so m₁ + m₂ is exactly tanθ₁ + tanθ₂.",
         "common_mistakes": [
@@ -169,7 +178,11 @@
           "so m₁ = tanθ₁,",
           "m₂ = tanθ₂ are the roots of (1)",
           "Sum of roots of (1):",
-          "m₁ + m₂ = 2x₁y₁ / (x₁² − a²)"
+          {
+            "text": "m_{1}\\ + \\ m_{2}\\ = \\ \\dfrac{2x_{1}y_{1}}{x_{1}^{2}\\ - \\ a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -185,7 +198,11 @@
             "text": "Given tanθ₁ + tanθ₂ = k:",
             "added": true
           },
-          "tanθ₁ + tanθ₂ = 2x₁y₁ / (x₁² − a²) = k",
+          {
+            "text": "\\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}\\ = \\ \\dfrac{2x_{1}y_{1}}{x_{1}^{2}\\ - \\ a^{2}} = \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply both sides by (x₁² − a²):",
             "added": true
@@ -206,7 +223,11 @@
           "Writing the final locus with y² instead of the product xy — this locus is not a conic in x² and y² separately."
         ],
         "lines_compact": [
-          "tanθ₁ + tanθ₂ = 2x₁y₁ / (x₁² − a²) = k",
+          {
+            "text": "\\tan \\theta _{1}\\ + \\ \\tan \\theta _{2}\\ = \\ \\dfrac{2x_{1}y_{1}}{x_{1}^{2}\\ - \\ a^{2}} = \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x₁y₁ = k(x₁² − a²)",
           {
             "text": "∴ Locus is 2xy = k(x² − a²)",

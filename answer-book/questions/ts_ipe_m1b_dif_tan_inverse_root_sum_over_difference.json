@@ -78,7 +78,11 @@
             "style": "indent"
           },
           "0 < |x| < 1 gives 0 < x² < 1, so put x² = cos 2θ.",
-          "Then 2θ = Cos⁻¹(x²) with 0 < 2θ < π/2, so 0 < θ < π/4.",
+          {
+            "text": "\\text{Then}\\ 2\\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(x^{2}\\right)\\ \\text{with}\\ 0\\ < \\ 2\\theta \\ < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the double angle formulas cos 2θ",
           {
             "text": "  = 2cos²θ − 1 = 1 − 2sin²θ)",
@@ -91,7 +95,11 @@
             "text": "  and √(2sin²θ) = √2 sin θ)",
             "style": "indent"
           },
-          "On 0 < θ < π/4 both sin θ > 0 and cos θ > 0, so",
+          {
+            "text": "\\text{On}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4}\\text{both}\\ \\sin \\theta \\ > \\ 0\\ \\text{and}\\ \\cos \\theta \\ > \\ 0,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ √(1 + x²) = √2 cos θ   and   √(1 − x²) = √2 sin θ"
         ],
         "recall": {
@@ -134,24 +142,47 @@
         "lines": [
           "Substitute both roots into the bracket.",
           "The factor √2 cancels:",
-          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ)",
+          {
+            "text": "\\dfrac{\\sqrt{2}\\cos \\theta \\ + \\ \\sqrt{2}\\sin \\theta }{\\sqrt{2}\\cos \\theta \\ - \\ \\sqrt{2}\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide the top and the bottom by √2)",
             "added": true
           },
           {
-            "text": "  = (cos θ + sin θ)/(cos θ − sin θ)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\cos \\theta \\ + \\ \\sin \\theta }{\\cos \\theta \\ - \\ \\sin \\theta }",
+            "style": "indent",
+            "render": "katex"
           },
-          "cos θ ≠ 0 on 0 < θ < π/4,",
+          {
+            "text": "\\cos \\theta \\ \\ne \\ 0\\ \\text{on}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so divide the top and the bottom by cos θ:",
           {
-            "text": "(cos θ/cos θ = 1 and sin θ/cos θ = tan θ)",
+            "text": "\\left(\\dfrac{\\cos \\theta }{\\cos \\theta } = \\ 1\\ \\text{and}\\ \\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1 + tan θ)/(1 − tan θ)",
-          "tan(π/4) = 1,",
-          "so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\tan \\theta }{1\\ - \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{this}\\ \\text{is}\\ \\dfrac{\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\tan \\theta }{1\\ - \\ \\tan \\left(\\dfrac{\\pi }{4}\\right) \\cdot \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the formula tan(A + B) = (tan A + tan B)/(1 − tan A",
             "added": true
@@ -161,7 +192,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ the bracket = tan(π/4 + θ)"
+          {
+            "text": "\\therefore \\ \\text{the}\\ \\text{bracket}\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -195,17 +230,42 @@
         "lines_compact": [
           "Substitute both roots into the bracket.",
           "The factor √2 cancels:",
-          "(√2 cos θ + √2 sin θ)/(√2 cos θ − √2 sin θ)",
           {
-            "text": "  = (cos θ + sin θ)/(cos θ − sin θ)",
-            "style": "indent"
+            "text": "\\dfrac{\\sqrt{2}\\cos \\theta \\ + \\ \\sqrt{2}\\sin \\theta }{\\sqrt{2}\\cos \\theta \\ - \\ \\sqrt{2}\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
           },
-          "cos θ ≠ 0 on 0 < θ < π/4,",
+          {
+            "text": "= \\ \\dfrac{\\cos \\theta \\ + \\ \\sin \\theta }{\\cos \\theta \\ - \\ \\sin \\theta }",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\theta \\ \\ne \\ 0\\ \\text{on}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so divide the top and the bottom by cos θ:",
-          "= (1 + tan θ)/(1 − tan θ)",
-          "tan(π/4) = 1,",
-          "so this is  (tan(π/4) + tan θ)/(1 − tan(π/4)·tan θ)",
-          "∴ the bracket = tan(π/4 + θ)"
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\tan \\theta }{1\\ - \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{this}\\ \\text{is}\\ \\dfrac{\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\tan \\theta }{1\\ - \\ \\tan \\left(\\dfrac{\\pi }{4}\\right) \\cdot \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{the}\\ \\text{bracket}\\ = \\ \\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -216,16 +276,38 @@
         "mark_note": "Method",
         "margin_note": "Two marks: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
         "lines": [
-          "y = Tan⁻¹(tan(π/4 + θ))",
           {
-            "text": "(add π/4 to each part of 0 < θ < π/4)",
+            "text": "y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{add}\\ \\dfrac{\\pi }{4}\\text{to}\\ \\text{each}\\ \\text{part}\\ \\text{of}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
-          "That whole range lies inside (−π/2, π/2),",
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},\\ \\text{so}\\ \\dfrac{\\pi }{4} < \\ \\dfrac{\\pi }{4} + \\ \\theta \\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{That}\\ \\text{whole}\\ \\text{range}\\ \\text{lies}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "which is the principal range of Tan⁻¹.",
-          "∴ Tan⁻¹(tan(π/4 + θ)) = π/4 + θ",
-          "∴ y = π/4 + θ"
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)\\right)\\ = \\ \\dfrac{\\pi }{4} + \\ \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{\\pi }{4} + \\ \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -257,12 +339,32 @@
         ],
         "memory_tip": "Remember three principal ranges: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the one of the three whose range starts at 0.",
         "lines_compact": [
-          "y = Tan⁻¹(tan(π/4 + θ))",
-          "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
-          "That whole range lies inside (−π/2, π/2),",
+          {
+            "text": "y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{4},\\ \\text{so}\\ \\dfrac{\\pi }{4} < \\ \\dfrac{\\pi }{4} + \\ \\theta \\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{That}\\ \\text{whole}\\ \\text{range}\\ \\text{lies}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "which is the principal range of Tan⁻¹.",
-          "∴ Tan⁻¹(tan(π/4 + θ)) = π/4 + θ",
-          "∴ y = π/4 + θ"
+          {
+            "text": "\\therefore \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\pi }{4} + \\ \\theta \\right)\\right)\\ = \\ \\dfrac{\\pi }{4} + \\ \\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{\\pi }{4} + \\ \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -274,15 +376,27 @@
         "margin_note": "One mark. Going back to x before differentiating is shorter than differentiating in θ and then finding dθ/dx separately.",
         "lines": [
           {
-            "text": "(from step 1, x² = cos 2θ with 2θ in (0, π/2), inside [0, π])",
+            "text": "\\left(\\text{from}\\ \\text{step}\\ 1,\\ x^{2}\\ = \\ \\cos 2\\theta \\ \\text{with}\\ 2\\theta \\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{inside}\\ \\left[0,\\ \\pi \\right]\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "From x² = cos 2θ:  2θ = Cos⁻¹(x²),  so  θ = ½ Cos⁻¹(x²)",
           {
-            "text": "(put θ = ½ Cos⁻¹(x²) into y = π/4 + θ)",
+            "text": "\\text{From}\\ x^{2}\\ = \\ \\cos 2\\theta :\\ 2\\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(x^{2}\\right),\\ \\text{so}\\ \\theta \\ = \\ \\dfrac{1}{2}\\operatorname{Cos}^{-1}\\left(x^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\theta \\ = \\ \\dfrac{1}{2}\\operatorname{Cos}^{-1}\\left(x^{2}\\right)\\ \\text{into}\\ y\\ = \\ \\dfrac{\\pi }{4} + \\ \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ y = π/4 + ½ Cos⁻¹(x²)"
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{1}{2}\\operatorname{Cos}^{-1}\\left(x^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -314,8 +428,16 @@
         ],
         "memory_tip": "The substitution was x² = cos 2θ, so undoing it gives 2θ first and θ second. The one half comes from that 2.",
         "lines_compact": [
-          "From x² = cos 2θ:  2θ = Cos⁻¹(x²),  so  θ = ½ Cos⁻¹(x²)",
-          "∴ y = π/4 + ½ Cos⁻¹(x²)"
+          {
+            "text": "\\text{From}\\ x^{2}\\ = \\ \\cos 2\\theta :\\ 2\\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(x^{2}\\right),\\ \\text{so}\\ \\theta \\ = \\ \\dfrac{1}{2}\\operatorname{Cos}^{-1}\\left(x^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y\\ = \\ \\dfrac{\\pi }{4} + \\ \\dfrac{1}{2}\\operatorname{Cos}^{-1}\\left(x^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -326,22 +448,47 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. Two things carry it: the minus sign from Cos⁻¹, and the inner derivative 2x. The 2 from 2x cancels the one half, which is why the answer is as clean as it is.",
         "lines": [
-          "π/4 is a constant, so it differentiates to 0.",
-          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",
-          "and du/dx = 2x:",
           {
-            "text": "(put u = x², so u² = x⁴, and du/dx = 2x)",
+            "text": "\\dfrac{\\pi }{4}\\text{is}\\ a\\ \\text{constant},\\ \\text{so}\\ \\text{it}\\ \\text{differentiates}\\ \\text{to}\\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dx}\\left[\\operatorname{Cos}^{-1} u\\right]\\ = \\ - \\left(\\dfrac{1}{\\sqrt{1\\ - \\ u^{2}}}\\right) \\cdot \\left(\\dfrac{du}{dx}\\right),\\ \\text{here}\\ \\text{with}\\ u\\ = \\ x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{du}{dx}\\ = \\ 2x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ u\\ = \\ x^{2},\\ \\text{so}\\ u^{2}\\ = \\ x^{4},\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dx = 0 + ½ · (−1/√(1 − (x²)²)) · 2x",
           {
-            "text": "(½ · 2x = x, and (x²)² = x⁴)",
+            "text": "\\dfrac{dy}{dx}\\ = \\ 0\\ + \\ \\dfrac{1}{2}\\ \\cdot \\ \\left( - \\dfrac{1}{\\sqrt{1\\ - \\ \\left(x^{2}\\right)^{2}}}\\right)\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\ \\cdot \\ 2x\\ = \\ x,\\ \\text{and}\\ \\left(x^{2}\\right)^{2}\\ = \\ x^{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −x/√(1 − x⁴)",
           {
-            "text": "∴ dy/dx = −x/√(1 − x⁴)",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{x}{\\sqrt{1\\ - \\ x^{4}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{x}{\\sqrt{1\\ - \\ x^{4}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -374,14 +521,35 @@
         ],
         "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows from 0 to π.",
         "lines_compact": [
-          "π/4 is a constant, so it differentiates to 0.",
-          "d/dx[Cos⁻¹u] = −(1/√(1 − u²))·(du/dx), here with u = x²",
-          "and du/dx = 2x:",
-          "dy/dx = 0 + ½ · (−1/√(1 − (x²)²)) · 2x",
-          "= −x/√(1 − x⁴)",
           {
-            "text": "∴ dy/dx = −x/√(1 − x⁴)",
-            "style": "boxed"
+            "text": "\\dfrac{\\pi }{4}\\text{is}\\ a\\ \\text{constant},\\ \\text{so}\\ \\text{it}\\ \\text{differentiates}\\ \\text{to}\\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{d}{dx}\\left[\\operatorname{Cos}^{-1} u\\right]\\ = \\ - \\left(\\dfrac{1}{\\sqrt{1\\ - \\ u^{2}}}\\right) \\cdot \\left(\\dfrac{du}{dx}\\right),\\ \\text{here}\\ \\text{with}\\ u\\ = \\ x^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{du}{dx}\\ = \\ 2x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 0\\ + \\ \\dfrac{1}{2}\\ \\cdot \\ \\left( - \\dfrac{1}{\\sqrt{1\\ - \\ \\left(x^{2}\\right)^{2}}}\\right)\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{x}{\\sqrt{1\\ - \\ x^{4}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{x}{\\sqrt{1\\ - \\ x^{4}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

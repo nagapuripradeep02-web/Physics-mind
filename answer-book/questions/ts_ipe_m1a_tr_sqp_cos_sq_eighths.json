@@ -50,10 +50,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Write each angle through π/8:",
-          "cos(3π/8) = cos((4π − π)/8) = cos(π/2 − π/8)",
-          "(cos(π/2 − θ) = sin θ)",
-          "= sin(π/8)"
+          {
+            "text": "\\text{Write}\\ \\text{each}\\ \\text{angle}\\ \\text{through}\\ \\dfrac{\\pi }{8}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{3\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{4\\pi \\ - \\ \\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{2} - \\ \\theta \\right)\\ = \\ \\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sin \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -91,18 +107,36 @@
         "mark_note": "Two more shifts",
         "margin_note": "First mark, and the two to watch — 5π/8 goes to π/2 PLUS π/8 (giving −sin), and 7π/8 goes to π MINUS π/8 (giving −cos).",
         "lines": [
-          "cos(5π/8) = cos((4π + π)/8) = cos(π/2 + π/8)",
           {
-            "text": "(cos(π/2 + θ) = −sin θ)",
+            "text": "\\cos \\left(\\dfrac{5\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{4\\pi \\ + \\ \\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} + \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{\\pi }{2} + \\ \\theta \\right)\\ = \\ - \\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −sin(π/8)",
-          "cos(7π/8) = cos((8π − π)/8) = cos(π − π/8)",
+          {
+            "text": "= \\ - \\sin \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{7\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{8\\pi \\ - \\ \\pi }{8}\\right)\\ = \\ \\cos \\left(\\pi \\ - \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos(π − θ) = −cos θ)",
             "added": true
           },
-          "= −cos(π/8)"
+          {
+            "text": "= \\ - \\cos \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -133,10 +167,26 @@
         ],
         "memory_tip": "5π/8 is π/2 PLUS π/8 (giving −sin), and 7π/8 is π MINUS π/8 (giving −cos).",
         "lines_compact": [
-          "cos(5π/8) = cos((4π + π)/8) = cos(π/2 + π/8)",
-          "= −sin(π/8)",
-          "cos(7π/8) = cos((8π − π)/8) = cos(π − π/8)",
-          "= −cos(π/8)"
+          {
+            "text": "\\cos \\left(\\dfrac{5\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{4\\pi \\ + \\ \\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{2} + \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\sin \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{7\\pi }{8}\\right)\\ = \\ \\cos \\left(\\dfrac{8\\pi \\ - \\ \\pi }{8}\\right)\\ = \\ \\cos \\left(\\pi \\ - \\ \\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\cos \\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -148,13 +198,25 @@
         "margin_note": "Last mark. Squaring removes both minus signs, and the four terms fall into two Pythagorean pairs.",
         "lines": [
           "Squaring removes both minus signs:",
-          "L.H.S = cos²(π/8) + sin²(π/8)",
-          "      + sin²(π/8) + cos²(π/8)",
+          {
+            "text": "L.H.S\\ = \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Pair each sin² with the cos² of the same angle:",
             "added": true
           },
-          "= (cos²(π/8) + sin²(π/8)) + (sin²(π/8) + cos²(π/8))",
+          {
+            "text": "= \\ \\left(\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)\\ + \\ \\left(\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin²θ + cos²θ = 1)",
             "added": true
@@ -195,9 +257,21 @@
         "memory_tip": "Squaring removes both minus signs, and the four terms fall into two Pythagorean pairs.",
         "lines_compact": [
           "Squaring removes both minus signs:",
-          "L.H.S = cos²(π/8) + sin²(π/8)",
-          "      + sin²(π/8) + cos²(π/8)",
-          "= (cos²(π/8) + sin²(π/8)) + (sin²(π/8) + cos²(π/8))",
+          {
+            "text": "L.H.S\\ = \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)\\ + \\ \\left(\\sin ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\ + \\ \\cos ^{2}\\left(\\dfrac{\\pi }{8}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1 + 1 = 2 = R.H.S",
           {
             "text": "∴ The sum equals 2",

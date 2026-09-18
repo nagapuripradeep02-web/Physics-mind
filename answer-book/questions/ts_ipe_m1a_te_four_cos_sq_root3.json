@@ -165,15 +165,27 @@
         "memory_tip": "Check the range before solving: √3/2 ≈ 0.87 and 1/2 are both inside [−1, 1], so BOTH roots are kept.",
         "lines": [
           "⇒ 2cosθ − √3 = 0  (or)  2cosθ − 1 = 0",
-          "⇒ cosθ = √3/2  (or)  cosθ = 1/2",
+          {
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2}\\left(\\text{or}\\right)\\cos \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|cosθ| ≤ 1 for every θ)",
             "added": true
           },
           "Both lie between −1 and 1, so both are kept.",
-          "Now cosθ = √3/2 = cos(π/6), so α = π/6",
+          {
+            "text": "\\text{Now}\\ \\cos \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For cosθ = cosα, θ = 2nπ ± α",
-          "⇒ θ = 2nπ ± π/6,  n ∈ Z"
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -204,11 +216,23 @@
         ],
         "lines_compact": [
           "⇒ 2cosθ − √3 = 0  (or)  2cosθ − 1 = 0",
-          "⇒ cosθ = √3/2  (or)  cosθ = 1/2",
+          {
+            "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2}\\left(\\text{or}\\right)\\cos \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Both lie between −1 and 1, so both are kept.",
-          "Now cosθ = √3/2 = cos(π/6), so α = π/6",
+          {
+            "text": "\\text{Now}\\ \\cos \\theta \\ = \\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For cosθ = cosα, θ = 2nπ ± α",
-          "⇒ θ = 2nπ ± π/6,  n ∈ Z"
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -220,16 +244,27 @@
         "margin_note": "Last mark. cosθ = 1/2 is cos(π/3). Write BOTH families in the final answer, joined by 'or', with n ∈ Z.",
         "memory_tip": "cosθ = 1/2 = cos(π/3). Two factors, two families — write both in the final line.",
         "lines": [
-          "Now cosθ = 1/2 = cos(π/3), so α = π/3",
           {
-            "text": "(the same formula with α = π/3)",
+            "text": "\\text{Now}\\ \\cos \\theta \\ = \\ \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{\\pi }{3}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{same}\\ \\text{formula}\\ \\text{with}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ θ = 2nπ ± π/3,  n ∈ Z",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
           "Both families are solutions of the equation.",
           {
-            "text": "∴ θ = 2nπ ± π/6 or 2nπ ± π/3, n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6}\\text{or}\\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -261,12 +296,21 @@
           "Omitting n ∈ Z."
         ],
         "lines_compact": [
-          "Now cosθ = 1/2 = cos(π/3), so α = π/3",
-          "⇒ θ = 2nπ ± π/3,  n ∈ Z",
+          {
+            "text": "\\text{Now}\\ \\cos \\theta \\ = \\ \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{\\pi }{3}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
           "Both families are solutions of the equation.",
           {
-            "text": "∴ θ = 2nπ ± π/6 or 2nπ ± π/3, n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{6}\\text{or}\\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{3},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

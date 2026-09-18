@@ -56,7 +56,11 @@
           "Take the dx term to the right side:",
           "⇒ √(1 − x²)dy = −√(1 − y²)dx",
           "Divide both sides by √(1 − x²)·√(1 − y²):",
-          "⇒ dy/√(1 − y²) = −dx/√(1 − x²)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{\\sqrt{1\\ - \\ y^{2}}} = \\ - \\dfrac{dx}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Moving the √(1−y²)dx term to the right and then dividing through by both square roots separates the equation completely, with the y terms and dy on one side and the x terms and dx on the other.",
         "common_mistakes": [
@@ -73,9 +77,15 @@
         "margin_note": "The last mark. Both sides integrate directly to a Sin⁻¹ — no substitution needed.",
         "memory_tip": "∫1/√(1−x²)dx = Sin⁻¹x is another standard integral worth remembering, alongside the Tan⁻¹ one.",
         "lines": [
-          "∫dy/√(1 − y²) = −∫dx/√(1 − x²)",
           {
-            "text": "∫du/√(1 − u²) = Sin⁻¹u:",
+            "text": "\\int \\dfrac{dy}{\\sqrt{1\\ - \\ y^{2}}} = \\ - \\int \\dfrac{dx}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{du}{\\sqrt{1\\ - \\ u^{2}}} = \\ \\operatorname{Sin}^{-1} u:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ Sin⁻¹y = −Sin⁻¹x + c",
@@ -94,7 +104,11 @@
           "Leaving the answer as Sin⁻¹y = −Sin⁻¹x + c without combining it into the neater Sin⁻¹y + Sin⁻¹x = c form."
         ],
         "lines_compact": [
-          "∫dy/√(1 − y²) = −∫dx/√(1 − x²)",
+          {
+            "text": "\\int \\dfrac{dy}{\\sqrt{1\\ - \\ y^{2}}} = \\ - \\int \\dfrac{dx}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ Sin⁻¹y = −Sin⁻¹x + c",
           {
             "text": "∴ Sin⁻¹y + Sin⁻¹x = c",

@@ -116,8 +116,9 @@
             "added": true
           },
           {
-            "text": "∴ λ = 1 or λ = −5/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lambda \\ = \\ 1\\ \\text{or}\\ \\lambda \\ = \\ - \\dfrac{5}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -153,8 +154,9 @@
           "⇒ (λ − 1)(2λ + 5) = 0",
           "⇒ λ − 1 = 0 or 2λ + 5 = 0",
           {
-            "text": "∴ λ = 1 or λ = −5/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lambda \\ = \\ 1\\ \\text{or}\\ \\lambda \\ = \\ - \\dfrac{5}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

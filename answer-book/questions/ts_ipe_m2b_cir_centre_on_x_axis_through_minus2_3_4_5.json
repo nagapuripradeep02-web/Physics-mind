@@ -125,8 +125,16 @@
             "text": "⇒ 3x₁ = 7",
             "added": true
           },
-          "⇒ x₁ = 7/3",
-          "∴ Centre S(x₁, y₁) = (7/3, 0)"
+          {
+            "text": "\\Rightarrow \\ x_{1}\\ = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Centre}\\ S\\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(\\dfrac{7}{3},\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The x-axis is the line y = 0, so a centre on it has y₁ = 0. Substituting that into equation (1) leaves one unknown and gives the centre at once.",
         "common_mistakes": [
@@ -138,8 +146,16 @@
           "and the x-axis has equation y = 0.",
           "⇒ y₁ = 0",
           "Put y₁ = 0 in (1): 3x₁ + 0 − 7 = 0",
-          "⇒ x₁ = 7/3",
-          "∴ Centre S(x₁, y₁) = (7/3, 0)"
+          {
+            "text": "\\Rightarrow \\ x_{1}\\ = \\ \\dfrac{7}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Centre}\\ S\\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(\\dfrac{7}{3},\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -153,7 +169,9 @@
         "lines": [
           "A = (−2, 3) lies on the circle, so r = SA.",
           {
-            "text": "Put the centre (7/3, 0) and A(−2, 3) in",
+            "text": "\\text{Put}\\ \\text{the}\\ \\text{centre}\\ \\left(\\dfrac{7}{3},\\ 0\\right)\\ \\text{and}\\ A\\left( - 2,\\ 3\\right)\\ \\text{in}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -161,21 +179,33 @@
             "style": "indent",
             "added": true
           },
-          "r² = (7/3 + 2)² + (0 − 3)²",
           {
-            "text": "7/3 + 2 = 7/3 + 6/3 = 13/3",
+            "text": "r^{2}\\ = \\ \\left(\\dfrac{7}{3} + \\ 2\\right)^{2}\\ + \\ \\left(0\\ - \\ 3\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{7}{3} + \\ 2\\ = \\ \\dfrac{7}{3} + \\ \\dfrac{6}{3} = \\ \\dfrac{13}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (13/3)² + 9",
+            "text": "= \\ \\left(\\dfrac{13}{3}\\right)^{2}\\ + \\ 9",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Write 9 as 81/9:",
+            "text": "\\text{Write}\\ 9\\ \\text{as}\\ \\dfrac{81}{9}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 169/9 + 81/9 = 250/9",
+            "text": "= \\ \\dfrac{169}{9} + \\ \\dfrac{81}{9} = \\ \\dfrac{250}{9}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -186,8 +216,16 @@
         ],
         "lines_compact": [
           "A = (−2, 3) lies on the circle, so r = SA.",
-          "r² = (7/3 + 2)² + (0 − 3)²",
-          "= (13/3)² + 9 = 169/9 + 81/9 = 250/9"
+          {
+            "text": "r^{2}\\ = \\ \\left(\\dfrac{7}{3} + \\ 2\\right)^{2}\\ + \\ \\left(0\\ - \\ 3\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{13}{3}\\right)^{2}\\ + \\ 9\\ = \\ \\dfrac{169}{9} + \\ \\dfrac{81}{9} = \\ \\dfrac{250}{9}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -207,8 +245,16 @@
             "text": "(x − h)² + (y − k)² = r²",
             "added": true
           },
-          "Circle with centre (7/3, 0) and r² = 250/9:",
-          "(x − 7/3)² + y² = 250/9",
+          {
+            "text": "\\text{Circle}\\ \\text{with}\\ \\text{centre}\\ \\left(\\dfrac{7}{3},\\ 0\\right)\\ \\text{and}\\ r^{2}\\ = \\ \\dfrac{250}{9}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ - \\ \\dfrac{7}{3}\\right)^{2}\\ + \\ y^{2}\\ = \\ \\dfrac{250}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 9 to clear the",
             "added": true
@@ -248,8 +294,16 @@
           "Multiplying (x − 7/3)² by 9 and writing (3x − 7)² as 3x² − 7."
         ],
         "lines_compact": [
-          "Circle with centre (7/3, 0) and r² = 250/9 is",
-          "(x − 7/3)² + y² = 250/9",
+          {
+            "text": "\\text{Circle}\\ \\text{with}\\ \\text{centre}\\ \\left(\\dfrac{7}{3},\\ 0\\right)\\ \\text{and}\\ r^{2}\\ = \\ \\dfrac{250}{9}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ - \\ \\dfrac{7}{3}\\right)^{2}\\ + \\ y^{2}\\ = \\ \\dfrac{250}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ (3x − 7)² + 9y² = 250",
           "⇒ 9x² − 42x + 49 + 9y² = 250",
           "⇒ 9x² + 9y² − 42x − 201 = 0",

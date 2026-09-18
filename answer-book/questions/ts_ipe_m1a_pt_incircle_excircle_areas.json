@@ -58,8 +58,16 @@
           "A = πr², A₁ = πr₁², A₂ = πr₂², A₃ = πr₃²",
           "Every radius is positive, so",
           "√A = r√π and √A₁ = r₁√π (same for r₂, r₃)",
-          "(1/√A₁ = 1/(r₁√π), and the same for A₂ and A₃)",
-          "∴ L.H.S = (1/r₁ + 1/r₂ + 1/r₃)/√π"
+          {
+            "text": "\\left(\\dfrac{1}{\\sqrt{A_{1}}} = \\ \\dfrac{1}{r_{1}\\sqrt{\\pi }},\\ \\text{and}\\ \\text{the}\\ \\text{same}\\ \\text{for}\\ A_{2}\\ \\text{and}\\ A_{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{\\dfrac{1}{r_{1}} + \\ \\dfrac{1}{r_{2}} + \\ \\dfrac{1}{r_{3}}}{\\sqrt{\\pi }}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,21 +106,40 @@
         "margin_note": "The other mark. (s−a) + (s−b) + (s−c) = 3s − 2s = s, so the three reciprocals add to s/Δ, which is 1/r.",
         "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so 1/r₁ + 1/r₂ + 1/r₃ = s/Δ = 1/r.",
         "lines": [
-          "r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
+          {
+            "text": "r_{1}\\ = \\ \\dfrac{\\Delta }{s - a},\\ r_{2}\\ = \\ \\dfrac{\\Delta }{s - b},\\ r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take the reciprocal of each; the denominator Δ is shared)",
             "added": true
           },
-          "∴ 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ",
-          "= (3s − 2s)/Δ = s/Δ = 1/r   [∵ r = Δ/s]",
           {
-            "text": "(put 1/r₁ + 1/r₂ + 1/r₃ = 1/r into step 1)",
+            "text": "\\therefore \\ \\dfrac{1}{r_{1}} + \\ \\dfrac{1}{r_{2}} + \\ \\dfrac{1}{r_{3}} = \\ \\dfrac{\\left(s - a\\right) + \\left(s - b\\right) + \\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3s\\ - \\ 2s}{\\Delta } = \\ \\dfrac{s}{\\Delta } = \\ \\dfrac{1}{r}\\left[\\because \\ r\\ = \\ \\dfrac{\\Delta }{s}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{r_{1}} + \\ \\dfrac{1}{r_{2}} + \\ \\dfrac{1}{r_{3}} = \\ \\dfrac{1}{r}\\text{into}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ L.H.S = 1/(r√π) = 1/√(πr²) = 1/√A",
           {
-            "text": "∴ 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A",
-            "style": "boxed"
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{1}{r\\sqrt{\\pi }} = \\ \\dfrac{1}{\\sqrt{\\pi r^{2}}} = \\ \\dfrac{1}{\\sqrt{A}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\sqrt{A_{1}}} + \\ \\dfrac{1}{\\sqrt{A_{2}}} + \\ \\dfrac{1}{\\sqrt{A_{3}}} = \\ \\dfrac{1}{\\sqrt{A}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,13 +170,30 @@
           "Adding (s−a) + (s−b) + (s−c) and getting 2s instead of s."
         ],
         "lines_compact": [
-          "r₁ = Δ/(s−a), r₂ = Δ/(s−b), r₃ = Δ/(s−c)",
-          "∴ 1/r₁ + 1/r₂ + 1/r₃ = [(s−a)+(s−b)+(s−c)]/Δ",
-          "= (3s − 2s)/Δ = s/Δ = 1/r   [∵ r = Δ/s]",
-          "∴ L.H.S = 1/(r√π) = 1/√(πr²) = 1/√A",
           {
-            "text": "∴ 1/√A₁ + 1/√A₂ + 1/√A₃ = 1/√A",
-            "style": "boxed"
+            "text": "r_{1}\\ = \\ \\dfrac{\\Delta }{s - a},\\ r_{2}\\ = \\ \\dfrac{\\Delta }{s - b},\\ r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{r_{1}} + \\ \\dfrac{1}{r_{2}} + \\ \\dfrac{1}{r_{3}} = \\ \\dfrac{\\left(s - a\\right) + \\left(s - b\\right) + \\left(s - c\\right)}{\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3s\\ - \\ 2s}{\\Delta } = \\ \\dfrac{s}{\\Delta } = \\ \\dfrac{1}{r}\\left[\\because \\ r\\ = \\ \\dfrac{\\Delta }{s}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ L.H.S\\ = \\ \\dfrac{1}{r\\sqrt{\\pi }} = \\ \\dfrac{1}{\\sqrt{\\pi r^{2}}} = \\ \\dfrac{1}{\\sqrt{A}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\sqrt{A_{1}}} + \\ \\dfrac{1}{\\sqrt{A_{2}}} + \\ \\dfrac{1}{\\sqrt{A_{3}}} = \\ \\dfrac{1}{\\sqrt{A}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

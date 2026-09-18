@@ -76,8 +76,16 @@
             "style": "indent"
           },
           "Divide throughout by cos²θ:",
-          "⇒ 1/cos²θ + sin²θ/cos²θ = 3 sinθcosθ/cos²θ",
-          "(1/cos²θ = sec²θ and sinθ/cosθ = tanθ)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{\\cos ^{2} \\theta } + \\ \\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta } = \\ \\dfrac{3\\sin \\theta \\cos \\theta }{\\cos ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\cos ^{2} \\theta } = \\ \\sec ^{2} \\theta \\ \\text{and}\\ \\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ sec²θ + tan²θ = 3 tanθ"
         ],
         "recall": {
@@ -181,10 +189,22 @@
             "text": "(a product is 0 only when one factor is 0)",
             "added": true
           },
-          "⇒ tanθ = 1  (or)  tanθ = 1/2",
-          "Now tanθ = 1 = tan(π/4), so α = π/4",
+          {
+            "text": "\\Rightarrow \\ \\tan \\theta \\ = \\ 1\\left(\\text{or}\\right)\\tan \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\tan \\theta \\ = \\ 1\\ = \\ \\tan \\left(\\dfrac{\\pi }{4}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For tanθ = tanα, θ = nπ + α",
-          "∴ θ = nπ + π/4,  n ∈ Z"
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\dfrac{\\pi }{4},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -213,10 +233,22 @@
           "Adding a (−1)ⁿ that does not belong."
         ],
         "lines_compact": [
-          "⇒ tanθ = 1  (or)  tanθ = 1/2",
-          "Now tanθ = 1 = tan(π/4), so α = π/4",
+          {
+            "text": "\\Rightarrow \\ \\tan \\theta \\ = \\ 1\\left(\\text{or}\\right)\\tan \\theta \\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\tan \\theta \\ = \\ 1\\ = \\ \\tan \\left(\\dfrac{\\pi }{4}\\right),\\ \\text{so}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "For tanθ = tanα, θ = nπ + α",
-          "∴ θ = nπ + π/4,  n ∈ Z"
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\dfrac{\\pi }{4},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -228,23 +260,35 @@
         "margin_note": "Last mark. tanθ = 1/2 is not a standard angle, so the principal value stays as an inverse tangent — that is the exact answer and is expected.",
         "memory_tip": "tan θ = 1/2 is not a standard angle, so the principal value stays as Tan⁻¹(1/2). That is the exact answer.",
         "lines": [
-          "Also tanθ = 1/2, whose principal value is Tan⁻¹(1/2)",
           {
-            "text": "(Tan⁻¹(1/2) is not a standard angle, so it is left as it is)",
+            "text": "\\text{Also}\\ \\tan \\theta \\ = \\ \\dfrac{1}{2},\\ \\text{whose}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)\\ \\text{is}\\ \\text{not}\\ a\\ \\text{standard}\\ \\text{angle},\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ \\text{left}\\ \\text{as}\\ \\text{it}\\ \\text{is}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Here the principal value is α = Tan⁻¹(1/2)",
+          {
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the tangent general solution nπ + α for each root)",
             "added": true
           },
           {
-            "text": "∴ θ = nπ + π/4  or",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\dfrac{\\pi }{4}\\text{or}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
-            "style": "boxed"
+            "text": "\\theta \\ = \\ n\\pi \\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right),\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -275,15 +319,25 @@
           "Trying to force 1/2 into a standard angle."
         ],
         "lines_compact": [
-          "Also tanθ = 1/2, whose principal value is Tan⁻¹(1/2)",
-          "Here the principal value is α = Tan⁻¹(1/2)",
           {
-            "text": "∴ θ = nπ + π/4  or",
-            "style": "boxed"
+            "text": "\\text{Also}\\ \\tan \\theta \\ = \\ \\dfrac{1}{2},\\ \\text{whose}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "θ = nπ + Tan⁻¹(1/2),  n ∈ Z",
-            "style": "boxed"
+            "text": "\\text{Here}\\ \\text{the}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ n\\pi \\ + \\ \\dfrac{\\pi }{4}\\text{or}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\theta \\ = \\ n\\pi \\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{2}\\right),\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -50,8 +50,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "π/20 = 9°, so the angles are",
-          "(180°/20 = 9°, and 3 × 9° = 27°, 5 × 9° = 45°, …)",
+          {
+            "text": "\\dfrac{\\pi }{20} = \\ 9^{\\circ},\\ \\text{so}\\ \\text{the}\\ \\text{angles}\\ \\text{are}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{180^{\\circ}}{20} = \\ 9^{\\circ},\\ \\text{and}\\ 3\\ \\times \\ 9^{\\circ}\\ = \\ 27^{\\circ},\\ 5\\ \\times \\ 9^{\\circ}\\ = \\ 45^{\\circ},\\ \\dots \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "9°, 27°, 45°, 63° and 81°",
           "L.H.S = cot 9° · cot 27° · cot 45°",
           "        · cot 63° · cot 81°",
@@ -152,7 +160,9 @@
         "lines": [
           "cot θ · tan θ = 1 wherever both are defined",
           {
-            "text": "(cot θ = 1/tan θ)",
+            "text": "\\left(\\cot \\theta \\ = \\ \\dfrac{1}{\\tan \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ L.H.S = 1 · 1 · 1 = 1",

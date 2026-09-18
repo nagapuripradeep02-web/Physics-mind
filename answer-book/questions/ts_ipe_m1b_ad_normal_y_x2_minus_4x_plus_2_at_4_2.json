@@ -64,8 +64,16 @@
           "Check the point: at x = 4,  y = 16 − 16 + 2 = 2,",
           "so (4, 2) lies on the curve.",
           "Differentiate with respect to x:",
-          "(d/dx of x² is 2x, of 4x is 4, and of 2 is 0)",
-          "dy/dx = 2x − 4"
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x,\\ \\text{of}\\ 4x\\ \\text{is}\\ 4,\\ \\text{and}\\ \\text{of}\\ 2\\ \\text{is}\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2x\\ - \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,10 +114,16 @@
         "mark_note": "Method",
         "margin_note": "Second mark. m = 4 here is the TANGENT's slope, not the normal's. Label it clearly so the next step uses the right number.",
         "lines": [
-          "The slope of the tangent is dy/dx at the given point.",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\dfrac{dy}{dx}\\ \\text{at}\\ \\text{the}\\ \\text{given}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "At x = 4:",
           {
-            "text": "(put 4 in place of x in dy/dx = 2x − 4)",
+            "text": "\\left(\\text{put}\\ 4\\ \\text{in}\\ \\text{place}\\ \\text{of}\\ x\\ \\text{in}\\ \\dfrac{dy}{dx}\\ = \\ 2x\\ - \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "m = 2(4) − 4 = 8 − 4",
@@ -146,7 +160,11 @@
         ],
         "memory_tip": "The point's x is 4 and the slope also comes to 4 — write the word \"tangent\" beside it so the two 4's are not confused later.",
         "lines_compact": [
-          "The slope of the tangent is dy/dx at the given point.",
+          {
+            "text": "\\text{The}\\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ \\text{is}\\ \\dfrac{dy}{dx}\\ \\text{at}\\ \\text{the}\\ \\text{given}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "At x = 4:",
           "m = 2(4) − 4 = 8 − 4",
           "∴ m = 4"
@@ -167,12 +185,20 @@
             "text": "(divide −1 by the tangent slope m)",
             "added": true
           },
-          "Slope of the normal = −1/m",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(m = 4 from step 2)",
             "added": true
           },
-          "∴ slope of the normal = −1/4"
+          {
+            "text": "\\therefore \\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -208,8 +234,16 @@
           "The normal is perpendicular to the tangent",
           "at the same point,",
           "so the product of their slopes is −1.",
-          "Slope of the normal = −1/m",
-          "∴ slope of the normal = −1/4"
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -220,14 +254,28 @@
         "mark_note": "Answer",
         "margin_note": "Fourth mark. The question asks for the normal ONLY, so do not spend time writing the tangent as well — it earns nothing. Check the boxed line at (4, 2): 4 + 8 − 12 = 0.",
         "lines": [
-          "Normal at (x₁, y₁) with slope −1/m:",
-          "y − y₁ = (−1/m)(x − x₁)",
+          {
+            "text": "\\text{Normal}\\ \\text{at}\\ \\left(x_{1},\\ y_{1}\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{1}{m}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here (x₁, y₁) = (4, 2):",
           {
-            "text": "(put x₁ = 4, y₁ = 2 and −1/m = −1/4)",
+            "text": "\\left(\\text{put}\\ x_{1}\\ = \\ 4,\\ y_{1}\\ = \\ 2\\ \\text{and}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − 2 = (−1/4)(x − 4)",
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left( - \\dfrac{1}{4}\\right)\\left(x\\ - \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 4)",
             "added": true
@@ -278,10 +326,22 @@
         ],
         "memory_tip": "Read the question again before writing the last line. This one names only the normal, so only the normal is marked.",
         "lines_compact": [
-          "Normal at (x₁, y₁) with slope −1/m:",
-          "y − y₁ = (−1/m)(x − x₁)",
+          {
+            "text": "\\text{Normal}\\ \\text{at}\\ \\left(x_{1},\\ y_{1}\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{1}{m}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ y_{1}\\ = \\ \\left( - \\dfrac{1}{m}\\right)\\left(x\\ - \\ x_{1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here (x₁, y₁) = (4, 2):",
-          "y − 2 = (−1/4)(x − 4)",
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left( - \\dfrac{1}{4}\\right)\\left(x\\ - \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "4(y − 2) = −(x − 4)",
           "4y − 8 = −x + 4",
           {

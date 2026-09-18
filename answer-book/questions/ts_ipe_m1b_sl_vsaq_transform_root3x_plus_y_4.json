@@ -100,20 +100,31 @@
         "margin_note": "Second mark. Intercept form is x/a + y/b = 1, so move the constant to the right and divide everything by it — the two denominators are then the intercepts.",
         "memory_tip": "Divide through by the constant on the right so it becomes 1; the denominators are then the intercepts.",
         "lines": [
-          "(ii) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(ii\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ √3x + y = 4",
           {
             "text": "(divide every term by 4)",
             "added": true
           },
-          "⇒ √3x/4 + y/4 = 1",
           {
-            "text": "(√3x/4 = x ÷ (4/√3); the x-intercept is 4/√3 = 4√3/3)",
+            "text": "\\Rightarrow \\ \\dfrac{\\sqrt{3}x}{4} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sqrt{3}x}{4} = \\ x\\ \\div \\ \\left(\\dfrac{4}{\\sqrt{3}}\\right);\\ \\text{the}\\ \\text{x-intercept}\\ \\text{is}\\ \\dfrac{4}{\\sqrt{3}} = \\ \\dfrac{4\\sqrt{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⇒ x/(4/√3) + y/4 = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{x}{\\dfrac{4}{\\sqrt{3}}} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,12 +156,21 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "(ii) Intercept form is  x/a + y/b = 1",
-          "∴ √3x + y = 4",
-          "⇒ √3x/4 + y/4 = 1",
           {
-            "text": "⇒ x/(4/√3) + y/4 = 1",
-            "style": "boxed"
+            "text": "\\left(ii\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          "∴ √3x + y = 4",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sqrt{3}x}{4} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{\\dfrac{4}{\\sqrt{3}}} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

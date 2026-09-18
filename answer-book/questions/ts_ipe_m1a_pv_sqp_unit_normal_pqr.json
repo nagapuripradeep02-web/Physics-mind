@@ -185,11 +185,20 @@
             "text": "(a normal can point either way, so ±)",
             "added": true
           },
-          "Required unit vector = ± (PQ × PR)/|PQ × PR|",
-          "= ± 4(2i + j + k)/(4√6)",
           {
-            "text": "∴ Unit vector = ± (2i + j + k)/√6",
-            "style": "boxed"
+            "text": "\\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{PQ\\ \\times \\ PR}{\\left|PQ\\ \\times \\ PR\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\ \\dfrac{4\\left(2i\\ + \\ j\\ + \\ k\\right)}{4\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{2i\\ + \\ j\\ + \\ k}{\\sqrt{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -221,11 +230,20 @@
         ],
         "lines_compact": [
           "|PQ × PR| = 4|2i + j + k| = 4√(4 + 1 + 1) = 4√6",
-          "Required unit vector = ± (PQ × PR)/|PQ × PR|",
-          "= ± 4(2i + j + k)/(4√6)",
           {
-            "text": "∴ Unit vector = ± (2i + j + k)/√6",
-            "style": "boxed"
+            "text": "\\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{PQ\\ \\times \\ PR}{\\left|PQ\\ \\times \\ PR\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\ \\dfrac{4\\left(2i\\ + \\ j\\ + \\ k\\right)}{4\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{2i\\ + \\ j\\ + \\ k}{\\sqrt{6}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

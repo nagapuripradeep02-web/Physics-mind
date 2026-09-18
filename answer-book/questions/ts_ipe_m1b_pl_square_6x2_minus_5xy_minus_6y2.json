@@ -290,13 +290,21 @@
             "style": "indent",
             "added": true
           },
-          "   = |0 − 1| / √(4 + 9) = 1/√13",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ 1\\right|}{\\sqrt{4\\ + \\ 9}} = \\ \\dfrac{1}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Distance between L₂ and L₄",
           {
             "text": "(L₂: 3x + 2y + 0 = 0 and L₄: 3x + 2y − 1 = 0; 3² + 2² = 13)",
             "added": true
           },
-          "   = |0 − (−1)| / √(9 + 4) = 1/√13",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ \\left( - 1\\right)\\right|}{\\sqrt{9\\ + \\ 4}} = \\ \\dfrac{1}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each side equals the distance between the",
           "other pair, so adjacent sides are equal.",
           {
@@ -333,9 +341,17 @@
         ],
         "lines_compact": [
           "Distance between L₁ and L₃",
-          "   = |0 − 1| / √(4 + 9) = 1/√13",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ 1\\right|}{\\sqrt{4\\ + \\ 9}} = \\ \\dfrac{1}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Distance between L₂ and L₄",
-          "   = |0 − (−1)| / √(9 + 4) = 1/√13",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ \\left( - 1\\right)\\right|}{\\sqrt{9\\ + \\ 4}} = \\ \\dfrac{1}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each side equals the distance between the",
           "other pair, so adjacent sides are equal.",
           {

@@ -54,18 +54,38 @@
           },
           "Given  a + b = 6√(ab)",
           "(divide both sides by 2√(ab))",
-          "So  (a + b)/(2√(ab)) = 3/1",
-          "(p/q = m/n gives (p + q)/(p − q) = (m + n)/(m − n))",
+          {
+            "text": "\\text{So}\\ \\dfrac{a\\ + \\ b}{2\\sqrt{ab}} = \\ \\dfrac{3}{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{p}{q} = \\ \\dfrac{m}{n}\\text{gives}\\ \\dfrac{p\\ + \\ q}{p\\ - \\ q} = \\ \\dfrac{m\\ + \\ n}{m\\ - \\ n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "By componendo and dividendo,",
-          "(a + b + 2√(ab))/(a + b − 2√(ab)) = (3 + 1)/(3 − 1) = 2",
+          {
+            "text": "\\dfrac{a\\ + \\ b\\ + \\ 2\\sqrt{ab}}{a\\ + \\ b\\ - \\ 2\\sqrt{ab}} = \\ \\dfrac{3\\ + \\ 1}{3\\ - \\ 1} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a + b ± 2√(ab) = (√a ± √b)²)",
-          "(√a + √b)²/(√a − √b)² = 2",
+          {
+            "text": "\\dfrac{\\left(\\sqrt{a}\\ + \\ \\sqrt{b}\\right)^{2}}{\\left(\\sqrt{a}\\ - \\ \\sqrt{b}\\right)^{2}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take a > b, so √a − √b > 0 and the positive root",
           {
             "text": "  is the right one)",
             "style": "indent"
           },
-          "⇒  (√a + √b)/(√a − √b) = √2"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sqrt{a}\\ + \\ \\sqrt{b}}{\\sqrt{a}\\ - \\ \\sqrt{b}} = \\ \\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,29 +125,47 @@
         "memory_tip": "(√2 + 1)² = 3 + 2√2 and (√2 − 1)² = 3 − 2√2.",
         "lines": [
           "By componendo and dividendo again,",
-          "(√a + √b + √a − √b)/(√a + √b − √a + √b)",
           {
-            "text": "= (√2 + 1)/(√2 − 1)",
-            "style": "indent"
+            "text": "\\dfrac{\\sqrt{a}\\ + \\ \\sqrt{b}\\ + \\ \\sqrt{a}\\ - \\ \\sqrt{b}}{\\sqrt{a}\\ + \\ \\sqrt{b}\\ - \\ \\sqrt{a}\\ + \\ \\sqrt{b}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(the top simplifies to 2√a and the bottom to 2√b)",
             "added": true
           },
-          "2√a/(2√b) = (√2 + 1)/(√2 − 1)",
+          {
+            "text": "\\dfrac{2\\sqrt{a}}{2\\sqrt{b}} = \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel the 2s)",
             "added": true
           },
-          "⇒  √a/√b = (√2 + 1)/(√2 − 1)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sqrt{a}}{\\sqrt{b}} = \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((√2 ± 1)² = 2 ± 2√2 + 1 = 3 ± 2√2)",
             "added": true
           },
-          "Squaring:  a/b = (√2 + 1)²/(√2 − 1)²",
           {
-            "text": "= (3 + 2√2)/(3 − 2√2)",
-            "style": "indent"
+            "text": "\\text{Squaring}:\\ \\dfrac{a}{b} = \\ \\dfrac{\\left(\\sqrt{2}\\ + \\ 1\\right)^{2}}{\\left(\\sqrt{2}\\ - \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3\\ + \\ 2\\sqrt{2}}{3\\ - \\ 2\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "∴ a : b = (3 + 2√2) : (3 − 2√2)",
@@ -162,17 +200,35 @@
         ],
         "lines_compact": [
           "By componendo and dividendo again,",
-          "(√a + √b + √a − √b)/(√a + √b − √a + √b)",
           {
-            "text": "= (√2 + 1)/(√2 − 1)",
-            "style": "indent"
+            "text": "\\dfrac{\\sqrt{a}\\ + \\ \\sqrt{b}\\ + \\ \\sqrt{a}\\ - \\ \\sqrt{b}}{\\sqrt{a}\\ + \\ \\sqrt{b}\\ - \\ \\sqrt{a}\\ + \\ \\sqrt{b}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "2√a/(2√b) = (√2 + 1)/(√2 − 1)",
-          "⇒  √a/√b = (√2 + 1)/(√2 − 1)",
-          "Squaring:  a/b = (√2 + 1)²/(√2 − 1)²",
           {
-            "text": "= (3 + 2√2)/(3 − 2√2)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{2\\sqrt{a}}{2\\sqrt{b}} = \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sqrt{a}}{\\sqrt{b}} = \\ \\dfrac{\\sqrt{2}\\ + \\ 1}{\\sqrt{2}\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Squaring}:\\ \\dfrac{a}{b} = \\ \\dfrac{\\left(\\sqrt{2}\\ + \\ 1\\right)^{2}}{\\left(\\sqrt{2}\\ - \\ 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3\\ + \\ 2\\sqrt{2}}{3\\ - \\ 2\\sqrt{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "∴ a : b = (3 + 2√2) : (3 − 2√2)",

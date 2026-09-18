@@ -88,13 +88,33 @@
           },
           "The denominator is 1 + cos θ + i sin θ",
           "The half-angle identities are",
-          "1 + cos θ = 2cos²(θ/2)",
-          "sin θ = 2 sin(θ/2) cos(θ/2)",
+          {
+            "text": "1\\ + \\ \\cos \\theta \\ = \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\theta \\ = \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put both of them into the denominator:",
           "1 + cos θ + i sin θ",
-          "= 2cos²(θ/2) + i · 2 sin(θ/2) cos(θ/2)",
-          "Both terms carry 2cos(θ/2), so take it out:",
-          "= 2cos(θ/2)[cos(θ/2) + i sin(θ/2)]"
+          {
+            "text": "= \\ 2\\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\ \\cdot \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{carry}\\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right),\\ \\text{so}\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -134,18 +154,30 @@
         "margin_note": "Half the marks. Multiply above and below by cos(θ/2) − i sin(θ/2). The bracket product is cos² + sin² = 1, so only 2cos(θ/2) is left underneath, and it cancels the cos(θ/2) on top of the real part.",
         "memory_tip": "(cos A + i sin A)(cos A − i sin A) = 1, so only 2cos(θ/2) is left underneath.",
         "lines": [
-          "x + iy = 1 ÷ 2cos(θ/2)[cos(θ/2) + i sin(θ/2)]",
+          {
+            "text": "x\\ + \\ iy\\ = \\ 1\\ \\div \\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply above and below by the conjugate",
             "added": true
           },
           {
-            "text": "of the bracket, cos(θ/2) − i sin(θ/2):",
+            "text": "\\text{of}\\ \\text{the}\\ \\text{bracket},\\ \\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [cos(θ/2) − i sin(θ/2)] ÷ 2cos(θ/2) ×",
           {
-            "text": "  [cos(θ/2) + i sin(θ/2)][cos(θ/2) − i sin(θ/2)]",
+            "text": "= \\ \\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]\\ \\div \\ 2\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ \\times",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]\\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -153,7 +185,9 @@
             "added": true
           },
           {
-            "text": "= cos²(θ/2) + sin²(θ/2) = 1",
+            "text": "= \\ \\cos ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{\\theta }{2}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -213,10 +247,15 @@
         "lines_compact": [
           "x + iy = 1 / (2cos(θ/2)[cos(θ/2) + i sin(θ/2)])",
           "Multiply above and below by",
-          "cos(θ/2) − i sin(θ/2):",
           {
-            "text": "= [cos(θ/2) − i sin(θ/2)]",
-            "style": "eq"
+            "text": "\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "/ (2cos(θ/2)[cos²(θ/2) + sin²(θ/2)])",
@@ -227,8 +266,9 @@
             "style": "eq"
           },
           {
-            "text": "= 1/2 − (i/2) tan(θ/2)",
-            "style": "eq"
+            "text": "= \\ \\dfrac{1}{2} - \\ \\left(\\dfrac{i}{2}\\right)\\tan \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -242,7 +282,9 @@
         "memory_tip": "x = 1/2 for every θ. Only x is needed — square it and rearrange, and leave y alone.",
         "lines": [
           {
-            "text": "So x + iy = 1/2 − (i/2) tan(θ/2)",
+            "text": "\\text{So}\\ x\\ + \\ iy\\ = \\ \\dfrac{1}{2} - \\ \\left(\\dfrac{i}{2}\\right)\\tan \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -258,7 +300,9 @@
             "added": true
           },
           {
-            "text": "Equating the real parts: x = 1/2",
+            "text": "\\text{Equating}\\ \\text{the}\\ \\text{real}\\ \\text{parts}:\\ x\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -306,7 +350,11 @@
           "Writing x = 1/2 and stopping without reaching 4x² − 1 = 0."
         ],
         "lines_compact": [
-          "Equating real parts: x = 1/2 ⇒ 2x = 1",
+          {
+            "text": "\\text{Equating}\\ \\text{real}\\ \\text{parts}:\\ x\\ = \\ \\dfrac{1}{2} \\Rightarrow \\ 2x\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ (2x)² = 1 ⇒ 4x² = 1",
           {
             "text": "∴ 4x² − 1 = 0",

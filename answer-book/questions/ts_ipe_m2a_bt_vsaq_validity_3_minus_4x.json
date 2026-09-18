@@ -64,13 +64,21 @@
           },
           "For a fractional or negative n, (1 + y)ⁿ can be",
           "expanded only when |y| < 1",
-          "Take the 3 out: 3 − 4x = 3(1 − 4x/3)",
+          {
+            "text": "\\text{Take}\\ \\text{the}\\ 3\\ \\text{out}:\\ 3\\ - \\ 4x\\ = \\ 3\\left(1\\ - \\ \\dfrac{4x}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3 - 4x)^{3/4} = 3^{3/4}\\left(1 - \\dfrac{4x}{3}\\right)^{3/4}",
             "render": "katex",
             "style": "eq"
           },
-          "This is valid when |−4x/3| < 1, that is |4x/3| < 1"
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{valid}\\ \\text{when}\\ | - \\dfrac{4x}{3}|\\ < \\ 1,\\ \\text{that}\\ \\text{is}\\ |\\dfrac{4x}{3}|\\ < \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,17 +117,26 @@
         "memory_tip": "|4x/3| < 1 gives |x| < 3/4. The end points are excluded.",
         "lines": [
           {
-            "text": "|4x/3| < 1 ⇒ |4x| < 3 ⇒ 4|x| < 3",
-            "added": true
-          },
-          "|x| < 3/4",
-          {
-            "text": "−3/4 < x < 3/4",
+            "text": "|\\dfrac{4x}{3}|\\ < \\ 1\\ \\Rightarrow \\ |4x|\\ < \\ 3\\ \\Rightarrow \\ 4|x|\\ < \\ 3",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ E = (−3/4, 3/4)",
-            "style": "boxed"
+            "text": "|x|\\ < \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{3}{4} < \\ x\\ < \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ E\\ = \\ \\left( - \\dfrac{3}{4},\\ \\dfrac{3}{4}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -149,10 +166,15 @@
           "Getting (−4/3, 4/3) by inverting the fraction."
         ],
         "lines_compact": [
-          "|x| < 3/4",
           {
-            "text": "∴ E = (−3/4, 3/4)",
-            "style": "boxed"
+            "text": "|x|\\ < \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ E\\ = \\ \\left( - \\dfrac{3}{4},\\ \\dfrac{3}{4}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

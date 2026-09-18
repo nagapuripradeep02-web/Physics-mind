@@ -126,12 +126,21 @@
             "added": true
           },
           {
-            "text": "  ((mx₂ − nx₁)/(m − n), (my₂ − ny₁)/(m − n))",
+            "text": "\\left(\\dfrac{mx_{2}\\ - \\ nx_{1}}{m\\ - \\ n},\\ \\dfrac{my_{2}\\ - \\ ny_{1}}{m\\ - \\ n}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "E = ((3(11) − 1(−11))/(3−1), (3(−2) − 1(2))/(3−1))",
-          "= (44/2, −8/2) = (22, −4)"
+          {
+            "text": "E\\ = \\ \\left(\\dfrac{3\\left(11\\right)\\ - \\ 1\\left( - 11\\right)}{3 - 1},\\ \\dfrac{3\\left( - 2\\right)\\ - \\ 1\\left(2\\right)}{3 - 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{44}{2},\\ - \\dfrac{8}{2}\\right)\\ = \\ \\left(22,\\ - 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The two direct common tangents are not parallel unless the radii are equal, so they meet at one point. That point is the external centre of similitude, and it divides the line of centres externally in the ratio of the radii.",
         "common_mistakes": [
@@ -145,8 +154,16 @@
           "so the circles lie apart.",
           "r₁ : r₂ = 15 : 5 = 3 : 1",
           "E divides C₁C₂ externally in the ratio 3 : 1",
-          "E = ((3(11) − 1(−11))/(3−1), (3(−2) − 1(2))/(3−1))",
-          "= (44/2, −8/2) = (22, −4)"
+          {
+            "text": "E\\ = \\ \\left(\\dfrac{3\\left(11\\right)\\ - \\ 1\\left( - 11\\right)}{3 - 1},\\ \\dfrac{3\\left( - 2\\right)\\ - \\ 1\\left(2\\right)}{3 - 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{44}{2},\\ - \\dfrac{8}{2}\\right)\\ = \\ \\left(22,\\ - 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -178,11 +195,16 @@
             "added": true
           },
           {
-            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "text": "\\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ |11m + 2 − 22m − 4| / √(m² + 1) = 5",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left|11m\\ + \\ 2\\ - \\ 22m\\ - \\ 4\\right|}{\\sqrt{m^{2}\\ + \\ 1}} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "11m + 2 − 22m − 4 = −11m − 2, and",
             "added": true
@@ -211,7 +233,11 @@
           "It touches the second circle, so the",
           "distance from C₂(11, −2) to (1)",
           "equals the radius r₂ = 5",
-          "⇒ |11m + 2 − 22m − 4| / √(m² + 1) = 5",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left|11m\\ + \\ 2\\ - \\ 22m\\ - \\ 4\\right|}{\\sqrt{m^{2}\\ + \\ 1}} = \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ |11m + 2| = 5√(m² + 1)",
           "⇒ (11m + 2)² = 25(m² + 1)"
         ]
@@ -242,7 +268,11 @@
           },
           "⇒ 24m(4m + 3) − 7(4m + 3) = 0",
           "⇒ (24m − 7)(4m + 3) = 0",
-          "⇒ m = 7/24 or m = −3/4"
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ \\dfrac{7}{24}\\text{or}\\ m\\ = \\ - \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The touching condition is a quadratic in m, and its two roots are the slopes of the two direct common tangents. Grouping is quicker here than the quadratic formula because 96 × 21 = 2016 = 72 × 28.",
         "common_mistakes": [
@@ -255,7 +285,11 @@
           "⇒ 96m² + 72m − 28m − 21 = 0",
           "⇒ 24m(4m + 3) − 7(4m + 3) = 0",
           "⇒ (24m − 7)(4m + 3) = 0",
-          "⇒ m = 7/24 or m = −3/4"
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ \\dfrac{7}{24}\\text{or}\\ m\\ = \\ - \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -267,14 +301,22 @@
         "margin_note": "The last mark. Both lines pass through E(22, −4); clear the fractions before writing the final form.",
         "memory_tip": "Put each slope back into y + 4 = m(x − 22) and multiply out the denominator.",
         "lines": [
-          "With m = 7/24: y + 4 = (7/24)(x − 22)",
+          {
+            "text": "\\text{With}\\ m\\ = \\ \\dfrac{7}{24}:\\ y\\ + \\ 4\\ = \\ \\left(\\dfrac{7}{24}\\right)\\left(x\\ - \\ 22\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 24:",
             "added": true
           },
           "⇒ 24y + 96 = 7x − 154",
           "⇒ 7x − 24y − 250 = 0",
-          "With m = −3/4: y + 4 = (−3/4)(x − 22)",
+          {
+            "text": "\\text{With}\\ m\\ = \\ - \\dfrac{3}{4}:\\ y\\ + \\ 4\\ = \\ \\left( - \\dfrac{3}{4}\\right)\\left(x\\ - \\ 22\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 4:",
             "added": true
@@ -295,10 +337,18 @@
           "Sign slip when multiplying −4 across, giving 7x − 24y + 250 = 0."
         ],
         "lines_compact": [
-          "With m = 7/24: y + 4 = (7/24)(x − 22)",
+          {
+            "text": "\\text{With}\\ m\\ = \\ \\dfrac{7}{24}:\\ y\\ + \\ 4\\ = \\ \\left(\\dfrac{7}{24}\\right)\\left(x\\ - \\ 22\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 24y + 96 = 7x − 154",
           "⇒ 7x − 24y − 250 = 0",
-          "With m = −3/4: y + 4 = (−3/4)(x − 22)",
+          {
+            "text": "\\text{With}\\ m\\ = \\ - \\dfrac{3}{4}:\\ y\\ + \\ 4\\ = \\ \\left( - \\dfrac{3}{4}\\right)\\left(x\\ - \\ 22\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 4y + 16 = −3x + 66",
           {
             "text": "∴ 7x − 24y − 250 = 0 and 3x + 4y − 50 = 0",

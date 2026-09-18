@@ -88,10 +88,16 @@
         "memory_tip": "∫xⁿ dx = xⁿ⁺¹/(n+1) — increase the power by one and divide by the new power.",
         "lines": [
           {
-            "text": "∫x³ dx = x⁴/4 and ∫3 dx = 3x:",
+            "text": "\\int x^{3}dx\\ = \\ \\dfrac{x^{4}}{4}\\text{and}\\ \\int 3dx\\ = \\ 3x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫(x³+3) dx = x⁴/4 + 3x + c",
+          {
+            "text": "\\int \\left(x^{3} + 3\\right)dx\\ = \\ \\dfrac{x^{4}}{4} + \\ 3x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "In a definite integral the c cancels:",
             "added": true
@@ -108,7 +114,11 @@
           "Forgetting the +3x term from the constant part of the integrand."
         ],
         "lines_compact": [
-          "∫(x³+3) dx = x⁴/4 + 3x + c",
+          {
+            "text": "\\int \\left(x^{3} + 3\\right)dx\\ = \\ \\dfrac{x^{4}}{4} + \\ 3x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore A = \\left[\\tfrac{x^{4}}{4} + 3x\\right]_{-1}^{2}",
             "render": "katex",
@@ -129,19 +139,30 @@
             "text": "Upper limit minus lower limit:",
             "added": true
           },
-          "= [(2⁴/4 + 3(2)) − ((−1)⁴/4 + 3(−1))]",
+          {
+            "text": "= \\ \\left[\\left(\\dfrac{2^{4}}{4} + \\ 3\\left(2\\right)\\right)\\ - \\ \\left(\\dfrac{\\left( - 1\\right)^{4}}{4} + \\ 3\\left( - 1\\right)\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2⁴ = 16 and (−1)⁴ = 1:",
             "added": true
           },
-          "= (16/4 + 6) − (1/4 − 3) = 10 − (−11/4)",
           {
-            "text": "1/4 − 3 = 1/4 − 12/4 = −11/4, and 10 = 40/4:",
+            "text": "= \\ \\left(\\dfrac{16}{4} + \\ 6\\right)\\ - \\ \\left(\\dfrac{1}{4} - \\ 3\\right)\\ = \\ 10\\ - \\ \\left( - \\dfrac{11}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{4} - \\ 3\\ = \\ \\dfrac{1}{4} - \\ \\dfrac{12}{4} = \\ - \\dfrac{11}{4},\\ \\text{and}\\ 10\\ = \\ \\dfrac{40}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Area = 40/4 + 11/4 = 51/4 sq. units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{40}{4} + \\ \\dfrac{11}{4} = \\ \\dfrac{51}{4}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting x=2 gives 16/4+6=10, and substituting x=−1 gives 1/4−3=−11/4; subtracting the lower value from the upper value (10 minus a negative) adds the two magnitudes together, giving 51/4.",
@@ -150,11 +171,20 @@
           "An arithmetic slip converting 10 to the fraction 40/4 before adding 11/4."
         ],
         "lines_compact": [
-          "= [(2⁴/4 + 3(2)) − ((−1)⁴/4 + 3(−1))]",
-          "= (16/4 + 6) − (1/4 − 3) = 10 − (−11/4)",
           {
-            "text": "∴ Area = 40/4 + 11/4 = 51/4 sq. units",
-            "style": "boxed"
+            "text": "= \\ \\left[\\left(\\dfrac{2^{4}}{4} + \\ 3\\left(2\\right)\\right)\\ - \\ \\left(\\dfrac{\\left( - 1\\right)^{4}}{4} + \\ 3\\left( - 1\\right)\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{16}{4} + \\ 6\\right)\\ - \\ \\left(\\dfrac{1}{4} - \\ 3\\right)\\ = \\ 10\\ - \\ \\left( - \\dfrac{11}{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{40}{4} + \\ \\dfrac{11}{4} = \\ \\dfrac{51}{4}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

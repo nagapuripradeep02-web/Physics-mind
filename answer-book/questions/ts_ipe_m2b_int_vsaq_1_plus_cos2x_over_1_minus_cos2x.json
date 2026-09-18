@@ -57,10 +57,22 @@
             "style": "heading"
           },
           "Here 1 − cos2x = 2sin²x",
-          "(1+cos²x)/(1−cos2x) = (1+cos²x)/(2sin²x)",
+          {
+            "text": "\\dfrac{1 + \\cos ^{2} x}{1 - \\cos 2x} = \\ \\dfrac{1 + \\cos ^{2} x}{2\\sin ^{2} x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Split the numerator over the denominator:",
-          "= (1/2)[1/sin²x + cos²x/sin²x]",
-          "= (1/2)[cosec²x + cot²x]"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\dfrac{1}{\\sin ^{2} x} + \\ \\dfrac{\\cos ^{2} x}{\\sin ^{2} x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\cos ec^{2}x\\ + \\ \\cot ^{2} x\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The double-angle identity 1−cos2x=2sin²x turns the denominator into a plain sine squared, after which splitting the numerator's two terms over it gives two standard trig-squared forms.",
         "common_mistakes": [
@@ -77,21 +89,40 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          "(1/2)[cosec²x+cot²x]",
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)\\left[\\cos ec^{2}x + \\cot ^{2} x\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Use cot²x = cosec²x − 1:",
             "added": true
           },
-          "= (1/2)[cosec²x+cosec²x−1]",
-          "= (1/2)[2cosec²x−1] = cosec²x − 1/2",
           {
-            "text": "∫cosec²x dx = −cotx and ∫(1/2)dx = x/2:",
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\cos ec^{2}x + \\cos ec^{2}x - 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[2\\cos ec^{2}x - 1\\right]\\ = \\ \\cos ec^{2}x\\ - \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\cos ec^{2}xdx\\ = \\ - \\cot x\\ \\text{and}\\ \\int \\left(\\dfrac{1}{2}\\right)dx\\ = \\ \\dfrac{x}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ ∫ [(1+cos²x)/(1−cos2x)] dx =",
           {
-            "text": "−cotx − x/2 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{1 + \\cos ^{2} x}{1 - \\cos 2x}\\right]dx\\ =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\cot x\\ - \\ \\dfrac{x}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Replacing cot²x with cosec²x−1 collapses the bracket to a single cosec²x term plus a constant, which then integrates directly to −cotx minus a plain x/2 term.",
@@ -101,13 +132,30 @@
         ],
         "memory_tip": "cot²x has NO direct standard integral — always rewrite it as cosec²x−1 first, exactly as tan²x becomes sec²x−1.",
         "lines_compact": [
-          "(1/2)[cosec²x+cot²x]",
-          "= (1/2)[cosec²x+cosec²x−1]",
-          "= (1/2)[2cosec²x−1] = cosec²x − 1/2",
-          "∴ ∫ [(1+cos²x)/(1−cos2x)] dx =",
           {
-            "text": "−cotx − x/2 + c",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{1}{2}\\right)\\left[\\cos ec^{2}x + \\cot ^{2} x\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[\\cos ec^{2}x + \\cos ec^{2}x - 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left[2\\cos ec^{2}x - 1\\right]\\ = \\ \\cos ec^{2}x\\ - \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{1 + \\cos ^{2} x}{1 - \\cos 2x}\\right]dx\\ =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\cot x\\ - \\ \\dfrac{x}{2} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

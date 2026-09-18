@@ -92,17 +92,23 @@
         "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 is left — a fraction, not a whole number.",
         "lines": [
           {
-            "text": "(put x = 1/4)",
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ Tanh⁻¹(1/4) = (1/2) logₑ((1 + 1/4)/(1 − 1/4))",
           {
-            "text": "(1 + 1/4 = 5/4 and 1 − 1/4 = 3/4)",
+            "text": "\\left(1\\ + \\ \\dfrac{1}{4} = \\ \\dfrac{5}{4}\\text{and}\\ 1\\ - \\ \\dfrac{1}{4} = \\ \\dfrac{3}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= (1/2) logₑ((5/4)/(3/4))",
           {
-            "text": "((5/4)/(3/4) = 5/3)",
+            "text": "\\left(\\dfrac{\\dfrac{5}{4}}{\\dfrac{3}{4}} = \\ \\dfrac{5}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

@@ -58,13 +58,29 @@
             "style": "heading"
           },
           "Bring each angle to an acute angle:",
-          "sin330° = sin(360° − 30°) = −sin30° = −1/2",
+          {
+            "text": "\\sin 330^{\\circ}\\ = \\ \\sin \\left(360^{\\circ}\\ - \\ 30^{\\circ}\\right)\\ = \\ - \\sin 30^{\\circ}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(330° is in Q₄, where sin is negative)",
-          "cos120° = cos(180° − 60°) = −cos60° = −1/2",
+          {
+            "text": "\\cos 120^{\\circ}\\ = \\ \\cos \\left(180^{\\circ}\\ - \\ 60^{\\circ}\\right)\\ = \\ - \\cos 60^{\\circ}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(120° is in Q₂, where cos is negative)",
-          "cos210° = cos(180° + 30°) = −cos30° = −√3/2",
+          {
+            "text": "\\cos 210^{\\circ}\\ = \\ \\cos \\left(180^{\\circ}\\ + \\ 30^{\\circ}\\right)\\ = \\ - \\cos 30^{\\circ}\\ = \\ - \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(210° is in Q₃, where cos is negative)",
-          "sin300° = sin(360° − 60°) = −sin60° = −√3/2",
+          {
+            "text": "\\sin 300^{\\circ}\\ = \\ \\sin \\left(360^{\\circ}\\ - \\ 60^{\\circ}\\right)\\ = \\ - \\sin 60^{\\circ}\\ = \\ - \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(300° is in Q₄, where sin is negative)"
         ],
         "recall": {
@@ -108,12 +124,20 @@
             "text": "Put the four values in:",
             "added": true
           },
-          "Given expression = (−1/2)(−1/2) + (−√3/2)(−√3/2)",
+          {
+            "text": "\\text{Given}\\ \\text{expression}\\ = \\ \\left( - \\dfrac{1}{2}\\right)\\left( - \\dfrac{1}{2}\\right)\\ + \\ \\left( - \\dfrac{\\sqrt{3}}{2}\\right)\\left( - \\dfrac{\\sqrt{3}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a minus times a minus is a plus, and √3 × √3 = 3)",
             "added": true
           },
-          "= 1/4 + 3/4",
+          {
+            "text": "= \\ \\dfrac{1}{4} + \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 1",
             "style": "boxed"
@@ -146,8 +170,16 @@
           "Squaring √3/2 as 3/4 but writing √3/4."
         ],
         "lines_compact": [
-          "Given expression = (−1/2)(−1/2) + (−√3/2)(−√3/2)",
-          "= 1/4 + 3/4",
+          {
+            "text": "\\text{Given}\\ \\text{expression}\\ = \\ \\left( - \\dfrac{1}{2}\\right)\\left( - \\dfrac{1}{2}\\right)\\ + \\ \\left( - \\dfrac{\\sqrt{3}}{2}\\right)\\left( - \\dfrac{\\sqrt{3}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{4} + \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 1",
             "style": "boxed"

@@ -115,12 +115,20 @@
             "added": true
           },
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(p + q = 2S − A − B and p − q = B − A)",
             "added": true
           },
-          "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{2S - \\left(A + B\\right)}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -152,8 +160,16 @@
         "lines_compact": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
           "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
-          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
-          "= 2 sin((2S−(A+B))/2) cos((B−A)/2) + sinC"
+          {
+            "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{2S - \\left(A + B\\right)}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\sin C",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -170,20 +186,28 @@
             "added": true
           },
           {
-            "text": "  (2S−(A+B))/2 = C/2.",
+            "text": "\\dfrac{2S - \\left(A + B\\right)}{2} = \\ \\dfrac{C}{2}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Write sinC with half-angles (θ = C/2):",
+            "text": "\\text{Write}\\ \\sin C\\ \\text{with}\\ \\text{half} - \\text{angles}\\ \\left(\\theta \\ = \\ \\dfrac{C}{2}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  sinC = 2 sin(C/2) cos(C/2)",
+            "text": "\\sin C\\ = \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
         ],
         "recall": {
@@ -214,7 +238,11 @@
           "Substituting 2S − (A+B) as something other than C."
         ],
         "lines_compact": [
-          "= 2 sin(C/2) cos((B−A)/2) + 2 sin(C/2) cos(C/2)",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ 2S − (A+B) = C, and sin2θ = 2 sinθ cosθ]"
         ]
       },
@@ -228,10 +256,16 @@
         "memory_tip": "The common factor comes out, and the condition is used again inside the bracket.",
         "lines": [
           {
-            "text": "Both terms have 2 sin(C/2); take it out:",
+            "text": "\\text{Both}\\ \\text{terms}\\ \\text{have}\\ 2\\sin \\left(\\dfrac{C}{2}\\right);\\ \\text{take}\\ \\text{it}\\ \\text{out}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Inside the bracket, write C through the",
             "added": true
@@ -241,7 +275,11 @@
             "style": "indent",
             "added": true
           },
-          "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = (S−A) + (S−B)]"
         ],
         "recall": {
@@ -272,8 +310,16 @@
           "Losing the factor of 2."
         ],
         "lines_compact": [
-          "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
-          "= 2 sin(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "  [∵ C = (S−A) + (S−B)]"
         ]
       },
@@ -291,27 +337,41 @@
             "added": true
           },
           {
-            "text": "  p = ((S−A)+(S−B))/2 and q = (B−A)/2:",
+            "text": "p\\ = \\ \\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\text{and}\\ q\\ = \\ \\dfrac{B - A}{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p + q = S − A, so (p+q)/2 = (S−A)/2",
+            "text": "p\\ + \\ q\\ = \\ S\\ - \\ A,\\ \\text{so}\\ \\dfrac{p + q}{2} = \\ \\dfrac{S - A}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "p − q = S − B, so (p−q)/2 = (S−B)/2",
+            "text": "p\\ - \\ q\\ = \\ S\\ - \\ B,\\ \\text{so}\\ \\dfrac{p - q}{2} = \\ \\dfrac{S - B}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left(2\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply 2 × 2 = 4 and reorder:",
             "added": true
           },
           {
-            "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 4\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -342,11 +402,20 @@
           "Getting the arguments of the two cosines swapped."
         ],
         "lines_compact": [
-          "= 2 sin(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "= 4 cos((S−A)/2) cos((S−B)/2) sin(C/2) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left(2\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\cos \\left(\\dfrac{S - A}{2}\\right)\\cos \\left(\\dfrac{S - B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

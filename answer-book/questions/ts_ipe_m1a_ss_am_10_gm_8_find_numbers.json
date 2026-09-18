@@ -54,7 +54,11 @@
           },
           "Let the two numbers be a and b.",
           "(multiply both sides by 2)",
-          "A.M. = (a + b)/2 = 10  ⇒  a + b = 20",
+          {
+            "text": "A.M.\\ = \\ \\dfrac{a\\ + \\ b}{2} = \\ 10\\ \\Rightarrow \\ a\\ + \\ b\\ = \\ 20",
+            "style": "normal",
+            "render": "katex"
+          },
           "(square both sides)",
           "G.M. = √(ab) = 8  ⇒  ab = 64"
         ],

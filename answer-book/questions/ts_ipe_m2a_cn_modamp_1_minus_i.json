@@ -65,7 +65,11 @@
           "Let 1 − i = x + iy, so x = 1 and y = −1",
           "The modulus-amplitude form is",
           "z = r(cos θ + i sin θ), where",
-          "r = √(x² + y²) and tan θ = y/x",
+          {
+            "text": "r\\ = \\ \\sqrt{x^{2}\\ + \\ y^{2}}\\ \\text{and}\\ \\tan \\theta \\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r = √((1)² + (−1)²) = √(1 + 1)",
           "= √2"
         ],
@@ -105,7 +109,11 @@
         "margin_note": "Second mark. tan θ = −1 and (1, −1) is in the fourth quadrant, so θ = −π/4. The i sin(−π/4) becomes −i sin(π/4).",
         "memory_tip": "tan θ = −1 fits two angles. (1, −1) is in the fourth quadrant, so θ = −π/4.",
         "lines": [
-          "tan θ = y/x = (−1)/1 = −1",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - 1}{1} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The point (1, −1) lies in the fourth quadrant,",
             "added": true
@@ -115,14 +123,21 @@
             "added": true
           },
           {
-            "text": "so θ = −π/4",
+            "text": "\\text{so}\\ \\theta \\ = \\ - \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ 1 − i = √2(cos(−π/4) + i sin(−π/4))",
-            "style": "boxed"
+            "text": "\\therefore \\ 1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\left( - \\dfrac{\\pi }{4}\\right)\\ + \\ i\\sin \\left( - \\dfrac{\\pi }{4}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
-          "= √2(cos(π/4) − i sin(π/4))"
+          {
+            "text": "= \\ \\sqrt{2}\\left(\\cos \\left(\\dfrac{\\pi }{4}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\pi }{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -154,12 +169,25 @@
           "Forgetting the r = √2."
         ],
         "lines_compact": [
-          "tan θ = y/x = (−1)/1 = −1",
-          "(1, −1) lies in the fourth quadrant ⇒ θ = −π/4",
-          "∴ 1 − i = √2(cos(−π/4) + i sin(−π/4))",
           {
-            "text": "= √2(cos(π/4) − i sin(π/4))",
-            "style": "boxed"
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - 1}{1} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1,\\ - 1\\right)\\ \\text{lies}\\ \\text{in}\\ \\text{the}\\ \\text{fourth}\\ \\text{quadrant}\\ \\Rightarrow \\ \\theta \\ = \\ - \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ 1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\left( - \\dfrac{\\pi }{4}\\right)\\ + \\ i\\sin \\left( - \\dfrac{\\pi }{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{2}\\left(\\cos \\left(\\dfrac{\\pi }{4}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\pi }{4}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

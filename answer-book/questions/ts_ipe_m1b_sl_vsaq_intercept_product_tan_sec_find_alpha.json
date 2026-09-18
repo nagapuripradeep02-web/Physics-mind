@@ -53,9 +53,17 @@
             "style": "heading"
           },
           "Given line is  x tanα + y secα = 1",
-          "(on the x-axis y = 0; divide by tan α: 1/tan α = cot α)",
+          {
+            "text": "\\left(\\text{on}\\ \\text{the}\\ \\text{x-axis}\\ y\\ = \\ 0;\\ \\text{divide}\\ \\text{by}\\ \\tan \\alpha :\\ \\dfrac{1}{\\tan \\alpha } = \\ \\cot \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put y = 0:  x tanα = 1  ⇒  x = cotα",
-          "(on the y-axis x = 0; 1/sec α = cos α)",
+          {
+            "text": "\\left(\\text{on}\\ \\text{the}\\ \\text{y-axis}\\ x\\ = \\ 0;\\ \\dfrac{1}{\\sec \\alpha } = \\ \\cos \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = 0:  y secα = 1  ⇒  y = cosα",
           "∴ x-intercept = cotα, y-intercept = cosα",
           "(tanα ≠ 0 here, so α is not a multiple of π.)"
@@ -104,10 +112,16 @@
           },
           "⇒ cotα · cosα = sinα",
           {
-            "text": "(cot α = cos α/sin α, so cot α · cos α = cos²α/sin α)",
+            "text": "\\left(\\cot \\alpha \\ = \\ \\dfrac{\\cos \\alpha }{\\sin \\alpha },\\ \\text{so}\\ \\cot \\alpha \\ \\cdot \\ \\cos \\alpha \\ = \\ \\dfrac{\\cos ^{2} \\alpha }{\\sin \\alpha }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ cos²α/sinα = sinα",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cos ^{2} \\alpha }{\\sin \\alpha } = \\ \\sin \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by sin α, which is not 0)",
             "added": true
@@ -119,22 +133,45 @@
           },
           "⇒ cos²α − sin²α = 0  ⇒  cos 2α = 0",
           {
-            "text": "(cos θ = 0 exactly when θ is an odd multiple of π/2)",
+            "text": "\\left(\\cos \\theta \\ = \\ 0\\ \\text{exactly}\\ \\text{when}\\ \\theta \\ \\text{is}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 2α = (2n + 1)π/2,  n ∈ Z",
+          {
+            "text": "\\Rightarrow \\ 2\\alpha \\ = \\ \\dfrac{\\left(2n\\ + \\ 1\\right)\\pi }{2},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 2)",
             "added": true
           },
           {
-            "text": "∴ α = (2n + 1)π/4,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\therefore \\ \\alpha \\ = \\ \\dfrac{\\left(2n\\ + \\ 1\\right)\\pi }{4},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           },
-          "The acute value is α = π/4, that is 45°.",
-          "Check at α = π/4: the line is x + √2 y = 1,",
-          "with intercepts 1 and 1/√2; their product is",
-          "1/√2, and sin(π/4) = 1/√2."
+          {
+            "text": "\\text{The}\\ \\text{acute}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4},\\ \\text{that}\\ \\text{is}\\ 45^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}\\ \\text{at}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}:\\ \\text{the}\\ \\text{line}\\ \\text{is}\\ x\\ + \\ \\sqrt{2}y\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ \\text{intercepts}\\ 1\\ \\text{and}\\ \\dfrac{1}{\\sqrt{2}};\\ \\text{their}\\ \\text{product}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\sqrt{2}},\\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -166,18 +203,43 @@
         "lines_compact": [
           "Product of the intercepts = sinα",
           "⇒ cotα · cosα = sinα",
-          "⇒ cos²α/sinα = sinα",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cos ^{2} \\alpha }{\\sin \\alpha } = \\ \\sin \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ cos²α = sin²α",
           "⇒ cos²α − sin²α = 0  ⇒  cos 2α = 0",
-          "⇒ 2α = (2n + 1)π/2,  n ∈ Z",
           {
-            "text": "∴ α = (2n + 1)π/4,  n ∈ Z",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ 2\\alpha \\ = \\ \\dfrac{\\left(2n\\ + \\ 1\\right)\\pi }{2},\\ n\\ \\in \\ Z",
+            "style": "normal",
+            "render": "katex"
           },
-          "The acute value is α = π/4, that is 45°.",
-          "Check at α = π/4: the line is x + √2 y = 1,",
-          "with intercepts 1 and 1/√2; their product is",
-          "1/√2, and sin(π/4) = 1/√2."
+          {
+            "text": "\\therefore \\ \\alpha \\ = \\ \\dfrac{\\left(2n\\ + \\ 1\\right)\\pi }{4},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{acute}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4},\\ \\text{that}\\ \\text{is}\\ 45^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}\\ \\text{at}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}:\\ \\text{the}\\ \\text{line}\\ \\text{is}\\ x\\ + \\ \\sqrt{2}y\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{with}\\ \\text{intercepts}\\ 1\\ \\text{and}\\ \\dfrac{1}{\\sqrt{2}};\\ \\text{their}\\ \\text{product}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\sqrt{2}},\\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

@@ -58,9 +58,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "ⁿC₄ = n(n − 1)(n − 2)(n − 3)/4!",
+          {
+            "text": "{}^{n}C_{4}\\ = \\ \\dfrac{n\\left(n\\ - \\ 1\\right)\\left(n\\ - \\ 2\\right)\\left(n\\ - \\ 3\\right)}{4!}",
+            "style": "normal",
+            "render": "katex"
+          },
           "4! = 24, so",
-          "n(n − 1)(n − 2)(n − 3)/24 = 210",
+          {
+            "text": "\\dfrac{n\\left(n\\ - \\ 1\\right)\\left(n\\ - \\ 2\\right)\\left(n\\ - \\ 3\\right)}{24} = \\ 210",
+            "style": "normal",
+            "render": "katex"
+          },
           "n(n − 1)(n − 2)(n − 3) = 210 · 24",
           "= 5040"
         ],

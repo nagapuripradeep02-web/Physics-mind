@@ -61,14 +61,22 @@
             "text": "  and Q > 0: 2x − 3 > 0 and 2x + 3 > 0 give x > 3/2)",
             "style": "indent"
           },
-          "∴ y = log(2x − 3) + log(2x + 3),  x > 3/2",
+          {
+            "text": "\\therefore \\ y\\ = \\ \\log \\left(2x\\ - \\ 3\\right)\\ + \\ \\log \\left(2x\\ + \\ 3\\right),\\ x\\ > \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate once, using the chain rule on each term:",
           "(d/dx log(2x − 3) = (1/(2x − 3)) · 2",
           {
             "text": "  and d/dx log(2x + 3) = (1/(2x + 3)) · 2)",
             "style": "indent"
           },
-          "dy/dx = 2/(2x − 3) + 2/(2x + 3)"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{2}{2x\\ - \\ 3} + \\ \\dfrac{2}{2x\\ + \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,7 +116,11 @@
         "memory_tip": "Both terms have the same shape, so differentiate one and copy the pattern with the sign inside changed.",
         "lines": [
           "Write each term as a power:",
-          "dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2\\left(2x\\ - \\ 3\\right)^{-1}\\ + \\ 2\\left(2x\\ + \\ 3\\right)^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate again by the chain rule on each:",
           {
             "text": "(d/dx(2x − 3)⁻¹ = (−1)(2x − 3)⁻² · 2,",
@@ -119,7 +131,11 @@
             "style": "indent",
             "added": true
           },
-          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2",
+          {
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ 2\\ \\cdot \\ \\left( - 1\\right)\\left(2x\\ - \\ 3\\right)^{-2}\\ \\cdot \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  + 2 · (−1)(2x + 3)⁻² · 2",
             "style": "indent"
@@ -144,12 +160,14 @@
             "added": true
           },
           {
-            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)²",
-            "style": "boxed"
+            "text": "\\therefore \\ y''\\ = \\ - \\dfrac{4}{\\left(2x\\ - \\ 3\\right)^{2}} - \\ \\dfrac{4}{\\left(2x\\ + \\ 3\\right)^{2}}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "= −8(4x² + 9)/(4x² − 9)²",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{8\\left(4x^{2}\\ + \\ 9\\right)}{\\left(4x^{2}\\ - \\ 9\\right)^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -181,20 +199,30 @@
         ],
         "lines_compact": [
           "Write each term as a power:",
-          "dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2\\left(2x\\ - \\ 3\\right)^{-1}\\ + \\ 2\\left(2x\\ + \\ 3\\right)^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate again by the chain rule on each:",
-          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2",
+          {
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ 2\\ \\cdot \\ \\left( - 1\\right)\\left(2x\\ - \\ 3\\right)^{-2}\\ \\cdot \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  + 2 · (−1)(2x + 3)⁻² · 2",
             "style": "indent"
           },
           {
-            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)²",
-            "style": "boxed"
+            "text": "\\therefore \\ y''\\ = \\ - \\dfrac{4}{\\left(2x\\ - \\ 3\\right)^{2}} - \\ \\dfrac{4}{\\left(2x\\ + \\ 3\\right)^{2}}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "= −8(4x² + 9)/(4x² − 9)²",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{8\\left(4x^{2}\\ + \\ 9\\right)}{\\left(4x^{2}\\ - \\ 9\\right)^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

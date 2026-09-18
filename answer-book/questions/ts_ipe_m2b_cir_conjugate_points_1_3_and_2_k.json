@@ -111,7 +111,9 @@
           },
           "⇒ 2 + 3k = 35 ⇒ 3k = 33",
           {
-            "text": "⇒ k = 33/3",
+            "text": "\\Rightarrow \\ k\\ = \\ \\dfrac{33}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

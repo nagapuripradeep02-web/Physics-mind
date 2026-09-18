@@ -60,8 +60,16 @@
           "Start from the difference of the two angles:",
           "We take 70° − 20° = 50°",
           "⇒ tan(70° − 20°) = tan50°",
-          "(tan(A − B) = (tanA − tanB)/(1 + tanA tanB))",
-          "∴ (tan70° − tan20°)/(1 + tan70° tan20°) = tan50°"
+          {
+            "text": "\\left(\\tan \\left(A\\ - \\ B\\right)\\ = \\ \\dfrac{\\tan A\\ - \\ \\tan B}{1\\ + \\ \\tan A\\tan B}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\tan 70^{\\circ}\\ - \\ \\tan 20^{\\circ}}{1\\ + \\ \\tan 70^{\\circ}\\tan 20^{\\circ}} = \\ \\tan 50^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -108,12 +116,20 @@
             "text": "(tan(90° − θ) = cot θ)",
             "added": true
           },
-          "⇒ (tan70° − tan20°)/(1 + tan70° cot70°) = tan50°",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan 70^{\\circ}\\ - \\ \\tan 20^{\\circ}}{1\\ + \\ \\tan 70^{\\circ}\\cot 70^{\\circ}} = \\ \\tan 50^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(tan70° cot70° = 1)",
             "added": true
           },
-          "= (tan70° − tan20°)/(1 + 1) = tan50°",
+          {
+            "text": "= \\ \\dfrac{\\tan 70^{\\circ}\\ - \\ \\tan 20^{\\circ}}{1\\ + \\ 1} = \\ \\tan 50^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           {
             "text": "(multiply both sides by 2)",
@@ -153,8 +169,16 @@
         ],
         "lines_compact": [
           "tan20° = tan(90° − 70°) = cot70°",
-          "⇒ (tan70° − tan20°)/(1 + tan70° cot70°) = tan50°",
-          "= (tan70° − tan20°)/(1 + 1) = tan50°",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan 70^{\\circ}\\ - \\ \\tan 20^{\\circ}}{1\\ + \\ \\tan 70^{\\circ}\\cot 70^{\\circ}} = \\ \\tan 50^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\tan 70^{\\circ}\\ - \\ \\tan 20^{\\circ}}{1\\ + \\ 1} = \\ \\tan 50^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           {
             "text": "tan70° − tan20° = 2 tan50°",

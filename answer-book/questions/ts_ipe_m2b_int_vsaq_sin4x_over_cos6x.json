@@ -56,7 +56,11 @@
             "text": "  to become the dt of a substitution:",
             "style": "indent"
           },
-          "sin⁴x/cos⁶x = (sin⁴x/cos⁴x)·(1/cos²x)",
+          {
+            "text": "\\dfrac{\\sin ^{4} x}{\\cos ^{6} x} = \\ \\left(\\dfrac{\\sin ^{4} x}{\\cos ^{4} x}\\right) \\cdot \\left(\\dfrac{1}{\\cos ^{2} x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= tan⁴x sec²x",
           "Put tanx = t ⇒ sec²x dx = dt"
         ],
@@ -77,7 +81,9 @@
         "lines": [
           "I = ∫ t⁴ dt",
           {
-            "text": "∫t⁴dt = t⁵/5 + c",
+            "text": "\\int t^{4}dt\\ = \\ \\dfrac{t^{5}}{5} + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -85,8 +91,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [sin⁴x/cos⁶x] dx = tan⁵x/5 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\sin ^{4} x}{\\cos ^{6} x}\\right]dx\\ = \\ \\dfrac{\\tan ^{5} x}{5} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫t⁴dt = t⁵/5 + c by the power rule, and substituting t=tanx back in gives the final answer as a fifth power of tanx over 5.",
@@ -98,8 +105,9 @@
         "lines_compact": [
           "I = ∫ t⁴ dt",
           {
-            "text": "∴ ∫ [sin⁴x/cos⁶x] dx = tan⁵x/5 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\sin ^{4} x}{\\cos ^{6} x}\\right]dx\\ = \\ \\dfrac{\\tan ^{5} x}{5} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -83,8 +83,9 @@
             "style": "normal"
           },
           {
-            "text": "P(A) = 1/3, P(B) = 1/4",
-            "style": "eq"
+            "text": "P\\left(A\\right)\\ = \\ \\dfrac{1}{3},\\ P\\left(B\\right)\\ = \\ \\dfrac{1}{4}",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "They try independently, so A and B are",
@@ -135,13 +136,15 @@
             "added": true
           },
           {
-            "text": "P(Aᶜ) = 1 − 1/3 = 2/3",
+            "text": "P\\left(A^{c}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{3} = \\ \\dfrac{2}{3}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "P(Bᶜ) = 1 − 1/4 = 3/4",
+            "text": "P\\left(B^{c}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{4} = \\ \\dfrac{3}{4}",
             "style": "eq",
+            "render": "katex",
             "added": true
           }
         ],
@@ -171,8 +174,9 @@
         ],
         "lines_compact": [
           {
-            "text": "P(Aᶜ) = 1 − 1/3 = 2/3,  P(Bᶜ) = 1 − 1/4 = 3/4",
-            "style": "eq"
+            "text": "P\\left(A^{c}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{3} = \\ \\dfrac{2}{3},\\ P\\left(B^{c}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{4} = \\ \\dfrac{3}{4}",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -210,18 +214,21 @@
             "added": true
           },
           {
-            "text": "= 1 − (2/3)(3/4)",
+            "text": "= \\ 1\\ - \\ \\left(\\dfrac{2}{3}\\right)\\left(\\dfrac{3}{4}\\right)",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 1 − 6/12 = 1 − 1/2",
+            "text": "= \\ 1\\ - \\ \\dfrac{6}{12} = \\ 1\\ - \\ \\dfrac{1}{2}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(problem is solved) = 1/2",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{problem}\\ \\text{is}\\ \\text{solved}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -259,12 +266,14 @@
             "style": "eq"
           },
           {
-            "text": "= 1 − (2/3)(3/4) = 1 − 1/2",
-            "style": "eq"
+            "text": "= \\ 1\\ - \\ \\left(\\dfrac{2}{3}\\right)\\left(\\dfrac{3}{4}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{2}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "∴ P(problem is solved) = 1/2",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{problem}\\ \\text{is}\\ \\text{solved}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

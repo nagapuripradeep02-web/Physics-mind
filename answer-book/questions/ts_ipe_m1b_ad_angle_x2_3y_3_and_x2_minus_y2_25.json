@@ -126,22 +126,38 @@
             "text": "(differentiate (i) with respect to x)",
             "added": true
           },
-          "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2x\\ + \\ 3\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{2x}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x = 2√6)",
             "added": true
           },
-          "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
+          {
+            "text": "\\text{At}\\ P\\left(2\\sqrt{6},\\ - 7\\right):\\ m_{1}\\ = \\ - \\dfrac{2\\left(2\\sqrt{6}\\right)}{3} = \\ - \\dfrac{4\\sqrt{6}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(differentiate (ii); then divide both sides by 2y)",
             "added": true
           },
-          "From (ii):  2x − 2y (dy/dx) = 0  ⇒  dy/dx = x/y",
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 2x\\ - \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x = 2√6 and y = −7)",
             "added": true
           },
-          "At P(2√6, −7):  m₂ = 2√6/(−7) = −2√6/7"
+          {
+            "text": "\\text{At}\\ P\\left(2\\sqrt{6},\\ - 7\\right):\\ m_{2}\\ = \\ \\dfrac{2\\sqrt{6}}{ - 7} = \\ - \\dfrac{2\\sqrt{6}}{7}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -174,10 +190,26 @@
         ],
         "memory_tip": "For x² − y² = k the slope is x/y, and for x² + y² = k it is −x/y — the sign between x² and y² decides the sign of the slope.",
         "lines_compact": [
-          "From (i):  2x + 3 (dy/dx) = 0  ⇒  dy/dx = −2x/3",
-          "At P(2√6, −7):  m₁ = −2(2√6)/3 = −4√6/3",
-          "From (ii):  2x − 2y (dy/dx) = 0  ⇒  dy/dx = x/y",
-          "At P(2√6, −7):  m₂ = 2√6/(−7) = −2√6/7"
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2x\\ + \\ 3\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{2x}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2\\sqrt{6},\\ - 7\\right):\\ m_{1}\\ = \\ - \\dfrac{2\\left(2\\sqrt{6}\\right)}{3} = \\ - \\dfrac{4\\sqrt{6}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 2x\\ - \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(2\\sqrt{6},\\ - 7\\right):\\ m_{2}\\ = \\ \\dfrac{2\\sqrt{6}}{ - 7} = \\ - \\dfrac{2\\sqrt{6}}{7}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -197,7 +229,11 @@
             "style": "indent",
             "added": true
           },
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator 21: −4√6/3 = −28√6/21",
             "added": true
@@ -207,26 +243,45 @@
             "style": "indent",
             "added": true
           },
-          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21",
           {
-            "text": "  = −22√6/21",
-            "style": "indent"
+            "text": "m_{1}\\ - \\ m_{2}\\ = \\ - \\dfrac{4\\sqrt{6}}{3} + \\ \\dfrac{2\\sqrt{6}}{7} = \\ \\dfrac{\\sqrt{6}\\left( - 28\\ + \\ 6\\right)}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{22\\sqrt{6}}{21}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(√6 × √6 = 6, and 3 × 7 = 21)",
             "added": true
           },
-          "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
           {
-            "text": "(1 = 21/21, and 21 + 48 = 69)",
+            "text": "m_{1}m_{2}\\ = \\ \\left( - \\dfrac{4\\sqrt{6}}{3}\\right)\\left( - \\dfrac{2\\sqrt{6}}{7}\\right)\\ = \\ \\dfrac{8\\left(6\\right)}{21} = \\ \\dfrac{48}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ = \\ \\dfrac{21}{21},\\ \\text{and}\\ 21\\ + \\ 48\\ = \\ 69\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1 + m₁m₂ = 1 + 48/21 = 69/21",
+          {
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\dfrac{48}{21} = \\ \\dfrac{69}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the 21s cancel; the modulus removes the minus sign)",
             "added": true
           },
-          "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{ - \\dfrac{22\\sqrt{6}}{21}}{\\dfrac{69}{21}}\\right|\\ = \\ \\dfrac{22\\sqrt{6}}{69}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(22√6/69 ≈ 22(2.4495)/69 ≈ 0.7810; a calculator",
             "added": true
@@ -237,8 +292,9 @@
             "added": true
           },
           {
-            "text": "∴ θ = Tan⁻¹(22√6/69) ≈ 37°59′",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{22\\sqrt{6}}{69}\\right)\\ \\approx \\ 37^{\\circ}59'",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -273,18 +329,40 @@
         ],
         "memory_tip": "Put both the numerator and the denominator over the same number, here 21, and that number cancels itself out.",
         "lines_compact": [
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "m₁ − m₂ = −4√6/3 + 2√6/7 = √6(−28 + 6)/21",
           {
-            "text": "  = −22√6/21",
-            "style": "indent"
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
           },
-          "m₁m₂ = (−4√6/3)(−2√6/7) = 8(6)/21 = 48/21",
-          "1 + m₁m₂ = 1 + 48/21 = 69/21",
-          "tanθ = |(−22√6/21)/(69/21)| = 22√6/69",
           {
-            "text": "∴ θ = Tan⁻¹(22√6/69) ≈ 37°59′",
-            "style": "boxed"
+            "text": "m_{1}\\ - \\ m_{2}\\ = \\ - \\dfrac{4\\sqrt{6}}{3} + \\ \\dfrac{2\\sqrt{6}}{7} = \\ \\dfrac{\\sqrt{6}\\left( - 28\\ + \\ 6\\right)}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{22\\sqrt{6}}{21}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "m_{1}m_{2}\\ = \\ \\left( - \\dfrac{4\\sqrt{6}}{3}\\right)\\left( - \\dfrac{2\\sqrt{6}}{7}\\right)\\ = \\ \\dfrac{8\\left(6\\right)}{21} = \\ \\dfrac{48}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ m_{1}m_{2}\\ = \\ 1\\ + \\ \\dfrac{48}{21} = \\ \\dfrac{69}{21}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{ - \\dfrac{22\\sqrt{6}}{21}}{\\dfrac{69}{21}}\\right|\\ = \\ \\dfrac{22\\sqrt{6}}{69}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{22\\sqrt{6}}{69}\\right)\\ \\approx \\ 37^{\\circ}59'",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

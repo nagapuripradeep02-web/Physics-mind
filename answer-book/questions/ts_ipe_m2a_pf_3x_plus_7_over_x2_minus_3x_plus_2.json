@@ -67,8 +67,16 @@
           "Both factors are linear and different.",
           "Each distinct linear factor gets",
           "  a constant over it:",
-          "(3x + 7)/((x − 1)(x − 2))",
-          "= A/(x − 1) + B/(x − 2)"
+          {
+            "text": "\\dfrac{3x\\ + \\ 7}{\\left(x\\ - \\ 1\\right)\\left(x\\ - \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x\\ - \\ 1} + \\ \\dfrac{B}{x\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -226,10 +234,15 @@
         "margin_note": "Last mark. Put A and B back into the form from step 1 and write the left side again beside it. The book also writes −10/(x − 1) as 10/(1 − x); both are correct.",
         "memory_tip": "A = −10 stays negative in the answer. Check with x = 0: 7 = 20 − 13.",
         "lines": [
-          "∴ (3x + 7)/(x² − 3x + 2)",
           {
-            "text": "= −10/(x − 1) + 13/(x − 2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{3x\\ + \\ 7}{x^{2}\\ - \\ 3x\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{10}{x\\ - \\ 1} + \\ \\dfrac{13}{x\\ - \\ 2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

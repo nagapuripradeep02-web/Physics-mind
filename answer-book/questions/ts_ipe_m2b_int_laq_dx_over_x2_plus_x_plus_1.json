@@ -68,14 +68,31 @@
             "text": "  simple factors, so complete the square.",
             "style": "indent"
           },
-          "Half the coefficient of x is 1/2, so add",
           {
-            "text": "  and subtract (1/2)²:",
-            "style": "indent"
+            "text": "\\text{Half}\\ \\text{the}\\ \\text{coefficient}\\ \\text{of}\\ x\\ \\text{is}\\ \\dfrac{1}{2},\\ \\text{so}\\ \\text{add}",
+            "style": "normal",
+            "render": "katex"
           },
-          "x² + x + 1 = x² + x + (1/2)² − (1/2)² + 1",
-          "−1/4 + 1 = 3/4:",
-          "= (x + 1/2)² + 3/4"
+          {
+            "text": "\\text{and}\\ \\text{subtract}\\ \\left(\\dfrac{1}{2}\\right)^{2}:",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "x^{2}\\ + \\ x\\ + \\ 1\\ = \\ x^{2}\\ + \\ x\\ + \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ - \\ \\left(\\dfrac{1}{2}\\right)^{2}\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{1}{4} + \\ 1\\ = \\ \\dfrac{3}{4}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(x\\ + \\ \\dfrac{1}{2}\\right)^{2}\\ + \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Adding and subtracting (1/2)² — half the coefficient of x, squared — rewrites the quadratic as a perfect square plus a constant, which is the only form the standard Tan⁻¹ formula accepts.",
         "common_mistakes": [
@@ -92,10 +109,22 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "3/4 = (√3/2)²,",
-          "so x² + x + 1 = (x + 1/2)² + (√3/2)²",
+          {
+            "text": "\\dfrac{3}{4} = \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)^{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ x^{2}\\ + \\ x\\ + \\ 1\\ = \\ \\left(x\\ + \\ \\dfrac{1}{2}\\right)^{2}\\ + \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This matches x² + a²",
-          "with x written as (x + 1/2) and a = √3/2"
+          {
+            "text": "\\text{with}\\ x\\ \\text{written}\\ \\text{as}\\ \\left(x\\ + \\ \\dfrac{1}{2}\\right)\\ \\text{and}\\ a\\ = \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the constant 3/4 as a square (√3/2)² makes the match to the standard x² + a² pattern explicit, so the formula for ∫dx/(x²+a²) can be applied directly.",
         "common_mistakes": [
@@ -144,17 +173,33 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "∫dx/(x²+x+1) = ∫dx/[(x+1/2)²+(√3/2)²]",
           {
-            "text": "Use the formula with a = √3/2:",
+            "text": "\\int \\dfrac{dx}{x^{2} + x + 1} = \\ \\int \\dfrac{dx}{\\left(x + \\dfrac{1}{2}\\right)^{2} + \\left(\\dfrac{\\sqrt{3}}{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Use}\\ \\text{the}\\ \\text{formula}\\ \\text{with}\\ a\\ = \\ \\dfrac{\\sqrt{3}}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/(√3/2))Tan⁻¹[(x+1/2)/(√3/2)] + c",
           {
-            "text": "1/(√3/2) = 2/√3:",
+            "text": "= \\ \\left(\\dfrac{1}{\\dfrac{\\sqrt{3}}{2}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{2}{\\sqrt{3}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (2/√3)Tan⁻¹[(x+1/2)/(√3/2)] + c"
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{3}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Substituting x → (x+1/2) and a = √3/2 directly into the standard formula's 1/a and x/a slots gives the answer in terms of (x+1/2); the /2's inside the Tan⁻¹ argument still need clearing.",
         "common_mistakes": [
@@ -163,9 +208,21 @@
         ],
         "memory_tip": "1 divided by a fraction flips it — 1/(√3/2) = 2/√3, used twice in this line.",
         "lines_compact": [
-          "∫dx/(x²+x+1) = ∫dx/[(x+1/2)²+(√3/2)²]",
-          "= (1/(√3/2))Tan⁻¹[(x+1/2)/(√3/2)] + c",
-          "= (2/√3)Tan⁻¹[(x+1/2)/(√3/2)] + c"
+          {
+            "text": "\\int \\dfrac{dx}{x^{2} + x + 1} = \\ \\int \\dfrac{dx}{\\left(x + \\dfrac{1}{2}\\right)^{2} + \\left(\\dfrac{\\sqrt{3}}{2}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{\\dfrac{\\sqrt{3}}{2}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{3}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,14 +234,25 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "Dividing (x+1/2) by (√3/2) doubles both:",
+            "text": "\\text{Dividing}\\ \\left(x + \\dfrac{1}{2}\\right)\\ \\text{by}\\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\ \\text{doubles}\\ \\text{both}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(x+1/2)/(√3/2) = (2x+1)/√3",
-          "∴ ∫ dx/(x²+x+1) =",
           {
-            "text": "(2/√3)Tan⁻¹[(2x+1)/√3] + c",
-            "style": "boxed"
+            "text": "\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{2x + 1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{x^{2} + x + 1} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{\\sqrt{3}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{2x + 1}{\\sqrt{3}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Multiplying the numerator and denominator of (x+1/2)/(√3/2) by 2 clears the internal fractions, turning it into the tidy (2x+1)/√3 that examiners expect in the final line.",
@@ -194,11 +262,20 @@
         ],
         "memory_tip": "Multiply top and bottom of the inner fraction by 2 to clear the halves in one clean move.",
         "lines_compact": [
-          "(x+1/2)/(√3/2) = (2x+1)/√3",
-          "∴ ∫ dx/(x²+x+1) =",
           {
-            "text": "(2/√3)Tan⁻¹[(2x+1)/√3] + c",
-            "style": "boxed"
+            "text": "\\dfrac{x + \\dfrac{1}{2}}{\\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{2x + 1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{x^{2} + x + 1} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{\\sqrt{3}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{2x + 1}{\\sqrt{3}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

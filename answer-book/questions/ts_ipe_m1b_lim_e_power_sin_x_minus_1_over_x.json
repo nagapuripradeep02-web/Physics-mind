@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "(sin 0 = 0 and e⁰ − 1 = 0)",
-          "Putting x = 0 gives 0/0, so the expression is rewritten first.",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{so}\\ \\text{the}\\ \\text{expression}\\ \\text{is}\\ \\text{rewritten}\\ \\text{first}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "For x close to 0 with x ≠ 0 we have sin x ≠ 0,",
           "so we may multiply and divide by sin x.",
           "(multiplying and dividing by sin x ≠ 0 does not",
@@ -68,7 +72,11 @@
             "style": "indent"
           },
           "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = lim(x → 0) (eˢⁱⁿˣ − 1)/sin x",
-          "· lim(x → 0) (sin x)/x"
+          {
+            "text": "\\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +126,11 @@
             "added": true
           },
           "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
-          "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the two limits)",
             "added": true
@@ -159,7 +171,11 @@
         "lines_compact": [
           "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
           "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
-          "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1 · 1",
           {
             "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",

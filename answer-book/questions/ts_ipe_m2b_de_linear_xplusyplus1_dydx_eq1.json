@@ -65,10 +65,26 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is (x + y + 1)dy/dx = 1",
-          "Turn it over, since dx/dy = 1/(dy/dx):",
-          "⇒ dx/dy = x + y + 1 ⇒ dx/dy − x = y + 1",
-          "This is in the form dx/dy + xP(y) = Q(y),",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\left(x\\ + \\ y\\ + \\ 1\\right)\\dfrac{dy}{dx}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Turn}\\ \\text{it}\\ \\text{over},\\ \\sin ce\\dfrac{dx}{dy}\\ = \\ \\dfrac{1}{\\dfrac{dy}{dx}}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dx}{dy}\\ = \\ x\\ + \\ y\\ + \\ 1\\ \\Rightarrow \\ \\dfrac{dx}{dy}\\ - \\ x\\ = \\ y\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dx}{dy}\\ + \\ xP\\left(y\\right)\\ = \\ Q\\left(y\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "which is linear D.E in x. Here P = −1",
           "and Q = y + 1",
           "⇒ ∫P dy = ∫−1 dy = −y"

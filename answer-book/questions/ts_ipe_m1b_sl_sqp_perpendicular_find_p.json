@@ -59,10 +59,22 @@
             "style": "heading"
           },
           "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = 7)",
-          "Slope of the line 3x + 7y − 1 = 0 is  m₁ = −a/b = −3/7",
-          "(here a = 7 and b = −p: −7/(−p) = 7/p)",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{line}\\ 3x\\ + \\ 7y\\ - \\ 1\\ = \\ 0\\ \\text{is}\\ m_{1}\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{here}\\ a\\ = \\ 7\\ \\text{and}\\ b\\ = \\ - p:\\ - \\dfrac{7}{ - p} = \\ \\dfrac{7}{p}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Slope of the line 7x − py + 3 = 0 is",
-          "m₂ = −a/b = −(7/(−p)) = 7/p"
+          {
+            "text": "m_{2}\\ = \\ - \\dfrac{a}{b} = \\ - \\left(\\dfrac{7}{ - p}\\right)\\ = \\ \\dfrac{7}{p}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +123,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ (−3/7)(7/p) = −1   ⇒   −3/p = −1   ⇒   3/p = 1",
+          {
+            "text": "\\Rightarrow \\ \\left( - \\dfrac{3}{7}\\right)\\left(\\dfrac{7}{p}\\right)\\ = \\ - 1\\ \\Rightarrow \\ - \\dfrac{3}{p} = \\ - 1\\ \\Rightarrow \\ \\dfrac{3}{p} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ p = 3",
             "style": "boxed"
@@ -147,7 +163,11 @@
         "mark_note": "Solution",
         "lines_compact": [
           "If the two lines are perpendicular then  m₁m₂ = −1",
-          "⇒ (−3/7)(7/p) = −1   ⇒   −3/p = −1   ⇒   3/p = 1",
+          {
+            "text": "\\Rightarrow \\ \\left( - \\dfrac{3}{7}\\right)\\left(\\dfrac{7}{p}\\right)\\ = \\ - 1\\ \\Rightarrow \\ - \\dfrac{3}{p} = \\ - 1\\ \\Rightarrow \\ \\dfrac{3}{p} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ p = 3",
             "style": "boxed"

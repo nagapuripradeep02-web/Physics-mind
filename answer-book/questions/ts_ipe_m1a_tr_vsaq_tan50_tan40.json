@@ -55,8 +55,16 @@
           "Start from the difference of the two angles:",
           "We take 50° − 40° = 10°",
           "⇒ tan(50° − 40°) = tan10°",
-          "(tan(A − B) = (tanA − tanB)/(1 + tanA tanB))",
-          "∴ (tan50° − tan40°)/(1 + tan50° tan40°) = tan10°"
+          {
+            "text": "\\left(\\tan \\left(A\\ - \\ B\\right)\\ = \\ \\dfrac{\\tan A\\ - \\ \\tan B}{1\\ + \\ \\tan A\\tan B}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\tan 50^{\\circ}\\ - \\ \\tan 40^{\\circ}}{1\\ + \\ \\tan 50^{\\circ}\\tan 40^{\\circ}} = \\ \\tan 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,8 +112,16 @@
             "text": "(tan(90° − θ) = cot θ)",
             "added": true
           },
-          "⇒ (tan50° − tan40°)/(1 + tan50° cot50°) = tan10°",
-          "= (tan50° − tan40°)/(1 + 1) = tan10°   [∵ tanθ cotθ = 1]",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan 50^{\\circ}\\ - \\ \\tan 40^{\\circ}}{1\\ + \\ \\tan 50^{\\circ}\\cot 50^{\\circ}} = \\ \\tan 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\tan 50^{\\circ}\\ - \\ \\tan 40^{\\circ}}{1\\ + \\ 1} = \\ \\tan 10^{\\circ}\\left[\\because \\ \\tan \\theta \\cot \\theta \\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           {
             "text": "(multiply both sides by 2)",
@@ -145,8 +161,16 @@
         ],
         "lines_compact": [
           "tan40° = tan(90° − 50°) = cot50°",
-          "⇒ (tan50° − tan40°)/(1 + tan50° cot50°) = tan10°",
-          "= (tan50° − tan40°)/(1 + 1) = tan10°   [∵ tanθ cotθ = 1]",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\tan 50^{\\circ}\\ - \\ \\tan 40^{\\circ}}{1\\ + \\ \\tan 50^{\\circ}\\cot 50^{\\circ}} = \\ \\tan 10^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\tan 50^{\\circ}\\ - \\ \\tan 40^{\\circ}}{1\\ + \\ 1} = \\ \\tan 10^{\\circ}\\left[\\because \\ \\tan \\theta \\cot \\theta \\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cross multiplying:",
           {
             "text": "tan50° − tan40° = 2 tan10°",

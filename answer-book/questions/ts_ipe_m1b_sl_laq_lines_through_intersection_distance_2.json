@@ -184,8 +184,9 @@
             "added": true
           },
           {
-            "text": "  |px₁ + qy₁ + r|/√(p² + q²); here p = m, q = −1,",
+            "text": "\\dfrac{\\left|px_{1}\\ + \\ qy_{1}\\ + \\ r\\right|}{\\sqrt{p^{2}\\ + \\ q^{2}}};\\ \\text{here}\\ p\\ = \\ m,\\ q\\ = \\ - 1,",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -194,7 +195,11 @@
             "added": true
           },
           "Its distance from (2, −1) is 2, so",
-          "|m(2) − (−1) + 2m + 1| / √(m² + 1) = 2",
+          {
+            "text": "\\dfrac{\\left|m\\left(2\\right)\\ - \\ \\left( - 1\\right)\\ + \\ 2m\\ + \\ 1\\right|}{\\sqrt{m^{2}\\ + \\ 1}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2m + 1 + 2m + 1 = 4m + 2; multiply both",
             "added": true
@@ -241,7 +246,11 @@
         "memory_tip": "The POINT goes into the formula, the LINE gives the coefficients. Here 4m + 2 has a factor 2 that cancels the 2 on the right.",
         "lines_compact": [
           "Its distance from (2, −1) is 2, so",
-          "|m(2) − (−1) + 2m + 1| / √(m² + 1) = 2",
+          {
+            "text": "\\dfrac{\\left|m\\left(2\\right)\\ - \\ \\left( - 1\\right)\\ + \\ 2m\\ + \\ 1\\right|}{\\sqrt{m^{2}\\ + \\ 1}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ |4m + 2| = 2√(m² + 1)",
           "⇒ |2m + 1| = √(m² + 1)"
         ]
@@ -284,7 +293,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ m = 0  (or)  m = −4/3"
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ 0\\left(\\text{or}\\right)m\\ = \\ - \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -319,7 +332,11 @@
           "4m² + 4m + 1 = m² + 1",
           "⇒ 3m² + 4m = 0",
           "⇒ m(3m + 4) = 0",
-          "⇒ m = 0  (or)  m = −4/3"
+          {
+            "text": "\\Rightarrow \\ m\\ = \\ 0\\left(\\text{or}\\right)m\\ = \\ - \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -336,10 +353,16 @@
           },
           "m = 0:  y − 1 = 0",
           {
-            "text": "(put m = −4/3 and multiply both sides by 3)",
+            "text": "\\left(\\text{put}\\ m\\ = \\ - \\dfrac{4}{3}\\text{and}\\ \\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "m = −4/3:  3(y − 1) = −4(x + 2)",
+          {
+            "text": "m\\ = \\ - \\dfrac{4}{3}:\\ 3\\left(y\\ - \\ 1\\right)\\ = \\ - 4\\left(x\\ + \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3y − 3 = −4x − 8",
           {
             "text": "(take −4x − 8 to the left: 4x + 3y − 3 + 8 = 0)",
@@ -391,7 +414,11 @@
         "memory_tip": "Two slopes means TWO equations. Put each one back into the point-slope form and clear the fraction.",
         "lines_compact": [
           "m = 0:  y − 1 = 0",
-          "m = −4/3:  3(y − 1) = −4(x + 2)",
+          {
+            "text": "m\\ = \\ - \\dfrac{4}{3}:\\ 3\\left(y\\ - \\ 1\\right)\\ = \\ - 4\\left(x\\ + \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3y − 3 = −4x − 8",
           "⇒ 4x + 3y + 5 = 0",
           "∴ The required lines are",

@@ -116,8 +116,9 @@
             "added": true
           },
           {
-            "text": "  d/dx[b cos(sin x)] = −b sin(sin x) · cos x",
+            "text": "\\dfrac{d}{dx}\\left[b\\cos \\left(\\sin x\\right)\\right]\\ = \\ - b\\sin \\left(\\sin x\\right)\\ \\cdot \\ \\cos x",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -199,10 +200,16 @@
         "margin_note": "Third mark. This one line explains why the identity carries a tan x: it converts y₁, which has a cos x, into the P sin x that y₂ needs cancelling.",
         "lines": [
           {
-            "text": "(tan x = sin x/cos x, and y₁ = P cos x from step 1)",
+            "text": "\\left(\\tan x\\ = \\ \\dfrac{\\sin x}{\\cos x},\\ \\text{and}\\ y_{1}\\ = \\ P\\cos x\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(tan x)y₁ = (sin x / cos x)·P cos x",
+          {
+            "text": "\\left(\\tan x\\right)y_{1}\\ = \\ \\left(\\dfrac{\\sin x}{\\cos x}\\right) \\cdot P\\cos x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos x cancels; cos x ≠ 0 wherever tan x is defined)",
             "added": true
@@ -238,7 +245,11 @@
         ],
         "memory_tip": "tan x = sin x / cos x, so multiplying anything that has a factor cos x by tan x replaces that cos x by sin x.",
         "lines_compact": [
-          "(tan x)y₁ = (sin x / cos x)·P cos x",
+          {
+            "text": "\\left(\\tan x\\right)y_{1}\\ = \\ \\left(\\dfrac{\\sin x}{\\cos x}\\right) \\cdot P\\cos x",
+            "style": "normal",
+            "render": "katex"
+          },
           "= P sin x"
         ]
       },

@@ -60,7 +60,11 @@
             "style": "indent"
           },
           "Centroid of triangle ABC is",
-          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3, (z₁+z₂+z₃)/3)"
+          {
+            "text": "G\\ = \\ \\left(\\dfrac{x_{1} + x_{2} + x_{3}}{3},\\ \\dfrac{y_{1} + y_{2} + y_{3}}{3},\\ \\dfrac{z_{1} + z_{2} + z_{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,19 +107,30 @@
             "text": "(put the three vertices)",
             "added": true
           },
-          "⇒ G = ((5+1+4)/3, (4−1+3)/3, (6+3+2)/3)",
+          {
+            "text": "\\Rightarrow \\ G\\ = \\ \\left(\\dfrac{5 + 1 + 4}{3},\\ \\dfrac{4 - 1 + 3}{3},\\ \\dfrac{6 + 3 + 2}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(5 + 1 + 4 = 10, 4 − 1 + 3 = 6, 6 + 3 + 2 = 11)",
             "added": true
           },
-          "= (10/3, 6/3, 11/3)",
           {
-            "text": "(6/3 = 2)",
+            "text": "= \\ \\left(\\dfrac{10}{3},\\ \\dfrac{6}{3},\\ \\dfrac{11}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{6}{3} = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Centroid G = (10/3, 2, 11/3)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Centroid}\\ G\\ = \\ \\left(\\dfrac{10}{3},\\ 2,\\ \\dfrac{11}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,11 +161,20 @@
           "Dropping the minus sign on −1 while adding the y column."
         ],
         "lines_compact": [
-          "⇒ G = ((5+1+4)/3, (4−1+3)/3, (6+3+2)/3)",
-          "= (10/3, 6/3, 11/3)",
           {
-            "text": "∴ Centroid G = (10/3, 2, 11/3)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ G\\ = \\ \\left(\\dfrac{5 + 1 + 4}{3},\\ \\dfrac{4 - 1 + 3}{3},\\ \\dfrac{6 + 3 + 2}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{10}{3},\\ \\dfrac{6}{3},\\ \\dfrac{11}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Centroid}\\ G\\ = \\ \\left(\\dfrac{10}{3},\\ 2,\\ \\dfrac{11}{3}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

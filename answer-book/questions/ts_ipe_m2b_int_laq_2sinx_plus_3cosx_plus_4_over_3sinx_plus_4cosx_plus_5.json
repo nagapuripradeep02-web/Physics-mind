@@ -78,10 +78,26 @@
           "Coeff of sinx: 3A−4B=2, coeff of cosx:",
           "4A+3B=3, constant: 5A+C=4",
           "(1)×3: 9A−12B=6 and (2)×4: 16A+12B=12",
-          "Adding: 25A=18 ⇒ A=18/25",
-          "Then 3B=3−72/25=3/25 ⇒ B=1/25",
-          "and C=4−5(18/25)=4−18/5=2/5",
-          "Solving: A=18/25, B=1/25, C=2/5"
+          {
+            "text": "\\text{Adding}:\\ 25A = 18\\ \\Rightarrow \\ A = \\dfrac{18}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ 3B = 3 - \\dfrac{72}{25} = \\dfrac{3}{25} \\Rightarrow \\ B = \\dfrac{1}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ C = 4 - 5\\left(\\dfrac{18}{25}\\right) = 4 - \\dfrac{18}{5} = \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Solving}:\\ A = \\dfrac{18}{25},\\ B = \\dfrac{1}{25},\\ C = \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "A constant term in the denominator needs a THIRD free constant C. A·Dr does produce a constant, 5A, but A is already fixed by the sinx and cosx equations (A = 18/25, so 5A = 18/5), and 18/5 is not the 4 the numerator needs — C makes up the difference.",
         "common_mistakes": [
@@ -98,13 +114,25 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
+          {
+            "text": "I\\ = \\ A\\int 1dx\\ + \\ B\\int \\left[\\dfrac{Dr'}{Dr}\\right]dx\\ + \\ C\\int \\dfrac{dx}{Dr}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The first gives x, the second log|Dr|:",
             "added": true
           },
-          "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
-          "(2/5)∫dx/(3sinx+4cosx+5)"
+          {
+            "text": "= \\ \\left(\\dfrac{18}{25}\\right)x\\ + \\ \\left(\\dfrac{1}{25}\\right)\\log \\left|3\\sin x + 4\\cos x + 5\\right|\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{5}\\right)\\int \\dfrac{dx}{3\\sin x + 4\\cos x + 5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Three unknowns give three separate pieces: A pairs with the denominator itself (a plain x term), B pairs with the denominator's derivative (a log term), and C is left multiplying a genuine ∫dx/Dr that still needs its own substitution.",
         "common_mistakes": [
@@ -113,9 +141,21 @@
         ],
         "memory_tip": "A goes with plain x, B goes with the log, C is the leftover piece that still needs its own substitution.",
         "lines_compact": [
-          "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
-          "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
-          "(2/5)∫dx/(3sinx+4cosx+5)"
+          {
+            "text": "I\\ = \\ A\\int 1dx\\ + \\ B\\int \\left[\\dfrac{Dr'}{Dr}\\right]dx\\ + \\ C\\int \\dfrac{dx}{Dr}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{18}{25}\\right)x\\ + \\ \\left(\\dfrac{1}{25}\\right)\\log \\left|3\\sin x + 4\\cos x + 5\\right|\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{5}\\right)\\int \\dfrac{dx}{3\\sin x + 4\\cos x + 5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -126,29 +166,56 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Put tan(x/2)=t: 3sinx+4cosx+5",
           {
-            "text": "Then sinx = 2t/(1+t²), cosx = (1−t²)/(1+t²)",
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right) = t:\\ 3\\sin x + 4\\cos x + 5",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ \\sin x\\ = \\ \\dfrac{2t}{1 + t^{2}},\\ \\cos x\\ = \\ \\dfrac{1 - t^{2}}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  and dx = 2dt/(1+t²)",
+            "text": "\\text{and}\\ dx\\ = \\ \\dfrac{2dt}{1 + t^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
+          {
+            "text": "= \\ \\dfrac{6t + 4\\left(1 - t^{2}\\right) + 5\\left(1 + t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The t² terms give −4t²+5t² = t²:",
             "added": true
           },
-          "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
-          "∫dx/(3sinx+4cosx+5)",
-          "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
+          {
+            "text": "= \\ \\dfrac{t^{2} + 6t + 9}{1 + t^{2}} = \\ \\dfrac{\\left(t + 3\\right)^{2}}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{3\\sin x + 4\\cos x + 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right] \\div \\left[\\dfrac{\\left(t + 3\\right)^{2}}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The (1+t²) cancels:",
             "added": true
           },
-          "= ∫2dt/(t+3)² = −2/(t+3) + c"
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{\\left(t + 3\\right)^{2}} = \\ - \\dfrac{2}{t + 3} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "This particular denominator happens to be a PERFECT square in t, (t+3)², which turns the leftover integral into a simple power-rule antiderivative rather than another log or Tan⁻¹.",
         "common_mistakes": [
@@ -157,12 +224,36 @@
         ],
         "memory_tip": "t²+6t+9 = (t+3)² exactly — recognise the perfect square before reaching for the log or Tan⁻¹ formula.",
         "lines_compact": [
-          "Put tan(x/2)=t: 3sinx+4cosx+5",
-          "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
-          "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
-          "∫dx/(3sinx+4cosx+5)",
-          "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
-          "= ∫2dt/(t+3)² = −2/(t+3) + c"
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right) = t:\\ 3\\sin x + 4\\cos x + 5",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{6t + 4\\left(1 - t^{2}\\right) + 5\\left(1 + t^{2}\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{t^{2} + 6t + 9}{1 + t^{2}} = \\ \\dfrac{\\left(t + 3\\right)^{2}}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dx}{3\\sin x + 4\\cos x + 5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right] \\div \\left[\\dfrac{\\left(t + 3\\right)^{2}}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{\\left(t + 3\\right)^{2}} = \\ - \\dfrac{2}{t + 3} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -174,21 +265,32 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "The third part is (2/5) of that integral:",
+            "text": "\\text{The}\\ \\text{third}\\ \\text{part}\\ \\text{is}\\ \\left(\\dfrac{2}{5}\\right)\\ \\text{of}\\ \\text{that}\\ \\text{integral}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(2/5)·(−2/(t+3)) = −(4/5)/(t+3)",
+            "text": "\\left(\\dfrac{2}{5}\\right) \\cdot \\left( - \\dfrac{2}{t + 3}\\right)\\ = \\ - \\dfrac{\\dfrac{4}{5}}{t + 3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put t = tan(x/2) back:",
+            "text": "\\text{Put}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{back}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
           {
-            "text": "− (4/5)/(tan(x/2)+3) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{18}{25}\\right)x\\ + \\ \\left(\\dfrac{1}{25}\\right)\\log \\left|3\\sin x + 4\\cos x + 5\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\dfrac{\\dfrac{4}{5}}{\\tan \\left(\\dfrac{x}{2}\\right) + 3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Multiplying C = 2/5 by the −2/(t+3) just found gives −4/(5(t+3)), and writing t back as tan(x/2) completes the three-term answer in the original variable x.",
@@ -198,10 +300,15 @@
         ],
         "memory_tip": "(2/5)×(−2/(t+3)) = −4/(5(t+3)) — carry C through the substitution's result, don't just tack it on unmultiplied.",
         "lines_compact": [
-          "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
           {
-            "text": "− (4/5)/(tan(x/2)+3) + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{18}{25}\\right)x\\ + \\ \\left(\\dfrac{1}{25}\\right)\\log \\left|3\\sin x + 4\\cos x + 5\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\dfrac{\\dfrac{4}{5}}{\\tan \\left(\\dfrac{x}{2}\\right) + 3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

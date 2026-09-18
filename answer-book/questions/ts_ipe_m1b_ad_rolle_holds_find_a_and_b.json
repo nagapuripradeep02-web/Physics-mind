@@ -105,10 +105,16 @@
         "memory_tip": "After substituting a from (1), only 4√3 + 2b/√3 = 0 remains; solve this linear equation for b. That is what determines b here.",
         "lines": [
           {
-            "text": "(d/dx of x³ is 3x², of bx² is 2bx, and of ax is a)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{3}\\ \\text{is}\\ 3x^{2},\\ \\text{of}\\ bx^{2}\\ \\text{is}\\ 2bx,\\ \\text{and}\\ \\text{of}\\ ax\\ \\text{is}\\ a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "f′(x) = 3x² + 2bx + a,   c = 2 + 1/√3",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ 3x^{2}\\ + \\ 2bx\\ + \\ a,\\ c\\ = \\ 2\\ + \\ \\dfrac{1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((2 + 1/√3)² = 4 + 2 · 2 · (1/√3) + 1/3;",
             "added": true
@@ -118,17 +124,31 @@
             "style": "indent",
             "added": true
           },
-          "c² = 4 + 4/√3 + 1/3 ⇒ 3c² = 13 + 4√3",
           {
-            "text": "(2b(2 + 1/√3) = 4b + 2b/√3)",
+            "text": "c^{2}\\ = \\ 4\\ + \\ \\dfrac{4}{\\sqrt{3}} + \\ \\dfrac{1}{3} \\Rightarrow \\ 3c^{2}\\ = \\ 13\\ + \\ 4\\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2b\\left(2\\ + \\ \\dfrac{1}{\\sqrt{3}}\\right)\\ = \\ 4b\\ + \\ \\dfrac{2b}{\\sqrt{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2bc = 4b + 2b/√3",
+          {
+            "text": "2bc\\ = \\ 4b\\ + \\ \\dfrac{2b}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(f′(c) = 3c² + 2bc + a)",
             "added": true
           },
-          "f′(c) = 0 ⇒ 13 + 4√3 + 4b + 2b/√3 + a = 0",
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ 13\\ + \\ 4\\sqrt{3}\\ + \\ 4b\\ + \\ \\dfrac{2b}{\\sqrt{3}} + \\ a\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1), a = −13 − 4b. Substituting:",
           {
             "text": "(13 − 13 = 0 and 4b − 4b = 0; then multiply",
@@ -181,10 +201,26 @@
           "Writing 12/√3 as 4/√3 instead of 4√3."
         ],
         "lines_compact": [
-          "f′(x) = 3x² + 2bx + a,   c = 2 + 1/√3",
-          "c² = 4 + 4/√3 + 1/3 ⇒ 3c² = 13 + 4√3",
-          "2bc = 4b + 2b/√3",
-          "f′(c) = 0 ⇒ 13 + 4√3 + 4b + 2b/√3 + a = 0",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ 3x^{2}\\ + \\ 2bx\\ + \\ a,\\ c\\ = \\ 2\\ + \\ \\dfrac{1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "c^{2}\\ = \\ 4\\ + \\ \\dfrac{4}{\\sqrt{3}} + \\ \\dfrac{1}{3} \\Rightarrow \\ 3c^{2}\\ = \\ 13\\ + \\ 4\\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2bc\\ = \\ 4b\\ + \\ \\dfrac{2b}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ 13\\ + \\ 4\\sqrt{3}\\ + \\ 4b\\ + \\ \\dfrac{2b}{\\sqrt{3}} + \\ a\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1), a = −13 − 4b. Substituting:",
           "4√3 + 2b/√3 = 0 ⇒ 2b = −4√3·√3 = −12 ⇒ b = −6",
           "Then a = −13 − 4(−6) = 11",

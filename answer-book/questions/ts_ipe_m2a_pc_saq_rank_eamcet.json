@@ -128,7 +128,9 @@
             "added": true
           },
           {
-            "text": "C, E, E, M, T are arranged in 5!/2! ways",
+            "text": "C,\\ E,\\ E,\\ M,\\ T\\ \\text{are}\\ \\text{arranged}\\ \\text{in}\\ \\dfrac{5!}{2!}\\text{ways}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -136,7 +138,9 @@
             "added": true
           },
           {
-            "text": "= 120/2 = 60",
+            "text": "= \\ \\dfrac{120}{2} = \\ 60",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -144,7 +148,9 @@
             "added": true
           },
           {
-            "text": "A, E, E, M, T give 5!/2! = 60",
+            "text": "A,\\ E,\\ E,\\ M,\\ T\\ \\text{give}\\ \\dfrac{5!}{2!} = \\ 60",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -234,8 +240,16 @@
           "Adding a block for E A M C — after E A M C the letters E, T are in order and EAMCET is the first."
         ],
         "lines_compact": [
-          "Words starting with A: 5!/2! = 60",
-          "Words starting with C: 5!/2! = 60",
+          {
+            "text": "\\text{Words}\\ \\text{starting}\\ \\text{with}\\ A:\\ \\dfrac{5!}{2!} = \\ 60",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Words}\\ \\text{starting}\\ \\text{with}\\ C:\\ \\dfrac{5!}{2!} = \\ 60",
+            "style": "normal",
+            "render": "katex"
+          },
           "Words starting with EAC: 3! = 6",
           "Words starting with EAE: 3! = 6",
           "After EAM, the letters C, E, T are in order,",

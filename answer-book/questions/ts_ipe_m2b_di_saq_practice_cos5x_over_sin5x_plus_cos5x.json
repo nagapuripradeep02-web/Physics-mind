@@ -57,7 +57,11 @@
             "style": "heading"
           },
           "We know ∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
-          "Here a = π/2.",
+          {
+            "text": "\\text{Here}\\ a\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore J = \\int _{0}^{\\pi /2} \\cos ^{5}x/(\\sin ^{5}x + \\cos ^{5}x) dx \\dots (1)",
             "render": "katex",
@@ -79,7 +83,11 @@
         "margin_note": "One more mark. cos⁵x turns into sin⁵x under the swap.",
         "memory_tip": "cos(π/2 − x) = sinx, so cos⁵(π/2 − x) = sin⁵x.",
         "lines": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "J",
           {
             "text": "= \\int _{0}^{\\pi /2} \\cos ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
@@ -92,7 +100,9 @@
             "style": "normal"
           },
           {
-            "text": "cos(π/2 − x) = sinx and sin(π/2 − x) = cosx:",
+            "text": "\\cos \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\sin x\\ \\text{and}\\ \\sin \\left(\\dfrac{\\pi }{2} - \\ x\\right)\\ = \\ \\cos x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -107,7 +117,11 @@
           "Writing the denominator's two terms in a different order and treating it as a different quantity."
         ],
         "lines_compact": [
-          "By x → π/2 − x:",
+          {
+            "text": "\\text{By}\\ x\\ \\to \\ \\dfrac{\\pi }{2} - \\ x:",
+            "style": "normal",
+            "render": "katex"
+          },
           "J",
           {
             "text": "= \\int _{0}^{\\pi /2} \\cos ^{5}(\\pi /2-x)/[\\sin ^{5}(\\pi /2-x) +",
@@ -159,8 +173,9 @@
             "added": true
           },
           {
-            "text": "∴ J = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ J\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The added numerator matches the denominator exactly, so the integrand equals 1 for every x, reducing the integral to the length of the interval, π/2.",
@@ -181,8 +196,9 @@
             "style": "normal"
           },
           {
-            "text": "∴ J = π/4",
-            "style": "boxed"
+            "text": "\\therefore \\ J\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

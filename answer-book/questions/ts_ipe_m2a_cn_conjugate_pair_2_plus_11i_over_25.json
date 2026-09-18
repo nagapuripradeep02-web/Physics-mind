@@ -67,7 +67,11 @@
           "= 1 − 4i + 4i²",
           "= 1 − 4i − 4   [i² = −1]",
           "= −3 − 4i",
-          "∴ z₂ = (−2 + i)/(−3 − 4i)",
+          {
+            "text": "\\therefore \\ z_{2}\\ = \\ \\dfrac{ - 2\\ + \\ i}{ - 3\\ - \\ 4i}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take −1 out of the top and the bottom:",
           "= −(2 − i) / −(3 + 4i) = (2 − i)/(3 + 4i)"
         ],
@@ -116,7 +120,11 @@
             "text": "of the denominator, 3 − 4i:",
             "added": true
           },
-          "z₂ = (2 − i)(3 − 4i) / [(3 + 4i)(3 − 4i)]",
+          {
+            "text": "z_{2}\\ = \\ \\dfrac{\\left(2\\ - \\ i\\right)\\left(3\\ - \\ 4i\\right)}{\\left(3\\ + \\ 4i\\right)\\left(3\\ - \\ 4i\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Numerator = 6 − 8i − 3i + 4i²",
             "added": true
@@ -134,7 +142,9 @@
             "added": true
           },
           {
-            "text": "z₂ = (2 − 11i)/25",
+            "text": "z_{2}\\ = \\ \\dfrac{2\\ - \\ 11i}{25}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -170,16 +180,19 @@
         "lines_compact": [
           "Multiply above and below by 3 − 4i:",
           {
-            "text": "z₂ = (2 − i)(3 − 4i) / ((3 + 4i)(3 − 4i))",
-            "style": "eq"
+            "text": "z_{2}\\ = \\ \\dfrac{\\left(2\\ - \\ i\\right)\\left(3\\ - \\ 4i\\right)}{\\left(3\\ + \\ 4i\\right)\\left(3\\ - \\ 4i\\right)}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= (6 − 8i − 3i + 4i²) / (3² + 4²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{6\\ - \\ 8i\\ - \\ 3i\\ + \\ 4i^{2}}{3^{2}\\ + \\ 4^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "= (6 − 11i − 4) / 25 = (2 − 11i)/25",
-            "style": "indent"
+            "text": "= \\ \\dfrac{6\\ - \\ 11i\\ - \\ 4}{25} = \\ \\dfrac{2\\ - \\ 11i}{25}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -197,15 +210,21 @@
             "added": true
           },
           {
-            "text": "z₂ = 2/25 − (11/25)i,",
+            "text": "z_{2}\\ = \\ \\dfrac{2}{25} - \\ \\left(\\dfrac{11}{25}\\right)i,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so its conjugate is 2/25 + (11/25)i",
+            "text": "\\text{so}\\ \\text{its}\\ \\text{conjugate}\\ \\text{is}\\ \\dfrac{2}{25} + \\ \\left(\\dfrac{11}{25}\\right)i",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (2 + 11i)/25 = z₁",
+            "text": "= \\ \\dfrac{2\\ + \\ 11i}{25} = \\ z_{1}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -241,7 +260,11 @@
           "Ending on (2 − 11i)/25 without writing its conjugate and naming z₁."
         ],
         "lines_compact": [
-          "Conjugate of z₂ = (2 − 11i)/25 is (2 + 11i)/25 = z₁.",
+          {
+            "text": "\\text{Conjugate}\\ \\text{of}\\ z_{2}\\ = \\ \\dfrac{2\\ - \\ 11i}{25}\\text{is}\\ \\dfrac{2\\ + \\ 11i}{25} = \\ z_{1}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ z₁ and z₂ are conjugates of each other.",
             "style": "boxed"

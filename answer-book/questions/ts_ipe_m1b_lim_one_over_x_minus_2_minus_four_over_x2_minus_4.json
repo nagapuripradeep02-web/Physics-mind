@@ -62,14 +62,27 @@
           "(a² − b² = (a − b)(a + b) with a = x and b = 2)",
           "x² − 4 = (x − 2)(x + 2),",
           "so the common denominator is (x − 2)(x + 2)",
-          "(multiply the top and the bottom of 1/(x − 2) by x + 2)",
-          "1/(x − 2) − 4/(x² − 4) = (x + 2)/[(x − 2)(x + 2)]",
           {
-            "text": "  − 4/[(x − 2)(x + 2)]",
-            "style": "indent"
+            "text": "\\left(\\text{multiply}\\ \\text{the}\\ \\text{top}\\ \\text{and}\\ \\text{the}\\ \\text{bottom}\\ \\text{of}\\ \\dfrac{1}{x\\ - \\ 2}\\text{by}\\ x\\ + \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{x\\ - \\ 2} - \\ \\dfrac{4}{x^{2}\\ - \\ 4} = \\ \\dfrac{x\\ + \\ 2}{\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\dfrac{4}{\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 2\\right)}",
+            "style": "indent",
+            "render": "katex"
           },
           "(subtract the numerators; x + 2 − 4 = x − 2)",
-          "= (x + 2 − 4)/[(x − 2)(x + 2)] = (x − 2)/[(x − 2)(x + 2)]"
+          {
+            "text": "= \\ \\dfrac{x\\ + \\ 2\\ - \\ 4}{\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 2\\right)} = \\ \\dfrac{x\\ - \\ 2}{\\left(x\\ - \\ 2\\right)\\left(x\\ + \\ 2\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -113,19 +126,30 @@
             "text": "(cancel x − 2 from the top and the bottom)",
             "added": true
           },
-          "= lim(x → 2) 1/(x + 2)",
           {
-            "text": "(1/(x + 2) is defined at x = 2, so put x = 2)",
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)1}{x\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{x\\ + \\ 2}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 2,\\ \\text{so}\\ \\text{put}\\ x\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1/(2 + 2)",
+          {
+            "text": "= \\ \\dfrac{1}{2\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 + 2 = 4)",
             "added": true
           },
           {
-            "text": "∴ lim(x → 2) (1/(x − 2) − 4/(x² − 4)) = 1/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 2\\right)\\left(\\dfrac{1}{x\\ - \\ 2} - \\ \\dfrac{4}{x^{2}\\ - \\ 4}\\right)\\ = \\ \\dfrac{1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,11 +181,20 @@
         ],
         "lines_compact": [
           "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
-          "= lim(x → 2) 1/(x + 2)",
-          "= 1/(2 + 2)",
           {
-            "text": "∴ lim(x → 2) (1/(x − 2) − 4/(x² − 4)) = 1/4",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)1}{x\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2\\ + \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 2\\right)\\left(\\dfrac{1}{x\\ - \\ 2} - \\ \\dfrac{4}{x^{2}\\ - \\ 4}\\right)\\ = \\ \\dfrac{1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

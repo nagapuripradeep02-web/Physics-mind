@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "Given hyperbola 3x² − 4y² = 12",
-          "⇒ x²/4 − y²/3 = 1 ⇒ a² = 4, b² = 3",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x^{2}}{4} - \\ \\dfrac{y^{2}}{3} = \\ 1\\ \\Rightarrow \\ a^{2}\\ = \\ 4,\\ b^{2}\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide every term by 12)",
           "⇒ a = 2, b = √3",
           "Equation of the normal at the point",
@@ -75,18 +79,30 @@
         "margin_note": "Second mark. sec60° and tan60° are standard exact values.",
         "memory_tip": "sec60° = 2, tan60° = √3 — both cancel neatly against a = 2, b = √3.",
         "lines": [
-          "θ = π/3: secθ = sec60° = 2, tanθ = tan60° = √3",
           {
-            "text": "(π/3 = 60°; cos60° = 1/2, so sec60° = 2)",
+            "text": "\\theta \\ = \\ \\dfrac{\\pi }{3}:\\ \\sec \\theta \\ = \\ \\sec 60^{\\circ}\\ = \\ 2,\\ \\tan \\theta \\ = \\ \\tan 60^{\\circ}\\ = \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{3} = \\ 60^{\\circ};\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2},\\ \\text{so}\\ \\sec 60^{\\circ}\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Put a = 2, b = √3, secθ = 2, tanθ = √3:",
             "added": true
           },
-          "2x/2 + √3y/√3 = 4 + 3",
           {
-            "text": "(2x/2 = x, √3y/√3 = y and a² + b² = 7)",
+            "text": "\\dfrac{2x}{2} + \\ \\dfrac{\\sqrt{3}y}{\\sqrt{3}} = \\ 4\\ + \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2x}{2} = \\ x,\\ \\dfrac{\\sqrt{3}y}{\\sqrt{3}} = \\ y\\ \\text{and}\\ a^{2}\\ + \\ b^{2}\\ = \\ 7\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -109,8 +125,16 @@
           "Adding a² + b² as 4 + √3 instead of 4 + 3 = 7 — b² is 3, not √3."
         ],
         "lines_compact": [
-          "θ = π/3: secθ = sec60° = 2, tanθ = tan60° = √3",
-          "2x/2 + √3y/√3 = 4 + 3",
+          {
+            "text": "\\theta \\ = \\ \\dfrac{\\pi }{3}:\\ \\sec \\theta \\ = \\ \\sec 60^{\\circ}\\ = \\ 2,\\ \\tan \\theta \\ = \\ \\tan 60^{\\circ}\\ = \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{2x}{2} + \\ \\dfrac{\\sqrt{3}y}{\\sqrt{3}} = \\ 4\\ + \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x + y = 7",
             "style": "boxed"

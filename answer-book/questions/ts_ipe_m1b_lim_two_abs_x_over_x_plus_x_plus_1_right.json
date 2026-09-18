@@ -56,7 +56,11 @@
           "(|x| = x when x ≥ 0)",
           "For x > 0,  |x| = x",
           "(put |x| = x and cancel x)",
-          "∴ 2|x|/x = 2x/x = 2   (x ≠ 0, so the cancellation is allowed)"
+          {
+            "text": "\\therefore \\ \\dfrac{2\\left|x\\right|}{x} = \\ \\dfrac{2x}{x} = \\ 2\\left(x\\ \\ne \\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{cancellation}\\ \\text{is}\\ \\text{allowed}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -96,7 +100,9 @@
         "margin_note": "Second mark. Box the 3. The two-sided limit does not exist here — the left-hand value is −1 — so keep the ⁺ on every line.",
         "lines": [
           {
-            "text": "(put 2|x|/x = 2; 2 + 1 = 3)",
+            "text": "\\left(\\text{put}\\ \\dfrac{2\\left|x\\right|}{x} = \\ 2;\\ 2\\ + \\ 1\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "So for x > 0 the expression is  2 + x + 1 = x + 3",
@@ -104,15 +110,20 @@
             "text": "(the two expressions are equal for x > 0)",
             "added": true
           },
-          "lim(x → 0⁺) (2|x|/x + x + 1) = lim(x → 0⁺) (x + 3)",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(\\dfrac{2\\left|x\\right|}{x} + \\ x\\ + \\ 1\\right)\\ = \\ \\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(x\\ + \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x + 3 is a polynomial, so put x = 0)",
             "added": true
           },
           "= 0 + 3",
           {
-            "text": "∴ lim(x → 0⁺) (2|x|/x + x + 1) = 3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(\\dfrac{2\\left|x\\right|}{x} + \\ x\\ + \\ 1\\right)\\ = \\ 3",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,11 +156,16 @@
         "memory_tip": "The 3 is 2 from the modulus term plus 1 from the constant; the x term contributes nothing at 0.",
         "lines_compact": [
           "So for x > 0 the expression is  2 + x + 1 = x + 3",
-          "lim(x → 0⁺) (2|x|/x + x + 1) = lim(x → 0⁺) (x + 3)",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(\\dfrac{2\\left|x\\right|}{x} + \\ x\\ + \\ 1\\right)\\ = \\ \\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(x\\ + \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 0 + 3",
           {
-            "text": "∴ lim(x → 0⁺) (2|x|/x + x + 1) = 3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 0^{+}\\right)\\left(\\dfrac{2\\left|x\\right|}{x} + \\ x\\ + \\ 1\\right)\\ = \\ 3",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

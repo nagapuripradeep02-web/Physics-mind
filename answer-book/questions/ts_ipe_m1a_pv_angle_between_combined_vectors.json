@@ -210,18 +210,35 @@
         "memory_tip": "√69 × √69 = 69, and 48/69 cancels by 3 to 16/23.",
         "lines": [
           "Let θ be the angle between u and v.",
-          "cos θ = (u·v)/(|u||v|)",
-          "  = 48/(√69 × √69)",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{u \\cdot v}{\\left|u\\right|\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{48}{\\sqrt{69}\\ \\times \\ \\sqrt{69}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√69 × √69 = 69; divide 48 and 69 by 3)",
             "added": true
           },
-          "  = 48/69 = 16/23",
           {
-            "text": "∴ θ = Cos⁻¹(16/23)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{48}{69} = \\ \\dfrac{16}{23}",
+            "style": "normal",
+            "render": "katex"
           },
-          "16/23 ≈ 0.696, so θ ≈ 46°."
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{16}{23}\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{16}{23} \\approx \\ 0.696,\\ \\text{so}\\ \\theta \\ \\approx \\ 46^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -252,14 +269,31 @@
         ],
         "lines_compact": [
           "Let θ be the angle between u and v.",
-          "cos θ = (u·v)/(|u||v|)",
-          "  = 48/(√69 × √69)",
-          "  = 48/69 = 16/23",
           {
-            "text": "∴ θ = Cos⁻¹(16/23)",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{u \\cdot v}{\\left|u\\right|\\left|v\\right|}",
+            "style": "normal",
+            "render": "katex"
           },
-          "16/23 ≈ 0.696, so θ ≈ 46°."
+          {
+            "text": "= \\ \\dfrac{48}{\\sqrt{69}\\ \\times \\ \\sqrt{69}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{48}{69} = \\ \\dfrac{16}{23}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{16}{23}\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{16}{23} \\approx \\ 0.696,\\ \\text{so}\\ \\theta \\ \\approx \\ 46^{\\circ}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

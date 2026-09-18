@@ -67,8 +67,16 @@
             "style": "heading"
           },
           "If α, β are the roots of ax² + bx + c = 0,",
-          "then α + β = −b/a and αβ = c/a",
-          "Here α + β = −b/a and αβ = c/a"
+          {
+            "text": "\\text{then}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}\\text{and}\\ \\alpha \\beta \\ = \\ \\dfrac{c}{a}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,9 +122,15 @@
             "text": "Add the two fractions:",
             "added": true
           },
-          "1/α² + 1/β² = (β² + α²)/(α²β²)",
           {
-            "text": "= (α² + β²)/(αβ)²",
+            "text": "\\dfrac{1}{\\alpha ^{2}} + \\ \\dfrac{1}{\\beta ^{2}} = \\ \\dfrac{\\beta ^{2}\\ + \\ \\alpha ^{2}}{\\alpha ^{2}\\beta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\alpha ^{2}\\ + \\ \\beta ^{2}}{\\left(\\alpha \\beta \\right)^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -124,29 +138,42 @@
             "added": true
           },
           {
-            "text": "= (−b/a)² − 2(c/a) = b²/a² − 2c/a",
+            "text": "= \\ \\left( - \\dfrac{b}{a}\\right)^{2}\\ - \\ 2\\left(\\dfrac{c}{a}\\right)\\ = \\ \\dfrac{b^{2}}{a^{2}} - \\ \\dfrac{2c}{a}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (b² − 2ac)/a²",
+            "text": "= \\ \\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "and (αβ)² = (c/a)² = c²/a²",
+            "text": "\\text{and}\\ \\left(\\alpha \\beta \\right)^{2}\\ = \\ \\left(\\dfrac{c}{a}\\right)^{2}\\ = \\ \\dfrac{c^{2}}{a^{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "1/α² + 1/β² = [(b² − 2ac)/a²] ÷ (c²/a²)",
+            "text": "\\dfrac{1}{\\alpha ^{2}} + \\ \\dfrac{1}{\\beta ^{2}} = \\ \\left[\\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}\\right]\\ \\div \\ \\left(\\dfrac{c^{2}}{a^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [(b² − 2ac)/a²] × (a²/c²)",
+          {
+            "text": "= \\ \\left[\\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}\\right]\\ \\times \\ \\left(\\dfrac{a^{2}}{c^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The a² cancels:",
             "added": true
           },
           {
-            "text": "∴ 1/α² + 1/β² = (b² − 2ac)/c²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{1}{\\alpha ^{2}} + \\ \\dfrac{1}{\\beta ^{2}} = \\ \\dfrac{b^{2}\\ - \\ 2ac}{c^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -178,13 +205,30 @@
           "Writing the denominator (αβ)² as αβ."
         ],
         "lines_compact": [
-          "1/α² + 1/β² = (α² + β²)/(αβ)²",
-          "= [(α + β)² − 2αβ]/(αβ)²",
-          "= (b²/a² − 2c/a)/(c²/a²)",
-          "= [(b² − 2ac)/a²]·(a²/c²)",
           {
-            "text": "∴ 1/α² + 1/β² = (b² − 2ac)/c²",
-            "style": "boxed"
+            "text": "\\dfrac{1}{\\alpha ^{2}} + \\ \\dfrac{1}{\\beta ^{2}} = \\ \\dfrac{\\alpha ^{2}\\ + \\ \\beta ^{2}}{\\left(\\alpha \\beta \\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(\\alpha \\ + \\ \\beta \\right)^{2}\\ - \\ 2\\alpha \\beta }{\\left(\\alpha \\beta \\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{b^{2}}{a^{2}} - \\ \\dfrac{2c}{a}}{\\dfrac{c^{2}}{a^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{b^{2}\\ - \\ 2ac}{a^{2}}\\right] \\cdot \\left(\\dfrac{a^{2}}{c^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\alpha ^{2}} + \\ \\dfrac{1}{\\beta ^{2}} = \\ \\dfrac{b^{2}\\ - \\ 2ac}{c^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

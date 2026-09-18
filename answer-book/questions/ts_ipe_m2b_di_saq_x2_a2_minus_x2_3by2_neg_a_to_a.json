@@ -147,14 +147,19 @@
         "memory_tip": "x = a sinθ turns a² − x² into a²cos²θ, a perfect square, whenever a power of (a²−x²) appears.",
         "lines": [
           "Put x = a sinθ ⇒ dx = a cosθ dθ. x = 0",
-          "⇒ θ = 0; x = a ⇒ θ = π/2",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 0;\\ x\\ = \\ a\\ \\Rightarrow \\ \\theta \\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Then a² − x² = a²cos²θ, whose root is a cosθ,",
             "added": true
           },
           {
-            "text": "  so the power 3/2 gives a³cos³θ.",
+            "text": "\\text{so}\\ \\text{the}\\ \\text{power}\\ \\dfrac{3}{2}\\text{gives}\\ a^{3}\\cos ^{3} \\theta .",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -184,7 +189,11 @@
         ],
         "lines_compact": [
           "Put x = a sinθ ⇒ dx = a cosθ dθ. x = 0",
-          "⇒ θ = 0; x = a ⇒ θ = π/2",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ 0;\\ x\\ = \\ a\\ \\Rightarrow \\ \\theta \\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2\\int _{0}^{a} x^{2}(a^{2} - x^{2})^{3/2} dx",
             "render": "katex",
@@ -220,15 +229,31 @@
             "render": "katex",
             "style": "normal"
           },
-          "= (1)(3)(1)/[(6)(4)(2)] · π/2 = (3/48)(π/2)",
           {
-            "text": "(both powers are even, so π/2 is kept)",
+            "text": "= \\ \\dfrac{\\left(1\\right)\\left(3\\right)\\left(1\\right)}{\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2} = \\ \\left(\\dfrac{3}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{both}\\ \\text{powers}\\ \\text{are}\\ \\text{even},\\ \\text{so}\\ \\dfrac{\\pi }{2}\\text{is}\\ \\text{kept}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/16)(π/2)",
-          "2a⁶ · (1/16)(π/2) = 2a⁶ · π/32",
           {
-            "text": "and 2/32 = 1/16:",
+            "text": "= \\ \\left(\\dfrac{1}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2a^{6}\\ \\cdot \\ \\left(\\dfrac{1}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 2a^{6}\\ \\cdot \\ \\dfrac{\\pi }{32}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{2}{32} = \\ \\dfrac{1}{16}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -248,9 +273,21 @@
             "render": "katex",
             "style": "normal"
           },
-          "= (1)(3)(1)/[(6)(4)(2)] · π/2 = (3/48)(π/2)",
-          "= (1/16)(π/2)",
-          "2a⁶ · (1/16)(π/2) = 2a⁶ · π/32",
+          {
+            "text": "= \\ \\dfrac{\\left(1\\right)\\left(3\\right)\\left(1\\right)}{\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2} = \\ \\left(\\dfrac{3}{48}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2a^{6}\\ \\cdot \\ \\left(\\dfrac{1}{16}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ 2a^{6}\\ \\cdot \\ \\dfrac{\\pi }{32}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\int _{-a}^{a} x^{2}(a^{2} - x^{2})^{3/2} dx = \\pi a^{6}/16",
             "render": "katex",

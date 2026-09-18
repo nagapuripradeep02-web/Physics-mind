@@ -58,28 +58,40 @@
           "so it needs the product rule.",
           "(d/dx(2x²) = 4x; the product rule gives",
           {
-            "text": "  d/dx(xy) = y · 1 + x · dy/dx;",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(xy\\right)\\ = \\ y\\ \\cdot \\ 1\\ + \\ x\\ \\cdot \\ \\dfrac{dy}{dx};",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "  d/dx(y²) = 2y · dy/dx by the chain rule;",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(y^{2}\\right)\\ = \\ 2y\\ \\cdot \\ \\dfrac{dy}{dx}\\ \\text{by}\\ \\text{the}\\ \\text{chain}\\ \\text{rule};",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "  d/dx(x) = 1, d/dx(2y) = 2 · dy/dx",
-            "style": "indent"
+            "text": "\\dfrac{d}{dx}\\left(x\\right)\\ = \\ 1,\\ \\dfrac{d}{dx}\\left(2y\\right)\\ = \\ 2\\ \\cdot \\ \\dfrac{dy}{dx}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  and d/dx(8) = 0)",
             "style": "indent"
           },
-          "4x − 3[ y · 1 + x · (dy/dx) ] + 2y(dy/dx) + 1",
           {
-            "text": "  + 2(dy/dx) = 0",
-            "style": "indent"
+            "text": "4x\\ - \\ 3\\left[y\\ \\cdot \\ 1\\ + \\ x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\right]\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ 2\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           },
           "(multiply out: −3[y · 1 + x · (dy/dx)] = −3y − 3x(dy/dx))",
-          "4x − 3y − 3x(dy/dx) + 2y(dy/dx) + 1 + 2(dy/dx) = 0"
+          {
+            "text": "4x\\ - \\ 3y\\ - \\ 3x\\left(\\dfrac{dy}{dx}\\right)\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ + \\ 1\\ + \\ 2\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +130,11 @@
         "margin_note": "Second mark. Three terms carry dy/dx: −3x, +2y and +2. Take them together, move the rest across, then divide.",
         "memory_tip": "The bracket that multiplies dy/dx is 2y − 3x + 2, and what is left over is 3y − 4x − 1. Group first, divide last.",
         "lines": [
-          "Collect the dy/dx terms on one side:",
+          {
+            "text": "\\text{Collect}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{on}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(keep the three dy/dx terms on the left and move",
             "added": true
@@ -133,7 +149,11 @@
             "style": "indent",
             "added": true
           },
-          "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
+          {
+            "text": "\\left( - 3x\\ + \\ 2y\\ + \\ 2\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 3y\\ - \\ 4x\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by −3x + 2y + 2, which is 2y − 3x + 2;",
             "added": true
@@ -144,8 +164,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3y\\ - \\ 4x\\ - \\ 1}{2y\\ - \\ 3x\\ + \\ 2},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "2y − 3x + 2 ≠ 0",
@@ -180,11 +201,20 @@
           "Sign slips when the terms 4x, −3y and +1 are moved across."
         ],
         "lines_compact": [
-          "Collect the dy/dx terms on one side:",
-          "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
           {
-            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),",
-            "style": "boxed"
+            "text": "\\text{Collect}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms}\\ \\text{on}\\ \\text{one}\\ \\text{side}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 3x\\ + \\ 2y\\ + \\ 2\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 3y\\ - \\ 4x\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3y\\ - \\ 4x\\ - \\ 1}{2y\\ - \\ 3x\\ + \\ 2},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "2y − 3x + 2 ≠ 0",

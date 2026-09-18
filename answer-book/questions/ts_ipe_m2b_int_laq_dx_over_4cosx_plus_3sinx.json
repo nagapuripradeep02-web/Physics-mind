@@ -61,15 +61,24 @@
           },
           "The integrand is a ratio of sinx and cosx",
           {
-            "text": "  terms, so the tan(x/2) substitution turns",
-            "style": "indent"
+            "text": "\\text{terms},\\ \\text{so}\\ \\text{the}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{substitution}\\ \\text{turns}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  it into a rational function of t.",
             "style": "indent"
           },
-          "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
-          "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ = \\ t\\ \\Rightarrow \\ \\sin x\\ = \\ \\dfrac{2t}{1 + t^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos x\\ = \\ \\dfrac{1 - t^{2}}{1 + t^{2}},\\ dx\\ = \\ \\dfrac{2dt}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Every rational function of sinx and cosx can be turned into a rational function of t through this one substitution, because sinx, cosx and dx all convert cleanly using the half-angle formulas.",
         "common_mistakes": [
@@ -86,14 +95,30 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "4cosx+3sinx = [4(1−t²)+3(2t)]/(1+t²)",
-          "= (4−4t²+6t)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(4−4t²+6t)/(1+t²)]",
+          {
+            "text": "4\\cos x + 3\\sin x\\ = \\ \\dfrac{4\\left(1 - t^{2}\\right) + 3\\left(2t\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4 - 4t^{2} + 6t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{4 - 4t^{2} + 6t}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The (1+t²) cancels:",
             "added": true
           },
-          "= ∫2dt/(4−4t²+6t)",
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{4 - 4t^{2} + 6t}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Take out −2 from the denominator:",
             "added": true
@@ -102,7 +127,11 @@
             "text": "4−4t²+6t = −2(2t²−3t−2)",
             "added": true
           },
-          "= −∫dt/(2t²−3t−2)"
+          {
+            "text": "= \\ - \\int \\dfrac{dt}{2t^{2} - 3t - 2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The (1+t²) in the numerator and the (1+t²) hiding inside the denominator's fraction cancel completely — this cancellation is guaranteed to happen for every linear-in-sinx-and-cosx denominator.",
         "common_mistakes": [
@@ -111,11 +140,31 @@
         ],
         "memory_tip": "The (1+t²) on top ALWAYS cancels one hiding in the bottom — look for it before doing anything else.",
         "lines_compact": [
-          "4cosx+3sinx = [4(1−t²)+3(2t)]/(1+t²)",
-          "= (4−4t²+6t)/(1+t²)",
-          "I = ∫[2dt/(1+t²)] ÷ [(4−4t²+6t)/(1+t²)]",
-          "= ∫2dt/(4−4t²+6t)",
-          "= −∫dt/(2t²−3t−2)"
+          {
+            "text": "4\\cos x + 3\\sin x\\ = \\ \\dfrac{4\\left(1 - t^{2}\\right) + 3\\left(2t\\right)}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4 - 4t^{2} + 6t}{1 + t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\left[\\dfrac{2dt}{1 + t^{2}}\\right]\\ \\div \\ \\left[\\dfrac{4 - 4t^{2} + 6t}{1 + t^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int \\dfrac{2dt}{4 - 4t^{2} + 6t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\int \\dfrac{dt}{2t^{2} - 3t - 2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -131,17 +180,29 @@
             "added": true
           },
           {
-            "text": "Half of −3/2 is −3/4:",
+            "text": "\\text{Half}\\ \\text{of}\\ - \\dfrac{3}{2}\\text{is}\\ - \\dfrac{3}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2t²−3t−2 = 2[t²−3t/2−1] = 2[(t−3/4)²−(5/4)²]",
+          {
+            "text": "2t^{2} - 3t - 2\\ = \\ 2\\left[t^{2} - \\dfrac{3t}{2} - 1\\right]\\ = \\ 2\\left[\\left(t - \\dfrac{3}{4}\\right)^{2} - \\left(\\dfrac{5}{4}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "since 9/16 + 1 = 25/16 = (5/4)²",
             "added": true
           },
-          "I = −(1/2)∫dt/[(t−3/4)²−(5/4)²]",
           {
-            "text": "This is the u²−a² form with a = 5/4:",
+            "text": "I\\ = \\ - \\left(\\dfrac{1}{2}\\right)\\int \\dfrac{dt}{\\left(t - \\dfrac{3}{4}\\right)^{2} - \\left(\\dfrac{5}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{the}\\ u^{2} - a^{2}\\ \\text{form}\\ \\text{with}\\ a\\ = \\ \\dfrac{5}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -157,8 +218,16 @@
         ],
         "memory_tip": "t²−a² in the completed square ⇒ log formula, the same rule that applies when the quadratic is in x.",
         "lines_compact": [
-          "2t²−3t−2 = 2[t²−3t/2−1] = 2[(t−3/4)²−(5/4)²]",
-          "I = −(1/2)∫dt/[(t−3/4)²−(5/4)²]",
+          {
+            "text": "2t^{2} - 3t - 2\\ = \\ 2\\left[t^{2} - \\dfrac{3t}{2} - 1\\right]\\ = \\ 2\\left[\\left(t - \\dfrac{3}{4}\\right)^{2} - \\left(\\dfrac{5}{4}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ - \\left(\\dfrac{1}{2}\\right)\\int \\dfrac{dt}{\\left(t - \\dfrac{3}{4}\\right)^{2} - \\left(\\dfrac{5}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= -\\frac{1}{2}\\cdot\\frac{1}{2(5/4)}\\log\\left|\\frac{t-3/4-5/4}{t-3/4+5/4}\\right| + c",
             "render": "katex",
@@ -175,15 +244,22 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "(1/2)·(1/(5/2)) = 1/5, and the brackets give",
+            "text": "\\left(\\dfrac{1}{2}\\right) \\cdot \\left(\\dfrac{1}{\\dfrac{5}{2}}\\right)\\ = \\ \\dfrac{1}{5},\\ \\text{and}\\ \\text{the}\\ \\text{brackets}\\ \\text{give}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  t−2 above and t+1/2 below:",
+            "text": "t - 2\\ \\text{above}\\ \\text{and}\\ t + \\dfrac{1}{2}\\text{below}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= −(1/5)log|(t−2)/(t+1/2)| + c",
+          {
+            "text": "= \\ - \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{t - 2}{t + \\dfrac{1}{2}}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "A minus sign turns the log upside down,",
             "added": true
@@ -193,9 +269,15 @@
             "style": "indent",
             "added": true
           },
-          "= (1/5)log|(2t+1)/(2t−4)| + c",
           {
-            "text": "Put t = tan(x/2) back:",
+            "text": "= \\ \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{2t + 1}{2t - 4}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{back}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ I = (1/5)log|",
@@ -211,8 +293,16 @@
         ],
         "memory_tip": "The LAST move in every tan(x/2) integral is always the same: swap t back for tan(x/2).",
         "lines_compact": [
-          "= −(1/5)log|(t−2)/(t+1/2)| + c",
-          "= (1/5)log|(2t+1)/(2t−4)| + c",
+          {
+            "text": "= \\ - \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{t - 2}{t + \\dfrac{1}{2}}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{2t + 1}{2t - 4}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ I = (1/5)log|",
           {
             "text": "(2tan(x/2)+1)/(2(tan(x/2)−2))| + c",

@@ -55,20 +55,32 @@
           "Let r be the radius and h the height",
           "of the water cone at time t.",
           "(the formula for the volume of a cone)",
-          "Volume of a cone:  V = (1/3)πr²h",
+          {
+            "text": "\\text{Volume}\\ \\text{of}\\ a\\ \\text{cone}:\\ V\\ = \\ \\left(\\dfrac{1}{3}\\right)\\pi r^{2}h",
+            "style": "normal",
+            "render": "katex"
+          },
           "(radius : height is the same for both cones,",
           {
             "text": "  and for the full cone it is 6 : 8)",
             "style": "indent"
           },
           "The water cone and the full cone are similar, so",
-          "r/h = 6/8 = 3/4   ⇒   r = 3h/4",
+          {
+            "text": "\\dfrac{r}{h} = \\ \\dfrac{6}{8} = \\ \\dfrac{3}{4} \\Rightarrow \\ r\\ = \\ \\dfrac{3h}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(write 3h/4 in place of r; (3h/4)² = 9h²/16;",
           {
             "text": "  (1/3)(9/16) = 9/48 = 3/16)",
             "style": "indent"
           },
-          "∴ V = (1/3)π(3h/4)²h = (1/3)π(9h²/16)h = (3π/16)h³"
+          {
+            "text": "\\therefore \\ V\\ = \\ \\left(\\dfrac{1}{3}\\right)\\pi \\left(\\dfrac{3h}{4}\\right)^{2}h\\ = \\ \\left(\\dfrac{1}{3}\\right)\\pi \\left(\\dfrac{9h^{2}}{16}\\right)h\\ = \\ \\left(\\dfrac{3\\pi }{16}\\right)h^{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -120,16 +132,31 @@
             "style": "indent",
             "added": true
           },
-          "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
-          "Put h = 4 and dV/dt = 2:",
           {
-            "text": "(4² = 16, and (9π/16) × 16 = 9π)",
+            "text": "\\dfrac{dV}{dt}\\ = \\ \\left(\\dfrac{3\\pi }{16}\\right) \\cdot 3h^{2} \\cdot \\left(\\dfrac{dh}{dt}\\right)\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)h^{2}\\left(\\dfrac{dh}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ h\\ = \\ 4\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 2:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(4^{2}\\ = \\ 16,\\ \\text{and}\\ \\left(\\dfrac{9\\pi }{16}\\right)\\ \\times \\ 16\\ = \\ 9\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2 = (9π/16)(4²)(dh/dt) = (9π/16)(16)(dh/dt)",
           {
-            "text": "  = 9π(dh/dt)",
-            "style": "indent"
+            "text": "2\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)\\left(4^{2}\\right)\\left(\\dfrac{dh}{dt}\\right)\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)\\left(16\\right)\\left(\\dfrac{dh}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 9\\pi \\left(\\dfrac{dh}{dt}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(divide both sides by 9π; 9π ≈ 28.27",
@@ -178,12 +205,25 @@
         "memory_tip": "Differentiate first, substitute second — the derivative of a constant is 0.",
         "lines_compact": [
           "Differentiate both sides with respect to time t:",
-          "dV/dt = (3π/16)·3h²·(dh/dt) = (9π/16)h²(dh/dt)",
-          "Put h = 4 and dV/dt = 2:",
-          "2 = (9π/16)(4²)(dh/dt) = (9π/16)(16)(dh/dt)",
           {
-            "text": "  = 9π(dh/dt)",
-            "style": "indent"
+            "text": "\\dfrac{dV}{dt}\\ = \\ \\left(\\dfrac{3\\pi }{16}\\right) \\cdot 3h^{2} \\cdot \\left(\\dfrac{dh}{dt}\\right)\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)h^{2}\\left(\\dfrac{dh}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ h\\ = \\ 4\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 2:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)\\left(4^{2}\\right)\\left(\\dfrac{dh}{dt}\\right)\\ = \\ \\left(\\dfrac{9\\pi }{16}\\right)\\left(16\\right)\\left(\\dfrac{dh}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 9\\pi \\left(\\dfrac{dh}{dt}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",

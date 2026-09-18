@@ -73,8 +73,16 @@
             "style": "heading"
           },
           "Given hyperbola is 16y² − 9x² = 144",
-          "Divide by 144: y²/9 − x²/16 = 1",
-          "(16y²/144 = y²/9 and 9x²/144 = x²/16)",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ 144:\\ \\dfrac{y^{2}}{9} - \\ \\dfrac{x^{2}}{16} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{16y^{2}}{144} = \\ \\dfrac{y^{2}}{9}\\text{and}\\ \\dfrac{9x^{2}}{144} = \\ \\dfrac{x^{2}}{16}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here a² = 16 (the x² denominator),",
           "b² = 9 (the y² denominator).",
           "The y² term is positive,",
@@ -82,8 +90,9 @@
           "Centre C = (0, 0).",
           "So a = 4, b = 3, and the equation is the",
           {
-            "text": "  conjugate form x²/a² − y²/b² = −1.",
-            "style": "indent"
+            "text": "\\text{conjugate}\\ \\text{form}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ - 1.",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "why": "The transverse axis is decided by which squared term is POSITIVE, not by which of a² and b² is larger — here y² is positive even though b² = 9 is smaller than a² = 16, so the foci and vertices lie on the y-axis.",
@@ -106,19 +115,29 @@
             "added": true
           },
           {
-            "text": "  e² = (a² + b²)/b²:",
+            "text": "e^{2}\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}}{b^{2}}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "e = √(a² + b²) / b",
-          "= √(16 + 9) / 3",
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{16\\ + \\ 9}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√25 = 5)",
             "added": true
           },
           {
-            "text": "e = 5/3",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{5}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "When the transverse axis is the y-axis, the eccentricity formula uses b (the term on the transverse axis) in the denominator, not a.",
@@ -127,11 +146,20 @@
           "Writing √25 as 25 instead of simplifying the root to 5."
         ],
         "lines_compact": [
-          "e = √(a² + b²) / b",
-          "= √(16 + 9) / 3",
           {
-            "text": "e = 5/3",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{16\\ + \\ 9}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{5}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -154,9 +182,15 @@
             "added": true
           },
           "Foci = (0, ±be)",
-          "= (0, ±3 · 5/3)",
           {
-            "text": "(3 · 5/3 = 5)",
+            "text": "= \\ \\left(0,\\ \\pm 3\\ \\cdot \\ \\dfrac{5}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\cdot \\ \\dfrac{5}{3} = \\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -171,7 +205,11 @@
         ],
         "lines_compact": [
           "Foci = (0, ±be)",
-          "= (0, ±3 · 5/3)",
+          {
+            "text": "= \\ \\left(0,\\ \\pm 3\\ \\cdot \\ \\dfrac{5}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Foci = (0, ±5)",
             "style": "boxed"
@@ -192,19 +230,31 @@
             "added": true
           },
           {
-            "text": "  distance b/e from the centre:",
+            "text": "\\text{distance}\\ \\dfrac{b}{e}\\text{from}\\ \\text{the}\\ \\text{centre}:",
             "style": "indent",
-            "added": true
-          },
-          "Equations of the directrices: y = ±b/e",
-          "= ±3 / (5/3) = ±9/5",
-          {
-            "text": "(3 ÷ 5/3 = 3 × 3/5 = 9/5)",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "y = 9/5 and y = −9/5",
-            "style": "boxed"
+            "text": "\\text{Equations}\\ \\text{of}\\ \\text{the}\\ \\text{directrices}:\\ y\\ = \\ \\pm \\dfrac{b}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{3}{\\dfrac{5}{3}} = \\ \\pm \\dfrac{9}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\div \\ \\dfrac{5}{3} = \\ 3\\ \\times \\ \\dfrac{3}{5} = \\ \\dfrac{9}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{9}{5}\\text{and}\\ y\\ = \\ - \\dfrac{9}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Each directrix is the horizontal line y = b/e or y = −b/e — b divided by e, where the foci are at b multiplied by e.",
@@ -213,11 +263,20 @@
           "Confusing y = b/e with the focus formula y = be."
         ],
         "lines_compact": [
-          "Equations of the directrices: y = ±b/e",
-          "= ±3 / (5/3) = ±9/5",
           {
-            "text": "y = 9/5 and y = −9/5",
-            "style": "boxed"
+            "text": "\\text{Equations}\\ \\text{of}\\ \\text{the}\\ \\text{directrices}:\\ y\\ = \\ \\pm \\dfrac{b}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{3}{\\dfrac{5}{3}} = \\ \\pm \\dfrac{9}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{9}{5}\\text{and}\\ y\\ = \\ - \\dfrac{9}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -235,15 +294,25 @@
             "added": true
           },
           {
-            "text": "  parallel to the x-axis; its length is 2a²/b:",
+            "text": "\\text{parallel}\\ \\text{to}\\ \\text{the}\\ \\text{x-axis};\\ \\text{its}\\ \\text{length}\\ \\text{is}\\ \\dfrac{2a^{2}}{b}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "Length of the latus rectum = 2a² / b",
-          "= 2(16) / 3",
           {
-            "text": "= 32/3",
-            "style": "boxed"
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2a^{2}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(16\\right)}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{32}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The latus rectum formula swaps roles here too — it uses 2a²/b, not 2b²/a, because b is now the semi-transverse axis (the transverse axis has length 2b).",
@@ -252,11 +321,20 @@
           "Forgetting to double a² before dividing by b."
         ],
         "lines_compact": [
-          "Length of the latus rectum = 2a² / b",
-          "= 2(16) / 3",
           {
-            "text": "= 32/3",
-            "style": "boxed"
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2a^{2}}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(16\\right)}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{32}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

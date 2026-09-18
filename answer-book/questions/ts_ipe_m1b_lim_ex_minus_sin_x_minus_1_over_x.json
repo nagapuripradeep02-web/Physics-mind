@@ -53,15 +53,24 @@
             "style": "heading"
           },
           "(e⁰ − sin 0 − 1 = 1 − 0 − 1 = 0)",
-          "Putting x = 0 gives 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the numerator is regrouped first.",
           "(group eˣ with −1)",
           "eˣ − sin x − 1 = (eˣ − 1) − sin x",
           "(divide each part by x)",
-          "∴ lim(x → 0) (eˣ − sin x − 1)/x = lim(x → 0) (eˣ − 1)/x",
           {
-            "text": "  − lim(x → 0) (sin x)/x",
-            "style": "indent"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ \\sin x\\ - \\ 1\\right)}{x} = \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x}",
+            "style": "indent",
+            "render": "katex"
           },
           "Both of these limits exist,",
           "so the difference may be taken term by term."
@@ -103,8 +112,16 @@
         "margin_note": "Second mark. Both standard limits equal 1, so the answer is 1 − 1 = 0. Write the two limits out before subtracting — the mark is for using them, not for the zero alone.",
         "memory_tip": "Both standard limits here equal 1, so the answer is 1 − 1 = 0.",
         "lines": [
-          "We know lim(x → 0) (eˣ − 1)/x = 1",
-          "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 1 for each limit)",
             "added": true
@@ -115,8 +132,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ \\sin x\\ - \\ 1\\right)}{x} = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -147,12 +165,21 @@
           "Giving the answer as 0 with no working, so the method mark is lost."
         ],
         "lines_compact": [
-          "We know lim(x → 0) (eˣ − 1)/x = 1",
-          "and  lim(x → 0) (sin x)/x = 1",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1 − 1",
           {
-            "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ \\sin x\\ - \\ 1\\right)}{x} = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -52,13 +52,29 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S = 1 + 2/2 + 3/2² + 4/2³ + … to ∞",
+          {
+            "text": "\\text{Let}\\ S\\ = \\ 1\\ + \\ \\dfrac{2}{2} + \\ \\dfrac{3}{2^{2}} + \\ \\dfrac{4}{2^{3}} + \\ \\dots \\ \\text{to}\\ \\infty",
+            "style": "normal",
+            "render": "katex"
+          },
           "The numerators 1, 2, 3, 4, … are in A.P. and the",
           "denominators 1, 2, 2², … are in G.P. of ratio 2",
-          "(multiply every term of S by 1/2)",
-          "(1/2)S = 1/2 + 2/2² + 3/2³ + …",
+          {
+            "text": "\\left(\\text{multiply}\\ \\text{every}\\ \\text{term}\\ \\text{of}\\ S\\ \\text{by}\\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)S\\ = \\ \\dfrac{1}{2} + \\ \\dfrac{2}{2^{2}} + \\ \\dfrac{3}{2^{3}} + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "(subtract term by term, lining up equal powers of 2)",
-          "S − (1/2)S = 1 + (2 − 1)/2 + (3 − 2)/2² + (4 − 3)/2³ + …"
+          {
+            "text": "S\\ - \\ \\left(\\dfrac{1}{2}\\right)S\\ = \\ 1\\ + \\ \\dfrac{2\\ - \\ 1}{2} + \\ \\dfrac{3\\ - \\ 2}{2^{2}} + \\ \\dfrac{4\\ - \\ 3}{2^{3}} + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,13 +117,27 @@
             "text": "(each numerator difference is 1)",
             "added": true
           },
-          "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",
           {
-            "text": "(S∞ = a/(1 − r) with a = 1 and r = 1/2)",
+            "text": "\\left(\\dfrac{1}{2}\\right)S\\ = \\ 1\\ + \\ \\dfrac{1}{2} + \\ \\dfrac{1}{2^{2}} + \\ \\dfrac{1}{2^{3}} + \\ \\dots \\ \\text{to}\\ \\infty",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(S\\infty \\ = \\ \\dfrac{a}{1\\ - \\ r}\\text{with}\\ a\\ = \\ 1\\ \\text{and}\\ r\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "This is a G.P. with a = 1 and r = 1/2, and |r| < 1, so",
-          "(1/2)S = 1/(1 − 1/2) = 1/(1/2) = 2",
+          {
+            "text": "\\text{This}\\ \\text{is}\\ aG.P.\\ \\text{with}\\ a\\ = \\ 1\\ \\text{and}\\ r\\ = \\ \\dfrac{1}{2},\\ \\text{and}\\ \\left|r\\right|\\ < \\ 1,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)S\\ = \\ \\dfrac{1}{1\\ - \\ \\dfrac{1}{2}} = \\ \\dfrac{1}{\\dfrac{1}{2}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 2)",
             "added": true
@@ -145,9 +175,21 @@
           "Dropping the leading 1 when writing out the series that is left."
         ],
         "lines_compact": [
-          "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",
-          "This is a G.P. with a = 1 and r = 1/2, and |r| < 1, so",
-          "(1/2)S = 1/(1 − 1/2) = 1/(1/2) = 2",
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)S\\ = \\ 1\\ + \\ \\dfrac{1}{2} + \\ \\dfrac{1}{2^{2}} + \\ \\dfrac{1}{2^{3}} + \\ \\dots \\ \\text{to}\\ \\infty",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ aG.P.\\ \\text{with}\\ a\\ = \\ 1\\ \\text{and}\\ r\\ = \\ \\dfrac{1}{2},\\ \\text{and}\\ \\left|r\\right|\\ < \\ 1,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)S\\ = \\ \\dfrac{1}{1\\ - \\ \\dfrac{1}{2}} = \\ \\dfrac{1}{\\dfrac{1}{2}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ S = 2 × 2 = 4",
             "style": "boxed"

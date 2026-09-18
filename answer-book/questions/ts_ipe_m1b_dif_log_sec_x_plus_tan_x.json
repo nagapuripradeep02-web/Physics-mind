@@ -55,11 +55,31 @@
           "y = log(sec x + tan x),  where log is the natural logarithm.",
           "Here sec x + tan x > 0, so cos x > 0.",
           "(the chain rule for the logarithm)",
-          "For u = sec x + tan x,  d/dx(log u) = (1/u) · du/dx",
-          "(d/dx(sec x) = sec x tan x and d/dx(tan x) = sec²x)",
-          "du/dx = d/dx(sec x) + d/dx(tan x) = sec x tan x + sec²x",
-          "(put u = sec x + tan x and du/dx = sec x tan x + sec²x)",
-          "∴ dy/dx = (sec x tan x + sec²x)/(sec x + tan x)"
+          {
+            "text": "\\text{For}\\ u\\ = \\ \\sec x\\ + \\ \\tan x,\\ \\dfrac{d}{dx}\\left(\\log u\\right)\\ = \\ \\left(\\dfrac{1}{u}\\right)\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\sec x\\right)\\ = \\ \\sec x\\tan x\\ \\text{and}\\ \\dfrac{d}{dx}\\left(\\tan x\\right)\\ = \\ \\sec ^{2} x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ \\dfrac{d}{dx}\\left(\\sec x\\right)\\ + \\ \\dfrac{d}{dx}\\left(\\tan x\\right)\\ = \\ \\sec x\\tan x\\ + \\ \\sec ^{2} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ u\\ = \\ \\sec x\\ + \\ \\tan x\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ \\sec x\\tan x\\ + \\ \\sec ^{2} x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sec x\\tan x\\ + \\ \\sec ^{2} x}{\\sec x\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,8 +134,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dx = sec x",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sec x",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,8 +171,9 @@
           "sec x tan x + sec²x = sec x(tan x + sec x)",
           "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
           {
-            "text": "∴ dy/dx = sec x",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sec x",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

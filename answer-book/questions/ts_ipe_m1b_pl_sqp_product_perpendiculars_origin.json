@@ -128,9 +128,17 @@
             "added": true
           },
           "The perpendicular distance from O(0,0) to line (1)",
-          "is  p₁ = |n₁| / √(l₁² + m₁²)",
+          {
+            "text": "\\text{is}\\ p_{1}\\ = \\ \\dfrac{\\left|n_{1}\\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The perpendicular distance from O(0,0) to line (2)",
-          "is  p₂ = |n₂| / √(l₂² + m₂²)"
+          {
+            "text": "\\text{is}\\ p_{2}\\ = \\ \\dfrac{\\left|n_{2}\\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -163,9 +171,17 @@
         "memory_tip": "From the ORIGIN the formula is short: putting (0,0) in leaves only |n|.",
         "lines_compact": [
           "The perpendicular distance from O(0,0) to line (1)",
-          "is  p₁ = |n₁| / √(l₁² + m₁²)",
+          {
+            "text": "\\text{is}\\ p_{1}\\ = \\ \\dfrac{\\left|n_{1}\\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The perpendicular distance from O(0,0) to line (2)",
-          "is  p₂ = |n₂| / √(l₂² + m₂²)"
+          {
+            "text": "\\text{is}\\ p_{2}\\ = \\ \\dfrac{\\left|n_{2}\\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -180,17 +196,29 @@
             "added": true
           },
           "∴ The product of the perpendiculars is",
-          "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
+          {
+            "text": "p_{1} \\cdot p_{2}\\ = \\ \\left[\\dfrac{\\left|n_{1}\\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}\\right]\\ \\cdot \\ \\left[\\dfrac{\\left|n_{2}\\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|n₁| · |n₂| = |n₁n₂| and √U · √V = √(UV))",
             "added": true
           },
-          "= |n₁n₂| / √((l₁² + m₁²)(l₂² + m₂²))",
+          {
+            "text": "= \\ \\dfrac{\\left|n_{1}n_{2}\\right|}{\\sqrt{\\left(l_{1}^{2}\\ + \\ m_{1}^{2}\\right)\\left(l_{2}^{2}\\ + \\ m_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(n₁n₂ = c; multiply out (l₁² + m₁²)(l₂² + m₂²))",
             "added": true
           },
-          "= |c| / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)"
+          {
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{l_{1}^{2}l_{2}^{2}\\ + \\ l_{1}^{2}m_{2}^{2}\\ + \\ l_{2}^{2}m_{1}^{2}\\ + \\ m_{1}^{2}m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -223,9 +251,21 @@
         "memory_tip": "The numerator is n₁n₂ straight away; only the denominator needs work.",
         "lines_compact": [
           "∴ The product of the perpendiculars is",
-          "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
-          "= |n₁n₂| / √((l₁² + m₁²)(l₂² + m₂²))",
-          "= |c| / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)"
+          {
+            "text": "p_{1} \\cdot p_{2}\\ = \\ \\left[\\dfrac{\\left|n_{1}\\right|}{\\sqrt{l_{1}^{2}\\ + \\ m_{1}^{2}}}\\right]\\ \\cdot \\ \\left[\\dfrac{\\left|n_{2}\\right|}{\\sqrt{l_{2}^{2}\\ + \\ m_{2}^{2}}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|n_{1}n_{2}\\right|}{\\sqrt{\\left(l_{1}^{2}\\ + \\ m_{1}^{2}\\right)\\left(l_{2}^{2}\\ + \\ m_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{l_{1}^{2}l_{2}^{2}\\ + \\ l_{1}^{2}m_{2}^{2}\\ + \\ l_{2}^{2}m_{1}^{2}\\ + \\ m_{1}^{2}m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -248,7 +288,11 @@
             "text": "(2l₁l₂m₁m₂ − 2l₁m₂l₂m₁ = 0)",
             "added": true
           },
-          "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{\\left(l_{1}l_{2}\\ - \\ m_{1}m_{2}\\right)^{2}\\ + \\ \\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(l₁l₂ − m₁m₂ = a − b and l₁m₂ + l₂m₁ = 2h, so (2h)² = 4h²)",
             "added": true
@@ -258,8 +302,9 @@
             "style": "boxed"
           },
           {
-            "text": "= |c| / √((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -297,14 +342,19 @@
             "text": "  + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
             "style": "indent"
           },
-          "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
+          {
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{\\left(l_{1}l_{2}\\ - \\ m_{1}m_{2}\\right)^{2}\\ + \\ \\left(l_{1}m_{2}\\ + \\ l_{2}m_{1}\\right)^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Product of perpendiculars",
             "style": "boxed"
           },
           {
-            "text": "= |c| / √((a − b)² + 4h²)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|c\\right|}{\\sqrt{\\left(a\\ - \\ b\\right)^{2}\\ + \\ 4h^{2}}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

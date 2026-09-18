@@ -61,11 +61,23 @@
             "style": "heading"
           },
           "(Δ = r₁(s − a), and so on)",
-          "r₁ = Δ/(s−a), r₂ = Δ/(s−b),",
-          "r₃ = Δ/(s−c)",
+          {
+            "text": "r_{1}\\ = \\ \\dfrac{\\Delta }{s - a},\\ r_{2}\\ = \\ \\dfrac{\\Delta }{s - b},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{3}\\ = \\ \\dfrac{\\Delta }{s - c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "By Heron, Δ² = s(s−a)(s−b)(s−c)",
           "(divide both sides by s)",
-          "⇒ (s−a)(s−b)(s−c) = Δ²/s   …(1)"
+          {
+            "text": "\\Rightarrow \\ \\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)\\ = \\ \\dfrac{\\Delta ^{2}}{s}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -114,17 +126,29 @@
             "style": "indent",
             "added": true
           },
-          "= Δ/(s−a) · Δ[(s−c) + (s−b)]/[(s−b)(s−c)]",
+          {
+            "text": "= \\ \\dfrac{\\Delta }{s - a} \\cdot \\ \\dfrac{\\Delta \\left[\\left(s - c\\right)\\ + \\ \\left(s - b\\right)\\right]}{\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the two fractions)",
             "added": true
           },
-          "= Δ²(2s − b − c)/[(s−a)(s−b)(s−c)]",
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}\\left(2s\\ - \\ b\\ - \\ c\\right)}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2s − b − c = a, and (1) replaces the denominator)",
             "added": true
           },
-          "= Δ²a/(Δ²/s)   [by (1), 2s − b − c = a]",
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}a}{\\dfrac{\\Delta ^{2}}{s}}\\left[\\text{by}\\ \\left(1\\right),\\ 2s\\ - \\ b\\ - \\ c\\ = \\ a\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= as"
         ],
         "recall": {
@@ -156,9 +180,21 @@
         ],
         "lines_compact": [
           "r₁(r₂ + r₃)",
-          "= Δ/(s−a) · Δ[(s−c) + (s−b)]/[(s−b)(s−c)]",
-          "= Δ²(2s − b − c)/[(s−a)(s−b)(s−c)]",
-          "= Δ²a/(Δ²/s)   [by (1), 2s − b − c = a]",
+          {
+            "text": "= \\ \\dfrac{\\Delta }{s - a} \\cdot \\ \\dfrac{\\Delta \\left[\\left(s - c\\right)\\ + \\ \\left(s - b\\right)\\right]}{\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}\\left(2s\\ - \\ b\\ - \\ c\\right)}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}a}{\\dfrac{\\Delta ^{2}}{s}}\\left[\\text{by}\\ \\left(1\\right),\\ 2s\\ - \\ b\\ - \\ c\\ = \\ a\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= as"
         ]
       },
@@ -181,8 +217,16 @@
             "style": "indent",
             "added": true
           },
-          "= Δ²[(s−c)+(s−a)+(s−b)]/[(s−a)(s−b)(s−c)]",
-          "= Δ²s/(Δ²/s)   [∵ 3s − 2s = s, by (1)]",
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}\\left[\\left(s - c\\right) + \\left(s - a\\right) + \\left(s - b\\right)\\right]}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}s}{\\dfrac{\\Delta ^{2}}{s}}\\left[\\because \\ 3s\\ - \\ 2s\\ = \\ s,\\ \\text{by}\\ \\left(1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= s²"
         ],
         "recall": {
@@ -214,8 +258,16 @@
         ],
         "lines_compact": [
           "r₁r₂ + r₂r₃ + r₃r₁",
-          "= Δ²[(s−c)+(s−a)+(s−b)]/[(s−a)(s−b)(s−c)]",
-          "= Δ²s/(Δ²/s)   [∵ 3s − 2s = s, by (1)]",
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}\\left[\\left(s - c\\right) + \\left(s - a\\right) + \\left(s - b\\right)\\right]}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\Delta ^{2}s}{\\dfrac{\\Delta ^{2}}{s}}\\left[\\because \\ 3s\\ - \\ 2s\\ = \\ s,\\ \\text{by}\\ \\left(1\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= s²"
         ]
       },
@@ -234,7 +286,11 @@
             "text": "(put in the numerator as and the root s)",
             "added": true
           },
-          "∴ r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁)",
+          {
+            "text": "\\therefore \\ \\dfrac{r_{1}\\left(r_{2}\\ + \\ r_{3}\\right)}{\\sqrt{r_{1}r_{2}\\ + \\ r_{2}r_{3}\\ + \\ r_{3}r_{1}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= as/s",
           {
             "text": "= a = R.H.S",
@@ -272,7 +328,11 @@
         "lines_compact": [
           "√(r₁r₂ + r₂r₃ + r₃r₁) = √(s²) = s",
           "   [s > 0, so the root is +s]",
-          "∴ r₁(r₂ + r₃)/√(r₁r₂ + r₂r₃ + r₃r₁)",
+          {
+            "text": "\\therefore \\ \\dfrac{r_{1}\\left(r_{2}\\ + \\ r_{3}\\right)}{\\sqrt{r_{1}r_{2}\\ + \\ r_{2}r_{3}\\ + \\ r_{3}r_{1}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= as/s",
           {
             "text": "= a = R.H.S",

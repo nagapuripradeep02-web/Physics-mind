@@ -66,7 +66,11 @@
           "on the negative real axis, so Arg z₁ = π",
           "z₂ = −i is the point (0, −1),",
           "on the negative imaginary axis,",
-          "so Arg z₂ = −π/2"
+          {
+            "text": "\\text{so}\\ Argz_{2}\\ = \\ - \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,14 +123,21 @@
             "added": true
           },
           {
-            "text": "= π + (−π/2) = π − π/2",
+            "text": "= \\ \\pi \\ + \\ \\left( - \\dfrac{\\pi }{2}\\right)\\ = \\ \\pi \\ - \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Arg(z₁z₂) = π/2",
-            "style": "boxed"
+            "text": "\\therefore \\ Arg\\left(z_{1}z_{2}\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           },
-          "Check: z₁z₂ = (−1)(−i) = i, and Arg i = π/2."
+          {
+            "text": "\\text{Check}:\\ z_{1}z_{2}\\ = \\ \\left( - 1\\right)\\left( - i\\right)\\ = \\ i,\\ \\text{and}\\ Argi\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -155,12 +166,21 @@
           "Writing π + π/2 = 3π/2 by using Arg(−i) = +π/2."
         ],
         "lines_compact": [
-          "Arg(z₁z₂) = Arg z₁ + Arg z₂ = π + (−π/2)",
           {
-            "text": "∴ Arg(z₁z₂) = π/2",
-            "style": "boxed"
+            "text": "Arg\\left(z_{1}z_{2}\\right)\\ = \\ Argz_{1}\\ + \\ Argz_{2}\\ = \\ \\pi \\ + \\ \\left( - \\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "Check: z₁z₂ = (−1)(−i) = i, and Arg i = π/2."
+          {
+            "text": "\\therefore \\ Arg\\left(z_{1}z_{2}\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ z_{1}z_{2}\\ = \\ \\left( - 1\\right)\\left( - i\\right)\\ = \\ i,\\ \\text{and}\\ Argi\\ = \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

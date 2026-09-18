@@ -84,9 +84,21 @@
             "render": "katex",
             "style": "normal"
           },
-          "This is in the form dy/dx + yP(x) = Q(x).",
-          "Here P = 1/(1 + x²)",
-          "⇒ ∫P dx = ∫1/(1 + x²) dx = Tan⁻¹x"
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ P\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\int Pdx\\ = \\ \\int \\dfrac{1}{1\\ + \\ x^{2}}dx\\ = \\ \\operatorname{Tan}^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Dividing every term by (1 + x²) makes the coefficient of dy/dx equal to 1, matching the standard linear form, and the resulting P is exactly the standard derivative-of-arctan integral.",
         "common_mistakes": [
@@ -104,7 +116,9 @@
         "memory_tip": "Unlike the trig examples earlier in this chapter, this I.F. does not simplify further — e to the power Tan⁻¹x is already in its simplest form.",
         "lines": [
           {
-            "text": "For dy/dx + yP = Q the integrating factor is",
+            "text": "\\text{For}\\ \\dfrac{dy}{dx}\\ + \\ yP\\ = \\ Q\\ \\text{the}\\ \\text{integrating}\\ \\text{factor}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -165,10 +179,16 @@
             "style": "normal"
           },
           {
-            "text": "d/dx(Tan⁻¹x) = 1/(1 + x²), so:",
+            "text": "\\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}},\\ \\text{so}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
+          {
+            "text": "\\text{Put}\\ \\operatorname{Tan}^{-1} x\\ = \\ t\\ \\Rightarrow \\ \\dfrac{1}{1\\ + \\ x^{2}}dx\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes ∫e²ᵗ dt"
         ],
         "why": "Multiplying the integrating factor by Q combines the two exponential terms into e to the power 2Tan⁻¹x, and substituting t = Tan⁻¹x removes the arctan from the exponent entirely, using the fact that dt is exactly the leftover 1/(1+x²)dx.",
@@ -193,7 +213,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
+          {
+            "text": "\\text{Put}\\ \\operatorname{Tan}^{-1} x\\ = \\ t\\ \\Rightarrow \\ \\dfrac{1}{1\\ + \\ x^{2}}dx\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes ∫e²ᵗ dt"
         ]
       },
@@ -207,15 +231,25 @@
         "memory_tip": "∫eᵏᵗdt = eᵏᵗ/k for any constant k — here k = 2.",
         "lines": [
           {
-            "text": "∫eᵏᵗ dt = (1/k)eᵏᵗ; here k = 2:",
+            "text": "\\int e^{kt}dt\\ = \\ \\left(\\dfrac{1}{k}\\right)e^{kt};\\ \\text{here}\\ k\\ = \\ 2:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫e²ᵗ dt = (1/2)e²ᵗ + c",
+          {
+            "text": "\\int e^{2t}dt\\ = \\ \\left(\\dfrac{1}{2}\\right)e^{2t}\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Since t = Tan⁻¹x, the left side is y·eᵗ:",
             "added": true
           },
-          "So y·eᵗ = (1/2)e²ᵗ + c,",
+          {
+            "text": "\\text{So}\\ y \\cdot e^{t}\\ = \\ \\left(\\dfrac{1}{2}\\right)e^{2t}\\ + \\ c,",
+            "style": "normal",
+            "render": "katex"
+          },
           "and putting t = Tan⁻¹x back in:",
           {
             "text": "y\\cdot e^{\\operatorname{Tan}^{-1} x} = (1/2)e^{2\\operatorname{Tan}^{-1} x} + c",
@@ -229,8 +263,16 @@
           "Leaving the final answer in terms of t instead of substituting Tan⁻¹x back in."
         ],
         "lines_compact": [
-          "∫e²ᵗ dt = (1/2)e²ᵗ + c",
-          "So y·eᵗ = (1/2)e²ᵗ + c,",
+          {
+            "text": "\\int e^{2t}dt\\ = \\ \\left(\\dfrac{1}{2}\\right)e^{2t}\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ y \\cdot e^{t}\\ = \\ \\left(\\dfrac{1}{2}\\right)e^{2t}\\ + \\ c,",
+            "style": "normal",
+            "render": "katex"
+          },
           "and putting t = Tan⁻¹x back in:",
           {
             "text": "y\\cdot e^{\\operatorname{Tan}^{-1} x} = (1/2)e^{2\\operatorname{Tan}^{-1} x} + c",

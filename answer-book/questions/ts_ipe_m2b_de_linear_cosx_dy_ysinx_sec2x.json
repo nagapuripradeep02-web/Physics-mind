@@ -61,12 +61,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is cos x·dy/dx + y sin x = sec²x",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\cos x \\cdot \\dfrac{dy}{dx}\\ + \\ y\\sin x\\ = \\ \\sec ^{2} x",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide every term by cos x:",
-          "⇒ dy/dx + y(sin x/cos x) = sec²x/cos x",
-          "sin x/cos x = tan x and sec²x/cos x = sec³x:",
-          "⇒ dy/dx + y tan x = sec³x",
-          "This is in the form dy/dx + yP(x) = Q(x).",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y\\left(\\dfrac{\\sin x}{\\cos x}\\right)\\ = \\ \\dfrac{\\sec ^{2} x}{\\cos x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sin x}{\\cos x} = \\ \\tan x\\ \\text{and}\\ \\dfrac{\\sec ^{2} x}{\\cos x} = \\ \\sec ^{3} x:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ + \\ y\\tan x\\ = \\ \\sec ^{3} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here P = tan x",
           "⇒ ∫P dx = ∫tan x dx = log sec x"
         ],
@@ -135,14 +155,20 @@
             "added": true
           },
           {
-            "text": "  ∫t² dt = t³/3 = tan³x/3",
+            "text": "\\int t^{2}dt\\ = \\ \\dfrac{t^{3}}{3} = \\ \\dfrac{\\tan ^{3} x}{3}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "= tan x + tan³x/3 + c",
           {
-            "text": "y sec x = tan x + tan³x/3 + c",
-            "style": "boxed"
+            "text": "= \\ \\tan x\\ + \\ \\dfrac{\\tan ^{3} x}{3} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\sec x\\ = \\ \\tan x\\ + \\ \\dfrac{\\tan ^{3} x}{3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Writing sec⁴x as sec²x(1 + tan²x) splits it into a plain sec²x integral and a sec²x·tan²x term, and since sec²x is the derivative of tan x, the second piece integrates directly using tan x as the new variable.",
@@ -155,10 +181,15 @@
           "⇒ y sec x = ∫sec x·sec³x dx = ∫sec⁴x dx",
           "= ∫sec²x(1 + tan²x) dx",
           "= ∫sec²x dx + ∫sec²x tan²x dx",
-          "= tan x + tan³x/3 + c",
           {
-            "text": "y sec x = tan x + tan³x/3 + c",
-            "style": "boxed"
+            "text": "= \\ \\tan x\\ + \\ \\dfrac{\\tan ^{3} x}{3} + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\sec x\\ = \\ \\tan x\\ + \\ \\dfrac{\\tan ^{3} x}{3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

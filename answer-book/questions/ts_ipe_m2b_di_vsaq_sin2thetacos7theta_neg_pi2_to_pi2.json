@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The limits are −π/2 and π/2, so first check",
+          {
+            "text": "\\text{The}\\ \\text{limits}\\ \\text{are}\\ - \\dfrac{\\pi }{2}\\text{and}\\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\text{first}\\ \\text{check}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  whether the integrand is even or odd.",
             "style": "indent"
@@ -79,15 +83,22 @@
         "memory_tip": "One odd power among the two is enough to keep K=1 — only two even powers together bring in π/2.",
         "lines": [
           {
-            "text": "For an even function, the integral from −π/2",
+            "text": "\\text{For}\\ \\text{an}\\ \\text{even}\\ \\text{function},\\ \\text{the}\\ \\text{integral}\\ \\text{from}\\ - \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  to π/2 is twice the one from 0 to π/2:",
+            "text": "\\text{to}\\ \\dfrac{\\pi }{2}\\text{is}\\ \\text{twice}\\ \\text{the}\\ \\text{one}\\ \\text{from}\\ 0\\ \\text{to}\\ \\dfrac{\\pi }{2}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "Integral from −π/2 to π/2 of sin²θ cos⁷θ dθ",
+          {
+            "text": "\\text{Integral}\\ \\text{from}\\ - \\dfrac{\\pi }{2}\\text{to}\\ \\dfrac{\\pi }{2}\\text{of}\\ \\sin ^{2} \\theta \\cos ^{7} \\theta d\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 2\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{7}\\theta d\\theta",
             "render": "katex",
@@ -97,14 +108,21 @@
             "text": "Wallis's formula, m = 2, n = 7 (odd), so K = 1:",
             "added": true
           },
-          "= 2 · [(1)][(6)(4)(2)]/[(9)(7)(5)(3)] · (1)",
           {
-            "text": "= 2 · 48/945 = 96/945, and dividing by 3:",
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\left[\\left(1\\right)\\right]\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]}{\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{48}{945} = \\ \\dfrac{96}{945},\\ \\text{and}\\ \\text{dividing}\\ \\text{by}\\ 3:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 32/315",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{32}{315}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Doubling the half-range integral and applying Wallis's mixed-power formula (m=2 even, n=7 odd, so K=1) gives 2×16/315=32/315.",
@@ -113,16 +131,25 @@
           "Including a π/2 factor even though n=7 is odd, which forces K=1."
         ],
         "lines_compact": [
-          "Integral from −π/2 to π/2 of sin²θ cos⁷θ dθ",
+          {
+            "text": "\\text{Integral}\\ \\text{from}\\ - \\dfrac{\\pi }{2}\\text{to}\\ \\dfrac{\\pi }{2}\\text{of}\\ \\sin ^{2} \\theta \\cos ^{7} \\theta d\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 2\\int _{0}^{\\pi /2} \\sin ^{2}\\theta \\cos ^{7}\\theta d\\theta",
             "render": "katex",
             "style": "normal"
           },
-          "= 2 · [(1)][(6)(4)(2)]/[(9)(7)(5)(3)] · (1)",
           {
-            "text": "∴ I = 32/315",
-            "style": "boxed"
+            "text": "= \\ 2\\ \\cdot \\ \\dfrac{\\left[\\left(1\\right)\\right]\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]}{\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)} \\cdot \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{32}{315}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

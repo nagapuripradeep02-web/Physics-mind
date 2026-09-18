@@ -259,16 +259,30 @@
           },
           "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
           {
-            "text": "(perpendicular slopes multiply to −1: −1 ÷ (−2) = 1/2)",
+            "text": "\\left(\\text{perpendicular}\\ \\text{slopes}\\ \\text{multiply}\\ \\text{to}\\ - 1:\\ - 1\\ \\div \\ \\left( - 2\\right)\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 2} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(y − (−6) = y + 6; multiply both sides by 2)",
             "added": true
           },
-          "Eq. of line through A(−4, −6) with slope 1/2 is",
-          "y + 6 = (1/2)(x + 4)   ⇒   2y + 12 = x + 4",
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 4,\\ - 6\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{1}{2}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 6\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left(x\\ + \\ 4\\right)\\ \\Rightarrow \\ 2y\\ + \\ 12\\ = \\ x\\ + \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take 2y + 12 to the right: 0 = x − 2y + 4 − 12)",
             "added": true
@@ -305,9 +319,21 @@
         "mark_note": "Method",
         "lines_compact": [
           "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
-          "Its perpendicular slope is −1/m = −1/(−2) = 1/2",
-          "Eq. of line through A(−4, −6) with slope 1/2 is",
-          "y + 6 = (1/2)(x + 4)   ⇒   2y + 12 = x + 4",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 2} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 4,\\ - 6\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{1}{2}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 6\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left(x\\ + \\ 4\\right)\\ \\Rightarrow \\ 2y\\ + \\ 12\\ = \\ x\\ + \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ x − 2y − 8 = 0  ……(4)"
         ]
       },
@@ -345,7 +371,11 @@
             "added": true
           },
           "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
-          "Its perpendicular slope is −1/m = −1/1 = −1",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{1} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(y + 27 = −x + 17, so x + y + 27 − 17 = 0)",
             "added": true
@@ -387,7 +417,11 @@
           "(3) − (1) ⇒ x − 17 = 0   ⇒   x = 17",
           "(1) ⇒ 17 + y + 10 = 0   ⇒   y = −27   ∴ B = (17, −27)",
           "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
-          "Its perpendicular slope is −1/m = −1/1 = −1",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{1} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Eq. of line through B(17, −27) with slope −1 is",
           "y + 27 = −1(x − 17)   ⇒   x + y + 10 = 0  ……(5)"
         ]

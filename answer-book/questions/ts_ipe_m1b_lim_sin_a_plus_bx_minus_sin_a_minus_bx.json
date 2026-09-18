@@ -53,16 +53,28 @@
           },
           "(sin(a + 0) − sin(a − 0) = 0)",
           "At x = 0 the numerator is sin a − sin a = 0",
-          "and the denominator is 0, so the form is 0/0.",
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{denominator}\\ \\text{is}\\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the formula for sin C − sin D)",
-          "Use  sin C − sin D = 2 cos((C + D)/2) · sin((C − D)/2)",
+          {
+            "text": "\\text{Use}\\ \\sin C\\ - \\ \\sin D\\ = \\ 2\\cos \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{C\\ - \\ D}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "with C = a + bx and D = a − bx.",
           "((a + bx + a − bx)/2 = 2a/2 = a and",
           {
             "text": "  (a + bx − a + bx)/2 = 2bx/2 = bx)",
             "style": "indent"
           },
-          "(C + D)/2 = a   and   (C − D)/2 = bx",
+          {
+            "text": "\\dfrac{C\\ + \\ D}{2} = \\ a\\ \\text{and}\\ \\dfrac{C\\ - \\ D}{2} = \\ bx",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put these into the formula)",
           "∴ sin(a + bx) − sin(a − bx) = 2 cos a · sin(bx)"
         ],
@@ -107,18 +119,24 @@
             "text": "(put 2 cos a · sin(bx) as the numerator)",
             "added": true
           },
-          "lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
           {
-            "text": "  = lim(x → 0) 2 cos a · sin(bx)/x",
-            "style": "indent"
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin \\left(a\\ + \\ bx\\right)\\ - \\ \\sin \\left(a\\ - \\ bx\\right)\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\lim \\left(x\\ \\to \\ 0\\right)2\\cos a\\ \\cdot \\ \\dfrac{\\sin \\left(bx\\right)}{x}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(sin(bx)/x = b · sin(bx)/(bx), which needs b ≠ 0;",
             "added": true
           },
           {
-            "text": "  for b = 0, sin(bx)/x is 0 and the answer",
+            "text": "\\text{for}\\ b\\ = \\ 0,\\ \\dfrac{\\sin \\left(bx\\right)}{x}\\text{is}\\ 0\\ \\text{and}\\ \\text{the}\\ \\text{answer}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -126,8 +144,16 @@
             "style": "indent",
             "added": true
           },
-          "= 2 cos a · lim(x → 0) [sin(bx)/(bx)] · b",
-          "As x → 0, bx → 0, so lim(x → 0) sin(bx)/(bx) = 1.",
+          {
+            "text": "= \\ 2\\cos a\\ \\cdot \\ \\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{\\sin \\left(bx\\right)}{bx}\\right]\\ \\cdot \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ 0,\\ bx\\ \\to \\ 0,\\ \\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(bx\\right)}{bx} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 1 for the limit)",
             "added": true
@@ -138,8 +164,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin \\left(a\\ + \\ bx\\right)\\ - \\ \\sin \\left(a\\ - \\ bx\\right)\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "= 2b cos a",
@@ -175,17 +202,31 @@
         ],
         "memory_tip": "As x → 0, sin(bx)/x tends to b, not to 1 (unless b = 1). Whatever multiplies x inside the sine comes out in front.",
         "lines_compact": [
-          "lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
           {
-            "text": "  = lim(x → 0) 2 cos a · sin(bx)/x",
-            "style": "indent"
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin \\left(a\\ + \\ bx\\right)\\ - \\ \\sin \\left(a\\ - \\ bx\\right)\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 2 cos a · lim(x → 0) [sin(bx)/(bx)] · b",
-          "As x → 0, bx → 0, so lim(x → 0) sin(bx)/(bx) = 1.",
+          {
+            "text": "= \\ \\lim \\left(x\\ \\to \\ 0\\right)2\\cos a\\ \\cdot \\ \\dfrac{\\sin \\left(bx\\right)}{x}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\cos a\\ \\cdot \\ \\lim \\left(x\\ \\to \\ 0\\right)\\left[\\dfrac{\\sin \\left(bx\\right)}{bx}\\right]\\ \\cdot \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{As}\\ x\\ \\to \\ 0,\\ bx\\ \\to \\ 0,\\ \\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(bx\\right)}{bx} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 cos a · 1 · b",
           {
-            "text": "∴ lim(x → 0) (sin(a + bx) − sin(a − bx))/x",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin \\left(a\\ + \\ bx\\right)\\ - \\ \\sin \\left(a\\ - \\ bx\\right)\\right)}{x}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "= 2b cos a",

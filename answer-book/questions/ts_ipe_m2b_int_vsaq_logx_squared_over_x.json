@@ -56,12 +56,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The derivative of logx is 1/x, and that",
+          {
+            "text": "\\text{The}\\ \\text{derivative}\\ \\text{of}\\ \\log x\\ \\text{is}\\ \\dfrac{1}{x},\\ \\text{and}\\ \\text{that}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  factor is already present:",
             "style": "indent"
           },
-          "Put logx = t ⇒ dx/x = dt",
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\dfrac{dx}{x} = \\ dt",
+            "style": "normal",
+            "render": "katex"
+          },
           "I = ∫ t² dt"
         ],
         "why": "The familiar 1/x dx = dt substitution converts (logx)²/x dx into a plain t² dt, with no other algebra needed.",
@@ -80,7 +88,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∫t²dt = t³/3 + c",
+            "text": "\\int t^{2}dt\\ = \\ \\dfrac{t^{3}}{3} + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -88,8 +98,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ [(logx)²/x] dx = (logx)³/3 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\left(\\log x\\right)^{2}}{x}\\right]dx\\ = \\ \\dfrac{\\left(\\log x\\right)^{3}}{3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫t² dt = t³/3 + c is the plain power rule, and substituting t=logx back in raises the power of the logarithm by one, from squared to cubed.",
@@ -100,8 +111,9 @@
         "memory_tip": "Power rule: t² integrates to t³/3 — power goes UP by one, divide by the new (higher) power, not the old one.",
         "lines_compact": [
           {
-            "text": "∴ ∫ [(logx)²/x] dx = (logx)³/3 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\left[\\dfrac{\\left(\\log x\\right)^{2}}{x}\\right]dx\\ = \\ \\dfrac{\\left(\\log x\\right)^{3}}{3} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

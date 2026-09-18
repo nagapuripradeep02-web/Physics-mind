@@ -50,12 +50,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Write 3π/5 and 4π/5 as π minus an angle:",
-          "sin(3π/5) = sin(π − 2π/5) = sin(2π/5)",
-          "sin(4π/5) = sin(π − π/5) = sin(π/5)",
+          {
+            "text": "\\text{Write}\\ \\dfrac{3\\pi }{5}\\text{and}\\ \\dfrac{4\\pi }{5}\\text{as}\\ \\pi \\ \\text{minus}\\ \\text{an}\\ \\text{angle}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{3\\pi }{5}\\right)\\ = \\ \\sin \\left(\\pi \\ - \\ \\dfrac{2\\pi }{5}\\right)\\ = \\ \\sin \\left(\\dfrac{2\\pi }{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{4\\pi }{5}\\right)\\ = \\ \\sin \\left(\\pi \\ - \\ \\dfrac{\\pi }{5}\\right)\\ = \\ \\sin \\left(\\dfrac{\\pi }{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin(π − θ) = sin θ)",
-          "L.H.S = sin²(π/5) · sin²(2π/5)",
-          "(π/5 = 36° and 2π/5 = 72°; p²q² = (pq)²)",
+          {
+            "text": "L.H.S\\ = \\ \\sin ^{2}\\left(\\dfrac{\\pi }{5}\\right)\\ \\cdot \\ \\sin ^{2}\\left(\\dfrac{2\\pi }{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\pi }{5} = \\ 36^{\\circ}\\ \\text{and}\\ \\dfrac{2\\pi }{5} = \\ 72^{\\circ};\\ p^{2}q^{2}\\ = \\ \\left(pq\\right)^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= [sin 36° · sin 72°]²"
         ],
         "recall": {
@@ -162,25 +182,42 @@
             "style": "indent",
             "added": true
           },
-          "cos 36° = (√5 + 1)/4, cos 72° = (√5 − 1)/4",
+          {
+            "text": "\\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4},\\ \\cos 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((√5 + 1) + (√5 − 1) = 2√5)",
             "added": true
           },
-          "2 sin 36° sin 72° = 2√5/4 = √5/2",
+          {
+            "text": "2\\sin 36^{\\circ}\\sin 72^{\\circ}\\ = \\ \\dfrac{2\\sqrt{5}}{4} = \\ \\dfrac{\\sqrt{5}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 2)",
             "added": true
           },
-          "∴ sin 36° sin 72° = √5/4",
+          {
+            "text": "\\therefore \\ \\sin 36^{\\circ}\\sin 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Square it for the L.H.S:",
             "added": true
           },
-          "L.H.S = (√5/4)² = 5/16",
           {
-            "text": "∴ The product equals 5/16",
-            "style": "boxed"
+            "text": "L.H.S\\ = \\ \\left(\\dfrac{\\sqrt{5}}{4}\\right)^{2}\\ = \\ \\dfrac{5}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{The}\\ \\text{product}\\ \\text{equals}\\ \\dfrac{5}{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -213,13 +250,30 @@
         ],
         "memory_tip": "√5/4 squared is 5/16: the root disappears and the 4 becomes 16.",
         "lines_compact": [
-          "cos 36° = (√5 + 1)/4, cos 72° = (√5 − 1)/4",
-          "2 sin 36° sin 72° = 2√5/4 = √5/2",
-          "∴ sin 36° sin 72° = √5/4",
-          "L.H.S = (√5/4)² = 5/16",
           {
-            "text": "∴ The product equals 5/16",
-            "style": "boxed"
+            "text": "\\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4},\\ \\cos 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\sin 36^{\\circ}\\sin 72^{\\circ}\\ = \\ \\dfrac{2\\sqrt{5}}{4} = \\ \\dfrac{\\sqrt{5}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sin 36^{\\circ}\\sin 72^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "L.H.S\\ = \\ \\left(\\dfrac{\\sqrt{5}}{4}\\right)^{2}\\ = \\ \\dfrac{5}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{The}\\ \\text{product}\\ \\text{equals}\\ \\dfrac{5}{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

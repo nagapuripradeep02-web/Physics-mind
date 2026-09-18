@@ -80,7 +80,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "−∫t³dt = −t⁴/4 + c",
+            "text": "- \\int t^{3}dt\\ = \\ - \\dfrac{t^{4}}{4} + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -88,8 +90,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ cos³x sinx dx = −cos⁴x/4 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\cos ^{3} x\\sin xdx\\ = \\ - \\dfrac{\\cos ^{4} x}{4} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "−∫t³dt = −t⁴/4 + c by the power rule, and substituting t=cosx back in gives the final answer as minus one quarter of cos⁴x, i.e. −cos⁴x/4.",
@@ -100,8 +103,9 @@
         "memory_tip": "The minus sign picked up at the substitution step survives all the way to the final boxed answer.",
         "lines_compact": [
           {
-            "text": "∴ ∫ cos³x sinx dx = −cos⁴x/4 + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\cos ^{3} x\\sin xdx\\ = \\ - \\dfrac{\\cos ^{4} x}{4} + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -62,7 +62,11 @@
           "y = axⁿ⁺¹ + bx⁻ⁿ",
           "Differentiate each power by bringing the index down",
           "and reducing it by one:",
-          "(d/dx(xⁿ⁺¹) = (n + 1)xⁿ and d/dx(x⁻ⁿ) = −n x⁻ⁿ⁻¹)",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\left(x^{n+1}\\right)\\ = \\ \\left(n\\ + \\ 1\\right)x^{n}\\ \\text{and}\\ \\dfrac{d}{dx}\\left(x^{-n}\\right)\\ = \\ - nx^{-n-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "y′ = a(n + 1)xⁿ − bn x⁻ⁿ⁻¹"
         ],
         "recall": {

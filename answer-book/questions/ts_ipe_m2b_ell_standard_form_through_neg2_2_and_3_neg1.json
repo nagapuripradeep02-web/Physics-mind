@@ -67,15 +67,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the ellipse be x²/a² + y²/b² = 1 …(A)",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{ellipse}\\ \\text{be}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1\\ \\dots \\left(A\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(There are two unknowns, a² and b², so the",
           {
             "text": "  two points give enough equations.)",
             "style": "indent"
           },
           "(A) passes through (−2, 2):",
-          "Put x = −2, y = 2: (−2)²/a² + 2²/b² = 1",
-          "4/a² + 4/b² = 1 …(1)"
+          {
+            "text": "\\text{Put}\\ x\\ = \\ - 2,\\ y\\ = \\ 2:\\ \\dfrac{\\left( - 2\\right)^{2}}{a^{2}} + \\ \\dfrac{2^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{4}{a^{2}} + \\ \\dfrac{4}{b^{2}} = \\ 1\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Substituting a known point on the curve into its equation gives one linear equation in the unknowns 1/a² and 1/b², since (−2)² and 2² are already fixed numbers.",
         "common_mistakes": [
@@ -94,10 +106,16 @@
         "lines": [
           "(A) passes through (3, −1):",
           {
-            "text": "Put x = 3, y = −1: 3²/a² + (−1)²/b² = 1",
+            "text": "\\text{Put}\\ x\\ = \\ 3,\\ y\\ = \\ - 1:\\ \\dfrac{3^{2}}{a^{2}} + \\ \\dfrac{\\left( - 1\\right)^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "9/a² + 1/b² = 1 …(2)"
+          {
+            "text": "\\dfrac{9}{a^{2}} + \\ \\dfrac{1}{b^{2}} = \\ 1\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The second point gives a second, independent linear equation in the same two unknowns 1/a² and 1/b², which together can be solved.",
         "common_mistakes": [
@@ -106,7 +124,11 @@
         ],
         "lines_compact": [
           "(A) passes through (3, −1):",
-          "9/a² + 1/b² = 1 …(2)"
+          {
+            "text": "\\dfrac{9}{a^{2}} + \\ \\dfrac{1}{b^{2}} = \\ 1\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -122,39 +144,74 @@
             "text": "Both left sides equal 1, so they are equal:",
             "added": true
           },
-          "From (1) and (2): 4/a²+4/b² = 9/a²+1/b²",
           {
-            "text": "Move 1/b² to the left and 4/a² to the right:",
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right):\\ \\dfrac{4}{a^{2}} + \\dfrac{4}{b^{2}} = \\ \\dfrac{9}{a^{2}} + \\dfrac{1}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Move}\\ \\dfrac{1}{b^{2}}\\text{to}\\ \\text{the}\\ \\text{left}\\ \\text{and}\\ \\dfrac{4}{a^{2}}\\text{to}\\ \\text{the}\\ \\text{right}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  4/b² − 1/b² = 9/a² − 4/a²",
+            "text": "\\dfrac{4}{b^{2}} - \\ \\dfrac{1}{b^{2}} = \\ \\dfrac{9}{a^{2}} - \\ \\dfrac{4}{a^{2}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ 3/b² = 5/a² ⇒ 1/b² = 5/(3a²)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3}{b^{2}} = \\ \\dfrac{5}{a^{2}} \\Rightarrow \\ \\dfrac{1}{b^{2}} = \\ \\dfrac{5}{3a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by 3)",
             "added": true
           },
-          "Sub into (2): 9/a² + 5/(3a²) = 1",
           {
-            "text": "(write 9/a² as 27/(3a²) to add the fractions)",
-            "added": true
-          },
-          "⇒ (27+5)/(3a²) = 1 ⇒ 1/a² = 3/32",
-          {
-            "text": "(32/(3a²) = 1 ⇒ 3a² = 32 ⇒ 1/a² = 3/32)",
-            "added": true
+            "text": "\\text{Sub}\\ \\text{into}\\ \\left(2\\right):\\ \\dfrac{9}{a^{2}} + \\ \\dfrac{5}{3a^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "From (2), 1/b² = 1 − 9/a²:",
+            "text": "\\left(\\text{write}\\ \\dfrac{9}{a^{2}}\\text{as}\\ \\dfrac{27}{3a^{2}}\\text{to}\\ \\text{add}\\ \\text{the}\\ \\text{fractions}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "1/b² = 1 − 9/a² = 1 − 9(3/32)",
-          "= (32−27)/32 = 5/32",
           {
-            "text": "(1 = 32/32 and 9(3/32) = 27/32)",
+            "text": "\\Rightarrow \\ \\dfrac{27 + 5}{3a^{2}} = \\ 1\\ \\Rightarrow \\ \\dfrac{1}{a^{2}} = \\ \\dfrac{3}{32}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{32}{3a^{2}} = \\ 1\\ \\Rightarrow \\ 3a^{2}\\ = \\ 32\\ \\Rightarrow \\ \\dfrac{1}{a^{2}} = \\ \\dfrac{3}{32}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{From}\\ \\left(2\\right),\\ \\dfrac{1}{b^{2}} = \\ 1\\ - \\ \\dfrac{9}{a^{2}}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\dfrac{1}{b^{2}} = \\ 1\\ - \\ \\dfrac{9}{a^{2}} = \\ 1\\ - \\ 9\\left(\\dfrac{3}{32}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{32 - 27}{32} = \\ \\dfrac{5}{32}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ = \\ \\dfrac{32}{32}\\text{and}\\ 9\\left(\\dfrac{3}{32}\\right)\\ = \\ \\dfrac{27}{32}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -164,12 +221,36 @@
           "Losing a sign or a factor of 3 when eliminating 1/b² between the two equations."
         ],
         "lines_compact": [
-          "From (1) and (2): 4/a²+4/b² = 9/a²+1/b²",
-          "⇒ 3/b² = 5/a² ⇒ 1/b² = 5/(3a²)",
-          "Sub into (2): 9/a² + 5/(3a²) = 1",
-          "⇒ (27+5)/(3a²) = 1 ⇒ 1/a² = 3/32",
-          "1/b² = 1 − 9/a² = 1 − 9(3/32)",
-          "= (32−27)/32 = 5/32"
+          {
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right):\\ \\dfrac{4}{a^{2}} + \\dfrac{4}{b^{2}} = \\ \\dfrac{9}{a^{2}} + \\dfrac{1}{b^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3}{b^{2}} = \\ \\dfrac{5}{a^{2}} \\Rightarrow \\ \\dfrac{1}{b^{2}} = \\ \\dfrac{5}{3a^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Sub}\\ \\text{into}\\ \\left(2\\right):\\ \\dfrac{9}{a^{2}} + \\ \\dfrac{5}{3a^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{27 + 5}{3a^{2}} = \\ 1\\ \\Rightarrow \\ \\dfrac{1}{a^{2}} = \\ \\dfrac{3}{32}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{b^{2}} = \\ 1\\ - \\ \\dfrac{9}{a^{2}} = \\ 1\\ - \\ 9\\left(\\dfrac{3}{32}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{32 - 27}{32} = \\ \\dfrac{5}{32}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,10 +263,16 @@
         "memory_tip": "Multiply through by 32 to turn the fractional equation into whole numbers.",
         "lines": [
           {
-            "text": "Put 1/a² = 3/32 and 1/b² = 5/32 in (A):",
+            "text": "\\text{Put}\\ \\dfrac{1}{a^{2}} = \\ \\dfrac{3}{32}\\text{and}\\ \\dfrac{1}{b^{2}} = \\ \\dfrac{5}{32}\\text{in}\\ \\left(A\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "x²/a² + y²/b² = (3/32)x² + (5/32)y² = 1",
+          {
+            "text": "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ \\left(\\dfrac{3}{32}\\right)x^{2}\\ + \\ \\left(\\dfrac{5}{32}\\right)y^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by 32:",
             "added": true
@@ -209,7 +296,11 @@
           "Swapping the coefficients of x² and y² in the final equation."
         ],
         "lines_compact": [
-          "x²/a² + y²/b² = (3/32)x² + (5/32)y² = 1",
+          {
+            "text": "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ \\left(\\dfrac{3}{32}\\right)x^{2}\\ + \\ \\left(\\dfrac{5}{32}\\right)y^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "3x² + 5y² = 32",
             "style": "boxed"

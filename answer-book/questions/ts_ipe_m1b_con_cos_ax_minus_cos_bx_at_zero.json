@@ -60,8 +60,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = (cos ax − cos bx)/x²   for x ≠ 0,",
-          "and f(0) = ½(b² − a²)",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}}\\text{for}\\ x\\ \\ne \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ f\\left(0\\right)\\ = \\ \\dfrac{1}{2}\\left(b^{2}\\ - \\ a^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the definition of continuity at a point: the limit exists",
           {
             "text": "  and equals the value)",
@@ -71,7 +79,11 @@
           "One single formula covers both sides of 0,",
           "so one two-sided limit is enough.",
           "(cos 0 − cos 0 = 1 − 1 = 0 and 0² = 0)",
-          "Putting x = 0 in (cos ax − cos bx)/x² gives 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{in}\\ \\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}}\\text{gives}\\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "an indeterminate form, so the limit must be worked out."
         ],
         "recall": {
@@ -111,14 +123,19 @@
         "margin_note": "Second mark. Name the identity as you use it. The order (D − C)/2 inside the second sine is what fixes the sign, and the sign decides whether the answer comes out (b² − a²)/2 or its negative.",
         "memory_tip": "Two cosines subtracted give two sines multiplied, and the second sine takes the second angle first: (D − C)/2.",
         "lines": [
-          "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
+          {
+            "text": "\\text{For}\\ x\\ \\ne \\ 0,\\ f\\left(x\\right)\\ = \\ \\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the usual form is cos C − cos D",
             "added": true
           },
           {
-            "text": "  = −2 sin((C + D)/2) sin((C − D)/2);",
+            "text": "= \\ - 2\\sin \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\sin \\left(\\dfrac{C\\ - \\ D}{2}\\right);",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -127,18 +144,32 @@
             "added": true
           },
           "Use the identity",
-          "cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
           {
-            "text": "((ax + bx)/2 = (a + b)x/2 and (bx − ax)/2 = (b − a)x/2)",
+            "text": "\\cos C\\ - \\ \\cos D\\ = \\ 2\\sin \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{D\\ - \\ C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{ax\\ + \\ bx}{2} = \\ \\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\text{and}\\ \\dfrac{bx\\ - \\ ax}{2} = \\ \\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Take C = ax and D = bx. Then",
-          "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
+          {
+            "text": "\\cos ax\\ - \\ \\cos bx\\ = \\ 2\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both sides by x²)",
             "added": true
           },
-          "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ 2\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -168,12 +199,28 @@
           "Using the sum formula for cos C + cos D instead of the difference formula."
         ],
         "lines_compact": [
-          "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
+          {
+            "text": "\\text{For}\\ x\\ \\ne \\ 0,\\ f\\left(x\\right)\\ = \\ \\dfrac{\\cos ax\\ - \\ \\cos bx}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Use the identity",
-          "cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          {
+            "text": "\\cos C\\ - \\ \\cos D\\ = \\ 2\\sin \\left(\\dfrac{C\\ + \\ D}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{D\\ - \\ C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take C = ax and D = bx. Then",
-          "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
-          "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
+          {
+            "text": "\\cos ax\\ - \\ \\cos bx\\ = \\ 2\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)\\ \\cdot \\ \\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ 2\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -189,15 +236,24 @@
             "text": "(write x² = x · x and give one x to each sine)",
             "added": true
           },
-          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x]",
-          "· [sin((b − a)x/2) / x]",
+          {
+            "text": "\\lim \\left(x\\ \\to \\ 0\\right)f\\left(x\\right)\\ = \\ \\lim \\left(x\\ \\to \\ 0\\right)2\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin((a + b)x/2)/x = ((a + b)/2)",
             "added": true
           },
           {
-            "text": "  · sin((a + b)x/2)/((a + b)x/2),",
+            "text": "\\cdot \\ \\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{\\dfrac{\\left(a\\ + \\ b\\right)x}{2}},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -215,8 +271,16 @@
             "style": "indent",
             "added": true
           },
-          "Multiply and divide the first bracket by (a + b)/2",
-          "and the second by (b − a)/2:",
+          {
+            "text": "\\text{Multiply}\\ \\text{and}\\ \\text{divide}\\ \\text{the}\\ \\text{first}\\ \\text{bracket}\\ \\text{by}\\ \\dfrac{a\\ + \\ b}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{second}\\ \\text{by}\\ \\dfrac{b\\ - \\ a}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the constants 2, (a + b)/2 and (b − a)/2 come",
             "added": true
@@ -226,27 +290,52 @@
             "style": "indent",
             "added": true
           },
-          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0)",
-          "[sin((a + b)x/2) / ((a + b)x/2)]",
-          "· [sin((b − a)x/2) / ((b − a)x/2)]",
           {
-            "text": "((a + b)x/2 → 0 and (b − a)x/2 → 0 as x → 0)",
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ \\cdot \\ \\lim \\left(x\\ \\to \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{\\dfrac{\\left(a\\ + \\ b\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{\\dfrac{\\left(b\\ - \\ a\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2} \\to \\ 0\\ \\text{and}\\ \\dfrac{\\left(b\\ - \\ a\\right)x}{2} \\to \\ 0\\ \\text{as}\\ x\\ \\to \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,",
+          {
+            "text": "\\text{Standard}\\ \\lim \\text{it}:\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so each bracket tends to 1",
           {
-            "text": "(2 · (a + b)/2 · (b − a)/2 = (a + b)(b − a)/2)",
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{a\\ + \\ b}{2} \\cdot \\ \\dfrac{b\\ - \\ a}{2} = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\left(b\\ - \\ a\\right)}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\left(b\\ - \\ a\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((a + b)(b − a) = b² − a²)",
             "added": true
           },
           {
-            "text": "  = (b² − a²)/2",
-            "style": "indent"
+            "text": "= \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -277,19 +366,56 @@
           "Losing the factor 2 that came out of the cosine identity."
         ],
         "lines_compact": [
-          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x]",
-          "· [sin((b − a)x/2) / x]",
-          "Multiply and divide the first bracket by (a + b)/2",
-          "and the second by (b − a)/2:",
-          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0)",
-          "[sin((a + b)x/2) / ((a + b)x/2)]",
-          "· [sin((b − a)x/2) / ((b − a)x/2)]",
-          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,",
-          "so each bracket tends to 1",
-          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
           {
-            "text": "  = (b² − a²)/2",
-            "style": "indent"
+            "text": "\\lim \\left(x\\ \\to \\ 0\\right)f\\left(x\\right)\\ = \\ \\lim \\left(x\\ \\to \\ 0\\right)2\\ \\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{and}\\ \\text{divide}\\ \\text{the}\\ \\text{first}\\ \\text{bracket}\\ \\text{by}\\ \\dfrac{a\\ + \\ b}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{second}\\ \\text{by}\\ \\dfrac{b\\ - \\ a}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ \\cdot \\ \\lim \\left(x\\ \\to \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\dfrac{\\sin \\left(\\dfrac{\\left(a\\ + \\ b\\right)x}{2}\\right)}{\\dfrac{\\left(a\\ + \\ b\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\left[\\dfrac{\\sin \\left(\\dfrac{\\left(b\\ - \\ a\\right)x}{2}\\right)}{\\dfrac{\\left(b\\ - \\ a\\right)x}{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Standard}\\ \\lim \\text{it}:\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          "so each bracket tends to 1",
+          {
+            "text": "= \\ 2\\ \\cdot \\ \\left(\\dfrac{a\\ + \\ b}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)\\ = \\ \\dfrac{\\left(a\\ + \\ b\\right)\\left(b\\ - \\ a\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -302,14 +428,26 @@
         "margin_note": "Last mark. Write the comparison line in full. A student who finds the limit and never says that it equals f(0) has not answered the question that was asked.",
         "memory_tip": "The final line of every continuity proof is the same sentence: limit equals value, so f is continuous there.",
         "lines": [
-          "From above,   lim(x → 0) f(x) = (b² − a²)/2",
           {
-            "text": "(½(b² − a²) = (b² − a²)/2)",
+            "text": "\\text{From}\\ \\text{above},\\ \\lim \\left(x\\ \\to \\ 0\\right)f\\left(x\\right)\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\left(b^{2}\\ - \\ a^{2}\\right)\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "It is given that   f(0) = ½(b² − a²) = (b² − a²)/2",
           {
-            "text": "(both are (b² − a²)/2)",
+            "text": "\\text{It}\\ \\text{is}\\ \\text{given}\\ \\text{that}\\ f\\left(0\\right)\\ = \\ \\dfrac{1}{2}\\left(b^{2}\\ - \\ a^{2}\\right)\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{both}\\ \\text{are}\\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ lim(x → 0) f(x) = f(0)",
@@ -346,8 +484,16 @@
           "Reading ½(b² − a²) as ½b² − a²."
         ],
         "lines_compact": [
-          "From above,   lim(x → 0) f(x) = (b² − a²)/2",
-          "It is given that   f(0) = ½(b² − a²) = (b² − a²)/2",
+          {
+            "text": "\\text{From}\\ \\text{above},\\ \\lim \\left(x\\ \\to \\ 0\\right)f\\left(x\\right)\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{It}\\ \\text{is}\\ \\text{given}\\ \\text{that}\\ f\\left(0\\right)\\ = \\ \\dfrac{1}{2}\\left(b^{2}\\ - \\ a^{2}\\right)\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ lim(x → 0) f(x) = f(0)",
           {
             "text": "∴ f is continuous at x = 0",

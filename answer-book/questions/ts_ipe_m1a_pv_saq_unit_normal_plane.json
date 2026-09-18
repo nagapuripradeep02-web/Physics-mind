@@ -232,15 +232,24 @@
         "margin_note": "Last mark. The 7 cancels top and bottom. Keep the ± — a plane has a normal on each side and the question did not say which.",
         "memory_tip": "The 7 cancels top and bottom. Keep the ± — a plane has a normal on each side.",
         "lines": [
-          "Required unit vector = ± (AB × AC)/|AB × AC|",
+          {
+            "text": "\\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{AB\\ \\times \\ AC}{\\left|AB\\ \\times \\ AC\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing a vector by its length gives length 1)",
             "added": true
           },
-          "= ± 7(3i + j) / (7√10)",
           {
-            "text": "= ± (3i + j)/√10",
-            "style": "boxed"
+            "text": "= \\ \\pm \\ \\dfrac{7\\left(3i\\ + \\ j\\right)}{7\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\ \\dfrac{3i\\ + \\ j}{\\sqrt{10}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -272,11 +281,20 @@
           "Forgetting to cancel the 7."
         ],
         "lines_compact": [
-          "Required unit vector = ± (AB × AC)/|AB × AC|",
-          "= ± 7(3i + j) / (7√10)",
           {
-            "text": "= ± (3i + j)/√10",
-            "style": "boxed"
+            "text": "\\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\pm \\ \\dfrac{AB\\ \\times \\ AC}{\\left|AB\\ \\times \\ AC\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\ \\dfrac{7\\left(3i\\ + \\ j\\right)}{7\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\ \\dfrac{3i\\ + \\ j}{\\sqrt{10}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

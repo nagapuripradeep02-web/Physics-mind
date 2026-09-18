@@ -108,21 +108,36 @@
             "style": "indent",
             "added": true
           },
-          "(i) cos θ = √(1 − sin²θ) = √(1 − 1/9)",
           {
-            "text": "((−1/3)² = 1/9, and 1 − 1/9 = 8/9)",
+            "text": "\\left(i\\right)\\cos \\theta \\ = \\ \\sqrt{1\\ - \\ \\sin ^{2} \\theta }\\ = \\ \\sqrt{1\\ - \\ \\dfrac{1}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left( - \\dfrac{1}{3}\\right)^{2}\\ = \\ \\dfrac{1}{9},\\ \\text{and}\\ 1\\ - \\ \\dfrac{1}{9} = \\ \\dfrac{8}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "   = √(8/9) = √8/3",
-          "(ii) cot θ = cos θ / sin θ = (√8/3)/(−1/3)",
+          {
+            "text": "= \\ \\sqrt{\\dfrac{8}{9}}\\ = \\ \\dfrac{\\sqrt{8}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(ii\\right)\\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta } = \\ \\dfrac{\\dfrac{\\sqrt{8}}{3}}{ - \\dfrac{1}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the /3 on top and on the bottom cancel)",
             "added": true
           },
           "      = −√8, and √8 = √(4 × 2) = 2√2",
           {
-            "text": "∴ cos θ = 2√2/3 and cot θ = −2√2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{2\\sqrt{2}}{3}\\text{and}\\ \\cot \\theta \\ = \\ - 2\\sqrt{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -153,13 +168,26 @@
           "Making cot θ positive."
         ],
         "lines_compact": [
-          "(i) cos θ = √(1 − sin²θ) = √(1 − 1/9)",
-          "   = √(8/9) = √8/3",
-          "(ii) cot θ = cos θ / sin θ = (√8/3)/(−1/3)",
+          {
+            "text": "\\left(i\\right)\\cos \\theta \\ = \\ \\sqrt{1\\ - \\ \\sin ^{2} \\theta }\\ = \\ \\sqrt{1\\ - \\ \\dfrac{1}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{8}{9}}\\ = \\ \\dfrac{\\sqrt{8}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(ii\\right)\\cot \\theta \\ = \\ \\dfrac{\\cos \\theta }{\\sin \\theta } = \\ \\dfrac{\\dfrac{\\sqrt{8}}{3}}{ - \\dfrac{1}{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "      = −√8, and √8 = √(4 × 2) = 2√2",
           {
-            "text": "∴ cos θ = 2√2/3 and cot θ = −2√2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{2\\sqrt{2}}{3}\\text{and}\\ \\cot \\theta \\ = \\ - 2\\sqrt{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

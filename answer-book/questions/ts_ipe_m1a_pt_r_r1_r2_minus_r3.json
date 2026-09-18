@@ -53,10 +53,26 @@
             "style": "heading"
           },
           "(the formulas for r, r₁, r₂, r₃ in half angles)",
-          "r = 4R sin(A/2)sin(B/2)sin(C/2),",
-          "r₁ = 4R sin(A/2)cos(B/2)cos(C/2),",
-          "r₂ = 4R cos(A/2)sin(B/2)cos(C/2),",
-          "r₃ = 4R cos(A/2)cos(B/2)sin(C/2)",
+          {
+            "text": "r\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{1}\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{2}\\ = \\ 4R\\cos \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r_{3}\\ = \\ 4R\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "L.H.S = (r₁ + r₂) + (r − r₃)",
           "(take out 4R cos(C/2) from r₁ + r₂, and 4R sin(C/2)",
           {
@@ -115,16 +131,42 @@
             "style": "indent",
             "added": true
           },
-          "= 4R cos(C/2) sin((A+B)/2)",
-          " − 4R sin(C/2) cos((A+B)/2)",
-          "Now (A+B)/2 = 90° − C/2, so",
-          "sin((A+B)/2) = cos(C/2) and",
-          "cos((A+B)/2) = sin(C/2)",
           {
-            "text": "(so the two terms become 4R cos²(C/2) − 4R sin²(C/2))",
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\sin \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 4R\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{so}\\ \\text{the}\\ \\text{two}\\ \\text{terms}\\ \\text{become}\\ 4R\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 4R\\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4R[cos²(C/2) − sin²(C/2)]",
+          {
+            "text": "= \\ 4R\\left[\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "   [∵ cos 2θ = cos²θ − sin²θ]",
           {
             "text": "∴ L.H.S = 4R cos C = R.H.S",
@@ -159,12 +201,36 @@
           "Writing (A+B)/2 = 90° − C and forgetting to halve C."
         ],
         "lines_compact": [
-          "= 4R cos(C/2) sin((A+B)/2)",
-          " − 4R sin(C/2) cos((A+B)/2)",
-          "Now (A+B)/2 = 90° − C/2, so",
-          "sin((A+B)/2) = cos(C/2) and",
-          "cos((A+B)/2) = sin(C/2)",
-          "= 4R[cos²(C/2) − sin²(C/2)]",
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\sin \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 4R\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now}\\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)\\ \\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\left[\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "   [∵ cos 2θ = cos²θ − sin²θ]",
           {
             "text": "∴ L.H.S = 4R cos C = R.H.S",

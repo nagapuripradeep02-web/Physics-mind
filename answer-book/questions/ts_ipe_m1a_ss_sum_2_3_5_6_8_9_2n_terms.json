@@ -109,24 +109,44 @@
             "text": "(the sum of n terms of an A.P.)",
             "added": true
           },
-          "Sₙ = n/2 [2a + (n − 1)d]",
+          {
+            "text": "S_{n}\\ = \\ \\dfrac{n}{2}\\left[2a\\ + \\ \\left(n\\ - \\ 1\\right)d\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a = 2 and d = 3, so 2a = 4)",
             "added": true
           },
-          "First A.P.:  n/2 [4 + 3(n − 1)] = n/2 (3n + 1)",
+          {
+            "text": "\\text{First}\\ A.P.:\\ \\dfrac{n}{2}\\left[4\\ + \\ 3\\left(n\\ - \\ 1\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(3n\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a = 3 and d = 3, so 2a = 6)",
             "added": true
           },
-          "Second A.P.:  n/2 [6 + 3(n − 1)] = n/2 (3n + 3)",
           {
-            "text": "(take out n/2)",
+            "text": "\\text{Second}\\ A.P.:\\ \\dfrac{n}{2}\\left[6\\ + \\ 3\\left(n\\ - \\ 1\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(3n\\ + \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\dfrac{n}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "S = n/2 [(3n + 1) + (3n + 3)] = n/2 (6n + 4)",
           {
-            "text": "(n/2 × (6n + 4) = n(3n + 2))",
+            "text": "S\\ = \\ \\dfrac{n}{2}\\left[\\left(3n\\ + \\ 1\\right)\\ + \\ \\left(3n\\ + \\ 3\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(6n\\ + \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{n}{2} \\times \\ \\left(6n\\ + \\ 4\\right)\\ = \\ n\\left(3n\\ + \\ 2\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -162,10 +182,26 @@
           "Giving the answer in terms of 2n and doubling it a second time."
         ],
         "lines_compact": [
-          "Sₙ = n/2 [2a + (n − 1)d]",
-          "First A.P.:  n/2 [4 + 3(n − 1)] = n/2 (3n + 1)",
-          "Second A.P.:  n/2 [6 + 3(n − 1)] = n/2 (3n + 3)",
-          "S = n/2 [(3n + 1) + (3n + 3)] = n/2 (6n + 4)",
+          {
+            "text": "S_{n}\\ = \\ \\dfrac{n}{2}\\left[2a\\ + \\ \\left(n\\ - \\ 1\\right)d\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{First}\\ A.P.:\\ \\dfrac{n}{2}\\left[4\\ + \\ 3\\left(n\\ - \\ 1\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(3n\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Second}\\ A.P.:\\ \\dfrac{n}{2}\\left[6\\ + \\ 3\\left(n\\ - \\ 1\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(3n\\ + \\ 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S\\ = \\ \\dfrac{n}{2}\\left[\\left(3n\\ + \\ 1\\right)\\ + \\ \\left(3n\\ + \\ 3\\right)\\right]\\ = \\ \\dfrac{n}{2}\\left(6n\\ + \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ S = n(3n + 2) = 3n² + 2n",
             "style": "boxed"

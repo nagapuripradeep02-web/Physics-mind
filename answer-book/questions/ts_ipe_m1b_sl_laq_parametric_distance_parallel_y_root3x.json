@@ -68,7 +68,11 @@
           "Parallel lines have equal slopes, so",
           "tan θ = √3  ⇒  θ = 60°",
           "(the standard values for 60°)",
-          "cos 60° = 1/2,  sin 60° = √3/2"
+          {
+            "text": "\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2},\\ \\sin 60^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -124,10 +128,16 @@
           },
           "= (2 + r cos 60°, 3 + r sin 60°)",
           {
-            "text": "(r cos 60° = r/2 and r sin 60° = √3r/2)",
+            "text": "\\left(r\\cos 60^{\\circ}\\ = \\ \\dfrac{r}{2}\\text{and}\\ r\\sin 60^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}r}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ P = (2 + r/2, 3 + √3r/2)"
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(2\\ + \\ \\dfrac{r}{2},\\ 3\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -162,7 +172,11 @@
           "Let PQ = r and Q(x₁, y₁) = (2, 3)",
           "P = (x₁ + r cos θ, y₁ + r sin θ)",
           "= (2 + r cos 60°, 3 + r sin 60°)",
-          "∴ P = (2 + r/2, 3 + √3r/2)"
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left(2\\ + \\ \\dfrac{r}{2},\\ 3\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,9 +191,15 @@
             "added": true
           },
           "P lies on 2x + 4y − 27 = 0, so",
-          "2(2 + r/2) + 4(3 + √3r/2) − 27 = 0",
           {
-            "text": "(2(2 + r/2) = 4 + r and 4(3 + √3r/2) = 12 + 2√3r)",
+            "text": "2\\left(2\\ + \\ \\dfrac{r}{2}\\right)\\ + \\ 4\\left(3\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)\\ - \\ 27\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\left(2\\ + \\ \\dfrac{r}{2}\\right)\\ = \\ 4\\ + \\ r\\ \\text{and}\\ 4\\left(3\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)\\ = \\ 12\\ + \\ 2\\sqrt{3}r\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ 4 + r + 12 + 2√3r − 27 = 0",
@@ -219,7 +239,11 @@
         "memory_tip": "P lies on the given line, so substituting leaves one equation in r alone.",
         "lines_compact": [
           "P lies on 2x + 4y − 27 = 0, so",
-          "2(2 + r/2) + 4(3 + √3r/2) − 27 = 0",
+          {
+            "text": "2\\left(2\\ + \\ \\dfrac{r}{2}\\right)\\ + \\ 4\\left(3\\ + \\ \\dfrac{\\sqrt{3}r}{2}\\right)\\ - \\ 27\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 4 + r + 12 + 2√3r − 27 = 0",
           "⇒ r + 2√3r − 11 = 0"
         ]
@@ -240,7 +264,11 @@
             "text": "(divide both sides by 1 + 2√3)",
             "added": true
           },
-          "∴ r = 11/(2√3 + 1)"
+          {
+            "text": "\\therefore \\ r\\ = \\ \\dfrac{11}{2\\sqrt{3}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -272,7 +300,11 @@
         "memory_tip": "Both r terms are linear, so take r common and divide once.",
         "lines_compact": [
           "⇒ r(1 + 2√3) = 11",
-          "∴ r = 11/(2√3 + 1)"
+          {
+            "text": "\\therefore \\ r\\ = \\ \\dfrac{11}{2\\sqrt{3}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -296,12 +328,20 @@
             "text": "((p + q)(p − q) = p² − q², with p = 2√3 and q = 1)",
             "added": true
           },
-          "r = 11(2√3 − 1)/((2√3)² − 1²)",
+          {
+            "text": "r\\ = \\ \\dfrac{11\\left(2\\sqrt{3}\\ - \\ 1\\right)}{\\left(2\\sqrt{3}\\right)^{2}\\ - \\ 1^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((2√3)² = 4 × 3 = 12, and 12 − 1 = 11)",
             "added": true
           },
-          "= 11(2√3 − 1)/11",
+          {
+            "text": "= \\ \\dfrac{11\\left(2\\sqrt{3}\\ - \\ 1\\right)}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the 11s cancel; r > 0, so PQ = r)",
             "added": true
@@ -342,8 +382,16 @@
         "memory_tip": "Multiply by the conjugate: (2√3)² − 1² = 11, which cancels the 11 on top.",
         "lines_compact": [
           "Multiply above and below by (2√3 − 1):",
-          "r = 11(2√3 − 1)/((2√3)² − 1²)",
-          "= 11(2√3 − 1)/11",
+          {
+            "text": "r\\ = \\ \\dfrac{11\\left(2\\sqrt{3}\\ - \\ 1\\right)}{\\left(2\\sqrt{3}\\right)^{2}\\ - \\ 1^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{11\\left(2\\sqrt{3}\\ - \\ 1\\right)}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ PQ = r = 2√3 − 1 units",
             "style": "boxed"

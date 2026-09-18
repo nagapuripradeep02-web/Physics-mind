@@ -52,8 +52,16 @@
             "style": "heading"
           },
           "f(x) = 2x − 1 and g(x) = x²",
-          "(√f/g)(x) = √(f(x))/g(x)",
-          "= √(2x − 1)/x²"
+          {
+            "text": "\\left(\\dfrac{\\sqrt{f}}{g}\\right)\\left(x\\right)\\ = \\ \\dfrac{\\sqrt{f\\left(x\\right)}}{g\\left(x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{2x\\ - \\ 1}}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -93,10 +101,22 @@
         "mark_note": "The domain [1/2, ∞)",
         "margin_note": "Second mark. Two conditions must be checked: the root needs 2x − 1 ≥ 0 and the denominator needs x ≠ 0. Together they give x ≥ 1/2.",
         "lines": [
-          "√(2x − 1) needs 2x − 1 ≥ 0, so x ≥ 1/2.",
+          {
+            "text": "\\sqrt{2x\\ - \\ 1}\\ \\text{needs}\\ 2x\\ - \\ 1\\ \\ge \\ 0,\\ \\text{so}\\ x\\ \\ge \\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "x² in the denominator needs x ≠ 0.",
-          "Every x ≥ 1/2 is already non zero, so the",
-          "two conditions together give x ≥ 1/2.",
+          {
+            "text": "\\text{Every}\\ x\\ \\ge \\ \\dfrac{1}{2}\\text{is}\\ \\text{already}\\ \\text{non}\\ \\text{zero},\\ \\text{so}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{two}\\ \\text{conditions}\\ \\text{together}\\ \\text{give}\\ x\\ \\ge \\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√f/g)(x) = √(2x − 1)/x² on [1/2, ∞)",
             "style": "boxed"

@@ -54,8 +54,16 @@
           },
           "Here a ≠ 0 and b ≠ 0, so we may divide.",
           "Make cos³θ and sin³θ the subjects:",
-          "x = a cos³θ ⇒ cos³θ = x/a",
-          "y = b sin³θ ⇒ sin³θ = y/b",
+          {
+            "text": "x\\ = \\ a\\cos ^{3} \\theta \\ \\Rightarrow \\ \\cos ^{3} \\theta \\ = \\ \\dfrac{x}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ b\\sin ^{3} \\theta \\ \\Rightarrow \\ \\sin ^{3} \\theta \\ = \\ \\dfrac{y}{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           "A real number has exactly one real cube root,",
           "so no ± sign is needed:",
           "cos θ = (x/a)¹⁄³,  sin θ = (y/b)¹⁄³"

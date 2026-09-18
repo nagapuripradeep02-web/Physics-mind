@@ -52,11 +52,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given S∞ = 1/3 and a = 1/4",
-          "S∞ = a/(1 − r)  ⇒  1/3 = (1/4)/(1 − r)",
-          "(cross-multiply: 1 − r = 3 × (1/4))",
-          "1 − r = (1/4) × 3 = 3/4",
-          "r = 1 − 3/4 = 1/4"
+          {
+            "text": "\\text{Given}\\ S\\infty \\ = \\ \\dfrac{1}{3}\\text{and}\\ a\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "S\\infty \\ = \\ \\dfrac{a}{1\\ - \\ r} \\Rightarrow \\ \\dfrac{1}{3} = \\ \\dfrac{\\dfrac{1}{4}}{1\\ - \\ r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{cross} - \\text{multiply}:\\ 1\\ - \\ r\\ = \\ 3\\ \\times \\ \\left(\\dfrac{1}{4}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ r\\ = \\ \\left(\\dfrac{1}{4}\\right)\\ \\times \\ 3\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ 1\\ - \\ \\dfrac{3}{4} = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -95,23 +115,33 @@
         "margin_note": "Second mark. At least three terms and the dots. A quick check: (1/4)/(1 − 1/4) = (1/4)/(3/4) = 1/3, the sum the question gave.",
         "memory_tip": "Each term is a quarter of the one before it.",
         "lines": [
-          "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
           {
-            "text": "(a = 1/4 and r = 1/4)",
+            "text": "\\left|r\\right|\\ = \\ \\dfrac{1}{4} < \\ 1,\\ \\text{so}\\ \\text{an}\\ \\text{infinite}\\ \\text{sum}\\ \\text{does}\\ \\text{exist}\\ \\text{for}\\ \\text{this}\\ \\text{ratio}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ = \\ \\dfrac{1}{4}\\text{and}\\ r\\ = \\ \\dfrac{1}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The terms are a, ar, ar², ar³, …",
           {
-            "text": "= 1/4, (1/4)(1/4), (1/4)(1/4)², …",
-            "style": "indent"
+            "text": "= \\ \\dfrac{1}{4},\\ \\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right),\\ \\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right)^{2},\\ \\dots",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "((1/4)(1/4) = 1/16 and (1/4)(1/4)² = 1/64)",
+            "text": "\\left(\\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right)\\ = \\ \\dfrac{1}{16}\\text{and}\\ \\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right)^{2}\\ = \\ \\dfrac{1}{64}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{The}\\ G.P.\\ \\text{is}\\ \\dfrac{1}{4},\\ \\dfrac{1}{16},\\ \\dfrac{1}{64},\\ \\dfrac{1}{256},\\ \\dots",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -142,15 +172,21 @@
           "Writing 1/4, 2/16, 3/64 by adding a pattern instead of multiplying by r."
         ],
         "lines_compact": [
-          "|r| = 1/4 < 1, so an infinite sum does exist for this ratio",
+          {
+            "text": "\\left|r\\right|\\ = \\ \\dfrac{1}{4} < \\ 1,\\ \\text{so}\\ \\text{an}\\ \\text{infinite}\\ \\text{sum}\\ \\text{does}\\ \\text{exist}\\ \\text{for}\\ \\text{this}\\ \\text{ratio}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The terms are a, ar, ar², ar³, …",
           {
-            "text": "= 1/4, (1/4)(1/4), (1/4)(1/4)², …",
-            "style": "indent"
+            "text": "= \\ \\dfrac{1}{4},\\ \\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right),\\ \\left(\\dfrac{1}{4}\\right)\\left(\\dfrac{1}{4}\\right)^{2},\\ \\dots",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "∴ The G.P. is 1/4, 1/16, 1/64, 1/256, …",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{The}\\ G.P.\\ \\text{is}\\ \\dfrac{1}{4},\\ \\dfrac{1}{16},\\ \\dfrac{1}{64},\\ \\dfrac{1}{256},\\ \\dots",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

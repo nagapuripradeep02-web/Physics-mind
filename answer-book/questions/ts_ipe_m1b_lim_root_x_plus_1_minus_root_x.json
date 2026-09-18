@@ -73,7 +73,11 @@
             "text": "  (x + 1) − x = 1)",
             "style": "indent"
           },
-          "= [(x + 1) − x]/(√(x + 1) + √x) = 1/(√(x + 1) + √x)"
+          {
+            "text": "= \\ \\dfrac{\\left(x\\ + \\ 1\\right)\\ - \\ x}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}} = \\ \\dfrac{1}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -123,7 +127,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ 1/(√(x + 1) + √x) → 0",
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ lim(x → ∞) (√(x + 1) − √x) = 0",
             "style": "boxed"
@@ -160,7 +168,11 @@
         "lines_compact": [
           "As x → ∞,  √(x + 1) → ∞  and  √x → ∞,",
           "so  √(x + 1) + √x → ∞",
-          "∴ 1/(√(x + 1) + √x) → 0",
+          {
+            "text": "\\therefore \\ \\dfrac{1}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}} \\to \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ lim(x → ∞) (√(x + 1) − √x) = 0",
             "style": "boxed"

@@ -58,18 +58,47 @@
             "style": "heading"
           },
           "(the formulas for r₁ and r₂ in half angles)",
-          "r₁ + r₂ = 4R sin(A/2)cos(B/2)cos(C/2)",
           {
-            "text": "+ 4R cos(A/2)sin(B/2)cos(C/2)",
-            "style": "indent"
+            "text": "r_{1}\\ + \\ r_{2}\\ = \\ 4R\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "(take out 4R cos(C/2))",
-          "= 4R cos(C/2)[sin(A/2)cos(B/2) + cos(A/2)sin(B/2)]",
+          {
+            "text": "+ \\ 4R\\cos \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{take}\\ \\text{out}\\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin X cos Y + cos X sin Y = sin(X + Y))",
-          "= 4R cos(C/2) sin((A+B)/2)",
-          "(sin(90° − C/2) = cos(C/2))",
-          "= 4R cos(C/2) cos(C/2)   [∵ (A+B)/2 = 90° − C/2]",
-          "= 4R cos²(C/2)"
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\sin \\left(\\dfrac{A + B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\left(90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)\\ = \\ \\cos \\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\because \\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4R\\cos ^{2}\\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,12 +138,18 @@
         "memory_tip": "sec²(C/2) cancels the cosine exactly, leaving 4R. All three go the same way.",
         "lines": [
           {
-            "text": "(sec²(C/2) = 1/cos²(C/2))",
+            "text": "\\left(\\sec ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{\\cos ^{2}\\left(\\dfrac{C}{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
           "By the same working with the letters rotated,",
-          "(r₂ + r₃) sec²(A/2) = 4R  and  (r₃ + r₁) sec²(B/2) = 4R",
+          {
+            "text": "\\left(r_{2}\\ + \\ r_{3}\\right)\\sec ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 4R\\ \\text{and}\\ \\left(r_{3}\\ + \\ r_{1}\\right)\\sec ^{2}\\left(\\dfrac{B}{2}\\right)\\ = \\ 4R",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ all three are equal to 4R,",
             "style": "boxed"
@@ -154,7 +189,11 @@
         "lines_compact": [
           "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
           "By the same working with the letters rotated,",
-          "(r₂ + r₃) sec²(A/2) = 4R  and  (r₃ + r₁) sec²(B/2) = 4R",
+          {
+            "text": "\\left(r_{2}\\ + \\ r_{3}\\right)\\sec ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 4R\\ \\text{and}\\ \\left(r_{3}\\ + \\ r_{1}\\right)\\sec ^{2}\\left(\\dfrac{B}{2}\\right)\\ = \\ 4R",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ all three are equal to 4R,",
             "style": "boxed"

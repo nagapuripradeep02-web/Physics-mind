@@ -61,8 +61,16 @@
           "Each day either has rain or not, and the days",
           "are independent, so X is a binomial variable.",
           "Success = rain on a day:",
-          "p = 12/30 = 2/5",
-          "q = 1 − p = 1 − 2/5 = 3/5",
+          {
+            "text": "p\\ = \\ \\dfrac{12}{30} = \\ \\dfrac{2}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "q\\ = \\ 1\\ - \\ p\\ = \\ 1\\ - \\ \\dfrac{2}{5} = \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
           "A week has n = 7 days, and we need r = 3."
         ],
         "recall": {
@@ -105,19 +113,27 @@
         "lines": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
           {
-            "text": "P(X = 3) = ⁷C₃ (3/5)⁷⁻³ (2/5)³",
+            "text": "P\\left(X\\ = \\ 3\\right)\\ = \\ {}^{7}C_{3}\\left(\\dfrac{3}{5}\\right)^{7-3}\\left(\\dfrac{2}{5}\\right)^{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ⁷C₃ (3/5)⁴ (2/5)³",
+            "text": "= \\ {}^{7}C_{3}\\left(\\dfrac{3}{5}\\right)^{4}\\left(\\dfrac{2}{5}\\right)^{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⁷C₃ = (7 · 6 · 5)/(1 · 2 · 3) = 35",
+            "text": "{}^{7}C_{3}\\ = \\ \\dfrac{7\\ \\cdot \\ 6\\ \\cdot \\ 5}{1\\ \\cdot \\ 2\\ \\cdot \\ 3} = \\ 35",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 35 · (3⁴ · 2³)/5⁷",
+            "text": "= \\ 35\\ \\cdot \\ \\dfrac{3^{4}\\ \\cdot \\ 2^{3}}{5^{7}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -125,12 +141,15 @@
             "added": true
           },
           {
-            "text": "= 35 · 81 · 8/78125 = 22680/78125",
+            "text": "= \\ 35\\ \\cdot \\ 81\\ \\cdot \\ \\dfrac{8}{78125} = \\ \\dfrac{22680}{78125}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(X = 3) = (35 · 3⁴ · 2³)/5⁷",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(X\\ = \\ 3\\right)\\ = \\ \\dfrac{35\\ \\cdot \\ 3^{4}\\ \\cdot \\ 2^{3}}{5^{7}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -163,11 +182,20 @@
         ],
         "lines_compact": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
-          "P(X = 3) = ⁷C₃ (3/5)⁴ (2/5)³ = 35 · 3⁴ · 2³/5⁷",
-          "= 35 · 81 · 8/78125 = 4536/15625",
           {
-            "text": "∴ P(X = 3) = (35 · 3⁴ · 2³)/5⁷",
-            "style": "boxed"
+            "text": "P\\left(X\\ = \\ 3\\right)\\ = \\ {}^{7}C_{3}\\left(\\dfrac{3}{5}\\right)^{4}\\left(\\dfrac{2}{5}\\right)^{3}\\ = \\ 35\\ \\cdot \\ 3^{4}\\ \\cdot \\ \\dfrac{2^{3}}{5^{7}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 35\\ \\cdot \\ 81\\ \\cdot \\ \\dfrac{8}{78125} = \\ \\dfrac{4536}{15625}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\left(X\\ = \\ 3\\right)\\ = \\ \\dfrac{35\\ \\cdot \\ 3^{4}\\ \\cdot \\ 2^{3}}{5^{7}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

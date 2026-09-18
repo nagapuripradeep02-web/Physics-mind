@@ -136,7 +136,11 @@
             "style": "indent",
             "added": true
           },
-          "= |1(3) + 2(3) + 2(2)| / √((1 + 4 + 4)(9 + 9 + 4))",
+          {
+            "text": "= \\ \\dfrac{\\left|1\\left(3\\right)\\ + \\ 2\\left(3\\right)\\ + \\ 2\\left(2\\right)\\right|}{\\sqrt{\\left(1\\ + \\ 4\\ + \\ 4\\right)\\left(9\\ + \\ 9\\ + \\ 4\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 + 4 + 4 = 9 and 9 + 9 + 4 = 22;",
             "added": true
@@ -146,15 +150,24 @@
             "style": "indent",
             "added": true
           },
-          "= |3 + 6 + 4| / (√9 · √22)",
+          {
+            "text": "= \\ \\dfrac{\\left|3\\ + \\ 6\\ + \\ 4\\right|}{\\sqrt{9}\\ \\cdot \\ \\sqrt{22}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√9 = 3)",
             "added": true
           },
-          "= 13/(3√22)",
           {
-            "text": "∴ cosθ = 13/(3√22)  ⇒  θ = Cos⁻¹(13/(3√22))",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{13}{3\\sqrt{22}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{13}{3\\sqrt{22}} \\Rightarrow \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{13}{3\\sqrt{22}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -190,12 +203,25 @@
             "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
             "style": "indent"
           },
-          "= |1(3) + 2(3) + 2(2)| / √((1 + 4 + 4)(9 + 9 + 4))",
-          "= |3 + 6 + 4| / (√9 · √22)",
-          "= 13/(3√22)",
           {
-            "text": "∴ cosθ = 13/(3√22)  ⇒  θ = Cos⁻¹(13/(3√22))",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left|1\\left(3\\right)\\ + \\ 2\\left(3\\right)\\ + \\ 2\\left(2\\right)\\right|}{\\sqrt{\\left(1\\ + \\ 4\\ + \\ 4\\right)\\left(9\\ + \\ 9\\ + \\ 4\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|3\\ + \\ 6\\ + \\ 4\\right|}{\\sqrt{9}\\ \\cdot \\ \\sqrt{22}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{13}{3\\sqrt{22}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{13}{3\\sqrt{22}} \\Rightarrow \\ \\theta \\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{13}{3\\sqrt{22}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -101,7 +101,11 @@
         "lines": [
           "A⁻¹ exists if and only if det A ≠ 0, that is",
           "only when A is non-singular. It is then unique,",
-          "and A⁻¹ = (Adj A)/(det A).",
+          {
+            "text": "\\text{and}\\ A^{-1}\\ = \\ \\dfrac{\\operatorname{Adj} A}{\\operatorname{det} A}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Example:",
             "added": true
@@ -160,7 +164,11 @@
         "lines_compact": [
           "A⁻¹ exists if and only if det A ≠ 0, that is",
           "only when A is non-singular. It is then unique,",
-          "and A⁻¹ = (Adj A)/(det A).",
+          {
+            "text": "\\text{and}\\ A^{-1}\\ = \\ \\dfrac{\\operatorname{Adj} A}{\\operatorname{det} A}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}, \\quad \\det A = 1 \\neq 0",
             "render": "katex",

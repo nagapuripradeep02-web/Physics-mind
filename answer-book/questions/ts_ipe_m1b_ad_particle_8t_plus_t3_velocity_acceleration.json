@@ -53,12 +53,32 @@
             "style": "heading"
           },
           "This is a rectilinear motion question.",
-          "Velocity v = ds/dt and acceleration a = dv/dt.",
+          {
+            "text": "\\text{Velocity}\\ v\\ = \\ \\dfrac{ds}{dt}\\ \\text{and}\\ \\text{acceleration}\\ a\\ = \\ \\dfrac{dv}{dt}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "s = f(t) = 8t + t³",
-          "(d/dt of 8t is 8, and d/dt of t³ is 3t²)",
-          "v = ds/dt = 8 + 3t²",
-          "(d/dt of 8 is 0, and d/dt of 3t² is 6t)",
-          "a = dv/dt = 6t"
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ 8t\\ \\text{is}\\ 8,\\ \\text{and}\\ \\dfrac{d}{dt}\\ \\text{of}\\ t^{3}\\ \\text{is}\\ 3t^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "v\\ = \\ \\dfrac{ds}{dt}\\ = \\ 8\\ + \\ 3t^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\ \\text{of}\\ 8\\ \\text{is}\\ 0,\\ \\text{and}\\ \\dfrac{d}{dt}\\ \\text{of}\\ 3t^{2}\\ \\text{is}\\ 6t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ = \\ \\dfrac{dv}{dt}\\ = \\ 6t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -123,16 +143,19 @@
             "added": true
           },
           {
-            "text": "∴ velocity at t = 2 sec = 20 cm/sec,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{velocity}\\ \\text{at}\\ t\\ = \\ 2\\sec \\ = \\ \\dfrac{20cm}{\\sec },",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "initial velocity = 8 cm/sec,",
-            "style": "boxed"
+            "text": "\\text{initial}\\ \\text{velocity}\\ = \\ \\dfrac{8cm}{\\sec },",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "acceleration at t = 2 sec = 12 cm/sec²",
-            "style": "boxed"
+            "text": "\\text{acceleration}\\ \\text{at}\\ t\\ = \\ 2\\sec \\ = \\ \\dfrac{12cm}{\\sec ^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -169,16 +192,19 @@
           "(ii) Initial velocity is v at t = 0:  v = 8 + 3(0)² = 8",
           "(iii) At t = 2 sec:  a = 6(2) = 12",
           {
-            "text": "∴ velocity at t = 2 sec = 20 cm/sec,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{velocity}\\ \\text{at}\\ t\\ = \\ 2\\sec \\ = \\ \\dfrac{20cm}{\\sec },",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "initial velocity = 8 cm/sec,",
-            "style": "boxed"
+            "text": "\\text{initial}\\ \\text{velocity}\\ = \\ \\dfrac{8cm}{\\sec },",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "acceleration at t = 2 sec = 12 cm/sec²",
-            "style": "boxed"
+            "text": "\\text{acceleration}\\ \\text{at}\\ t\\ = \\ 2\\sec \\ = \\ \\dfrac{12cm}{\\sec ^{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

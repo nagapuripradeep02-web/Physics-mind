@@ -86,7 +86,11 @@
           "Let Z be the foot of the perpendicular",
           "from S to the directrix.",
           "Let A be the midpoint of SZ.",
-          "Then SA = AZ, so SA/AZ = 1,",
+          {
+            "text": "\\text{Then}\\ SA\\ = \\ AZ,\\ \\text{so}\\ \\dfrac{SA}{AZ} = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "(AZ is the distance from A to the directrix,",
           {
             "text": "  since SZ is perpendicular to it)",
@@ -305,7 +309,11 @@
             "style": "indent"
           },
           "By the focus–directrix property,",
-          "SP/PM = 1, so SP = PM, so SP² = PM².",
+          {
+            "text": "\\dfrac{SP}{PM} = \\ 1,\\ \\text{so}\\ SP\\ = \\ PM,\\ \\text{so}\\ SP^{2}\\ = \\ PM^{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(both are lengths, so squaring keeps them equal)",
             "added": true
@@ -331,7 +339,11 @@
             "style": "indent"
           },
           "By the focus–directrix property,",
-          "SP/PM = 1, so SP = PM, so SP² = PM²."
+          {
+            "text": "\\dfrac{SP}{PM} = \\ 1,\\ \\text{so}\\ SP\\ = \\ PM,\\ \\text{so}\\ SP^{2}\\ = \\ PM^{2}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

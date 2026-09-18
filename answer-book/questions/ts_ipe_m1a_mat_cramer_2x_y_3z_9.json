@@ -465,9 +465,21 @@
             "text": "(each unknown is its own Δ divided by Δ)",
             "added": true
           },
-          "x = Δ₁/Δ = (−2)/(−2) = 1",
-          "y = Δ₂/Δ = (−4)/(−2) = 2",
-          "z = Δ₃/Δ = (−6)/(−2) = 3",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{ - 2}{ - 2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{ - 4}{ - 2} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{ - 6}{ - 2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Check in the three equations:",
             "added": true
@@ -523,9 +535,21 @@
         ],
         "lines_compact": [
           "By Cramer's rule:",
-          "x = Δ₁/Δ = (−2)/(−2) = 1",
-          "y = Δ₂/Δ = (−4)/(−2) = 2",
-          "z = Δ₃/Δ = (−6)/(−2) = 3",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{ - 2}{ - 2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{ - 4}{ - 2} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{ - 6}{ - 2} = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ x = 1, y = 2, z = 3",
             "style": "boxed"

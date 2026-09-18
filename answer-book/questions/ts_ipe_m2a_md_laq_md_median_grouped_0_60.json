@@ -142,7 +142,9 @@
         "memory_tip": "M = l + (C/f)·(N/2 − m), where m is the c.f. of the class BEFORE the median class — 14 here, not 28.",
         "lines": [
           {
-            "text": "N/2 = 50/2 = 25",
+            "text": "\\dfrac{N}{2} = \\ \\dfrac{50}{2} = \\ 25",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -167,14 +169,21 @@
             "added": true
           },
           {
-            "text": "Median M = l + (C/f)·(N/2 − m)",
-            "style": "eq"
+            "text": "\\text{Median}\\ M\\ = \\ l\\ + \\ \\left(\\dfrac{C}{f}\\right) \\cdot \\left(\\dfrac{N}{2} - \\ m\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= 20 + (10/14)(25 − 14)",
+            "text": "= \\ 20\\ + \\ \\left(\\dfrac{10}{14}\\right)\\left(25\\ - \\ 14\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 20 + (10/14)(11) = 20 + 110/14",
+          {
+            "text": "= \\ 20\\ + \\ \\left(\\dfrac{10}{14}\\right)\\left(11\\right)\\ = \\ 20\\ + \\ \\dfrac{110}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 20 + 7.86 = 27.86"
         ],
         "recall": {
@@ -207,12 +216,24 @@
           "Using the midpoint 25 as the median."
         ],
         "lines_compact": [
-          "N/2 = 25. The first c.f. ≥ 25 is 28,",
+          {
+            "text": "\\dfrac{N}{2} = \\ 25.\\ \\text{The}\\ \\text{first}\\ c.f.\\ \\ge \\ 25\\ \\text{is}\\ 28,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the median class is 20–30.",
           "l = 20, C = 10, f = 14,",
           "m = 14 (the c.f. before the median class)",
-          "Median M = l + (C/f)·(N/2 − m)",
-          "= 20 + (10/14)·(25 − 14) = 20 + 110/14",
+          {
+            "text": "\\text{Median}\\ M\\ = \\ l\\ + \\ \\left(\\dfrac{C}{f}\\right) \\cdot \\left(\\dfrac{N}{2} - \\ m\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 20\\ + \\ \\left(\\dfrac{10}{14}\\right) \\cdot \\left(25\\ - \\ 14\\right)\\ = \\ 20\\ + \\ \\dfrac{110}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 20 + 7.86 = 27.86"
         ]
       },
@@ -349,7 +370,9 @@
             "style": "eq"
           },
           {
-            "text": "= 517.16/50",
+            "text": "= \\ \\dfrac{517.16}{50}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -391,7 +414,11 @@
         ],
         "lines_compact": [
           "M.D. about the median = Σfᵢ|xᵢ − M|/N",
-          "= 517.16/50 = 10.34",
+          {
+            "text": "= \\ \\dfrac{517.16}{50} = \\ 10.34",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the median = 10.34",
             "style": "boxed"

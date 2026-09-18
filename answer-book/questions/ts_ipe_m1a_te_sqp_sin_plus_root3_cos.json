@@ -67,7 +67,11 @@
           },
           "(a = 1 and b = √3)",
           "Dividing both sides by √(1² + (√3)²) = √4 = 2:",
-          "(1/2) sin x + (√3/2) cos x = √2/2"
+          {
+            "text": "\\left(\\dfrac{1}{2}\\right)\\sin x\\ + \\ \\left(\\dfrac{\\sqrt{3}}{2}\\right)\\cos x\\ = \\ \\dfrac{\\sqrt{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,17 +110,31 @@
         "memory_tip": "½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
         "lines": [
           "½ = sin(π/6) and √3/2 = cos(π/6), so",
-          "sin x sin(π/6) + cos x cos(π/6) = √2/2",
           {
-            "text": "(reorder the terms; √2/2 = 1/√2)",
+            "text": "\\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{\\sqrt{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{reorder}\\ \\text{the}\\ \\text{terms};\\ \\dfrac{\\sqrt{2}}{2} = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ cos x cos(π/6) + sin x sin(π/6) = 1/√2",
+          {
+            "text": "\\Rightarrow \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos A cos B + sin A sin B = cos(A − B))",
             "added": true
           },
-          "⇒ cos(x − π/6) = 1/√2"
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(x\\ - \\ \\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,9 +164,21 @@
         ],
         "lines_compact": [
           "½ = sin(π/6) and √3/2 = cos(π/6), so",
-          "sin x sin(π/6) + cos x cos(π/6) = √2/2",
-          "⇒ cos x cos(π/6) + sin x sin(π/6) = 1/√2",
-          "⇒ cos(x − π/6) = 1/√2"
+          {
+            "text": "\\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{\\sqrt{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(x\\ - \\ \\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -160,9 +190,21 @@
         "margin_note": "Third mark. 1/√2 = cos(π/4), so the principal value is α = π/4.",
         "memory_tip": "√2/2 is 1/√2, which is cos(π/4). So the principal value is π/4.",
         "lines": [
-          "1/√2 = cos(π/4)",
-          "⇒ cos(x − π/6) = cos(π/4)",
-          "∴ The principal value is α = π/4"
+          {
+            "text": "\\dfrac{1}{\\sqrt{2}} = \\ \\cos \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(x\\ - \\ \\dfrac{\\pi }{6}\\right)\\ = \\ \\cos \\left(\\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{The}\\ \\text{principal}\\ \\text{value}\\ \\text{is}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -203,17 +245,26 @@
           "For cos θ = cos α, the general solution is",
           "θ = 2nπ ± α, n ∈ Z",
           {
-            "text": "(here the angle is x − π/6 and α = π/4)",
-            "added": true
-          },
-          "⇒ x − π/6 = 2nπ ± π/4",
-          {
-            "text": "(add π/6 to both sides)",
+            "text": "\\left(\\text{here}\\ \\text{the}\\ \\text{angle}\\ \\text{is}\\ x\\ - \\ \\dfrac{\\pi }{6}\\text{and}\\ \\alpha \\ = \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x = 2nπ ± π/4 + π/6, n ∈ Z",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\ - \\ \\dfrac{\\pi }{6} = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{add}\\ \\dfrac{\\pi }{6}\\text{to}\\ \\text{both}\\ \\text{sides}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{4} + \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -246,10 +297,15 @@
         "lines_compact": [
           "For cos θ = cos α, the general solution is",
           "θ = 2nπ ± α, n ∈ Z",
-          "⇒ x − π/6 = 2nπ ± π/4",
           {
-            "text": "∴ x = 2nπ ± π/4 + π/6, n ∈ Z",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x\\ - \\ \\dfrac{\\pi }{6} = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{\\pi }{4} + \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -63,9 +63,21 @@
           "p₁ is the altitude from A onto BC, so",
           "Δ = ½ (base)(height) = ½ a p₁",
           "(divide both sides by ½ a)",
-          "⇒ p₁ = 2Δ/a, p₂ = 2Δ/b, p₃ = 2Δ/c",
-          "∴ 1/p₁ = a/(2Δ), 1/p₂ = b/(2Δ),",
-          "   1/p₃ = c/(2Δ)"
+          {
+            "text": "\\Rightarrow \\ p_{1}\\ = \\ \\dfrac{2\\Delta }{a},\\ p_{2}\\ = \\ \\dfrac{2\\Delta }{b},\\ p_{3}\\ = \\ \\dfrac{2\\Delta }{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1}{p_{1}} = \\ \\dfrac{a}{2\\Delta },\\ \\dfrac{1}{p_{2}} = \\ \\dfrac{b}{2\\Delta },",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{p_{3}} = \\ \\dfrac{c}{2\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,13 +116,27 @@
         "margin_note": "One mark. Squaring each reciprocal puts the same 4Δ² underneath, so the sum is (a² + b² + c²)/(4Δ²). Number this line — the last step comes back to it.",
         "memory_tip": "Squaring 1/p₁ = a/(2Δ) gives a²/(4Δ²), so every term shares the same 4Δ².",
         "lines": [
-          "L.H.S = 1/p₁² + 1/p₂² + 1/p₃²",
           {
-            "text": "(square each: (a/(2Δ))² = a²/(4Δ²))",
+            "text": "L.H.S\\ = \\ \\dfrac{1}{p_{1}^{2}} + \\ \\dfrac{1}{p_{2}^{2}} + \\ \\dfrac{1}{p_{3}^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{square}\\ \\text{each}:\\ \\left(\\dfrac{a}{2\\Delta }\\right)^{2}\\ = \\ \\dfrac{a^{2}}{4\\Delta ^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= a²/(4Δ²) + b²/(4Δ²) + c²/(4Δ²)",
-          "= (a² + b² + c²)/(4Δ²)   …(1)"
+          {
+            "text": "= \\ \\dfrac{a^{2}}{4\\Delta ^{2}} + \\ \\dfrac{b^{2}}{4\\Delta ^{2}} + \\ \\dfrac{c^{2}}{4\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta ^{2}}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -138,9 +164,21 @@
           "Writing 2Δ² instead of 4Δ² after squaring."
         ],
         "lines_compact": [
-          "L.H.S = 1/p₁² + 1/p₂² + 1/p₃²",
-          "= a²/(4Δ²) + b²/(4Δ²) + c²/(4Δ²)",
-          "= (a² + b² + c²)/(4Δ²)   …(1)"
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{1}{p_{1}^{2}} + \\ \\dfrac{1}{p_{2}^{2}} + \\ \\dfrac{1}{p_{3}^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}}{4\\Delta ^{2}} + \\ \\dfrac{b^{2}}{4\\Delta ^{2}} + \\ \\dfrac{c^{2}}{4\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta ^{2}}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -152,20 +190,42 @@
         "margin_note": "One mark. Take cos A from the cosine rule and sin A from Δ = ½ bc sin A. Dividing them cancels bc and leaves a single denominator 4Δ.",
         "memory_tip": "cos A over sin A, with cos A = (b² + c² − a²)/(2bc) and sin A = 2Δ/(bc): the bc cancels and 4Δ is left.",
         "lines": [
-          "cot A = cos A/sin A",
+          {
+            "text": "\\cot A\\ = \\ \\dfrac{\\cos A}{\\sin A}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cosine rule)",
             "added": true
           },
-          "cos A = (b² + c² − a²)/(2bc)  and",
+          {
+            "text": "\\cos A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Δ = ½ bc sin A ⇒ sin A = 2Δ/(bc)",
           {
-            "text": "(cosA/sinA = [(b² + c² − a²)/(2bc)] × [bc/(2Δ)])",
+            "text": "\\left(\\dfrac{\\cos A}{\\sin A} = \\ \\left[\\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}\\right]\\ \\times \\ \\left[\\dfrac{bc}{2\\Delta }\\right]\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ cot A = (b² + c² − a²)/(4Δ)",
-          "Similarly cot B = (c² + a² − b²)/(4Δ)",
-          "and cot C = (a² + b² − c²)/(4Δ)"
+          {
+            "text": "\\therefore \\ \\cot A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Similarly}\\ \\cot B\\ = \\ \\dfrac{c^{2}\\ + \\ a^{2}\\ - \\ b^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cot C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -195,12 +255,32 @@
           "Writing 2Δ instead of 4Δ in the denominator."
         ],
         "lines_compact": [
-          "cot A = cos A/sin A",
-          "cos A = (b² + c² − a²)/(2bc)  and",
+          {
+            "text": "\\cot A\\ = \\ \\dfrac{\\cos A}{\\sin A}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Δ = ½ bc sin A ⇒ sin A = 2Δ/(bc)",
-          "∴ cot A = (b² + c² − a²)/(4Δ)",
-          "Similarly cot B = (c² + a² − b²)/(4Δ)",
-          "and cot C = (a² + b² − c²)/(4Δ)"
+          {
+            "text": "\\therefore \\ \\cot A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Similarly}\\ \\cot B\\ = \\ \\dfrac{c^{2}\\ + \\ a^{2}\\ - \\ b^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\cot C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -217,20 +297,33 @@
             "text": "(same denominator 4Δ: add the tops)",
             "added": true
           },
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
+          {
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(each square appears twice with + and once with −)",
             "added": true
           },
-          "= (a² + b² + c²)/(4Δ)",
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the question's right side divides this by Δ)",
             "added": true
           },
-          "∴ R.H.S = (a² + b² + c²)/(4Δ²)",
           {
-            "text": "= 1/p₁² + 1/p₂² + 1/p₃² = L.H.S",
-            "style": "boxed"
+            "text": "\\therefore \\ R.H.S\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{p_{1}^{2}} + \\ \\dfrac{1}{p_{2}^{2}} + \\ \\dfrac{1}{p_{3}^{2}} = \\ L.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -261,12 +354,25 @@
         ],
         "lines_compact": [
           "cot A + cot B + cot C",
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
-          "= (a² + b² + c²)/(4Δ)",
-          "∴ R.H.S = (a² + b² + c²)/(4Δ²)",
           {
-            "text": "= 1/p₁² + 1/p₂² + 1/p₃² = L.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ R.H.S\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{p_{1}^{2}} + \\ \\dfrac{1}{p_{2}^{2}} + \\ \\dfrac{1}{p_{3}^{2}} = \\ L.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

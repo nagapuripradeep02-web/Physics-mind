@@ -53,10 +53,22 @@
             "style": "heading"
           },
           "L.H.S = cosh²x − sinh²x",
-          "(cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2)",
-          "= ((eˣ + e⁻ˣ)/2)² − ((eˣ − e⁻ˣ)/2)²",
+          {
+            "text": "\\left(\\cos hx\\ = \\ \\dfrac{e^{x}\\ + \\ e^{-x}}{2}\\text{and}\\ \\sin hx\\ = \\ \\dfrac{e^{x}\\ - \\ e^{-x}}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{e^{x}\\ + \\ e^{-x}}{2}\\right)^{2}\\ - \\ \\left(\\dfrac{e^{x}\\ - \\ e^{-x}}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(each square has 4 below it)",
-          "= [(eˣ + e⁻ˣ)² − (eˣ − e⁻ˣ)²] / 4"
+          {
+            "text": "= \\ \\dfrac{\\left(e^{x}\\ + \\ e^{-x}\\right)^{2}\\ - \\ \\left(e^{x}\\ - \\ e^{-x}\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -99,7 +111,11 @@
             "text": "(put a = eˣ and b = e⁻ˣ)",
             "added": true
           },
-          "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
+          {
+            "text": "= \\ \\dfrac{4\\ \\cdot \\ e^{x}\\ \\cdot \\ e^{-x}}{4}\\left[\\because \\ \\left(a + b\\right)^{2}\\ - \\ \\left(a - b\\right)^{2}\\ = \\ 4ab\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(add the exponents: x + (−x) = 0)",
             "added": true
@@ -142,7 +158,11 @@
           "Multiplying the exponents, so eˣ · e⁻ˣ becomes e to the power x × (−x), instead of adding them."
         ],
         "lines_compact": [
-          "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
+          {
+            "text": "= \\ \\dfrac{4\\ \\cdot \\ e^{x}\\ \\cdot \\ e^{-x}}{4}\\left[\\because \\ \\left(a + b\\right)^{2}\\ - \\ \\left(a - b\\right)^{2}\\ = \\ 4ab\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= eˣ · e⁻ˣ = e⁰",
           {
             "text": "= 1 = R.H.S",

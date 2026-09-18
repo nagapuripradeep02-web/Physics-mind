@@ -191,18 +191,37 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = sec³x tanx/4 + (3/4)I₃",
-          "I₃ = secx tanx/2 + (1/2)I₁,",
-          "and I₁ = ∫secx dx = log|secx + tanx| + c",
-          "So I₃ = secx tanx/2 + (1/2)log|secx + tanx| + c",
           {
-            "text": "(3/4)·(1/2) = 3/8 in both terms of I₃:",
+            "text": "I_{5}\\ = \\ \\dfrac{\\sec ^{3} x\\tan x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{3}\\ = \\ \\dfrac{\\sec x\\tan x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "and I₁ = ∫secx dx = log|secx + tanx| + c",
+          {
+            "text": "\\text{So}\\ I_{3}\\ = \\ \\dfrac{\\sec x\\tan x}{2} + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left|\\sec x\\ + \\ \\tan x\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{4}\\right) \\cdot \\left(\\dfrac{1}{2}\\right)\\ = \\ \\dfrac{3}{8}\\text{in}\\ \\text{both}\\ \\text{terms}\\ \\text{of}\\ I_{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ I = sec³x tanx/4 + (3/8)secx tanx",
           {
-            "text": "+ (3/8)log|secx + tanx| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\sec ^{3} x\\tan x}{4} + \\ \\left(\\dfrac{3}{8}\\right)\\sec x\\tan x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\sec x\\ + \\ \\tan x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Odd n stops at I₁ = ∫secx dx, the standard log|secx + tanx| result — the same odd-n stopping rule as tanⁿx, but landing on a different standard integral.",
@@ -213,14 +232,31 @@
         "memory_tip": "secⁿx (odd n) stops at I₁ = log|secx+tanx|; cscⁿx (odd n) stops at I₁ = log|tan(x/2)| — different constants, same shape.",
         "lines_compact": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = sec³x tanx/4 + (3/4)I₃",
-          "I₃ = secx tanx/2 + (1/2)I₁,",
-          "and I₁ = ∫secx dx = log|secx + tanx| + c",
-          "So I₃ = secx tanx/2 + (1/2)log|secx + tanx| + c",
-          "∴ I = sec³x tanx/4 + (3/8)secx tanx",
           {
-            "text": "+ (3/8)log|secx + tanx| + c",
-            "style": "boxed"
+            "text": "I_{5}\\ = \\ \\dfrac{\\sec ^{3} x\\tan x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I_{3}\\ = \\ \\dfrac{\\sec x\\tan x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "and I₁ = ∫secx dx = log|secx + tanx| + c",
+          {
+            "text": "\\text{So}\\ I_{3}\\ = \\ \\dfrac{\\sec x\\tan x}{2} + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left|\\sec x\\ + \\ \\tan x\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\sec ^{3} x\\tan x}{4} + \\ \\left(\\dfrac{3}{8}\\right)\\sec x\\tan x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\sec x\\ + \\ \\tan x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -211,13 +211,27 @@
             "text": "(3 × 2 = 6 and √2 · √14 = √28)",
             "added": true
           },
-          "∴ cos B = 18/(3√2 × 2√14) = 18/(6√28)",
           {
-            "text": "(18/6 = 3; √28 = 2√7; multiply top and bottom by √7)",
+            "text": "\\therefore \\ \\cos B\\ = \\ \\dfrac{18}{3\\sqrt{2}\\ \\times \\ 2\\sqrt{14}} = \\ \\dfrac{18}{6\\sqrt{28}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{18}{6} = \\ 3;\\ \\sqrt{28}\\ = \\ 2\\sqrt{7};\\ \\text{multiply}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ \\sqrt{7}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 3/√28 = 3/(2√7) = 3√7/14",
-          "⇒ ∠B = Cos⁻¹(3√7/14)"
+          {
+            "text": "= \\ \\dfrac{3}{\\sqrt{28}} = \\ \\dfrac{3}{2\\sqrt{7}} = \\ \\dfrac{3\\sqrt{7}}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\angle B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{3\\sqrt{7}}{14}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -253,9 +267,21 @@
           "= 12 + 6 + 0 = 18",
           "√(a₁²+b₁²+c₁²) = √(9 + 9 + 0) = 3√2",
           "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
-          "∴ cos B = 18/(3√2 × 2√14) = 18/(6√28)",
-          "= 3/√28 = 3/(2√7) = 3√7/14",
-          "⇒ ∠B = Cos⁻¹(3√7/14)"
+          {
+            "text": "\\therefore \\ \\cos B\\ = \\ \\dfrac{18}{3\\sqrt{2}\\ \\times \\ 2\\sqrt{14}} = \\ \\dfrac{18}{6\\sqrt{28}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3}{\\sqrt{28}} = \\ \\dfrac{3}{2\\sqrt{7}} = \\ \\dfrac{3\\sqrt{7}}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\angle B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{3\\sqrt{7}}{14}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -286,27 +312,55 @@
           },
           "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
           {
-            "text": "(38/√38 = √38)",
+            "text": "\\left(\\dfrac{38}{\\sqrt{38}} = \\ \\sqrt{38}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ cos C = 38/(√38 × 2√14) = √38/(2√14)",
+          {
+            "text": "\\therefore \\ \\cos C\\ = \\ \\dfrac{38}{\\sqrt{38}\\ \\times \\ 2\\sqrt{14}} = \\ \\dfrac{\\sqrt{38}}{2\\sqrt{14}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply top and bottom by √14; 2 × 14 = 28)",
             "added": true
           },
-          "= √38 × √14/28 = √532/28",
+          {
+            "text": "= \\ \\sqrt{38}\\ \\times \\ \\dfrac{\\sqrt{14}}{28} = \\ \\dfrac{\\sqrt{532}}{28}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(532 = 4 × 133, so √532 = 2√133)",
             "added": true
           },
-          "= 2√133/28 = √133/14",
-          "⇒ ∠C = Cos⁻¹(√133/14)",
           {
-            "text": "(1 − 63/196 = 133/196, and the square root of 196 is 14)",
+            "text": "= \\ \\dfrac{2\\sqrt{133}}{28} = \\ \\dfrac{\\sqrt{133}}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\angle C\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{\\sqrt{133}}{14}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ \\dfrac{63}{196} = \\ \\dfrac{133}{196},\\ \\text{and}\\ \\text{the}\\ \\text{square}\\ \\text{root}\\ \\text{of}\\ 196\\ \\text{is}\\ 14\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Check: cos B = 3√7/14, so cos²B = 63/196",
-          "and sin B = √(1 − 63/196) = √133/14 = cos C",
+          {
+            "text": "\\text{Check}:\\ \\cos B\\ = \\ \\dfrac{3\\sqrt{7}}{14},\\ \\text{so}\\ \\cos ^{2} B\\ = \\ \\dfrac{63}{196}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\sin B\\ = \\ \\sqrt{1\\ - \\ \\dfrac{63}{196}}\\ = \\ \\dfrac{\\sqrt{133}}{14} = \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos C = sin B = cos(90° − B), and both angles are acute)",
             "added": true
@@ -314,12 +368,14 @@
           "⇒ ∠C = 90° − ∠B",
           "∴ ∠A + ∠B + ∠C = 90° + ∠B + 90° − ∠B = 180°",
           {
-            "text": "∴ ∠A = 90°, ∠B = Cos⁻¹(3√7/14)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\angle A\\ = \\ 90^{\\circ},\\ \\angle B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{3\\sqrt{7}}{14}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "∠C = Cos⁻¹(√133/14)",
-            "style": "boxed"
+            "text": "\\angle C\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{\\sqrt{133}}{14}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -356,21 +412,47 @@
           "= (−1)(−4) + 1(−2) + 6(6) = 4 − 2 + 36 = 38",
           "√(a₁²+b₁²+c₁²) = √(1 + 1 + 36) = √38",
           "√(a₂²+b₂²+c₂²) = √(16 + 4 + 36) = 2√14",
-          "∴ cos C = 38/(√38 × 2√14) = √38/(2√14)",
-          "= √38 × √14/28 = √532/28",
-          "= 2√133/28 = √133/14",
-          "⇒ ∠C = Cos⁻¹(√133/14)",
-          "Check: cos B = 3√7/14, so cos²B = 63/196",
-          "and sin B = √(1 − 63/196) = √133/14 = cos C",
+          {
+            "text": "\\therefore \\ \\cos C\\ = \\ \\dfrac{38}{\\sqrt{38}\\ \\times \\ 2\\sqrt{14}} = \\ \\dfrac{\\sqrt{38}}{2\\sqrt{14}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{38}\\ \\times \\ \\dfrac{\\sqrt{14}}{28} = \\ \\dfrac{\\sqrt{532}}{28}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\sqrt{133}}{28} = \\ \\dfrac{\\sqrt{133}}{14}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\angle C\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{\\sqrt{133}}{14}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ \\cos B\\ = \\ \\dfrac{3\\sqrt{7}}{14},\\ \\text{so}\\ \\cos ^{2} B\\ = \\ \\dfrac{63}{196}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\sin B\\ = \\ \\sqrt{1\\ - \\ \\dfrac{63}{196}}\\ = \\ \\dfrac{\\sqrt{133}}{14} = \\ \\cos C",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ ∠C = 90° − ∠B",
           "∴ ∠A + ∠B + ∠C = 90° + ∠B + 90° − ∠B = 180°",
           {
-            "text": "∴ ∠A = 90°, ∠B = Cos⁻¹(3√7/14)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\angle A\\ = \\ 90^{\\circ},\\ \\angle B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{3\\sqrt{7}}{14}\\right)",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "∠C = Cos⁻¹(√133/14)",
-            "style": "boxed"
+            "text": "\\angle C\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{\\sqrt{133}}{14}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

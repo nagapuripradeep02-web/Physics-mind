@@ -125,11 +125,21 @@
           },
           "= (−3 + r cos45°, 5 + r sin45°)",
           {
-            "text": "(cos 45° = sin 45° = 1/√2)",
+            "text": "\\left(\\cos 45^{\\circ}\\ = \\ \\sin 45^{\\circ}\\ = \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−3 + r(1/√2), 5 + r(1/√2))",
-          "∴ P = (−3 + r/√2, 5 + r/√2)"
+          {
+            "text": "= \\ \\left( - 3\\ + \\ r\\left(\\dfrac{1}{\\sqrt{2}}\\right),\\ 5\\ + \\ r\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left( - 3\\ + \\ \\dfrac{r}{\\sqrt{2}},\\ 5\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -163,8 +173,16 @@
           "Given point Q(x₁, y₁) = (−3, 5) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
           "= (−3 + r cos45°, 5 + r sin45°)",
-          "= (−3 + r(1/√2), 5 + r(1/√2))",
-          "∴ P = (−3 + r/√2, 5 + r/√2)"
+          {
+            "text": "= \\ \\left( - 3\\ + \\ r\\left(\\dfrac{1}{\\sqrt{2}}\\right),\\ 5\\ + \\ r\\left(\\dfrac{1}{\\sqrt{2}}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\ = \\ \\left( - 3\\ + \\ \\dfrac{r}{\\sqrt{2}},\\ 5\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -180,7 +198,11 @@
             "added": true
           },
           "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
-          "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
+          {
+            "text": "\\Rightarrow \\ \\left( - 3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ + \\ \\left(5\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−3 + 5 = 2 and r/√2 + r/√2 = 2r/√2;",
             "added": true
@@ -190,7 +212,11 @@
             "style": "indent",
             "added": true
           },
-          "⇒ 2 + 2r/√2 = 6   ⇒   2r/√2 = 4"
+          {
+            "text": "\\Rightarrow \\ 2\\ + \\ \\dfrac{2r}{\\sqrt{2}} = \\ 6\\ \\Rightarrow \\ \\dfrac{2r}{\\sqrt{2}} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -221,8 +247,16 @@
         "mark_note": "Method",
         "lines_compact": [
           "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
-          "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
-          "⇒ 2 + 2r/√2 = 6   ⇒   2r/√2 = 4"
+          {
+            "text": "\\Rightarrow \\ \\left( - 3\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ + \\ \\left(5\\ + \\ \\dfrac{r}{\\sqrt{2}}\\right)\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ 2\\ + \\ \\dfrac{2r}{\\sqrt{2}} = \\ 6\\ \\Rightarrow \\ \\dfrac{2r}{\\sqrt{2}} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -243,8 +277,9 @@
             "added": true
           },
           {
-            "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{r}{\\sqrt{2}} = \\ 2\\ \\Rightarrow \\ \\text{Distance}\\ PQ\\ = \\ r\\ = \\ 2\\sqrt{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -276,8 +311,9 @@
         "mark_note": "Solution",
         "lines_compact": [
           {
-            "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{r}{\\sqrt{2}} = \\ 2\\ \\Rightarrow \\ \\text{Distance}\\ PQ\\ = \\ r\\ = \\ 2\\sqrt{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

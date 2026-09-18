@@ -54,14 +54,38 @@
           },
           "By the sine rule, b = 2R sinB, c = 2R sinC",
           "(the 2R cancels)",
-          "∴ (b−c)/(b+c) = (sinB − sinC)/(sinB + sinC)",
-          "(sin x − sin y = 2 cos((x+y)/2) sin((x−y)/2))",
-          "sinB − sinC = 2 cos((B+C)/2) sin((B−C)/2)",
-          "(sin x + sin y = 2 sin((x+y)/2) cos((x−y)/2))",
-          "sinB + sinC = 2 sin((B+C)/2) cos((B−C)/2)",
+          {
+            "text": "\\therefore \\ \\dfrac{b - c}{b + c} = \\ \\dfrac{\\sin B\\ - \\ \\sin C}{\\sin B\\ + \\ \\sin C}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin x\\ - \\ \\sin y\\ = \\ 2\\cos \\left(\\dfrac{x + y}{2}\\right)\\sin \\left(\\dfrac{x - y}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin B\\ - \\ \\sin C\\ = \\ 2\\cos \\left(\\dfrac{B + C}{2}\\right)\\sin \\left(\\dfrac{B - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin x\\ + \\ \\sin y\\ = \\ 2\\sin \\left(\\dfrac{x + y}{2}\\right)\\cos \\left(\\dfrac{x - y}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin B\\ + \\ \\sin C\\ = \\ 2\\sin \\left(\\dfrac{B + C}{2}\\right)\\cos \\left(\\dfrac{B - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide: the factors 2 cancel;",
           "  cos/sin = cot and sin/cos = tan)",
-          "∴ (b−c)/(b+c) = cot((B+C)/2) tan((B−C)/2)"
+          {
+            "text": "\\therefore \\ \\dfrac{b - c}{b + c} = \\ \\cot \\left(\\dfrac{B + C}{2}\\right)\\tan \\left(\\dfrac{B - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,20 +124,35 @@
         "margin_note": "The other mark. The angle sum turns cot((B+C)/2) into tan(A/2), and dividing by tan(A/2) is multiplying by cot(A/2).",
         "memory_tip": "(B+C)/2 = 90° − A/2, so cot((B+C)/2) = tan(A/2).",
         "lines": [
-          "A + B + C = 180° ⇒ (B+C)/2 = 90° − A/2",
+          {
+            "text": "A\\ + \\ B\\ + \\ C\\ = \\ 180^{\\circ}\\ \\Rightarrow \\ \\dfrac{B + C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{A}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cot(90° − x) = tan x)",
             "added": true
           },
-          "∴ cot((B+C)/2) = cot(90° − A/2) = tan(A/2)",
-          "So (b−c)/(b+c) = tan(A/2) tan((B−C)/2)",
           {
-            "text": "(divide both sides by tan(A/2); 1/tan = cot)",
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{B + C}{2}\\right)\\ = \\ \\cot \\left(90^{\\circ}\\ - \\ \\dfrac{A}{2}\\right)\\ = \\ \\tan \\left(\\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\dfrac{b - c}{b + c} = \\ \\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{B - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\tan \\left(\\dfrac{A}{2}\\right);\\ \\dfrac{1}{\\tan } = \\ \\cot \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\tan \\left(\\dfrac{B - C}{2}\\right)\\ = \\ \\left(\\dfrac{b - c}{b + c}\\right)\\cot \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -144,12 +183,25 @@
           "Leaving the answer divided by tan(A/2) instead of multiplied by cot(A/2)."
         ],
         "lines_compact": [
-          "A + B + C = 180° ⇒ (B+C)/2 = 90° − A/2",
-          "∴ cot((B+C)/2) = cot(90° − A/2) = tan(A/2)",
-          "So (b−c)/(b+c) = tan(A/2) tan((B−C)/2)",
           {
-            "text": "∴ tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2)",
-            "style": "boxed"
+            "text": "A\\ + \\ B\\ + \\ C\\ = \\ 180^{\\circ}\\ \\Rightarrow \\ \\dfrac{B + C}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{A}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cot \\left(\\dfrac{B + C}{2}\\right)\\ = \\ \\cot \\left(90^{\\circ}\\ - \\ \\dfrac{A}{2}\\right)\\ = \\ \\tan \\left(\\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\dfrac{b - c}{b + c} = \\ \\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{B - C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\tan \\left(\\dfrac{B - C}{2}\\right)\\ = \\ \\left(\\dfrac{b - c}{b + c}\\right)\\cot \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

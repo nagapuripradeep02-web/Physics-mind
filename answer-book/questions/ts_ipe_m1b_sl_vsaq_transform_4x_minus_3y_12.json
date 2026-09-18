@@ -64,9 +64,21 @@
           "(add 3y to both sides)",
           "∴ 4x − 3y + 12 = 0  ⇒  3y = 4x + 12",
           "(divide every term by 3)",
-          "⇒ y = (4/3)x + 12/3",
-          "(12/3 = 4; the slope is 4/3 and the y-intercept is 4)",
-          "⇒ y = (4/3)x + 4"
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\left(\\dfrac{4}{3}\\right)x\\ + \\ \\dfrac{12}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{12}{3} = \\ 4;\\ \\text{the}\\ \\text{slope}\\ \\text{is}\\ \\dfrac{4}{3}\\text{and}\\ \\text{the}\\ \\text{y-intercept}\\ \\text{is}\\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\left(\\dfrac{4}{3}\\right)x\\ + \\ 4",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,7 +116,11 @@
         "margin_note": "Second mark. Intercept form is x/a + y/b = 1, so move the constant to the right and divide everything by it — the two denominators are then the intercepts.",
         "memory_tip": "x/a + y/b = 1: move the constant right and divide everything by it — the denominators are the intercepts.",
         "lines": [
-          "(ii) Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\left(ii\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move 12 to the right side)",
             "added": true
@@ -114,14 +130,21 @@
             "text": "(divide every term by −12, so that the right side is 1)",
             "added": true
           },
-          "⇒ 4x/(−12) − 3y/(−12) = 1",
           {
-            "text": "(4x/(−12) = x/(−3) and −3y/(−12) = y/4)",
+            "text": "\\Rightarrow \\ \\dfrac{4x}{ - 12} - \\ \\dfrac{3y}{ - 12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{4x}{ - 12} = \\ \\dfrac{x}{ - 3}\\text{and}\\ - \\dfrac{3y}{ - 12} = \\ \\dfrac{y}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "⇒ x/(−3) + y/4 = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 3} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -153,12 +176,21 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "(ii) Intercept form is  x/a + y/b = 1",
-          "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
-          "⇒ 4x/(−12) − 3y/(−12) = 1",
           {
-            "text": "⇒ x/(−3) + y/4 = 1",
-            "style": "boxed"
+            "text": "\\left(ii\\right)\\ \\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          "∴ 4x − 3y + 12 = 0  ⇒  4x − 3y = −12",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{4x}{ - 12} - \\ \\dfrac{3y}{ - 12} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{ - 3} + \\ \\dfrac{y}{4} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

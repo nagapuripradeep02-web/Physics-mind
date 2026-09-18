@@ -138,17 +138,31 @@
           "2x − 6x + 4 = 0 ⇒ x = 1, y = 2",
           "∴ A = (1, 2)",
           {
-            "text": "(put y = 6x/7 in 2x − 3y + 4 = 0)",
+            "text": "\\left(\\text{put}\\ y\\ = \\ \\dfrac{6x}{7}\\text{in}\\ 2x\\ - \\ 3y\\ + \\ 4\\ = \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "6x − 7y = 0 ⇒ y = 6x/7. Put in (2):",
           {
-            "text": "(3 · 6x/7 = 18x/7; 2x − 18x/7 = 14x/7 − 18x/7 = −4x/7)",
+            "text": "6x\\ - \\ 7y\\ = \\ 0\\ \\Rightarrow \\ y\\ = \\ \\dfrac{6x}{7}.\\ \\text{Put}\\ \\text{in}\\ \\left(2\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(3\\ \\cdot \\ \\dfrac{6x}{7} = \\ \\dfrac{18x}{7};\\ 2x\\ - \\ \\dfrac{18x}{7} = \\ \\dfrac{14x}{7} - \\ \\dfrac{18x}{7} = \\ - \\dfrac{4x}{7}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2x − 18x/7 + 4 = 0 ⇒ −4x/7 = −4 ⇒ x = 7",
           {
-            "text": "(y = 6(7)/7 = 6)",
+            "text": "2x\\ - \\ \\dfrac{18x}{7} + \\ 4\\ = \\ 0\\ \\Rightarrow \\ - \\dfrac{4x}{7} = \\ - 4\\ \\Rightarrow \\ x\\ = \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ = \\ \\dfrac{6\\left(7\\right)}{7} = \\ 6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ y = 6, so B = (7, 6)"
@@ -185,8 +199,16 @@
           "2x − y = 0 ⇒ y = 2x. Put in (2):",
           "2x − 6x + 4 = 0 ⇒ x = 1, y = 2",
           "∴ A = (1, 2)",
-          "6x − 7y = 0 ⇒ y = 6x/7. Put in (2):",
-          "2x − 18x/7 + 4 = 0 ⇒ −4x/7 = −4 ⇒ x = 7",
+          {
+            "text": "6x\\ - \\ 7y\\ = \\ 0\\ \\Rightarrow \\ y\\ = \\ \\dfrac{6x}{7}.\\ \\text{Put}\\ \\text{in}\\ \\left(2\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2x\\ - \\ \\dfrac{18x}{7} + \\ 4\\ = \\ 0\\ \\Rightarrow \\ - \\dfrac{4x}{7} = \\ - 4\\ \\Rightarrow \\ x\\ = \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ y = 6, so B = (7, 6)"
         ]
       },
@@ -204,17 +226,31 @@
             "text": "(the centroid formula)",
             "added": true
           },
-          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)",
+          {
+            "text": "G\\ = \\ \\left(\\dfrac{x_{1} + x_{2} + x_{3}}{3},\\ \\dfrac{y_{1} + y_{2} + y_{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the three vertices)",
             "added": true
           },
-          "= ((0 + 1 + 7)/3, (0 + 2 + 6)/3)",
           {
-            "text": "(8/3 each)",
+            "text": "= \\ \\left(\\dfrac{0\\ + \\ 1\\ + \\ 7}{3},\\ \\dfrac{0\\ + \\ 2\\ + \\ 6}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{8}{3}\\text{each}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (8/3, 8/3)"
+          {
+            "text": "= \\ \\left(\\dfrac{8}{3},\\ \\dfrac{8}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -245,9 +281,21 @@
         ],
         "lines_compact": [
           "The vertices are O(0,0), A(1, 2), B(7, 6).",
-          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3)",
-          "= ((0 + 1 + 7)/3, (0 + 2 + 6)/3)",
-          "= (8/3, 8/3)"
+          {
+            "text": "G\\ = \\ \\left(\\dfrac{x_{1} + x_{2} + x_{3}}{3},\\ \\dfrac{y_{1} + y_{2} + y_{3}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{0\\ + \\ 1\\ + \\ 7}{3},\\ \\dfrac{0\\ + \\ 2\\ + \\ 6}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{8}{3},\\ \\dfrac{8}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -263,20 +311,33 @@
             "text": "(the area formula with one vertex at the origin)",
             "added": true
           },
-          "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
+          {
+            "text": "\\text{With}\\ Oa\\ \\text{vertex},\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}y_{2}\\ - \\ x_{2}y_{1}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(x₁ = 1, y₁ = 2 and x₂ = 7, y₂ = 6)",
             "added": true
           },
-          "= ½ |1(6) − 7(2)| = ½ |6 − 14|",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|1\\left(6\\right)\\ - \\ 7\\left(2\\right)\\right|\\ = \\ \\dfrac{1}{2}\\left|6\\ - \\ 14\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(|−8| = 8)",
             "added": true
           },
-          "= ½ (8) = 4",
           {
-            "text": "∴ G = (8/3, 8/3), area = 4 sq.units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{1}{2}\\left(8\\right)\\ = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ G\\ = \\ \\left(\\dfrac{8}{3},\\ \\dfrac{8}{3}\\right),\\ \\text{area}\\ = \\ 4sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -307,12 +368,25 @@
           "Reading h as −20 instead of −10 when checking with the standard formula."
         ],
         "lines_compact": [
-          "With O a vertex, Δ = ½|x₁y₂ − x₂y₁|",
-          "= ½ |1(6) − 7(2)| = ½ |6 − 14|",
-          "= ½ (8) = 4",
           {
-            "text": "∴ G = (8/3, 8/3), area = 4 sq.units",
-            "style": "boxed"
+            "text": "\\text{With}\\ Oa\\ \\text{vertex},\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}y_{2}\\ - \\ x_{2}y_{1}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|1\\left(6\\right)\\ - \\ 7\\left(2\\right)\\right|\\ = \\ \\dfrac{1}{2}\\left|6\\ - \\ 14\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left(8\\right)\\ = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ G\\ = \\ \\left(\\dfrac{8}{3},\\ \\dfrac{8}{3}\\right),\\ \\text{area}\\ = \\ 4sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

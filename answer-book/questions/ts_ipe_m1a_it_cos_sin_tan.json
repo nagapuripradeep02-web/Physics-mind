@@ -56,12 +56,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Take Cos⁻¹(4/5) = α and Sin⁻¹(3/√34) = β",
-          "RTP: α + β = Tan⁻¹(27/11), that is, tan(α+β) = 27/11",
-          "(sinα = √(1 − 16/25) = 3/5, positive because α is acute)",
-          "cosα = 4/5 ⇒ sinα = 3/5 ⇒ tanα = 3/4",
-          "(cosβ = √(1 − 9/34) = √(25/34) = 5/√34)",
-          "sinβ = 3/√34 ⇒ cosβ = 5/√34 ⇒ tanβ = 3/5"
+          {
+            "text": "\\text{Take}\\ \\operatorname{Cos}^{-1}\\left(\\dfrac{4}{5}\\right)\\ = \\ \\alpha \\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{\\sqrt{34}}\\right)\\ = \\ \\beta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "RTP:\\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right),\\ \\text{that}\\ \\text{is},\\ \\tan \\left(\\alpha + \\beta \\right)\\ = \\ \\dfrac{27}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin \\alpha \\ = \\ \\sqrt{1\\ - \\ \\dfrac{16}{25}}\\ = \\ \\dfrac{3}{5},\\ \\text{positive}\\ \\text{because}\\ \\alpha \\ \\text{is}\\ \\text{acute}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos \\alpha \\ = \\ \\dfrac{4}{5} \\Rightarrow \\ \\sin \\alpha \\ = \\ \\dfrac{3}{5} \\Rightarrow \\ \\tan \\alpha \\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\beta \\ = \\ \\sqrt{1\\ - \\ \\dfrac{9}{34}}\\ = \\ \\sqrt{\\dfrac{25}{34}}\\ = \\ \\dfrac{5}{\\sqrt{34}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\beta \\ = \\ \\dfrac{3}{\\sqrt{34}} \\Rightarrow \\ \\cos \\beta \\ = \\ \\dfrac{5}{\\sqrt{34}} \\Rightarrow \\ \\tan \\beta \\ = \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,22 +129,42 @@
             "text": "(the tan(A + B) formula)",
             "added": true
           },
-          "tan(α + β) = (tanα + tanβ)/(1 − tanα tanβ)",
           {
-            "text": "(put in tanα = 3/4 and tanβ = 3/5)",
+            "text": "\\tan \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{\\tan \\alpha \\ + \\ \\tan \\beta }{1\\ - \\ \\tan \\alpha \\tan \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\text{in}\\ \\tan \\alpha \\ = \\ \\dfrac{3}{4}\\text{and}\\ \\tan \\beta \\ = \\ \\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (3/4 + 3/5)/(1 − (3/4)(3/5))",
           {
-            "text": "(3/4 + 3/5 = 27/20, and (3/4)(3/5) = 9/20)",
+            "text": "= \\ \\dfrac{\\dfrac{3}{4} + \\ \\dfrac{3}{5}}{1\\ - \\ \\left(\\dfrac{3}{4}\\right)\\left(\\dfrac{3}{5}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{4} + \\ \\dfrac{3}{5} = \\ \\dfrac{27}{20},\\ \\text{and}\\ \\left(\\dfrac{3}{4}\\right)\\left(\\dfrac{3}{5}\\right)\\ = \\ \\dfrac{9}{20}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (27/20)/(1 − 9/20)",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{27}{20}}{1\\ - \\ \\dfrac{9}{20}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the 20s cancel)",
             "added": true
           },
-          "= (27/20)/(11/20) = 27/11"
+          {
+            "text": "= \\ \\dfrac{\\dfrac{27}{20}}{\\dfrac{11}{20}} = \\ \\dfrac{27}{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,10 +194,26 @@
           "Getting the denominator as 1 + tanα tanβ."
         ],
         "lines_compact": [
-          "tan(α + β) = (tanα + tanβ)/(1 − tanα tanβ)",
-          "= (3/4 + 3/5)/(1 − (3/4)(3/5))",
-          "= (27/20)/(1 − 9/20)",
-          "= (27/20)/(11/20) = 27/11"
+          {
+            "text": "\\tan \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{\\tan \\alpha \\ + \\ \\tan \\beta }{1\\ - \\ \\tan \\alpha \\tan \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{3}{4} + \\ \\dfrac{3}{5}}{1\\ - \\ \\left(\\dfrac{3}{4}\\right)\\left(\\dfrac{3}{5}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{27}{20}}{1\\ - \\ \\dfrac{9}{20}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\dfrac{27}{20}}{\\dfrac{11}{20}} = \\ \\dfrac{27}{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -170,8 +230,9 @@
             "added": true
           },
           {
-            "text": "  27/11 is positive, so α + β lies in (0, π/2),",
+            "text": "\\dfrac{27}{11}\\text{is}\\ \\text{positive},\\ \\text{so}\\ \\alpha \\ + \\ \\beta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -179,11 +240,20 @@
             "style": "indent",
             "added": true
           },
-          "tan(α + β) = 27/11",
-          "⇒ α + β = Tan⁻¹(27/11)",
           {
-            "text": "∴ Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11)",
-            "style": "boxed"
+            "text": "\\tan \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{27}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{4}{5}\\right)\\ + \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{\\sqrt{34}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -213,11 +283,20 @@
           "Writing Sin⁻¹(27/11)."
         ],
         "lines_compact": [
-          "tan(α + β) = 27/11",
-          "⇒ α + β = Tan⁻¹(27/11)",
           {
-            "text": "∴ Cos⁻¹(4/5) + Sin⁻¹(3/√34) = Tan⁻¹(27/11)",
-            "style": "boxed"
+            "text": "\\tan \\left(\\alpha \\ + \\ \\beta \\right)\\ = \\ \\dfrac{27}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\alpha \\ + \\ \\beta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{4}{5}\\right)\\ + \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{\\sqrt{34}}\\right)\\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{27}{11}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

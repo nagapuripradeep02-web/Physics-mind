@@ -59,9 +59,17 @@
           },
           "Given circle: 4(x² + y²) = 9",
           "Divide by 4:",
-          "⇒ x² + y² = 9/4 = (3/2)²",
+          {
+            "text": "\\Rightarrow \\ x^{2}\\ + \\ y^{2}\\ = \\ \\dfrac{9}{4} = \\ \\left(\\dfrac{3}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Compare with x² + y² = r²",
-          "⇒ Centre C = (0, 0), radius r = 3/2"
+          {
+            "text": "\\Rightarrow \\ \\text{Centre}\\ C\\ = \\ \\left(0,\\ 0\\right),\\ \\text{radius}\\ r\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The standard form needs coefficient 1 on x² and y². After dividing, the right side is r², so the radius is its square root.",
         "common_mistakes": [
@@ -90,12 +98,15 @@
             "added": true
           },
           {
-            "text": "Put r = 3/2:",
+            "text": "\\text{Put}\\ r\\ = \\ \\dfrac{3}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x = (3/2) cos θ,  y = (3/2) sin θ",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\left(\\dfrac{3}{2}\\right)\\cos \\theta ,\\ y\\ = \\ \\left(\\dfrac{3}{2}\\right)\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "With the centre at the origin the constant parts vanish and the parametric form is the plain r cos θ and r sin θ.",
@@ -107,8 +118,9 @@
           "Here g = 0 and f = 0, so the centre is the origin.",
           "x = r cos θ,  y = r sin θ",
           {
-            "text": "∴ x = (3/2) cos θ,  y = (3/2) sin θ",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\left(\\dfrac{3}{2}\\right)\\cos \\theta ,\\ y\\ = \\ \\left(\\dfrac{3}{2}\\right)\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

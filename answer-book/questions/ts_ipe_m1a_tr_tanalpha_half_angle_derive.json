@@ -60,7 +60,11 @@
           "This is not 0, because cos α ≠ 0.",
           "sin 2α/(1 + cos 2α) = (2 sin α cos α)/(2cos²α)",
           "(cancel 2 cos α from top and bottom)",
-          "= sin α/cos α = tan α"
+          {
+            "text": "= \\ \\dfrac{\\sin \\alpha }{\\cos \\alpha } = \\ \\tan \\alpha",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,7 +106,11 @@
           "cos 15° and cos 22½° are not 0, so the rule",
           "applies to both.",
           "α = 15°: tan 15° = sin 30°/(1 + cos 30°)",
-          "= (1/2)/(1 + √3/2) = 1/(2 + √3) = 2 − √3",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{2}}{1\\ + \\ \\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{1}{2\\ + \\ \\sqrt{3}} = \\ 2\\ - \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply top and bottom by 2, then by 2 − √3:",
             "added": true
@@ -113,7 +121,11 @@
             "added": true
           },
           "α = 22½°: tan 22½° = sin 45°/(1 + cos 45°)",
-          "= (1/√2)/(1 + 1/√2) = 1/(√2 + 1) = √2 − 1",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{\\sqrt{2}}}{1\\ + \\ \\dfrac{1}{\\sqrt{2}}} = \\ \\dfrac{1}{\\sqrt{2}\\ + \\ 1} = \\ \\sqrt{2}\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply top and bottom by √2, then by √2 − 1:",
             "added": true
@@ -159,9 +171,17 @@
           "cos 15° and cos 22½° are not 0, so the rule",
           "applies to both.",
           "α = 15°: tan 15° = sin 30°/(1 + cos 30°)",
-          "= (1/2)/(1 + √3/2) = 1/(2 + √3) = 2 − √3",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{2}}{1\\ + \\ \\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{1}{2\\ + \\ \\sqrt{3}} = \\ 2\\ - \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "α = 22½°: tan 22½° = sin 45°/(1 + cos 45°)",
-          "= (1/√2)/(1 + 1/√2) = 1/(√2 + 1) = √2 − 1",
+          {
+            "text": "= \\ \\dfrac{\\dfrac{1}{\\sqrt{2}}}{1\\ + \\ \\dfrac{1}{\\sqrt{2}}} = \\ \\dfrac{1}{\\sqrt{2}\\ + \\ 1} = \\ \\sqrt{2}\\ - \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ tan 15° = 2 − √3,  tan 22½° = √2 − 1",
             "style": "boxed"

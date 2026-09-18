@@ -66,10 +66,22 @@
           "a₀x³ + a₁x² + a₂x + a₃ = 0:",
           "a₀ = 1, a₁ = −2, a₂ = −5, a₃ = 6",
           "For a₀x³ + a₁x² + a₂x + a₃ = 0 the root relations are",
-          "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
-          "Sum S₁ = −a₁/a₀ = 2:",
+          {
+            "text": "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}},\\ S_{2}\\ = \\ \\dfrac{a_{2}}{a_{0}},\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Sum}\\ S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}} = \\ 2:",
+            "style": "normal",
+            "render": "katex"
+          },
           "α + β + 1 = 2, so α + β = 1",
-          "Product S₃ = −a₃/a₀ = −6:",
+          {
+            "text": "\\text{Product}\\ S_{3}\\ = \\ - \\dfrac{a_{3}}{a_{0}} = \\ - 6:",
+            "style": "normal",
+            "render": "katex"
+          },
           "αβ · 1 = −6, so αβ = −6"
         ],
         "recall": {

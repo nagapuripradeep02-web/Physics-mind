@@ -53,18 +53,42 @@
           },
           "(this approximation is used when Δx is small)",
           "Let f(x) = cos x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
-          "60° is the nearby angle with an exact cosine: cos 60° = 1/2",
+          {
+            "text": "60^{\\circ}\\ \\text{is}\\ \\text{the}\\ \\text{nearby}\\ \\text{angle}\\ \\text{with}\\ \\text{an}\\ \\text{exact}\\ \\text{cosine}:\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ take x = 60°,  Δx = 5′",
-          "(1′ is one sixtieth of a degree: 1′ = (1/60)°)",
-          "5′ = (5/60)° = (1/12)°",
+          {
+            "text": "\\left(1'\\ \\text{is}\\ \\text{one}\\ \\text{sixtieth}\\ \\text{of}\\ a\\ \\text{degree}:\\ 1'\\ = \\ \\left(\\dfrac{1}{60}\\right)^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "5'\\ = \\ \\left(\\dfrac{5}{60}\\right)^{\\circ}\\ = \\ \\left(\\dfrac{1}{12}\\right)^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1° = π/180 radians; Δx must be in radians, because",
           {
             "text": "  d/dx of cos x = −sin x holds for x in radians)",
             "style": "indent"
           },
-          "In radians, Δx = (1/12) × (π/180) = π/2160 ≈ 0.0014544",
-          "(d/dx of cos x is −sin x; sin 60° = √3/2 ≈ 0.8660)",
-          "f′(x) = −sin x,  so f′(60°) = −sin 60° = −√3/2",
+          {
+            "text": "\\text{In}\\ \\text{radians},\\ \\Delta x\\ = \\ \\left(\\dfrac{1}{12}\\right)\\ \\times \\ \\left(\\dfrac{\\pi }{180}\\right)\\ = \\ \\dfrac{\\pi }{2160} \\approx \\ 0.0014544",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ \\cos x\\ \\text{is}\\ - \\sin x;\\ \\sin 60^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}}{2} \\approx \\ 0.8660\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ - \\sin x,\\ \\text{so}\\ f'\\left(60^{\\circ}\\right)\\ = \\ - \\sin 60^{\\circ}\\ = \\ - \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −0.8660",
             "style": "indent"
@@ -108,12 +132,20 @@
         "margin_note": "Second mark. The derivative is negative, so the correction is subtracted: cosine falls as the angle grows past 60°, and the answer must come out just below 0.5.",
         "lines": [
           {
-            "text": "(put x = 60° and Δx = π/2160 radians)",
+            "text": "\\left(\\text{put}\\ x\\ = \\ 60^{\\circ}\\ \\text{and}\\ \\Delta x\\ = \\ \\dfrac{\\pi }{2160}\\text{radians}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "cos(60° 5′) ≈ cos 60° + (−sin 60°)(π/2160)",
           {
-            "text": "(cos 60° = 0.5, sin 60° ≈ 0.8660 and π/2160 ≈ 0.0014544)",
+            "text": "\\cos \\left(60^{\\circ}5'\\right)\\ \\approx \\ \\cos 60^{\\circ}\\ + \\ \\left( - \\sin 60^{\\circ}\\right)\\left(\\dfrac{\\pi }{2160}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos 60^{\\circ}\\ = \\ 0.5,\\ \\sin 60^{\\circ}\\ \\approx \\ 0.8660\\ \\text{and}\\ \\dfrac{\\pi }{2160} \\approx \\ 0.0014544\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 0.5 − (0.8660)(0.0014544)",
@@ -165,7 +197,11 @@
         ],
         "memory_tip": "New value ≈ old value + slope × step. Here the slope is negative, so the answer drops below 0.5.",
         "lines_compact": [
-          "cos(60° 5′) ≈ cos 60° + (−sin 60°)(π/2160)",
+          {
+            "text": "\\cos \\left(60^{\\circ}5'\\right)\\ \\approx \\ \\cos 60^{\\circ}\\ + \\ \\left( - \\sin 60^{\\circ}\\right)\\left(\\dfrac{\\pi }{2160}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 0.5 − (0.8660)(0.0014544)",
           "= 0.5 − 0.0012595",
           "= 0.4987405",

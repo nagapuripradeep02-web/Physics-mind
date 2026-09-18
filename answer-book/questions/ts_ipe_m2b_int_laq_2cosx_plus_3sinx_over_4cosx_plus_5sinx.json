@@ -86,8 +86,16 @@
             "style": "indent"
           },
           "Let 2cosx+3sinx",
-          "= A·d/dx(4cosx+5sinx) + B(4cosx+5sinx)",
-          "Here d/dx(4cosx+5sinx) = −4sinx+5cosx",
+          {
+            "text": "= \\ A \\cdot \\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)\\ + \\ B\\left(4\\cos x + 5\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)\\ = \\ - 4\\sin x + 5\\cos x",
+            "style": "normal",
+            "render": "katex"
+          },
           "= A(−4sinx+5cosx) + B(4cosx+5sinx) …(i)",
           "Compare the coefficients on both sides:",
           "Coefficient of cosx: 5A+4B = 2",
@@ -126,20 +134,34 @@
             "text": "(25 + 16)A = 10 − 12",
             "added": true
           },
-          "(3)−(4): 41A=−2 ⇒ A=−2/41",
           {
-            "text": "Put A = −2/41 in (1):",
+            "text": "\\left(3\\right) - \\left(4\\right):\\ 41A = - 2\\ \\Rightarrow \\ A = - \\dfrac{2}{41}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ A\\ = \\ - \\dfrac{2}{41}\\text{in}\\ \\left(1\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "4B = 2 − 5A = 2 + 10/41",
+            "text": "4B\\ = \\ 2\\ - \\ 5A\\ = \\ 2\\ + \\ \\dfrac{10}{41}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "2 = 82/41, so 4B = 92/41",
+            "text": "2\\ = \\ \\dfrac{82}{41},\\ \\text{so}\\ 4B\\ = \\ \\dfrac{92}{41}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "From (1): 4B=2−5A=2+10/41=92/41 ⇒ B=23/41"
+          {
+            "text": "\\text{From}\\ \\left(1\\right):\\ 4B = 2 - 5A = 2 + \\dfrac{10}{41} = \\dfrac{92}{41} \\Rightarrow \\ B = \\dfrac{23}{41}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The same elimination move as 24.1 — match the B coefficient, subtract to isolate A — but the arithmetic here does not simplify to whole numbers, which is expected, not a warning sign.",
         "common_mistakes": [
@@ -150,8 +172,16 @@
         "lines_compact": [
           "(1)×5: 25A+20B=10 …(3)   (2)×4:",
           "−16A+20B=12 …(4)",
-          "(3)−(4): 41A=−2 ⇒ A=−2/41",
-          "From (1): 4B=2−5A=2+10/41=92/41 ⇒ B=23/41"
+          {
+            "text": "\\left(3\\right) - \\left(4\\right):\\ 41A = - 2\\ \\Rightarrow \\ A = - \\dfrac{2}{41}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(1\\right):\\ 4B = 2 - 5A = 2 + \\dfrac{10}{41} = \\dfrac{92}{41} \\Rightarrow \\ B = \\dfrac{23}{41}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -162,10 +192,22 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=−2/41, B=23/41 in (i):",
+          {
+            "text": "\\text{Putting}\\ A = - \\dfrac{2}{41},\\ B = \\dfrac{23}{41}\\text{in}\\ \\left(i\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           "2cosx+3sinx",
-          "= (−2/41)d/dx(4cosx+5sinx) +",
-          "(23/41)(4cosx+5sinx)",
+          {
+            "text": "= \\ \\left( - \\dfrac{2}{41}\\right)\\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{23}{41}\\right)\\left(4\\cos x + 5\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide every term by 4cosx+5sinx",
             "added": true
@@ -177,8 +219,16 @@
           },
           "I",
           "=",
-          "(−2/41)∫[d/dx(4cosx+5sinx)]/(4cosx+5sinx)",
-          "dx + (23/41)∫1 dx"
+          {
+            "text": "\\left( - \\dfrac{2}{41}\\right)\\int \\dfrac{\\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)}{4\\cos x + 5\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dx\\ + \\ \\left(\\dfrac{23}{41}\\right)\\int 1dx",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With A and B now known fractions, the split into a log term and an x term proceeds exactly as in 24.1, only carrying awkward-looking but exact coefficients through.",
         "common_mistakes": [
@@ -187,14 +237,34 @@
         ],
         "memory_tip": "A always pairs with the log term (it multiplied Dr′); B always pairs with the plain x term (it multiplied Dr).",
         "lines_compact": [
-          "Putting A=−2/41, B=23/41 in (i):",
+          {
+            "text": "\\text{Putting}\\ A = - \\dfrac{2}{41},\\ B = \\dfrac{23}{41}\\text{in}\\ \\left(i\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           "2cosx+3sinx",
-          "= (−2/41)d/dx(4cosx+5sinx) +",
-          "(23/41)(4cosx+5sinx)",
+          {
+            "text": "= \\ \\left( - \\dfrac{2}{41}\\right)\\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{23}{41}\\right)\\left(4\\cos x + 5\\sin x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
           "=",
-          "(−2/41)∫[d/dx(4cosx+5sinx)]/(4cosx+5sinx)",
-          "dx + (23/41)∫1 dx"
+          {
+            "text": "\\left( - \\dfrac{2}{41}\\right)\\int \\dfrac{\\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)}{4\\cos x + 5\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "dx\\ + \\ \\left(\\dfrac{23}{41}\\right)\\int 1dx",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -206,7 +276,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "The first integral has the form ∫f′/f dx,",
+            "text": "\\text{The}\\ \\text{first}\\ \\text{integral}\\ has\\ \\text{the}\\ \\text{form}\\ \\int \\dfrac{f'}{f}dx,",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -215,7 +287,9 @@
             "added": true
           },
           {
-            "text": "∫[d/dx(4cosx+5sinx)]/(4cosx+5sinx) dx",
+            "text": "\\int \\dfrac{\\dfrac{d}{dx}\\left(4\\cos x + 5\\sin x\\right)}{4\\cos x + 5\\sin x}dx",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -228,8 +302,9 @@
             "added": true
           },
           {
-            "text": "∴ I = −(2/41)log|4cosx+5sinx| +(23/41)x + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ - \\left(\\dfrac{2}{41}\\right)\\log \\left|4\\cos x + 5\\sin x\\right|\\ + \\left(\\dfrac{23}{41}\\right)x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫f′(x)/f(x) dx = log|f(x)| and ∫1 dx = x, exactly as before, now carrying the fractional coefficients −2/41 and 23/41 found in step 2.",
@@ -240,8 +315,9 @@
         "memory_tip": "The negative sign on A survives all the way to the final boxed line — it is part of the exact answer, not an error.",
         "lines_compact": [
           {
-            "text": "∴ I = −(2/41)log|4cosx+5sinx| +(23/41)x + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ - \\left(\\dfrac{2}{41}\\right)\\log \\left|4\\cos x + 5\\sin x\\right|\\ + \\left(\\dfrac{23}{41}\\right)x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

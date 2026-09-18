@@ -51,7 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dV/dt = 9 cm³/sec.  Asked: dS/dt when a = 10 cm.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dV}{dt}\\ = \\ \\dfrac{9cm^{3}}{\\sec }.\\ \\text{Asked}:\\ \\dfrac{dS}{dt}\\ \\text{when}\\ a\\ = \\ 10cm.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let a be the length of an edge at time t. Then",
           "(volume of a cube = a³; its surface is 6 squares,",
           {
@@ -60,13 +64,37 @@
           },
           "V = a³   and   S = 6a²",
           "Differentiate V = a³ with respect to time t:",
-          "(chain rule: d/dt of a³ is 3a² · (da/dt))",
-          "dV/dt = 3a²(da/dt)",
-          "Put a = 10 and dV/dt = 9:",
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dt}\\ \\text{of}\\ a^{3}\\ \\text{is}\\ 3a^{2}\\ \\cdot \\ \\left(\\dfrac{da}{dt}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ 3a^{2}\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 10\\ \\text{and}\\ \\dfrac{dV}{dt}\\ = \\ 9:",
+            "style": "normal",
+            "render": "katex"
+          },
           "(10² = 100 and 3 × 100 = 300)",
-          "9 = 3(10²)(da/dt) = 300(da/dt)",
-          "(divide both sides by 300; 9/300 = 3/100)",
-          "∴ da/dt = 9/300 = 3/100 cm/sec"
+          {
+            "text": "9\\ = \\ 3\\left(10^{2}\\right)\\left(\\dfrac{da}{dt}\\right)\\ = \\ 300\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 300;\\ \\dfrac{9}{300} = \\ \\dfrac{3}{100}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{da}{dt}\\ = \\ \\dfrac{9}{300} = \\ \\dfrac{\\dfrac{3}{100}cm}{\\sec }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,23 +138,40 @@
         "lines": [
           "Differentiate S = 6a² with respect to time t:",
           {
-            "text": "(chain rule: d/dt of 6a² is 6 · 2a · (da/dt) = 12a(da/dt))",
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dt}\\ \\text{of}\\ 6a^{2}\\ \\text{is}\\ 6\\ \\cdot \\ 2a\\ \\cdot \\ \\left(\\dfrac{da}{dt}\\right)\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dS/dt = 12a(da/dt)",
-          "Put a = 10 and da/dt = 3/100:",
+          {
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 10\\ \\text{and}\\ \\dfrac{da}{dt}\\ = \\ \\dfrac{3}{100}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(12 × 10 = 120, and 120 × 3 = 360)",
             "added": true
           },
-          "dS/dt = 12(10)(3/100) = 120 × 3/100 = 360/100",
           {
-            "text": "(360/100 = 3.6)",
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12\\left(10\\right)\\left(\\dfrac{3}{100}\\right)\\ = \\ 120\\ \\times \\ \\dfrac{3}{100} = \\ \\dfrac{360}{100}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{360}{100} = \\ 3.6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dS/dt = 3.6 cm²/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dS}{dt}\\ = \\ \\dfrac{3.6cm^{2}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -162,12 +207,25 @@
         "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a.",
         "lines_compact": [
           "Differentiate S = 6a² with respect to time t:",
-          "dS/dt = 12a(da/dt)",
-          "Put a = 10 and da/dt = 3/100:",
-          "dS/dt = 12(10)(3/100) = 120 × 3/100 = 360/100",
           {
-            "text": "∴ dS/dt = 3.6 cm²/sec",
-            "style": "boxed"
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12a\\left(\\dfrac{da}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ a\\ = \\ 10\\ \\text{and}\\ \\dfrac{da}{dt}\\ = \\ \\dfrac{3}{100}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dS}{dt}\\ = \\ 12\\left(10\\right)\\left(\\dfrac{3}{100}\\right)\\ = \\ 120\\ \\times \\ \\dfrac{3}{100} = \\ \\dfrac{360}{100}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dS}{dt}\\ = \\ \\dfrac{3.6cm^{2}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

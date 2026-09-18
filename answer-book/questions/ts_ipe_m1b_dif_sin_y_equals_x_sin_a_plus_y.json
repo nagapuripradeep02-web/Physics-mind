@@ -62,7 +62,11 @@
           "Given sin y = x sin(a + y), where a is a constant",
           "x can be separated in one step,",
           "but y is inside two sines and is harder to separate.",
-          "So find dx/dy first and invert at the end,",
+          {
+            "text": "\\text{So}\\ \\text{find}\\ \\dfrac{dx}{dy}\\ \\text{first}\\ \\text{and}\\ \\text{invert}\\ \\text{at}\\ \\text{the}\\ \\text{end},",
+            "style": "normal",
+            "render": "katex"
+          },
           "rather than differentiating the given relation",
           "with respect to x.",
           "(divide both sides of sin y = x sin(a + y) by sin(a + y),",
@@ -70,7 +74,11 @@
             "text": "  which must not be 0)",
             "style": "indent"
           },
-          "∴ x = sin y/sin(a + y)"
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{\\sin y}{\\sin \\left(a\\ + \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -121,7 +129,11 @@
             "style": "indent",
             "added": true
           },
-          "du/dy = cos y  and  dv/dy = cos(a + y)",
+          {
+            "text": "\\dfrac{du}{dy}\\ = \\ \\cos y\\ \\text{and}\\ \\dfrac{dv}{dy}\\ = \\ \\cos \\left(a\\ + \\ y\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the quotient rule",
             "added": true
@@ -131,7 +143,11 @@
             "style": "indent",
             "added": true
           },
-          "dx/dy = [sin(a + y)·cos y − sin y·cos(a + y)]/sin²(a + y)"
+          {
+            "text": "\\dfrac{dx}{dy}\\ = \\ \\dfrac{\\sin \\left(a\\ + \\ y\\right) \\cdot \\cos y\\ - \\ \\sin y \\cdot \\cos \\left(a\\ + \\ y\\right)}{\\sin ^{2}\\left(a\\ + \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -165,8 +181,16 @@
         "lines_compact": [
           "Differentiate with respect to y by the quotient rule,",
           "taking u = sin y and v = sin(a + y):",
-          "du/dy = cos y  and  dv/dy = cos(a + y)",
-          "dx/dy = [sin(a + y)·cos y − sin y·cos(a + y)]/sin²(a + y)"
+          {
+            "text": "\\dfrac{du}{dy}\\ = \\ \\cos y\\ \\text{and}\\ \\dfrac{dv}{dy}\\ = \\ \\cos \\left(a\\ + \\ y\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dx}{dy}\\ = \\ \\dfrac{\\sin \\left(a\\ + \\ y\\right) \\cdot \\cos y\\ - \\ \\sin y \\cdot \\cos \\left(a\\ + \\ y\\right)}{\\sin ^{2}\\left(a\\ + \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -189,7 +213,11 @@
             "text": "(put sin a in place of the numerator in step 2)",
             "added": true
           },
-          "∴ dx/dy = sin a/sin²(a + y)"
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dy}\\ = \\ \\dfrac{\\sin a}{\\sin ^{2}\\left(a\\ + \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -225,7 +253,11 @@
           "sin A cos B − cos A sin B = sin(A − B), with A = a + y",
           "and B = y",
           "sin(a + y)cos y − cos(a + y)sin y = sin((a + y) − y) = sin a",
-          "∴ dx/dy = sin a/sin²(a + y)"
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dy}\\ = \\ \\dfrac{\\sin a}{\\sin ^{2}\\left(a\\ + \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -241,24 +273,41 @@
             "added": true
           },
           "a is not a multiple of π, so sin a ≠ 0",
-          "and therefore dx/dy ≠ 0.",
           {
-            "text": "(dx/dy · dy/dx = 1, by the chain rule)",
+            "text": "\\text{and}\\ \\text{therefore}\\ \\dfrac{dx}{dy}\\ \\ne \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{dx}{dy}\\ \\cdot \\ \\dfrac{dy}{dx}\\ = \\ 1,\\ \\text{by}\\ \\text{the}\\ \\text{chain}\\ \\text{rule}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "A non-zero derivative may be inverted: dy/dx = 1/(dx/dy)",
           {
-            "text": "(put dx/dy = sin a/sin²(a + y))",
+            "text": "A\\ \\text{non} - \\text{zero}\\ \\text{derivative}\\ \\text{may}\\ \\text{be}\\ \\text{inverted}:\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\dfrac{dx}{dy}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{dx}{dy}\\ = \\ \\dfrac{\\sin a}{\\sin ^{2}\\left(a\\ + \\ y\\right)}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dx = 1/[sin a/sin²(a + y)]",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\dfrac{\\sin a}{\\sin ^{2}\\left(a\\ + \\ y\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by a fraction is multiplying by its reciprocal)",
             "added": true
           },
           {
-            "text": "∴ dy/dx = sin²(a + y)/sin a",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sin ^{2}\\left(a\\ + \\ y\\right)}{\\sin a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -292,12 +341,25 @@
         "memory_tip": "The answer is the reciprocal of the previous line. Check that the sine in the denominator is sin a, the constant one.",
         "lines_compact": [
           "a is not a multiple of π, so sin a ≠ 0",
-          "and therefore dx/dy ≠ 0.",
-          "A non-zero derivative may be inverted: dy/dx = 1/(dx/dy)",
-          "dy/dx = 1/[sin a/sin²(a + y)]",
           {
-            "text": "∴ dy/dx = sin²(a + y)/sin a",
-            "style": "boxed"
+            "text": "\\text{and}\\ \\text{therefore}\\ \\dfrac{dx}{dy}\\ \\ne \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "A\\ \\text{non} - \\text{zero}\\ \\text{derivative}\\ \\text{may}\\ \\text{be}\\ \\text{inverted}:\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\dfrac{dx}{dy}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{\\dfrac{\\sin a}{\\sin ^{2}\\left(a\\ + \\ y\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sin ^{2}\\left(a\\ + \\ y\\right)}{\\sin a}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

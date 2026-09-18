@@ -57,7 +57,11 @@
           "So the line through them has x-intercept a",
           "and y-intercept b.",
           "(the intercept form of a line with intercepts a and b)",
-          "Intercept form:  x/a + y/b = 1  ……(1)"
+          {
+            "text": "\\text{Intercept}\\ \\text{form}:\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,10 +110,15 @@
             "text": "(put x = h and y = k in (1))",
             "added": true
           },
-          "⇒ h/a + k/b = 1",
           {
-            "text": "∴ Condition is  h/a + k/b = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{h}{a} + \\ \\dfrac{k}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Condition}\\ \\text{is}\\ \\dfrac{h}{a} + \\ \\dfrac{k}{b} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "(multiply both sides by ab)",
@@ -117,8 +126,16 @@
           },
           "Clearing the fractions: bh + ak = ab",
           "Check: a = 2, b = 3 gives 3x + 2y = 6; the",
-          "point (1, 3/2) gives 1/2 + 1/2 = 1 and does",
-          "satisfy 3(1) + 2(3/2) = 6."
+          {
+            "text": "\\text{point}\\ \\left(1,\\ \\dfrac{3}{2}\\right)\\ \\text{gives}\\ \\dfrac{1}{2} + \\ \\dfrac{1}{2} = \\ 1\\ \\text{and}\\ \\text{does}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{satisfy}\\ 3\\left(1\\right)\\ + \\ 2\\left(\\dfrac{3}{2}\\right)\\ = \\ 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -150,15 +167,28 @@
         "lines_compact": [
           "The three points are collinear when (h, k)",
           "also lies on (1).",
-          "⇒ h/a + k/b = 1",
           {
-            "text": "∴ Condition is  h/a + k/b = 1",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ \\dfrac{h}{a} + \\ \\dfrac{k}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Condition}\\ \\text{is}\\ \\dfrac{h}{a} + \\ \\dfrac{k}{b} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           },
           "Clearing the fractions: bh + ak = ab",
           "Check: a = 2, b = 3 gives 3x + 2y = 6; the",
-          "point (1, 3/2) gives 1/2 + 1/2 = 1 and does",
-          "satisfy 3(1) + 2(3/2) = 6."
+          {
+            "text": "\\text{point}\\ \\left(1,\\ \\dfrac{3}{2}\\right)\\ \\text{gives}\\ \\dfrac{1}{2} + \\ \\dfrac{1}{2} = \\ 1\\ \\text{and}\\ \\text{does}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{satisfy}\\ 3\\left(1\\right)\\ + \\ 2\\left(\\dfrac{3}{2}\\right)\\ = \\ 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

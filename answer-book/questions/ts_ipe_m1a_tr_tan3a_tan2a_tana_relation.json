@@ -52,12 +52,20 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "2A and 3A are not odd multiples of π/2,",
+          {
+            "text": "2A\\ \\text{and}\\ 3A\\ \\text{are}\\ \\text{not}\\ \\text{odd}\\ \\text{multiples}\\ \\text{of}\\ \\dfrac{\\pi }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so tan 2A and tan 3A exist. Nor is A one,",
           "because 3A would then be one as well.",
           "Write 3A = 2A + A.",
           "Use the tan(A + B) formula with 2A and A:",
-          "tan 3A = (tan2A + tanA)/(1 − tan2A tanA)"
+          {
+            "text": "\\tan 3A\\ = \\ \\dfrac{\\tan 2A\\ + \\ \\tan A}{1\\ - \\ \\tan 2A\\tan A}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

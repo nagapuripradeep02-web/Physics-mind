@@ -52,21 +52,42 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "3A is not an odd multiple of π/2, so tan 3A",
+          {
+            "text": "3A\\ \\text{is}\\ \\text{not}\\ \\text{an}\\ \\text{odd}\\ \\text{multiple}\\ \\text{of}\\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\tan 3A",
+            "style": "normal",
+            "render": "katex"
+          },
           "exists and 1 − 3tan²A ≠ 0.",
           "(tan 60° = √3)",
           "tan(60° + A) tan(60° − A)",
-          "= [(√3 + tanA)/(1 − √3 tanA)] ×",
           {
-            "text": "[(√3 − tanA)/(1 + √3 tanA)]",
-            "style": "indent"
+            "text": "= \\ \\left[\\dfrac{\\sqrt{3}\\ + \\ \\tan A}{1\\ - \\ \\sqrt{3}\\tan A}\\right]\\ \\times",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\dfrac{\\sqrt{3}\\ - \\ \\tan A}{1\\ + \\ \\sqrt{3}\\tan A}\\right]",
+            "style": "indent",
+            "render": "katex"
           },
           "(top: (√3)² − tan²A; bottom: 1 − 3tan²A)",
-          "= (3 − tan²A)/(1 − 3tan²A)",
+          {
+            "text": "= \\ \\dfrac{3\\ - \\ \\tan ^{2} A}{1\\ - \\ 3\\tan ^{2} A}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by tanA:",
           "∴ tanA tan(60° + A) tan(60° − A)",
-          "= (3tanA − tan³A)/(1 − 3tan²A) = tan 3A",
-          "(tan 3A = (3tanA − tan³A)/(1 − 3tan²A))"
+          {
+            "text": "= \\ \\dfrac{3\\tan A\\ - \\ \\tan ^{3} A}{1\\ - \\ 3\\tan ^{2} A} = \\ \\tan 3A",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan 3A\\ = \\ \\dfrac{3\\tan A\\ - \\ \\tan ^{3} A}{1\\ - \\ 3\\tan ^{2} A}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

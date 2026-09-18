@@ -60,7 +60,11 @@
           "Every point on this parabola has x₁ ≥ 0,",
           "and a is a fixed positive number,",
           "so SP = x₁ + a is smallest when x₁ = 0",
-          "(x₁ = y₁²/(4a) ≥ 0, because y₁² ≥ 0 and a > 0)"
+          {
+            "text": "\\left(x_{1}\\ = \\ \\dfrac{y_{1}^{2}}{4a} \\ge \\ 0,\\ \\text{because}\\ y_{1}^{2}\\ \\ge \\ 0\\ \\text{and}\\ a\\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The focal distance formula SP = x₁ + a is an increasing function of x₁ alone, since a is fixed, so its smallest value over every point of the curve happens at the smallest possible x₁, which is 0.",
         "common_mistakes": [

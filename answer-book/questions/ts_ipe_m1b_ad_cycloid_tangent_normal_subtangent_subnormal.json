@@ -64,27 +64,56 @@
             "text": "  1 + cos t = 2cos²(t/2))",
             "style": "indent"
           },
-          "x = a(t + sin t)  ⇒  dx/dt = a(1 + cos t) = 2a cos²(t/2)",
+          {
+            "text": "x\\ = \\ a\\left(t\\ + \\ \\sin t\\right)\\ \\Rightarrow \\ \\dfrac{dx}{dt}\\ = \\ a\\left(1\\ + \\ \\cos t\\right)\\ = \\ 2a\\cos ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(d/dt of −cos t is sin t;",
           {
             "text": "  sin t = 2 sin(t/2)cos(t/2))",
             "style": "indent"
           },
-          "y = a(1 − cos t)  ⇒  dy/dt = a sin t = 2a sin(t/2)cos(t/2)",
+          {
+            "text": "y\\ = \\ a\\left(1\\ - \\ \\cos t\\right)\\ \\Rightarrow \\ \\dfrac{dy}{dt}\\ = \\ a\\sin t\\ = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(for x and y given in terms of t,",
           {
             "text": "  dy/dx = (dy/dt)/(dx/dt))",
             "style": "indent"
           },
-          "m = dy/dx = (dy/dt)/(dx/dt)",
           {
-            "text": "  = [2a sin(t/2)cos(t/2)]/[2a cos²(t/2)]",
-            "style": "indent"
+            "text": "m\\ = \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
           },
-          "(cancel 2a and one cos(t/2); sin/cos = tan)",
-          "∴ m = tan(t/2)",
-          "(1 − cos t = 2sin²(t/2))",
-          "Also  y = a(1 − cos t) = 2a sin²(t/2)",
+          {
+            "text": "= \\ \\dfrac{2a\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)}{2a\\cos ^{2}\\left(\\dfrac{t}{2}\\right)}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{cancel}\\ 2a\\ \\text{and}\\ \\text{one}\\ \\cos \\left(\\dfrac{t}{2}\\right);\\ \\dfrac{\\sin }{\\cos } = \\ \\tan \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ \\tan \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ \\cos t\\ = \\ 2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ y\\ = \\ a\\left(1\\ - \\ \\cos t\\right)\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take a > 0 and 0 < t < π, so sin(t/2) > 0, cos(t/2) > 0",
           "and every length below is positive."
         ],
@@ -138,15 +167,33 @@
             "added": true
           },
           "At a point where the slope is m,",
-          "subtangent = y/m,   subnormal = ym,",
-          "length of tangent = |y√(1 + m²)/m|,",
+          {
+            "text": "\\text{subtangent}\\ = \\ \\dfrac{y}{m},\\ \\text{subnormal}\\ = \\ ym,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\left|\\dfrac{y\\sqrt{1\\ + \\ m^{2}}}{m}\\right|,",
+            "style": "normal",
+            "render": "katex"
+          },
           "length of normal = |y√(1 + m²)|",
           {
-            "text": "(1 + tan²θ = sec²θ, used with θ = t/2)",
+            "text": "\\left(1\\ + \\ \\tan ^{2} \\theta \\ = \\ \\sec ^{2} \\theta ,\\ \\text{used}\\ \\text{with}\\ \\theta \\ = \\ \\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Here m = tan(t/2), so",
-          "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
+          {
+            "text": "\\text{Here}\\ m\\ = \\ \\tan \\left(\\dfrac{t}{2}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ m^{2}\\ = \\ 1\\ + \\ \\tan ^{2}\\left(\\dfrac{t}{2}\\right)\\ = \\ \\sec ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sec(t/2) > 0 because cos(t/2) > 0,",
             "added": true
@@ -156,7 +203,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ √(1 + m²) = sec(t/2)"
+          {
+            "text": "\\therefore \\ \\sqrt{1\\ + \\ m^{2}}\\ = \\ \\sec \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -191,12 +242,32 @@
         "memory_tip": "Sub-TANGENT goes with the tangent, so m is underneath, as in the length of the tangent, while the subnormal ym has m multiplying, as in the length of the normal; sub-NORMAL goes with the normal, so m multiplies.",
         "lines_compact": [
           "At a point where the slope is m,",
-          "subtangent = y/m,   subnormal = ym,",
-          "length of tangent = |y√(1 + m²)/m|,",
+          {
+            "text": "\\text{subtangent}\\ = \\ \\dfrac{y}{m},\\ \\text{subnormal}\\ = \\ ym,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\left|\\dfrac{y\\sqrt{1\\ + \\ m^{2}}}{m}\\right|,",
+            "style": "normal",
+            "render": "katex"
+          },
           "length of normal = |y√(1 + m²)|",
-          "Here m = tan(t/2), so",
-          "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
-          "∴ √(1 + m²) = sec(t/2)"
+          {
+            "text": "\\text{Here}\\ m\\ = \\ \\tan \\left(\\dfrac{t}{2}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ + \\ m^{2}\\ = \\ 1\\ + \\ \\tan ^{2}\\left(\\dfrac{t}{2}\\right)\\ = \\ \\sec ^{2}\\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\sqrt{1\\ + \\ m^{2}}\\ = \\ \\sec \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -208,10 +279,16 @@
         "margin_note": "Third mark. The subtangent simplifies all the way to a sin t.",
         "lines": [
           {
-            "text": "(put y = 2a sin²(t/2) and m = tan(t/2) from step 1)",
+            "text": "\\left(\\text{put}\\ y\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\text{and}\\ m\\ = \\ \\tan \\left(\\dfrac{t}{2}\\right)\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
+          {
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{y}{m} = \\ \\dfrac{2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)}{\\tan \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by tan(t/2) is multiplying",
             "added": true
@@ -221,27 +298,55 @@
             "style": "indent",
             "added": true
           },
-          "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",
           {
-            "text": "(one sin(t/2) cancels; 2 sin(t/2)cos(t/2) = sin t)",
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\dfrac{\\cos \\left(\\dfrac{t}{2}\\right)}{\\sin \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{one}\\ \\sin \\left(\\dfrac{t}{2}\\right)\\ \\text{cancels};\\ 2\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)\\ = \\ \\sin t\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2a sin(t/2)cos(t/2) = a sin t",
           {
-            "text": "(multiply y = 2a sin²(t/2) by m = tan(t/2))",
+            "text": "= \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)\\ = \\ a\\sin t",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ y\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\text{by}\\ m\\ = \\ \\tan \\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Subnormal = ym = 2a sin²(t/2) · tan(t/2)",
           {
-            "text": "(tan(t/2) = sin(t/2)/cos(t/2))",
+            "text": "\\text{Subnormal}\\ = \\ ym\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\tan \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan \\left(\\dfrac{t}{2}\\right)\\ = \\ \\dfrac{\\sin \\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2a sin³(t/2)/cos(t/2)",
           {
-            "text": "(2a sin²(t/2) = a(1 − cos t), from step 1)",
+            "text": "= \\ \\dfrac{2a\\sin ^{3}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ = \\ a\\left(1\\ - \\ \\cos t\\right),\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "which may also be written as a(1 − cos t)tan(t/2)."
+          {
+            "text": "\\text{which}\\ \\text{may}\\ \\text{also}\\ \\text{be}\\ \\text{written}\\ \\text{as}\\ a\\left(1\\ - \\ \\cos t\\right)\\tan \\left(\\dfrac{t}{2}\\right).",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -275,12 +380,36 @@
         ],
         "memory_tip": "Dividing by tan(t/2) is multiplying by cos(t/2)/sin(t/2), and one sin(t/2) cancels.",
         "lines_compact": [
-          "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
-          "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",
-          "= 2a sin(t/2)cos(t/2) = a sin t",
-          "Subnormal = ym = 2a sin²(t/2) · tan(t/2)",
-          "= 2a sin³(t/2)/cos(t/2)",
-          "which may also be written as a(1 − cos t)tan(t/2)."
+          {
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{y}{m} = \\ \\dfrac{2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)}{\\tan \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\dfrac{\\cos \\left(\\dfrac{t}{2}\\right)}{\\sin \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\cos \\left(\\dfrac{t}{2}\\right)\\ = \\ a\\sin t",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Subnormal}\\ = \\ ym\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\tan \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2a\\sin ^{3}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{which}\\ \\text{may}\\ \\text{also}\\ \\text{be}\\ \\text{written}\\ \\text{as}\\ a\\left(1\\ - \\ \\cos t\\right)\\tan \\left(\\dfrac{t}{2}\\right).",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -300,10 +429,15 @@
             "style": "indent",
             "added": true
           },
-          "Length of tangent = |y√(1 + m²)/m|",
           {
-            "text": "  = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
-            "style": "indent"
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\left|\\dfrac{y\\sqrt{1\\ + \\ m^{2}}}{m}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right) \\cdot \\dfrac{\\sec \\left(\\dfrac{t}{2}\\right)}{\\tan \\left(\\dfrac{t}{2}\\right)}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(sec(t/2) = 1/cos(t/2), and dividing by tan(t/2)",
@@ -314,40 +448,62 @@
             "style": "indent",
             "added": true
           },
-          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2))",
           {
-            "text": "(cos(t/2) cancels, and one sin(t/2) cancels)",
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{\\cos \\left(\\dfrac{t}{2}\\right)}\\right)\\ \\cdot \\ \\left(\\dfrac{\\cos \\left(\\dfrac{t}{2}\\right)}{\\sin \\left(\\dfrac{t}{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\cos \\left(\\dfrac{t}{2}\\right)\\ \\text{cancels},\\ \\text{and}\\ \\text{one}\\ \\sin \\left(\\dfrac{t}{2}\\right)\\ \\text{cancels}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = 2a sin(t/2)",
-            "style": "indent"
+            "text": "= \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(multiply y by √(1 + m²) = sec(t/2))",
+            "text": "\\left(\\text{multiply}\\ y\\ \\text{by}\\ \\sqrt{1\\ + \\ m^{2}}\\ = \\ \\sec \\left(\\dfrac{t}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
           {
-            "text": "(sin²(t/2)/cos(t/2) = sin(t/2) · sin(t/2)/cos(t/2))",
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{normal}\\ = \\ \\left|y\\sqrt{1\\ + \\ m^{2}}\\right|\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right) \\cdot \\sec \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin ^{2}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)} = \\ \\sin \\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
           {
-            "text": "∴ length of tangent = 2a sin(t/2),",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)} = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\tan \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "length of normal = 2a sin(t/2)tan(t/2),",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{length}\\ \\text{of}\\ \\text{tangent}\\ = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right),",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{normal}\\ = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\tan \\left(\\dfrac{t}{2}\\right),",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "subtangent = a sin t,",
             "style": "boxed"
           },
           {
-            "text": "subnormal = 2a sin³(t/2)/cos(t/2)",
-            "style": "boxed"
+            "text": "\\text{subnormal}\\ = \\ \\dfrac{2a\\sin ^{3}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -382,33 +538,54 @@
         ],
         "memory_tip": "The two lengths differ by one factor of m: length of normal = m × length of tangent, exactly as subnormal = m² × subtangent.",
         "lines_compact": [
-          "Length of tangent = |y√(1 + m²)/m|",
           {
-            "text": "  = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
-            "style": "indent"
-          },
-          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2))",
-          {
-            "text": "  = 2a sin(t/2)",
-            "style": "indent"
-          },
-          "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
-          "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
-          {
-            "text": "∴ length of tangent = 2a sin(t/2),",
-            "style": "boxed"
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{tangent}\\ = \\ \\left|\\dfrac{y\\sqrt{1\\ + \\ m^{2}}}{m}\\right|",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "length of normal = 2a sin(t/2)tan(t/2),",
-            "style": "boxed"
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right) \\cdot \\dfrac{\\sec \\left(\\dfrac{t}{2}\\right)}{\\tan \\left(\\dfrac{t}{2}\\right)}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{\\cos \\left(\\dfrac{t}{2}\\right)}\\right)\\ \\cdot \\ \\left(\\dfrac{\\cos \\left(\\dfrac{t}{2}\\right)}{\\sin \\left(\\dfrac{t}{2}\\right)}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{normal}\\ = \\ \\left|y\\sqrt{1\\ + \\ m^{2}}\\right|\\ = \\ 2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right) \\cdot \\sec \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2a\\sin ^{2}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)} = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\tan \\left(\\dfrac{t}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{length}\\ \\text{of}\\ \\text{tangent}\\ = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right),",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{length}\\ \\text{of}\\ \\text{normal}\\ = \\ 2a\\sin \\left(\\dfrac{t}{2}\\right)\\tan \\left(\\dfrac{t}{2}\\right),",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "subtangent = a sin t,",
             "style": "boxed"
           },
           {
-            "text": "subnormal = 2a sin³(t/2)/cos(t/2)",
-            "style": "boxed"
+            "text": "\\text{subnormal}\\ = \\ \\dfrac{2a\\sin ^{3}\\left(\\dfrac{t}{2}\\right)}{\\cos \\left(\\dfrac{t}{2}\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

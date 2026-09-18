@@ -143,7 +143,11 @@
             "text": "(the quadratic formula with coefficients 3, −110, 600)",
             "added": true
           },
-          "x = [110 ± √(110² − 4·3·600)] / (2·3)",
+          {
+            "text": "x\\ = \\ \\dfrac{110\\ \\pm \\ \\sqrt{110^{2}\\ - \\ 4 \\cdot 3 \\cdot 600}}{2 \\cdot 3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(110² = 12100, 4 · 3 · 600 = 7200,",
             "added": true
@@ -153,10 +157,15 @@
             "style": "indent",
             "added": true
           },
-          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6",
           {
-            "text": "  = (110 ± 70)/6",
-            "style": "indent"
+            "text": "= \\ \\dfrac{110\\ \\pm \\ \\sqrt{12100\\ - \\ 7200}}{6} = \\ \\dfrac{110\\ \\pm \\ \\sqrt{4900}}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{110\\ \\pm \\ 70}{6}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(110 + 70 = 180 and 110 − 70 = 40;",
@@ -167,7 +176,11 @@
             "style": "indent",
             "added": true
           },
-          "x = 180/6 = 30   or   x = 40/6 = 20/3"
+          {
+            "text": "x\\ = \\ \\dfrac{180}{6} = \\ 30\\ \\text{or}\\ x\\ = \\ \\dfrac{40}{6} = \\ \\dfrac{20}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -201,13 +214,26 @@
         "lines_compact": [
           "V′(x) = 12x² − 440x + 2400 = 4(3x² − 110x + 600)",
           "V′(x) = 0   ⇒   3x² − 110x + 600 = 0",
-          "x = [110 ± √(110² − 4·3·600)] / (2·3)",
-          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6",
           {
-            "text": "  = (110 ± 70)/6",
-            "style": "indent"
+            "text": "x\\ = \\ \\dfrac{110\\ \\pm \\ \\sqrt{110^{2}\\ - \\ 4 \\cdot 3 \\cdot 600}}{2 \\cdot 3}",
+            "style": "normal",
+            "render": "katex"
           },
-          "x = 180/6 = 30   or   x = 40/6 = 20/3"
+          {
+            "text": "= \\ \\dfrac{110\\ \\pm \\ \\sqrt{12100\\ - \\ 7200}}{6} = \\ \\dfrac{110\\ \\pm \\ \\sqrt{4900}}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{110\\ \\pm \\ 70}{6}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ \\dfrac{180}{6} = \\ 30\\ \\text{or}\\ x\\ = \\ \\dfrac{40}{6} = \\ \\dfrac{20}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -227,12 +253,26 @@
           "If x = 30, then the breadth is 30 − 2(30) = −30 cm,",
           "a negative length. No box exists, so this root is rejected.",
           {
-            "text": "(20/3 ≈ 6.67; 30 − 40/3 = 50/3 and 80 − 40/3 = 200/3)",
+            "text": "\\left(\\dfrac{20}{3} \\approx \\ 6.67;\\ 30\\ - \\ \\dfrac{40}{3} = \\ \\dfrac{50}{3}\\text{and}\\ 80\\ - \\ \\dfrac{40}{3} = \\ \\dfrac{200}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm",
-          "and the length is 200/3 ≈ 66.67 cm, both positive.",
-          "∴ x = 20/3 is the only usable root."
+          {
+            "text": "\\text{If}\\ x\\ = \\ \\dfrac{20}{3} \\approx \\ 6.67,\\ \\text{then}\\ \\text{the}\\ \\text{breadth}\\ \\text{is}\\ \\dfrac{50}{3} \\approx \\ 16.67cm",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{length}\\ \\text{is}\\ \\dfrac{200}{3} \\approx \\ 66.67cm,\\ \\text{both}\\ \\text{positive}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{20}{3}\\text{is}\\ \\text{the}\\ \\text{only}\\ \\text{usable}\\ \\text{root}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -269,9 +309,21 @@
           "so test both roots against it.",
           "If x = 30, then the breadth is 30 − 2(30) = −30 cm,",
           "a negative length. No box exists, so this root is rejected.",
-          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm",
-          "and the length is 200/3 ≈ 66.67 cm, both positive.",
-          "∴ x = 20/3 is the only usable root."
+          {
+            "text": "\\text{If}\\ x\\ = \\ \\dfrac{20}{3} \\approx \\ 6.67,\\ \\text{then}\\ \\text{the}\\ \\text{breadth}\\ \\text{is}\\ \\dfrac{50}{3} \\approx \\ 16.67cm",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{length}\\ \\text{is}\\ \\dfrac{200}{3} \\approx \\ 66.67cm,\\ \\text{both}\\ \\text{positive}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{20}{3}\\text{is}\\ \\text{the}\\ \\text{only}\\ \\text{usable}\\ \\text{root}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -288,10 +340,16 @@
           },
           "V″(x) = 24x − 440",
           {
-            "text": "(24 × 20/3 = 480/3 = 160)",
+            "text": "\\left(24\\ \\times \\ \\dfrac{20}{3} = \\ \\dfrac{480}{3} = \\ 160\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{20}{3}:\\ V''\\ = \\ 24\\left(\\dfrac{20}{3}\\right)\\ - \\ 440\\ = \\ 160\\ - \\ 440",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −280 < 0",
             "style": "indent"
@@ -307,7 +365,11 @@
             "style": "indent",
             "added": true
           },
-          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27",
+          {
+            "text": "\\text{Greatest}\\ \\text{volume}\\ = \\ \\left(\\dfrac{20}{3}\\right)\\left(\\dfrac{50}{3}\\right)\\left(\\dfrac{200}{3}\\right)\\ = \\ \\dfrac{200000}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ≈ 7407.41 cm³",
             "style": "indent"
@@ -324,8 +386,9 @@
           "Check: x = 6 gives 7344 cm³",
           "and x = 7 gives 7392 cm³, both less.",
           {
-            "text": "∴ x = 20/3 cm ≈ 6.67 cm",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{20}{3}cm\\ \\approx \\ 6.67cm",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "gives the greatest volume",
@@ -363,14 +426,22 @@
         "memory_tip": "Second derivative negative means the graph bends downward there, so the stationary point is a local maximum; on 0 < x < 15 it gives the greatest volume.",
         "lines_compact": [
           "V″(x) = 24x − 440",
-          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440",
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\dfrac{20}{3}:\\ V''\\ = \\ 24\\left(\\dfrac{20}{3}\\right)\\ - \\ 440\\ = \\ 160\\ - \\ 440",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −280 < 0",
             "style": "indent"
           },
           "A negative second derivative means the volume",
           "is maximum at this value.",
-          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27",
+          {
+            "text": "\\text{Greatest}\\ \\text{volume}\\ = \\ \\left(\\dfrac{20}{3}\\right)\\left(\\dfrac{50}{3}\\right)\\left(\\dfrac{200}{3}\\right)\\ = \\ \\dfrac{200000}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  ≈ 7407.41 cm³",
             "style": "indent"
@@ -378,8 +449,9 @@
           "Check: x = 6 gives 7344 cm³",
           "and x = 7 gives 7392 cm³, both less.",
           {
-            "text": "∴ x = 20/3 cm ≈ 6.67 cm",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{20}{3}cm\\ \\approx \\ 6.67cm",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "gives the greatest volume",

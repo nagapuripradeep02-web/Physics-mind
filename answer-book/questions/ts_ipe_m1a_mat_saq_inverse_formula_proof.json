@@ -334,8 +334,9 @@
           },
           "If AB = I then B = A⁻¹, so",
           {
-            "text": "A⁻¹ = (Adj A)/(det A)",
-            "style": "boxed"
+            "text": "A^{-1}\\ = \\ \\dfrac{\\operatorname{Adj} A}{\\operatorname{det} A}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -376,8 +377,9 @@
           },
           "If AB = I then B = A⁻¹, so",
           {
-            "text": "A⁻¹ = (Adj A)/(det A)",
-            "style": "boxed"
+            "text": "A^{-1}\\ = \\ \\dfrac{\\operatorname{Adj} A}{\\operatorname{det} A}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -61,7 +61,11 @@
             "text": "  a point to a line)",
             "style": "indent"
           },
-          "Distance d = |ax₁ + by₁ + c| / √(a² + b²)"
+          {
+            "text": "\\text{Distance}\\ d\\ = \\ \\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -117,7 +121,11 @@
             "added": true
           },
           "√(a² + b²) = √(25 + 4) = √29",
-          "∴ d = |0|/√29 = 0",
+          {
+            "text": "\\therefore \\ d\\ = \\ \\dfrac{\\left|0\\right|}{\\sqrt{29}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Length of the perpendicular is 0",
             "style": "boxed"
@@ -156,7 +164,11 @@
           "The value is 0, so P satisfies the line.",
           "That is, P lies on the line itself.",
           "√(a² + b²) = √(25 + 4) = √29",
-          "∴ d = |0|/√29 = 0",
+          {
+            "text": "\\therefore \\ d\\ = \\ \\dfrac{\\left|0\\right|}{\\sqrt{29}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Length of the perpendicular is 0",
             "style": "boxed"

@@ -80,13 +80,33 @@
             "style": "indent"
           },
           "2g = −6 ⇒ g = −3",
-          "2f = −9 ⇒ f = −9/2",
-          "Here g = −3, f = −9/2, c = 13",
-          "Centre C₁ = (−g, −f) = (3, 9/2)",
+          {
+            "text": "2f\\ = \\ - 9\\ \\Rightarrow \\ f\\ = \\ - \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ g\\ = \\ - 3,\\ f\\ = \\ - \\dfrac{9}{2},\\ c\\ = \\ 13",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Centre}\\ C_{1}\\ = \\ \\left( - g,\\ - f\\right)\\ = \\ \\left(3,\\ \\dfrac{9}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Radius r₁ = √(g² + f² − c)",
-          "r₁ = √(9 + 81/4 − 13)",
+          {
+            "text": "r_{1}\\ = \\ \\sqrt{9\\ + \\ \\dfrac{81}{4} - \\ 13}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Write every term over 4:",
-          "= √((36 + 81 − 52)/4) = √(65/4) = √65/2"
+          {
+            "text": "= \\ \\sqrt{\\dfrac{36\\ + \\ 81\\ - \\ 52}{4}}\\ = \\ \\sqrt{\\dfrac{65}{4}}\\ = \\ \\dfrac{\\sqrt{65}}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Comparing with the general form gives 2f = −9, so f = −9/2. Writing 9 and 13 over 4 as 36/4 and 52/4 lets the whole expression be squared and rooted in one step.",
         "common_mistakes": [
@@ -162,13 +182,27 @@
             "style": "indent",
             "added": true
           },
-          "C₁C₂ = √((3−1)² + (9/2 − 8)²)",
           {
-            "text": "9/2 − 8 = 9/2 − 16/2 = −7/2",
+            "text": "C_{1}C_{2}\\ = \\ \\sqrt{\\left(3 - 1\\right)^{2}\\ + \\ \\left(\\dfrac{9}{2} - \\ 8\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{9}{2} - \\ 8\\ = \\ \\dfrac{9}{2} - \\ \\dfrac{16}{2} = \\ - \\dfrac{7}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= √(4 + 49/4) = √((16 + 49)/4) = √65/2",
-          "Also r₂ − r₁ = √65 − √65/2 = √65/2",
+          {
+            "text": "= \\ \\sqrt{4\\ + \\ \\dfrac{49}{4}}\\ = \\ \\sqrt{\\dfrac{16\\ + \\ 49}{4}}\\ = \\ \\dfrac{\\sqrt{65}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ r_{2}\\ - \\ r_{1}\\ = \\ \\sqrt{65}\\ - \\ \\dfrac{\\sqrt{65}}{2} = \\ \\dfrac{\\sqrt{65}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ C₁C₂ = r₂ − r₁",
           "∴ The circles touch each other internally."
         ],
@@ -178,9 +212,21 @@
           "Writing r₁ − r₂, which is negative and cannot equal a distance."
         ],
         "lines_compact": [
-          "C₁C₂ = √((3−1)² + (9/2 − 8)²)",
-          "= √(4 + 49/4) = √((16 + 49)/4) = √65/2",
-          "Also r₂ − r₁ = √65 − √65/2 = √65/2",
+          {
+            "text": "C_{1}C_{2}\\ = \\ \\sqrt{\\left(3 - 1\\right)^{2}\\ + \\ \\left(\\dfrac{9}{2} - \\ 8\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{4\\ + \\ \\dfrac{49}{4}}\\ = \\ \\sqrt{\\dfrac{16\\ + \\ 49}{4}}\\ = \\ \\dfrac{\\sqrt{65}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ r_{2}\\ - \\ r_{1}\\ = \\ \\sqrt{65}\\ - \\ \\dfrac{\\sqrt{65}}{2} = \\ \\dfrac{\\sqrt{65}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ C₁C₂ = r₂ − r₁",
           "∴ The circles touch each other internally."
         ]
@@ -194,7 +240,11 @@
         "margin_note": "Two marks. Internal touching uses the EXTERNAL division formula, with the minus sign in the denominator.",
         "memory_tip": "The contact point lies beyond one centre, not between them, so the division is external.",
         "lines": [
-          "r₁ : r₂ = (√65/2) : √65 = 1 : 2",
+          {
+            "text": "r_{1}\\ :\\ r_{2}\\ = \\ \\left(\\dfrac{\\sqrt{65}}{2}\\right)\\ :\\ \\sqrt{65}\\ = \\ 1\\ :\\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "For an internal touch the point of contact",
             "added": true
@@ -215,16 +265,27 @@
             "added": true
           },
           {
-            "text": "  ((mx₂ − nx₁)/(m − n), (my₂ − ny₁)/(m − n))",
+            "text": "\\left(\\dfrac{mx_{2}\\ - \\ nx_{1}}{m\\ - \\ n},\\ \\dfrac{my_{2}\\ - \\ ny_{1}}{m\\ - \\ n}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Here m = 1, n = 2, C₁ = (3, 9/2), C₂ = (1, 8)",
+            "text": "\\text{Here}\\ m\\ = \\ 1,\\ n\\ = \\ 2,\\ C_{1}\\ = \\ \\left(3,\\ \\dfrac{9}{2}\\right),\\ C_{2}\\ = \\ \\left(1,\\ 8\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "P = ((1(1) − 2(3))/(1−2), (1(8) − 2(9/2))/(1−2))",
-          "= ((1 − 6)/(−1), (8 − 9)/(−1))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{1\\left(1\\right)\\ - \\ 2\\left(3\\right)}{1 - 2},\\ \\dfrac{1\\left(8\\right)\\ - \\ 2\\left(\\dfrac{9}{2}\\right)}{1 - 2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1\\ - \\ 6}{ - 1},\\ \\dfrac{8\\ - \\ 9}{ - 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ P = (5, 1)"
         ],
         "why": "For internal touching the smaller circle is inside the larger, so the contact point lies on the line of centres but outside the segment joining them. That is external division in the ratio r₁ : r₂.",
@@ -233,10 +294,22 @@
           "Dividing by (1 + 2) instead of (1 − 2)."
         ],
         "lines_compact": [
-          "r₁ : r₂ = (√65/2) : √65 = 1 : 2",
+          {
+            "text": "r_{1}\\ :\\ r_{2}\\ = \\ \\left(\\dfrac{\\sqrt{65}}{2}\\right)\\ :\\ \\sqrt{65}\\ = \\ 1\\ :\\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "P divides C₁C₂ externally in the ratio 1 : 2",
-          "P = ((1(1) − 2(3))/(1−2), (1(8) − 2(9/2))/(1−2))",
-          "= ((1 − 6)/(−1), (8 − 9)/(−1))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{1\\left(1\\right)\\ - \\ 2\\left(3\\right)}{1 - 2},\\ \\dfrac{1\\left(8\\right)\\ - \\ 2\\left(\\dfrac{9}{2}\\right)}{1 - 2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1\\ - \\ 6}{ - 1},\\ \\dfrac{8\\ - \\ 9}{ - 1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ P = (5, 1)"
         ]
       },

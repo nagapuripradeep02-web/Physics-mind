@@ -79,9 +79,17 @@
           "Put x = tanθ ⇒ dx = sec²θ dθ",
           "Change the limits with the substitution:",
           "x = 0 ⇒ tanθ = 0 ⇒ θ = 0",
-          "x = 1 ⇒ tanθ = 1 ⇒ θ = π/4",
+          {
+            "text": "x\\ = \\ 1\\ \\Rightarrow \\ \\tan \\theta \\ = \\ 1\\ \\Rightarrow \\ \\theta \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Also 1 + x² = 1 + tan²θ = sec²θ",
-          "∴ I = ∫₀¹ log(1 + x)/(1 + x²) dx",
+          {
+            "text": "\\therefore \\ I\\ = \\ \\int _{0}^{1}\\ \\dfrac{\\log \\left(1\\ + \\ x\\right)}{1\\ + \\ x^{2}}dx",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\int _{0}^{\\pi /4} \\log (1 + \\tan \\theta )/\\sec ^{2}\\theta \\cdot \\sec ^{2}\\theta d\\theta",
             "render": "katex",
@@ -110,30 +118,49 @@
         "memory_tip": "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ). Adding 1 to it gives 2/(1 + tanθ).",
         "lines": [
           {
-            "text": "Use ∫₀ᵃ f(θ)dθ = ∫₀ᵃ f(a − θ)dθ, a = π/4.",
+            "text": "\\text{Use}\\ \\int _{0}^{a}\\ f\\left(\\theta \\right)d\\theta \\ = \\ \\int _{0}^{a}\\ f\\left(a\\ - \\ \\theta \\right)d\\theta ,\\ a\\ = \\ \\dfrac{\\pi }{4}.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "By θ → π/4 − θ:",
+          {
+            "text": "\\text{By}\\ \\theta \\ \\to \\ \\dfrac{\\pi }{4} - \\ \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I = \\int _{0}^{\\pi /4} \\log [1 + \\tan (\\pi /4 - \\theta )] d\\theta",
             "render": "katex",
             "style": "normal"
           },
-          "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ)",
           {
-            "text": "[tan(A−B) formula, with tan(π/4) = 1]",
+            "text": "\\tan \\left(\\dfrac{\\pi }{4} - \\ \\theta \\right)\\ = \\ \\dfrac{1\\ - \\ \\tan \\theta }{1\\ + \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\tan \\left(A - B\\right)\\ \\text{formula},\\ \\text{with}\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "1 + (1 − tanθ)/(1 + tanθ)",
+            "text": "1\\ + \\ \\dfrac{1\\ - \\ \\tan \\theta }{1\\ + \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = [(1 + tanθ) + (1 − tanθ)]/(1 + tanθ)",
+            "text": "= \\ \\dfrac{\\left(1\\ + \\ \\tan \\theta \\right)\\ + \\ \\left(1\\ - \\ \\tan \\theta \\right)}{1\\ + \\ \\tan \\theta }",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "1 + tan(π/4 − θ) = 2/(1 + tanθ)",
+          {
+            "text": "1\\ + \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\theta \\right)\\ = \\ \\dfrac{2}{1\\ + \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log [2/(1 + \\tan \\theta )] d\\theta",
             "render": "katex",
@@ -146,7 +173,9 @@
             "added": true
           },
           {
-            "text": "= log2·(π/4 − 0) − I = (π/4)log2 − I, by (1)",
+            "text": "= \\ \\log 2 \\cdot \\left(\\dfrac{\\pi }{4} - \\ 0\\right)\\ - \\ I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2\\ - \\ I,\\ \\text{by}\\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -156,21 +185,37 @@
           "Skipping the log-splitting step log[2/(1+tanθ)] = log2 − log(1+tanθ)."
         ],
         "lines_compact": [
-          "By θ → π/4 − θ:",
+          {
+            "text": "\\text{By}\\ \\theta \\ \\to \\ \\dfrac{\\pi }{4} - \\ \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I = \\int _{0}^{\\pi /4} \\log [1 + \\tan (\\pi /4 - \\theta )] d\\theta",
             "render": "katex",
             "style": "normal"
           },
-          "tan(π/4 − θ) = (1 − tanθ)/(1 + tanθ)",
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4} - \\ \\theta \\right)\\ = \\ \\dfrac{1\\ - \\ \\tan \\theta }{1\\ + \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "[tan(A−B) formula]",
-          "1 + tan(π/4 − θ) = 2/(1 + tanθ)",
+          {
+            "text": "1\\ + \\ \\tan \\left(\\dfrac{\\pi }{4} - \\ \\theta \\right)\\ = \\ \\dfrac{2}{1\\ + \\ \\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\Rightarrow I = \\int _{0}^{\\pi /4} \\log [2/(1 + \\tan \\theta )] d\\theta",
             "render": "katex",
             "style": "normal"
           },
-          "= (π/4)log2 − I"
+          {
+            "text": "= \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2\\ - \\ I",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -186,14 +231,19 @@
             "text": "Take the I on the right to the left side:",
             "added": true
           },
-          "⇒ I + I = (π/4)log2 ⇒ 2I = (π/4)log2",
+          {
+            "text": "\\Rightarrow \\ I\\ + \\ I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2\\ \\Rightarrow \\ 2I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide both sides by 2:",
             "added": true
           },
           {
-            "text": "∴ I = (π/8) log2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{\\pi }{8}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Adding I to both sides gives 2I directly, and dividing by 2 gives (π/8)log2 — the same value as ∫ log(1 + tanθ) dθ from 0 to π/4, which is what step 1 showed this integral equals.",
@@ -202,10 +252,15 @@
           "Reporting a value other than (π/8)log2 without checking the arithmetic of 2I = (π/4)log2."
         ],
         "lines_compact": [
-          "⇒ I + I = (π/4)log2 ⇒ 2I = (π/4)log2",
           {
-            "text": "∴ I = (π/8) log2",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ I\\ + \\ I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2\\ \\Rightarrow \\ 2I\\ = \\ \\left(\\dfrac{\\pi }{4}\\right)\\log 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{\\pi }{8}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

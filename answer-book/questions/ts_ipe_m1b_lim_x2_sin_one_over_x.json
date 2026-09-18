@@ -52,11 +52,19 @@
             "style": "heading"
           },
           "(the sine of any real number lies between −1 and 1)",
-          "For every x ≠ 0,  −1 ≤ sin(1/x) ≤ 1",
+          {
+            "text": "\\text{For}\\ \\text{every}\\ x\\ \\ne \\ 0,\\ - 1\\ \\le \\ \\sin \\left(\\dfrac{1}{x}\\right)\\ \\le \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply throughout by x², which is positive for x ≠ 0,",
           "so the inequalities keep their direction:",
           "(−1 · x² = −x² and 1 · x² = x²)",
-          "−x² ≤ x² sin(1/x) ≤ x²"
+          {
+            "text": "- x^{2}\\ \\le \\ x^{2}\\sin \\left(\\dfrac{1}{x}\\right)\\ \\le \\ x^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,8 +113,9 @@
           "(also called the squeeze theorem)",
           "the expression between them has the same limit.",
           {
-            "text": "∴ lim(x → 0) x² sin(1/x) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 0\\right)x^{2}\\sin \\left(\\dfrac{1}{x}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -144,8 +153,9 @@
           "(also called the squeeze theorem)",
           "the expression between them has the same limit.",
           {
-            "text": "∴ lim(x → 0) x² sin(1/x) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lim \\left(x\\ \\to \\ 0\\right)x^{2}\\sin \\left(\\dfrac{1}{x}\\right)\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

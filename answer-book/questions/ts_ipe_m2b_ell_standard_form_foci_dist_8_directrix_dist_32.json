@@ -65,9 +65,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the ellipse be x²/a² + y²/b² = 1,",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{ellipse}\\ \\text{be}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
           "with foci S(ae, 0), S′(−ae, 0)",
-          "(and directrices x = a/e and x = −a/e)",
+          {
+            "text": "\\left(\\text{and}\\ \\text{directrices}\\ x\\ = \\ \\dfrac{a}{e}\\text{and}\\ x\\ = \\ - \\dfrac{a}{e}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Distance between foci is 8 ⇒ 2ae = 8",
           "⇒ ae = 4 …(1)"
         ],
@@ -87,16 +95,23 @@
         "memory_tip": "Directrices use a/e (division); foci use ae (multiplication) — do not swap them.",
         "lines": [
           {
-            "text": "The directrices x = a/e and x = −a/e are",
+            "text": "\\text{The}\\ \\text{directrices}\\ x\\ = \\ \\dfrac{a}{e}\\text{and}\\ x\\ = \\ - \\dfrac{a}{e}\\text{are}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  2a/e apart.",
+            "text": "\\dfrac{2a}{e}\\text{apart}.",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Distance between directrices is 32",
-          "⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
+          {
+            "text": "\\Rightarrow \\ 2\\left(\\dfrac{a}{e}\\right)\\ = \\ 32\\ \\Rightarrow \\ \\dfrac{a}{e} = \\ 16\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The two directrices sit symmetrically at x = a/e and x = −a/e, so their distance apart is 2(a/e), the mirror of the foci condition.",
         "common_mistakes": [
@@ -105,7 +120,11 @@
         ],
         "lines_compact": [
           "Distance between directrices is 32",
-          "⇒ 2(a/e) = 32 ⇒ a/e = 16 …(2)"
+          {
+            "text": "\\Rightarrow \\ 2\\left(\\dfrac{a}{e}\\right)\\ = \\ 32\\ \\Rightarrow \\ \\dfrac{a}{e} = \\ 16\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -122,13 +141,19 @@
             "added": true
           },
           "Multiplying (1) and (2):",
-          "(ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
+          {
+            "text": "\\left(ae\\right)\\left(\\dfrac{a}{e}\\right)\\ = \\ 4\\ \\times \\ 16\\ = \\ 64\\ \\Rightarrow \\ a^{2}\\ = \\ 64",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(ae × a/e = a², since e/e = 1)",
             "added": true
           },
           {
-            "text": "So a = 8 and e = ae/a = 4/8 = 1/2, which is < 1.",
+            "text": "\\text{So}\\ a\\ = \\ 8\\ \\text{and}\\ e\\ = \\ \\dfrac{ae}{a} = \\ \\dfrac{4}{8} = \\ \\dfrac{1}{2},\\ \\text{which}\\ \\text{is}\\ < \\ 1.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -148,7 +173,11 @@
         ],
         "lines_compact": [
           "Multiplying (1) and (2):",
-          "(ae)(a/e) = 4 × 16 = 64 ⇒ a² = 64",
+          {
+            "text": "\\left(ae\\right)\\left(\\dfrac{a}{e}\\right)\\ = \\ 4\\ \\times \\ 16\\ = \\ 64\\ \\Rightarrow \\ a^{2}\\ = \\ 64",
+            "style": "normal",
+            "render": "katex"
+          },
           "b² = a²(1 − e²) = a² − (ae)² = 64 − 16 = 48"
         ]
       },
@@ -163,12 +192,15 @@
         "lines": [
           "a² = 64, b² = 48",
           {
-            "text": "Put these in x²/a² + y²/b² = 1:",
+            "text": "\\text{Put}\\ \\text{these}\\ \\text{in}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Equation of the ellipse: x²/64 + y²/48 = 1",
-            "style": "boxed"
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{ellipse}:\\ \\dfrac{x^{2}}{64} + \\ \\dfrac{y^{2}}{48} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "With both a² and b² known, the standard form x²/a² + y²/b² = 1 is complete.",
@@ -179,8 +211,9 @@
         "lines_compact": [
           "a² = 64, b² = 48",
           {
-            "text": "Equation of the ellipse: x²/64 + y²/48 = 1",
-            "style": "boxed"
+            "text": "\\text{Equation}\\ \\text{of}\\ \\text{the}\\ \\text{ellipse}:\\ \\dfrac{x^{2}}{64} + \\ \\dfrac{y^{2}}{48} = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -114,7 +114,11 @@
             "text": "Dividing both sides by ⁿC₁₀:",
             "added": true
           },
-          "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
+          {
+            "text": "2\\ = \\ \\dfrac{{}^{n}C_{9}}{{}^{n}C_{10}} + \\ \\dfrac{{}^{n}C_{11}}{{}^{n}C_{10}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,7 +148,11 @@
         "lines_compact": [
           "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
           "Dividing by ⁿC₁₀:",
-          "2 = ⁿC₉/ⁿC₁₀ + ⁿC₁₁/ⁿC₁₀"
+          {
+            "text": "2\\ = \\ \\dfrac{{}^{n}C_{9}}{{}^{n}C_{10}} + \\ \\dfrac{{}^{n}C_{11}}{{}^{n}C_{10}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -157,34 +165,52 @@
         "memory_tip": "ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11. Do not invert either one.",
         "lines": [
           {
-            "text": "Now ⁿCᵣ/ⁿCᵣ₋₁ = [n!/(r!(n − r)!)]",
+            "text": "\\text{Now}\\ \\dfrac{{}^{n}C_{r}}{{}^{n}C_{r-1}} = \\ \\left[\\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ÷ [n!/((r − 1)!(n − r + 1)!)]",
+            "text": "\\div \\ \\left[\\dfrac{n!}{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (r − 1)!(n − r + 1)!/(r!(n − r)!)",
+            "text": "= \\ \\dfrac{\\left(r\\ - \\ 1\\right)!\\left(n\\ - \\ r\\ + \\ 1\\right)!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n − r + 1)/r   [r! = r(r − 1)!]",
+            "text": "= \\ \\dfrac{n\\ - \\ r\\ + \\ 1}{r}\\left[r!\\ = \\ r\\left(r\\ - \\ 1\\right)!\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put r = 10: ⁿC₁₀/ⁿC₉ = (n − 10 + 1)/10 = (n − 9)/10",
+            "text": "\\text{Put}\\ r\\ = \\ 10:\\ \\dfrac{{}^{n}C_{10}}{{}^{n}C_{9}} = \\ \\dfrac{n\\ - \\ 10\\ + \\ 1}{10} = \\ \\dfrac{n\\ - \\ 9}{10}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "so ⁿC₉/ⁿC₁₀ = 10/(n − 9)",
+            "text": "\\text{so}\\ \\dfrac{{}^{n}C_{9}}{{}^{n}C_{10}} = \\ \\dfrac{10}{n\\ - \\ 9}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put r = 11: ⁿC₁₁/ⁿC₁₀ = (n − 11 + 1)/11 = (n − 10)/11",
+            "text": "\\text{Put}\\ r\\ = \\ 11:\\ \\dfrac{{}^{n}C_{11}}{{}^{n}C_{10}} = \\ \\dfrac{n\\ - \\ 11\\ + \\ 1}{11} = \\ \\dfrac{n\\ - \\ 10}{11}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2 = 10/(n − 9) + (n − 10)/11"
+          {
+            "text": "2\\ = \\ \\dfrac{10}{n\\ - \\ 9} + \\ \\dfrac{n\\ - \\ 10}{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -213,9 +239,21 @@
           "Using (n − r)/r instead of (n − r + 1)/r for the lower ratio."
         ],
         "lines_compact": [
-          "ⁿC₁₀/ⁿC₉ = (n − 9)/10",
-          "and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11",
-          "2 = 10/(n − 9) + (n − 10)/11"
+          {
+            "text": "\\dfrac{{}^{n}C_{10}}{{}^{n}C_{9}} = \\ \\dfrac{n\\ - \\ 9}{10}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{{}^{n}C_{11}}{{}^{n}C_{10}} = \\ \\dfrac{n\\ - \\ 10}{11}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "2\\ = \\ \\dfrac{10}{n\\ - \\ 9} + \\ \\dfrac{n\\ - \\ 10}{11}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

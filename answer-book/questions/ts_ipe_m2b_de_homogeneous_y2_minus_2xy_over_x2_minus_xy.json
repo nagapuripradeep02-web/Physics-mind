@@ -69,17 +69,37 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx",
-          "= (y² − 2xy)/(x² − xy) … (1).",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{y^{2}\\ - \\ 2xy}{x^{2}\\ - \\ xy}\\dots \\ \\left(1\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "Every term top and bottom has degree 2, so",
           {
             "text": "  this is a homogeneous D.E.",
             "style": "indent"
           },
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (v²x² − 2vx²)/(x² − vx²)",
+          {
+            "text": "\\text{Put}\\ y\\ = \\ vx\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{v^{2}x^{2}\\ - \\ 2vx^{2}}{x^{2}\\ - \\ vx^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "x² cancels above and below:",
-          "= (v² − 2v)/(1 − v)"
+          {
+            "text": "= \\ \\dfrac{v^{2}\\ - \\ 2v}{1\\ - \\ v}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Substituting y = vx into a ratio where every term of the numerator and denominator has the same total degree leaves the right side as a function of v alone, which is the test for a homogeneous equation.",
         "common_mistakes": [
@@ -100,18 +120,34 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = (v² − 2v)/(1 − v) − v",
-          "= [v² − 2v − v(1 − v)]/(1 − v)",
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{v^{2}\\ - \\ 2v}{1\\ - \\ v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{v^{2}\\ - \\ 2v\\ - \\ v\\left(1\\ - \\ v\\right)}{1\\ - \\ v}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "v² − 2v − v + v² = 2v² − 3v:",
             "added": true
           },
-          "= (2v² − 3v)/(1 − v)",
+          {
+            "text": "= \\ \\dfrac{2v^{2}\\ - \\ 3v}{1\\ - \\ v}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Separate v and x:",
             "added": true
           },
-          "⇒ (1 − v)/(2v² − 3v) dv = dx/x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1\\ - \\ v}{2v^{2}\\ - \\ 3v}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing v as v(1 − v)/(1 − v) puts both terms over the same denominator; expanding v² − 2v − v + v² leaves 2v² − 3v, which is the function of v that separates from dx/x.",
         "common_mistakes": [
@@ -119,10 +155,26 @@
           "Sign error combining v² − 2v − v + v² into 2v² − 3v."
         ],
         "lines_compact": [
-          "x·dv/dx = (v² − 2v)/(1 − v) − v",
-          "= [v² − 2v − v(1 − v)]/(1 − v)",
-          "= (2v² − 3v)/(1 − v)",
-          "⇒ (1 − v)/(2v² − 3v) dv = dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{v^{2}\\ - \\ 2v}{1\\ - \\ v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{v^{2}\\ - \\ 2v\\ - \\ v\\left(1\\ - \\ v\\right)}{1\\ - \\ v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2v^{2}\\ - \\ 3v}{1\\ - \\ v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1\\ - \\ v}{2v^{2}\\ - \\ 3v}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -135,26 +187,39 @@
         "memory_tip": "2v² − 3v = v(2v − 3) — a common-factor pull-out, not a two-bracket factorisation.",
         "lines": [
           "2v² − 3v = v(2v − 3)",
-          "Writing (1 − v)/[v(2v − 3)] = A/v + B/(2v − 3)",
+          {
+            "text": "\\text{Writing}\\ \\dfrac{1\\ - \\ v}{v\\left(2v\\ - \\ 3\\right)} = \\ \\dfrac{A}{v} + \\ \\dfrac{B}{2v\\ - \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply through: 1 − v = A(2v − 3) + Bv",
             "added": true
           },
           {
-            "text": "v = 0: 1 = −3A ⇒ A = −1/3",
+            "text": "v\\ = \\ 0:\\ 1\\ = \\ - 3A\\ \\Rightarrow \\ A\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "v = 3/2: 1 − 3/2 = (3/2)B ⇒ −1/2 = (3/2)B",
+            "text": "v\\ = \\ \\dfrac{3}{2}:\\ 1\\ - \\ \\dfrac{3}{2} = \\ \\left(\\dfrac{3}{2}\\right)B\\ \\Rightarrow \\ - \\dfrac{1}{2} = \\ \\left(\\dfrac{3}{2}\\right)B",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  ⇒ B = −1/3",
+            "text": "\\Rightarrow \\ B\\ = \\ - \\dfrac{1}{3}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "and resolving into partial fractions gives A",
-          "= −1/3, B = −1/3"
+          {
+            "text": "= \\ - \\dfrac{1}{3},\\ B\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Splitting the fraction into a piece over v and a piece over (2v − 3) turns one hard integral into two easy ones, each matching a standard log-integral shape.",
         "common_mistakes": [
@@ -163,9 +228,17 @@
         ],
         "lines_compact": [
           "2v² − 3v = v(2v − 3)",
-          "Writing (1 − v)/[v(2v − 3)] = A/v + B/(2v − 3)",
+          {
+            "text": "\\text{Writing}\\ \\dfrac{1\\ - \\ v}{v\\left(2v\\ - \\ 3\\right)} = \\ \\dfrac{A}{v} + \\ \\dfrac{B}{2v\\ - \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "and resolving into partial fractions gives A",
-          "= −1/3, B = −1/3"
+          {
+            "text": "= \\ - \\dfrac{1}{3},\\ B\\ = \\ - \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,17 +250,33 @@
         "margin_note": "Two marks. Both pieces give logs, but the second needs a compensating factor of 1/2 for its coefficient 2.",
         "memory_tip": "∫1/(2v−3) dv = (1/2)log(2v−3) — always divide by the coefficient of v inside the bracket.",
         "lines": [
-          "∫ [−1/(3v) − 1/(3(2v − 3))] dv = ∫ dx/x",
           {
-            "text": "∫dv/(2v − 3) = (1/2)log(2v − 3):",
+            "text": "\\int \\ \\left[ - \\dfrac{1}{3v} - \\ \\dfrac{1}{3\\left(2v\\ - \\ 3\\right)}\\right]dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dv}{2v\\ - \\ 3} = \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(2v\\ - \\ 3\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ −(1/3)log v − (1/6)log(2v − 3) = log x − log c",
           {
-            "text": "Take out −1/3:",
+            "text": "\\Rightarrow \\ - \\left(\\dfrac{1}{3}\\right)\\log v\\ - \\ \\left(\\dfrac{1}{6}\\right)\\log \\left(2v\\ - \\ 3\\right)\\ = \\ \\log x\\ - \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ \\text{out}\\ - \\dfrac{1}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ −(1/3)[log v + (1/2)log(2v − 3)] = log(x/c)"
+          {
+            "text": "\\Rightarrow \\ - \\left(\\dfrac{1}{3}\\right)\\left[\\log v\\ + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(2v\\ - \\ 3\\right)\\right]\\ = \\ \\log \\left(\\dfrac{x}{c}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Each partial-fraction piece integrates by the standard rule ∫dv/v = log v, with a factor of 1/2 needed for the second term because its bracket has a coefficient of 2 in front of v.",
         "common_mistakes": [
@@ -195,9 +284,21 @@
           "Losing the overall −1/3 factor shared by both terms."
         ],
         "lines_compact": [
-          "∫ [−1/(3v) − 1/(3(2v − 3))] dv = ∫ dx/x",
-          "⇒ −(1/3)log v − (1/6)log(2v − 3) = log x − log c",
-          "⇒ −(1/3)[log v + (1/2)log(2v − 3)] = log(x/c)"
+          {
+            "text": "\\int \\ \\left[ - \\dfrac{1}{3v} - \\ \\dfrac{1}{3\\left(2v\\ - \\ 3\\right)}\\right]dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\left(\\dfrac{1}{3}\\right)\\log v\\ - \\ \\left(\\dfrac{1}{6}\\right)\\log \\left(2v\\ - \\ 3\\right)\\ = \\ \\log x\\ - \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\left(\\dfrac{1}{3}\\right)\\left[\\log v\\ + \\ \\left(\\dfrac{1}{2}\\right)\\log \\left(2v\\ - \\ 3\\right)\\right]\\ = \\ \\log \\left(\\dfrac{x}{c}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -210,18 +311,34 @@
         "memory_tip": "log(v√(2v−3)) = log(c/x)³ removes the fraction of logs in one multiplication by −3.",
         "lines": [
           {
-            "text": "(1/2)log(2v − 3) = log √(2v − 3); multiply by −3:",
+            "text": "\\left(\\dfrac{1}{2}\\right)\\log \\left(2v\\ - \\ 3\\right)\\ = \\ \\log \\sqrt{2v\\ - \\ 3};\\ \\text{multiply}\\ \\text{by}\\ - 3:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ log(v√(2v − 3)) = −3 log(x/c) = log(c³/x³)",
-          "⇒ v√(2v − 3) = c³/x³",
+          {
+            "text": "\\Rightarrow \\ \\log \\left(v\\sqrt{2v\\ - \\ 3}\\right)\\ = \\ - 3\\log \\left(\\dfrac{x}{c}\\right)\\ = \\ \\log \\left(\\dfrac{c^{3}}{x^{3}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ v\\sqrt{2v\\ - \\ 3}\\ = \\ \\dfrac{c^{3}}{x^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Square both sides and multiply by x⁶:",
             "added": true
           },
-          "⇒ x⁶v²(2v − 3) = c⁶, and putting v = y/x:",
           {
-            "text": "x⁶(y²/x²)(2y/x − 3) = x³y²(2y − 3x);",
+            "text": "\\Rightarrow \\ x^{6}v^{2}\\left(2v\\ - \\ 3\\right)\\ = \\ c^{6},\\ \\text{and}\\ \\text{putting}\\ v\\ = \\ \\dfrac{y}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x^{6}\\left(\\dfrac{y^{2}}{x^{2}}\\right)\\left(\\dfrac{2y}{x} - \\ 3\\right)\\ = \\ x^{3}y^{2}\\left(2y\\ - \\ 3x\\right);",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -240,9 +357,21 @@
           "Losing a power of x when clearing v = y/x from inside the square root and the extra x³."
         ],
         "lines_compact": [
-          "⇒ log(v√(2v − 3)) = −3 log(x/c) = log(c³/x³)",
-          "⇒ v√(2v − 3) = c³/x³",
-          "⇒ x⁶v²(2v − 3) = c⁶, and putting v = y/x:",
+          {
+            "text": "\\Rightarrow \\ \\log \\left(v\\sqrt{2v\\ - \\ 3}\\right)\\ = \\ - 3\\log \\left(\\dfrac{x}{c}\\right)\\ = \\ \\log \\left(\\dfrac{c^{3}}{x^{3}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ v\\sqrt{2v\\ - \\ 3}\\ = \\ \\dfrac{c^{3}}{x^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x^{6}v^{2}\\left(2v\\ - \\ 3\\right)\\ = \\ c^{6},\\ \\text{and}\\ \\text{putting}\\ v\\ = \\ \\dfrac{y}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x³y²(2y − 3x) = c",
             "style": "boxed"

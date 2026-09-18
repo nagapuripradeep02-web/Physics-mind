@@ -179,12 +179,20 @@
             "added": true
           },
           "Unit vector along a × b",
-          "  = (3i + 3j + 6k)/(3√6)",
+          {
+            "text": "= \\ \\dfrac{3i\\ + \\ 3j\\ + \\ 6k}{3\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(3i + 3j + 6k = 3(i + j + 2k); cancel the 3)",
             "added": true
           },
-          "  = (i + j + 2k)/√6"
+          {
+            "text": "= \\ \\dfrac{i\\ + \\ j\\ + \\ 2k}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -217,8 +225,16 @@
           "|a × b| = √(3² + 3² + 6²)",
           "  = √(9 + 9 + 36) = √54 = 3√6",
           "Unit vector along a × b",
-          "  = (3i + 3j + 6k)/(3√6)",
-          "  = (i + j + 2k)/√6"
+          {
+            "text": "= \\ \\dfrac{3i\\ + \\ 3j\\ + \\ 6k}{3\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{i\\ + \\ j\\ + \\ 2k}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -235,7 +251,11 @@
             "added": true
           },
           "Required vector",
-          "  = √6 × (i + j + 2k)/√6",
+          {
+            "text": "= \\ \\sqrt{6}\\ \\times \\ \\dfrac{i\\ + \\ j\\ + \\ 2k}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the √6 cancels)",
             "added": true
@@ -278,7 +298,11 @@
         ],
         "lines_compact": [
           "Required vector",
-          "  = √6 × (i + j + 2k)/√6",
+          {
+            "text": "= \\ \\sqrt{6}\\ \\times \\ \\dfrac{i\\ + \\ j\\ + \\ 2k}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "  = i + j + 2k",
           "The opposite vector is perpendicular to a",
           "and b as well, so either sign is correct.",

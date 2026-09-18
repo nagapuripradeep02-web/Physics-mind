@@ -65,19 +65,59 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given x = 5/(2!·3) + (5·7)/(3!·3²)",
-          "  + (5·7·9)/(4!·3³) + …",
+          {
+            "text": "\\text{Given}\\ x\\ = \\ \\dfrac{5}{2! \\cdot 3} + \\ \\dfrac{5 \\cdot 7}{3! \\cdot 3^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{5 \\cdot 7 \\cdot 9}{4! \\cdot 3^{3}} + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply the top and bottom of each term by 3:",
-          "5/(2!·3) = (3·5)/(2!·3²) = (3·5/2!)(1/3)²",
-          "(5·7)/(3!·3²) = (3·5·7)/(3!·3³) = (3·5·7/3!)(1/3)³",
-          "(5·7·9)/(4!·3³) = (3·5·7·9/4!)(1/3)⁴",
-          "x = (3·5/2!)(1/3)² + (3·5·7/3!)(1/3)³ + …",
+          {
+            "text": "\\dfrac{5}{2! \\cdot 3} = \\ \\dfrac{3 \\cdot 5}{2! \\cdot 3^{2}} = \\ \\left(3 \\cdot \\dfrac{5}{2!}\\right)\\left(\\dfrac{1}{3}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5 \\cdot 7}{3! \\cdot 3^{2}} = \\ \\dfrac{3 \\cdot 5 \\cdot 7}{3! \\cdot 3^{3}} = \\ \\left(3 \\cdot 5 \\cdot \\dfrac{7}{3!}\\right)\\left(\\dfrac{1}{3}\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{5 \\cdot 7 \\cdot 9}{4! \\cdot 3^{3}} = \\ \\left(3 \\cdot 5 \\cdot 7 \\cdot \\dfrac{9}{4!}\\right)\\left(\\dfrac{1}{3}\\right)^{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "x\\ = \\ \\left(3 \\cdot \\dfrac{5}{2!}\\right)\\left(\\dfrac{1}{3}\\right)^{2}\\ + \\ \\left(3 \\cdot 5 \\cdot \\dfrac{7}{3!}\\right)\\left(\\dfrac{1}{3}\\right)^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "The numerators start at 3, so the first two",
-          "terms, 1 and (3/1!)(1/3), are missing",
-          "(3/1!)(1/3) = 3/3 = 1",
+          {
+            "text": "\\text{terms},\\ 1\\ \\text{and}\\ \\left(\\dfrac{3}{1!}\\right)\\left(\\dfrac{1}{3}\\right),\\ \\text{are}\\ \\text{missing}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3}{1!}\\right)\\left(\\dfrac{1}{3}\\right)\\ = \\ \\dfrac{3}{3} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Adding 1 + 1 = 2 on both sides:",
-          "2 + x = 1 + (3/1!)(1/3) + (3·5/2!)(1/3)²",
-          "  + (3·5·7/3!)(1/3)³ + …"
+          {
+            "text": "2\\ + \\ x\\ = \\ 1\\ + \\ \\left(\\dfrac{3}{1!}\\right)\\left(\\dfrac{1}{3}\\right)\\ + \\ \\left(3 \\cdot \\dfrac{5}{2!}\\right)\\left(\\dfrac{1}{3}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(3 \\cdot 5 \\cdot \\dfrac{7}{3!}\\right)\\left(\\dfrac{1}{3}\\right)^{3}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -191,11 +231,15 @@
             "added": true
           },
           {
-            "text": "Match the bracket: y/q = 1/3",
+            "text": "\\text{Match}\\ \\text{the}\\ \\text{bracket}:\\ \\dfrac{y}{q} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "y = q · 1/3 = 2 · (1/3) = 2/3",
+            "text": "y\\ = \\ q\\ \\cdot \\ \\dfrac{1}{3} = \\ 2\\ \\cdot \\ \\left(\\dfrac{1}{3}\\right)\\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -227,7 +271,11 @@
         ],
         "lines_compact": [
           "p = 3, p + q = 5 ⇒ q = 2",
-          "y/q = 1/3 ⇒ y = q/3 = 2/3"
+          {
+            "text": "\\dfrac{y}{q} = \\ \\dfrac{1}{3} \\Rightarrow \\ y\\ = \\ \\dfrac{q}{3} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -246,7 +294,9 @@
             "added": true
           },
           {
-            "text": "1 − 2/3 = (3 − 2)/3 = 1/3",
+            "text": "1\\ - \\ \\dfrac{2}{3} = \\ \\dfrac{3\\ - \\ 2}{3} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

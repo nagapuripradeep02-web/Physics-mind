@@ -58,14 +58,26 @@
             "style": "heading"
           },
           "L.H.S = 4(r₁r₂ + r₂r₃ + r₃r₁)",
-          "(r₁r₂ = Δ/(s−a) × Δ/(s−b), and so on)",
-          "= 4[ Δ²/((s−a)(s−b)) + Δ²/((s−b)(s−c)) + Δ²/((s−c)(s−a)) ]",
+          {
+            "text": "\\left(r_{1}r_{2}\\ = \\ \\dfrac{\\Delta }{s - a} \\times \\ \\dfrac{\\Delta }{s - b},\\ \\text{and}\\ \\text{so}\\ \\text{on}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 4\\left[\\dfrac{\\Delta ^{2}}{\\left(s - a\\right)\\left(s - b\\right)} + \\ \\dfrac{\\Delta ^{2}}{\\left(s - b\\right)\\left(s - c\\right)} + \\ \\dfrac{\\Delta ^{2}}{\\left(s - c\\right)\\left(s - a\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(common denominator (s−a)(s−b)(s−c): each top",
           {
             "text": "  gets the one factor its denominator lacks)",
             "style": "indent"
           },
-          "= 4Δ²[ (s−c) + (s−a) + (s−b) ] / [(s−a)(s−b)(s−c)]"
+          {
+            "text": "= \\ \\dfrac{4\\Delta ^{2}\\left[\\left(s - c\\right)\\ + \\ \\left(s - a\\right)\\ + \\ \\left(s - b\\right)\\right]}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,13 +116,23 @@
         "margin_note": "The other half. The brackets add to s, and Δ² = s(s−a)(s−b)(s−c) means the bracket product IS Δ²/s — so everything cancels down to 4s².",
         "memory_tip": "The brackets add to s, and Δ² = s(s−a)(s−b)(s−c) makes the bracket product Δ²/s.",
         "lines": [
-          "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
+          {
+            "text": "= \\ \\dfrac{4\\Delta ^{2}s}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}\\left[\\because \\ \\Sigma \\left(s - a\\right)\\ = \\ 3s\\ - \\ 2s\\ = \\ s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
           {
-            "text": "(dividing by Δ²/s is multiplying by s/Δ²)",
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{\\Delta ^{2}}{s}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{s}{\\Delta ^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 4Δ² s / (Δ²/s) = 4s²",
+          {
+            "text": "= \\ \\dfrac{4\\Delta ^{2}s}{\\dfrac{\\Delta ^{2}}{s}} = \\ 4s^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4s² = (2s)², and 2s = a + b + c)",
             "added": true
@@ -148,9 +170,17 @@
           "Leaving the answer as 4s² without writing (a+b+c)²."
         ],
         "lines_compact": [
-          "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
+          {
+            "text": "= \\ \\dfrac{4\\Delta ^{2}s}{\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)}\\left[\\because \\ \\Sigma \\left(s - a\\right)\\ = \\ 3s\\ - \\ 2s\\ = \\ s\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
-          "= 4Δ² s / (Δ²/s) = 4s²",
+          {
+            "text": "= \\ \\dfrac{4\\Delta ^{2}s}{\\dfrac{\\Delta ^{2}}{s}} = \\ 4s^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= (2s)² = (a + b + c)² = R.H.S",
             "style": "boxed"

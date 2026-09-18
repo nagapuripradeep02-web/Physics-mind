@@ -61,7 +61,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is a linear D.E in y, with Q = sin x.",
           "Here P = tan x ⇒ ∫P dx = ∫tan x dx = log sec x"
         ],
@@ -119,7 +123,9 @@
         "lines": [
           "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
           {
-            "text": "sec x·sin x = sin x/cos x = tan x:",
+            "text": "\\sec x \\cdot \\sin x\\ = \\ \\dfrac{\\sin x}{\\cos x} = \\ \\tan x:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ y sec x = ∫sec x·sin x dx = ∫tan x dx",

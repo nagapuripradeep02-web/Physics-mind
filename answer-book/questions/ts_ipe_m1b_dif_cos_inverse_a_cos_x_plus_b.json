@@ -65,8 +65,9 @@
           },
           "Given f(x) = (a² − b²)⁻¹ᐟ²",
           {
-            "text": "  · Cos⁻¹((a cos x + b)/(a + b cos x)),",
-            "style": "indent"
+            "text": "\\cdot \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{a\\cos x\\ + \\ b}{a\\ + \\ b\\cos x}\\right),",
+            "style": "indent",
+            "render": "katex"
           },
           "with a > b > 0 and 0 < x < π.",
           "(cos x ≥ −1 and b > 0, so b cos x ≥ −b",
@@ -76,19 +77,36 @@
           },
           "a > b > 0 gives a + b cos x ≥ a − b > 0,",
           "so the denominator is never zero and a² − b² > 0.",
-          "(divide 0 < x < π by 2; tan is positive on (0, π/2))",
-          "0 < x < π gives 0 < x/2 < π/2, so tan(x/2) > 0.",
+          {
+            "text": "\\left(\\text{divide}\\ 0\\ < \\ x\\ < \\ \\pi \\ \\text{by}\\ 2;\\ \\tan \\text{is}\\ \\text{positive}\\ \\text{on}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "0\\ < \\ x\\ < \\ \\pi \\ \\text{gives}\\ 0\\ < \\ \\dfrac{x}{2} < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ > \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos x = cos²(x/2) − sin²(x/2);",
           {
-            "text": "  divide by cos²(x/2) + sin²(x/2) = 1,",
-            "style": "indent"
+            "text": "\\text{divide}\\ \\text{by}\\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\ = \\ 1,",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  then divide the top and the bottom by cos²(x/2))",
             "style": "indent"
           },
-          "Put t = tan(x/2). The half angle form of the cosine is",
-          "cos x = (1 − t²)/(1 + t²)"
+          {
+            "text": "\\text{Put}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right).\\ \\text{The}\\ \\text{half}\\ \\text{angle}\\ \\text{form}\\ \\text{of}\\ \\text{the}\\ \\text{cosine}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos x\\ = \\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -129,50 +147,78 @@
         "margin_note": "Two marks. The 1 + t² cancels between the top and the bottom, and then dividing by a + b is what produces the single constant k. Define k on this line — the rest of the answer uses it.",
         "lines": [
           {
-            "text": "(put cos x = (1 − t²)/(1 + t²))",
-            "added": true
-          },
-          "a cos x + b = a(1 − t²)/(1 + t²) + b",
-          {
-            "text": "(write b as b(1 + t²)/(1 + t²) and add the two fractions)",
+            "text": "\\left(\\text{put}\\ \\cos x\\ = \\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = [a(1 − t²) + b(1 + t²)]/(1 + t²)",
-            "style": "indent"
+            "text": "a\\cos x\\ + \\ b\\ = \\ \\dfrac{a\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}} + \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ b\\ \\text{as}\\ \\dfrac{b\\left(1\\ + \\ t^{2}\\right)}{1\\ + \\ t^{2}}\\text{and}\\ \\text{add}\\ \\text{the}\\ \\text{two}\\ \\text{fractions}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{a\\left(1\\ - \\ t^{2}\\right)\\ + \\ b\\left(1\\ + \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(a − at² + b + bt² = (a + b) − (a − b)t²)",
             "added": true
           },
           {
-            "text": "  = [(a + b) − (a − b)t²]/(1 + t²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ b\\right)\\ - \\ \\left(a\\ - \\ b\\right)t^{2}}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(put cos x = (1 − t²)/(1 + t²) again)",
+            "text": "\\left(\\text{put}\\ \\cos x\\ = \\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}\\text{again}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "a + b cos x = a + b(1 − t²)/(1 + t²)",
           {
-            "text": "(write a as a(1 + t²)/(1 + t²) and add the two fractions)",
+            "text": "a\\ + \\ b\\cos x\\ = \\ a\\ + \\ \\dfrac{b\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{write}\\ a\\ \\text{as}\\ \\dfrac{a\\left(1\\ + \\ t^{2}\\right)}{1\\ + \\ t^{2}}\\text{and}\\ \\text{add}\\ \\text{the}\\ \\text{two}\\ \\text{fractions}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = [a(1 + t²) + b(1 − t²)]/(1 + t²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{a\\left(1\\ + \\ t^{2}\\right)\\ + \\ b\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(a + at² + b − bt² = (a + b) + (a − b)t²)",
             "added": true
           },
           {
-            "text": "  = [(a + b) + (a − b)t²]/(1 + t²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ b\\right)\\ + \\ \\left(a\\ - \\ b\\right)t^{2}}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "The factor 1 + t² cancels in the ratio:",
-          "(a cos x + b)/(a + b cos x) =",
-          "[(a + b) − (a − b)t²]/[(a + b) + (a − b)t²]",
+          {
+            "text": "\\dfrac{a\\cos x\\ + \\ b}{a\\ + \\ b\\cos x} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\left(a\\ + \\ b\\right)\\ - \\ \\left(a\\ - \\ b\\right)t^{2}}{\\left(a\\ + \\ b\\right)\\ + \\ \\left(a\\ - \\ b\\right)t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a + b > 0, so the division by a + b is allowed; a − b > 0,",
             "added": true
@@ -183,13 +229,27 @@
             "added": true
           },
           "Divide the top and the bottom by a + b,",
-          "and write  k = √((a − b)/(a + b)),",
-          "so that k² = (a − b)/(a + b) and k > 0:",
           {
-            "text": "((a − b)t²/(a + b) = k²t², and (a + b)/(a + b) = 1)",
+            "text": "\\text{and}\\ \\text{write}\\ k\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{that}\\ k^{2}\\ = \\ \\dfrac{a\\ - \\ b}{a\\ + \\ b}\\text{and}\\ k\\ > \\ 0:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\left(a\\ - \\ b\\right)t^{2}}{a\\ + \\ b} = \\ k^{2}t^{2},\\ \\text{and}\\ \\dfrac{a\\ + \\ b}{a\\ + \\ b} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ (a cos x + b)/(a + b cos x) = (1 − k²t²)/(1 + k²t²)"
+          {
+            "text": "\\therefore \\ \\dfrac{a\\cos x\\ + \\ b}{a\\ + \\ b\\cos x} = \\ \\dfrac{1\\ - \\ k^{2}t^{2}}{1\\ + \\ k^{2}t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -221,31 +281,63 @@
         ],
         "memory_tip": "Both lines regroup into a plus b and a minus b. The t² term has a minus sign on top and a plus sign at the bottom; that is the difference between the two.",
         "lines_compact": [
-          "a cos x + b = a(1 − t²)/(1 + t²) + b",
           {
-            "text": "  = [a(1 − t²) + b(1 + t²)]/(1 + t²)",
-            "style": "indent"
+            "text": "a\\cos x\\ + \\ b\\ = \\ \\dfrac{a\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}} + \\ b",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  = [(a + b) − (a − b)t²]/(1 + t²)",
-            "style": "indent"
-          },
-          "a + b cos x = a + b(1 − t²)/(1 + t²)",
-          {
-            "text": "  = [a(1 + t²) + b(1 − t²)]/(1 + t²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{a\\left(1\\ - \\ t^{2}\\right)\\ + \\ b\\left(1\\ + \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "  = [(a + b) + (a − b)t²]/(1 + t²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ b\\right)\\ - \\ \\left(a\\ - \\ b\\right)t^{2}}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "a\\ + \\ b\\cos x\\ = \\ a\\ + \\ \\dfrac{b\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a\\left(1\\ + \\ t^{2}\\right)\\ + \\ b\\left(1\\ - \\ t^{2}\\right)}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a\\ + \\ b\\right)\\ + \\ \\left(a\\ - \\ b\\right)t^{2}}{1\\ + \\ t^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "The factor 1 + t² cancels in the ratio:",
-          "(a cos x + b)/(a + b cos x) =",
-          "[(a + b) − (a − b)t²]/[(a + b) + (a − b)t²]",
+          {
+            "text": "\\dfrac{a\\cos x\\ + \\ b}{a\\ + \\ b\\cos x} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\left(a\\ + \\ b\\right)\\ - \\ \\left(a\\ - \\ b\\right)t^{2}}{\\left(a\\ + \\ b\\right)\\ + \\ \\left(a\\ - \\ b\\right)t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide the top and the bottom by a + b,",
-          "and write  k = √((a − b)/(a + b)),",
-          "so that k² = (a − b)/(a + b) and k > 0:",
-          "∴ (a cos x + b)/(a + b cos x) = (1 − k²t²)/(1 + k²t²)"
+          {
+            "text": "\\text{and}\\ \\text{write}\\ k\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{that}\\ k^{2}\\ = \\ \\dfrac{a\\ - \\ b}{a\\ + \\ b}\\text{and}\\ k\\ > \\ 0:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{a\\cos x\\ + \\ b}{a\\ + \\ b\\cos x} = \\ \\dfrac{1\\ - \\ k^{2}t^{2}}{1\\ + \\ k^{2}t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -257,16 +349,32 @@
         "margin_note": "Two marks, and the main step of the answer. Derive Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s rather than quoting it, and say why 2φ lies in [0, π].",
         "lines": [
           {
-            "text": "(k > 0 from step 2, and t = tan(x/2) > 0 from step 1)",
+            "text": "\\left(k\\ > \\ 0\\ \\text{from}\\ \\text{step}\\ 2,\\ \\text{and}\\ t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)\\ > \\ 0\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Write s = kt = k tan(x/2). k > 0 and t > 0, so s > 0.",
           {
-            "text": "(s > 0, so there is one angle φ in (0, π/2) with tan φ = s)",
+            "text": "\\text{Write}\\ s\\ = \\ kt\\ = \\ k\\tan \\left(\\dfrac{x}{2}\\right).\\ k\\ > \\ 0\\ \\text{and}\\ t\\ > \\ 0,\\ \\text{so}\\ s\\ > \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(s\\ > \\ 0,\\ \\text{so}\\ \\text{there}\\ \\text{is}\\ \\text{one}\\ \\text{angle}\\ \\phi \\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)\\ \\text{with}\\ \\tan \\phi \\ = \\ s\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put s = tan φ with 0 < φ < π/2. Then",
-          "(1 − s²)/(1 + s²) = (1 − tan²φ)/(1 + tan²φ)",
+          {
+            "text": "\\text{Put}\\ s\\ = \\ \\tan \\phi \\ \\text{with}\\ 0\\ < \\ \\phi \\ < \\ \\dfrac{\\pi }{2}.\\ \\text{Then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ - \\ s^{2}}{1\\ + \\ s^{2}} = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\phi }{1\\ + \\ \\tan ^{2} \\phi }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1 + tan²φ = sec²φ, and dividing by sec²φ is multiplying",
             "added": true
@@ -282,16 +390,27 @@
             "added": true
           },
           {
-            "text": "  = (1 − tan²φ)/sec²φ = cos²φ − sin²φ = cos 2φ",
-            "style": "indent"
+            "text": "= \\ \\dfrac{1\\ - \\ \\tan ^{2} \\phi }{\\sec ^{2} \\phi } = \\ \\cos ^{2} \\phi \\ - \\ \\sin ^{2} \\phi \\ = \\ \\cos 2\\phi",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "(multiply 0 < φ < π/2 by 2)",
+            "text": "\\left(\\text{multiply}\\ 0\\ < \\ \\phi \\ < \\ \\dfrac{\\pi }{2}\\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "0 < φ < π/2 gives 0 < 2φ < π, which is inside [0, π],",
+          {
+            "text": "0\\ < \\ \\phi \\ < \\ \\dfrac{\\pi }{2}\\text{gives}\\ 0\\ < \\ 2\\phi \\ < \\ \\pi ,\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left[0,\\ \\pi \\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Cos⁻¹, so",
-          "Cos⁻¹((1 − s²)/(1 + s²)) = Cos⁻¹(cos 2φ) = 2φ",
+          {
+            "text": "\\operatorname{Cos}^{-1}\\left(\\dfrac{1\\ - \\ s^{2}}{1\\ + \\ s^{2}}\\right)\\ = \\ \\operatorname{Cos}^{-1}\\left(\\cos 2\\phi \\right)\\ = \\ 2\\phi",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = 2 Tan⁻¹s",
             "style": "indent"
@@ -305,8 +424,16 @@
             "style": "indent",
             "added": true
           },
-          "∴ f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2)),",
-          "where k = √((a − b)/(a + b))"
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\operatorname{Tan}^{-1}\\left(k\\tan \\left(\\dfrac{x}{2}\\right)\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{where}\\ k\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -339,22 +466,51 @@
         ],
         "memory_tip": "The three related forms are cos 2φ = (1 − s²)/(1 + s²), sin 2φ = 2s/(1 + s²) and tan 2φ = 2s/(1 − s²), where s = tan φ. Only the cosine one has 1 minus s² on top.",
         "lines_compact": [
-          "Write s = kt = k tan(x/2). k > 0 and t > 0, so s > 0.",
-          "Put s = tan φ with 0 < φ < π/2. Then",
-          "(1 − s²)/(1 + s²) = (1 − tan²φ)/(1 + tan²φ)",
           {
-            "text": "  = (1 − tan²φ)/sec²φ = cos²φ − sin²φ = cos 2φ",
-            "style": "indent"
+            "text": "\\text{Write}\\ s\\ = \\ kt\\ = \\ k\\tan \\left(\\dfrac{x}{2}\\right).\\ k\\ > \\ 0\\ \\text{and}\\ t\\ > \\ 0,\\ \\text{so}\\ s\\ > \\ 0.",
+            "style": "normal",
+            "render": "katex"
           },
-          "0 < φ < π/2 gives 0 < 2φ < π, which is inside [0, π],",
+          {
+            "text": "\\text{Put}\\ s\\ = \\ \\tan \\phi \\ \\text{with}\\ 0\\ < \\ \\phi \\ < \\ \\dfrac{\\pi }{2}.\\ \\text{Then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ - \\ s^{2}}{1\\ + \\ s^{2}} = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\phi }{1\\ + \\ \\tan ^{2} \\phi }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\tan ^{2} \\phi }{\\sec ^{2} \\phi } = \\ \\cos ^{2} \\phi \\ - \\ \\sin ^{2} \\phi \\ = \\ \\cos 2\\phi",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "0\\ < \\ \\phi \\ < \\ \\dfrac{\\pi }{2}\\text{gives}\\ 0\\ < \\ 2\\phi \\ < \\ \\pi ,\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left[0,\\ \\pi \\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Cos⁻¹, so",
-          "Cos⁻¹((1 − s²)/(1 + s²)) = Cos⁻¹(cos 2φ) = 2φ",
+          {
+            "text": "\\operatorname{Cos}^{-1}\\left(\\dfrac{1\\ - \\ s^{2}}{1\\ + \\ s^{2}}\\right)\\ = \\ \\operatorname{Cos}^{-1}\\left(\\cos 2\\phi \\right)\\ = \\ 2\\phi",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = 2 Tan⁻¹s",
             "style": "indent"
           },
-          "∴ f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2)),",
-          "where k = √((a − b)/(a + b))"
+          {
+            "text": "\\therefore \\ f\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\operatorname{Tan}^{-1}\\left(k\\tan \\left(\\dfrac{x}{2}\\right)\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{where}\\ k\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -365,7 +521,11 @@
         "mark_note": "Method",
         "margin_note": "Two marks. Two chain rule factors are needed: k from the constant, and ½ sec²(x/2) from the half angle. Missing the one half is a common loss on this question.",
         "lines": [
-          "Differentiate f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2))",
+          {
+            "text": "\\text{Differentiate}\\ f\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\operatorname{Tan}^{-1}\\left(k\\tan \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "with respect to x.",
           {
             "text": "(the chain rule for the inverse tangent;",
@@ -376,22 +536,43 @@
             "style": "indent",
             "added": true
           },
-          "d/dx[Tan⁻¹u] = (1/(1 + u²))·(du/dx),",
-          "here with u = k tan(x/2) and du/dx = k·½ sec²(x/2):",
           {
-            "text": "(put u = k tan(x/2), so that 1 + u² = 1 + k²tan²(x/2))",
+            "text": "\\dfrac{d}{dx}\\left[\\operatorname{Tan}^{-1} u\\right]\\ = \\ \\left(\\dfrac{1}{1\\ + \\ u^{2}}\\right) \\cdot \\left(\\dfrac{du}{dx}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{here}\\ \\text{with}\\ u\\ = \\ k\\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ k \\cdot \\dfrac{1}{2}\\sec ^{2}\\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ u\\ = \\ k\\tan \\left(\\dfrac{x}{2}\\right),\\ \\text{so}\\ \\text{that}\\ 1\\ + \\ u^{2}\\ = \\ 1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "f′(x) = (2/√(a² − b²)) · [1/(1 + k²tan²(x/2))]",
           {
-            "text": "  · k · ½ sec²(x/2)",
-            "style": "indent"
+            "text": "f'\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\left[\\dfrac{1}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(2 · ½ = 1, so the numbers in front give k/√(a² − b²))",
+            "text": "\\cdot \\ k\\ \\cdot \\ \\dfrac{1}{2}\\sec ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{1}{2}\\ = \\ 1,\\ \\text{so}\\ \\text{the}\\ \\text{numbers}\\ \\text{in}\\ \\text{front}\\ \\text{give}\\ \\dfrac{k}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ f′(x) = (k/√(a² − b²)) · sec²(x/2)/(1 + k²tan²(x/2))"
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\left(\\dfrac{k}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\dfrac{\\sec ^{2}\\left(\\dfrac{x}{2}\\right)}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -423,16 +604,37 @@
         ],
         "memory_tip": "Every half angle brings a one half out with it. Here the 2 already sitting in front is exactly what it cancels.",
         "lines_compact": [
-          "Differentiate f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2))",
-          "with respect to x.",
-          "d/dx[Tan⁻¹u] = (1/(1 + u²))·(du/dx),",
-          "here with u = k tan(x/2) and du/dx = k·½ sec²(x/2):",
-          "f′(x) = (2/√(a² − b²)) · [1/(1 + k²tan²(x/2))]",
           {
-            "text": "  · k · ½ sec²(x/2)",
-            "style": "indent"
+            "text": "\\text{Differentiate}\\ f\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\operatorname{Tan}^{-1}\\left(k\\tan \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "∴ f′(x) = (k/√(a² − b²)) · sec²(x/2)/(1 + k²tan²(x/2))"
+          "with respect to x.",
+          {
+            "text": "\\dfrac{d}{dx}\\left[\\operatorname{Tan}^{-1} u\\right]\\ = \\ \\left(\\dfrac{1}{1\\ + \\ u^{2}}\\right) \\cdot \\left(\\dfrac{du}{dx}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{here}\\ \\text{with}\\ u\\ = \\ k\\tan \\left(\\dfrac{x}{2}\\right)\\ \\text{and}\\ \\dfrac{du}{dx}\\ = \\ k \\cdot \\dfrac{1}{2}\\sec ^{2}\\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\left(\\dfrac{2}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\left[\\dfrac{1}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ k\\ \\cdot \\ \\dfrac{1}{2}\\sec ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\left(\\dfrac{k}{\\sqrt{a^{2}\\ - \\ b^{2}}}\\right)\\ \\cdot \\ \\dfrac{\\sec ^{2}\\left(\\dfrac{x}{2}\\right)}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -444,7 +646,11 @@
         "margin_note": "Last mark. Multiplying the top and the bottom by cos²(x/2) is the move that removes the secant; then a cos² + a sin² gives a, and b cos² − b sin² gives b cos x. Both constants cancel to leave 1.",
         "lines": [
           "Multiply the top and the bottom of the fraction",
-          "by cos²(x/2):",
+          {
+            "text": "\\text{by}\\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sec²(x/2) · cos²(x/2) = 1",
             "added": true
@@ -454,7 +660,11 @@
             "style": "indent",
             "added": true
           },
-          "sec²(x/2)/(1 + k²tan²(x/2)) = 1/(cos²(x/2) + k²sin²(x/2))",
+          {
+            "text": "\\dfrac{\\sec ^{2}\\left(\\dfrac{x}{2}\\right)}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)} = \\ \\dfrac{1}{\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ k^{2}\\sin ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply the top and the bottom by a + b,",
           "using k²(a + b) = a − b:",
           {
@@ -466,14 +676,19 @@
             "style": "indent",
             "added": true
           },
-          "= (a + b)/[(a + b)cos²(x/2) + (a − b)sin²(x/2)]",
+          {
+            "text": "= \\ \\dfrac{a\\ + \\ b}{\\left(a\\ + \\ b\\right)\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\left(a\\ - \\ b\\right)\\sin ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(group the a terms and the b terms;",
             "added": true
           },
           {
-            "text": "  cos²(x/2) + sin²(x/2) = 1",
+            "text": "\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\ = \\ 1",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -481,22 +696,29 @@
             "style": "indent",
             "added": true
           },
-          "(a + b)cos²(x/2) + (a − b)sin²(x/2)",
           {
-            "text": "  = a[cos²(x/2) + sin²(x/2)]",
-            "style": "indent"
+            "text": "\\left(a\\ + \\ b\\right)\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\left(a\\ - \\ b\\right)\\sin ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  + b[cos²(x/2) − sin²(x/2)] = a + b cos x",
-            "style": "indent"
+            "text": "= \\ a\\left[\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ b\\left[\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\right]\\ = \\ a\\ + \\ b\\cos x",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(so far f′(x) = (k/√(a² − b²)) · (a + b)/(a + b cos x),",
             "added": true
           },
           {
-            "text": "  so the number in front of 1/(a + b cos x) is",
+            "text": "\\text{so}\\ \\text{the}\\ \\text{number}\\ \\text{in}\\ \\text{front}\\ \\text{of}\\ \\dfrac{1}{a\\ + \\ b\\cos x}\\text{is}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -504,19 +726,30 @@
             "style": "indent",
             "added": true
           },
-          "k(a + b) = √((a − b)/(a + b))·(a + b) = √((a − b)(a + b))",
+          {
+            "text": "k\\left(a\\ + \\ b\\right)\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}} \\cdot \\left(a\\ + \\ b\\right)\\ = \\ \\sqrt{\\left(a\\ - \\ b\\right)\\left(a\\ + \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = √(a² − b²),",
             "style": "indent"
           },
-          "so the constant in front is √(a² − b²)/√(a² − b²) = 1.",
           {
-            "text": "(the number in front is 1, so f′(x) = 1 · 1/(a + b cos x))",
+            "text": "\\text{so}\\ \\text{the}\\ \\text{constant}\\ \\text{in}\\ \\text{front}\\ \\text{is}\\ \\dfrac{\\sqrt{a^{2}\\ - \\ b^{2}}}{\\sqrt{a^{2}\\ - \\ b^{2}}} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{number}\\ \\text{in}\\ \\text{front}\\ \\text{is}\\ 1,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ 1\\ \\cdot \\ \\dfrac{1}{a\\ + \\ b\\cos x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ f′(x) = 1/(a + b cos x)",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{a\\ + \\ b\\cos x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -550,29 +783,56 @@
         "memory_tip": "Group by a and by b, not by cosine and sine. The a group gives 1 and the b group gives cos x, which rebuilds a + b cos x in one line.",
         "lines_compact": [
           "Multiply the top and the bottom of the fraction",
-          "by cos²(x/2):",
-          "sec²(x/2)/(1 + k²tan²(x/2)) = 1/(cos²(x/2) + k²sin²(x/2))",
+          {
+            "text": "\\text{by}\\ \\cos ^{2}\\left(\\dfrac{x}{2}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sec ^{2}\\left(\\dfrac{x}{2}\\right)}{1\\ + \\ k^{2}\\tan ^{2}\\left(\\dfrac{x}{2}\\right)} = \\ \\dfrac{1}{\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ k^{2}\\sin ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply the top and the bottom by a + b,",
           "using k²(a + b) = a − b:",
-          "= (a + b)/[(a + b)cos²(x/2) + (a − b)sin²(x/2)]",
-          "(a + b)cos²(x/2) + (a − b)sin²(x/2)",
           {
-            "text": "  = a[cos²(x/2) + sin²(x/2)]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{a\\ + \\ b}{\\left(a\\ + \\ b\\right)\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\left(a\\ - \\ b\\right)\\sin ^{2}\\left(\\dfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "  + b[cos²(x/2) − sin²(x/2)] = a + b cos x",
-            "style": "indent"
+            "text": "\\left(a\\ + \\ b\\right)\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\left(a\\ - \\ b\\right)\\sin ^{2}\\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
           },
-          "k(a + b) = √((a − b)/(a + b))·(a + b) = √((a − b)(a + b))",
+          {
+            "text": "= \\ a\\left[\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ + \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\right]",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ b\\left[\\cos ^{2}\\left(\\dfrac{x}{2}\\right)\\ - \\ \\sin ^{2}\\left(\\dfrac{x}{2}\\right)\\right]\\ = \\ a\\ + \\ b\\cos x",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "k\\left(a\\ + \\ b\\right)\\ = \\ \\sqrt{\\dfrac{a\\ - \\ b}{a\\ + \\ b}} \\cdot \\left(a\\ + \\ b\\right)\\ = \\ \\sqrt{\\left(a\\ - \\ b\\right)\\left(a\\ + \\ b\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = √(a² − b²),",
             "style": "indent"
           },
-          "so the constant in front is √(a² − b²)/√(a² − b²) = 1.",
           {
-            "text": "∴ f′(x) = 1/(a + b cos x)",
-            "style": "boxed"
+            "text": "\\text{so}\\ \\text{the}\\ \\text{constant}\\ \\text{in}\\ \\text{front}\\ \\text{is}\\ \\dfrac{\\sqrt{a^{2}\\ - \\ b^{2}}}{\\sqrt{a^{2}\\ - \\ b^{2}}} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{a\\ + \\ b\\cos x}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

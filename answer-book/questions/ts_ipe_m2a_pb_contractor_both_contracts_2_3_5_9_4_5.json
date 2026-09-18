@@ -83,8 +83,9 @@
             "style": "normal"
           },
           {
-            "text": "P(A) = 2/3, P(B) = 5/9, P(A ∪ B) = 4/5",
-            "style": "eq"
+            "text": "P\\left(A\\right)\\ = \\ \\dfrac{2}{3},\\ P\\left(B\\right)\\ = \\ \\dfrac{5}{9},\\ P\\left(A\\ \\cup \\ B\\right)\\ = \\ \\dfrac{4}{5}",
+            "style": "eq",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -186,8 +187,9 @@
         "memory_tip": "Common denominator 45: 30 + 25 − 36 = 19, so the answer is 19/45.",
         "lines": [
           {
-            "text": "= 2/3 + 5/9 − 4/5",
-            "style": "eq"
+            "text": "= \\ \\dfrac{2}{3} + \\ \\dfrac{5}{9} - \\ \\dfrac{4}{5}",
+            "style": "eq",
+            "render": "katex"
           },
           {
             "text": "The common denominator of 3, 9 and 5 is 45:",
@@ -195,22 +197,26 @@
             "added": true
           },
           {
-            "text": "= 30/45 + 25/45 − 36/45",
+            "text": "= \\ \\dfrac{30}{45} + \\ \\dfrac{25}{45} - \\ \\dfrac{36}{45}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (30 + 25 − 36)/45",
-            "style": "eq"
+            "text": "= \\ \\dfrac{30\\ + \\ 25\\ - \\ 36}{45}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= 19/45",
+            "text": "= \\ \\dfrac{19}{45}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(both contracts) = 19/45",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{both}\\ \\text{contracts}\\right)\\ = \\ \\dfrac{19}{45}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -239,16 +245,19 @@
         ],
         "lines_compact": [
           {
-            "text": "= 2/3 + 5/9 − 4/5",
-            "style": "eq"
+            "text": "= \\ \\dfrac{2}{3} + \\ \\dfrac{5}{9} - \\ \\dfrac{4}{5}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= (30 + 25 − 36)/45",
-            "style": "eq"
+            "text": "= \\ \\dfrac{30\\ + \\ 25\\ - \\ 36}{45}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "∴ P(both contracts) = 19/45",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{both}\\ \\text{contracts}\\right)\\ = \\ \\dfrac{19}{45}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

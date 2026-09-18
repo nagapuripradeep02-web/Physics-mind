@@ -112,10 +112,16 @@
           "= 2 cos60° cos18° − cos18°",
           "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
           {
-            "text": "(cos60° = 1/2)",
+            "text": "\\left(\\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2 × (1/2) × cos18° − cos18°",
+          {
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\cos 18^{\\circ}\\ - \\ \\cos 18^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos18° − cos18°",
           {
             "text": "= 0 = R.H.S",
@@ -152,7 +158,11 @@
         "lines_compact": [
           "= 2 cos60° cos18° − cos18°",
           "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",
-          "= 2 × (1/2) × cos18° − cos18°",
+          {
+            "text": "= \\ 2\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\ \\times \\ \\cos 18^{\\circ}\\ - \\ \\cos 18^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos18° − cos18°",
           {
             "text": "= 0 = R.H.S",

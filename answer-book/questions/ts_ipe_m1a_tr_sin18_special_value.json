@@ -123,19 +123,26 @@
             "style": "indent",
             "added": true
           },
-          "⇒ sinθ = (−2 ± √20)/8 = (−1 ± √5)/4",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{ - 2\\ \\pm \\ \\sqrt{20}}{8} = \\ \\dfrac{ - 1\\ \\pm \\ \\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√20 = 2√5; dividing top and bottom by 2)",
             "added": true
           },
           "18° is acute, so sin18° > 0",
           {
-            "text": "((−1 − √5)/4 is negative, so it is rejected)",
+            "text": "\\left(\\dfrac{ - 1\\ - \\ \\sqrt{5}}{4}\\text{is}\\ \\text{negative},\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ \\text{rejected}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ sin18° = (√5 − 1)/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin 18^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -169,11 +176,16 @@
           "cosθ ≠ 0 at θ = 18°, so divide by cosθ:",
           "2 sinθ = 4cos²θ − 3 = 4(1 − sin²θ) − 3",
           "⇒ 4sin²θ + 2 sinθ − 1 = 0",
-          "⇒ sinθ = (−2 ± √20)/8 = (−1 ± √5)/4",
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{ - 2\\ \\pm \\ \\sqrt{20}}{8} = \\ \\dfrac{ - 1\\ \\pm \\ \\sqrt{5}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "18° is acute, so sin18° > 0",
           {
-            "text": "∴ sin18° = (√5 − 1)/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin 18^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ - \\ 1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

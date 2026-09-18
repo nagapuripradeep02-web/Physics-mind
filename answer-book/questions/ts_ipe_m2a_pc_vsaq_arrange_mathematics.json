@@ -115,7 +115,9 @@
             "added": true
           },
           {
-            "text": "the arrangements are n!/(p!·q!·r!)",
+            "text": "\\text{the}\\ \\text{arrangements}\\ \\text{are}\\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -123,7 +125,9 @@
             "added": true
           },
           {
-            "text": "Arrangements = 11!/(2!·2!·2!)",
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{11!}{2! \\cdot 2! \\cdot 2!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -135,7 +139,9 @@
             "added": true
           },
           {
-            "text": "= 39916800/8",
+            "text": "= \\ \\dfrac{39916800}{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -171,10 +177,15 @@
           "Using 12! for an 11-letter word."
         ],
         "lines_compact": [
-          "Arrangements = n!/(p!·q!·r!)",
           {
-            "text": "= 11!/(2!·2!·2!) = 49,89,600",
-            "style": "boxed"
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{11!}{2! \\cdot 2! \\cdot 2!} = \\ 49,89,600",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

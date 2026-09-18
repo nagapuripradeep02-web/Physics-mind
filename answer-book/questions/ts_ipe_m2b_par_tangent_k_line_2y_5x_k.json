@@ -58,11 +58,19 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given parabola y² = 6x ⇒ 4a = 6 ⇒ a = 3/2",
+          {
+            "text": "\\text{Given}\\ \\text{parabola}\\ y^{2}\\ = \\ 6x\\ \\Rightarrow \\ 4a\\ = \\ 6\\ \\Rightarrow \\ a\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(compare with y² = 4ax)",
           "Given line 2y = 5x + k",
           "Divide every term by 2:",
-          "⇒ y = (5/2)x + k/2, so m = 5/2, c = k/2"
+          {
+            "text": "\\Rightarrow \\ y\\ = \\ \\left(\\dfrac{5}{2}\\right)x\\ + \\ \\dfrac{k}{2},\\ \\text{so}\\ m\\ = \\ \\dfrac{5}{2},\\ c\\ = \\ \\dfrac{k}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the given line in the standard y = mx + c form is what makes its slope m and intercept c usable in the tangential condition.",
         "common_mistakes": [
@@ -79,23 +87,38 @@
         "mark_note": "Solution",
         "margin_note": "Second mark, for solving c = a/m correctly through to k.",
         "lines": [
-          "The tangential condition is c = a/m.",
           {
-            "text": "(y = mx + c touches y² = 4ax exactly when c = a/m)",
+            "text": "\\text{The}\\ \\text{tangential}\\ \\text{condition}\\ \\text{is}\\ c\\ = \\ \\dfrac{a}{m}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ = \\ mx\\ + \\ c\\ \\text{touches}\\ y^{2}\\ = \\ 4ax\\ \\text{exactly}\\ \\text{when}\\ c\\ = \\ \\dfrac{a}{m}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put c = k/2, a = 3/2 and m = 5/2:",
-            "added": true
-          },
-          "k/2 = (3/2)/(5/2) = 3/5 ⇒ k = 2(3/5) = 6/5",
-          {
-            "text": "((3/2) ÷ (5/2) = 3/2 × 2/5 = 3/5)",
+            "text": "\\text{Put}\\ c\\ = \\ \\dfrac{k}{2},\\ a\\ = \\ \\dfrac{3}{2}\\text{and}\\ m\\ = \\ \\dfrac{5}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ k = 6/5",
-            "style": "boxed"
+            "text": "\\dfrac{k}{2} = \\ \\dfrac{\\dfrac{3}{2}}{\\dfrac{5}{2}} = \\ \\dfrac{3}{5} \\Rightarrow \\ k\\ = \\ 2\\left(\\dfrac{3}{5}\\right)\\ = \\ \\dfrac{6}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{3}{2}\\right)\\ \\div \\ \\left(\\dfrac{5}{2}\\right)\\ = \\ \\dfrac{3}{2} \\times \\ \\dfrac{2}{5} = \\ \\dfrac{3}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{6}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "For a line to touch y² = 4ax exactly once, its intercept c must equal a/m — that single condition is what pins down the one unknown, k.",
@@ -105,11 +128,20 @@
         ],
         "memory_tip": "A line touches y² = 4ax exactly when its intercept equals a divided by its slope — c = a/m.",
         "lines_compact": [
-          "The tangential condition is c = a/m.",
-          "k/2 = (3/2)/(5/2) = 3/5 ⇒ k = 2(3/5) = 6/5",
           {
-            "text": "∴ k = 6/5",
-            "style": "boxed"
+            "text": "\\text{The}\\ \\text{tangential}\\ \\text{condition}\\ \\text{is}\\ c\\ = \\ \\dfrac{a}{m}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{k}{2} = \\ \\dfrac{\\dfrac{3}{2}}{\\dfrac{5}{2}} = \\ \\dfrac{3}{5} \\Rightarrow \\ k\\ = \\ 2\\left(\\dfrac{3}{5}\\right)\\ = \\ \\dfrac{6}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ k\\ = \\ \\dfrac{6}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

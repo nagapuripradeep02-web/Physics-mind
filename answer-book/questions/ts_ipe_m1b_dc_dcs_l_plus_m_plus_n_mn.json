@@ -224,16 +224,30 @@
         "memory_tip": "First factor back into the linear relation, then clear the common letter.",
         "lines": [
           {
-            "text": "(put m = −n/2)",
+            "text": "\\left(\\text{put}\\ m\\ = \\ - \\dfrac{n}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Case (i): Put m = −n/2 in (1), then",
-          "l = −(−n/2) − n = n/2 − n = −n/2   ∴ l = −n/2",
+          {
+            "text": "\\text{Case}\\ \\left(i\\right):\\ \\text{Put}\\ m\\ = \\ - \\dfrac{n}{2}\\text{in}\\ \\left(1\\right),\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "l\\ = \\ - \\left( - \\dfrac{n}{2}\\right)\\ - \\ n\\ = \\ \\dfrac{n}{2} - \\ n\\ = \\ - \\dfrac{n}{2}\\therefore \\ l\\ = \\ - \\dfrac{n}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by n)",
             "added": true
           },
-          "Now, l : m : n = −n/2 : −n/2 : n = −1/2 : −1/2 : 1",
+          {
+            "text": "\\text{Now},\\ l\\ :\\ m\\ :\\ n\\ = \\ - \\dfrac{n}{2}:\\ - \\dfrac{n}{2}:\\ n\\ = \\ - \\dfrac{1}{2}:\\ - \\dfrac{1}{2}:\\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply by 2, then by −1)",
             "added": true
@@ -272,9 +286,21 @@
           "Reading the ratio in the wrong order."
         ],
         "lines_compact": [
-          "Case (i): Put m = −n/2 in (1), then",
-          "l = −(−n/2) − n = n/2 − n = −n/2   ∴ l = −n/2",
-          "Now, l : m : n = −n/2 : −n/2 : n = −1/2 : −1/2 : 1",
+          {
+            "text": "\\text{Case}\\ \\left(i\\right):\\ \\text{Put}\\ m\\ = \\ - \\dfrac{n}{2}\\text{in}\\ \\left(1\\right),\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "l\\ = \\ - \\left( - \\dfrac{n}{2}\\right)\\ - \\ n\\ = \\ \\dfrac{n}{2} - \\ n\\ = \\ - \\dfrac{n}{2}\\therefore \\ l\\ = \\ - \\dfrac{n}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Now},\\ l\\ :\\ m\\ :\\ n\\ = \\ - \\dfrac{n}{2}:\\ - \\dfrac{n}{2}:\\ n\\ = \\ - \\dfrac{1}{2}:\\ - \\dfrac{1}{2}:\\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −1 : −1 : 2 = 1 : 1 : −2",
             "style": "indent"
@@ -358,12 +384,17 @@
           },
           "On dividing (3) by",
           "√(1² + 1² + (−2)²) = √(1 + 1 + 4) = √6, we get",
-          "d.c's of L₁ = (1/√6, 1/√6, −2/√6)",
+          {
+            "text": "d.c's\\ \\text{of}\\ L_{1}\\ = \\ \\left(\\dfrac{1}{\\sqrt{6}},\\ \\dfrac{1}{\\sqrt{6}},\\ - \\dfrac{2}{\\sqrt{6}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "On dividing (4) by",
           "√(1² + (−2)² + 1²) = √(1 + 4 + 1) = √6, we get",
           {
-            "text": "d.c's of L₂ = (1/√6, −2/√6, 1/√6)",
-            "style": "boxed"
+            "text": "d.c's\\ \\text{of}\\ L_{2}\\ = \\ \\left(\\dfrac{1}{\\sqrt{6}},\\ - \\dfrac{2}{\\sqrt{6}},\\ \\dfrac{1}{\\sqrt{6}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -396,12 +427,17 @@
         "lines_compact": [
           "On dividing (3) by",
           "√(1² + 1² + (−2)²) = √(1 + 1 + 4) = √6, we get",
-          "d.c's of L₁ = (1/√6, 1/√6, −2/√6)",
+          {
+            "text": "d.c's\\ \\text{of}\\ L_{1}\\ = \\ \\left(\\dfrac{1}{\\sqrt{6}},\\ \\dfrac{1}{\\sqrt{6}},\\ - \\dfrac{2}{\\sqrt{6}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "On dividing (4) by",
           "√(1² + (−2)² + 1²) = √(1 + 4 + 1) = √6, we get",
           {
-            "text": "d.c's of L₂ = (1/√6, −2/√6, 1/√6)",
-            "style": "boxed"
+            "text": "d.c's\\ \\text{of}\\ L_{2}\\ = \\ \\left(\\dfrac{1}{\\sqrt{6}},\\ - \\dfrac{2}{\\sqrt{6}},\\ \\dfrac{1}{\\sqrt{6}}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

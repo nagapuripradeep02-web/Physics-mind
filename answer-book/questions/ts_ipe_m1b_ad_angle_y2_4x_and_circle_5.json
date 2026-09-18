@@ -116,22 +116,38 @@
             "text": "(differentiate (i) with respect to x)",
             "added": true
           },
-          "From (i):  2y (dy/dx) = 4  ⇒  dy/dx = 2/y",
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 4\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{2}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put y = 2)",
             "added": true
           },
-          "At P(1, 2):  m₁ = 2/2 = 1",
+          {
+            "text": "\\text{At}\\ P\\left(1,\\ 2\\right):\\ m_{1}\\ = \\ \\dfrac{2}{2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(differentiate (ii); then divide both sides by 2y)",
             "added": true
           },
-          "From (ii):  2x + 2y (dy/dx) = 0  ⇒  dy/dx = −x/y",
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 2x\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x = 1 and y = 2)",
             "added": true
           },
-          "At P(1, 2):  m₂ = −1/2"
+          {
+            "text": "\\text{At}\\ P\\left(1,\\ 2\\right):\\ m_{2}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -165,10 +181,26 @@
         ],
         "memory_tip": "For x² + y² = r² the slope is always −x/y, because the tangent is perpendicular to the radius.",
         "lines_compact": [
-          "From (i):  2y (dy/dx) = 4  ⇒  dy/dx = 2/y",
-          "At P(1, 2):  m₁ = 2/2 = 1",
-          "From (ii):  2x + 2y (dy/dx) = 0  ⇒  dy/dx = −x/y",
-          "At P(1, 2):  m₂ = −1/2"
+          {
+            "text": "\\text{From}\\ \\left(i\\right):\\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 4\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{2}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(1,\\ 2\\right):\\ m_{1}\\ = \\ \\dfrac{2}{2} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(ii\\right):\\ 2x\\ + \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ - \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(1,\\ 2\\right):\\ m_{2}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -198,17 +230,33 @@
             "style": "indent",
             "added": true
           },
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
           {
-            "text": "(put m₁ = 1 and m₂ = −1/2)",
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ m_{1}\\ = \\ 1\\ \\text{and}\\ m_{2}\\ = \\ - \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= |(1 − (−1/2))/(1 + (1)(−1/2))|",
           {
-            "text": "(1 + 1/2 = 3/2; (1)(−1/2) = −1/2, so 1 − 1/2 = 1/2)",
+            "text": "= \\ \\left|\\dfrac{1\\ - \\ \\left( - \\dfrac{1}{2}\\right)}{1\\ + \\ \\left(1\\right)\\left( - \\dfrac{1}{2}\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2};\\ \\left(1\\right)\\left( - \\dfrac{1}{2}\\right)\\ = \\ - \\dfrac{1}{2},\\ \\text{so}\\ 1\\ - \\ \\dfrac{1}{2} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= |(3/2)/(1/2)| = 3",
+          {
+            "text": "= \\ \\left|\\dfrac{\\dfrac{3}{2}}{\\dfrac{1}{2}}\\right|\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a calculator gives Tan⁻¹ 3 ≈ 71°34′)",
             "added": true
@@ -250,9 +298,21 @@
         "memory_tip": "Difference on top, one plus the product underneath — the same formula as the angle between two straight lines.",
         "lines_compact": [
           "If θ is the angle between the curves at P, then",
-          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
-          "= |(1 − (−1/2))/(1 + (1)(−1/2))|",
-          "= |(3/2)/(1/2)| = 3",
+          {
+            "text": "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{1\\ - \\ \\left( - \\dfrac{1}{2}\\right)}{1\\ + \\ \\left(1\\right)\\left( - \\dfrac{1}{2}\\right)}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left|\\dfrac{\\dfrac{3}{2}}{\\dfrac{1}{2}}\\right|\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
             "style": "boxed"

@@ -123,8 +123,9 @@
           },
           "Then the angle θ between the planes is",
           {
-            "text": "cos θ = |a₁a₂ + b₁b₂ + c₁c₂| / (n₁n₂)",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{n_{1}n_{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -163,8 +164,9 @@
           "n₂ = √(a₂²+b₂²+c₂²).",
           "Then the angle θ between the planes is",
           {
-            "text": "cos θ = |a₁a₂ + b₁b₂ + c₁c₂| / (n₁n₂)",
-            "style": "boxed"
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{n_{1}n_{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

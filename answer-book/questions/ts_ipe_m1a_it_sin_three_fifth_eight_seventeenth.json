@@ -56,16 +56,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let A = Sin⁻¹(3/5) ⇒ sinA = 3/5",
-          "Let B = Sin⁻¹(8/17) ⇒ sinB = 8/17",
+          {
+            "text": "\\text{Let}\\ A\\ = \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ \\Rightarrow \\ \\sin A\\ = \\ \\dfrac{3}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Let}\\ B\\ = \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{8}{17}\\right)\\ \\Rightarrow \\ \\sin B\\ = \\ \\dfrac{8}{17}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Both values are positive,",
-          "so A, B ∈ (0, π/2).",
+          {
+            "text": "\\text{so}\\ A,\\ B\\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{2}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cosA = √(1 − 9/25) = 4/5 and",
           {
             "text": "  cosB = √(1 − 64/289) = √(225/289) = 15/17)",
             "style": "indent"
           },
-          "∴ cosA = 4/5 and cosB = 15/17"
+          {
+            "text": "\\therefore \\ \\cos A\\ = \\ \\dfrac{4}{5}\\text{and}\\ \\cos B\\ = \\ \\dfrac{15}{17}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,13 +125,27 @@
             "added": true
           },
           "cos(A + B) = cosA cosB − sinA sinB",
-          "= (4/5)(15/17) − (3/5)(8/17)",
           {
-            "text": "((4/5)(15/17) = 60/85 and (3/5)(8/17) = 24/85)",
+            "text": "= \\ \\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{15}{17}\\right)\\ - \\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{8}{17}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{15}{17}\\right)\\ = \\ \\dfrac{60}{85}\\text{and}\\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{8}{17}\\right)\\ = \\ \\dfrac{24}{85}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 60/85 − 24/85",
-          "= 36/85"
+          {
+            "text": "= \\ \\dfrac{60}{85} - \\ \\dfrac{24}{85}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{36}{85}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -146,9 +176,21 @@
         ],
         "lines_compact": [
           "cos(A + B) = cosA cosB − sinA sinB",
-          "= (4/5)(15/17) − (3/5)(8/17)",
-          "= 60/85 − 24/85",
-          "= 36/85"
+          {
+            "text": "= \\ \\left(\\dfrac{4}{5}\\right)\\left(\\dfrac{15}{17}\\right)\\ - \\ \\left(\\dfrac{3}{5}\\right)\\left(\\dfrac{8}{17}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{60}{85} - \\ \\dfrac{24}{85}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{36}{85}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -160,13 +202,22 @@
         "margin_note": "Last mark. The range line is needed — without it the final equality is only a statement about cosines, not about the angles.",
         "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is valid.",
         "lines": [
-          "A, B ∈ (0, π/2) ⇒ A + B ∈ (0, π)",
+          {
+            "text": "A,\\ B\\ \\in \\ \\left(0,\\ \\dfrac{\\pi }{2}\\right)\\ \\Rightarrow \\ A\\ + \\ B\\ \\in \\ \\left(0,\\ \\pi \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "[0, π] is the range of Cos⁻¹, so the",
           "angle A + B is fixed by its cosine:",
-          "A + B = Cos⁻¹(36/85)",
           {
-            "text": "∴ Sin⁻¹(3/5) + Sin⁻¹(8/17) = Cos⁻¹(36/85)",
-            "style": "boxed"
+            "text": "A\\ + \\ B\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{36}{85}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{3}{5}\\right)\\ + \\ \\operatorname{Sin}^{-1}\\left(\\dfrac{8}{17}\\right)\\ = \\ \\operatorname{Cos}^{-1}\\left(\\dfrac{36}{85}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

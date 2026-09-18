@@ -52,16 +52,37 @@
             "style": "heading"
           },
           "(the sum-to-product formula)",
-          "cos A + cos B = 2 cos((A+B)/2) cos((A−B)/2)",
-          "(A+B)/2 = 90° − C/2",
-          "(cos(90° − x) = sin x)",
-          "⇒ cos((A+B)/2) = sin(C/2)",
-          "(cos 2θ = 1 − 2 sin²θ)",
-          "cos C = 1 − 2 sin²(C/2)",
-          "∴ 2 sin(C/2) cos((A−B)/2) + 1 − 2 sin²(C/2)",
           {
-            "text": "= 3/2",
-            "style": "indent"
+            "text": "\\cos A\\ + \\ \\cos B\\ = \\ 2\\cos \\left(\\dfrac{A + B}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(cos(90° − x) = sin x)",
+          {
+            "text": "\\Rightarrow \\ \\cos \\left(\\dfrac{A + B}{2}\\right)\\ = \\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(cos 2θ = 1 − 2 sin²θ)",
+          {
+            "text": "\\cos C\\ = \\ 1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\cos \\left(\\dfrac{A - B}{2}\\right)\\ + \\ 1\\ - \\ 2\\sin ^{2}\\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3}{2}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -111,8 +132,16 @@
             "style": "indent",
             "added": true
           },
-          "4 sin²(C/2) − 4 cos((A−B)/2) sin(C/2) + 1 = 0",
-          "This is a quadratic in sin(C/2), and sin(C/2)",
+          {
+            "text": "4\\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 4\\cos \\left(\\dfrac{A - B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ + \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{in}\\ \\sin \\left(\\dfrac{C}{2}\\right),\\ \\text{and}\\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "is a real number, so its discriminant ≥ 0",
             "style": "indent"
@@ -126,12 +155,20 @@
             "style": "indent",
             "added": true
           },
-          "16 cos²((A−B)/2) − 16 ≥ 0",
+          {
+            "text": "16\\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ - \\ 16\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 16)",
             "added": true
           },
-          "⇒ cos²((A−B)/2) ≥ 1"
+          {
+            "text": "\\Rightarrow \\ \\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ \\ge \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -162,14 +199,30 @@
         ],
         "lines_compact": [
           "Multiply by 2 and rearrange:",
-          "4 sin²(C/2) − 4 cos((A−B)/2) sin(C/2) + 1 = 0",
-          "This is a quadratic in sin(C/2), and sin(C/2)",
+          {
+            "text": "4\\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 4\\cos \\left(\\dfrac{A - B}{2}\\right)\\sin \\left(\\dfrac{C}{2}\\right)\\ + \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ a\\ \\text{quadratic}\\ \\text{in}\\ \\sin \\left(\\dfrac{C}{2}\\right),\\ \\text{and}\\ \\sin \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "is a real number, so its discriminant ≥ 0",
             "style": "indent"
           },
-          "16 cos²((A−B)/2) − 16 ≥ 0",
-          "⇒ cos²((A−B)/2) ≥ 1"
+          {
+            "text": "16\\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ - \\ 16\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ \\ge \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -181,27 +234,52 @@
         "margin_note": "The other mark. cos²((A−B)/2) ≥ 1 and ≤ 1 force equality, and (A−B)/2 lies strictly between −90° and 90°, so the cosine is +1.",
         "memory_tip": "A cosine is never more than 1, so ≥ 1 forces exactly 1, which means A = B. Then the quadratic becomes a perfect square.",
         "lines": [
-          "But cos²θ ≤ 1 for every θ, so cos²((A−B)/2) = 1",
-          "(A−B)/2 lies between −90° and 90°, so its cosine",
           {
-            "text": "is positive: cos((A−B)/2) = 1 ⇒ A = B",
-            "style": "indent"
+            "text": "\\text{But}\\ \\cos ^{2} \\theta \\ \\le \\ 1\\ \\text{for}\\ \\text{every}\\ \\theta ,\\ \\text{so}\\ \\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(put cos((A−B)/2) = 1 into the quadratic)",
+            "text": "\\dfrac{A - B}{2}\\text{lies}\\ \\text{between}\\ - 90^{\\circ}\\ \\text{and}\\ 90^{\\circ},\\ \\text{so}\\ \\text{its}\\ \\text{cosine}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{is}\\ \\text{positive}:\\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\ = \\ 1\\ \\Rightarrow \\ A\\ = \\ B",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\ = \\ 1\\ \\text{into}\\ \\text{the}\\ \\text{quadratic}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Then 4 sin²(C/2) − 4 sin(C/2) + 1 = 0",
+          {
+            "text": "\\text{Then}\\ 4\\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 4\\sin \\left(\\dfrac{C}{2}\\right)\\ + \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4x² − 4x + 1 = (2x − 1)²)",
             "added": true
           },
-          "⇒ (2 sin(C/2) − 1)² = 0 ⇒ sin(C/2) = 1/2",
           {
-            "text": "(C/2 lies between 0° and 90°)",
+            "text": "\\Rightarrow \\ \\left(2\\sin \\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\right)^{2}\\ = \\ 0\\ \\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{C}{2}\\text{lies}\\ \\text{between}\\ 0^{\\circ}\\ \\text{and}\\ 90^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ C/2 = 30° ⇒ C = 60°, so A = B = 60°",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{C}{2} = \\ 30^{\\circ}\\ \\Rightarrow \\ C\\ = \\ 60^{\\circ},\\ \\text{so}\\ A\\ = \\ B\\ = \\ 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ A = B = C = 60°, so it is equilateral",
             "style": "boxed"
@@ -235,15 +313,36 @@
           "Taking cos((A−B)/2) = −1, which no angle of a triangle allows."
         ],
         "lines_compact": [
-          "But cos²θ ≤ 1 for every θ, so cos²((A−B)/2) = 1",
-          "(A−B)/2 lies between −90° and 90°, so its cosine",
           {
-            "text": "is positive: cos((A−B)/2) = 1 ⇒ A = B",
-            "style": "indent"
+            "text": "\\text{But}\\ \\cos ^{2} \\theta \\ \\le \\ 1\\ \\text{for}\\ \\text{every}\\ \\theta ,\\ \\text{so}\\ \\cos ^{2}\\left(\\dfrac{A - B}{2}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
           },
-          "Then 4 sin²(C/2) − 4 sin(C/2) + 1 = 0",
-          "⇒ (2 sin(C/2) − 1)² = 0 ⇒ sin(C/2) = 1/2",
-          "⇒ C/2 = 30° ⇒ C = 60°, so A = B = 60°",
+          {
+            "text": "\\dfrac{A - B}{2}\\text{lies}\\ \\text{between}\\ - 90^{\\circ}\\ \\text{and}\\ 90^{\\circ},\\ \\text{so}\\ \\text{its}\\ \\text{cosine}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{is}\\ \\text{positive}:\\ \\cos \\left(\\dfrac{A - B}{2}\\right)\\ = \\ 1\\ \\Rightarrow \\ A\\ = \\ B",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Then}\\ 4\\sin ^{2}\\left(\\dfrac{C}{2}\\right)\\ - \\ 4\\sin \\left(\\dfrac{C}{2}\\right)\\ + \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\left(2\\sin \\left(\\dfrac{C}{2}\\right)\\ - \\ 1\\right)^{2}\\ = \\ 0\\ \\Rightarrow \\ \\sin \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{C}{2} = \\ 30^{\\circ}\\ \\Rightarrow \\ C\\ = \\ 60^{\\circ},\\ \\text{so}\\ A\\ = \\ B\\ = \\ 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ A = B = C = 60°, so it is equilateral",
             "style": "boxed"

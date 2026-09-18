@@ -52,11 +52,23 @@
             "style": "heading"
           },
           "At x = 1, sin(x − 1) = sin 0 = 0 and x² − 1 = 0,",
-          "so the form is 0/0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(a² − b² = (a − b)(a + b) with a = x and b = 1)",
           "Factor the denominator:  x² − 1 = (x − 1)(x + 1).",
-          "(1/[(x − 1)(x + 1)] = [1/(x − 1)] · [1/(x + 1)])",
-          "sin(x − 1)/(x² − 1) = [sin(x − 1)/(x − 1)] · [1/(x + 1)]"
+          {
+            "text": "\\left(\\dfrac{1}{\\left(x\\ - \\ 1\\right)\\left(x\\ + \\ 1\\right)} = \\ \\left[\\dfrac{1}{x\\ - \\ 1}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{x\\ + \\ 1}\\right]\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sin \\left(x\\ - \\ 1\\right)}{x^{2}\\ - \\ 1} = \\ \\left[\\dfrac{\\sin \\left(x\\ - \\ 1\\right)}{x\\ - \\ 1}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{x\\ + \\ 1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -100,17 +112,34 @@
             "added": true
           },
           "As x → 1, the angle (x − 1) → 0,",
-          "so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
-          "The factor 1/(x + 1) is defined at x = 1,",
-          "so substitute x = 1: 1/(1 + 1) = 1/2.",
+          {
+            "text": "\\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 1\\right)\\sin \\left(x\\ - \\ 1\\right)}{x\\ - \\ 1} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{1}{x\\ + \\ 1}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{substitute}\\ x\\ = \\ 1:\\ \\dfrac{1}{1\\ + \\ 1} = \\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the two limits)",
             "added": true
           },
-          "= 1 · 1/2",
           {
-            "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",
-            "style": "boxed"
+            "text": "= \\ 1\\ \\cdot \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 1\\right)\\sin \\left(x\\ - \\ 1\\right)}{x^{2}\\ - \\ 1} = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -143,13 +172,30 @@
         "memory_tip": "Once sin(x − 1)/(x − 1) is split off and goes to 1, what is left is the leftover factor at the point. Here that is 1/(x + 1) at x = 1, so the answer is 1/2. The angle inside the sine must match the factor below it, or the standard limit cannot be used.",
         "lines_compact": [
           "As x → 1, the angle (x − 1) → 0,",
-          "so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
-          "The factor 1/(x + 1) is defined at x = 1,",
-          "so substitute x = 1: 1/(1 + 1) = 1/2.",
-          "= 1 · 1/2",
           {
-            "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",
-            "style": "boxed"
+            "text": "\\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 1\\right)\\sin \\left(x\\ - \\ 1\\right)}{x\\ - \\ 1} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{1}{x\\ + \\ 1}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 1,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{substitute}\\ x\\ = \\ 1:\\ \\dfrac{1}{1\\ + \\ 1} = \\ \\dfrac{1}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ \\cdot \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 1\\right)\\sin \\left(x\\ - \\ 1\\right)}{x^{2}\\ - \\ 1} = \\ \\dfrac{1}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

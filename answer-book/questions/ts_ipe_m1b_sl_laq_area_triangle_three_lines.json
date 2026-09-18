@@ -73,7 +73,11 @@
           "In (2):  x − 5(2x − 5) + 11 = 0",
           "(−5(2x − 5) = −10x + 25)",
           "⇒ x − 10x + 25 + 11 = 0",
-          "(x − 10x = −9x and 25 + 11 = 36; 36/9 = 4)",
+          {
+            "text": "\\left(x\\ - \\ 10x\\ = \\ - 9x\\ \\text{and}\\ 25\\ + \\ 11\\ = \\ 36;\\ \\dfrac{36}{9} = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ −9x + 36 = 0  ⇒  x = 4",
           "(put x = 4 in y = 2x − 5)",
           "Then  y = 2(4) − 5 = 3",
@@ -230,7 +234,11 @@
         "lines": [
           "The area of the triangle with vertices",
           "(x₁, y₁), (x₂, y₂), (x₃, y₃) is",
-          "Δ = ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}\\left(y_{2}\\ - \\ y_{3}\\right)\\ + \\ x_{2}\\left(y_{3}\\ - \\ y_{1}\\right)\\ + \\ x_{3}\\left(y_{1}\\ - \\ y_{2}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the three vertices found in steps 1, 2 and 3)",
             "added": true
@@ -268,7 +276,11 @@
         "lines_compact": [
           "The area of the triangle with vertices",
           "(x₁, y₁), (x₂, y₂), (x₃, y₃) is",
-          "Δ = ½|x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|x_{1}\\left(y_{2}\\ - \\ y_{3}\\right)\\ + \\ x_{2}\\left(y_{3}\\ - \\ y_{1}\\right)\\ + \\ x_{3}\\left(y_{1}\\ - \\ y_{2}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here  A(4, 3),  B(−1, 2),  C(2, −1)"
         ]
       },
@@ -289,17 +301,31 @@
             "style": "indent",
             "added": true
           },
-          "Δ = ½|4(2 + 1) + (−1)(−1 − 3) + 2(3 − 2)|",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|4\\left(2\\ + \\ 1\\right)\\ + \\ \\left( - 1\\right)\\left( - 1\\ - \\ 3\\right)\\ + \\ 2\\left(3\\ - \\ 2\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4 × 3 = 12, (−1)(−4) = 4 and 2 × 1 = 2)",
             "added": true
           },
-          "= ½|12 + 4 + 2|",
           {
-            "text": "(12 + 4 + 2 = 18, and ½ × 18 = 9)",
+            "text": "= \\ \\dfrac{1}{2}\\left|12\\ + \\ 4\\ + \\ 2\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(12\\ + \\ 4\\ + \\ 2\\ = \\ 18,\\ \\text{and}\\ \\dfrac{1}{2}\\ \\times \\ 18\\ = \\ 9\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ½(18) = 9",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left(18\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(BC = √((2 + 1)² + (−1 − 2)²) = √18 = 3√2;",
             "added": true
@@ -315,12 +341,22 @@
             "added": true
           },
           {
-            "text": "(3√2 × 3√2 = 9 × 2 = 18, and ½ × 18 = 9)",
+            "text": "\\left(3\\sqrt{2}\\ \\times \\ 3\\sqrt{2}\\ = \\ 9\\ \\times \\ 2\\ = \\ 18,\\ \\text{and}\\ \\dfrac{1}{2}\\ \\times \\ 18\\ = \\ 9\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Check by base and height:  BC = 3√2, and",
-          "the distance from A to (3) is 6/√2 = 3√2,",
-          "so Δ = ½(3√2)(3√2) = 9",
+          {
+            "text": "\\text{the}\\ \\text{distance}\\ \\text{from}\\ A\\ \\text{to}\\ \\left(3\\right)\\ \\text{is}\\ \\dfrac{6}{\\sqrt{2}} = \\ 3\\sqrt{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left(3\\sqrt{2}\\right)\\left(3\\sqrt{2}\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area = 9 sq. units",
             "style": "boxed"
@@ -355,12 +391,32 @@
         ],
         "memory_tip": "Modulus bars come off only after the inside is worked out. An area always carries sq. units.",
         "lines_compact": [
-          "Δ = ½|4(2 + 1) + (−1)(−1 − 3) + 2(3 − 2)|",
-          "= ½|12 + 4 + 2|",
-          "= ½(18) = 9",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|4\\left(2\\ + \\ 1\\right)\\ + \\ \\left( - 1\\right)\\left( - 1\\ - \\ 3\\right)\\ + \\ 2\\left(3\\ - \\ 2\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|12\\ + \\ 4\\ + \\ 2\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left(18\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           "Check by base and height:  BC = 3√2, and",
-          "the distance from A to (3) is 6/√2 = 3√2,",
-          "so Δ = ½(3√2)(3√2) = 9",
+          {
+            "text": "\\text{the}\\ \\text{distance}\\ \\text{from}\\ A\\ \\text{to}\\ \\left(3\\right)\\ \\text{is}\\ \\dfrac{6}{\\sqrt{2}} = \\ 3\\sqrt{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\Delta \\ = \\ \\dfrac{1}{2}\\left(3\\sqrt{2}\\right)\\left(3\\sqrt{2}\\right)\\ = \\ 9",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Area = 9 sq. units",
             "style": "boxed"

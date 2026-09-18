@@ -106,13 +106,20 @@
             "added": true
           },
           {
-            "text": "(sin54° = cos36° = (√5 + 1)/4, and sin30° = 1/2)",
+            "text": "\\left(\\sin 54^{\\circ}\\ = \\ \\cos 36^{\\circ}\\ = \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{4},\\ \\text{and}\\ \\sin 30^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= sin54° sin30° = ((√5 + 1)/4)(1/2)",
           {
-            "text": "= (√5 + 1)/8 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\sin 54^{\\circ}\\sin 30^{\\circ}\\ = \\ \\left(\\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right)\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{8} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -145,10 +152,15 @@
         "lines_compact": [
           "= sin(42° + 12°) sin(42° − 12°)",
           "  [∵ sin²A − sin²B = sin(A+B) sin(A−B)]",
-          "= sin54° sin30° = ((√5 + 1)/4)(1/2)",
           {
-            "text": "= (√5 + 1)/8 = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\sin 54^{\\circ}\\sin 30^{\\circ}\\ = \\ \\left(\\dfrac{\\sqrt{5}\\ + \\ 1}{4}\\right)\\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{5}\\ + \\ 1}{8} = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -62,7 +62,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given P(X = k) = (k + 1)c/2ᵏ, k = 0, 1, 2, …",
+          {
+            "text": "\\text{Given}\\ P\\left(X\\ = \\ k\\right)\\ = \\ \\dfrac{\\left(k\\ + \\ 1\\right)c}{2^{k}},\\ k\\ = \\ 0,\\ 1,\\ 2,\\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "A probability distribution must have all",
           "its probabilities adding up to 1:",
           {
@@ -70,9 +74,21 @@
             "style": "eq"
           },
           "P(X = 0) + P(X = 1) + P(X = 2) + … = 1",
-          "1c/2⁰ + 2c/2¹ + 3c/2² + 4c/2³ + … = 1",
-          "Take c out and write 1/2ᵏ as (1/2)ᵏ:",
-          "c[1 + 2(1/2) + 3(1/2)² + 4(1/2)³ + …] = 1"
+          {
+            "text": "\\dfrac{1c}{2^{0}} + \\ \\dfrac{2c}{2^{1}} + \\ \\dfrac{3c}{2^{2}} + \\ \\dfrac{4c}{2^{3}} + \\ \\dots \\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Take}\\ c\\ \\text{out}\\ \\text{and}\\ \\text{write}\\ \\dfrac{1}{2^{k}}\\text{as}\\ \\left(\\dfrac{1}{2}\\right)^{k}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "c\\left[1\\ + \\ 2\\left(\\dfrac{1}{2}\\right)\\ + \\ 3\\left(\\dfrac{1}{2}\\right)^{2}\\ + \\ 4\\left(\\dfrac{1}{2}\\right)^{3}\\ + \\ \\dots \\right]\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,19 +134,27 @@
           },
           "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻², |x| < 1",
           {
-            "text": "Here x = 1/2, and |1/2| < 1, so the",
+            "text": "\\text{Here}\\ x\\ = \\ \\dfrac{1}{2},\\ \\text{and}\\ |\\dfrac{1}{2}|\\ < \\ 1,\\ \\text{so}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "bracket is (1 − 1/2)⁻²:",
+            "text": "\\text{bracket}\\ \\text{is}\\ \\left(1\\ - \\ \\dfrac{1}{2}\\right)^{-2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "c(1 − 1/2)⁻² = 1",
+            "text": "c\\left(1\\ - \\ \\dfrac{1}{2}\\right)^{-2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "c(1/2)⁻² = 1",
+            "text": "c\\left(\\dfrac{1}{2}\\right)^{-2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -138,14 +162,20 @@
             "added": true
           },
           {
-            "text": "(1/2)⁻² = 2² = 4",
+            "text": "\\left(\\dfrac{1}{2}\\right)^{-2}\\ = \\ 2^{2}\\ = \\ 4",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "4c = 1",
             "added": true
           },
-          "c = 1/4"
+          {
+            "text": "c\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -178,10 +208,22 @@
         "lines_compact": [
           "We know, for |x| < 1:",
           "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻²",
-          "Here x = 1/2:",
-          "⇒ c(1 − 1/2)⁻² = 1 ⇒ c(1/2)⁻² = 1",
+          {
+            "text": "\\text{Here}\\ x\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ c\\left(1\\ - \\ \\dfrac{1}{2}\\right)^{-2}\\ = \\ 1\\ \\Rightarrow \\ c\\left(\\dfrac{1}{2}\\right)^{-2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ c(2²) = 1 ⇒ 4c = 1",
-          "⇒ c = 1/4"
+          {
+            "text": "\\Rightarrow \\ c\\ = \\ \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -198,15 +240,26 @@
             "added": true
           },
           "P(1 < X < 3) = P(X = 2)",
-          "= (2 + 1)c/2² = 3c/4",
           {
-            "text": "Put c = 1/4:",
+            "text": "= \\ \\dfrac{\\left(2\\ + \\ 1\\right)c}{2^{2}} = \\ \\dfrac{3c}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ c\\ = \\ \\dfrac{1}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 3(1/4)/4 = 3/16",
           {
-            "text": "∴ c = 1/4, P(1 < X < 3) = 3/16",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{3\\left(\\dfrac{1}{4}\\right)}{4} = \\ \\dfrac{3}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{4},\\ P\\left(1\\ < \\ X\\ < \\ 3\\right)\\ = \\ \\dfrac{3}{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -239,11 +292,20 @@
         ],
         "lines_compact": [
           "P(1 < X < 3) = P(X = 2)",
-          "= (2 + 1)c/2² = 3c/4",
-          "= 3(1/4)/4 = 3/16",
           {
-            "text": "∴ c = 1/4, P(1 < X < 3) = 3/16",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left(2\\ + \\ 1\\right)c}{2^{2}} = \\ \\dfrac{3c}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3\\left(\\dfrac{1}{4}\\right)}{4} = \\ \\dfrac{3}{16}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{4},\\ P\\left(1\\ < \\ X\\ < \\ 3\\right)\\ = \\ \\dfrac{3}{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

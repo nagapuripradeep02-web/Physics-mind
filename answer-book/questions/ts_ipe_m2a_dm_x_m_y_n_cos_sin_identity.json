@@ -164,7 +164,11 @@
             "text": "The reciprocal of cis θ is cis(−θ):",
             "added": true
           },
-          "1/(xᵐyⁿ) = 1/cis(mα + nβ) = cis(−(mα + nβ))",
+          {
+            "text": "\\dfrac{1}{x^{m}y^{n}} = \\ \\dfrac{1}{cis\\left(m\\alpha \\ + \\ n\\beta \\right)} = \\ cis\\left( - \\left(m\\alpha \\ + \\ n\\beta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "cos is even and sin is odd, so",
             "added": true
@@ -201,7 +205,11 @@
           "Rationalising the fraction from scratch and losing time."
         ],
         "lines_compact": [
-          "1/(xᵐyⁿ) = 1/cis(mα + nβ) = cis(−(mα + nβ))",
+          {
+            "text": "\\dfrac{1}{x^{m}y^{n}} = \\ \\dfrac{1}{cis\\left(m\\alpha \\ + \\ n\\beta \\right)} = \\ cis\\left( - \\left(m\\alpha \\ + \\ n\\beta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= cos(mα + nβ) − i sin(mα + nβ) …(2)"
         ]
       },
@@ -218,10 +226,15 @@
             "text": "Adding (1) and (2), the i sin terms cancel:",
             "added": true
           },
-          "xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ)",
           {
-            "text": "∴ xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ)",
+            "text": "x^{m}y^{n}\\ + \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2\\cos \\left(m\\alpha \\ + \\ n\\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x^{m}y^{n}\\ + \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2\\cos \\left(m\\alpha \\ + \\ n\\beta \\right)",
             "style": "boxed",
+            "render": "katex",
             "added": true
           }
         ],
@@ -256,8 +269,9 @@
         "lines_compact": [
           "Adding (1) and (2):",
           {
-            "text": "xᵐyⁿ + 1/(xᵐyⁿ) = 2cos(mα + nβ)",
-            "style": "boxed"
+            "text": "x^{m}y^{n}\\ + \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2\\cos \\left(m\\alpha \\ + \\ n\\beta \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -278,10 +292,15 @@
             "text": "and the i sin terms double:",
             "added": true
           },
-          "xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ)",
           {
-            "text": "∴ xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ)",
+            "text": "x^{m}y^{n}\\ - \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2i\\sin \\left(m\\alpha \\ + \\ n\\beta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ x^{m}y^{n}\\ - \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2i\\sin \\left(m\\alpha \\ + \\ n\\beta \\right)",
             "style": "boxed",
+            "render": "katex",
             "added": true
           }
         ],
@@ -316,8 +335,9 @@
         "lines_compact": [
           "Subtracting (2) from (1):",
           {
-            "text": "xᵐyⁿ − 1/(xᵐyⁿ) = 2i sin(mα + nβ)",
-            "style": "boxed"
+            "text": "x^{m}y^{n}\\ - \\ \\dfrac{1}{x^{m}y^{n}} = \\ 2i\\sin \\left(m\\alpha \\ + \\ n\\beta \\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

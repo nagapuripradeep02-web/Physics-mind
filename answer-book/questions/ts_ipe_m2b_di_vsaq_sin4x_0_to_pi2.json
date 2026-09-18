@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫sinⁿx dx from 0 to π/2 has a direct formula,",
+          {
+            "text": "\\int \\sin ^{n} xdx\\ \\text{from}\\ 0\\ \\text{to}\\ \\dfrac{\\pi }{2}hasa\\ \\text{direct}\\ \\text{formula},",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  so no repeated by-parts is needed.",
             "style": "indent"
@@ -62,7 +66,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "= [(n−1)(n−3)···3·1]/[n(n−2)···4·2] · π/2",
+          {
+            "text": "= \\ \\dfrac{\\left(n - 1\\right)\\left(n - 3\\right) \\cdot \\cdot \\cdot 3 \\cdot 1}{n\\left(n - 2\\right) \\cdot \\cdot \\cdot 4 \\cdot 2} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[Wallis's formula]"
         ],
         "why": "Wallis's reduction formula gives a closed form for ∫ sinⁿx dx from 0 to π/2 directly, avoiding a repeated integration-by-parts derivation; an extra factor π/2 appears whenever n is even.",
@@ -81,7 +89,9 @@
         "memory_tip": "(n−1)(n−3)··· down to 1 or 2 sits on top; n(n−2)··· down to 1 or 2 sits on the bottom.",
         "lines": [
           {
-            "text": "Here n = 4, which is even, so π/2 is kept:",
+            "text": "\\text{Here}\\ n\\ = \\ 4,\\ \\text{which}\\ \\text{is}\\ \\text{even},\\ \\text{so}\\ \\dfrac{\\pi }{2}\\text{is}\\ \\text{kept}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -89,14 +99,21 @@
             "render": "katex",
             "style": "normal"
           },
-          "= 3/8 · π/2",
           {
-            "text": "and 3π/(8·2) = 3π/16:",
+            "text": "= \\ \\dfrac{3}{8} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{3\\pi }{8 \\cdot 2} = \\ \\dfrac{3\\pi }{16}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 3π/16",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting n=4 into the descending products (3·1) over (4·2) gives 3/8, and multiplying by the extra π/2 factor gives the final value.",
@@ -110,10 +127,15 @@
             "render": "katex",
             "style": "normal"
           },
-          "= 3/8 · π/2",
           {
-            "text": "∴ I = 3π/16",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{3}{8} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{16}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

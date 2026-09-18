@@ -101,7 +101,11 @@
             "text": "(165° is in Q₂, where cos is negative)",
             "added": true
           },
-          "cos15° = (√3 + 1)/(2√2),  cos60° = 1/2",
+          {
+            "text": "\\cos 15^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}},\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos15° = cos(45° − 30°)",
             "added": true
@@ -111,14 +115,19 @@
             "style": "indent",
             "added": true
           },
-          "= [−(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "= \\ \\left[ - \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}\\right]\\ \\times \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2√2 × 2 = 4√2)",
             "added": true
           },
           {
-            "text": "∴ Value = −(√3 + 1)/(4√2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Value}\\ = \\ - \\dfrac{\\sqrt{3}\\ + \\ 1}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,11 +159,20 @@
         ],
         "lines_compact": [
           "cos165° = cos(180° − 15°) = −cos15°",
-          "cos15° = (√3 + 1)/(2√2),  cos60° = 1/2",
-          "= [−(√3 + 1)/(2√2)] × (1/2)",
           {
-            "text": "∴ Value = −(√3 + 1)/(4√2)",
-            "style": "boxed"
+            "text": "\\cos 15^{\\circ}\\ = \\ \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}},\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[ - \\dfrac{\\sqrt{3}\\ + \\ 1}{2\\sqrt{2}}\\right]\\ \\times \\ \\left(\\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Value}\\ = \\ - \\dfrac{\\sqrt{3}\\ + \\ 1}{4\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

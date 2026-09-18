@@ -109,11 +109,15 @@
             "added": true
           },
           {
-            "text": "= (50 · 49)/(1 · 2)",
+            "text": "= \\ \\dfrac{50\\ \\cdot \\ 49}{1\\ \\cdot \\ 2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 2450/2",
+            "text": "= \\ \\dfrac{2450}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -151,8 +155,9 @@
         "lines_compact": [
           "⁵⁰Cₙ = ⁵⁰C₄₈ = ⁵⁰C₂",
           {
-            "text": "= (50 · 49)/(1 · 2) = 1225",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{50\\ \\cdot \\ 49}{1\\ \\cdot \\ 2} = \\ 1225",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

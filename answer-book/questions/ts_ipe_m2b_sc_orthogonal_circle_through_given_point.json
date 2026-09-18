@@ -87,7 +87,9 @@
         "lines": [
           "S is orthogonal to x² + y² − 6x + 3y + 5 = 0",
           {
-            "text": "Here g′ = −3, f′ = 3/2 and c′ = 5",
+            "text": "\\text{Here}\\ g'\\ = \\ - 3,\\ f'\\ = \\ \\dfrac{3}{2}\\text{and}\\ c'\\ = \\ 5",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -95,7 +97,11 @@
             "added": true
           },
           "∴ 2gg′ + 2ff′ = c + c′",
-          "2g(−3) + 2f(3/2) = c + 5",
+          {
+            "text": "2g\\left( - 3\\right)\\ + \\ 2f\\left(\\dfrac{3}{2}\\right)\\ = \\ c\\ + \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "−6g + 3f = c + 5; take c to the left:",
             "added": true
@@ -111,7 +117,11 @@
         "lines_compact": [
           "S is orthogonal to x² + y² − 6x + 3y + 5 = 0",
           "∴ 2gg′ + 2ff′ = c + c′",
-          "2g(−3) + 2f(3/2) = c + 5",
+          {
+            "text": "2g\\left( - 3\\right)\\ + \\ 2f\\left(\\dfrac{3}{2}\\right)\\ = \\ c\\ + \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ −6g + 3f − c = 5   ...(2)"
         ]
       },
@@ -125,11 +135,17 @@
         "lines": [
           "S is orthogonal to x² + y² − x − 7y = 0",
           {
-            "text": "Here g″ = −1/2, f″ = −7/2 and c″ = 0",
+            "text": "\\text{Here}\\ g''\\ = \\ - \\dfrac{1}{2},\\ f''\\ = \\ - \\dfrac{7}{2}\\text{and}\\ c''\\ = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ 2gg″ + 2ff″ = c + c″",
-          "2g(−1/2) + 2f(−7/2) = c + 0",
+          {
+            "text": "2g\\left( - \\dfrac{1}{2}\\right)\\ + \\ 2f\\left( - \\dfrac{7}{2}\\right)\\ = \\ c\\ + \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "−g − 7f = c; take every term to the right:",
             "added": true
@@ -145,7 +161,11 @@
         "lines_compact": [
           "S is orthogonal to x² + y² − x − 7y = 0",
           "∴ 2gg″ + 2ff″ = c + c″",
-          "2g(−1/2) + 2f(−7/2) = c + 0",
+          {
+            "text": "2g\\left( - \\dfrac{1}{2}\\right)\\ + \\ 2f\\left( - \\dfrac{7}{2}\\right)\\ = \\ c\\ + \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ g + 7f + c = 0   ...(3)"
         ]
       },
@@ -183,23 +203,37 @@
             "text": "Subtract (4) from (5); g cancels:",
             "added": true
           },
-          "(5) − (4) ⇒ 15f = 10 ⇒ f = 2/3",
+          {
+            "text": "\\left(5\\right)\\ - \\ \\left(4\\right)\\ \\Rightarrow \\ 15f\\ = \\ 10\\ \\Rightarrow \\ f\\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(13f − (−2f) = 15f and 9 − (−1) = 10)",
             "added": true
           },
-          "From (4), g = 2f − 1 = 1/3",
           {
-            "text": "(2 · 2/3 − 1 = 4/3 − 3/3 = 1/3)",
+            "text": "\\text{From}\\ \\left(4\\right),\\ g\\ = \\ 2f\\ - \\ 1\\ = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{2}{3} - \\ 1\\ = \\ \\dfrac{4}{3} - \\ \\dfrac{3}{3} = \\ \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "From (1), c = 6f − 9 = −5",
           {
-            "text": "(6 · 2/3 = 4, and 4 − 9 = −5)",
+            "text": "\\left(6\\ \\cdot \\ \\dfrac{2}{3} = \\ 4,\\ \\text{and}\\ 4\\ - \\ 9\\ = \\ - 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "So 2g = 2/3, 2f = 4/3 and c = −5.",
+            "text": "\\text{So}\\ 2g\\ = \\ \\dfrac{2}{3},\\ 2f\\ = \\ \\dfrac{4}{3}\\text{and}\\ c\\ = \\ - 5.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Substituting g, f, c in S = 0,",
@@ -226,8 +260,16 @@
           "(2) + (3) ⇒ −5g + 10f = 5 ⇒ g − 2f = −1   ...(4)",
           "From (1), c = 6f − 9. Put this in (3):",
           "⇒ g + 13f = 9   ...(5)",
-          "(5) − (4) ⇒ 15f = 10 ⇒ f = 2/3",
-          "From (4), g = 2f − 1 = 1/3",
+          {
+            "text": "\\left(5\\right)\\ - \\ \\left(4\\right)\\ \\Rightarrow \\ 15f\\ = \\ 10\\ \\Rightarrow \\ f\\ = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(4\\right),\\ g\\ = \\ 2f\\ - \\ 1\\ = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1), c = 6f − 9 = −5",
           "Substituting g, f, c in S = 0,",
           {

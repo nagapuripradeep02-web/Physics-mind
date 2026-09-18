@@ -99,7 +99,11 @@
         "margin_note": "Second mark. Minimum = (4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = 1 — the square of a negative number is positive. The minimum occurs at x = −b/2a = 1/2.",
         "memory_tip": "(4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = +1, and the answer is the value, not the x.",
         "lines": [
-          "Minimum value = (4ac − b²)/(4a)",
+          {
+            "text": "\\text{Minimum}\\ \\text{value}\\ = \\ \\dfrac{4ac\\ - \\ b^{2}}{4a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "4ac = 4(1)(7) = 28",
             "added": true
@@ -112,10 +116,15 @@
             "text": "4a = 4(1) = 4",
             "added": true
           },
-          "= (28 − 1)/4",
           {
-            "text": "∴ minimum value = 27/4",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{28\\ - \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{minimum}\\ \\text{value}\\ = \\ \\dfrac{27}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -147,12 +156,25 @@
           "Answering x = 1/2 (where the minimum occurs) instead of the minimum value."
         ],
         "lines_compact": [
-          "Minimum value = (4ac − b²)/(4a)",
-          "= (4(1)(7) − (−1)²)/(4(1))",
-          "= (28 − 1)/4",
           {
-            "text": "∴ minimum value = 27/4",
-            "style": "boxed"
+            "text": "\\text{Minimum}\\ \\text{value}\\ = \\ \\dfrac{4ac\\ - \\ b^{2}}{4a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4\\left(1\\right)\\left(7\\right)\\ - \\ \\left( - 1\\right)^{2}}{4\\left(1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{28\\ - \\ 1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{minimum}\\ \\text{value}\\ = \\ \\dfrac{27}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

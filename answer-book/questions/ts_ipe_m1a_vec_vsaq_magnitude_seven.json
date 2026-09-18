@@ -56,7 +56,11 @@
           "(1² + (−2)² = 1 + 4 = 5)",
           "|a| = √(1² + (−2)²) = √5",
           "(a vector divided by its length has length 1)",
-          "∴ Unit vector = a/|a| = (i − 2j)/√5"
+          {
+            "text": "\\therefore \\ \\text{Unit}\\ \\text{vector}\\ = \\ \\dfrac{a}{\\left|a\\right|} = \\ \\dfrac{i\\ - \\ 2j}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,8 +105,9 @@
           "A vector of magnitude 7 in this direction is",
           "7 × (unit vector):",
           {
-            "text": "= 7(i − 2j)/√5",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{7\\left(i\\ - \\ 2j\\right)}{\\sqrt{5}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -135,8 +140,9 @@
           "A vector of magnitude 7 in this direction is",
           "7 × (unit vector):",
           {
-            "text": "= 7(i − 2j)/√5",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{7\\left(i\\ - \\ 2j\\right)}{\\sqrt{5}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

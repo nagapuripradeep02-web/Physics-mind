@@ -63,8 +63,16 @@
           "The given curves are y² = 4x …(1),",
           "x² = 4y …(2)",
           "Find where they meet by solving together.",
-          "From (2): y = x²/4. Substituting in (1):",
-          "(x²/4)² = 4x ⇒ x⁴/16 = 4x",
+          {
+            "text": "\\text{From}\\ \\left(2\\right):\\ y\\ = \\ \\dfrac{x^{2}}{4}.\\ \\text{Substituting}\\ \\text{in}\\ \\left(1\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{x^{2}}{4}\\right)^{2}\\ = \\ 4x\\ \\Rightarrow \\ \\dfrac{x^{4}}{16} = \\ 4x",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 16: x⁴ = 64x ⇒ x(x³ − 64) = 0",
           "⇒ x = 0 or x³ = 64 = 4³",
           "⇒ x = 0 or x = 4"
@@ -190,14 +198,24 @@
         "memory_tip": "y² = 4x gives y = 2√x (upper); x² = 4y gives y = x²/4 (lower) — always upper minus lower.",
         "lines": [
           "Upper curve: y² = 4x ⇒ y = 2√x.",
-          "Lower curve: x² = 4y ⇒ y = x²/4",
+          {
+            "text": "\\text{Lower}\\ \\text{curve}:\\ x^{2}\\ = \\ 4y\\ \\Rightarrow \\ y\\ = \\ \\dfrac{x^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Area is ∫(upper − lower) dx from 0 to 4:",
             "added": true
           },
-          "Required area A = ∫₀⁴ (2√x − x²/4) dx",
           {
-            "text": "∫2√x dx = 2·(2/3)x√x and ∫x²/4 dx = x³/12:",
+            "text": "\\text{Required}\\ \\text{area}\\ A\\ = \\ \\int _{0}^{4}\\ \\left(2\\sqrt{x}\\ - \\ \\dfrac{x^{2}}{4}\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int 2\\sqrt{x}dx\\ = \\ 2 \\cdot \\left(\\dfrac{2}{3}\\right)x\\sqrt{x}\\ \\text{and}\\ \\int \\dfrac{x^{2}}{4}dx\\ = \\ \\dfrac{x^{3}}{12}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -215,13 +233,20 @@
             "style": "normal"
           },
           {
-            "text": "64/12 = 16/3:",
+            "text": "\\dfrac{64}{12} = \\ \\dfrac{16}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 32/3 − 16/3",
           {
-            "text": "∴ Area = 16/3 sq. units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{32}{3} - \\ \\dfrac{16}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{16}{3}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
@@ -231,8 +256,16 @@
         ],
         "lines_compact": [
           "Upper curve: y² = 4x ⇒ y = 2√x.",
-          "Lower curve: x² = 4y ⇒ y = x²/4",
-          "Required area A = ∫₀⁴ (2√x − x²/4) dx",
+          {
+            "text": "\\text{Lower}\\ \\text{curve}:\\ x^{2}\\ = \\ 4y\\ \\Rightarrow \\ y\\ = \\ \\dfrac{x^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Required}\\ \\text{area}\\ A\\ = \\ \\int _{0}^{4}\\ \\left(2\\sqrt{x}\\ - \\ \\dfrac{x^{2}}{4}\\right)dx",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= [2\\cdot (2/3)x^{3/2} - x^{3}/12]_{0}^{4}",
             "render": "katex",
@@ -243,10 +276,15 @@
             "render": "katex",
             "style": "normal"
           },
-          "= 32/3 − 16/3",
           {
-            "text": "∴ Area = 16/3 sq. units",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{32}{3} - \\ \\dfrac{16}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ = \\ \\dfrac{16}{3}sq.\\ \\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

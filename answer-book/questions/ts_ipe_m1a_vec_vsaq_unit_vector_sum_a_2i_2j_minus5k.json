@@ -100,10 +100,15 @@
             "text": "(a vector divided by its length has length 1)",
             "added": true
           },
-          "∴ Required unit vector = (a + b)/|a + b|",
           {
-            "text": "= (4i + 3j − 2k)/√29",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\dfrac{a\\ + \\ b}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4i\\ + \\ 3j\\ - \\ 2k}{\\sqrt{29}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -133,10 +138,15 @@
           "Giving 4i + 3j − 2k and forgetting to divide at all."
         ],
         "lines_compact": [
-          "∴ Required unit vector = (a + b)/|a + b|",
           {
-            "text": "= (4i + 3j − 2k)/√29",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Required}\\ \\text{unit}\\ \\text{vector}\\ = \\ \\dfrac{a\\ + \\ b}{\\left|a\\ + \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4i\\ + \\ 3j\\ - \\ 2k}{\\sqrt{29}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

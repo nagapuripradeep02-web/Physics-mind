@@ -54,15 +54,31 @@
           },
           "Let the line meet the axes at",
           "A(a, 0) on the X-axis and B(0, b) on the Y-axis",
-          "(the midpoint formula ((x₁ + x₂)/2, (y₁ + y₂)/2))",
-          "Midpoint of AB is ((a + 0)/2, (0 + b)/2)",
-          "= (a/2, b/2).  This is given as (p, q)",
+          {
+            "text": "\\left(\\text{the}\\ \\text{midpoint}\\ \\text{formula}\\ \\left(\\dfrac{x_{1}\\ + \\ x_{2}}{2},\\ \\dfrac{y_{1}\\ + \\ y_{2}}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Midpoint}\\ \\text{of}\\ AB\\ \\text{is}\\ \\left(\\dfrac{a\\ + \\ 0}{2},\\ \\dfrac{0\\ + \\ b}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{a}{2},\\ \\dfrac{b}{2}\\right).\\ \\text{This}\\ \\text{is}\\ \\text{given}\\ \\text{as}\\ \\left(p,\\ q\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(two equal points have equal x-coordinates",
           {
             "text": "  and equal y-coordinates)",
             "style": "indent"
           },
-          "⇒ a/2 = p and b/2 = q",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{a}{2} = \\ p\\ \\text{and}\\ \\dfrac{b}{2} = \\ q",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply each equation by 2)",
           "⇒ a = 2p and b = 2q"
         ],
@@ -107,20 +123,31 @@
             "text": "(the intercept form of a line with intercepts a and b)",
             "added": true
           },
-          "Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write 2p for a and 2q for b)",
             "added": true
           },
-          "⇒ x/(2p) + y/(2q) = 1,  p ≠ 0, q ≠ 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{2p} + \\ \\dfrac{y}{2q} = \\ 1,\\ p\\ \\ne \\ 0,\\ q\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by 2:",
           {
-            "text": "(2 × x/(2p) = x/p, 2 × y/(2q) = y/q and 2 × 1 = 2)",
+            "text": "\\left(2\\ \\times \\ \\dfrac{x}{2p} = \\ \\dfrac{x}{p},\\ 2\\ \\times \\ \\dfrac{y}{2q} = \\ \\dfrac{y}{q}\\text{and}\\ 2\\ \\times \\ 1\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ x/p + y/q = 2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{p} + \\ \\dfrac{y}{q} = \\ 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,12 +178,21 @@
           "Multiplying only the left side by 2 and writing x/p + y/q = 1."
         ],
         "lines_compact": [
-          "Intercept form is  x/a + y/b = 1",
-          "⇒ x/(2p) + y/(2q) = 1,  p ≠ 0, q ≠ 0",
+          {
+            "text": "\\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{2p} + \\ \\dfrac{y}{2q} = \\ 1,\\ p\\ \\ne \\ 0,\\ q\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply both sides by 2:",
           {
-            "text": "∴ x/p + y/q = 2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{p} + \\ \\dfrac{y}{q} = \\ 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

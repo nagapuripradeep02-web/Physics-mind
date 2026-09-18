@@ -104,7 +104,9 @@
         "memory_tip": "f′(x) = 2x − 3 is zero only at x = 3/2, and 3/2 is outside [0, 1]. That fact, with Rolle's theorem, gives the proof.",
         "lines": [
           {
-            "text": "(d/dx of x² − 3x + k is 2x − 3; k is a constant)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ - \\ 3x\\ + \\ k\\ \\text{is}\\ 2x\\ - \\ 3;\\ k\\ \\text{is}\\ a\\ \\text{constant}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "f′(x) = 2x − 3",
@@ -112,14 +114,20 @@
             "text": "(add 3 to both sides and divide by 2)",
             "added": true
           },
-          "f′(c) = 0 ⇒ 2c − 3 = 0 ⇒ c = 3/2",
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ 2c\\ - \\ 3\\ = \\ 0\\ \\Rightarrow \\ c\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(α ≥ 0 and β ≤ 1, and c lies strictly between them)",
             "added": true
           },
           "But 0 ≤ α < c < β ≤ 1, so c lies in (0, 1) and therefore c < 1.",
           {
-            "text": "(3/2 = 1.5 > 1)",
+            "text": "\\left(\\dfrac{3}{2} = \\ 1.5\\ > \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "This contradicts c = 3/2, since 3/2 > 1.",
@@ -168,7 +176,11 @@
         ],
         "lines_compact": [
           "f′(x) = 2x − 3",
-          "f′(c) = 0 ⇒ 2c − 3 = 0 ⇒ c = 3/2",
+          {
+            "text": "f'\\left(c\\right)\\ = \\ 0\\ \\Rightarrow \\ 2c\\ - \\ 3\\ = \\ 0\\ \\Rightarrow \\ c\\ = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But 0 ≤ α < c < β ≤ 1, so c lies in (0, 1) and therefore c < 1.",
           "This contradicts c = 3/2, since 3/2 > 1.",
           "So the assumption is false.",

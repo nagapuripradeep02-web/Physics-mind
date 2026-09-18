@@ -275,7 +275,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "R₃ → R₃ × (−1/38)",
+          {
+            "text": "R_{3}\\ \\to \\ R_{3}\\ \\times \\ \\left( - \\dfrac{1}{38}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "R₃ × −1/38: (0, 0, −38 | −76)",
             "added": true
@@ -327,7 +331,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "R₃ → R₃ × (−1/38)",
+          {
+            "text": "R_{3}\\ \\to \\ R_{3}\\ \\times \\ \\left( - \\dfrac{1}{38}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left[\\begin{array}{ccc|c} 1 & -2 & -1 & -4 \\\\ 0 & 3 & 5 & 16 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
             "render": "katex",

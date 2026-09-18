@@ -69,7 +69,11 @@
           "A chain can also be turned over, so a",
           "clockwise order and its anticlockwise",
           "reverse are the SAME chain.",
-          "Number of chains = (n − 1)!/2"
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(n\\ - \\ 1\\right)!}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,13 +116,19 @@
             "text": "Here n = 6:",
             "added": true
           },
-          "Number of chains = (6 − 1)!/2 = 5!/2",
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(6\\ - \\ 1\\right)!}{2} = \\ \\dfrac{5!}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "5! = 120",
             "added": true
           },
           {
-            "text": "= 120/2",
+            "text": "= \\ \\dfrac{120}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -153,7 +163,11 @@
           "Answering 360 (using 6!/2)."
         ],
         "lines_compact": [
-          "Number of chains = (6 − 1)!/2 = 5!/2 = 120/2",
+          {
+            "text": "\\text{Number}\\ \\text{of}\\ \\text{chains}\\ = \\ \\dfrac{\\left(6\\ - \\ 1\\right)!}{2} = \\ \\dfrac{5!}{2} = \\ \\dfrac{120}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 60",
             "style": "boxed"

@@ -60,7 +60,11 @@
           },
           "nth term = n³",
           "Let S(n): 1³ + 2³ + 3³ + …",
-          "        + n³ = n²(n+1)²/4"
+          {
+            "text": "+ \\ n^{3}\\ = \\ \\dfrac{n^{2}\\left(n + 1\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,7 +109,11 @@
             "added": true
           },
           "L.H.S of S(1) = 1³ = 1",
-          "R.H.S of S(1) = 1²(2)²/4 = 4/4 = 1",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1^{2}\\left(2\\right)^{2}}{4} = \\ \\dfrac{4}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ],
         "recall": {
@@ -139,7 +147,11 @@
         "lines_compact": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1³ = 1",
-          "R.H.S of S(1) = 1²(2)²/4 = 4/4 = 1",
+          {
+            "text": "R.H.S\\ \\text{of}\\ S\\left(1\\right)\\ = \\ \\dfrac{1^{2}\\left(2\\right)^{2}}{4} = \\ \\dfrac{4}{4} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ L.H.S = R.H.S, so S(1) is true."
         ]
       },
@@ -157,7 +169,11 @@
             "added": true
           },
           "S(k): 1³ + 2³ + … + k³",
-          "        = k²(k+1)²/4   …(1)"
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}}{4}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -190,7 +206,11 @@
         "lines_compact": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1³ + 2³ + … + k³",
-          "        = k²(k+1)²/4   …(1)"
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}}{4}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -207,27 +227,47 @@
             "added": true
           },
           "Add (k+1)³ to both sides of (1):",
-          "L.H.S = k²(k+1)²/4 + (k+1)³",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}}{4} + \\ \\left(k + 1\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(write both parts over 4)",
             "added": true
           },
-          "= [k²(k+1)² + 4(k+1)³]/4",
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}\\ + \\ 4\\left(k + 1\\right)^{3}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out (k + 1)²)",
             "added": true
           },
-          "= (k+1)²[k² + 4(k+1)]/4",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left[k^{2}\\ + \\ 4\\left(k + 1\\right)\\right]}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(open the bracket)",
             "added": true
           },
-          "= (k+1)²(k² + 4k + 4)/4",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left(k^{2}\\ + \\ 4k\\ + \\ 4\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(k² + 4k + 4 = (k + 2)²)",
             "added": true
           },
-          "= (k+1)²(k+2)²/4 = R.H.S",
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left(k + 2\\right)^{2}}{4} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ],
         "recall": {
@@ -262,11 +302,31 @@
         "lines_compact": [
           "Step 3 — show S(k+1) is true",
           "Add (k+1)³ to both sides of (1):",
-          "L.H.S = k²(k+1)²/4 + (k+1)³",
-          "= [k²(k+1)² + 4(k+1)³]/4",
-          "= (k+1)²[k² + 4(k+1)]/4",
-          "= (k+1)²(k² + 4k + 4)/4",
-          "= (k+1)²(k+2)²/4 = R.H.S",
+          {
+            "text": "L.H.S\\ = \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}}{4} + \\ \\left(k + 1\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{k^{2}\\left(k + 1\\right)^{2}\\ + \\ 4\\left(k + 1\\right)^{3}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left[k^{2}\\ + \\ 4\\left(k + 1\\right)\\right]}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left(k^{2}\\ + \\ 4k\\ + \\ 4\\right)}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(k + 1\\right)^{2}\\left(k + 2\\right)^{2}}{4} = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
+          },
           "So S(k+1) is true whenever S(k) is true."
         ]
       },

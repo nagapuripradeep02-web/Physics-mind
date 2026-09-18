@@ -98,8 +98,9 @@
             "added": true
           },
           {
-            "text": "∴ y₂ + n²y = 0, i.e. d²y/dx² + n²y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ y_{2}\\ + \\ n^{2}y\\ = \\ 0,\\ i.e.\\ \\dfrac{d^{2}y}{dx^{2}}\\ + \\ n^{2}y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The second derivative reproduces the bracket acos(nx+b), which is exactly the original y from equation (1), multiplied by −n²; substituting that back in eliminates both a and b at once, since neither survives in the final relation.",
@@ -110,8 +111,9 @@
         "lines_compact": [
           "⇒ y₂ = −n²·[a·cos(nx + b)] ⇒ y₂ = −n²y [from (1)]",
           {
-            "text": "∴ y₂ + n²y = 0, i.e. d²y/dx² + n²y = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ y_{2}\\ + \\ n^{2}y\\ = \\ 0,\\ i.e.\\ \\dfrac{d^{2}y}{dx^{2}}\\ + \\ n^{2}y\\ = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

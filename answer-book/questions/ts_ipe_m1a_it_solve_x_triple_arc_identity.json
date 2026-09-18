@@ -60,9 +60,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Sin⁻¹(2x/(1 + x²)) = 2Tan⁻¹x, if |x| ≤ 1",
-          "Cos⁻¹((1 − x²)/(1 + x²)) = 2Tan⁻¹x, if x ≥ 0",
-          "Tan⁻¹(2x/(1 − x²)) = 2Tan⁻¹x, if |x| < 1",
+          {
+            "text": "\\operatorname{Sin}^{-1}\\left(\\dfrac{2x}{1\\ + \\ x^{2}}\\right)\\ = \\ 2\\operatorname{Tan}^{-1} x,\\ \\text{if}\\ \\left|x\\right|\\ \\le \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Cos}^{-1}\\left(\\dfrac{1\\ - \\ x^{2}}{1\\ + \\ x^{2}}\\right)\\ = \\ 2\\operatorname{Tan}^{-1} x,\\ \\text{if}\\ x\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{2x}{1\\ - \\ x^{2}}\\right)\\ = \\ 2\\operatorname{Tan}^{-1} x,\\ \\text{if}\\ \\left|x\\right|\\ < \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(each form equals 2Tan⁻¹x only inside its own range)",
           "All three hold together only when",
           "0 ≤ x < 1, so we solve on that range."
@@ -161,20 +173,36 @@
         "memory_tip": "tan(π/6) = 1/√3, tan(π/4) = 1, tan(π/3) = √3 — keep the three in that order.",
         "lines": [
           {
-            "text": "(the left side equals π/3, as the question gives)",
+            "text": "\\left(\\text{the}\\ \\text{left}\\ \\text{side}\\ \\text{equals}\\ \\dfrac{\\pi }{3},\\ \\text{as}\\ \\text{the}\\ \\text{question}\\ \\text{gives}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "2 Tan⁻¹x = π/3",
+          {
+            "text": "2\\operatorname{Tan}^{-1} x\\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 2)",
             "added": true
           },
-          "⇒ Tan⁻¹x = π/6",
           {
-            "text": "(tan(π/6) = 1/√3)",
+            "text": "\\Rightarrow \\ \\operatorname{Tan}^{-1} x\\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{3}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x = tan(π/6) = 1/√3"
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\tan \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -204,9 +232,21 @@
           "Solving Tan⁻¹x = π/3 instead of π/6."
         ],
         "lines_compact": [
-          "2 Tan⁻¹x = π/3",
-          "⇒ Tan⁻¹x = π/6",
-          "⇒ x = tan(π/6) = 1/√3"
+          {
+            "text": "2\\operatorname{Tan}^{-1} x\\ = \\ \\dfrac{\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\operatorname{Tan}^{-1} x\\ = \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\tan \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{1}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -221,11 +261,16 @@
           "1/√3 ≈ 0.577, so 0 ≤ 1/√3 < 1  ✓",
           "The root is inside the working range.",
           "For x < 0 or |x| > 1 the left side is",
-          "negative, so it cannot equal π/3.",
+          {
+            "text": "\\text{negative},\\ \\text{so}\\ \\text{it}\\ \\text{cannot}\\ \\text{equal}\\ \\dfrac{\\pi }{3}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Hence there is no other solution.",
           {
-            "text": "∴ x = 1/√3",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{1}{\\sqrt{3}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

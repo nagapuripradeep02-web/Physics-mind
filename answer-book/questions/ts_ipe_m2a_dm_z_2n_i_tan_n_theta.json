@@ -69,7 +69,11 @@
           "z = cis θ = cos θ + i sin θ",
           "By De Moivre's theorem the angle is multiplied:",
           "z²ⁿ = cos 2nθ + i sin 2nθ",
-          "L.H.S. = (z²ⁿ − 1)/(z²ⁿ + 1)",
+          {
+            "text": "L.H.S.\\ = \\ \\dfrac{z^{2n}\\ - \\ 1}{z^{2n}\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = cos 2nθ − 1 + i sin 2nθ",
           "Denominator = cos 2nθ + 1 + i sin 2nθ"
         ],

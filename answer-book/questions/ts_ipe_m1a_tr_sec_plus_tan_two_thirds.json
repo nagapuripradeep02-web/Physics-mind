@@ -53,12 +53,28 @@
             "style": "heading"
           },
           "sec θ and tan θ appear, so cos θ ≠ 0.",
-          "Given sec θ + tan θ = 2/3      … (1)",
+          {
+            "text": "\\text{Given}\\ \\sec \\theta \\ + \\ \\tan \\theta \\ = \\ \\dfrac{2}{3}\\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "sec²θ − tan²θ = 1",
           "⇒ (sec θ + tan θ)(sec θ − tan θ) = 1",
-          "The given value 2/3 is not 0, so",
-          "(1 ÷ 2/3 = 3/2)",
-          "sec θ − tan θ = 3/2      … (2)"
+          {
+            "text": "\\text{The}\\ \\text{given}\\ \\text{value}\\ \\dfrac{2}{3}\\text{is}\\ \\text{not}\\ 0,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ \\div \\ \\dfrac{2}{3} = \\ \\dfrac{3}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sec \\theta \\ - \\ \\tan \\theta \\ = \\ \\dfrac{3}{2}\\dots \\ \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,32 +117,59 @@
             "text": "Add (1) and (2); tan θ cancels:",
             "added": true
           },
-          "Adding: 2 sec θ = 2/3 + 3/2 = 13/6",
           {
-            "text": "(2/3 + 3/2 = 4/6 + 9/6 = 13/6)",
+            "text": "\\text{Adding}:\\ 2\\sec \\theta \\ = \\ \\dfrac{2}{3} + \\ \\dfrac{3}{2} = \\ \\dfrac{13}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{3} + \\ \\dfrac{3}{2} = \\ \\dfrac{4}{6} + \\ \\dfrac{9}{6} = \\ \\dfrac{13}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ sec θ = 13/12, so cos θ = 12/13",
+          {
+            "text": "\\Rightarrow \\ \\sec \\theta \\ = \\ \\dfrac{13}{12},\\ \\text{so}\\ \\cos \\theta \\ = \\ \\dfrac{12}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Subtract (2) from (1); sec θ cancels:",
             "added": true
           },
-          "Subtracting: 2 tan θ = 2/3 − 3/2 = −5/6",
           {
-            "text": "(2/3 − 3/2 = 4/6 − 9/6 = −5/6)",
+            "text": "\\text{Subtracting}:\\ 2\\tan \\theta \\ = \\ \\dfrac{2}{3} - \\ \\dfrac{3}{2} = \\ - \\dfrac{5}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{3} - \\ \\dfrac{3}{2} = \\ \\dfrac{4}{6} - \\ \\dfrac{9}{6} = \\ - \\dfrac{5}{6}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ tan θ = −5/12",
           {
-            "text": "(tan θ = sin θ/cos θ, so sin θ = tan θ · cos θ)",
+            "text": "\\Rightarrow \\ \\tan \\theta \\ = \\ - \\dfrac{5}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\tan \\theta \\ = \\ \\dfrac{\\sin \\theta }{\\cos \\theta },\\ \\text{so}\\ \\sin \\theta \\ = \\ \\tan \\theta \\ \\cdot \\ \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "sin θ = tan θ · cos θ = (−5/12)(12/13) = −5/13",
+          {
+            "text": "\\sin \\theta \\ = \\ \\tan \\theta \\ \\cdot \\ \\cos \\theta \\ = \\ \\left( - \\dfrac{5}{12}\\right)\\left(\\dfrac{12}{13}\\right)\\ = \\ - \\dfrac{5}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
           "cos θ is positive and sin θ is negative,",
           "and that happens only in the fourth quadrant.",
           {
-            "text": "∴ sin θ = −5/13, θ in the fourth quadrant",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ - \\dfrac{5}{13},\\ \\theta \\ \\text{in}\\ \\text{the}\\ \\text{fourth}\\ \\text{quadrant}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -158,16 +201,37 @@
           "Stating a quadrant without checking the signs of both sin θ and cos θ."
         ],
         "lines_compact": [
-          "Adding: 2 sec θ = 2/3 + 3/2 = 13/6",
-          "⇒ sec θ = 13/12, so cos θ = 12/13",
-          "Subtracting: 2 tan θ = 2/3 − 3/2 = −5/6",
-          "⇒ tan θ = −5/12",
-          "sin θ = tan θ · cos θ = (−5/12)(12/13) = −5/13",
+          {
+            "text": "\\text{Adding}:\\ 2\\sec \\theta \\ = \\ \\dfrac{2}{3} + \\ \\dfrac{3}{2} = \\ \\dfrac{13}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sec \\theta \\ = \\ \\dfrac{13}{12},\\ \\text{so}\\ \\cos \\theta \\ = \\ \\dfrac{12}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Subtracting}:\\ 2\\tan \\theta \\ = \\ \\dfrac{2}{3} - \\ \\dfrac{3}{2} = \\ - \\dfrac{5}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\theta \\ = \\ - \\dfrac{5}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin \\theta \\ = \\ \\tan \\theta \\ \\cdot \\ \\cos \\theta \\ = \\ \\left( - \\dfrac{5}{12}\\right)\\left(\\dfrac{12}{13}\\right)\\ = \\ - \\dfrac{5}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
           "cos θ is positive and sin θ is negative,",
           "and that happens only in the fourth quadrant.",
           {
-            "text": "∴ sin θ = −5/13, θ in the fourth quadrant",
-            "style": "boxed"
+            "text": "\\therefore \\ \\sin \\theta \\ = \\ - \\dfrac{5}{13},\\ \\theta \\ \\text{in}\\ \\text{the}\\ \\text{fourth}\\ \\text{quadrant}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

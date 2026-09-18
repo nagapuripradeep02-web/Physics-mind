@@ -81,7 +81,11 @@
           "arrange the values in ascending order:",
           "2, 3, 4, 6, 9, 10, 13",
           "n = 7 is odd, so the median is the single",
-          "middle value, the (n + 1)/2 = 4th one.",
+          {
+            "text": "\\text{middle}\\ \\text{value},\\ \\text{the}\\ \\dfrac{n\\ + \\ 1}{2} = \\ 4th\\ \\text{one}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Median M = 6"
         ],
         "recall": {
@@ -138,11 +142,15 @@
             "style": "eq"
           },
           {
-            "text": "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7",
+            "text": "= \\ \\dfrac{4\\ + \\ 3\\ + \\ 2\\ + \\ 0\\ + \\ 3\\ + \\ 4\\ + \\ 7}{7}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 23/7 = 3.29",
+            "text": "= \\ \\dfrac{23}{7} = \\ 3.29",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -182,7 +190,11 @@
         "lines_compact": [
           "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
           "M.D. = Σ|xᵢ − M|/n",
-          "= (4 + 3 + 2 + 0 + 3 + 4 + 7)/7 = 23/7 = 3.29",
+          {
+            "text": "= \\ \\dfrac{4\\ + \\ 3\\ + \\ 2\\ + \\ 0\\ + \\ 3\\ + \\ 4\\ + \\ 7}{7} = \\ \\dfrac{23}{7} = \\ 3.29",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the median = 3.29",
             "style": "boxed"

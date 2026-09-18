@@ -100,7 +100,9 @@
             "added": true
           },
           {
-            "text": "the arrangements are n!/(p!·q!·r!)",
+            "text": "\\text{the}\\ \\text{arrangements}\\ \\text{are}\\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -108,7 +110,9 @@
             "added": true
           },
           {
-            "text": "Arrangements = 12!/(4!·4!·4!)",
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{12!}{4! \\cdot 4! \\cdot 4!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -120,7 +124,9 @@
             "added": true
           },
           {
-            "text": "= 479001600/13824",
+            "text": "= \\ \\dfrac{479001600}{13824}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -156,10 +162,15 @@
           "Dividing by 12! ÷ 3 or some other guess — the denominator is the product of the group factorials."
         ],
         "lines_compact": [
-          "Arrangements = n!/(p!·q!·r!)",
           {
-            "text": "= 12!/(4!·4!·4!) = 34,650",
-            "style": "boxed"
+            "text": "\\text{Arrangements}\\ = \\ \\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{12!}{4! \\cdot 4! \\cdot 4!} = \\ 34,650",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

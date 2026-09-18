@@ -61,7 +61,11 @@
           },
           "Given x = 3 cos t − 2 cos³t  and  y = 3 sin t − 2 sin³t",
           "x and y are both given in terms of the parameter t, so",
-          "dy/dx = (dy/dt)/(dx/dt),  provided dx/dt ≠ 0"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}},\\ \\text{provided}\\ \\dfrac{dx}{dt}\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -110,7 +114,11 @@
             "style": "indent",
             "added": true
           },
-          "dx/dt = −3 sin t − 2(3cos²t)(−sin t)",
+          {
+            "text": "\\dfrac{dx}{dt}\\ = \\ - 3\\sin t\\ - \\ 2\\left(3\\cos ^{2} t\\right)\\left( - \\sin t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−2 · 3cos²t · (−sin t) = +6 sin t cos²t)",
             "added": true
@@ -125,7 +133,11 @@
             "text": "(put cos 2t in place of 2cos²t − 1)",
             "added": true
           },
-          "∴ dx/dt = 3 sin t cos 2t     [since cos 2t = 2cos²t − 1]"
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dt}\\ = \\ 3\\sin t\\cos 2t\\left[\\sin ce\\cos 2t\\ = \\ 2\\cos ^{2} t\\ - \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -157,10 +169,18 @@
         ],
         "memory_tip": "cos 2t has three standard forms. The one with cosines only, 2cos²t − 1, is the one that appears when x is differentiated.",
         "lines_compact": [
-          "dx/dt = −3 sin t − 2(3cos²t)(−sin t)",
+          {
+            "text": "\\dfrac{dx}{dt}\\ = \\ - 3\\sin t\\ - \\ 2\\left(3\\cos ^{2} t\\right)\\left( - \\sin t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= −3 sin t + 6 sin t cos²t",
           "= 3 sin t(2cos²t − 1)",
-          "∴ dx/dt = 3 sin t cos 2t     [since cos 2t = 2cos²t − 1]"
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dt}\\ = \\ 3\\sin t\\cos 2t\\left[\\sin ce\\cos 2t\\ = \\ 2\\cos ^{2} t\\ - \\ 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,10 +192,16 @@
         "margin_note": "Third mark. Here the common factor is 3 cos t and the bracket is 1 − 2sin²t, which is the same cos 2t written the other way. Both derivatives must end with the SAME factor for the question to work out.",
         "lines": [
           {
-            "text": "(d/dt(sin t) = cos t; d/dt(sin³t) = 3sin²t · cos t)",
+            "text": "\\left(\\dfrac{d}{dt}\\left(\\sin t\\right)\\ = \\ \\cos t;\\ \\dfrac{d}{dt}\\left(\\sin ^{3} t\\right)\\ = \\ 3\\sin ^{2} t\\ \\cdot \\ \\cos t\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dt = 3 cos t − 2(3sin²t)(cos t)",
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ 3\\cos t\\ - \\ 2\\left(3\\sin ^{2} t\\right)\\left(\\cos t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 · 3sin²t · cos t = 6 sin²t cos t)",
             "added": true
@@ -190,7 +216,11 @@
             "text": "(put cos 2t in place of 1 − 2sin²t)",
             "added": true
           },
-          "∴ dy/dt = 3 cos t cos 2t     [since cos 2t = 1 − 2sin²t]"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ 3\\cos t\\cos 2t\\left[\\sin ce\\cos 2t\\ = \\ 1\\ - \\ 2\\sin ^{2} t\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -222,10 +252,18 @@
         ],
         "memory_tip": "Two of the three cos 2t forms are used in this question — the cosine one for x, the sine one for y. Both are the same number.",
         "lines_compact": [
-          "dy/dt = 3 cos t − 2(3sin²t)(cos t)",
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ 3\\cos t\\ - \\ 2\\left(3\\sin ^{2} t\\right)\\left(\\cos t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 3 cos t − 6 sin²t cos t",
           "= 3 cos t(1 − 2sin²t)",
-          "∴ dy/dt = 3 cos t cos 2t     [since cos 2t = 1 − 2sin²t]"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ 3\\cos t\\cos 2t\\left[\\sin ce\\cos 2t\\ = \\ 1\\ - \\ 2\\sin ^{2} t\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -237,22 +275,37 @@
         "margin_note": "Last mark. cos 2t is a common factor of both derivatives and cancels. Valid where dx/dt ≠ 0, that is where sin t ≠ 0 and cos 2t ≠ 0.",
         "lines": [
           {
-            "text": "(put dy/dt from step 3 and dx/dt from step 2)",
-            "added": true
-          },
-          "dy/dx = (dy/dt)/(dx/dt) = (3 cos t cos 2t)/(3 sin t cos 2t)",
-          {
-            "text": "(this needs cos 2t ≠ 0 and sin t ≠ 0, so that dx/dt ≠ 0)",
-            "added": true
-          },
-          "The 3 and the factor cos 2t cancel, leaving cos t/sin t",
-          {
-            "text": "(cos t/sin t = cot t)",
+            "text": "\\left(\\text{put}\\ \\dfrac{dy}{dt}\\ \\text{from}\\ \\text{step}\\ 3\\ \\text{and}\\ \\dfrac{dx}{dt}\\ \\text{from}\\ \\text{step}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = cot t",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ \\dfrac{3\\cos t\\cos 2t}{3\\sin t\\cos 2t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{this}\\ \\text{needs}\\ \\cos 2t\\ \\ne \\ 0\\ \\text{and}\\ \\sin t\\ \\ne \\ 0,\\ \\text{so}\\ \\text{that}\\ \\dfrac{dx}{dt}\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{The}\\ 3\\ \\text{and}\\ \\text{the}\\ \\text{factor}\\ \\cos 2t\\ \\text{cancel},\\ \\text{leaving}\\ \\dfrac{\\cos t}{\\sin t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\cos t}{\\sin t} = \\ \\cot t\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\cot t",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -285,11 +338,20 @@
         ],
         "memory_tip": "Factor first, divide second. The cos 2t was put in front on purpose so that one cancellation finishes the question.",
         "lines_compact": [
-          "dy/dx = (dy/dt)/(dx/dt) = (3 cos t cos 2t)/(3 sin t cos 2t)",
-          "The 3 and the factor cos 2t cancel, leaving cos t/sin t",
           {
-            "text": "∴ dy/dx = cot t",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ \\dfrac{3\\cos t\\cos 2t}{3\\sin t\\cos 2t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ 3\\ \\text{and}\\ \\text{the}\\ \\text{factor}\\ \\cos 2t\\ \\text{cancel},\\ \\text{leaving}\\ \\dfrac{\\cos t}{\\sin t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\cot t",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

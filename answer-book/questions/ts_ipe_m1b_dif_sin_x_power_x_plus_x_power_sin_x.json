@@ -62,7 +62,11 @@
           },
           "Let y = u + v,  where u = (sin x)ˣ  and  v = xˢⁱⁿˣ",
           "(the derivative of a sum is the sum of the derivatives)",
-          "Then dy/dx = du/dx + dv/dx",
+          {
+            "text": "\\text{Then}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "In each term the variable x stands in the base",
           "and in the power. The power rule needs a constant power",
           "and the exponential rule needs a constant base,",
@@ -122,8 +126,9 @@
             "added": true
           },
           {
-            "text": "  x · log(sin x): d/dx(x) = 1",
+            "text": "x\\ \\cdot \\ \\log \\left(\\sin x\\right):\\ \\dfrac{d}{dx}\\left(x\\right)\\ = \\ 1",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -132,17 +137,31 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = 1 · log(sin x) + x · (cos x)/(sin x)",
           {
-            "text": "((cos x)/(sin x) = cot x)",
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ 1\\ \\cdot \\ \\log \\left(\\sin x\\right)\\ + \\ x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\cos x}{\\sin x} = \\ \\cot x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1/u)(du/dx) = log(sin x) + x cot x",
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\log \\left(\\sin x\\right)\\ + \\ x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by u = (sin x)ˣ)",
             "added": true
           },
-          "∴ du/dx = (sin x)ˣ [log(sin x) + x cot x]"
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\left(\\sin x\\right)^{x}\\left[\\log \\left(\\sin x\\right)\\ + \\ x\\cot x\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -177,9 +196,21 @@
           "u = (sin x)ˣ",
           "Taking logarithms,   log u = x · log(sin x)",
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = 1 · log(sin x) + x · (cos x)/(sin x)",
-          "(1/u)(du/dx) = log(sin x) + x cot x",
-          "∴ du/dx = (sin x)ˣ [log(sin x) + x cot x]"
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ 1\\ \\cdot \\ \\log \\left(\\sin x\\right)\\ + \\ x\\ \\cdot \\ \\dfrac{\\cos x}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\log \\left(\\sin x\\right)\\ + \\ x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ \\left(\\sin x\\right)^{x}\\left[\\log \\left(\\sin x\\right)\\ + \\ x\\cot x\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -207,7 +238,11 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = cos x · log x + sin x · (1/x)",
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\cos x\\ \\cdot \\ \\log x\\ + \\ \\sin x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by v = xˢⁱⁿˣ; sin x · (1/x) = (sin x)/x)",
             "added": true
@@ -247,7 +282,11 @@
           "v = xˢⁱⁿˣ",
           "Taking logarithms,   log v = sin x · log x",
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = cos x · log x + sin x · (1/x)",
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ \\cos x\\ \\cdot \\ \\log x\\ + \\ \\sin x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dv/dx = xˢⁱⁿˣ [cos x · log x + (sin x)/x]"
         ]
       },
@@ -261,17 +300,26 @@
         "memory_tip": "Each bracket stays attached to the term it came from: the (sin x)ˣ bracket holds cot x, the xˢⁱⁿˣ bracket holds log x.",
         "lines": [
           {
-            "text": "(from step 1, dy/dx = du/dx + dv/dx)",
-            "added": true
-          },
-          "dy/dx = du/dx + dv/dx",
-          {
-            "text": "(put du/dx from step 2 and dv/dx from step 3)",
+            "text": "\\left(\\text{from}\\ \\text{step}\\ 1,\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = (sin x)ˣ [log(sin x) + x cot x]",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{du}{dx}\\ \\text{from}\\ \\text{step}\\ 2\\ \\text{and}\\ \\dfrac{dv}{dx}\\ \\text{from}\\ \\text{step}\\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\sin x\\right)^{x}\\left[\\log \\left(\\sin x\\right)\\ + \\ x\\cot x\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "+ xˢⁱⁿˣ [cos x · log x + (sin x)/x]",
@@ -307,10 +355,15 @@
           "Putting one factor in front of both brackets, which changes the term that had the other factor."
         ],
         "lines_compact": [
-          "dy/dx = du/dx + dv/dx",
           {
-            "text": "∴ dy/dx = (sin x)ˣ [log(sin x) + x cot x]",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\sin x\\right)^{x}\\left[\\log \\left(\\sin x\\right)\\ + \\ x\\cot x\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "+ xˢⁱⁿˣ [cos x · log x + (sin x)/x]",

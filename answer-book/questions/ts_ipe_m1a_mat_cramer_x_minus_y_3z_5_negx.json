@@ -461,9 +461,21 @@
             "text": "(each unknown is its own Δ divided by Δ)",
             "added": true
           },
-          "x = Δ₁/Δ = 0/50 = 0",
-          "y = Δ₂/Δ = 50/50 = 1",
-          "z = Δ₃/Δ = 100/50 = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{0}{50} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{50}{50} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{100}{50} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "Substitute back into the three equations:",
           "0 − 1 + 3(2) = 5  ✓",
           "4(0) + 2(1) − 2 = 0  ✓",
@@ -505,9 +517,21 @@
         ],
         "lines_compact": [
           "By Cramer's rule:",
-          "x = Δ₁/Δ = 0/50 = 0",
-          "y = Δ₂/Δ = 50/50 = 1",
-          "z = Δ₃/Δ = 100/50 = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{0}{50} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{50}{50} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{100}{50} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "Substitute back into the three equations:",
           "0 − 1 + 3(2) = 5  ✓",
           "4(0) + 2(1) − 2 = 0  ✓",

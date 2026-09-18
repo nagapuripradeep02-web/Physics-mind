@@ -75,8 +75,16 @@
             "style": "heading"
           },
           "In (1 + x)ⁿ, when n is even the largest",
-          "coefficient is the middle one, with r = n/2",
-          "Here n = 22 is even, so r = 22/2 = 11",
+          {
+            "text": "\\text{coefficient}\\ \\text{is}\\ \\text{the}\\ \\text{middle}\\ \\text{one},\\ \\text{with}\\ r\\ = \\ \\dfrac{n}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ n\\ = \\ 22\\ \\text{is}\\ \\text{even},\\ \\text{so}\\ r\\ = \\ \\dfrac{22}{2} = \\ 11",
+            "style": "normal",
+            "render": "katex"
+          },
           "The largest coefficient is ²²C₁₁",
           "²²Cᵣ is the largest ⇒ r = 11"
         ],
@@ -124,7 +132,9 @@
             "added": true
           },
           {
-            "text": "= (13 · 12)/(1 · 2) = 156/2",
+            "text": "= \\ \\dfrac{13\\ \\cdot \\ 12}{1\\ \\cdot \\ 2} = \\ \\dfrac{156}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -158,7 +168,11 @@
           "Writing ¹³C₂ = 13·12 = 156."
         ],
         "lines_compact": [
-          "¹³Cᵣ = ¹³C₁₁ = ¹³C₂ = (13·12)/(1·2)",
+          {
+            "text": "{}^{13}C_{r}\\ = \\ {}^{13}C_{11}\\ = \\ {}^{13}C_{2}\\ = \\ \\dfrac{13 \\cdot 12}{1 \\cdot 2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ ¹³Cᵣ = 78",
             "style": "boxed"

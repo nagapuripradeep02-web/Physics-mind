@@ -63,8 +63,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given f(x) = Sin⁻¹√((x − β)/(α − β))",
-          "and  g(x) = Tan⁻¹√((x − β)/(α − x)),  with β < x < α.",
+          {
+            "text": "\\text{Given}\\ f\\left(x\\right)\\ = \\ \\operatorname{Sin}^{-1} \\sqrt{\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ g\\left(x\\right)\\ = \\ \\operatorname{Tan}^{-1} \\sqrt{\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ x}},\\ \\text{with}\\ \\beta \\ < \\ x\\ < \\ \\alpha .",
+            "style": "normal",
+            "render": "katex"
+          },
           "β < x < α makes x − β > 0, α − x > 0 and α − β > 0,",
           "so both radicands are positive",
           "and both functions are defined.",
@@ -74,11 +82,27 @@
             "text": "  0 < (x − β)/(α − β) < 1)",
             "style": "indent"
           },
-          "Also 0 < (x − β)/(α − β) < 1.",
-          "Put x − β = (α − β)sin²θ,  so  sin²θ = (x − β)/(α − β)",
-          "and  θ = Sin⁻¹√((x − β)/(α − β)).",
+          {
+            "text": "\\text{Also}\\ 0\\ < \\ \\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta } < \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ x\\ - \\ \\beta \\ = \\ \\left(\\alpha \\ - \\ \\beta \\right)\\sin ^{2} \\theta ,\\ \\text{so}\\ \\sin ^{2} \\theta \\ = \\ \\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\theta \\ = \\ \\operatorname{Sin}^{-1} \\sqrt{\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Then 0 < sin²θ < 1, and taking the principal value",
-          "gives 0 < θ < π/2.",
+          {
+            "text": "\\text{gives}\\ 0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(write α − x = (α − β) − (x − β) and put",
           {
             "text": "  x − β = (α − β)sin²θ)",
@@ -134,11 +158,23 @@
             "text": "(√(p²) = |p|)",
             "added": true
           },
-          "(x − β)/(α − β) = sin²θ, so",
+          {
+            "text": "\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta } = \\ \\sin ^{2} \\theta ,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
-          "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\sin \\theta \\ > \\ 0\\ \\text{and}\\ \\left|\\sin \\theta \\right|\\ = \\ \\sin \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(x) = Sin⁻¹(sin θ)",
-          "θ lies in (0, π/2), which is inside [−π/2, π/2],",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹.",
           "∴ f(x) = θ"
         ],
@@ -172,11 +208,23 @@
         ],
         "memory_tip": "A square root of a square is a modulus. Deal with the modulus first, and only then cancel the inverse function.",
         "lines_compact": [
-          "(x − β)/(α − β) = sin²θ, so",
+          {
+            "text": "\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta } = \\ \\sin ^{2} \\theta ,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(x) = Sin⁻¹√(sin²θ) = Sin⁻¹|sin θ|",
-          "0 < θ < π/2, so sin θ > 0 and |sin θ| = sin θ:",
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\sin \\theta \\ > \\ 0\\ \\text{and}\\ \\left|\\sin \\theta \\right|\\ = \\ \\sin \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           "f(x) = Sin⁻¹(sin θ)",
-          "θ lies in (0, π/2), which is inside [−π/2, π/2],",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left[ - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right],",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Sin⁻¹.",
           "∴ f(x) = θ"
         ]
@@ -198,23 +246,38 @@
             "style": "indent",
             "added": true
           },
-          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ)",
           {
-            "text": "(cancel α − β, which is positive; sin θ/cos θ = tan θ)",
+            "text": "\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ x} = \\ \\dfrac{\\left(\\alpha \\ - \\ \\beta \\right)\\sin ^{2} \\theta }{\\left(\\alpha \\ - \\ \\beta \\right)\\cos ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{cancel}\\ \\alpha \\ - \\ \\beta ,\\ \\text{which}\\ \\text{is}\\ \\text{positive};\\ \\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  = sin²θ/cos²θ = tan²θ",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta } = \\ \\tan ^{2} \\theta",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(√(tan²θ) = |tan θ|)",
             "added": true
           },
           "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
-          "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\tan \\theta \\ > \\ 0\\ \\text{and}\\ \\left|\\tan \\theta \\right|\\ = \\ \\tan \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           "g(x) = Tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside (−π/2, π/2),",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹.",
           "∴ g(x) = θ"
         ],
@@ -248,15 +311,28 @@
         ],
         "memory_tip": "f carries the whole interval α − β underneath and g carries only the part above x. The substitution splits α − β into sin²θ and cos²θ parts, so f gives a sine and g gives a tangent.",
         "lines_compact": [
-          "(x − β)/(α − x) = (α − β)sin²θ/((α − β)cos²θ)",
           {
-            "text": "  = sin²θ/cos²θ = tan²θ",
-            "style": "indent"
+            "text": "\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ x} = \\ \\dfrac{\\left(\\alpha \\ - \\ \\beta \\right)\\sin ^{2} \\theta }{\\left(\\alpha \\ - \\ \\beta \\right)\\cos ^{2} \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta } = \\ \\tan ^{2} \\theta",
+            "style": "indent",
+            "render": "katex"
           },
           "g(x) = Tan⁻¹√(tan²θ) = Tan⁻¹|tan θ|",
-          "0 < θ < π/2, so tan θ > 0 and |tan θ| = tan θ:",
+          {
+            "text": "0\\ < \\ \\theta \\ < \\ \\dfrac{\\pi }{2},\\ \\text{so}\\ \\tan \\theta \\ > \\ 0\\ \\text{and}\\ \\left|\\tan \\theta \\right|\\ = \\ \\tan \\theta :",
+            "style": "normal",
+            "render": "katex"
+          },
           "g(x) = Tan⁻¹(tan θ)",
-          "θ lies in (0, π/2), which is inside (−π/2, π/2),",
+          {
+            "text": "\\theta \\ \\text{lies}\\ \\text{in}\\ \\left(0,\\ \\dfrac{\\pi }{2}\\right),\\ \\text{which}\\ \\text{is}\\ \\text{inside}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "the principal range of Tan⁻¹.",
           "∴ g(x) = θ"
         ]
@@ -331,15 +407,20 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. One extra line gives the shared value, and it is the honest check on everything above: the result is symmetric in x − β and α − x, exactly as the two forms of the question are.",
         "lines": [
-          "Differentiate sin²θ = (x − β)/(α − β) with respect to x,",
+          {
+            "text": "\\text{Differentiate}\\ \\sin ^{2} \\theta \\ = \\ \\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }\\text{with}\\ \\text{respect}\\ \\text{to}\\ x,",
+            "style": "normal",
+            "render": "katex"
+          },
           "taking θ as a function of x:",
           {
             "text": "(d/dx(sin²θ) = 2 sin θ · cos θ · dθ/dx by the chain rule;",
             "added": true
           },
           {
-            "text": "  d/dx[(x − β)/(α − β)] = 1/(α − β),",
+            "text": "\\dfrac{d}{dx}\\left[\\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }\\right]\\ = \\ \\dfrac{1}{\\alpha \\ - \\ \\beta },",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -351,8 +432,16 @@
             "text": "(multiply both sides by α − β, and 2 sin θ cos θ = sin 2θ)",
             "added": true
           },
-          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),",
-          "that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          {
+            "text": "2\\sin \\theta \\cos \\theta \\ \\cdot \\ \\left(\\dfrac{d\\theta }{dx}\\right)\\ = \\ \\dfrac{1}{\\alpha \\ - \\ \\beta },",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\left(\\alpha \\ - \\ \\beta \\right)\\sin 2\\theta \\ \\cdot \\ \\left(\\dfrac{d\\theta }{dx}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin 2θ = 2 sin θ cos θ)",
             "added": true
@@ -403,14 +492,19 @@
             "style": "indent",
             "added": true
           },
-          "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
+          {
+            "text": "f\\left(x\\right)\\ = \\ g\\left(x\\right)\\ = \\ \\theta ,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ g'\\left(x\\right)\\ = \\ \\dfrac{d\\theta }{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(from the line above, dθ/dx = 1/((α − β) sin 2θ)",
             "added": true
           },
           {
-            "text": "  = 1/(2√(x − β)√(α − x)),",
+            "text": "= \\ \\dfrac{1}{2\\sqrt{x\\ - \\ \\beta }\\sqrt{\\alpha \\ - \\ x}},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -419,8 +513,9 @@
             "added": true
           },
           {
-            "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",
-            "style": "boxed"
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ g'\\left(x\\right)\\ = \\ \\dfrac{1}{2\\sqrt{\\left(x\\ - \\ \\beta \\right)\\left(\\alpha \\ - \\ x\\right)}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -453,10 +548,22 @@
         ],
         "memory_tip": "The final denominator holds the two differences that meet at x: the part below it, x − β, and the part above it, α − x. Their product sits under one root.",
         "lines_compact": [
-          "Differentiate sin²θ = (x − β)/(α − β) with respect to x,",
+          {
+            "text": "\\text{Differentiate}\\ \\sin ^{2} \\theta \\ = \\ \\dfrac{x\\ - \\ \\beta }{\\alpha \\ - \\ \\beta }\\text{with}\\ \\text{respect}\\ \\text{to}\\ x,",
+            "style": "normal",
+            "render": "katex"
+          },
           "taking θ as a function of x:",
-          "2 sin θ cos θ · (dθ/dx) = 1/(α − β),",
-          "that is  (α − β) sin 2θ · (dθ/dx) = 1",
+          {
+            "text": "2\\sin \\theta \\cos \\theta \\ \\cdot \\ \\left(\\dfrac{d\\theta }{dx}\\right)\\ = \\ \\dfrac{1}{\\alpha \\ - \\ \\beta },",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{that}\\ \\text{is}\\ \\left(\\alpha \\ - \\ \\beta \\right)\\sin 2\\theta \\ \\cdot \\ \\left(\\dfrac{d\\theta }{dx}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(α − β) sin 2θ = 2(α − β) sin θ cos θ",
           {
             "text": "  = 2·√((α − β)sin²θ)·√((α − β)cos²θ)",
@@ -466,10 +573,15 @@
             "text": "  = 2√(x − β)·√(α − x)",
             "style": "indent"
           },
-          "f(x) = g(x) = θ, so f′(x) = g′(x) = dθ/dx",
           {
-            "text": "∴ f′(x) = g′(x) = 1/(2√((x − β)(α − x)))",
-            "style": "boxed"
+            "text": "f\\left(x\\right)\\ = \\ g\\left(x\\right)\\ = \\ \\theta ,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ g'\\left(x\\right)\\ = \\ \\dfrac{d\\theta }{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ g'\\left(x\\right)\\ = \\ \\dfrac{1}{2\\sqrt{\\left(x\\ - \\ \\beta \\right)\\left(\\alpha \\ - \\ x\\right)}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

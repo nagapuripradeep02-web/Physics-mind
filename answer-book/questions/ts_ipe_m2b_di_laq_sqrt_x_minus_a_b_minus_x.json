@@ -91,21 +91,41 @@
           },
           "−x² + (a+b)x − ab = −[x² − (a+b)x + ab]",
           {
-            "text": "Add and subtract ((a+b)/2)² inside:",
+            "text": "\\text{Add}\\ \\text{and}\\ \\text{subtract}\\ \\left(\\dfrac{a + b}{2}\\right)^{2}\\ \\text{inside}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= −[(x − (a+b)/2)² − ((a+b)/2)² + ab]",
+          {
+            "text": "= \\ - \\left[\\left(x\\ - \\ \\dfrac{a + b}{2}\\right)^{2}\\ - \\ \\left(\\dfrac{a + b}{2}\\right)^{2}\\ + \\ ab\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply the −1 back in:",
             "added": true
           },
           {
-            "text": "= ((a+b)/2)² − ab − (x − (a+b)/2)²",
+            "text": "= \\ \\left(\\dfrac{a + b}{2}\\right)^{2}\\ - \\ ab\\ - \\ \\left(x\\ - \\ \\dfrac{a + b}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "((a+b)/2)² − ab = (a² + 2ab + b² − 4ab)/4",
-          "= (a − b)²/4 = (b − a)²/4",
-          "∴ (x − a)(b − x) = (b − a)²/4 − (x − (a+b)/2)²"
+          {
+            "text": "\\left(\\dfrac{a + b}{2}\\right)^{2}\\ - \\ ab\\ = \\ \\dfrac{a^{2}\\ + \\ 2ab\\ + \\ b^{2}\\ - \\ 4ab}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a\\ - \\ b\\right)^{2}}{4} = \\ \\dfrac{\\left(b\\ - \\ a\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(x\\ - \\ a\\right)\\left(b\\ - \\ x\\right)\\ = \\ \\dfrac{\\left(b\\ - \\ a\\right)^{2}}{4} - \\ \\left(x\\ - \\ \\dfrac{a + b}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Completing the square turns the quadratic into a fixed constant minus a squared deviation from the midpoint (a+b)/2, exactly the k² − u² shape the standard root-integral formula needs.",
         "common_mistakes": [
@@ -114,10 +134,26 @@
         ],
         "lines_compact": [
           "−x² + (a+b)x − ab = −[x² − (a+b)x + ab]",
-          "= −[(x − (a+b)/2)² − ((a+b)/2)² + ab]",
-          "((a+b)/2)² − ab = (a² + 2ab + b² − 4ab)/4",
-          "= (a − b)²/4 = (b − a)²/4",
-          "∴ (x − a)(b − x) = (b − a)²/4 − (x − (a+b)/2)²"
+          {
+            "text": "= \\ - \\left[\\left(x\\ - \\ \\dfrac{a + b}{2}\\right)^{2}\\ - \\ \\left(\\dfrac{a + b}{2}\\right)^{2}\\ + \\ ab\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{a + b}{2}\\right)^{2}\\ - \\ ab\\ = \\ \\dfrac{a^{2}\\ + \\ 2ab\\ + \\ b^{2}\\ - \\ 4ab}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a\\ - \\ b\\right)^{2}}{4} = \\ \\dfrac{\\left(b\\ - \\ a\\right)^{2}}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(x\\ - \\ a\\right)\\left(b\\ - \\ x\\right)\\ = \\ \\dfrac{\\left(b\\ - \\ a\\right)^{2}}{4} - \\ \\left(x\\ - \\ \\dfrac{a + b}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -133,13 +169,21 @@
             "text": "This is k² − u², a difference of squares:",
             "added": true
           },
-          "With k = (b − a)/2 and u = x − (a+b)/2:",
+          {
+            "text": "\\text{With}\\ k\\ = \\ \\dfrac{b\\ - \\ a}{2}\\text{and}\\ u\\ = \\ x\\ - \\ \\dfrac{a + b}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "du = dx, since (a+b)/2 is a constant",
             "added": true
           },
           "I",
-          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐᵇ",
+          {
+            "text": "= \\ \\left[\\left(\\dfrac{u}{2}\\right)\\sqrt{k^{2}\\ - \\ u^{2}}\\ + \\ \\left(\\dfrac{k^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{u}{k}\\right)\\right]_{a}^{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[∵ ∫√(k² − u²) du",
           "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
         ],
@@ -149,9 +193,17 @@
           "Forgetting the antiderivative has two terms — dropping the algebraic term and keeping only the Sin⁻¹ term, or vice versa."
         ],
         "lines_compact": [
-          "With k = (b − a)/2 and u = x − (a+b)/2:",
+          {
+            "text": "\\text{With}\\ k\\ = \\ \\dfrac{b\\ - \\ a}{2}\\text{and}\\ u\\ = \\ x\\ - \\ \\dfrac{a + b}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
-          "= [ (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) ]ₐᵇ",
+          {
+            "text": "= \\ \\left[\\left(\\dfrac{u}{2}\\right)\\sqrt{k^{2}\\ - \\ u^{2}}\\ + \\ \\left(\\dfrac{k^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{u}{k}\\right)\\right]_{a}^{b}",
+            "style": "normal",
+            "render": "katex"
+          },
           "[∵ ∫√(k² − u²) du",
           "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
         ]
@@ -167,25 +219,46 @@
         "lines": [
           "At x = b:",
           {
-            "text": "u = b − (a+b)/2 = (b − a)/2 = k",
+            "text": "u\\ = \\ b\\ - \\ \\dfrac{a + b}{2} = \\ \\dfrac{b\\ - \\ a}{2} = \\ k",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "u = k, so the first term is 0 and Sin⁻¹(1) = π/2",
+          {
+            "text": "u\\ = \\ k,\\ \\text{so}\\ \\text{the}\\ \\text{first}\\ \\text{term}\\ \\text{is}\\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "At x = a: u = −k,",
-          "so the first term is 0 and Sin⁻¹(−1) = −π/2",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{first}\\ \\text{term}\\ \\text{is}\\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left( - 1\\right)\\ = \\ - \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(at both ends √(k² − u²) = √0 = 0)",
             "added": true
           },
-          "I = (k²/2)(π/2) − (k²/2)(−π/2) = k²·(π/2)",
           {
-            "text": "k² = ((b − a)/2)² = (b−a)²/4:",
+            "text": "I\\ = \\ \\left(\\dfrac{k^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ - \\ \\left(\\dfrac{k^{2}}{2}\\right)\\left( - \\dfrac{\\pi }{2}\\right)\\ = \\ k^{2} \\cdot \\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "k^{2}\\ = \\ \\left(\\dfrac{b\\ - \\ a}{2}\\right)^{2}\\ = \\ \\dfrac{\\left(b - a\\right)^{2}}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= ((b−a)²/4)(π/2)",
           {
-            "text": "∴ I = π(b − a)²/8",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{\\left(b - a\\right)^{2}}{4}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi \\left(b\\ - \\ a\\right)^{2}}{8}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "At both endpoints the point lies exactly on the boundary of the square-root term (u = ±k), so that term vanishes and only the two Sin⁻¹ terms, which add rather than cancel because Sin⁻¹(−1) = −π/2, are left.",
@@ -195,14 +268,31 @@
         ],
         "lines_compact": [
           "At x = b:",
-          "u = k, so the first term is 0 and Sin⁻¹(1) = π/2",
-          "At x = a: u = −k,",
-          "so the first term is 0 and Sin⁻¹(−1) = −π/2",
-          "I = (k²/2)(π/2) − (k²/2)(−π/2) = k²·(π/2)",
-          "= ((b−a)²/4)(π/2)",
           {
-            "text": "∴ I = π(b − a)²/8",
-            "style": "boxed"
+            "text": "u\\ = \\ k,\\ \\text{so}\\ \\text{the}\\ \\text{first}\\ \\text{term}\\ \\text{is}\\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "At x = a: u = −k,",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{first}\\ \\text{term}\\ \\text{is}\\ 0\\ \\text{and}\\ \\operatorname{Sin}^{-1}\\left( - 1\\right)\\ = \\ - \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\left(\\dfrac{k^{2}}{2}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ - \\ \\left(\\dfrac{k^{2}}{2}\\right)\\left( - \\dfrac{\\pi }{2}\\right)\\ = \\ k^{2} \\cdot \\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{\\left(b - a\\right)^{2}}{4}\\right)\\left(\\dfrac{\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{\\pi \\left(b\\ - \\ a\\right)^{2}}{8}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

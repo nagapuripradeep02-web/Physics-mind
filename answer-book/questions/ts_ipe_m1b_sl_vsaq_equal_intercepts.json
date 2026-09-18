@@ -71,8 +71,9 @@
           "Given that, intercepts are equal.",
           "(the intercept form needs a ≠ 0;",
           {
-            "text": "  the line y = −(5/4)x through the origin also passes",
-            "style": "indent"
+            "text": "\\text{the}\\ \\text{line}\\ y\\ = \\ - \\left(\\dfrac{5}{4}\\right)x\\ \\text{through}\\ \\text{the}\\ \\text{origin}\\ \\text{also}\\ \\text{passes}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  through (−4, 5), with both intercepts 0)",
@@ -80,9 +81,17 @@
           },
           "So, we take a, a as the intercepts.",
           "(the intercept form of a line with intercepts a and b)",
-          "Intercept form:  x/a + y/b = 1",
+          {
+            "text": "\\text{Intercept}\\ \\text{form}:\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(put b = a)",
-          "∴ x/a + y/a = 1",
+          {
+            "text": "\\therefore \\ \\dfrac{x}{a} + \\ \\dfrac{y}{a} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply both sides by a)",
           "⇒ x + y = a  ……(1)"
         ],

@@ -54,13 +54,26 @@
           },
           "R.H.S = b cos C + c cos B",
           "By the cosine rule,",
-          "cos C = (a² + b² − c²)/(2ab)",
-          "cos B = (c² + a² − b²)/(2ca)",
-          "(put both cosines into b cos C + c cos B)",
-          "∴ R.H.S = b(a²+b²−c²)/(2ab)",
           {
-            "text": "+ c(c²+a²−b²)/(2ca)",
-            "style": "indent"
+            "text": "\\cos C\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ - \\ c^{2}}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cos B\\ = \\ \\dfrac{c^{2}\\ + \\ a^{2}\\ - \\ b^{2}}{2ca}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(put both cosines into b cos C + c cos B)",
+          {
+            "text": "\\therefore \\ R.H.S\\ = \\ \\dfrac{b\\left(a^{2} + b^{2} - c^{2}\\right)}{2ab}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{c\\left(c^{2} + a^{2} - b^{2}\\right)}{2ca}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -104,17 +117,29 @@
             "text": "(cancel b in the first term and c in the second)",
             "added": true
           },
-          "= (a²+b²−c²)/(2a) + (c²+a²−b²)/(2a)",
+          {
+            "text": "= \\ \\dfrac{a^{2} + b^{2} - c^{2}}{2a} + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(same denominator 2a: add the tops)",
             "added": true
           },
-          "= [(a²+b²−c²) + (a²+c²−b²)]/(2a)",
+          {
+            "text": "= \\ \\dfrac{\\left(a^{2} + b^{2} - c^{2}\\right)\\ + \\ \\left(a^{2} + c^{2} - b^{2}\\right)}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(b² − b² and c² − c² cancel)",
             "added": true
           },
-          "= (2a²)/(2a) = a",
+          {
+            "text": "= \\ \\dfrac{2a^{2}}{2a} = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ b cos C + c cos B = a = L.H.S",
             "style": "boxed"
@@ -148,9 +173,21 @@
           "Losing a sign so that b² and c² do not cancel."
         ],
         "lines_compact": [
-          "= (a²+b²−c²)/(2a) + (c²+a²−b²)/(2a)",
-          "= [(a²+b²−c²) + (a²+c²−b²)]/(2a)",
-          "= (2a²)/(2a) = a",
+          {
+            "text": "= \\ \\dfrac{a^{2} + b^{2} - c^{2}}{2a} + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(a^{2} + b^{2} - c^{2}\\right)\\ + \\ \\left(a^{2} + c^{2} - b^{2}\\right)}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2a^{2}}{2a} = \\ a",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ b cos C + c cos B = a = L.H.S",
             "style": "boxed"

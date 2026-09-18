@@ -76,9 +76,17 @@
           "reciprocal equation, and n = 4 is even.",
           "x = 0 is not a root (the constant is 2 ≠ 0),",
           "so divide every term by x²:",
-          "2x² + x − 11 + 1/x + 2/x² = 0",
+          {
+            "text": "2x^{2}\\ + \\ x\\ - \\ 11\\ + \\ \\dfrac{1}{x} + \\ \\dfrac{2}{x^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Group the pairs that match:",
-          "2(x² + 1/x²) + (x + 1/x) − 11 = 0 … (1)"
+          {
+            "text": "2\\left(x^{2}\\ + \\ \\dfrac{1}{x^{2}}\\right)\\ + \\ \\left(x\\ + \\ \\dfrac{1}{x}\\right)\\ - \\ 11\\ = \\ 0\\ \\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -120,19 +128,27 @@
         "memory_tip": "x² + 1/x² is t² − 2, never t². The 2 in front multiplies the whole bracket.",
         "lines": [
           {
-            "text": "Put x + 1/x = t.",
+            "text": "\\text{Put}\\ x\\ + \\ \\dfrac{1}{x} = \\ t.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Squaring both sides: (x + 1/x)² = t²",
+            "text": "\\text{Squaring}\\ \\text{both}\\ \\text{sides}:\\ \\left(x\\ + \\ \\dfrac{1}{x}\\right)^{2}\\ = \\ t^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "x² + 2 + 1/x² = t²",
+            "text": "x^{2}\\ + \\ 2\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "So x² + 1/x² = t² − 2",
+            "text": "\\text{So}\\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}\\ - \\ 2",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "(1) becomes 2(t² − 2) + t − 11 = 0",
@@ -172,7 +188,11 @@
           "Substituting for x + 1/x but leaving x² + 1/x² unchanged."
         ],
         "lines_compact": [
-          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          {
+            "text": "\\text{Put}\\ x\\ + \\ \\dfrac{1}{x} = \\ t,\\ \\text{so}\\ x^{2}\\ + \\ \\dfrac{1}{x^{2}} = \\ t^{2}\\ - \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1) becomes 2(t² − 2) + t − 11 = 0",
           "2t² + t − 15 = 0"
         ]
@@ -193,7 +213,11 @@
           "2t² + 6t − 5t − 15 = 0",
           "2t(t + 3) − 5(t + 3) = 0",
           "(2t − 5)(t + 3) = 0",
-          "t = 5/2 or t = −3"
+          {
+            "text": "t\\ = \\ \\dfrac{5}{2}\\text{or}\\ t\\ = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -227,7 +251,11 @@
           "2t² + 6t − 5t − 15 = 0",
           "2t(t + 3) − 5(t + 3) = 0",
           "(2t − 5)(t + 3) = 0",
-          "t = 5/2 or t = −3"
+          {
+            "text": "t\\ = \\ \\dfrac{5}{2}\\text{or}\\ t\\ = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -239,7 +267,11 @@
         "margin_note": "Two marks. Multiply x + 1/x = 5/2 by 2x to clear the fraction: 2x² − 5x + 2 = 0, which factorises. The book's shortcut 5/2 = 2 + 1/2 reads the roots 2 and 1/2 straight off; the factorised line shows the same thing.",
         "memory_tip": "Multiply x + 1/x = 5/2 by 2x: 2x² − 5x + 2 = 0 factorises, so no formula is needed.",
         "lines": [
-          "If t = 5/2: x + 1/x = 5/2",
+          {
+            "text": "\\text{If}\\ t\\ = \\ \\dfrac{5}{2}:\\ x\\ + \\ \\dfrac{1}{x} = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by 2x: 2x² + 2 = 5x",
             "added": true
@@ -261,7 +293,11 @@
             "added": true
           },
           "(2x − 1)(x − 2) = 0",
-          "x = 2 or x = 1/2"
+          {
+            "text": "x\\ = \\ 2\\ \\text{or}\\ x\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -293,10 +329,18 @@
           "Writing down only one root of the pair: (2x − 1)(x − 2) = 0 gives both x = 2 and x = 1/2."
         ],
         "lines_compact": [
-          "If t = 5/2: x + 1/x = 5/2",
+          {
+            "text": "\\text{If}\\ t\\ = \\ \\dfrac{5}{2}:\\ x\\ + \\ \\dfrac{1}{x} = \\ \\dfrac{5}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
           "(2x − 1)(x − 2) = 0",
-          "x = 2 or x = 1/2"
+          {
+            "text": "x\\ = \\ 2\\ \\text{or}\\ x\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -308,7 +352,11 @@
         "margin_note": "Last two marks. x² + 3x + 1 = 0 has discriminant 9 − 4 = 5, so the roots stay as surds. Box all four; their product is 2 · (1/2) · 1 = 1 = 2/2, the constant over the leading coefficient.",
         "memory_tip": "x² + 3x + 1 = 0 has discriminant 5, so this pair stays as surds. Box all four roots.",
         "lines": [
-          "If t = −3: x + 1/x = −3",
+          {
+            "text": "\\text{If}\\ t\\ = \\ - 3:\\ x\\ + \\ \\dfrac{1}{x} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply by x: x² + 1 = −3x",
             "added": true
@@ -318,16 +366,21 @@
             "added": true
           },
           {
-            "text": "x = (−3 ± √(9 − 4))/2   [quadratic formula]",
+            "text": "x\\ = \\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{9\\ - \\ 4}}{2}\\left[\\text{quadratic}\\ \\text{formula}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (−3 ± √5)/2",
+            "text": "= \\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{5}}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ roots: 2, 1/2, (−3 ± √5)/2",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{roots}:\\ 2,\\ \\dfrac{1}{2},\\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{5}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -360,12 +413,21 @@
           "Not simplifying the surd form of the roots at the end."
         ],
         "lines_compact": [
-          "If t = −3: x + 1/x = −3",
-          "x² + 1 = −3x, so x² + 3x + 1 = 0",
-          "x = (−3 ± √(9 − 4))/2 = (−3 ± √5)/2",
           {
-            "text": "∴ roots: 2, 1/2, (−3 ± √5)/2",
-            "style": "boxed"
+            "text": "\\text{If}\\ t\\ = \\ - 3:\\ x\\ + \\ \\dfrac{1}{x} = \\ - 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          "x² + 1 = −3x, so x² + 3x + 1 = 0",
+          {
+            "text": "x\\ = \\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{9\\ - \\ 4}}{2} = \\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{5}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{roots}:\\ 2,\\ \\dfrac{1}{2},\\ \\dfrac{ - 3\\ \\pm \\ \\sqrt{5}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

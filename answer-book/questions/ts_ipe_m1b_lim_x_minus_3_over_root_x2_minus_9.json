@@ -53,7 +53,11 @@
             "style": "heading"
           },
           "(3 − 3 = 0 and 3² − 9 = 0)",
-          "Putting x = 3 gives 0/√0 = 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 3\\ \\text{gives}\\ \\dfrac{0}{\\sqrt{0}} = \\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the expression is rewritten first.",
           "(x² − 9 ≥ 0 means x² ≥ 9, that is x ≥ 3 or x ≤ −3)",
           "√(x² − 9) is real only when x ≥ 3 or x ≤ −3,",
@@ -110,7 +114,11 @@
           "For x > 3,  x − 3 = √(x − 3) · √(x − 3),",
           "and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0",
           "and may be cancelled:",
-          "lim(x → 3) (x − 3)/√(x² − 9)",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 3\\right)}{\\sqrt{x^{2}\\ - \\ 9}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
             "style": "indent"
@@ -123,19 +131,30 @@
             "text": "(cancel one √(x − 3) from the top and the bottom)",
             "added": true
           },
-          "= lim(x → 3) √(x − 3)/√(x + 3)",
           {
-            "text": "(√(x − 3)/√(x + 3) is defined at x = 3, so put x = 3)",
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\sqrt{x\\ - \\ 3}}{\\sqrt{x\\ + \\ 3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sqrt{x\\ - \\ 3}}{\\sqrt{x\\ + \\ 3}}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 3,\\ \\text{so}\\ \\text{put}\\ x\\ = \\ 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= √(3 − 3)/√(3 + 3) = 0/√6",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3\\ - \\ 3}}{\\sqrt{3\\ + \\ 3}} = \\ \\dfrac{0}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(0 divided by √6 is 0)",
             "added": true
           },
           {
-            "text": "∴ lim(x → 3) (x − 3)/√(x² − 9) = 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 3\\right)}{\\sqrt{x^{2}\\ - \\ 9}} = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -169,7 +188,11 @@
           "For x > 3,  x − 3 = √(x − 3) · √(x − 3),",
           "and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0",
           "and may be cancelled:",
-          "lim(x → 3) (x − 3)/√(x² − 9)",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 3\\right)}{\\sqrt{x^{2}\\ - \\ 9}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
             "style": "indent"
@@ -178,11 +201,20 @@
             "text": "  / [√(x − 3) · √(x + 3)]",
             "style": "indent"
           },
-          "= lim(x → 3) √(x − 3)/√(x + 3)",
-          "= √(3 − 3)/√(3 + 3) = 0/√6",
           {
-            "text": "∴ lim(x → 3) (x − 3)/√(x² − 9) = 0",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\sqrt{x\\ - \\ 3}}{\\sqrt{x\\ + \\ 3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3\\ - \\ 3}}{\\sqrt{3\\ + \\ 3}} = \\ \\dfrac{0}{\\sqrt{6}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left(x\\ - \\ 3\\right)}{\\sqrt{x^{2}\\ - \\ 9}} = \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

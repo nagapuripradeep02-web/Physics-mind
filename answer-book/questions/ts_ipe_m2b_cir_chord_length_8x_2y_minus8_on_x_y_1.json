@@ -93,24 +93,35 @@
             "added": true
           },
           {
-            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "text": "\\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Here a = 1, b = 1, c = 1",
             "added": true
           },
-          "p = |4 + 1 + 1| / √(1² + 1²)",
           {
-            "text": "= 6/√2",
+            "text": "p\\ = \\ \\dfrac{\\left|4\\ + \\ 1\\ + \\ 1\\right|}{\\sqrt{1^{2}\\ + \\ 1^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{6}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "Multiply above and below by √2:",
             "added": true
           },
-          "= 6/√2 = 6√2/2 = 3√2"
+          {
+            "text": "= \\ \\dfrac{6}{\\sqrt{2}} = \\ \\dfrac{6\\sqrt{2}}{2} = \\ 3\\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The perpendicular from the centre to a chord bisects it, so its length is one side of the right-angled triangle whose hypotenuse is the radius.",
         "common_mistakes": [
@@ -120,8 +131,16 @@
         "lines_compact": [
           "Perpendicular distance from C(4, 1)",
           "to the line x + y + 1 = 0:",
-          "p = |4 + 1 + 1| / √(1² + 1²)",
-          "= 6/√2 = 6√2/2 = 3√2"
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|4\\ + \\ 1\\ + \\ 1\\right|}{\\sqrt{1^{2}\\ + \\ 1^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{6}{\\sqrt{2}} = \\ \\dfrac{6\\sqrt{2}}{2} = \\ 3\\sqrt{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

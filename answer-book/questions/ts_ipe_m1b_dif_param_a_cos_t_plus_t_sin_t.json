@@ -61,7 +61,11 @@
           },
           "Given x = a(cos t + t sin t)  and  y = a(sin t − t cos t)",
           "x and y are both given in terms of the parameter t, so",
-          "dy/dx = (dy/dt)/(dx/dt),  provided dx/dt ≠ 0"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}},\\ \\text{provided}\\ \\dfrac{dx}{dt}\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +115,11 @@
             "style": "indent",
             "added": true
           },
-          "d/dt (t sin t) = t·cos t + sin t·1",
+          {
+            "text": "\\dfrac{d}{dt}\\left(t\\sin t\\right)\\ = \\ t \\cdot \\cos t\\ + \\ \\sin t \\cdot 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(d/dt(cos t) = −sin t, and put d/dt(t sin t)",
             "added": true
@@ -121,12 +129,20 @@
             "style": "indent",
             "added": true
           },
-          "dx/dt = a[−sin t + t cos t + sin t]",
+          {
+            "text": "\\dfrac{dx}{dt}\\ = \\ a\\left[ - \\sin t\\ + \\ t\\cos t\\ + \\ \\sin t\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−sin t + sin t = 0)",
             "added": true
           },
-          "∴ dx/dt = a t cos t"
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dt}\\ = \\ at\\cos t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -159,9 +175,21 @@
         "memory_tip": "Two sin t terms appear here, one from cos t and one from the product rule, with opposite signs. Expect them to cancel and check that they do.",
         "lines_compact": [
           "x = a(cos t + t sin t). Use the product rule on t sin t:",
-          "d/dt (t sin t) = t·cos t + sin t·1",
-          "dx/dt = a[−sin t + t cos t + sin t]",
-          "∴ dx/dt = a t cos t"
+          {
+            "text": "\\dfrac{d}{dt}\\left(t\\sin t\\right)\\ = \\ t \\cdot \\cos t\\ + \\ \\sin t \\cdot 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dx}{dt}\\ = \\ a\\left[ - \\sin t\\ + \\ t\\cos t\\ + \\ \\sin t\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dx}{dt}\\ = \\ at\\cos t",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -182,12 +210,20 @@
             "style": "indent",
             "added": true
           },
-          "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
+          {
+            "text": "\\dfrac{d}{dt}\\left(t\\cos t\\right)\\ = \\ t \\cdot \\left( - \\sin t\\right)\\ + \\ \\cos t \\cdot 1\\ = \\ - t\\sin t\\ + \\ \\cos t",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(d/dt(sin t) = cos t, and put d/dt(t cos t) = −t sin t + cos t)",
             "added": true
           },
-          "dy/dt = a[cos t − (−t sin t + cos t)]",
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ a\\left[\\cos t\\ - \\ \\left( - t\\sin t\\ + \\ \\cos t\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−(−t sin t + cos t) = +t sin t − cos t)",
             "added": true
@@ -200,7 +236,11 @@
             "text": "(cos t − cos t = 0)",
             "added": true
           },
-          "∴ dy/dt = a t sin t"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ at\\sin t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -233,13 +273,25 @@
         "memory_tip": "This step is like the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it.",
         "lines_compact": [
           "y = a(sin t − t cos t). Use the product rule on t cos t:",
-          "d/dt (t cos t) = t·(−sin t) + cos t·1 = −t sin t + cos t",
-          "dy/dt = a[cos t − (−t sin t + cos t)]",
+          {
+            "text": "\\dfrac{d}{dt}\\left(t\\cos t\\right)\\ = \\ t \\cdot \\left( - \\sin t\\right)\\ + \\ \\cos t \\cdot 1\\ = \\ - t\\sin t\\ + \\ \\cos t",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dt}\\ = \\ a\\left[\\cos t\\ - \\ \\left( - t\\sin t\\ + \\ \\cos t\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = a[cos t + t sin t − cos t]",
             "style": "indent"
           },
-          "∴ dy/dt = a t sin t"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ at\\sin t",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -251,22 +303,37 @@
         "margin_note": "Last mark. Both a and t cancel, so the answer depends on t only through tan t. Valid where dx/dt ≠ 0, that is for t ≠ 0 and cos t ≠ 0.",
         "lines": [
           {
-            "text": "(put dy/dt from step 3 and dx/dt from step 2)",
-            "added": true
-          },
-          "dy/dx = (dy/dt)/(dx/dt) = (a t sin t)/(a t cos t)",
-          {
-            "text": "(this needs a ≠ 0, t ≠ 0 and cos t ≠ 0, so that dx/dt ≠ 0)",
-            "added": true
-          },
-          "The a and the t cancel, leaving sin t/cos t",
-          {
-            "text": "(sin t/cos t = tan t)",
+            "text": "\\left(\\text{put}\\ \\dfrac{dy}{dt}\\ \\text{from}\\ \\text{step}\\ 3\\ \\text{and}\\ \\dfrac{dx}{dt}\\ \\text{from}\\ \\text{step}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = tan t",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ \\dfrac{at\\sin t}{at\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{this}\\ \\text{needs}\\ a\\ \\ne \\ 0,\\ t\\ \\ne \\ 0\\ \\text{and}\\ \\cos t\\ \\ne \\ 0,\\ \\text{so}\\ \\text{that}\\ \\dfrac{dx}{dt}\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{The}\\ a\\ \\text{and}\\ \\text{the}\\ t\\ \\text{cancel},\\ \\text{leaving}\\ \\dfrac{\\sin t}{\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin t}{\\cos t} = \\ \\tan t\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\tan t",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -299,11 +366,20 @@
         ],
         "memory_tip": "If a is still in the last line, check the working — a scales both x and y equally, so it can never appear in dy/dx.",
         "lines_compact": [
-          "dy/dx = (dy/dt)/(dx/dt) = (a t sin t)/(a t cos t)",
-          "The a and the t cancel, leaving sin t/cos t",
           {
-            "text": "∴ dy/dx = tan t",
-            "style": "boxed"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}} = \\ \\dfrac{at\\sin t}{at\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ a\\ \\text{and}\\ \\text{the}\\ t\\ \\text{cancel},\\ \\text{leaving}\\ \\dfrac{\\sin t}{\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\tan t",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

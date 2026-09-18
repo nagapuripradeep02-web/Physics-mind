@@ -59,12 +59,28 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given a = (b − c) sec θ ⇒ sec θ = a/(b − c)",
+          {
+            "text": "\\text{Given}\\ a\\ = \\ \\left(b\\ - \\ c\\right)\\sec \\theta \\ \\Rightarrow \\ \\sec \\theta \\ = \\ \\dfrac{a}{b\\ - \\ c}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(square both sides)",
-          "⇒ sec²θ = a²/(b − c)²",
+          {
+            "text": "\\Rightarrow \\ \\sec ^{2} \\theta \\ = \\ \\dfrac{a^{2}}{\\left(b\\ - \\ c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ tan²θ = sec²θ − 1   [∵ sec²θ − tan²θ = 1]",
-          "(write 1 as (b − c)²/(b − c)²)",
-          "= a²/(b−c)² − 1 = (a² − (b−c)²)/(b−c)²"
+          {
+            "text": "\\left(\\text{write}\\ 1\\ \\text{as}\\ \\dfrac{\\left(b\\ - \\ c\\right)^{2}}{\\left(b\\ - \\ c\\right)^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{a^{2}}{\\left(b - c\\right)^{2}} - \\ 1\\ = \\ \\dfrac{a^{2}\\ - \\ \\left(b - c\\right)^{2}}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,17 +122,29 @@
             "text": "((b − c)² = b² + c² − 2bc)",
             "added": true
           },
-          "= (a² − (b² + c² − 2bc))/(b−c)²",
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ - \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ 2bc\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(reorder the top as 2bc − (b² + c² − a²))",
             "added": true
           },
-          "= (2bc − (b² + c² − a²))/(b−c)²",
+          {
+            "text": "= \\ \\dfrac{2bc\\ - \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ a^{2}\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cosine rule: b² + c² − a² = 2bc cos A)",
             "added": true
           },
-          "= (2bc − 2bc cos A)/(b−c)²"
+          {
+            "text": "= \\ \\dfrac{2bc\\ - \\ 2bc\\cos A}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,9 +175,21 @@
         ],
         "memory_tip": "Note the ORDER: a² comes first, so the bracket is 2bc MINUS the cosine-rule term.",
         "lines_compact": [
-          "= (a² − (b² + c² − 2bc))/(b−c)²",
-          "= (2bc − (b² + c² − a²))/(b−c)²",
-          "= (2bc − 2bc cos A)/(b−c)²"
+          {
+            "text": "= \\ \\dfrac{a^{2}\\ - \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ 2bc\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2bc\\ - \\ \\left(b^{2}\\ + \\ c^{2}\\ - \\ a^{2}\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2bc\\ - \\ 2bc\\cos A}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -164,9 +204,21 @@
             "text": "(take out the common factor 2bc)",
             "added": true
           },
-          "= 2bc(1 − cos A)/(b−c)²",
-          "= 2bc · 2sin²(A/2)/(b−c)²   [∵ 1 − cosA = 2sin²(A/2)]",
-          "= 4bc sin²(A/2)/(b−c)²"
+          {
+            "text": "= \\ \\dfrac{2bc\\left(1\\ - \\ \\cos A\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2bc\\ \\cdot \\ \\dfrac{2\\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b - c\\right)^{2}}\\left[\\because \\ 1\\ - \\ \\cos A\\ = \\ 2\\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4bc\\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,9 +249,21 @@
         ],
         "memory_tip": "A MINUS in front of cos A calls for the SINE half-angle: 1 − cos A = 2sin²(A/2).",
         "lines_compact": [
-          "= 2bc(1 − cos A)/(b−c)²",
-          "= 2bc · 2sin²(A/2)/(b−c)²   [∵ 1 − cosA = 2sin²(A/2)]",
-          "= 4bc sin²(A/2)/(b−c)²"
+          {
+            "text": "= \\ \\dfrac{2bc\\left(1\\ - \\ \\cos A\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2bc\\ \\cdot \\ \\dfrac{2\\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b - c\\right)^{2}}\\left[\\because \\ 1\\ - \\ \\cos A\\ = \\ 2\\sin ^{2}\\left(\\dfrac{A}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4bc\\sin ^{2}\\left(\\dfrac{A}{2}\\right)}{\\left(b - c\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -210,13 +274,19 @@
         "mark_note": "Conclusion",
         "margin_note": "The last mark. Same finish as the a = (b + c) cos θ question, but the answer carries sin(A/2) over b − c.",
         "lines": [
-          "∴ tan θ = ±(2√(bc)/|b − c|) sin(A/2)",
+          {
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\pm \\left(\\dfrac{2\\sqrt{bc}}{\\left|b\\ - \\ c\\right|}\\right)\\sin \\left(\\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin(A/2) > 0; for θ between 0° and 180°, tan θ has",
             "added": true
           },
           {
-            "text": "  the same sign as sec θ = a/(b − c), which is the",
+            "text": "\\text{the}\\ \\text{same}\\ \\text{sign}\\ \\text{as}\\ \\sec \\theta \\ = \\ \\dfrac{a}{b\\ - \\ c},\\ \\text{which}\\ \\text{is}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -224,8 +294,9 @@
             "added": true
           },
           {
-            "text": "= (2√(bc)/(b−c)) sin(A/2)",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{2\\sqrt{bc}}{b - c}\\right)\\sin \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -257,10 +328,15 @@
         ],
         "memory_tip": "Only sin²(A/2) and (b − c)² come out of the root exactly; √(4bc) = 2√(bc) stays. The answer has sin(A/2) over b − c.",
         "lines_compact": [
-          "∴ tan θ = ±(2√(bc)/|b − c|) sin(A/2)",
           {
-            "text": "= (2√(bc)/(b−c)) sin(A/2)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\tan \\theta \\ = \\ \\pm \\left(\\dfrac{2\\sqrt{bc}}{\\left|b\\ - \\ c\\right|}\\right)\\sin \\left(\\dfrac{A}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2\\sqrt{bc}}{b - c}\\right)\\sin \\left(\\dfrac{A}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

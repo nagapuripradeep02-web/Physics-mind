@@ -53,12 +53,24 @@
             "style": "heading"
           },
           "(e⁰⁺³ − e³ = 0)",
-          "Putting x = 0 gives 0/0, so the numerator is rewritten first.",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{0}{0},\\ \\text{so}\\ \\text{the}\\ \\text{numerator}\\ \\text{is}\\ \\text{rewritten}\\ \\text{first}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(eᵐ⁺ⁿ = eᵐ · eⁿ; take out the common factor e³)",
           "eˣ⁺³ = eˣ · e³, so  eˣ⁺³ − e³ = e³(eˣ − 1)",
           "e³ is a constant, so it comes outside the limit:",
-          "(e³ · (eˣ − 1)/x is the same expression)",
-          "∴ lim(x → 0) (eˣ⁺³ − e³)/x = e³ · lim(x → 0) (eˣ − 1)/x"
+          {
+            "text": "\\left(e^{3}\\ \\cdot \\ \\dfrac{e^{x}\\ - \\ 1}{x}\\text{is}\\ \\text{the}\\ \\text{same}\\ \\text{expression}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x+3}\\ - \\ e^{3}\\right)}{x} = \\ e^{3}\\ \\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,15 +113,20 @@
             "text": "(the standard limit)",
             "added": true
           },
-          "We know lim(x → 0) (eˣ − 1)/x = 1",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(e³ times the limit 1)",
             "added": true
           },
           "= e³ · 1",
           {
-            "text": "∴ lim(x → 0) (eˣ⁺³ − e³)/x = e³",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x+3}\\ - \\ e^{3}\\right)}{x} = \\ e^{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -140,11 +157,16 @@
           "Cancelling e³ against something and giving the answer as 1."
         ],
         "lines_compact": [
-          "We know lim(x → 0) (eˣ − 1)/x = 1",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "= e³ · 1",
           {
-            "text": "∴ lim(x → 0) (eˣ⁺³ − e³)/x = e³",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{x+3}\\ - \\ e^{3}\\right)}{x} = \\ e^{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -53,7 +53,11 @@
           },
           "(cos 0 = 1, so π cos² 0 = π)",
           "At x = 0 the numerator is sin π = 0",
-          "and the denominator is 0, so the form is 0/0.",
+          {
+            "text": "\\text{and}\\ \\text{the}\\ \\text{denominator}\\ \\text{is}\\ 0,\\ \\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos²x + sin²x = 1)",
           "cos²x = 1 − sin²x,  so  π cos²x = π(1 − sin²x) = π − π sin²x",
           "(sin(π − θ) = sin π cos θ − cos π sin θ = 0 + sin θ)",
@@ -111,25 +115,35 @@
             "style": "indent",
             "added": true
           },
-          "sin(π sin²x)/x²",
           {
-            "text": "  = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
-            "style": "indent"
+            "text": "\\dfrac{\\sin \\left(\\pi \\sin ^{2} x\\right)}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{\\sin \\left(\\pi \\sin ^{2} x\\right)}{\\pi \\sin ^{2} x}\\right]\\ \\cdot \\ \\pi \\ \\cdot \\ \\left(\\dfrac{\\sin x}{x}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(sin 0 = 0; the standard limit with θ = π sin²x)",
             "added": true
           },
           "As x → 0,  π sin²x → 0, so the first bracket → 1,",
-          "and (sin x)/x → 1",
+          {
+            "text": "\\text{and}\\ \\dfrac{\\sin x}{x} \\to \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 1, π and 1² for the three factors)",
             "added": true
           },
           "∴ limit = 1 · π · 1² = π",
           {
-            "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(\\pi \\cos ^{2} x\\right)}{x^{2}} = \\ \\pi",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,17 +175,27 @@
         ],
         "memory_tip": "Multiply and divide by the angle π sin²x, so every sine stands over its own angle.",
         "lines_compact": [
-          "sin(π sin²x)/x²",
           {
-            "text": "  = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
-            "style": "indent"
+            "text": "\\dfrac{\\sin \\left(\\pi \\sin ^{2} x\\right)}{x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left[\\dfrac{\\sin \\left(\\pi \\sin ^{2} x\\right)}{\\pi \\sin ^{2} x}\\right]\\ \\cdot \\ \\pi \\ \\cdot \\ \\left(\\dfrac{\\sin x}{x}\\right)^{2}",
+            "style": "indent",
+            "render": "katex"
           },
           "As x → 0,  π sin²x → 0, so the first bracket → 1,",
-          "and (sin x)/x → 1",
+          {
+            "text": "\\text{and}\\ \\dfrac{\\sin x}{x} \\to \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ limit = 1 · π · 1² = π",
           {
-            "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\sin \\left(\\pi \\cos ^{2} x\\right)}{x^{2}} = \\ \\pi",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

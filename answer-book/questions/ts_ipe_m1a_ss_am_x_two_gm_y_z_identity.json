@@ -53,10 +53,18 @@
             "style": "heading"
           },
           "Let the two positive numbers be a and b",
-          "x is the arithmetic mean, so x = (a + b)/2,",
+          {
+            "text": "x\\ \\text{is}\\ \\text{the}\\ \\text{arithmetic}\\ \\text{mean},\\ \\text{so}\\ x\\ = \\ \\dfrac{a\\ + \\ b}{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "that is  a + b = 2x",
           "y and z are two geometric means, so a, y, z, b are in G.P.",
-          "(a, y, z, b in G.P. means y/a = z/y = b/z)",
+          {
+            "text": "\\left(a,\\ y,\\ z,\\ b\\ \\text{in}\\ G.P.\\ \\text{means}\\ \\dfrac{y}{a} = \\ \\dfrac{z}{y} = \\ \\dfrac{b}{z}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "In a G.P. each middle term squared is the product",
           "of its neighbours:  y² = az  and  z² = yb"
         ],

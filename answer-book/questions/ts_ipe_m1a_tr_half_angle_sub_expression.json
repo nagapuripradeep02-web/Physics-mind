@@ -125,10 +125,15 @@
             "added": true
           },
           "Since 1 + sin θ ≠ 0 it cancels, leaving",
-          "2 sin θ/(1 + cos θ + sin θ), which is x.",
           {
-            "text": "∴ (1 − cos θ + sin θ)/(1 + sin θ) = x",
-            "style": "boxed"
+            "text": "\\dfrac{2\\sin \\theta }{1\\ + \\ \\cos \\theta \\ + \\ \\sin \\theta },\\ \\text{which}\\ \\text{is}\\ x.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1\\ - \\ \\cos \\theta \\ + \\ \\sin \\theta }{1\\ + \\ \\sin \\theta } = \\ x",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,10 +166,15 @@
         "lines_compact": [
           "Dr = (1 + sin θ)(1 + cos θ + sin θ)",
           "Since 1 + sin θ ≠ 0 it cancels, leaving",
-          "2 sin θ/(1 + cos θ + sin θ), which is x.",
           {
-            "text": "∴ (1 − cos θ + sin θ)/(1 + sin θ) = x",
-            "style": "boxed"
+            "text": "\\dfrac{2\\sin \\theta }{1\\ + \\ \\cos \\theta \\ + \\ \\sin \\theta },\\ \\text{which}\\ \\text{is}\\ x.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{1\\ - \\ \\cos \\theta \\ + \\ \\sin \\theta }{1\\ + \\ \\sin \\theta } = \\ x",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

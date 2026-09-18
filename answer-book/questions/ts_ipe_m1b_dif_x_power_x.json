@@ -54,9 +54,17 @@
           },
           "Let y = xˣ,  x > 0",
           "The base x and the exponent x are both variables.",
-          "The power rule d/dx(xⁿ) = n xⁿ⁻¹",
+          {
+            "text": "\\text{The}\\ \\text{power}\\ \\text{rule}\\ \\dfrac{d}{dx}\\left(x^{n}\\right)\\ = \\ nx^{n-1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "needs a constant exponent, and the exponential rule",
-          "d/dx(aˣ) = aˣ log a needs a constant base.",
+          {
+            "text": "\\dfrac{d}{dx}\\left(a^{x}\\right)\\ = \\ a^{x}\\log a\\ \\text{needs}\\ a\\ \\text{constant}\\ \\text{base}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Neither one applies, so take logarithms first.",
           "(take log of both sides of y = xˣ; y > 0 because x > 0)",
           "log y = log(xˣ)",
@@ -112,24 +120,39 @@
             "style": "indent",
             "added": true
           },
-          "(1/y)(dy/dx) = x · (1/x) + (log x) · 1",
           {
-            "text": "(x · (1/x) = 1, and (log x) · 1 = log x)",
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ + \\ \\left(\\log x\\right)\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ 1,\\ \\text{and}\\ \\left(\\log x\\right)\\ \\cdot \\ 1\\ = \\ \\log x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "(1/y)(dy/dx) = 1 + log x",
+          {
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 1\\ + \\ \\log x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by y)",
             "added": true
           },
-          "dy/dx = y(1 + log x)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ y\\left(1\\ + \\ \\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put y = xˣ)",
             "added": true
           },
           {
-            "text": "∴ d/dx(xˣ) = xˣ(1 + log x)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(x^{x}\\right)\\ = \\ x^{x}\\left(1\\ + \\ \\log x\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -163,12 +186,25 @@
           "Differentiate both sides with respect to x.",
           "The left side needs the chain rule,",
           "the right side the product rule.",
-          "(1/y)(dy/dx) = x · (1/x) + (log x) · 1",
-          "(1/y)(dy/dx) = 1 + log x",
-          "dy/dx = y(1 + log x)",
           {
-            "text": "∴ d/dx(xˣ) = xˣ(1 + log x)",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ + \\ \\left(\\log x\\right)\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 1\\ + \\ \\log x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ y\\left(1\\ + \\ \\log x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(x^{x}\\right)\\ = \\ x^{x}\\left(1\\ + \\ \\log x\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

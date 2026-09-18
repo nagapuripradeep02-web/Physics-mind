@@ -111,12 +111,20 @@
             "added": true
           },
           "∴ The distance between (1) & (2) is",
-          "|c₁ − c₂| / √(a² + b²) = |−8 + 9| / √(10² + 6²)",
+          {
+            "text": "\\dfrac{\\left|c_{1}\\ - \\ c_{2}\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}} = \\ \\dfrac{\\left| - 8\\ + \\ 9\\right|}{\\sqrt{10^{2}\\ + \\ 6^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−8 + 9 = 1; 10² = 100 and 6² = 36)",
             "added": true
           },
-          "= |1| / √(100 + 36)",
+          {
+            "text": "= \\ \\dfrac{\\left|1\\right|}{\\sqrt{100\\ + \\ 36}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(100 + 36 = 136, and √136 = √(4 × 34) = 2√34,",
             "added": true
@@ -127,8 +135,9 @@
             "added": true
           },
           {
-            "text": "∴ Distance is 1/√136",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Distance}\\ \\text{is}\\ \\dfrac{1}{\\sqrt{136}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,11 +170,20 @@
         "mark_note": "Solution",
         "lines_compact": [
           "∴ The distance between (1) & (2) is",
-          "|c₁ − c₂| / √(a² + b²) = |−8 + 9| / √(10² + 6²)",
-          "= |1| / √(100 + 36)",
           {
-            "text": "∴ Distance is 1/√136",
-            "style": "boxed"
+            "text": "\\dfrac{\\left|c_{1}\\ - \\ c_{2}\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}} = \\ \\dfrac{\\left| - 8\\ + \\ 9\\right|}{\\sqrt{10^{2}\\ + \\ 6^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left|1\\right|}{\\sqrt{100\\ + \\ 36}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Distance}\\ \\text{is}\\ \\dfrac{1}{\\sqrt{136}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

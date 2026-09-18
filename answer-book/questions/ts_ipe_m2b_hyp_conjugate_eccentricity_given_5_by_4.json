@@ -81,14 +81,38 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let e = 5/4 and let e₁ be the eccentricity",
+          {
+            "text": "\\text{Let}\\ e\\ = \\ \\dfrac{5}{4}\\text{and}\\ \\text{let}\\ e_{1}\\ \\text{be}\\ \\text{the}\\ \\text{eccentricity}",
+            "style": "normal",
+            "render": "katex"
+          },
           "of the conjugate hyperbola.",
-          "By the reciprocal identity, 1/e² + 1/e₁² = 1",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{reciprocal}\\ \\text{identity},\\ \\dfrac{1}{e^{2}} + \\ \\dfrac{1}{e_{1}^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(true for any hyperbola and its conjugate)",
-          "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)²",
-          "((5/4)² = 25/16, so 1/(5/4)² = 16/25)",
-          "= 1 − 16/25 = 9/25",
-          "(1 = 25/25, and 25/25 − 16/25 = 9/25)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1}{e_{1}^{2}} = \\ 1\\ - \\ \\dfrac{1}{e^{2}} = \\ 1\\ - \\ \\dfrac{1}{\\left(\\dfrac{5}{4}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{5}{4}\\right)^{2}\\ = \\ \\dfrac{25}{16},\\ \\text{so}\\ \\dfrac{1}{\\left(\\dfrac{5}{4}\\right)^{2}} = \\ \\dfrac{16}{25}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ - \\ \\dfrac{16}{25} = \\ \\dfrac{9}{25}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ = \\ \\dfrac{25}{25},\\ \\text{and}\\ \\dfrac{25}{25} - \\ \\dfrac{16}{25} = \\ \\dfrac{9}{25}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The fastest route to e₁ is the reciprocal identity 1/e² + 1/e₁² = 1 — rearrange it for 1/e₁² and substitute the given e.",
         "common_mistakes": [
@@ -109,17 +133,24 @@
             "text": "Turn both sides over:",
             "added": true
           },
-          "e₁² = 25/9",
+          {
+            "text": "e_{1}^{2}\\ = \\ \\dfrac{25}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "e₁ is positive, so take the positive root:",
             "added": true
           },
           {
-            "text": "e₁ = 5/3",
-            "style": "boxed"
+            "text": "e_{1}\\ = \\ \\dfrac{5}{3}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "Check: 1/e² + 1/e₁² = 16/25 + 9/25 = 1",
+            "text": "\\text{Check}:\\ \\dfrac{1}{e^{2}} + \\ \\dfrac{1}{e_{1}^{2}} = \\ \\dfrac{16}{25} + \\ \\dfrac{9}{25} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -129,10 +160,15 @@
           "Writing e₁ as a decimal approximation instead of the exact fraction 5/3."
         ],
         "lines_compact": [
-          "e₁² = 25/9",
           {
-            "text": "e₁ = 5/3",
-            "style": "boxed"
+            "text": "e_{1}^{2}\\ = \\ \\dfrac{25}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e_{1}\\ = \\ \\dfrac{5}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

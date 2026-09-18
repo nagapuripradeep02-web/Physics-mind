@@ -53,17 +53,26 @@
             "style": "heading"
           },
           "(2³ = 8)",
-          "Putting x = 2 gives 0/(8 − 8) = 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 2\\ \\text{gives}\\ \\dfrac{0}{8\\ - \\ 8} = \\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the denominator is factorised.",
           "We know a³ − b³ = (a − b)(a² + ab + b²)",
           "(a² + ab + b² = x² + 2x + 2² = x² + 2x + 4)",
           "Put a = x, b = 2, then",
           "x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)",
           "(put the factorised denominator into the limit)",
-          "∴ lim(x → 2) (x − 2)/(x³ − 8)",
           {
-            "text": "  = lim(x → 2) (x − 2)/[(x − 2)(x² + 2x + 4)]",
-            "style": "indent"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)\\left(x\\ - \\ 2\\right)}{x^{3}\\ - \\ 8}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)\\left(x\\ - \\ 2\\right)}{\\left(x\\ - \\ 2\\right)\\left(x^{2}\\ + \\ 2x\\ + \\ 4\\right)}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -108,19 +117,30 @@
             "text": "(cancel x − 2 from the top and the bottom)",
             "added": true
           },
-          "= lim(x → 2) 1/(x² + 2x + 4)",
           {
-            "text": "(1/(x² + 2x + 4) is defined at x = 2, so put x = 2)",
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)1}{x^{2}\\ + \\ 2x\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{x^{2}\\ + \\ 2x\\ + \\ 4}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ 2,\\ \\text{so}\\ \\text{put}\\ x\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1/(2² + 2(2) + 4) = 1/(4 + 4 + 4)",
+          {
+            "text": "= \\ \\dfrac{1}{2^{2}\\ + \\ 2\\left(2\\right)\\ + \\ 4} = \\ \\dfrac{1}{4\\ + \\ 4\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(4 + 4 + 4 = 12)",
             "added": true
           },
           {
-            "text": "∴ lim(x → 2) (x − 2)/(x³ − 8) = 1/12",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)\\left(x\\ - \\ 2\\right)}{x^{3}\\ - \\ 8} = \\ \\dfrac{1}{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -152,11 +172,20 @@
         ],
         "lines_compact": [
           "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
-          "= lim(x → 2) 1/(x² + 2x + 4)",
-          "= 1/(2² + 2(2) + 4) = 1/(4 + 4 + 4)",
           {
-            "text": "∴ lim(x → 2) (x − 2)/(x³ − 8) = 1/12",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)1}{x^{2}\\ + \\ 2x\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2^{2}\\ + \\ 2\\left(2\\right)\\ + \\ 4} = \\ \\dfrac{1}{4\\ + \\ 4\\ + \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 2\\right)\\left(x\\ - \\ 2\\right)}{x^{3}\\ - \\ 8} = \\ \\dfrac{1}{12}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

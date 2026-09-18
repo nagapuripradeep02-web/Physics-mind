@@ -147,18 +147,27 @@
             "added": true
           },
           {
-            "text": "  |ax₁ + by₁ + c| / √(a² + b²)",
+            "text": "\\dfrac{\\left|ax_{1}\\ + \\ by_{1}\\ + \\ c\\right|}{\\sqrt{a^{2}\\ + \\ b^{2}}}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "Length of the perpendicular from C(−1, −1)",
           "to the line 2x + y + 1 = 0 is",
-          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|2\\left( - 1\\right)\\ + \\ \\left( - 1\\right)\\ + \\ 1\\right|}{\\sqrt{4\\ + \\ 1}} = \\ \\dfrac{\\left| - 2\\right|}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−2 − 1 + 1 = −2, and |−2| = 2)",
             "added": true
           },
-          "= 2/√5"
+          {
+            "text": "= \\ \\dfrac{2}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The perpendicular from the centre bisects the chord — its length p, together with the radius r, gives a right triangle whose other leg is half the chord.",
         "common_mistakes": [
@@ -169,8 +178,16 @@
         "lines_compact": [
           "Length of the perpendicular from C(−1, −1)",
           "to the line 2x + y + 1 = 0 is",
-          "p = |2(−1) + (−1) + 1| / √(4 + 1) = |−2| / √5",
-          "= 2/√5"
+          {
+            "text": "p\\ = \\ \\dfrac{\\left|2\\left( - 1\\right)\\ + \\ \\left( - 1\\right)\\ + \\ 1\\right|}{\\sqrt{4\\ + \\ 1}} = \\ \\dfrac{\\left| - 2\\right|}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -191,17 +208,22 @@
             "added": true
           },
           {
-            "text": "r² = 1 and p² = (2/√5)² = 4/5",
+            "text": "r^{2}\\ = \\ 1\\ \\text{and}\\ p^{2}\\ = \\ \\left(\\dfrac{2}{\\sqrt{5}}\\right)^{2}\\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "1 − 4/5 = 1/5, and 2√(1/5) = 2/√5",
+            "text": "1\\ - \\ \\dfrac{4}{5} = \\ \\dfrac{1}{5},\\ \\text{and}\\ 2\\sqrt{\\dfrac{1}{5}}\\ = \\ \\dfrac{2}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Length of the common chord",
           {
-            "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
-            "style": "boxed"
+            "text": "= \\ 2\\sqrt{r^{2}\\ - \\ p^{2}}\\ = \\ 2\\sqrt{1\\ - \\ \\dfrac{4}{5}}\\ = \\ \\dfrac{2}{\\sqrt{5}}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Half the chord, the perpendicular distance p, and the radius r form a right triangle — Pythagoras gives half the chord as √(r² − p²), and the full chord is twice that.",
@@ -213,8 +235,9 @@
         "lines_compact": [
           "Length of the common chord",
           {
-            "text": "= 2√(r² − p²) = 2√(1 − 4/5) = 2/√5 units",
-            "style": "boxed"
+            "text": "= \\ 2\\sqrt{r^{2}\\ - \\ p^{2}}\\ = \\ 2\\sqrt{1\\ - \\ \\dfrac{4}{5}}\\ = \\ \\dfrac{2}{\\sqrt{5}}\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

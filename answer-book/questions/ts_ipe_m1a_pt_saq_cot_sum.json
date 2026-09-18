@@ -63,14 +63,20 @@
           },
           "L.H.S = cotA + cotB + cotC",
           {
-            "text": "= cosA/sinA + cosB/sinB + cosC/sinC",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\cos A}{\\sin A} + \\ \\dfrac{\\cos B}{\\sin B} + \\ \\dfrac{\\cos C}{\\sin C}",
+            "style": "indent",
+            "render": "katex"
           },
           "(cosine rule for each cosine)",
-          "= (b²+c²−a²)/(2bc sinA) + (c²+a²−b²)/(2ca sinB)",
           {
-            "text": "+ (a²+b²−c²)/(2ab sinC)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{b^{2} + c^{2} - a^{2}}{2bc\\sin A} + \\ \\dfrac{c^{2} + a^{2} - b^{2}}{2ca\\sin B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{a^{2} + b^{2} - c^{2}}{2ab\\sin C}",
+            "style": "indent",
+            "render": "katex"
           },
           "Now Δ = ½ bc sinA ⇒ 2bc sinA = 4Δ,",
           "and similarly for the others"
@@ -116,11 +122,16 @@
             "text": "(each of the three denominators is 4Δ)",
             "added": true
           },
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
+          {
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "a²: −a² + a² + a² = a²  (and likewise for b², c²)",
           {
-            "text": "= (a² + b² + c²)/(4Δ) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,11 +161,16 @@
           "Getting 2(a²+b²+c²) by miscounting."
         ],
         "lines_compact": [
-          "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(4Δ)",
+          {
+            "text": "= \\ \\dfrac{\\left(b^{2} + c^{2} - a^{2}\\right)\\ + \\ \\left(c^{2} + a^{2} - b^{2}\\right)\\ + \\ \\left(a^{2} + b^{2} - c^{2}\\right)}{4\\Delta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "a²: −a² + a² + a² = a²  (and likewise for b², c²)",
           {
-            "text": "= (a² + b² + c²)/(4Δ) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}\\ + \\ c^{2}}{4\\Delta } = \\ R.H.S",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

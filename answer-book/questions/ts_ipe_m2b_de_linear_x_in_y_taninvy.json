@@ -75,13 +75,33 @@
           },
           "Given D.E is (1 + y²)dx = (Tan⁻¹y − x)dy",
           "Divide both sides by (1 + y²)dy:",
-          "⇒ dx/dy = (Tan⁻¹y − x)/(1 + y²)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dx}{dy}\\ = \\ \\dfrac{\\operatorname{Tan}^{-1} y\\ - \\ x}{1\\ + \\ y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take the x term to the left:",
-          "⇒ dx/dy + x/(1 + y²) = Tan⁻¹y/(1 + y²)",
-          "This is in the form dx/dy + xP(y) = Q(y),",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dx}{dy}\\ + \\ \\dfrac{x}{1\\ + \\ y^{2}} = \\ \\dfrac{\\operatorname{Tan}^{-1} y}{1\\ + \\ y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dx}{dy}\\ + \\ xP\\left(y\\right)\\ = \\ Q\\left(y\\right),",
+            "style": "normal",
+            "render": "katex"
+          },
           "which is linear D.E in x.",
-          "Here P = 1/(1 + y²)",
-          "⇒ ∫P dy = ∫1/(1 + y²) dy = Tan⁻¹y"
+          {
+            "text": "\\text{Here}\\ P\\ = \\ \\dfrac{1}{1\\ + \\ y^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\int Pdy\\ = \\ \\int \\dfrac{1}{1\\ + \\ y^{2}}dy\\ = \\ \\operatorname{Tan}^{-1} y",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Because x appears without a derivative next to a dy term, the equation is naturally linear in x rather than in y, so it is rewritten as dx/dy + Px = Q with y playing the role x usually plays.",
         "common_mistakes": [
@@ -99,7 +119,9 @@
         "memory_tip": "The formula for the integrating factor never changes — only the variable of integration switches to y here.",
         "lines": [
           {
-            "text": "For dx/dy + xP = Q the integrating factor is",
+            "text": "\\text{For}\\ \\dfrac{dx}{dy}\\ + \\ xP\\ = \\ Q\\ \\text{the}\\ \\text{integrating}\\ \\text{factor}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -147,10 +169,16 @@
             "style": "normal"
           },
           {
-            "text": "d/dy(Tan⁻¹y) = 1/(1 + y²), so:",
+            "text": "\\dfrac{d}{dy}\\left(\\operatorname{Tan}^{-1} y\\right)\\ = \\ \\dfrac{1}{1\\ + \\ y^{2}},\\ \\text{so}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt,",
+          {
+            "text": "\\text{Put}\\ \\operatorname{Tan}^{-1} y\\ = \\ t\\ \\Rightarrow \\ \\dfrac{1}{1\\ + \\ y^{2}}dy\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes ∫t·eᵗ dt"
         ],
         "why": "Multiplying Q by the integrating factor and substituting t = Tan⁻¹y turns the integral into ∫t eᵗ dt, since dt is exactly the 1/(1+y²)dy factor already present in the integrand.",
@@ -170,7 +198,11 @@
             "render": "katex",
             "style": "normal"
           },
-          "Put Tan⁻¹y = t ⇒ 1/(1 + y²) dy = dt,",
+          {
+            "text": "\\text{Put}\\ \\operatorname{Tan}^{-1} y\\ = \\ t\\ \\Rightarrow \\ \\dfrac{1}{1\\ + \\ y^{2}}dy\\ = \\ dt,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the integral becomes ∫t·eᵗ dt"
         ]
       },
@@ -191,7 +223,9 @@
           "So x·eᵗ = eᵗ(t − 1) + c,",
           "and putting t = Tan⁻¹y back in:",
           {
-            "text": "(divide every term by eᵗ; c/eᵗ = c·e⁻ᵗ)",
+            "text": "\\left(\\text{divide}\\ \\text{every}\\ \\text{term}\\ \\text{by}\\ e^{t};\\ \\dfrac{c}{e^{t}} = \\ c \\cdot e^{-t}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

@@ -63,9 +63,21 @@
           "Given sinθ + sin5θ = sin3θ",
           "(group sin5θ − sin3θ)",
           "⇒ sinθ + (sin5θ − sin3θ) = 0",
-          "(sin x − sin y = 2 cos((x+y)/2) sin((x−y)/2))",
-          "⇒ sinθ + 2cos((5θ+3θ)/2) sin((5θ−3θ)/2) = 0",
-          "((5θ + 3θ)/2 = 4θ and (5θ − 3θ)/2 = θ)",
+          {
+            "text": "\\left(\\sin x\\ - \\ \\sin y\\ = \\ 2\\cos \\left(\\dfrac{x + y}{2}\\right)\\sin \\left(\\dfrac{x - y}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sin \\theta \\ + \\ 2\\cos \\left(\\dfrac{5\\theta + 3\\theta }{2}\\right)\\sin \\left(\\dfrac{5\\theta - 3\\theta }{2}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5\\theta \\ + \\ 3\\theta }{2} = \\ 4\\theta \\ \\text{and}\\ \\dfrac{5\\theta \\ - \\ 3\\theta }{2} = \\ \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ sinθ + 2cos4θ sinθ = 0",
           "(take out the common factor sinθ)",
           "⇒ sinθ (1 + 2cos4θ) = 0"
@@ -165,18 +177,34 @@
             "text": "(take 1 across and divide by 2)",
             "added": true
           },
-          "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
-          "  Here α = 2π/3, and θ = 2nπ ± α gives",
+          {
+            "text": "\\left(ii\\right)1\\ + \\ 2\\cos 4\\theta \\ = \\ 0\\ \\Rightarrow \\ \\cos 4\\theta \\ = \\ - \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{2\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ = \\ \\dfrac{2\\pi }{3},\\ \\text{and}\\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\alpha \\ \\text{gives}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(use the formula with 4θ in place of θ)",
             "added": true
           },
-          "  4θ = 2nπ ± 2π/3",
+          {
+            "text": "4\\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide both terms by 4)",
             "added": true
           },
-          "  ⇒ θ = nπ/2 ± π/6,  n ∈ Z   …(1)"
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ \\dfrac{n\\pi }{2} \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -206,10 +234,26 @@
           "Dividing only one term by 4."
         ],
         "lines_compact": [
-          "(ii) 1 + 2cos4θ = 0 ⇒ cos4θ = −1/2 = cos(2π/3)",
-          "  Here α = 2π/3, and θ = 2nπ ± α gives",
-          "  4θ = 2nπ ± 2π/3",
-          "  ⇒ θ = nπ/2 ± π/6,  n ∈ Z   …(1)"
+          {
+            "text": "\\left(ii\\right)1\\ + \\ 2\\cos 4\\theta \\ = \\ 0\\ \\Rightarrow \\ \\cos 4\\theta \\ = \\ - \\dfrac{1}{2} = \\ \\cos \\left(\\dfrac{2\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ \\alpha \\ = \\ \\dfrac{2\\pi }{3},\\ \\text{and}\\ \\theta \\ = \\ 2n\\pi \\ \\pm \\ \\alpha \\ \\text{gives}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "4\\theta \\ = \\ 2n\\pi \\ \\pm \\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ \\dfrac{n\\pi }{2} \\pm \\ \\dfrac{\\pi }{6},\\ n\\ \\in \\ Z\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -222,16 +266,31 @@
         "memory_tip": "Substitute n = 0, 1, 2 and keep only what lies strictly between 0 and π — four values.",
         "lines": [
           "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
-          "n = 0: θ = ±π/6 → π/6",
-          "n = 1: θ = π/2 ± π/6 → π/3, 2π/3",
-          "n = 2: θ = π ± π/6 → 5π/6",
           {
-            "text": "(n = 3 gives 3π/2 ± π/6, which is more than π)",
+            "text": "n\\ = \\ 0:\\ \\theta \\ = \\ \\pm \\dfrac{\\pi }{6} \\to \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ 1:\\ \\theta \\ = \\ \\dfrac{\\pi }{2} \\pm \\ \\dfrac{\\pi }{6} \\to \\ \\dfrac{\\pi }{3},\\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ 2:\\ \\theta \\ = \\ \\pi \\ \\pm \\ \\dfrac{\\pi }{6} \\to \\ \\dfrac{5\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(n\\ = \\ 3\\ \\text{gives}\\ \\dfrac{3\\pi }{2} \\pm \\ \\dfrac{\\pi }{6},\\ \\text{which}\\ \\text{is}\\ \\text{more}\\ \\text{than}\\ \\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ θ = π/6, π/3, 2π/3, 5π/6",
-            "style": "boxed"
+            "text": "\\therefore \\ \\theta \\ = \\ \\dfrac{\\pi }{6},\\ \\dfrac{\\pi }{3},\\ \\dfrac{2\\pi }{3},\\ \\dfrac{5\\pi }{6}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -265,12 +324,25 @@
         ],
         "lines_compact": [
           "But 0 < θ < π. Putting n = 0, 1, 2 in (1):",
-          "n = 0: θ = ±π/6 → π/6",
-          "n = 1: θ = π/2 ± π/6 → π/3, 2π/3",
-          "n = 2: θ = π ± π/6 → 5π/6",
           {
-            "text": "∴ θ = π/6, π/3, 2π/3, 5π/6",
-            "style": "boxed"
+            "text": "n\\ = \\ 0:\\ \\theta \\ = \\ \\pm \\dfrac{\\pi }{6} \\to \\ \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ 1:\\ \\theta \\ = \\ \\dfrac{\\pi }{2} \\pm \\ \\dfrac{\\pi }{6} \\to \\ \\dfrac{\\pi }{3},\\ \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "n\\ = \\ 2:\\ \\theta \\ = \\ \\pi \\ \\pm \\ \\dfrac{\\pi }{6} \\to \\ \\dfrac{5\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\theta \\ = \\ \\dfrac{\\pi }{6},\\ \\dfrac{\\pi }{3},\\ \\dfrac{2\\pi }{3},\\ \\dfrac{5\\pi }{6}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

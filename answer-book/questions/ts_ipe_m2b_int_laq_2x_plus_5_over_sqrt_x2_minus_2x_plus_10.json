@@ -72,8 +72,16 @@
             "text": "  plus a constant B.",
             "style": "indent"
           },
-          "Here d/dx(x²−2x+10) = 2x−2",
-          "Let 2x+5 = A·d/dx(x²−2x+10) + B",
+          {
+            "text": "\\text{Here}\\ \\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)\\ = \\ 2x - 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Let}\\ 2x + 5\\ = \\ A \\cdot \\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)\\ + \\ B",
+            "style": "normal",
+            "render": "katex"
+          },
           "= A(2x−2) + B",
           "Compare the coefficients of x: 2A=2 ⇒ A=1",
           "Compare the constants:",
@@ -96,7 +104,11 @@
         "mark_note": "Method",
         "margin_note": "Method",
         "lines": [
-          "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
+          {
+            "text": "\\text{Putting}\\ A = 1,\\ B = 7:\\ 2x + 5\\ = \\ 1 \\cdot \\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)\\ + \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide every term by √(x²−2x+10)",
             "added": true
@@ -107,8 +119,16 @@
             "added": true
           },
           "I",
-          "= ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx +",
-          "7∫dx/√(x²−2x+10)",
+          {
+            "text": "= \\ \\int \\dfrac{\\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)}{\\sqrt{x^{2} - 2x + 10}}dx\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The first integral has the derivative of the",
             "added": true
@@ -118,8 +138,16 @@
             "style": "indent",
             "added": true
           },
-          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)",
-          "[∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
+          {
+            "text": "= \\ 2\\sqrt{x^{2} - 2x + 10}\\ + \\ 7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\int \\dfrac{f'\\left(x\\right)}{\\sqrt{f\\left(x\\right)}}dx\\ = \\ 2\\sqrt{f\\left(x\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The A-part is an f′(x)/√f(x) form, a standard result equal to 2√f(x) — it needs no completing the square at all, unlike the leftover B-part.",
         "common_mistakes": [
@@ -128,12 +156,32 @@
         ],
         "memory_tip": "∫f′/√f dx = 2√f — always a factor of 2, easy to drop by habit.",
         "lines_compact": [
-          "Putting A=1, B=7: 2x+5 = 1·d/dx(x²−2x+10) + 7",
+          {
+            "text": "\\text{Putting}\\ A = 1,\\ B = 7:\\ 2x + 5\\ = \\ 1 \\cdot \\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)\\ + \\ 7",
+            "style": "normal",
+            "render": "katex"
+          },
           "I",
-          "= ∫[d/dx(x²−2x+10)]/√(x²−2x+10) dx +",
-          "7∫dx/√(x²−2x+10)",
-          "= 2√(x²−2x+10) + 7∫dx/√(x²−2x+10)",
-          "[∵ ∫f′(x)/√f(x) dx = 2√f(x)]"
+          {
+            "text": "= \\ \\int \\dfrac{\\dfrac{d}{dx}\\left(x^{2} - 2x + 10\\right)}{\\sqrt{x^{2} - 2x + 10}}dx\\ +",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\sqrt{x^{2} - 2x + 10}\\ + \\ 7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ \\int \\dfrac{f'\\left(x\\right)}{\\sqrt{f\\left(x\\right)}}dx\\ = \\ 2\\sqrt{f\\left(x\\right)}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -153,7 +201,11 @@
             "text": "9 = 3², so this is (x−1)² + 3²",
             "added": true
           },
-          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]",
+          {
+            "text": "\\text{So}\\ 7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}} = \\ 7\\int \\dfrac{dx}{\\sqrt{\\left(x - 1\\right)^{2} + 3^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Put u = x − 1 and a = 3, so du = dx",
             "added": true
@@ -167,7 +219,11 @@
         "memory_tip": "−1+10 = 9 = 3² — a is 3 here, not 9.",
         "lines_compact": [
           "x²−2x+10 = x²−2x+1−1+10 = (x−1)²+9",
-          "So 7∫dx/√(x²−2x+10) = 7∫dx/√[(x−1)²+3²]"
+          {
+            "text": "\\text{So}\\ 7\\int \\dfrac{dx}{\\sqrt{x^{2} - 2x + 10}} = \\ 7\\int \\dfrac{dx}{\\sqrt{\\left(x - 1\\right)^{2} + 3^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -188,12 +244,15 @@
             "added": true
           },
           {
-            "text": "7∫dx/√[(x−1)²+3²] = 7 sinh⁻¹[(x−1)/3]",
+            "text": "7\\int \\dfrac{dx}{\\sqrt{\\left(x - 1\\right)^{2} + 3^{2}}} = \\ 7\\sin h^{-1}\\left[\\dfrac{x - 1}{3}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 2√(x²−2x+10) + 7 sinh⁻¹[(x−1)/3] + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ 2\\sqrt{x^{2} - 2x + 10}\\ + \\ 7\\sin h^{-1}\\left[\\dfrac{x - 1}{3}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting x → (x−1) and a=3 into the standard sinh⁻¹ formula, then multiplying by the leftover B=7, gives the second half of the final answer.",
@@ -209,8 +268,9 @@
             "style": "eq"
           },
           {
-            "text": "∴ I = 2√(x²−2x+10) + 7 sinh⁻¹[(x−1)/3] + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ 2\\sqrt{x^{2} - 2x + 10}\\ + \\ 7\\sin h^{-1}\\left[\\dfrac{x - 1}{3}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

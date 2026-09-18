@@ -65,7 +65,11 @@
           "Write 1 − i in the modulus-amplitude form.",
           "r = √(1² + (−1)²) = √2",
           "Take √2 out of both terms:",
-          "1 − i = √2(1/√2 − i · 1/√2)",
+          {
+            "text": "1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\dfrac{1}{\\sqrt{2}} - \\ i\\ \\cdot \\ \\dfrac{1}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now cos π/4 = 1/√2 and sin π/4 = 1/√2, so",
           "1 − i = √2(cos π/4 − i sin π/4)"
         ],

@@ -60,9 +60,17 @@
           },
           "Here cos α ≠ 0 and sin α ≠ 0,",
           "else the line misses one axis.",
-          "(on the x-axis y = 0; 1/cos α = sec α)",
+          {
+            "text": "\\left(\\text{on}\\ \\text{the}\\ \\text{x-axis}\\ y\\ = \\ 0;\\ \\dfrac{1}{\\cos \\alpha } = \\ \\sec \\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put y = 0:  x cos α = p  ⇒  x = p sec α",
-          "(on the y-axis x = 0; 1/sin α = cosec α)",
+          {
+            "text": "\\left(\\text{on}\\ \\text{the}\\ \\text{y-axis}\\ x\\ = \\ 0;\\ \\dfrac{1}{\\sin \\alpha } = \\ \\cos ec\\alpha \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = 0:  y sin α = p  ⇒  y = p cosec α"
         ],
         "recall": {
@@ -111,29 +119,48 @@
             "style": "indent",
             "added": true
           },
-          "Δ = ½ |x-intercept × y-intercept|",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|\\text{x-intercept}\\ \\times \\ \\text{y-intercept}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the intercepts p sec α and p cosec α)",
             "added": true
           },
-          "= ½ |p sec α · p cosec α|",
           {
-            "text": "(sec α · cosec α = 1/(sin α cos α), and p · p = p²)",
+            "text": "= \\ \\dfrac{1}{2}\\left|p\\sec \\alpha \\ \\cdot \\ p\\cos ec\\alpha \\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sec \\alpha \\ \\cdot \\ \\cos ec\\alpha \\ = \\ \\dfrac{1}{\\sin \\alpha \\cos \\alpha },\\ \\text{and}\\ p\\ \\cdot \\ p\\ = \\ p^{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= p²/(2 |sin α cos α|)",
+          {
+            "text": "= \\ \\dfrac{p^{2}}{2\\left|\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2|sin α cos α| = |2 sin α cos α|)",
             "added": true
           },
-          "= p²/|2 sin α cos α|",
+          {
+            "text": "= \\ \\dfrac{p^{2}}{\\left|2\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 sin α cos α = sin 2α)",
             "added": true
           },
           {
-            "text": "∴ Δ = p²/|sin 2α| sq.units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{p^{2}}{\\left|\\sin 2\\alpha \\right|}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -164,13 +191,30 @@
           "Writing sin 2α as 2 sin α and losing the cos α."
         ],
         "lines_compact": [
-          "Δ = ½ |x-intercept × y-intercept|",
-          "= ½ |p sec α · p cosec α|",
-          "= p²/(2 |sin α cos α|)",
-          "= p²/|2 sin α cos α|",
           {
-            "text": "∴ Δ = p²/|sin 2α| sq.units",
-            "style": "boxed"
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}\\left|\\text{x-intercept}\\ \\times \\ \\text{y-intercept}\\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left|p\\sec \\alpha \\ \\cdot \\ p\\cos ec\\alpha \\right|",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}}{2\\left|\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{p^{2}}{\\left|2\\sin \\alpha \\cos \\alpha \\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{p^{2}}{\\left|\\sin 2\\alpha \\right|}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

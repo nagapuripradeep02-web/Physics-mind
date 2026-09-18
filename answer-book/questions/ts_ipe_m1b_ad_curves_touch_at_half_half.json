@@ -61,17 +61,33 @@
           },
           "Given curves:  6x² − 5x + 2y = 0   …(i)",
           "and   4x² + 8y² = 3   …(ii)",
-          "Put x = 1/2, y = 1/2 in (i):",
+          {
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{1}{2},\\ y\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\left(i\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
           "(6(1/4) = 3/2, 5(1/2) = 5/2 and 2(1/2) = 1;",
           {
             "text": "  3/2 − 5/2 = −1, and −1 + 1 = 0)",
             "style": "indent"
           },
           "6(1/4) − 5(1/2) + 2(1/2) = 3/2 − 5/2 + 1 = 0  ✓",
-          "Put x = 1/2, y = 1/2 in (ii):",
-          "(4(1/4) = 1 and 8(1/4) = 2)",
+          {
+            "text": "\\text{Put}\\ x\\ = \\ \\dfrac{1}{2},\\ y\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\left(ii\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(4\\left(\\dfrac{1}{4}\\right)\\ = \\ 1\\ \\text{and}\\ 8\\left(\\dfrac{1}{4}\\right)\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "4(1/4) + 8(1/4) = 1 + 2 = 3  ✓",
-          "∴ P(1/2, 1/2) lies on both curves, so it is a common point."
+          {
+            "text": "\\therefore \\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{both}\\ \\text{curves},\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ a\\ \\text{common}\\ \\text{point}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -122,18 +138,36 @@
             "style": "indent",
             "added": true
           },
-          "12x − 5 + 2 (dy/dx) = 0",
+          {
+            "text": "12x\\ - \\ 5\\ + \\ 2\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move 12x − 5 across and divide both sides by 2)",
             "added": true
           },
-          "dy/dx = (5 − 12x)/2",
           {
-            "text": "(put 1/2 in place of x: 12(1/2) = 6)",
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{5\\ - \\ 12x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{1}{2}\\text{in}\\ \\text{place}\\ \\text{of}\\ x:\\ 12\\left(\\dfrac{1}{2}\\right)\\ = \\ 6\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At P(1/2, 1/2):  m₁ = (5 − 12(1/2))/2 = (5 − 6)/2",
-          "∴ m₁ = −1/2"
+          {
+            "text": "\\text{At}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right):\\ m_{1}\\ = \\ \\dfrac{5\\ - \\ 12\\left(\\dfrac{1}{2}\\right)}{2} = \\ \\dfrac{5\\ - \\ 6}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m_{1}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -167,10 +201,26 @@
         "memory_tip": "The derivative of every y-term has a factor dy/dx; every pure x-term does not.",
         "lines_compact": [
           "Differentiate (i) with respect to x:",
-          "12x − 5 + 2 (dy/dx) = 0",
-          "dy/dx = (5 − 12x)/2",
-          "At P(1/2, 1/2):  m₁ = (5 − 12(1/2))/2 = (5 − 6)/2",
-          "∴ m₁ = −1/2"
+          {
+            "text": "12x\\ - \\ 5\\ + \\ 2\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{5\\ - \\ 12x}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right):\\ m_{1}\\ = \\ \\dfrac{5\\ - \\ 12\\left(\\dfrac{1}{2}\\right)}{2} = \\ \\dfrac{5\\ - \\ 6}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m_{1}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -183,21 +233,43 @@
         "lines": [
           "Differentiate (ii) with respect to x:",
           {
-            "text": "(d/dx of 4x² is 8x; d/dx of 8y² is 16y · dy/dx)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ 4x^{2}\\ \\text{is}\\ 8x;\\ \\dfrac{d}{dx}\\ \\text{of}\\ 8y^{2}\\ \\text{is}\\ 16y\\ \\cdot \\ \\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "8x + 16y (dy/dx) = 0",
           {
-            "text": "(move 8x across and divide by 16y; 8/16 = 1/2)",
-            "added": true
+            "text": "8x\\ + \\ 16y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
           },
-          "dy/dx = −8x/(16y) = −x/(2y)",
           {
-            "text": "(put x = 1/2 and y = 1/2: 2 · 1/2 = 1)",
+            "text": "\\left(\\text{move}\\ 8x\\ \\text{across}\\ \\text{and}\\ \\text{divide}\\ \\text{by}\\ 16y;\\ \\dfrac{8}{16} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At P(1/2, 1/2):  m₂ = −(1/2)/(2 · 1/2) = −(1/2)/1",
-          "∴ m₂ = −1/2"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\dfrac{8x}{16y} = \\ - \\dfrac{x}{2y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ x\\ = \\ \\dfrac{1}{2}\\text{and}\\ y\\ = \\ \\dfrac{1}{2}:\\ 2\\ \\cdot \\ \\dfrac{1}{2} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{At}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right):\\ m_{2}\\ = \\ - \\dfrac{\\dfrac{1}{2}}{2\\ \\cdot \\ \\dfrac{1}{2}} = \\ - \\dfrac{\\dfrac{1}{2}}{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m_{2}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -231,10 +303,26 @@
         "memory_tip": "For Ax² + By² = C the slope is −Ax/(By): here A = 4 and B = 8, so it is −4x/(8y) = −x/(2y).",
         "lines_compact": [
           "Differentiate (ii) with respect to x:",
-          "8x + 16y (dy/dx) = 0",
-          "dy/dx = −8x/(16y) = −x/(2y)",
-          "At P(1/2, 1/2):  m₂ = −(1/2)/(2 · 1/2) = −(1/2)/1",
-          "∴ m₂ = −1/2"
+          {
+            "text": "8x\\ + \\ 16y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\dfrac{8x}{16y} = \\ - \\dfrac{x}{2y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right):\\ m_{2}\\ = \\ - \\dfrac{\\dfrac{1}{2}}{2\\ \\cdot \\ \\dfrac{1}{2}} = \\ - \\dfrac{\\dfrac{1}{2}}{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m_{2}\\ = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -251,7 +339,11 @@
             "text": "(the slopes found in steps 2 and 3)",
             "added": true
           },
-          "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
+          {
+            "text": "m_{1}\\ = \\ - \\dfrac{1}{2}\\text{and}\\ m_{2}\\ = \\ - \\dfrac{1}{2},\\ \\text{so}\\ m_{1}\\ = \\ m_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the point-slope form with slope −1/2 at P; multiply",
             "added": true
@@ -261,19 +353,30 @@
             "style": "indent",
             "added": true
           },
-          "The common tangent at P(1/2, 1/2) is",
-          "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
           {
-            "text": "∴ P(1/2, 1/2) lies on both curves",
-            "style": "boxed"
+            "text": "\\text{The}\\ \\text{common}\\ \\text{tangent}\\ \\text{at}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and both have slope −1/2 there,",
-            "style": "boxed"
+            "text": "y\\ - \\ \\dfrac{1}{2} = \\ - \\left(\\dfrac{1}{2}\\right)\\left(x\\ - \\ \\dfrac{1}{2}\\right)\\ \\Rightarrow \\ 2x\\ + \\ 4y\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "so the curves touch each other at (1/2, 1/2).",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{both}\\ \\text{curves}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{both}\\ \\text{have}\\ \\text{slope}\\ - \\dfrac{1}{2}\\text{there},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{curves}\\ \\text{touch}\\ \\text{each}\\ \\text{other}\\ \\text{at}\\ \\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right).",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -309,20 +412,35 @@
         "lines_compact": [
           "Two curves touch each other at a common point",
           "when their slopes there are equal.",
-          "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
-          "The common tangent at P(1/2, 1/2) is",
-          "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
           {
-            "text": "∴ P(1/2, 1/2) lies on both curves",
-            "style": "boxed"
+            "text": "m_{1}\\ = \\ - \\dfrac{1}{2}\\text{and}\\ m_{2}\\ = \\ - \\dfrac{1}{2},\\ \\text{so}\\ m_{1}\\ = \\ m_{2}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "and both have slope −1/2 there,",
-            "style": "boxed"
+            "text": "\\text{The}\\ \\text{common}\\ \\text{tangent}\\ \\text{at}\\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "so the curves touch each other at (1/2, 1/2).",
-            "style": "boxed"
+            "text": "y\\ - \\ \\dfrac{1}{2} = \\ - \\left(\\dfrac{1}{2}\\right)\\left(x\\ - \\ \\dfrac{1}{2}\\right)\\ \\Rightarrow \\ 2x\\ + \\ 4y\\ = \\ 3",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{both}\\ \\text{curves}",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{both}\\ \\text{have}\\ \\text{slope}\\ - \\dfrac{1}{2}\\text{there},",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{curves}\\ \\text{touch}\\ \\text{each}\\ \\text{other}\\ \\text{at}\\ \\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right).",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

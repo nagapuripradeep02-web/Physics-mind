@@ -75,8 +75,16 @@
           "x is a repeated factor and (x + 1) is linear.",
           "A repeated factor gets one term",
           "  for each power:",
-          "(2x² + 2x + 1)/(x²(x + 1))",
-          "= A/x + B/x² + C/(x + 1)"
+          {
+            "text": "\\dfrac{2x^{2}\\ + \\ 2x\\ + \\ 1}{x^{2}\\left(x\\ + \\ 1\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x} + \\ \\dfrac{B}{x^{2}} + \\ \\dfrac{C}{x\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -255,10 +263,15 @@
         "margin_note": "Last mark. All three constants are 1, so the answer is 1/x + 1/x² + 1/(x + 1). Write the original fraction on the left.",
         "memory_tip": "All three constants are 1. Check with x = 1: 5 = 2 + 2 + 1.",
         "lines": [
-          "∴ (2x² + 2x + 1)/(x³ + x²)",
           {
-            "text": "= 1/x + 1/x² + 1/(x + 1)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{2x^{2}\\ + \\ 2x\\ + \\ 1}{x^{3}\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{x} + \\ \\dfrac{1}{x^{2}} + \\ \\dfrac{1}{x\\ + \\ 1}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

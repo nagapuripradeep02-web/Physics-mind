@@ -62,7 +62,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given P(X = k) = cᵏ/k!, k = 1, 2, 3, …",
+          {
+            "text": "\\text{Given}\\ P\\left(X\\ = \\ k\\right)\\ = \\ \\dfrac{c^{k}}{k!},\\ k\\ = \\ 1,\\ 2,\\ 3,\\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
           "A probability distribution must have all",
           "its probabilities adding up to 1:",
           {
@@ -70,7 +74,11 @@
             "style": "eq"
           },
           "P(X = 1) + P(X = 2) + P(X = 3) + … = 1",
-          "c/1! + c²/2! + c³/3! + … = 1"
+          {
+            "text": "\\dfrac{c}{1!} + \\ \\dfrac{c^{2}}{2!} + \\ \\dfrac{c^{3}}{3!} + \\ \\dots \\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,7 +123,9 @@
             "added": true
           },
           {
-            "text": "eˣ = 1 + x/1! + x²/2! + x³/3! + …",
+            "text": "e^{x}\\ = \\ 1\\ + \\ \\dfrac{x}{1!} + \\ \\dfrac{x^{2}}{2!} + \\ \\dfrac{x^{3}}{3!} + \\ \\dots",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -126,7 +136,11 @@
             "text": "term 1, so add 1 to both sides:",
             "added": true
           },
-          "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
+          {
+            "text": "1\\ + \\ \\dfrac{c}{1!} + \\ \\dfrac{c^{2}}{2!} + \\ \\dfrac{c^{3}}{3!} + \\ \\dots \\ = \\ 1\\ + \\ 1\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The left side is eᶜ, so",
             "added": true
@@ -168,8 +182,16 @@
         ],
         "lines_compact": [
           "Add 1 to both sides:",
-          "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
-          "We know 1 + x/1! + x²/2! + x³/3! + … = eˣ",
+          {
+            "text": "1\\ + \\ \\dfrac{c}{1!} + \\ \\dfrac{c^{2}}{2!} + \\ \\dfrac{c^{3}}{3!} + \\ \\dots \\ = \\ 1\\ + \\ 1\\ = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{We}\\ \\text{know}\\ 1\\ + \\ \\dfrac{x}{1!} + \\ \\dfrac{x^{2}}{2!} + \\ \\dfrac{x^{3}}{3!} + \\ \\dots \\ = \\ e^{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ eᶜ = 2",
           "⇒ c = logₑ 2"
         ]
@@ -189,11 +211,15 @@
           },
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
           {
-            "text": "= c/1! + c²/2!",
+            "text": "= \\ \\dfrac{c}{1!} + \\ \\dfrac{c^{2}}{2!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= c + c²/2",
+            "text": "= \\ c\\ + \\ \\dfrac{c^{2}}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -235,7 +261,11 @@
         ],
         "lines_compact": [
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
-          "= c/1! + c²/2! = c + c²/2",
+          {
+            "text": "= \\ \\dfrac{c}{1!} + \\ \\dfrac{c^{2}}{2!} = \\ c\\ + \\ \\dfrac{c^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= logₑ 2 + (logₑ 2)²/2",
           {
             "text": "∴ c = logₑ 2, P(0 < X < 3) = logₑ 2 + (logₑ 2)²/2",

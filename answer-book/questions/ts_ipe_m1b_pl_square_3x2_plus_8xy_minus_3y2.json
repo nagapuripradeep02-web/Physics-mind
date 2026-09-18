@@ -285,13 +285,21 @@
             "text": "(L₁: 3x − y + 0 = 0 and L₃: 3x − y − 1 = 0; 3² + (−1)² = 10)",
             "added": true
           },
-          "   = |0 − (−1)| / √(9 + 1) = 1/√10",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ \\left( - 1\\right)\\right|}{\\sqrt{9\\ + \\ 1}} = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Distance between L₂ and L₄",
           {
             "text": "(L₂: x + 3y + 0 = 0 and L₄: x + 3y + 1 = 0; 1² + 3² = 10)",
             "added": true
           },
-          "   = |0 − 1| / √(1 + 9) = 1/√10",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ 1\\right|}{\\sqrt{1\\ + \\ 9}} = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each side equals the distance between the",
           "other pair, so adjacent sides are equal.",
           {
@@ -328,9 +336,17 @@
         ],
         "lines_compact": [
           "Distance between L₁ and L₃",
-          "   = |0 − (−1)| / √(9 + 1) = 1/√10",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ \\left( - 1\\right)\\right|}{\\sqrt{9\\ + \\ 1}} = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Distance between L₂ and L₄",
-          "   = |0 − 1| / √(1 + 9) = 1/√10",
+          {
+            "text": "= \\ \\dfrac{\\left|0\\ - \\ 1\\right|}{\\sqrt{1\\ + \\ 9}} = \\ \\dfrac{1}{\\sqrt{10}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each side equals the distance between the",
           "other pair, so adjacent sides are equal.",
           {

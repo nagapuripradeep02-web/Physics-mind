@@ -70,11 +70,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The multiplicative inverse of z is 1/z.",
-          "Here z = 7 + 24i, so the inverse is 1/(7 + 24i).",
+          {
+            "text": "\\text{The}\\ \\text{multiplicative}\\ \\text{inverse}\\ \\text{of}\\ z\\ \\text{is}\\ \\dfrac{1}{z}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ z\\ = \\ 7\\ + \\ 24i,\\ \\text{so}\\ \\text{the}\\ \\text{inverse}\\ \\text{is}\\ \\dfrac{1}{7\\ + \\ 24i}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by the conjugate",
           "of the denominator, 7 − 24i:",
-          "1/(7 + 24i) = (7 − 24i) / [(7 + 24i)(7 − 24i)]",
+          {
+            "text": "\\dfrac{1}{7\\ + \\ 24i} = \\ \\dfrac{7\\ - \\ 24i}{\\left(7\\ + \\ 24i\\right)\\left(7\\ - \\ 24i\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Denominator = 7² + 24² = 49 + 576",
           "  [(a + ib)(a − ib) = a² + b²]"
         ],
@@ -120,7 +132,9 @@
             "added": true
           },
           {
-            "text": "So the inverse is (7 − 24i)/625",
+            "text": "\\text{So}\\ \\text{the}\\ \\text{inverse}\\ \\text{is}\\ \\dfrac{7\\ - \\ 24i}{625}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -128,8 +142,9 @@
             "added": true
           },
           {
-            "text": "∴ inverse = 7/625 − (24/625)i",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{inverse}\\ = \\ \\dfrac{7}{625} - \\ \\left(\\dfrac{24}{625}\\right)i",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -160,10 +175,15 @@
           "Leaving the answer as (7 − 24i)/625 without separating — acceptable to many examiners, but the split form is safer."
         ],
         "lines_compact": [
-          "= (7 − 24i) / (49 + 576) = (7 − 24i)/625",
           {
-            "text": "∴ inverse = 7/625 − (24/625)i",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{7\\ - \\ 24i}{49\\ + \\ 576} = \\ \\dfrac{7\\ - \\ 24i}{625}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{inverse}\\ = \\ \\dfrac{7}{625} - \\ \\left(\\dfrac{24}{625}\\right)i",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

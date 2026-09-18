@@ -130,8 +130,9 @@
             "added": true
           },
           {
-            "text": "  f′(x) = 3x² − 12x + 11 = 0 at x = 2 ± 1/√3,",
+            "text": "f'\\left(x\\right)\\ = \\ 3x^{2}\\ - \\ 12x\\ + \\ 11\\ = \\ 0\\ \\text{at}\\ x\\ = \\ 2\\ \\pm \\ \\dfrac{1}{\\sqrt{3}},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {

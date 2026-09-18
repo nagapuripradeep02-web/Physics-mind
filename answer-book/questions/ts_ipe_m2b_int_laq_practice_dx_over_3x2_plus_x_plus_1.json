@@ -69,11 +69,31 @@
             "style": "indent"
           },
           "First take out the coefficient of x²:",
-          "3x² + x + 1 = 3[x² + x/3 + 1/3]",
-          "Half of 1/3 is 1/6, so add and subtract (1/6)²:",
-          "= 3[x² + x/3 + (1/6)² − (1/6)² + 1/3]",
-          "−1/36 + 12/36 = 11/36:",
-          "= 3[(x + 1/6)² + 11/36]"
+          {
+            "text": "3x^{2}\\ + \\ x\\ + \\ 1\\ = \\ 3\\left[x^{2}\\ + \\ \\dfrac{x}{3} + \\ \\dfrac{1}{3}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Half}\\ \\text{of}\\ \\dfrac{1}{3}\\text{is}\\ \\dfrac{1}{6},\\ \\text{so}\\ \\text{add}\\ \\text{and}\\ \\text{subtract}\\ \\left(\\dfrac{1}{6}\\right)^{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 3\\left[x^{2}\\ + \\ \\dfrac{x}{3} + \\ \\left(\\dfrac{1}{6}\\right)^{2}\\ - \\ \\left(\\dfrac{1}{6}\\right)^{2}\\ + \\ \\dfrac{1}{3}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\dfrac{1}{36} + \\ \\dfrac{12}{36} = \\ \\dfrac{11}{36}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 3\\left[\\left(x\\ + \\ \\dfrac{1}{6}\\right)^{2}\\ + \\ \\dfrac{11}{36}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With a leading coefficient of 3, that 3 must be factored out FIRST so the bracket starts as x² + … before completing the square inside it — the same completing-the-square move, one step earlier.",
         "common_mistakes": [
@@ -90,10 +110,22 @@
         "mark_note": "Method",
         "margin_note": "Setup",
         "lines": [
-          "11/36 = (√11/6)²,",
-          "so 3x²+x+1 = 3[(x+1/6)² + (√11/6)²]",
+          {
+            "text": "\\dfrac{11}{36} = \\ \\left(\\dfrac{\\sqrt{11}}{6}\\right)^{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ 3x^{2} + x + 1\\ = \\ 3\\left[\\left(x + \\dfrac{1}{6}\\right)^{2}\\ + \\ \\left(\\dfrac{\\sqrt{11}}{6}\\right)^{2}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "This matches 3[x²+a²]",
-          "with x written as (x+1/6) and a = √11/6"
+          {
+            "text": "\\text{with}\\ x\\ \\text{written}\\ \\text{as}\\ \\left(x + \\dfrac{1}{6}\\right)\\ \\text{and}\\ a\\ = \\ \\dfrac{\\sqrt{11}}{6}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The 3 sitting outside the bracket stays outside for now — only the bracket itself needs to be matched to the standard x²+a² pattern, with a read off as the square root of the leftover constant.",
         "common_mistakes": [
@@ -143,22 +175,48 @@
         "margin_note": "Method",
         "lines": [
           {
-            "text": "The 3 outside comes out as 1/3:",
+            "text": "\\text{The}\\ 3\\ \\text{outside}\\ \\text{comes}\\ \\text{out}\\ \\text{as}\\ \\dfrac{1}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫dx/(3x²+x+1)",
-          "= (1/3)∫dx/[(x+1/6)²+(√11/6)²]",
-          "= (1/3)·(1/(√11/6))Tan⁻¹[(x+1/6)/(√11/6)] + c",
           {
-            "text": "1/(√11/6) = 6/√11:",
-            "added": true
+            "text": "\\int \\dfrac{dx}{3x^{2} + x + 1}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= (1/3)·(6/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c",
           {
-            "text": "(1/3)·(6/√11) = 2/√11:",
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\int \\dfrac{dx}{\\left(x + \\dfrac{1}{6}\\right)^{2} + \\left(\\dfrac{\\sqrt{11}}{6}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right) \\cdot \\left(\\dfrac{1}{\\dfrac{\\sqrt{11}}{6}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{\\dfrac{\\sqrt{11}}{6}} = \\ \\dfrac{6}{\\sqrt{11}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (2/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right) \\cdot \\left(\\dfrac{6}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{3}\\right) \\cdot \\left(\\dfrac{6}{\\sqrt{11}}\\right)\\ = \\ \\dfrac{2}{\\sqrt{11}}:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The outside 1/3 multiplies the WHOLE formula, including its own 1/a coefficient — (1/3)(6/√11) collapses to 2/√11, which is exactly the coefficient printed in the book's terse Ans line.",
         "common_mistakes": [
@@ -167,11 +225,31 @@
         ],
         "memory_tip": "(1/3) × (6/√11) = 2/√11 — the 3's cancel down to a clean 2 on top.",
         "lines_compact": [
-          "∫dx/(3x²+x+1)",
-          "= (1/3)∫dx/[(x+1/6)²+(√11/6)²]",
-          "= (1/3)·(1/(√11/6))Tan⁻¹[(x+1/6)/(√11/6)] + c",
-          "= (1/3)·(6/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c",
-          "= (2/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c"
+          {
+            "text": "\\int \\dfrac{dx}{3x^{2} + x + 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\int \\dfrac{dx}{\\left(x + \\dfrac{1}{6}\\right)^{2} + \\left(\\dfrac{\\sqrt{11}}{6}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right) \\cdot \\left(\\dfrac{1}{\\dfrac{\\sqrt{11}}{6}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right) \\cdot \\left(\\dfrac{6}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}}\\right]\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -183,7 +261,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "Dividing (x+1/6) by (√11/6) multiplies",
+            "text": "\\text{Dividing}\\ \\left(x + \\dfrac{1}{6}\\right)\\ \\text{by}\\ \\left(\\dfrac{\\sqrt{11}}{6}\\right)\\ \\text{multiplies}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -191,11 +271,20 @@
             "style": "indent",
             "added": true
           },
-          "(x+1/6)/(√11/6) = (6x+1)/√11",
-          "∴ ∫ dx/(3x²+x+1) =",
           {
-            "text": "(2/√11)Tan⁻¹[(6x+1)/√11] + c",
-            "style": "boxed"
+            "text": "\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}} = \\ \\dfrac{6x + 1}{\\sqrt{11}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{3x^{2} + x + 1} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{6x + 1}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Clearing the internal sixths from the Tan⁻¹ argument gives (6x+1)/√11, matching the book's own bracketed Ans line — (2/√11)Tan⁻¹((6x+1)/√11)+c — term for term.",
@@ -205,11 +294,20 @@
         ],
         "memory_tip": "Multiply top and bottom of the inner fraction by 6 to clear the sixths in one move.",
         "lines_compact": [
-          "(x+1/6)/(√11/6) = (6x+1)/√11",
-          "∴ ∫ dx/(3x²+x+1) =",
           {
-            "text": "(2/√11)Tan⁻¹[(6x+1)/√11] + c",
-            "style": "boxed"
+            "text": "\\dfrac{x + \\dfrac{1}{6}}{\\dfrac{\\sqrt{11}}{6}} = \\ \\dfrac{6x + 1}{\\sqrt{11}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{3x^{2} + x + 1} =",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2}{\\sqrt{11}}\\right)\\operatorname{Tan}^{-1} \\left[\\dfrac{6x + 1}{\\sqrt{11}}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

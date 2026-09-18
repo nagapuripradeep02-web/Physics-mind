@@ -53,7 +53,11 @@
           },
           "(sin 0 = 0, tan 0 = 0 and a² − a² = 0)",
           "At x = a both the numerator and the denominator are 0,",
-          "so the form is 0/0. Take a ≠ 0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.\\ \\text{Take}\\ a\\ \\ne \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin t and tan t are close to t when t = x − a is close to 0)",
           "The numerator sin(x − a) · tan²(x − a) behaves like",
           "(x − a)³ near x = a: three powers.",
@@ -70,8 +74,16 @@
             "style": "indent"
           },
           "So write the expression as",
-          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]²",
-          "· (x − a)/(x + a)²"
+          {
+            "text": "\\left[\\dfrac{\\sin \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]\\ \\cdot \\ \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\cdot \\ \\dfrac{x\\ - \\ a}{\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -121,7 +133,11 @@
           },
           "As x → a, the angle (x − a) → 0, so",
           "lim sin(x − a)/(x − a) = 1",
-          "and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          {
+            "text": "\\text{and}\\ \\lim \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]^{2}\\ = \\ 1^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "The remaining factor is continuous at x = a,",
           "so substitute x = a:",
           {
@@ -133,7 +149,11 @@
             "style": "indent",
             "added": true
           },
-          "(x − a)/(x + a)² → 0/(2a)² = 0",
+          {
+            "text": "\\dfrac{x\\ - \\ a}{\\left(x\\ + \\ a\\right)^{2}} \\to \\ \\dfrac{0}{\\left(2a\\right)^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the three limits)",
             "added": true
@@ -179,10 +199,18 @@
         "lines_compact": [
           "As x → a, the angle (x − a) → 0, so",
           "lim sin(x − a)/(x − a) = 1",
-          "and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          {
+            "text": "\\text{and}\\ \\lim \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]^{2}\\ = \\ 1^{2}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "The remaining factor is continuous at x = a,",
           "so substitute x = a:",
-          "(x − a)/(x + a)² → 0/(2a)² = 0",
+          {
+            "text": "\\dfrac{x\\ - \\ a}{\\left(x\\ + \\ a\\right)^{2}} \\to \\ \\dfrac{0}{\\left(2a\\right)^{2}} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ the limit = 1 · 1 · 0",
           {
             "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",

@@ -117,11 +117,15 @@
             "added": true
           },
           {
-            "text": "¹²C₅ = (12 · 11 · 10 · 9 · 8)/(1 · 2 · 3 · 4 · 5)",
+            "text": "{}^{12}C_{5}\\ = \\ \\dfrac{12\\ \\cdot \\ 11\\ \\cdot \\ 10\\ \\cdot \\ 9\\ \\cdot \\ 8}{1\\ \\cdot \\ 2\\ \\cdot \\ 3\\ \\cdot \\ 4\\ \\cdot \\ 5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 95040/120",
+            "text": "= \\ \\dfrac{95040}{120}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -157,7 +161,11 @@
           "Computing 12·11·10·9·8 = 95040 and dividing by 24 instead of 120."
         ],
         "lines_compact": [
-          "= ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5)",
+          {
+            "text": "= \\ {}^{12}C_{5}\\ = \\ \\dfrac{12 \\cdot 11 \\cdot 10 \\cdot 9 \\cdot 8}{1 \\cdot 2 \\cdot 3 \\cdot 4 \\cdot 5}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 792",
             "style": "boxed"

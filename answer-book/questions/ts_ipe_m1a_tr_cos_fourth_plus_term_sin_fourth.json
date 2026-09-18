@@ -53,9 +53,21 @@
             "style": "heading"
           },
           "sec α is written, so cos α ≠ 0.",
-          "1/sec²α = cos²α, so",
-          "(sec α = 1/cos α)",
-          "1 − 1/sec²α = 1 − cos²α = sin²α",
+          {
+            "text": "\\dfrac{1}{\\sec ^{2} \\alpha } = \\ \\cos ^{2} \\alpha ,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sec \\alpha \\ = \\ \\dfrac{1}{\\cos \\alpha }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ \\dfrac{1}{\\sec ^{2} \\alpha } = \\ 1\\ - \\ \\cos ^{2} \\alpha \\ = \\ \\sin ^{2} \\alpha",
+            "style": "normal",
+            "render": "katex"
+          },
           "(sin²α + cos²α = 1)",
           "LHS = cos⁴α + 2cos²α sin²α"
         ],

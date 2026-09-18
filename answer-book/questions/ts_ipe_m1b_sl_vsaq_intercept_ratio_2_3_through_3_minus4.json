@@ -60,9 +60,17 @@
           },
           "∴ take x-intercept a = 2k,",
           "and y-intercept b = 3k,  where k ≠ 0",
-          "Intercept form is  x/a + y/b = 1",
+          {
+            "text": "\\text{Intercept}\\ \\text{form}\\ \\text{is}\\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "(write 2k for a and 3k for b)",
-          "⇒ x/(2k) + y/(3k) = 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{2k} + \\ \\dfrac{y}{3k} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,9 +114,15 @@
             "added": true
           },
           "It passes through (3, −4)",
-          "⇒ 3/(2k) − 4/(3k) = 1",
           {
-            "text": "(6k × 3/(2k) = 9, 6k × 4/(3k) = 8 and 6k × 1 = 6k)",
+            "text": "\\Rightarrow \\ \\dfrac{3}{2k} - \\ \\dfrac{4}{3k} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(6k\\ \\times \\ \\dfrac{3}{2k} = \\ 9,\\ 6k\\ \\times \\ \\dfrac{4}{3k} = \\ 8\\ \\text{and}\\ 6k\\ \\times \\ 1\\ = \\ 6k\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Multiply by 6k:  9 − 8 = 6k",
@@ -116,17 +130,33 @@
             "text": "(9 − 8 = 1; divide by 6)",
             "added": true
           },
-          "⇒ 6k = 1  ⇒  k = 1/6",
           {
-            "text": "(2 × 1/6 = 1/3 and 3 × 1/6 = 1/2)",
+            "text": "\\Rightarrow \\ 6k\\ = \\ 1\\ \\Rightarrow \\ k\\ = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\dfrac{1}{6} = \\ \\dfrac{1}{3}\\text{and}\\ 3\\ \\times \\ \\dfrac{1}{6} = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ a = 2k = 1/3  and  b = 3k = 1/2",
           {
-            "text": "(x ÷ (1/3) = 3x and y ÷ (1/2) = 2y)",
+            "text": "\\therefore \\ a\\ = \\ 2k\\ = \\ \\dfrac{1}{3}\\text{and}\\ b\\ = \\ 3k\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x\\ \\div \\ \\left(\\dfrac{1}{3}\\right)\\ = \\ 3x\\ \\text{and}\\ y\\ \\div \\ \\left(\\dfrac{1}{2}\\right)\\ = \\ 2y\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "x/(1/3) + y/(1/2) = 1  ⇒  3x + 2y = 1",
+          {
+            "text": "\\dfrac{x}{\\dfrac{1}{3}} + \\ \\dfrac{y}{\\dfrac{1}{2}} = \\ 1\\ \\Rightarrow \\ 3x\\ + \\ 2y\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(move 1 to the left; check: 3(3) + 2(−4) − 1 = 0)",
             "added": true
@@ -165,11 +195,27 @@
         ],
         "lines_compact": [
           "It passes through (3, −4)",
-          "⇒ 3/(2k) − 4/(3k) = 1",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{3}{2k} - \\ \\dfrac{4}{3k} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 6k:  9 − 8 = 6k",
-          "⇒ 6k = 1  ⇒  k = 1/6",
-          "∴ a = 2k = 1/3  and  b = 3k = 1/2",
-          "x/(1/3) + y/(1/2) = 1  ⇒  3x + 2y = 1",
+          {
+            "text": "\\Rightarrow \\ 6k\\ = \\ 1\\ \\Rightarrow \\ k\\ = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ a\\ = \\ 2k\\ = \\ \\dfrac{1}{3}\\text{and}\\ b\\ = \\ 3k\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{x}{\\dfrac{1}{3}} + \\ \\dfrac{y}{\\dfrac{1}{2}} = \\ 1\\ \\Rightarrow \\ 3x\\ + \\ 2y\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ 3x + 2y − 1 = 0",
             "style": "boxed"

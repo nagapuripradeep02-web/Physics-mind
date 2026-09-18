@@ -118,20 +118,29 @@
             "added": true
           },
           "= 2π ·",
-          "[(6)(4)(2)][(5)(3)(1)]/[(13)(11)(9)(7)(5)(3)(1)] ·",
+          {
+            "text": "\\dfrac{\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]}{\\left(13\\right)\\left(11\\right)\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)\\left(1\\right)} \\cdot",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1)",
           {
             "text": "48·15 = 720 and 13·11·9·7·5·3 = 135135:",
             "added": true
           },
-          "= 32π/3003",
+          {
+            "text": "= \\ \\dfrac{32\\pi }{3003}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide both sides by 2:",
             "added": true
           },
           {
-            "text": "∴ I = 16π/3003",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16\\pi }{3003}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The remaining integral ∫ sin⁷xcos⁶x dx from 0 to π is itself symmetric about π/2, so it doubles the 0-to-π/2 range; applying Wallis's mixed-power formula for m=7 (odd) and n=6 (even), so K=1, and dividing the whole equation by 2 gives the final value of I.",
@@ -153,12 +162,21 @@
           "[sin⁷(π−x)cos⁶(π−x)=sin⁷xcos⁶x is symmetric",
           "about π/2]",
           "= 2π ·",
-          "[(6)(4)(2)][(5)(3)(1)]/[(13)(11)(9)(7)(5)(3)(1)] ·",
-          "(1)",
-          "= 32π/3003",
           {
-            "text": "∴ I = 16π/3003",
-            "style": "boxed"
+            "text": "\\dfrac{\\left[\\left(6\\right)\\left(4\\right)\\left(2\\right)\\right]\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]}{\\left(13\\right)\\left(11\\right)\\left(9\\right)\\left(7\\right)\\left(5\\right)\\left(3\\right)\\left(1\\right)} \\cdot",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(1)",
+          {
+            "text": "= \\ \\dfrac{32\\pi }{3003}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{16\\pi }{3003}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -59,7 +59,11 @@
           "+x direction.",
           "(y is squared, and the x side has a + sign)",
           "Comparing with (y − k)² = 4a(x − h):",
-          "4a = 1 ⇒ a = 1/4, h = 1, k = −2",
+          {
+            "text": "4a\\ = \\ 1\\ \\Rightarrow \\ a\\ = \\ \\dfrac{1}{4},\\ h\\ = \\ 1,\\ k\\ = \\ - 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "(y + 2 = y − (−2), so k = −2)"
         ],
         "why": "Completing the square on the y-terms is what turns this equation into the standard sideways form (y−k)² = 4a(x−h) — every one of the four quantities asked for reads straight off h, k and a once that form is reached.",
@@ -82,9 +86,15 @@
             "text": "The focus is a units to the right of the vertex:",
             "added": true
           },
-          "(ii) Focus = (h + a, k) = (1 + 1/4, −2) = (5/4, −2)",
           {
-            "text": "(1 + 1/4 = 4/4 + 1/4 = 5/4)",
+            "text": "\\left(ii\\right)\\ \\text{Focus}\\ = \\ \\left(h\\ + \\ a,\\ k\\right)\\ = \\ \\left(1\\ + \\ \\dfrac{1}{4},\\ - 2\\right)\\ = \\ \\left(\\dfrac{5}{4},\\ - 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ + \\ \\dfrac{1}{4} = \\ \\dfrac{4}{4} + \\ \\dfrac{1}{4} = \\ \\dfrac{5}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -92,13 +102,21 @@
             "added": true
           },
           "(iii) Equation of the directrix:",
-          "x = h − a ⇒ x = 1 − 1/4 = 3/4 ⇒ 4x − 3 = 0",
           {
-            "text": "(multiply x = 3/4 by 4)",
+            "text": "x\\ = \\ h\\ - \\ a\\ \\Rightarrow \\ x\\ = \\ 1\\ - \\ \\dfrac{1}{4} = \\ \\dfrac{3}{4} \\Rightarrow \\ 4x\\ - \\ 3\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}\\ x\\ = \\ \\dfrac{3}{4}\\text{by}\\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "The latus rectum has length 4a = 4 × 1/4:",
+            "text": "\\text{The}\\ \\text{latus}\\ \\text{rectum}\\ has\\ \\text{length}\\ 4a\\ = \\ 4\\ \\times \\ \\dfrac{1}{4}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -114,9 +132,17 @@
         "memory_tip": "Focus is h plus a; directrix is h minus a — the focus and directrix always sit on opposite sides of the vertex.",
         "lines_compact": [
           "(i) Vertex = (h, k) = (1, −2)",
-          "(ii) Focus = (h + a, k) = (1 + 1/4, −2) = (5/4, −2)",
+          {
+            "text": "\\left(ii\\right)\\ \\text{Focus}\\ = \\ \\left(h\\ + \\ a,\\ k\\right)\\ = \\ \\left(1\\ + \\ \\dfrac{1}{4},\\ - 2\\right)\\ = \\ \\left(\\dfrac{5}{4},\\ - 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(iii) Equation of the directrix:",
-          "x = h − a ⇒ x = 1 − 1/4 = 3/4 ⇒ 4x − 3 = 0",
+          {
+            "text": "x\\ = \\ h\\ - \\ a\\ \\Rightarrow \\ x\\ = \\ 1\\ - \\ \\dfrac{1}{4} = \\ \\dfrac{3}{4} \\Rightarrow \\ 4x\\ - \\ 3\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(iv) Length of the latus rectum = 4a = 1",
             "style": "boxed"

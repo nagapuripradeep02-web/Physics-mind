@@ -52,11 +52,23 @@
             "style": "heading"
           },
           "At x = a, tan(x − a) = tan 0 = 0 and x² − a² = 0,",
-          "so the form is 0/0. Take a ≠ 0.",
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{form}\\ \\text{is}\\ \\dfrac{0}{0}.\\ \\text{Take}\\ a\\ \\ne \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(u² − v² = (u − v)(u + v), with u = x and v = a)",
           "Factor the denominator:  x² − a² = (x − a)(x + a).",
-          "(1/[(x − a)(x + a)] = [1/(x − a)] · [1/(x + a)])",
-          "tan(x − a)/(x² − a²) = [tan(x − a)/(x − a)] · [1/(x + a)]"
+          {
+            "text": "\\left(\\dfrac{1}{\\left(x\\ - \\ a\\right)\\left(x\\ + \\ a\\right)} = \\ \\left[\\dfrac{1}{x\\ - \\ a}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{x\\ + \\ a}\\right]\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x^{2}\\ - \\ a^{2}} = \\ \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]\\ \\cdot \\ \\left[\\dfrac{1}{x\\ + \\ a}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,17 +117,34 @@
             "added": true
           },
           "As x → a, the angle (x − a) → 0,",
-          "so lim(x → a) tan(x − a)/(x − a) = 1.",
-          "The factor 1/(x + a) is defined at x = a,",
-          "so substitute x = a: 1/(a + a) = 1/(2a).",
+          {
+            "text": "\\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{1}{x\\ + \\ a}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ a,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{substitute}\\ x\\ = \\ a:\\ \\dfrac{1}{a\\ + \\ a} = \\ \\dfrac{1}{2a}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply the two limits)",
             "added": true
           },
-          "= 1 · 1/(2a)",
           {
-            "text": "∴ lim(x → a) tan(x − a)/(x² − a²) = 1/(2a),  a ≠ 0",
-            "style": "boxed"
+            "text": "= \\ 1\\ \\cdot \\ \\dfrac{1}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\tan \\left(x\\ - \\ a\\right)}{x^{2}\\ - \\ a^{2}} = \\ \\dfrac{1}{2a},\\ a\\ \\ne \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -148,13 +177,30 @@
         "memory_tip": "The leftover factor at the point is x + a = 2a, so the answer is its reciprocal, 1/(2a).",
         "lines_compact": [
           "As x → a, the angle (x − a) → 0,",
-          "so lim(x → a) tan(x − a)/(x − a) = 1.",
-          "The factor 1/(x + a) is defined at x = a,",
-          "so substitute x = a: 1/(a + a) = 1/(2a).",
-          "= 1 · 1/(2a)",
           {
-            "text": "∴ lim(x → a) tan(x − a)/(x² − a²) = 1/(2a),  a ≠ 0",
-            "style": "boxed"
+            "text": "\\text{so}\\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a} = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{factor}\\ \\dfrac{1}{x\\ + \\ a}\\text{is}\\ \\text{defined}\\ \\text{at}\\ x\\ = \\ a,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\text{substitute}\\ x\\ = \\ a:\\ \\dfrac{1}{a\\ + \\ a} = \\ \\dfrac{1}{2a}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ \\cdot \\ \\dfrac{1}{2a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\tan \\left(x\\ - \\ a\\right)}{x^{2}\\ - \\ a^{2}} = \\ \\dfrac{1}{2a},\\ a\\ \\ne \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

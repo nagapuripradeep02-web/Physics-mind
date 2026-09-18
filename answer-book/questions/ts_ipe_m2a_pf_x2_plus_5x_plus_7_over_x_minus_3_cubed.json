@@ -71,8 +71,16 @@
           "turns it into y³ and is quicker than",
           "three unknown constants.",
           "Put x − 3 = y, so x = y + 3.",
-          "(x² + 5x + 7)/(x − 3)³",
-          "= ((y + 3)² + 5(y + 3) + 7)/y³"
+          {
+            "text": "\\dfrac{x^{2}\\ + \\ 5x\\ + \\ 7}{\\left(x\\ - \\ 3\\right)^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(y\\ + \\ 3\\right)^{2}\\ + \\ 5\\left(y\\ + \\ 3\\right)\\ + \\ 7}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -180,9 +188,21 @@
             "text": "Divide each term by y³ separately:",
             "added": true
           },
-          "(y² + 11y + 31)/y³",
-          "= y²/y³ + 11y/y³ + 31/y³",
-          "= 1/y + 11/y² + 31/y³"
+          {
+            "text": "\\dfrac{y^{2}\\ + \\ 11y\\ + \\ 31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{y^{2}}{y^{3}} + \\ \\dfrac{11y}{y^{3}} + \\ \\dfrac{31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{y} + \\ \\dfrac{11}{y^{2}} + \\ \\dfrac{31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -214,9 +234,21 @@
           "Leaving the answer as one fraction over y³; the question asks for it split."
         ],
         "lines_compact": [
-          "(y² + 11y + 31)/y³",
-          "= y²/y³ + 11y/y³ + 31/y³",
-          "= 1/y + 11/y² + 31/y³"
+          {
+            "text": "\\dfrac{y^{2}\\ + \\ 11y\\ + \\ 31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{y^{2}}{y^{3}} + \\ \\dfrac{11y}{y^{3}} + \\ \\dfrac{31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{y} + \\ \\dfrac{11}{y^{2}} + \\ \\dfrac{31}{y^{3}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -229,10 +261,15 @@
         "memory_tip": "Put y = x − 3 back. Check with x = 4, so y = 1: 43 = 1 + 11 + 31.",
         "lines": [
           "Put back y = x − 3:",
-          "∴ (x² + 5x + 7)/(x − 3)³",
           {
-            "text": "= 1/(x − 3) + 11/(x − 3)² + 31/(x − 3)³",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x^{2}\\ + \\ 5x\\ + \\ 7}{\\left(x\\ - \\ 3\\right)^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1}{x\\ - \\ 3} + \\ \\dfrac{11}{\\left(x\\ - \\ 3\\right)^{2}} + \\ \\dfrac{31}{\\left(x\\ - \\ 3\\right)^{3}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

@@ -62,9 +62,17 @@
           "Let f(x) = log x, x > 0  (logarithm to base e)",
           "(the definition of the derivative from the first principle)",
           "By the first principle,",
-          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[f\\left(x\\ + \\ h\\right)\\ - \\ f\\left(x\\right)\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(f(x + h) = log(x + h))",
-          "= lim(h → 0) [log(x + h) − log x]/h"
+          {
+            "text": "= \\ \\dfrac{\\lim \\left(h\\ \\to \\ 0\\right)\\left[\\log \\left(x\\ + \\ h\\right)\\ - \\ \\log x\\right]}{h}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,18 +111,38 @@
         "mark_note": "Method",
         "margin_note": "Second mark. Dividing inside the logarithm gives the 1 + h/x form the standard limit needs. Note that (x + h)/x is 1 + h/x, not h/x.",
         "lines": [
-          "log A − log B = log(A/B), so",
-          "log(x + h) − log x = log((x + h)/x)",
           {
-            "text": "((x + h)/x = x/x + h/x = 1 + h/x)",
+            "text": "\\log A\\ - \\ \\log B\\ = \\ \\log \\left(\\dfrac{A}{B}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\log \\left(x\\ + \\ h\\right)\\ - \\ \\log x\\ = \\ \\log \\left(\\dfrac{x\\ + \\ h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{x\\ + \\ h}{x} = \\ \\dfrac{x}{x} + \\ \\dfrac{h}{x} = \\ 1\\ + \\ \\dfrac{h}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= log(1 + h/x)",
           {
-            "text": "(dividing by h is multiplying by 1/h)",
+            "text": "= \\ \\log \\left(1\\ + \\ \\dfrac{h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ h\\ \\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{1}{h}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "f′(x) = lim(h → 0) (1/h) log(1 + h/x)"
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\lim \\left(h\\ \\to \\ 0\\right)\\left(\\dfrac{1}{h}\\right)\\log \\left(1\\ + \\ \\dfrac{h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,10 +172,26 @@
         ],
         "memory_tip": "log minus log is log of the quotient. Here that quotient is 1 + h/x.",
         "lines_compact": [
-          "log A − log B = log(A/B), so",
-          "log(x + h) − log x = log((x + h)/x)",
-          "= log(1 + h/x)",
-          "f′(x) = lim(h → 0) (1/h) log(1 + h/x)"
+          {
+            "text": "\\log A\\ - \\ \\log B\\ = \\ \\log \\left(\\dfrac{A}{B}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\log \\left(x\\ + \\ h\\right)\\ - \\ \\log x\\ = \\ \\log \\left(\\dfrac{x\\ + \\ h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\log \\left(1\\ + \\ \\dfrac{h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\lim \\left(h\\ \\to \\ 0\\right)\\left(\\dfrac{1}{h}\\right)\\log \\left(1\\ + \\ \\dfrac{h}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -159,15 +203,27 @@
         "margin_note": "Third mark. The standard limit is log(1 + t)/t → 1, so the denominator must be t and not h. The substitution h = xt is what supplies the 1/x.",
         "lines": [
           {
-            "text": "(x > 0 is fixed, so t = h/x → 0 as h → 0)",
+            "text": "\\left(x\\ > \\ 0\\ \\text{is}\\ \\text{fixed},\\ \\text{so}\\ t\\ = \\ \\dfrac{h}{x} \\to \\ 0\\ \\text{as}\\ h\\ \\to \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Put t = h/x. As h → 0, t → 0, and h = xt",
           {
-            "text": "(put h = xt and h/x = t)",
+            "text": "\\text{Put}\\ t\\ = \\ \\dfrac{h}{x}.\\ \\text{As}\\ h\\ \\to \\ 0,\\ t\\ \\to \\ 0,\\ \\text{and}\\ h\\ = \\ xt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ h\\ = \\ xt\\ \\text{and}\\ \\dfrac{h}{x} = \\ t\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "f′(x) = lim(t → 0) (1/(xt)) log(1 + t)",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\lim \\left(t\\ \\to \\ 0\\right)\\left(\\dfrac{1}{xt}\\right)\\log \\left(1\\ + \\ t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(1/(xt) = (1/x) · (1/t); the constant 1/x comes",
             "added": true
@@ -177,8 +233,16 @@
             "style": "indent",
             "added": true
           },
-          "= (1/x) · lim(t → 0) log(1 + t)/t",
-          "and lim(t → 0) log(1 + t)/t = 1"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -209,10 +273,26 @@
         ],
         "memory_tip": "The standard limit needs the same small quantity above and below: log(1 + t) over t.",
         "lines_compact": [
-          "Put t = h/x. As h → 0, t → 0, and h = xt",
-          "f′(x) = lim(t → 0) (1/(xt)) log(1 + t)",
-          "= (1/x) · lim(t → 0) log(1 + t)/t",
-          "and lim(t → 0) log(1 + t)/t = 1"
+          {
+            "text": "\\text{Put}\\ t\\ = \\ \\dfrac{h}{x}.\\ \\text{As}\\ h\\ \\to \\ 0,\\ t\\ \\to \\ 0,\\ \\text{and}\\ h\\ = \\ xt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\lim \\left(t\\ \\to \\ 0\\right)\\left(\\dfrac{1}{xt}\\right)\\log \\left(1\\ + \\ t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -223,15 +303,26 @@
         "mark_note": "Answer",
         "margin_note": "Last mark. The 1/x came from the substitution, not from the limit — the limit itself contributes only 1. Keep the domain x > 0 beside the answer.",
         "lines": [
-          "f′(x) = (1/x) · lim(t → 0) log(1 + t)/t",
           {
-            "text": "(put lim(t → 0) log(1 + t)/t = 1)",
+            "text": "f'\\left(x\\right)\\ = \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/x) · 1",
           {
-            "text": "∴ d/dx (log x) = 1/x,  x > 0",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x},\\ x\\ > \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -262,11 +353,20 @@
         ],
         "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1.",
         "lines_compact": [
-          "f′(x) = (1/x) · lim(t → 0) log(1 + t)/t",
-          "= (1/x) · 1",
           {
-            "text": "∴ d/dx (log x) = 1/x,  x > 0",
-            "style": "boxed"
+            "text": "f'\\left(x\\right)\\ = \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{x}\\right)\\ \\cdot \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\log x\\right)\\ = \\ \\dfrac{1}{x},\\ x\\ > \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

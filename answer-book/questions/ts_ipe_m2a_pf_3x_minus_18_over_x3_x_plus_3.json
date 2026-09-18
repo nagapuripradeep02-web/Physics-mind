@@ -70,8 +70,16 @@
           "x is repeated three times, (x + 3) is linear.",
           "A repeated factor gets one term",
           "  for each power:",
-          "(3x − 18)/(x³(x + 3))",
-          "= A/x + B/x² + C/x³ + D/(x + 3)"
+          {
+            "text": "\\dfrac{3x\\ - \\ 18}{x^{3}\\left(x\\ + \\ 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{A}{x} + \\ \\dfrac{B}{x^{2}} + \\ \\dfrac{C}{x^{3}} + \\ \\dfrac{D}{x\\ + \\ 3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -267,10 +275,15 @@
         "margin_note": "Last mark. Four fractions with their signs: −1/x + 3/x² − 6/x³ + 1/(x + 3). Write the original fraction on the left.",
         "memory_tip": "Carry the signs: −1/x + 3/x² − 6/x³ + 1/(x + 3). Check with x = 1: −15 = −4 + 12 − 24 + 1.",
         "lines": [
-          "∴ (3x − 18)/(x³(x + 3))",
           {
-            "text": "= −1/x + 3/x² − 6/x³ + 1/(x + 3)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{3x\\ - \\ 18}{x^{3}\\left(x\\ + \\ 3\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{1}{x} + \\ \\dfrac{3}{x^{2}} - \\ \\dfrac{6}{x^{3}} + \\ \\dfrac{1}{x\\ + \\ 3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

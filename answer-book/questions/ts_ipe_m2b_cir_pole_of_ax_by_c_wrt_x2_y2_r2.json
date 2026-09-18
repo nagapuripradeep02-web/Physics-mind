@@ -87,15 +87,24 @@
             "style": "indent",
             "added": true
           },
-          "x₁/a = y₁/b = −r²/c",
+          {
+            "text": "\\dfrac{x_{1}}{a} = \\ \\dfrac{y_{1}}{b} = \\ - \\dfrac{r^{2}}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "From the first and the last ratio:",
             "added": true
           },
-          "⇒ x₁ = −ar²/c and y₁ = −br²/c",
           {
-            "text": "∴ Pole = (−ar²/c, −br²/c)",
-            "style": "boxed"
+            "text": "\\Rightarrow \\ x_{1}\\ = \\ - \\dfrac{ar^{2}}{c}\\text{and}\\ y_{1}\\ = \\ - \\dfrac{br^{2}}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Pole}\\ = \\ \\left( - \\dfrac{ar^{2}}{c},\\ - \\dfrac{br^{2}}{c}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Two equations describe the same line when their coefficients are proportional. The constant of the polar is −r² and the constant of the given line is c, so the common ratio is −r²/c.",
@@ -105,11 +114,20 @@
         ],
         "lines_compact": [
           "This is the same line as ax + by + c = 0, so",
-          "x₁/a = y₁/b = −r²/c",
-          "⇒ x₁ = −ar²/c and y₁ = −br²/c",
           {
-            "text": "∴ Pole = (−ar²/c, −br²/c)",
-            "style": "boxed"
+            "text": "\\dfrac{x_{1}}{a} = \\ \\dfrac{y_{1}}{b} = \\ - \\dfrac{r^{2}}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ x_{1}\\ = \\ - \\dfrac{ar^{2}}{c}\\text{and}\\ y_{1}\\ = \\ - \\dfrac{br^{2}}{c}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Pole}\\ = \\ \\left( - \\dfrac{ar^{2}}{c},\\ - \\dfrac{br^{2}}{c}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

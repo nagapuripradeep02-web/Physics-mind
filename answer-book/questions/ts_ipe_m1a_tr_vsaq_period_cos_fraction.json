@@ -53,8 +53,16 @@
             "style": "heading"
           },
           "Split the fraction, to see k:",
-          "f(x) = cos((4x + 9)/5) = cos((4/5)x + 9/5)",
-          "Period of cos(kx + l) = 2π/|k|"
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\cos \\left(\\dfrac{4x\\ + \\ 9}{5}\\right)\\ = \\ \\cos \\left(\\left(\\dfrac{4}{5}\\right)x\\ + \\ \\dfrac{9}{5}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\cos \\left(kx\\ + \\ l\\right)\\ = \\ \\dfrac{2\\pi }{\\left|k\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -93,19 +101,32 @@
         "margin_note": "Second mark. Dividing by a fraction is multiplying by its reciprocal, so 2π ÷ (4/5) is 2π × 5/4.",
         "memory_tip": "Dividing by a fraction means multiplying by its reciprocal: 2π ÷ (4/5) = 2π × 5/4.",
         "lines": [
-          "Here k = 4/5",
           {
-            "text": "(dividing by 4/5 is multiplying by 5/4)",
-            "added": true
-          },
-          "Period = 2π/(4/5) = 2π × 5/4 = 10π/4",
-          {
-            "text": "(10π/4: divide top and bottom by 2)",
-            "added": true
+            "text": "\\text{Here}\\ k\\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= 5π/2",
-            "style": "boxed"
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{4}{5}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{5}{4}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{Period}\\ = \\ \\dfrac{2\\pi }{\\dfrac{4}{5}} = \\ 2\\pi \\ \\times \\ \\dfrac{5}{4} = \\ \\dfrac{10\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{10\\pi }{4}:\\ \\text{divide}\\ \\text{top}\\ \\text{and}\\ \\text{bottom}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "= \\ \\dfrac{5\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -136,11 +157,20 @@
           "Leaving 10π/4 uncancelled."
         ],
         "lines_compact": [
-          "Here k = 4/5",
-          "Period = 2π/(4/5) = 2π × 5/4 = 10π/4",
           {
-            "text": "= 5π/2",
-            "style": "boxed"
+            "text": "\\text{Here}\\ k\\ = \\ \\dfrac{4}{5}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Period}\\ = \\ \\dfrac{2\\pi }{\\dfrac{4}{5}} = \\ 2\\pi \\ \\times \\ \\dfrac{5}{4} = \\ \\dfrac{10\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{5\\pi }{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

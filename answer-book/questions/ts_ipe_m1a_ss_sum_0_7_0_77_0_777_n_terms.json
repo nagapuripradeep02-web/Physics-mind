@@ -56,8 +56,16 @@
           "(take out the common factor 7)",
           "= 7(0.1 + 0.11 + 0.111 + …)",
           "(multiply and divide by 9: 9 × 0.1 = 0.9, 9 × 0.11 = 0.99)",
-          "= (7/9)(0.9 + 0.99 + 0.999 + …)",
-          "(0.9 = 1 − 1/10, 0.99 = 1 − 1/10², …)",
+          {
+            "text": "= \\ \\left(\\dfrac{7}{9}\\right)\\left(0.9\\ + \\ 0.99\\ + \\ 0.999\\ + \\ \\dots \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(0.9\\ = \\ 1\\ - \\ \\dfrac{1}{10},\\ 0.99\\ = \\ 1\\ - \\ \\dfrac{1}{10^{2}},\\ \\dots \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (7/9)[(1 − 1/10) + (1 − 1/10²) + … + (1 − 1/10ⁿ)]"
         ],
         "recall": {
@@ -101,21 +109,42 @@
             "text": "(the n ones add to n; the fractions are collected)",
             "added": true
           },
-          "= (7/9)[n − (1/10 + 1/10² + … + 1/10ⁿ)]",
           {
-            "text": "(the sum of n terms of a G.P. is a(1 − rⁿ)/(1 − r))",
-            "added": true
-          },
-          "The bracketed series is a G.P. with a = 1/10 and",
-          "r = 1/10, so its sum is",
-          "(1/10)(1 − (1/10)ⁿ)/(1 − 1/10) = (1/9)(1 − (1/10)ⁿ)",
-          {
-            "text": "((1/10)/(9/10) = 1/9)",
-            "added": true
+            "text": "= \\ \\left(\\dfrac{7}{9}\\right)\\left[n\\ - \\ \\left(\\dfrac{1}{10} + \\ \\dfrac{1}{10^{2}} + \\ \\dots \\ + \\ \\dfrac{1}{10^{n}}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
-            "style": "boxed"
+            "text": "\\left(\\text{the}\\ \\text{sum}\\ \\text{of}\\ n\\ \\text{terms}\\ \\text{of}\\ aG.P.\\ \\text{is}\\ \\dfrac{a\\left(1\\ - \\ r^{n}\\right)}{1\\ - \\ r}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{The}\\ \\text{bracketed}\\ \\text{series}\\ \\text{is}\\ aG.P.\\ \\text{with}\\ a\\ = \\ \\dfrac{1}{10}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ \\dfrac{1}{10},\\ \\text{so}\\ \\text{its}\\ \\text{sum}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\left(\\dfrac{1}{10}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)}{1\\ - \\ \\dfrac{1}{10}} = \\ \\left(\\dfrac{1}{9}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\dfrac{1}{10}}{\\dfrac{9}{10}} = \\ \\dfrac{1}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\therefore \\ S_{n}\\ = \\ \\left(\\dfrac{7}{9}\\right)\\left[n\\ - \\ \\left(\\dfrac{1}{9}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)\\right]",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "(then write 7/9 as (7/81) × 9 and multiply the",
@@ -127,8 +156,9 @@
             "added": true
           },
           {
-            "text": "= (7/81)[9n − 1 + (1/10)ⁿ]",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{7}{81}\\right)\\left[9n\\ - \\ 1\\ + \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right]",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -159,17 +189,35 @@
           "Losing the n and writing only the geometric part as the answer."
         ],
         "lines_compact": [
-          "= (7/9)[n − (1/10 + 1/10² + … + 1/10ⁿ)]",
-          "The bracketed series is a G.P. with a = 1/10 and",
-          "r = 1/10, so its sum is",
-          "(1/10)(1 − (1/10)ⁿ)/(1 − 1/10) = (1/9)(1 − (1/10)ⁿ)",
           {
-            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)]",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{7}{9}\\right)\\left[n\\ - \\ \\left(\\dfrac{1}{10} + \\ \\dfrac{1}{10^{2}} + \\ \\dots \\ + \\ \\dfrac{1}{10^{n}}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "= (7/81)[9n − 1 + (1/10)ⁿ]",
-            "style": "boxed"
+            "text": "\\text{The}\\ \\text{bracketed}\\ \\text{series}\\ \\text{is}\\ aG.P.\\ \\text{with}\\ a\\ = \\ \\dfrac{1}{10}\\text{and}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ \\dfrac{1}{10},\\ \\text{so}\\ \\text{its}\\ \\text{sum}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\left(\\dfrac{1}{10}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)}{1\\ - \\ \\dfrac{1}{10}} = \\ \\left(\\dfrac{1}{9}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ S_{n}\\ = \\ \\left(\\dfrac{7}{9}\\right)\\left[n\\ - \\ \\left(\\dfrac{1}{9}\\right)\\left(1\\ - \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right)\\right]",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{7}{81}\\right)\\left[9n\\ - \\ 1\\ + \\ \\left(\\dfrac{1}{10}\\right)^{n}\\right]",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

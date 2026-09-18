@@ -81,8 +81,16 @@
           "Move −3 and −1 to the right:",
           "⇒ 3(x − 1)² + (y − 1)² = 5 + 3 + 1 = 9",
           "Divide every term by 9:",
-          "⇒ (x − 1)²/3 + (y − 1)²/9 = 1",
-          "(3(x − 1)²/9 = (x − 1)²/3)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\left(x\\ - \\ 1\\right)^{2}}{3} + \\ \\dfrac{\\left(y\\ - \\ 1\\right)^{2}}{9} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{3\\left(x\\ - \\ 1\\right)^{2}}{9} = \\ \\dfrac{\\left(x\\ - \\ 1\\right)^{2}}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Centre (h, k) = (1, 1)."
         ],
         "why": "Completing the square in both x and y gives the shifted standard form, from which a², b² and the centre (h, k) can be read directly.",
@@ -111,19 +119,31 @@
             "added": true
           },
           {
-            "text": "  so e² = (b² − a²)/b²:",
+            "text": "\\text{so}\\ e^{2}\\ = \\ \\dfrac{b^{2}\\ - \\ a^{2}}{b^{2}}:",
             "style": "indent",
-            "added": true
-          },
-          "e = √( (b² − a²) / b² )",
-          "= √( (9 − 3) / 9 ) = √(6/9)",
-          {
-            "text": "(√(6/9) = √6/√9 = √6/3)",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "e = √6 / 3",
-            "style": "boxed"
+            "text": "e\\ = \\ \\sqrt{\\dfrac{b^{2}\\ - \\ a^{2}}{b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{9\\ - \\ 3}{9}}\\ = \\ \\sqrt{\\dfrac{6}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sqrt{\\dfrac{6}{9}}\\ = \\ \\dfrac{\\sqrt{6}}{\\sqrt{9}} = \\ \\dfrac{\\sqrt{6}}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{6}}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "For a vertical ellipse the eccentricity formula uses b² − a² over b², all under one square root — the fraction is simplified only after the whole thing is under the root.",
@@ -134,11 +154,20 @@
         "lines_compact": [
           "Here a² = 3 ⇒ a = √3, b² = 9 ⇒ b = 3.",
           "Since a < b, the ellipse is vertical.",
-          "e = √( (b² − a²) / b² )",
-          "= √( (9 − 3) / 9 ) = √(6/9)",
           {
-            "text": "e = √6 / 3",
-            "style": "boxed"
+            "text": "e\\ = \\ \\sqrt{\\dfrac{b^{2}\\ - \\ a^{2}}{b^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{\\dfrac{9\\ - \\ 3}{9}}\\ = \\ \\sqrt{\\dfrac{6}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{6}}{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -161,7 +190,11 @@
             "added": true
           },
           "Foci = (h, k ± be)",
-          "be = 3 · (√6/3) = √6",
+          {
+            "text": "\\text{be}\\ = \\ 3\\ \\cdot \\ \\left(\\dfrac{\\sqrt{6}}{3}\\right)\\ = \\ \\sqrt{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the 3s cancel)",
             "added": true
@@ -178,7 +211,11 @@
         ],
         "lines_compact": [
           "Foci = (h, k ± be)",
-          "be = 3 · (√6/3) = √6",
+          {
+            "text": "\\text{be}\\ = \\ 3\\ \\cdot \\ \\left(\\dfrac{\\sqrt{6}}{3}\\right)\\ = \\ \\sqrt{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Foci = (1, 1 ± √6)",
             "style": "boxed"

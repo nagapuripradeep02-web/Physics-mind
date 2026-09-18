@@ -55,8 +55,16 @@
           "(gof⁻¹)(2) = g[f⁻¹(2)]",
           "(f is one one and onto, so f⁻¹ exists)",
           "Let f⁻¹(2) = a. Then f(a) = 2.",
-          "3a − 2 = 2 ⇒ 3a = 4 ⇒ a = 4/3",
-          "∴ f⁻¹(2) = 4/3"
+          {
+            "text": "3a\\ - \\ 2\\ = \\ 2\\ \\Rightarrow \\ 3a\\ = \\ 4\\ \\Rightarrow \\ a\\ = \\ \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ f^{-1}\\left(2\\right)\\ = \\ \\dfrac{4}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -96,16 +104,31 @@
         "margin_note": "Second mark is the single number. Write 1 as 9/9 before adding, so the two fractions are added over the same denominator.",
         "memory_tip": "Square the top and the bottom: (4/3)² = 16/9. Then add 1 as 9/9.",
         "lines": [
-          "Now apply g to 4/3:",
-          "g(4/3) = (4/3)² + 1 = 16/9 + 1",
           {
-            "text": "(1 = 9/9, so add over 9)",
+            "text": "\\text{Now}\\ \\text{apply}\\ g\\ \\text{to}\\ \\dfrac{4}{3}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g\\left(\\dfrac{4}{3}\\right)\\ = \\ \\left(\\dfrac{4}{3}\\right)^{2}\\ + \\ 1\\ = \\ \\dfrac{16}{9} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ = \\ \\dfrac{9}{9},\\ \\text{so}\\ \\text{add}\\ \\text{over}\\ 9\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 16/9 + 9/9 = 25/9",
           {
-            "text": "∴ (gof⁻¹)(2) = 25/9",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{16}{9} + \\ \\dfrac{9}{9} = \\ \\dfrac{25}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(gof^{-1}\\right)\\left(2\\right)\\ = \\ \\dfrac{25}{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -136,12 +159,25 @@
           "Stopping at 16/9 and forgetting the + 1 that belongs to g."
         ],
         "lines_compact": [
-          "Now apply g to 4/3:",
-          "g(4/3) = (4/3)² + 1 = 16/9 + 1",
-          "= 16/9 + 9/9 = 25/9",
           {
-            "text": "∴ (gof⁻¹)(2) = 25/9",
-            "style": "boxed"
+            "text": "\\text{Now}\\ \\text{apply}\\ g\\ \\text{to}\\ \\dfrac{4}{3}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "g\\left(\\dfrac{4}{3}\\right)\\ = \\ \\left(\\dfrac{4}{3}\\right)^{2}\\ + \\ 1\\ = \\ \\dfrac{16}{9} + \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{16}{9} + \\ \\dfrac{9}{9} = \\ \\dfrac{25}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(gof^{-1}\\right)\\left(2\\right)\\ = \\ \\dfrac{25}{9}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

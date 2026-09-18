@@ -53,10 +53,18 @@
           },
           "Given line is 2x + 3y + 7 = 0",
           "(the slope of ax + by + c = 0 is −a/b; here a = 2, b = 3)",
-          "Its slope  m = −a/b = −2/3",
+          {
+            "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(parallel lines have equal slopes)",
           "A parallel line has the same slope,",
-          "so the required slope is −2/3"
+          {
+            "text": "\\text{so}\\ \\text{the}\\ \\text{required}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -98,9 +106,17 @@
             "text": "(the point-slope form, with (x₁, y₁) = (5, 4) and m = −2/3)",
             "added": true
           },
-          "Parallel line through (5, 4) with slope −2/3 is",
+          {
+            "text": "\\text{Parallel}\\ \\text{line}\\ \\text{through}\\ \\left(5,\\ 4\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y − y₁ = m(x − x₁)",
-          "⇒ y − 4 = (−2/3)(x − 5)",
+          {
+            "text": "\\Rightarrow \\ y\\ - \\ 4\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 5\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 3)",
             "added": true
@@ -167,9 +183,17 @@
         ],
         "mark_note": "Solution",
         "lines_compact": [
-          "Parallel line through (5, 4) with slope −2/3 is",
+          {
+            "text": "\\text{Parallel}\\ \\text{line}\\ \\text{through}\\ \\left(5,\\ 4\\right)\\ \\text{with}\\ \\text{slope}\\ - \\dfrac{2}{3}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
           "y − y₁ = m(x − x₁)",
-          "⇒ y − 4 = (−2/3)(x − 5)",
+          {
+            "text": "\\Rightarrow \\ y\\ - \\ 4\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 5\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3(y − 4) = −2(x − 5)",
           "⇒ 3y − 12 = −2x + 10",
           {

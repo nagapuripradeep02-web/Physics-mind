@@ -106,14 +106,28 @@
             "text": "(put dy/dθ and dx/dθ from step 1)",
             "added": true
           },
-          "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",
-          "Cancel 3a, one sin θ and one cos θ:",
-          "= −sin θ / cos θ",
           {
-            "text": "(sin θ/cos θ = tan θ)",
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Cancel 3a, one sin θ and one cos θ:",
+          {
+            "text": "= \\ - \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin \\theta }{\\cos \\theta } = \\ \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dy/dx = −tan θ"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\tan \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -147,10 +161,22 @@
         "memory_tip": "sin²θ cos θ divided by cos²θ sin θ leaves sin θ/cos θ, which is tan θ. The minus comes from dx/dθ and stays.",
         "lines_compact": [
           "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
-          "dy/dx = 3a sin²θ cos θ / (−3a cos²θ sin θ)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "Cancel 3a, one sin θ and one cos θ:",
-          "= −sin θ / cos θ",
-          "∴ dy/dx = −tan θ"
+          {
+            "text": "= \\ - \\dfrac{\\sin \\theta }{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\tan \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -162,18 +188,36 @@
         "margin_note": "The last two marks: one for the tangent slope at θ = π/4, one for turning it into the normal's. The question asks only for a SLOPE, so no line equation is needed.",
         "lines": [
           {
-            "text": "(put θ = π/4 in dy/dx = −tan θ)",
+            "text": "\\left(\\text{put}\\ \\theta \\ = \\ \\dfrac{\\pi }{4}\\text{in}\\ \\dfrac{dy}{dx}\\ = \\ - \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "At θ = π/4:   tan(π/4) = 1, so",
-          "slope of the tangent  m = −tan(π/4) = −1",
+          {
+            "text": "\\text{At}\\ \\theta \\ = \\ \\dfrac{\\pi }{4}:\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ m\\ = \\ - \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "The normal is perpendicular to the tangent,",
-          "so its slope is −1/m.",
+          {
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(m = −1)",
             "added": true
           },
-          "Slope of the normal = −1/(−1)",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{ - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−1 divided by −1 is 1)",
             "added": true
@@ -214,11 +258,27 @@
         ],
         "memory_tip": "π/4 is 45°, where tan is 1. A slope of −1 and a slope of +1 are always perpendicular.",
         "lines_compact": [
-          "At θ = π/4:   tan(π/4) = 1, so",
-          "slope of the tangent  m = −tan(π/4) = −1",
+          {
+            "text": "\\text{At}\\ \\theta \\ = \\ \\dfrac{\\pi }{4}:\\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{slope}\\ \\text{of}\\ \\text{the}\\ \\text{tangent}\\ m\\ = \\ - \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "The normal is perpendicular to the tangent,",
-          "so its slope is −1/m.",
-          "Slope of the normal = −1/(−1)",
+          {
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{normal}\\ = \\ - \\dfrac{1}{ - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ slope of the normal = 1",
             "style": "boxed"

@@ -70,7 +70,11 @@
             "text": "  in both, so divide this one by 2:",
             "style": "indent"
           },
-          "⇒ S′ ≡ x² + y² + 3/2 x + 5/2 y − 9/2 = 0",
+          {
+            "text": "\\Rightarrow \\ S'\\ \\equiv \\ x^{2}\\ + \\ y^{2}\\ + \\ \\dfrac{3}{2}x\\ + \\ \\dfrac{5}{2}y\\ - \\ \\dfrac{9}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "S″ ≡ x² + y² + y = 0"
         ],
         "why": "The formula S − S′ = 0 for a radical axis only works when both circles already have coefficient 1 on x² and y² — dividing the middle circle by its leading coefficient 2 puts it in that form.",
@@ -90,17 +94,26 @@
         "lines": [
           "Radical axis of S, S′ is S − S′ = 0",
           {
-            "text": "x: 4 − 3/2 = 5/2; y: 0 − 5/2 = −5/2;",
+            "text": "x:\\ 4\\ - \\ \\dfrac{3}{2} = \\ \\dfrac{5}{2};\\ y:\\ 0\\ - \\ \\dfrac{5}{2} = \\ - \\dfrac{5}{2};",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  constants: −7 − (−9/2) = −5/2",
+            "text": "\\text{constants}:\\ - 7\\ - \\ \\left( - \\dfrac{9}{2}\\right)\\ = \\ - \\dfrac{5}{2}",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ 5/2 x − 5/2 y − 5/2 = 0",
           {
-            "text": "Multiply every term by 2/5:",
+            "text": "\\Rightarrow \\ \\dfrac{5}{2}x\\ - \\ \\dfrac{5}{2}y\\ - \\ \\dfrac{5}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Multiply}\\ \\text{every}\\ \\text{term}\\ \\text{by}\\ \\dfrac{2}{5}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ x − y − 1 = 0   ...(1)",
@@ -119,7 +132,11 @@
         "memory_tip": "S stays fixed on the left in both subtractions — only the circle on the right changes.",
         "lines_compact": [
           "Radical axis of S, S′ is S − S′ = 0",
-          "⇒ 5/2 x − 5/2 y − 5/2 = 0",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{5}{2}x\\ - \\ \\dfrac{5}{2}y\\ - \\ \\dfrac{5}{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ x − y − 1 = 0   ...(1)",
           "Radical axis of S, S″ is S − S″ = 0",
           "⇒ 4x − y − 7 = 0   ...(2)"

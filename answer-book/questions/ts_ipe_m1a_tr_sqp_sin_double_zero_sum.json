@@ -74,11 +74,20 @@
           "L.H.S = (sin 2A + sin 2B) + sin 2C",
           "Pair the first two with the sum formula:",
           {
-            "text": "  sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)",
-            "style": "indent"
+            "text": "\\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
+            "style": "indent",
+            "render": "katex"
           },
-          "= 2 sin((2A + 2B)/2) cos((2A − 2B)/2) + sin 2C",
-          "((2A + 2B)/2 = A + B and (2A − 2B)/2 = A − B)",
+          {
+            "text": "= \\ 2\\sin \\left(\\dfrac{2A\\ + \\ 2B}{2}\\right)\\cos \\left(\\dfrac{2A\\ - \\ 2B}{2}\\right)\\ + \\ \\sin 2C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{2A\\ + \\ 2B}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{2A\\ - \\ 2B}{2} = \\ A\\ - \\ B\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 sin(A + B) cos(A − B) + sin 2C"
         ],
         "recall": {

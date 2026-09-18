@@ -105,16 +105,29 @@
             "text": "(equal vectors have equal i, j and k parts)",
             "added": true
           },
-          "Comparing i: −2 = 8λ ⇒ λ = −1/4",
-          "Comparing j: 1 = −4λ ⇒ λ = −1/4",
-          "Comparing k: 3 = −12λ ⇒ λ = −1/4",
+          {
+            "text": "\\text{Comparing}\\ i:\\ - 2\\ = \\ 8\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ j:\\ 1\\ = \\ - 4\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ k:\\ 3\\ = \\ - 12\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(all three give the same λ, so AB really is λ AC)",
             "added": true
           },
           {
-            "text": "∴ λ = −1/4",
-            "style": "boxed"
+            "text": "\\therefore \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -147,12 +160,25 @@
         "lines_compact": [
           "Given AB = λ AC, so",
           "−2i + j + 3k = λ(8i − 4j − 12k)",
-          "Comparing i: −2 = 8λ ⇒ λ = −1/4",
-          "Comparing j: 1 = −4λ ⇒ λ = −1/4",
-          "Comparing k: 3 = −12λ ⇒ λ = −1/4",
           {
-            "text": "∴ λ = −1/4",
-            "style": "boxed"
+            "text": "\\text{Comparing}\\ i:\\ - 2\\ = \\ 8\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ j:\\ 1\\ = \\ - 4\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Comparing}\\ k:\\ 3\\ = \\ - 12\\lambda \\ \\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\lambda \\ = \\ - \\dfrac{1}{4}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

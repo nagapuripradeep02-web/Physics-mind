@@ -306,7 +306,11 @@
             "added": true
           },
           "If θ is the angle between the lines then from (3), (4), we get",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put the d.r's (−1, 0, 1) and (0, −1, 1))",
             "added": true
@@ -317,10 +321,16 @@
             "style": "indent"
           },
           {
-            "text": "(1 + 0 + 1 = 2 twice; cos 60° = 1/2)",
+            "text": "\\left(1\\ + \\ 0\\ + \\ 1\\ = \\ 2\\ \\text{twice};\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
+          {
+            "text": "= \\ \\dfrac{1}{\\sqrt{\\left(2\\right)\\left(2\\right)}} = \\ \\dfrac{1}{\\sqrt{4}} = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Hence angle between the lines is 60°",
             "style": "boxed"
@@ -355,13 +365,21 @@
         ],
         "lines_compact": [
           "If θ is the angle between the lines then from (3), (4), we get",
-          "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
+          {
+            "text": "\\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2} + b_{1}^{2} + c_{1}^{2}\\right)\\left(a_{2}^{2} + b_{2}^{2} + c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= |(−1)(0) + (0)(−1) + (1)(1)|",
           {
             "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
             "style": "indent"
           },
-          "= 1/√((2)(2)) = 1/√4 = 1/2 = cos60°",
+          {
+            "text": "= \\ \\dfrac{1}{\\sqrt{\\left(2\\right)\\left(2\\right)}} = \\ \\dfrac{1}{\\sqrt{4}} = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Hence angle between the lines is 60°",
             "style": "boxed"

@@ -68,7 +68,11 @@
           },
           "Given line is x − y = √2",
           "(divide both sides by √2)",
-          "⇒ (x − y)/√2 = 1  ……(1)"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x\\ - \\ y}{\\sqrt{2}} = \\ 1\\ \\dots \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -137,13 +141,20 @@
           "Homogenising (1) & (2), we get",
           "x² − xy + y² + 3x(1) + 3y(1) − 2(1)² = 0",
           {
-            "text": "(put 1 = (x − y)/√2)",
+            "text": "\\left(\\text{put}\\ 1\\ = \\ \\dfrac{x\\ - \\ y}{\\sqrt{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ x² − xy + y² + 3x[(x−y)/√2] + 3y[(x−y)/√2]",
           {
-            "text": "  − 2[(x−y)/√2]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ x^{2}\\ - \\ xy\\ + \\ y^{2}\\ + \\ 3x\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]\\ + \\ 3y\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 2\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -179,10 +190,15 @@
           "Given curve is x² − xy + y² + 3x + 3y − 2 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
           "x² − xy + y² + 3x(1) + 3y(1) − 2(1)² = 0",
-          "⇒ x² − xy + y² + 3x[(x−y)/√2] + 3y[(x−y)/√2]",
           {
-            "text": "  − 2[(x−y)/√2]² = 0",
-            "style": "indent"
+            "text": "\\Rightarrow \\ x^{2}\\ - \\ xy\\ + \\ y^{2}\\ + \\ 3x\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]\\ + \\ 3y\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 2\\left[\\dfrac{x - y}{\\sqrt{2}}\\right]^{2}\\ = \\ 0",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },

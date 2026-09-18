@@ -173,13 +173,15 @@
             "added": true
           },
           {
-            "text": "P(E₁) = 13/52, P(E₂) = 4/52,",
+            "text": "P\\left(E_{1}\\right)\\ = \\ \\dfrac{13}{52},\\ P\\left(E_{2}\\right)\\ = \\ \\dfrac{4}{52},",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "P(E₁ ∩ E₂) = 1/52",
+            "text": "P\\left(E_{1}\\ \\cap \\ E_{2}\\right)\\ = \\ \\dfrac{1}{52}",
             "style": "eq",
+            "render": "katex",
             "added": true
           }
         ],
@@ -230,8 +232,9 @@
             "style": "eq"
           },
           {
-            "text": "P(E₁) = 13/52, P(E₂) = 4/52, P(E₁ ∩ E₂) = 1/52",
-            "style": "eq"
+            "text": "P\\left(E_{1}\\right)\\ = \\ \\dfrac{13}{52},\\ P\\left(E_{2}\\right)\\ = \\ \\dfrac{4}{52},\\ P\\left(E_{1}\\ \\cap \\ E_{2}\\right)\\ = \\ \\dfrac{1}{52}",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -263,17 +266,20 @@
             "added": true
           },
           {
-            "text": "= 13/52 + 4/52 − 1/52",
-            "style": "eq"
+            "text": "= \\ \\dfrac{13}{52} + \\ \\dfrac{4}{52} - \\ \\dfrac{1}{52}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= (13 + 4 − 1)/52",
+            "text": "= \\ \\dfrac{13\\ + \\ 4\\ - \\ 1}{52}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 16/52",
-            "style": "eq"
+            "text": "= \\ \\dfrac{16}{52}",
+            "style": "eq",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -313,12 +319,14 @@
             "style": "eq"
           },
           {
-            "text": "= 13/52 + 4/52 − 1/52",
-            "style": "eq"
+            "text": "= \\ \\dfrac{13}{52} + \\ \\dfrac{4}{52} - \\ \\dfrac{1}{52}",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "= 16/52",
-            "style": "eq"
+            "text": "= \\ \\dfrac{16}{52}",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -337,13 +345,15 @@
             "added": true
           },
           {
-            "text": "16/52 = 4/13",
+            "text": "\\dfrac{16}{52} = \\ \\dfrac{4}{13}",
             "style": "eq",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ P(ace or spade) = 4/13",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{ace}\\ \\text{or}\\ \\text{spade}\\right)\\ = \\ \\dfrac{4}{13}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -374,8 +384,9 @@
         ],
         "lines_compact": [
           {
-            "text": "∴ P(ace or spade) = 16/52 = 4/13",
-            "style": "boxed"
+            "text": "\\therefore \\ P\\left(\\text{ace}\\ \\text{or}\\ \\text{spade}\\right)\\ = \\ \\dfrac{16}{52} = \\ \\dfrac{4}{13}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

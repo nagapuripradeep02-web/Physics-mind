@@ -77,11 +77,23 @@
             "text": "  √(5−x) to put a single root underneath.",
             "style": "indent"
           },
-          "√[(5−x)/(x−2)] = √[(5−x)²/((x−2)(5−x))]",
-          "= (5−x)/√[(x−2)(5−x)]",
+          {
+            "text": "\\sqrt{\\dfrac{5 - x}{x - 2}}\\ = \\ \\sqrt{\\dfrac{\\left(5 - x\\right)^{2}}{\\left(x - 2\\right)\\left(5 - x\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{5 - x}{\\sqrt{\\left(x - 2\\right)\\left(5 - x\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(x−2)(5−x) = 5x−x²−10+2x = −x²+7x−10",
           "= 7x−10−x²",
-          "So the integrand is (5−x)/√(7x−10−x²)"
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{integrand}\\ \\text{is}\\ \\dfrac{5 - x}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Multiplying inside the root by (5−x)/(5−x) turns the awkward ratio of two DIFFERENT expressions into a single (5−x) sitting over the square root of their product — now a familiar linear-over-root shape.",
         "common_mistakes": [
@@ -99,16 +111,30 @@
         "margin_note": "Setup",
         "lines": [
           {
-            "text": "Here d/dx(7x−10−x²) = 7−2x",
+            "text": "\\text{Here}\\ \\dfrac{d}{dx}\\left(7x - 10 - x^{2}\\right)\\ = \\ 7 - 2x",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Let 5−x = A·d/dx(7x−10−x²) + B = A(7−2x) + B",
+          {
+            "text": "\\text{Let}\\ 5 - x\\ = \\ A \\cdot \\dfrac{d}{dx}\\left(7x - 10 - x^{2}\\right)\\ + \\ B\\ = \\ A\\left(7 - 2x\\right)\\ + \\ B",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Compare the coefficients on both sides:",
             "added": true
           },
-          "Coeff of x: −2A=−1 ⇒ A=1/2; constant:",
-          "7A+B=5 ⇒ B=5−7/2=3/2"
+          {
+            "text": "\\text{Coeff}\\ \\text{of}\\ x:\\ - 2A = - 1\\ \\Rightarrow \\ A = \\dfrac{1}{2};\\ \\text{constant}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "7A + B = 5\\ \\Rightarrow \\ B = 5 - \\dfrac{7}{2} = \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "With the integrand now in the familiar linear-numerator-over-root-of-quadratic shape, the standard A·Dr′+B split applies directly.",
         "common_mistakes": [
@@ -117,9 +143,21 @@
         ],
         "memory_tip": "7(1/2)=7/2, and 5−7/2=3/2 — subtract, don't add, when isolating B.",
         "lines_compact": [
-          "Let 5−x = A·d/dx(7x−10−x²) + B = A(7−2x) + B",
-          "Coeff of x: −2A=−1 ⇒ A=1/2; constant:",
-          "7A+B=5 ⇒ B=5−7/2=3/2"
+          {
+            "text": "\\text{Let}\\ 5 - x\\ = \\ A \\cdot \\dfrac{d}{dx}\\left(7x - 10 - x^{2}\\right)\\ + \\ B\\ = \\ A\\left(7 - 2x\\right)\\ + \\ B",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Coeff}\\ \\text{of}\\ x:\\ - 2A = - 1\\ \\Rightarrow \\ A = \\dfrac{1}{2};\\ \\text{constant}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "7A + B = 5\\ \\Rightarrow \\ B = 5 - \\dfrac{7}{2} = \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -140,18 +178,38 @@
             "added": true
           },
           "I",
-          "= (1/2)∫[d/dx(7x−10−x²)]/√(7x−10−x²) dx",
-          "+ (3/2)∫dx/√(7x−10−x²)",
           {
-            "text": "The first uses ∫f′/√f dx = 2√f:",
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\int \\dfrac{\\dfrac{d}{dx}\\left(7x - 10 - x^{2}\\right)}{\\sqrt{7x - 10 - x^{2}}}dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{first}\\ \\text{uses}\\ \\int \\dfrac{f'}{\\sqrt{f}}dx\\ = \\ 2\\sqrt{f}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/2)·2√(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)",
           {
-            "text": "and (1/2)·2 = 1:",
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right) \\cdot 2\\sqrt{7x - 10 - x^{2}}\\ + \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\left(\\dfrac{1}{2}\\right) \\cdot 2\\ = \\ 1:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= √(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)"
+          {
+            "text": "= \\ \\sqrt{7x - 10 - x^{2}}\\ + \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The A-part is again an f′(x)/√f(x) form worth 2√f(x), and here the outside 1/2 exactly cancels that 2, leaving a clean √(7x−10−x²) with no leftover coefficient.",
         "common_mistakes": [
@@ -161,10 +219,26 @@
         "memory_tip": "(1/2)×2=1 — the standard factor of 2 cancels the outside 1/2 exactly, a clean coincidence worth noticing.",
         "lines_compact": [
           "I",
-          "= (1/2)∫[d/dx(7x−10−x²)]/√(7x−10−x²) dx",
-          "+ (3/2)∫dx/√(7x−10−x²)",
-          "= (1/2)·2√(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)",
-          "= √(7x−10−x²) + (3/2)∫dx/√(7x−10−x²)"
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\int \\dfrac{\\dfrac{d}{dx}\\left(7x - 10 - x^{2}\\right)}{\\sqrt{7x - 10 - x^{2}}}dx",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right) \\cdot 2\\sqrt{7x - 10 - x^{2}}\\ + \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\sqrt{7x - 10 - x^{2}}\\ + \\ \\left(\\dfrac{3}{2}\\right)\\int \\dfrac{dx}{\\sqrt{7x - 10 - x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -176,9 +250,15 @@
         "margin_note": "Solution",
         "lines": [
           "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
-          "= 9/4−(x−7/2)² = (3/2)²−(x−7/2)²",
           {
-            "text": "Put u = x − 7/2 and a = 3/2, so du = dx",
+            "text": "= \\ \\dfrac{9}{4} - \\left(x - \\dfrac{7}{2}\\right)^{2}\\ = \\ \\left(\\dfrac{3}{2}\\right)^{2} - \\left(x - \\dfrac{7}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ u\\ = \\ x\\ - \\ \\dfrac{7}{2}\\text{and}\\ a\\ = \\ \\dfrac{3}{2},\\ \\text{so}\\ du\\ = \\ dx",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -187,12 +267,15 @@
             "style": "eq"
           },
           {
-            "text": "Dividing (x−7/2) by (3/2) doubles both:",
+            "text": "\\text{Dividing}\\ \\left(x - \\dfrac{7}{2}\\right)\\ \\text{by}\\ \\left(\\dfrac{3}{2}\\right)\\ \\text{doubles}\\ \\text{both}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = √(7x−10−x²)+(3/2)Sin⁻¹[(2x−7)/3] + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\sqrt{7x - 10 - x^{2}} + \\left(\\dfrac{3}{2}\\right)\\operatorname{Sin}^{-1} \\left[\\dfrac{2x - 7}{3}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The quadratic completes to a bounded (3/2)²−(x−7/2)² form, so the leftover integral is the standard Sin⁻¹ result; clearing the internal halves gives (2x−7)/3 inside it.",
@@ -203,15 +286,20 @@
         "memory_tip": "Factor out the leading −1 BEFORE completing the square whenever the x² coefficient is negative — skipping this is the most common slip on this question.",
         "lines_compact": [
           "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
-          "= 9/4−(x−7/2)² = (3/2)²−(x−7/2)²",
+          {
+            "text": "= \\ \\dfrac{9}{4} - \\left(x - \\dfrac{7}{2}\\right)^{2}\\ = \\ \\left(\\dfrac{3}{2}\\right)^{2} - \\left(x - \\dfrac{7}{2}\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\int\\frac{dx}{\\sqrt{a^2-u^2}}=\\operatorname{Sin}^{-1}\\!\\left(\\frac{u}{a}\\right)+c",
             "render": "katex",
             "style": "eq"
           },
           {
-            "text": "∴ I = √(7x−10−x²)+(3/2)Sin⁻¹[(2x−7)/3] + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\sqrt{7x - 10 - x^{2}} + \\left(\\dfrac{3}{2}\\right)\\operatorname{Sin}^{-1} \\left[\\dfrac{2x - 7}{3}\\right]\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

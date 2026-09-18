@@ -60,7 +60,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: focus S(1, 2), e = 2/3,",
+          {
+            "text": "\\text{Given}:\\ \\text{focus}\\ S\\left(1,\\ 2\\right),\\ e\\ = \\ \\dfrac{2}{3},",
+            "style": "normal",
+            "render": "katex"
+          },
           "directrix 2x + 3y + 6 = 0",
           "Let P(x, y) be any point on the ellipse and M",
           {
@@ -71,12 +75,24 @@
             "text": "  to the directrix.",
             "style": "indent"
           },
-          "By the focus-directrix property, SP/PM = e",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{focus} - \\text{directrix}\\ \\text{property},\\ \\dfrac{SP}{PM} = \\ e",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ SP = e·PM",
           "SP = √((x−1)² + (y−2)²)  (distance formula)",
-          "PM = |2x+3y+6| / √(2² + 3²) = |2x+3y+6| / √13",
+          {
+            "text": "PM\\ = \\ \\dfrac{\\left|2x + 3y + 6\\right|}{\\sqrt{2^{2}\\ + \\ 3^{2}}} = \\ \\dfrac{\\left|2x + 3y + 6\\right|}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(distance from a point to a line)",
-          "√((x−1)² + (y−2)²) = (2/3) · |2x+3y+6| / √13"
+          {
+            "text": "\\sqrt{\\left(x - 1\\right)^{2}\\ + \\ \\left(y - 2\\right)^{2}}\\ = \\ \\left(\\dfrac{2}{3}\\right)\\ \\cdot \\ \\dfrac{\\left|2x + 3y + 6\\right|}{\\sqrt{13}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The locus of a point whose distance from a fixed point (the focus), divided by its distance from a fixed line (the directrix), is a constant e < 1, is by definition an ellipse.",
         "common_mistakes": [
@@ -99,11 +115,15 @@
             "added": true
           },
           {
-            "text": "(x−1)² + (y−2)² = (4/9) · (2x+3y+6)² / 13",
+            "text": "\\left(x - 1\\right)^{2}\\ + \\ \\left(y - 2\\right)^{2}\\ = \\ \\left(\\dfrac{4}{9}\\right)\\ \\cdot \\ \\dfrac{\\left(2x + 3y + 6\\right)^{2}}{13}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "((2/3)² = 4/9 and (√13)² = 13)",
+            "text": "\\left(\\left(\\dfrac{2}{3}\\right)^{2}\\ = \\ \\dfrac{4}{9}\\text{and}\\ \\left(\\sqrt{13}\\right)^{2}\\ = \\ 13\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

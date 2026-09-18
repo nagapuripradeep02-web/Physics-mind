@@ -70,7 +70,11 @@
           "  [(cos θ + i sin θ)(cos θ − i sin θ)]",
           "Denominator = cos²θ + sin²θ = 1",
           "  [(a + ib)(a − ib) = a² + b²]",
-          "1/z = cos θ − i sin θ"
+          {
+            "text": "\\dfrac{1}{z} = \\ \\cos \\theta \\ - \\ i\\sin \\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -109,7 +113,11 @@
         "margin_note": "Second mark. The cos θ terms cancel; the sin θ terms add.",
         "memory_tip": "The cos terms cancel and the sin terms add: 2i sin θ. It is z + 1/z that gives 2cos θ.",
         "lines": [
-          "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
+          {
+            "text": "z\\ - \\ \\dfrac{1}{z} = \\ \\left(\\cos \\theta \\ + \\ i\\sin \\theta \\right)\\ - \\ \\left(\\cos \\theta \\ - \\ i\\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= cos θ + i sin θ − cos θ + i sin θ",
             "added": true
@@ -119,8 +127,9 @@
             "added": true
           },
           {
-            "text": "∴ z − 1/z = 2i sin θ",
-            "style": "boxed"
+            "text": "\\therefore \\ z\\ - \\ \\dfrac{1}{z} = \\ 2i\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -150,10 +159,15 @@
           "Dropping the i and answering 2 sin θ."
         ],
         "lines_compact": [
-          "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
           {
-            "text": "∴ z − 1/z = 2i sin θ",
-            "style": "boxed"
+            "text": "z\\ - \\ \\dfrac{1}{z} = \\ \\left(\\cos \\theta \\ + \\ i\\sin \\theta \\right)\\ - \\ \\left(\\cos \\theta \\ - \\ i\\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ z\\ - \\ \\dfrac{1}{z} = \\ 2i\\sin \\theta",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

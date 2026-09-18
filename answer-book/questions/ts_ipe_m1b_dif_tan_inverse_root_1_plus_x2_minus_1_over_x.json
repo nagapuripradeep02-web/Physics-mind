@@ -53,33 +53,56 @@
             "style": "heading"
           },
           "Put x = tan θ, so θ = Tan⁻¹x,",
-          "with θ in (−π/2, π/2) and x ≠ 0",
+          {
+            "text": "\\text{with}\\ \\theta \\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\ \\text{and}\\ x\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "(1 + tan²θ = sec²θ)",
           "√(1 + x²) = √(1 + tan²θ) = √(sec²θ) = sec θ",
           "[sec θ > 0 on this range]",
           "(put √(1 + x²) = sec θ and x = tan θ)",
-          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ",
+          {
+            "text": "\\dfrac{\\sqrt{1\\ + \\ x^{2}}\\ - \\ 1}{x} = \\ \\dfrac{\\sec \\theta \\ - \\ 1}{\\tan \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(multiply the top and the bottom by cos θ)",
           {
-            "text": "  = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(\\dfrac{1}{\\cos \\theta }\\right)\\ - \\ 1}{\\dfrac{\\sin \\theta }{\\cos \\theta }} = \\ \\dfrac{1\\ - \\ \\cos \\theta }{\\sin \\theta }",
+            "style": "indent",
+            "render": "katex"
           },
           "(the half angle formulas; then",
           {
-            "text": "  2sin²(θ/2)/(2 sin(θ/2) cos(θ/2)),",
-            "style": "indent"
+            "text": "\\dfrac{2\\sin ^{2}\\left(\\dfrac{\\theta }{2}\\right)}{2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right)},",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "  and cancelling 2 sin(θ/2) leaves",
-            "style": "indent"
+            "text": "\\text{and}\\ \\text{cancelling}\\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\ \\text{leaves}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "  sin(θ/2)/cos(θ/2) = tan(θ/2))",
             "style": "indent"
           },
-          "Now 1 − cos θ = 2sin²(θ/2)",
-          "and sin θ = 2 sin(θ/2) cos(θ/2), so",
-          "(1 − cos θ)/sin θ = sin(θ/2)/cos(θ/2) = tan(θ/2)"
+          {
+            "text": "\\text{Now}\\ 1\\ - \\ \\cos \\theta \\ = \\ 2\\sin ^{2}\\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\sin \\theta \\ = \\ 2\\sin \\left(\\dfrac{\\theta }{2}\\right)\\cos \\left(\\dfrac{\\theta }{2}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1\\ - \\ \\cos \\theta }{\\sin \\theta } = \\ \\dfrac{\\sin \\left(\\dfrac{\\theta }{2}\\right)}{\\cos \\left(\\dfrac{\\theta }{2}\\right)} = \\ \\tan \\left(\\dfrac{\\theta }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -119,7 +142,9 @@
         "memory_tip": "y is half of Tan⁻¹x, so the answer is half the standard derivative 1/(1 + x²).",
         "lines": [
           {
-            "text": "(put the bracket = tan(θ/2) into y)",
+            "text": "\\left(\\text{put}\\ \\text{the}\\ \\text{bracket}\\ = \\ \\tan \\left(\\dfrac{\\theta }{2}\\right)\\ \\text{into}\\ y\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -131,21 +156,36 @@
             "style": "indent",
             "added": true
           },
-          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2,",
+          {
+            "text": "\\therefore \\ y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\theta }{2}\\right)\\right)\\ = \\ \\dfrac{\\theta }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "since θ/2 lies in (−π/4, π/4)",
           {
             "text": "(put θ = Tan⁻¹x)",
             "added": true
           },
-          "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
-          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
           {
-            "text": "(½ · 1/(1 + x²) = 1/(2(1 + x²)), for x ≠ 0)",
+            "text": "\\theta \\ = \\ \\operatorname{Tan}^{-1} x,\\ \\text{so}\\ y\\ = \\ \\left(\\dfrac{1}{2}\\right)\\operatorname{Tan}^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{2}\\ \\cdot \\ \\dfrac{1}{1\\ + \\ x^{2}} = \\ \\dfrac{1}{2\\left(1\\ + \\ x^{2}\\right)},\\ \\text{for}\\ x\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = 1/(2(1 + x²))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2\\left(1\\ + \\ x^{2}\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -176,13 +216,26 @@
           "Writing 1/(2 + x²) by putting the 2 inside the bracket instead of multiplying the whole denominator."
         ],
         "lines_compact": [
-          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2,",
-          "since θ/2 lies in (−π/4, π/4)",
-          "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
-          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
           {
-            "text": "∴ dy/dx = 1/(2(1 + x²))",
-            "style": "boxed"
+            "text": "\\therefore \\ y\\ = \\ \\operatorname{Tan}^{-1}\\left(\\tan \\left(\\dfrac{\\theta }{2}\\right)\\right)\\ = \\ \\dfrac{\\theta }{2},",
+            "style": "normal",
+            "render": "katex"
+          },
+          "since θ/2 lies in (−π/4, π/4)",
+          {
+            "text": "\\theta \\ = \\ \\operatorname{Tan}^{-1} x,\\ \\text{so}\\ y\\ = \\ \\left(\\dfrac{1}{2}\\right)\\operatorname{Tan}^{-1} x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{1}{2\\left(1\\ + \\ x^{2}\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -60,13 +60,21 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "∫[1/(1−x²) + 1/(1+x²)] dx",
+          {
+            "text": "\\int \\left[\\dfrac{1}{1 - x^{2}} + \\ \\dfrac{1}{1 + x^{2}}\\right]dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "The integral of a sum is the sum of the",
           {
             "text": "  integrals, so take them one at a time:",
             "style": "indent"
           },
-          "= ∫dx/(1−x²) + ∫dx/(1+x²)"
+          {
+            "text": "= \\ \\int \\dfrac{dx}{1 - x^{2}} + \\ \\int \\dfrac{dx}{1 + x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The integrand is already a sum of two separate standard forms — no algebra is needed beyond recognising each piece on sight.",
         "common_mistakes": [
@@ -97,7 +105,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "∴ ∫[1/(1−x²)+1/(1+x²)] dx =",
+          {
+            "text": "\\therefore \\ \\int \\left[\\dfrac{1}{1 - x^{2}} + \\dfrac{1}{1 + x^{2}}\\right]dx\\ =",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Tanh⁻¹x + Tan⁻¹x + c",
             "style": "boxed"
@@ -115,7 +127,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "∴ ∫[1/(1−x²)+1/(1+x²)] dx =",
+          {
+            "text": "\\therefore \\ \\int \\left[\\dfrac{1}{1 - x^{2}} + \\dfrac{1}{1 + x^{2}}\\right]dx\\ =",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Tanh⁻¹x + Tan⁻¹x + c",
             "style": "boxed"

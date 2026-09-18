@@ -82,12 +82,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "In (ax² + 1/(bx))¹¹, the general term is",
-          "Tᵣ₊₁ = ¹¹Cᵣ (ax²)¹¹⁻ʳ (1/(bx))ʳ",
-          "= ¹¹Cᵣ · a¹¹⁻ʳ (x²)¹¹⁻ʳ · 1/(bʳxʳ)",
+          {
+            "text": "\\text{In}\\ \\left(ax^{2}\\ + \\ \\dfrac{1}{bx}\\right)^{11},\\ \\text{the}\\ \\text{general}\\ \\text{term}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "T_{r+1}\\ = \\ {}^{11}C_{r}\\left(ax^{2}\\right)^{11-r}\\left(\\dfrac{1}{bx}\\right)^{r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ {}^{11}C_{r}\\ \\cdot \\ a^{11-r}\\left(x^{2}\\right)^{11-r}\\ \\cdot \\ \\dfrac{1}{b^{r}x^{r}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= ¹¹Cᵣ · a¹¹⁻ʳ x²²⁻²ʳ · b⁻ʳ x⁻ʳ",
-          "= ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x²²⁻²ʳ⁻ʳ",
-          "= ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x²²⁻³ʳ …(1)"
+          {
+            "text": "= \\ {}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{22-2r-r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ {}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{22-3r}\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -180,15 +200,21 @@
             "added": true
           },
           {
-            "text": "T₅ = ¹¹C₄ (a¹¹⁻⁴/b⁴) x²²⁻¹²",
+            "text": "T_{5}\\ = \\ {}^{11}C_{4}\\left(\\dfrac{a^{11-4}}{b^{4}}\\right)x^{22-12}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= ¹¹C₄ (a⁷/b⁴) x¹⁰",
+            "text": "= \\ {}^{11}C_{4}\\left(\\dfrac{a^{7}}{b^{4}}\\right)x^{10}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ coefficient of x¹⁰ = ¹¹C₄ a⁷/b⁴ …(2)",
+            "text": "\\therefore \\ \\text{coefficient}\\ \\text{of}\\ x^{10}\\ = \\ \\dfrac{{}^{11}C_{4}a^{7}}{b^{4}}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -218,7 +244,11 @@
         ],
         "lines_compact": [
           "From (1), the coefficient of x¹⁰ is",
-          "¹¹C₄ a⁷/b⁴ …(2)"
+          {
+            "text": "\\dfrac{{}^{11}C_{4}a^{7}}{b^{4}}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -230,21 +260,39 @@
         "margin_note": "Fourth mark. The minus sign gives (−1)ʳ; the powers of x are x¹¹⁻ʳ and x⁻²ʳ, so the power is 11 − 3r.",
         "memory_tip": "The minus in the bracket gives (−1)ʳ, and x⁻²ʳ makes the power 11 − 3r.",
         "lines": [
-          "In (ax − 1/(bx²))¹¹, the general term is",
-          "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
           {
-            "text": "= ¹¹Cᵣ · a¹¹⁻ʳ x¹¹⁻ʳ · (−1)ʳ/(bʳ(x²)ʳ)",
+            "text": "\\text{In}\\ \\left(ax\\ - \\ \\dfrac{1}{bx^{2}}\\right)^{11},\\ \\text{the}\\ \\text{general}\\ \\text{term}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "T_{r+1}\\ = \\ {}^{11}C_{r}\\left(ax\\right)^{11-r}\\left( - \\dfrac{1}{bx^{2}}\\right)^{r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ {}^{11}C_{r}\\ \\cdot \\ a^{11-r}x^{11-r}\\ \\cdot \\ \\dfrac{\\left( - 1\\right)^{r}}{b^{r}\\left(x^{2}\\right)^{r}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ · x⁻²ʳ",
+            "text": "= \\ \\left( - 1\\right)^{r}{}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{11-r}\\ \\cdot \\ x^{-2r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻ʳ⁻²ʳ",
+            "text": "= \\ \\left( - 1\\right)^{r}{}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{11-r-2r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
+          {
+            "text": "= \\ \\left( - 1\\right)^{r}{}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{11-3r}\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -272,9 +320,21 @@
           "Writing the power as 11 − 2r."
         ],
         "lines_compact": [
-          "In (ax − 1/(bx²))¹¹, the general term is",
-          "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
-          "= (−1)ʳ ¹¹Cᵣ (a¹¹⁻ʳ/bʳ) x¹¹⁻³ʳ …(3)"
+          {
+            "text": "\\text{In}\\ \\left(ax\\ - \\ \\dfrac{1}{bx^{2}}\\right)^{11},\\ \\text{the}\\ \\text{general}\\ \\text{term}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "T_{r+1}\\ = \\ {}^{11}C_{r}\\left(ax\\right)^{11-r}\\left( - \\dfrac{1}{bx^{2}}\\right)^{r}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left( - 1\\right)^{r}{}^{11}C_{r}\\left(\\dfrac{a^{11-r}}{b^{r}}\\right)x^{11-3r}\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -341,15 +401,21 @@
             "added": true
           },
           {
-            "text": "T₈ = (−1)⁷ ¹¹C₇ (a¹¹⁻⁷/b⁷) x¹¹⁻²¹",
+            "text": "T_{8}\\ = \\ \\left( - 1\\right)^{7}{}^{11}C_{7}\\left(\\dfrac{a^{11-7}}{b^{7}}\\right)x^{11-21}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= −¹¹C₇ (a⁴/b⁷) x⁻¹⁰   [(−1)⁷ = −1]",
+            "text": "= \\ - {}^{11}C_{7}\\left(\\dfrac{a^{4}}{b^{7}}\\right)x^{-10}\\left[\\left( - 1\\right)^{7}\\ = \\ - 1\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ coefficient of x⁻¹⁰ = −¹¹C₇ a⁴/b⁷ …(4)",
+            "text": "\\therefore \\ \\text{coefficient}\\ \\text{of}\\ x^{-10}\\ = \\ - \\dfrac{{}^{11}C_{7}a^{4}}{b^{7}}\\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -381,7 +447,11 @@
         ],
         "lines_compact": [
           "From (3), the coefficient of x⁻¹⁰ is",
-          "(−1)⁷ ¹¹C₇ a⁴/b⁷ = −¹¹C₇ a⁴/b⁷ …(4)"
+          {
+            "text": "\\dfrac{\\left( - 1\\right)^{7}{}^{11}C_{7}a^{4}}{b^{7}} = \\ - \\dfrac{{}^{11}C_{7}a^{4}}{b^{7}}\\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -398,7 +468,9 @@
             "added": true
           },
           {
-            "text": "From (2) and (4): ¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷",
+            "text": "\\text{From}\\ \\left(2\\right)\\ \\text{and}\\ \\left(4\\right):\\ \\dfrac{{}^{11}C_{4}a^{7}}{b^{4}} = \\ - \\dfrac{{}^{11}C_{7}a^{4}}{b^{7}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -406,7 +478,9 @@
             "added": true
           },
           {
-            "text": "Cancelling ¹¹C₄: a⁷/b⁴ = −a⁴/b⁷",
+            "text": "\\text{Cancelling}\\ {}^{11}C_{4}:\\ \\dfrac{a^{7}}{b^{4}} = \\ - \\dfrac{a^{4}}{b^{7}}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -458,8 +532,16 @@
         ],
         "lines_compact": [
           "Given the two coefficients are equal, from (2), (4):",
-          "¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷   [¹¹C₄ = ¹¹C₇]",
-          "a⁷/b⁴ = −a⁴/b⁷ ⇒ a³ = −1/b³ ⇒ a³b³ = −1",
+          {
+            "text": "\\dfrac{{}^{11}C_{4}a^{7}}{b^{4}} = \\ - \\dfrac{{}^{11}C_{7}a^{4}}{b^{7}}\\left[{}^{11}C_{4}\\ = \\ {}^{11}C_{7}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{a^{7}}{b^{4}} = \\ - \\dfrac{a^{4}}{b^{7}} \\Rightarrow \\ a^{3}\\ = \\ - \\dfrac{1}{b^{3}} \\Rightarrow \\ a^{3}b^{3}\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ ab = −1",
             "style": "boxed"

@@ -260,18 +260,26 @@
         "lines": [
           "The other two roots solve x² + 4x + 5 = 0:",
           {
-            "text": "x = (−4 ± √(16 − 20))/2   [quadratic formula]",
+            "text": "x\\ = \\ \\dfrac{ - 4\\ \\pm \\ \\sqrt{16\\ - \\ 20}}{2}\\left[\\text{quadratic}\\ \\text{formula}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (−4 ± √(−4))/2",
+            "text": "= \\ \\dfrac{ - 4\\ \\pm \\ \\sqrt{ - 4}}{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
             "text": "√(−4) = 2i, so",
             "added": true
           },
-          "= (−4 ± 2i)/2 = −2 ± i",
+          {
+            "text": "= \\ \\dfrac{ - 4\\ \\pm \\ 2i}{2} = \\ - 2\\ \\pm \\ i",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ roots: 2 ± i√3, −2 ± i",
             "style": "boxed"
@@ -308,8 +316,16 @@
         ],
         "lines_compact": [
           "The other two roots solve x² + 4x + 5 = 0:",
-          "x = (−4 ± √(16 − 20))/2 = (−4 ± √(−4))/2",
-          "= (−4 ± 2i)/2 = −2 ± i",
+          {
+            "text": "x\\ = \\ \\dfrac{ - 4\\ \\pm \\ \\sqrt{16\\ - \\ 20}}{2} = \\ \\dfrac{ - 4\\ \\pm \\ \\sqrt{ - 4}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ - 4\\ \\pm \\ 2i}{2} = \\ - 2\\ \\pm \\ i",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ roots: 2 ± i√3, −2 ± i",
             "style": "boxed"

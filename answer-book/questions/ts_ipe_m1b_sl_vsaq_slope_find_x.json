@@ -61,11 +61,16 @@
             "text": "  (y₂ − y₁)/(x₂ − x₁))",
             "style": "indent"
           },
-          "Slope of AB is  m₁ = (y₂ − y₁)/(x₂ − x₁)",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ AB\\ \\text{is}\\ m_{1}\\ = \\ \\dfrac{y_{2}\\ - \\ y_{1}}{x_{2}\\ - \\ x_{1}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(3 − 5 = −2; x − 2 ≠ 0, so x ≠ 2)",
           {
-            "text": "  = (3 − 5)/(x − 2) = −2/(x − 2)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{3\\ - \\ 5}{x\\ - \\ 2} = \\ - \\dfrac{2}{x\\ - \\ 2}",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -119,9 +124,15 @@
             "style": "indent",
             "added": true
           },
-          "∴ −2/(x − 2) = 2  ⇒  x − 2 = −2/2 = −1",
           {
-            "text": "(add 2 to both sides; check: (3 − 5)/(1 − 2) = −2/(−1) = 2)",
+            "text": "\\therefore \\ - \\dfrac{2}{x\\ - \\ 2} = \\ 2\\ \\Rightarrow \\ x\\ - \\ 2\\ = \\ - \\dfrac{2}{2} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{add}\\ 2\\ \\text{to}\\ \\text{both}\\ \\text{sides};\\ \\text{check}:\\ \\dfrac{3\\ - \\ 5}{1\\ - \\ 2} = \\ - \\dfrac{2}{ - 1} = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -159,7 +170,11 @@
         "lines_compact": [
           "But given slope m₂ = 2",
           "Now, m₁ = m₂",
-          "∴ −2/(x − 2) = 2  ⇒  x − 2 = −2/2 = −1",
+          {
+            "text": "\\therefore \\ - \\dfrac{2}{x\\ - \\ 2} = \\ 2\\ \\Rightarrow \\ x\\ - \\ 2\\ = \\ - \\dfrac{2}{2} = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "⇒ x = −1 + 2  ∴ x = 1",
             "style": "boxed"

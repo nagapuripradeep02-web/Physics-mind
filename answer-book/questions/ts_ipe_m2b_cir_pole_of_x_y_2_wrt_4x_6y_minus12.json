@@ -102,7 +102,11 @@
             "style": "indent",
             "added": true
           },
-          "(x₁ − 2)/1 = (y₁ + 3)/1 = (−2x₁ + 3y₁ − 12)/2 = k",
+          {
+            "text": "\\dfrac{x_{1}\\ - \\ 2}{1} = \\ \\dfrac{y_{1}\\ + \\ 3}{1} = \\ \\dfrac{ - 2x_{1}\\ + \\ 3y_{1}\\ - \\ 12}{2} = \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "From the first two ratios:",
             "added": true
@@ -117,7 +121,11 @@
         ],
         "lines_compact": [
           "This is the same line as x + y + 2 = 0, so",
-          "(x₁ − 2)/1 = (y₁ + 3)/1 = (−2x₁ + 3y₁ − 12)/2 = k",
+          {
+            "text": "\\dfrac{x_{1}\\ - \\ 2}{1} = \\ \\dfrac{y_{1}\\ + \\ 3}{1} = \\ \\dfrac{ - 2x_{1}\\ + \\ 3y_{1}\\ - \\ 12}{2} = \\ k",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ x₁ = k + 2, y₁ = k − 3",
           "and −2x₁ + 3y₁ − 12 = 2k"
         ]

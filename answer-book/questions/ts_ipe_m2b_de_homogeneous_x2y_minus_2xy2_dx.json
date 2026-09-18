@@ -71,17 +71,37 @@
           },
           "Given D.E is (x²y − 2xy²)dx = (x³ − 3x²y)dy",
           "Divide both sides by (x³ − 3x²y)dx:",
-          "⇒ dy/dx = (x²y − 2xy²)/(x³ − 3x²y) … (1)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x^{2}y\\ - \\ 2xy^{2}}{x^{3}\\ - \\ 3x^{2}y}\\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Every term top and bottom has degree 3, so",
           {
             "text": "  (1) is a homogeneous D.E.",
             "style": "indent"
           },
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx",
-          "= (vx³ − 2v²x³)/(x³ − 3vx³)",
+          {
+            "text": "\\text{Put}\\ y\\ = \\ vx\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{vx^{3}\\ - \\ 2v^{2}x^{3}}{x^{3}\\ - \\ 3vx^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "x³ cancels above and below:",
-          "= (v − 2v²)/(1 − 3v)"
+          {
+            "text": "= \\ \\dfrac{v\\ - \\ 2v^{2}}{1\\ - \\ 3v}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Every term of both the numerator and denominator has total degree 3 in x and y, so dividing every term by x³ after substituting y = vx leaves a function of v alone, confirming the homogeneous form.",
         "common_mistakes": [
@@ -102,8 +122,16 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = (v − 2v²)/(1 − 3v) − v",
-          "= [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{v\\ - \\ 2v^{2}}{1\\ - \\ 3v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{v\\ - \\ 2v^{2}\\ - \\ v\\left(1\\ - \\ 3v\\right)}{1\\ - \\ 3v} = \\ \\dfrac{v^{2}}{1\\ - \\ 3v}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "since v − 2v² − v + 3v² = v²",
             "added": true
@@ -112,7 +140,11 @@
             "text": "Separate v and x:",
             "added": true
           },
-          "⇒ (1 − 3v)/v² dv = dx/x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1\\ - \\ 3v}{v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing v as v(1 − 3v)/(1 − 3v) puts both terms over the same denominator, and expanding v − 2v² − v + 3v² leaves exactly v², which is what makes the equation separable.",
         "common_mistakes": [
@@ -120,9 +152,21 @@
           "Sign error turning v² into −v² in the final numerator."
         ],
         "lines_compact": [
-          "x·dv/dx = (v − 2v²)/(1 − 3v) − v",
-          "= [v − 2v² − v(1 − 3v)]/(1 − 3v) = v²/(1 − 3v)",
-          "⇒ (1 − 3v)/v² dv = dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{v\\ - \\ 2v^{2}}{1\\ - \\ 3v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{v\\ - \\ 2v^{2}\\ - \\ v\\left(1\\ - \\ 3v\\right)}{1\\ - \\ 3v} = \\ \\dfrac{v^{2}}{1\\ - \\ 3v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{1\\ - \\ 3v}{v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -135,15 +179,27 @@
         "memory_tip": "1/v² integrates to −1/v; 1/v integrates to log v — two different rules, so split first.",
         "lines": [
           {
-            "text": "Split (1 − 3v)/v² = 1/v² − 3/v:",
+            "text": "\\text{Split}\\ \\dfrac{1\\ - \\ 3v}{v^{2}} = \\ \\dfrac{1}{v^{2}} - \\ \\dfrac{3}{v}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∫ (1/v² − 3/v) dv = ∫ dx/x",
           {
-            "text": "∫dv/v² = −1/v and ∫dv/v = log v:",
+            "text": "\\int \\ \\left(\\dfrac{1}{v^{2}} - \\ \\dfrac{3}{v}\\right)dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\dfrac{dv}{v^{2}} = \\ - \\dfrac{1}{v}\\text{and}\\ \\int \\dfrac{dv}{v} = \\ \\log v:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ −1/v − 3 log v = log x + log c"
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{v} - \\ 3\\log v\\ = \\ \\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The fraction (1 − 3v)/v² splits into two separate standard integrals, ∫v⁻²dv = −1/v and −3∫(1/v)dv = −3 log v, which together match the right side's ∫dx/x = log x.",
         "common_mistakes": [
@@ -151,8 +207,16 @@
           "Losing the factor of 3 in front of log v."
         ],
         "lines_compact": [
-          "∫ (1/v² − 3/v) dv = ∫ dx/x",
-          "⇒ −1/v − 3 log v = log x + log c"
+          {
+            "text": "\\int \\ \\left(\\dfrac{1}{v^{2}} - \\ \\dfrac{3}{v}\\right)dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ - \\dfrac{1}{v} - \\ 3\\log v\\ = \\ \\log x\\ + \\ \\log c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -168,16 +232,34 @@
             "text": "Collect the logs on one side:",
             "added": true
           },
-          "⇒ log x + log c + 3 log v = −1/v",
+          {
+            "text": "\\Rightarrow \\ \\log x\\ + \\ \\log c\\ + \\ 3\\log v\\ = \\ - \\dfrac{1}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "3 log v = log v³, and the logs combine:",
             "added": true
           },
-          "⇒ log(cxv³) = −1/v",
-          "Put v = y/x:",
-          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y",
           {
-            "text": "(1/v = x/y, and x/x³ = 1/x²)",
+            "text": "\\Rightarrow \\ \\log \\left(cxv^{3}\\right)\\ = \\ - \\dfrac{1}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\log \\left(cx \\cdot \\dfrac{y^{3}}{x^{3}}\\right)\\ = \\ - \\dfrac{x}{y} \\Rightarrow \\ \\log \\left(\\dfrac{cy^{3}}{x^{2}}\\right)\\ = \\ - \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{v} = \\ \\dfrac{x}{y},\\ \\text{and}\\ \\dfrac{x}{x^{3}} = \\ \\dfrac{1}{x^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -187,10 +269,26 @@
           "Writing x/v³ instead of xv³ when combining the log terms."
         ],
         "lines_compact": [
-          "⇒ log x + log c + 3 log v = −1/v",
-          "⇒ log(cxv³) = −1/v",
-          "Put v = y/x:",
-          "log(cx·y³/x³) = −x/y ⇒ log(cy³/x²) = −x/y"
+          {
+            "text": "\\Rightarrow \\ \\log x\\ + \\ \\log c\\ + \\ 3\\log v\\ = \\ - \\dfrac{1}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\log \\left(cxv^{3}\\right)\\ = \\ - \\dfrac{1}{v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\log \\left(cx \\cdot \\dfrac{y^{3}}{x^{3}}\\right)\\ = \\ - \\dfrac{x}{y} \\Rightarrow \\ \\log \\left(\\dfrac{cy^{3}}{x^{2}}\\right)\\ = \\ - \\dfrac{x}{y}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -212,7 +310,9 @@
             "style": "normal"
           },
           {
-            "text": "Multiply both sides by x²/y³:",
+            "text": "\\text{Multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ \\dfrac{x^{2}}{y^{3}}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

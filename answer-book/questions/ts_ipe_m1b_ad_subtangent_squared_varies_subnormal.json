@@ -67,7 +67,11 @@
             "text": "  is 3(x + a)², by the chain rule)",
             "style": "indent"
           },
-          "b · 2y (dy/dx) = 3(x + a)²",
+          {
+            "text": "b\\ \\cdot \\ 2y\\left(\\dfrac{dy}{dx}\\right)\\ = \\ 3\\left(x\\ + \\ a\\right)^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(divide both sides by 2by)",
           "∴ m = dy/dx = 3(x + a)²/(2by)"
         ],
@@ -116,20 +120,31 @@
           },
           "Subtangent = y/m = y · 2by/(3(x + a)²)",
           {
-            "text": "  = 2by²/(3(x + a)²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{2by^{2}}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           {
             "text": "(write (x + a)³ in place of by²)",
             "added": true
           },
           "But by² = (x + a)³ from the curve itself, so",
-          "Subtangent = 2(x + a)³/(3(x + a)²)",
           {
-            "text": "((x + a)³/(x + a)² = x + a)",
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{2\\left(x\\ + \\ a\\right)^{3}}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\left(x\\ + \\ a\\right)^{3}}{\\left(x\\ + \\ a\\right)^{2}} = \\ x\\ + \\ a\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ Subtangent = 2(x + a)/3"
+          {
+            "text": "\\therefore \\ \\text{Subtangent}\\ = \\ \\dfrac{2\\left(x\\ + \\ a\\right)}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -164,12 +179,21 @@
         "lines_compact": [
           "Subtangent = y/m = y · 2by/(3(x + a)²)",
           {
-            "text": "  = 2by²/(3(x + a)²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{2by^{2}}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "indent",
+            "render": "katex"
           },
           "But by² = (x + a)³ from the curve itself, so",
-          "Subtangent = 2(x + a)³/(3(x + a)²)",
-          "∴ Subtangent = 2(x + a)/3"
+          {
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{2\\left(x\\ + \\ a\\right)^{3}}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Subtangent}\\ = \\ \\dfrac{2\\left(x\\ + \\ a\\right)}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -186,7 +210,11 @@
           },
           "Subnormal = ym = y · 3(x + a)²/(2by)",
           "The y cancels:",
-          "∴ Subnormal = 3(x + a)²/(2b)"
+          {
+            "text": "\\therefore \\ \\text{Subnormal}\\ = \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -221,7 +249,11 @@
         "lines_compact": [
           "Subnormal = ym = y · 3(x + a)²/(2by)",
           "The y cancels:",
-          "∴ Subnormal = 3(x + a)²/(2b)"
+          {
+            "text": "\\therefore \\ \\text{Subnormal}\\ = \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -236,7 +268,11 @@
             "text": "(square the subtangent from step 2: 2² = 4 and 3² = 9)",
             "added": true
           },
-          "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
+          {
+            "text": "\\left(\\text{Subtangent}\\right)^{2}\\ = \\ \\left(\\dfrac{2\\left(x\\ + \\ a\\right)}{3}\\right)^{2}\\ = \\ \\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide by the subnormal:",
           "(Subtangent)²/Subnormal",
           {
@@ -244,19 +280,27 @@
             "added": true
           },
           {
-            "text": "  = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
-            "style": "indent"
+            "text": "= \\ \\left[\\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}\\right]\\ \\div \\ \\left[\\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}\\right]",
+            "style": "indent",
+            "render": "katex"
           },
           {
-            "text": "((x + a)² cancels; (4 × 2b)/(9 × 3) = 8b/27)",
+            "text": "\\left(\\left(x\\ + \\ a\\right)^{2}\\ \\text{cancels};\\ \\dfrac{4\\ \\times \\ 2b}{9\\ \\times \\ 3} = \\ \\dfrac{8b}{27}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          {
+            "text": "= \\ \\left[\\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}\\right]\\ \\times \\ \\left[\\dfrac{2b}{3\\left(x\\ + \\ a\\right)^{2}}\\right]\\ = \\ \\dfrac{8b}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is free of x and y, so it is the same",
           "at every point of the curve.",
           {
-            "text": "∴ (Subtangent)² = (8b/27) × Subnormal,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\text{Subtangent}\\right)^{2}\\ = \\ \\left(\\dfrac{8b}{27}\\right)\\ \\times \\ \\text{Subnormal},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "a constant multiple —",
@@ -302,19 +346,29 @@
         ],
         "memory_tip": "Varies as means one is a fixed number times the other, so divide and check that every letter except the constants disappears.",
         "lines_compact": [
-          "(Subtangent)² = (2(x + a)/3)² = 4(x + a)²/9",
+          {
+            "text": "\\left(\\text{Subtangent}\\right)^{2}\\ = \\ \\left(\\dfrac{2\\left(x\\ + \\ a\\right)}{3}\\right)^{2}\\ = \\ \\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Divide by the subnormal:",
           "(Subtangent)²/Subnormal",
           {
-            "text": "  = [4(x + a)²/9] ÷ [3(x + a)²/(2b)]",
-            "style": "indent"
+            "text": "= \\ \\left[\\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}\\right]\\ \\div \\ \\left[\\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}\\right]",
+            "style": "indent",
+            "render": "katex"
           },
-          "= [4(x + a)²/9] × [2b/(3(x + a)²)] = 8b/27",
+          {
+            "text": "= \\ \\left[\\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}\\right]\\ \\times \\ \\left[\\dfrac{2b}{3\\left(x\\ + \\ a\\right)^{2}}\\right]\\ = \\ \\dfrac{8b}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
           "This is free of x and y, so it is the same",
           "at every point of the curve.",
           {
-            "text": "∴ (Subtangent)² = (8b/27) × Subnormal,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\text{Subtangent}\\right)^{2}\\ = \\ \\left(\\dfrac{8b}{27}\\right)\\ \\times \\ \\text{Subnormal},",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "a constant multiple —",

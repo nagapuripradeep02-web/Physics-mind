@@ -110,7 +110,11 @@
           "(i) f is continuous on the closed interval [a, b]",
           "(ii) f is differentiable on the open interval (a, b)",
           "Then there exists at least one c ∈ (a, b)",
-          "such that f′(c) = (f(b) − f(a))/(b − a).",
+          {
+            "text": "\\text{such}\\ \\text{that}\\ f'\\left(c\\right)\\ = \\ \\dfrac{f\\left(b\\right)\\ - \\ f\\left(a\\right)}{b\\ - \\ a}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((f(b) − f(a))/(b − a) is the slope of the chord",
             "added": true
@@ -175,7 +179,11 @@
           "(i) f is continuous on the closed interval [a, b]",
           "(ii) f is differentiable on the open interval (a, b)",
           "Then there exists at least one c ∈ (a, b)",
-          "such that f′(c) = (f(b) − f(a))/(b − a).",
+          {
+            "text": "\\text{such}\\ \\text{that}\\ f'\\left(c\\right)\\ = \\ \\dfrac{f\\left(b\\right)\\ - \\ f\\left(a\\right)}{b\\ - \\ a}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Geometrically: there is at least one point",
           "at which the tangent is parallel to the chord",
           "joining (a, f(a)) and (b, f(b)).",

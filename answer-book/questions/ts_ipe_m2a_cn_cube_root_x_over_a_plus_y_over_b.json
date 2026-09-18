@@ -216,7 +216,9 @@
             "added": true
           },
           {
-            "text": "Divide both sides by a: x/a = a² − 3b²",
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ a:\\ \\dfrac{x}{a} = \\ a^{2}\\ - \\ 3b^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -228,7 +230,9 @@
             "added": true
           },
           {
-            "text": "Divide both sides by b: y/b = 3a² − b²",
+            "text": "\\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ b:\\ \\dfrac{y}{b} = \\ 3a^{2}\\ - \\ b^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -264,13 +268,15 @@
         "lines_compact": [
           "Comparing real parts:",
           {
-            "text": "x = a³ − 3ab² = a(a² − 3b²) ⇒ x/a = a² − 3b²",
-            "style": "eq"
+            "text": "x\\ = \\ a^{3}\\ - \\ 3ab^{2}\\ = \\ a\\left(a^{2}\\ - \\ 3b^{2}\\right)\\ \\Rightarrow \\ \\dfrac{x}{a} = \\ a^{2}\\ - \\ 3b^{2}",
+            "style": "eq",
+            "render": "katex"
           },
           "Comparing imaginary parts:",
           {
-            "text": "y = 3a²b − b³ = b(3a² − b²) ⇒ y/b = 3a² − b²",
-            "style": "eq"
+            "text": "y\\ = \\ 3a^{2}b\\ - \\ b^{3}\\ = \\ b\\left(3a^{2}\\ - \\ b^{2}\\right)\\ \\Rightarrow \\ \\dfrac{y}{b} = \\ 3a^{2}\\ - \\ b^{2}",
+            "style": "eq",
+            "render": "katex"
           }
         ]
       },
@@ -287,15 +293,20 @@
             "text": "Adding the two results:",
             "added": true
           },
-          "x/a + y/b = (a² − 3b²) + (3a² − b²)",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ \\left(a^{2}\\ - \\ 3b^{2}\\right)\\ + \\ \\left(3a^{2}\\ - \\ b^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= a² + 3a² − 3b² − b²",
             "added": true
           },
           "= 4a² − 4b²",
           {
-            "text": "∴ x/a + y/b = 4(a² − b²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 4\\left(a^{2}\\ - \\ b^{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -325,11 +336,16 @@
           "Ending at 4a² − 4b² without taking out the 4 to match the form asked."
         ],
         "lines_compact": [
-          "x/a + y/b = (a² − 3b²) + (3a² − b²)",
+          {
+            "text": "\\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ \\left(a^{2}\\ - \\ 3b^{2}\\right)\\ + \\ \\left(3a^{2}\\ - \\ b^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 4a² − 4b²",
           {
-            "text": "∴ x/a + y/b = 4(a² − b²)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{x}{a} + \\ \\dfrac{y}{b} = \\ 4\\left(a^{2}\\ - \\ b^{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

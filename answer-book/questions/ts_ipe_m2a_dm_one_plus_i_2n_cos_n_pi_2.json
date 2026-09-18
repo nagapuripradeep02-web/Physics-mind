@@ -69,8 +69,16 @@
           "Write 1 + i in the modulus-amplitude form.",
           "Let 1 + i = x + iy, so x = 1 and y = 1",
           "r = √(x² + y²) = √(1 + 1) = √2",
-          "tan θ = y/x = 1/1 = 1",
-          "(1, 1) is in the first quadrant, so θ = π/4",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{1}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1,\\ 1\\right)\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{first}\\ \\text{quadrant},\\ \\text{so}\\ \\theta \\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ 1 + i = √2(cos π/4 + i sin π/4)"
         ],
         "recall": {
@@ -129,13 +137,21 @@
             "text": "(cos π/4 + i sin π/4)²ⁿ",
             "added": true
           },
-          "= cos(2n · π/4) + i sin(2n · π/4)",
           {
-            "text": "= cos(nπ/2) + i sin(nπ/2)",
+            "text": "= \\ \\cos \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)\\ + \\ i\\sin \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\cos \\left(\\dfrac{n\\pi }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ (1 + i)²ⁿ = 2ⁿ[cos(nπ/2) + i sin(nπ/2)] …(1)",
+            "text": "\\therefore \\ \\left(1\\ + \\ i\\right)^{2n}\\ = \\ 2^{n}\\left[\\cos \\left(\\dfrac{n\\pi }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\pi }{2}\\right)\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -170,9 +186,17 @@
         ],
         "lines_compact": [
           "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
-          "= (√2)²ⁿ [cos(2n · π/4) + i sin(2n · π/4)]",
+          {
+            "text": "= \\ \\left(\\sqrt{2}\\right)^{2n}\\left[\\cos \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)\\ + \\ i\\sin \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(by De Moivre's theorem)",
-          "= 2ⁿ [cos(nπ/2) + i sin(nπ/2)] …(1)"
+          {
+            "text": "= \\ 2^{n}\\left[\\cos \\left(\\dfrac{n\\pi }{2}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\pi }{2}\\right)\\right]\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -192,7 +216,11 @@
             "text": "expansion is the same with the sin term negative:",
             "added": true
           },
-          "(1 − i)²ⁿ = 2ⁿ[cos(nπ/2) − i sin(nπ/2)] …(2)"
+          {
+            "text": "\\left(1\\ - \\ i\\right)^{2n}\\ = \\ 2^{n}\\left[\\cos \\left(\\dfrac{n\\pi }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{n\\pi }{2}\\right)\\right]\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -224,7 +252,11 @@
         ],
         "lines_compact": [
           "Similarly,",
-          "(1 − i)²ⁿ = 2ⁿ [cos(nπ/2) − i sin(nπ/2)] …(2)"
+          {
+            "text": "\\left(1\\ - \\ i\\right)^{2n}\\ = \\ 2^{n}\\left[\\cos \\left(\\dfrac{n\\pi }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{n\\pi }{2}\\right)\\right]\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -240,14 +272,19 @@
             "text": "Adding (1) and (2), the i sin terms cancel:",
             "added": true
           },
-          "(1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ · 2cos(nπ/2)",
+          {
+            "text": "\\left(1\\ + \\ i\\right)^{2n}\\ + \\ \\left(1\\ - \\ i\\right)^{2n}\\ = \\ 2^{n}\\ \\cdot \\ 2\\cos \\left(\\dfrac{n\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "2ⁿ · 2 = 2ⁿ⁺¹",
             "added": true
           },
           {
-            "text": "∴ (1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ⁺¹ cos(nπ/2)",
+            "text": "\\therefore \\ \\left(1\\ + \\ i\\right)^{2n}\\ + \\ \\left(1\\ - \\ i\\right)^{2n}\\ = \\ 2^{n+1}\\cos \\left(\\dfrac{n\\pi }{2}\\right)",
             "style": "boxed",
+            "render": "katex",
             "added": true
           }
         ],
@@ -282,10 +319,15 @@
         ],
         "lines_compact": [
           "Adding (1) and (2):",
-          "(1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ · 2 cos(nπ/2)",
           {
-            "text": "= 2ⁿ⁺¹ cos(nπ/2)",
-            "style": "boxed"
+            "text": "\\left(1\\ + \\ i\\right)^{2n}\\ + \\ \\left(1\\ - \\ i\\right)^{2n}\\ = \\ 2^{n}\\ \\cdot \\ 2\\cos \\left(\\dfrac{n\\pi }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2^{n+1}\\cos \\left(\\dfrac{n\\pi }{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

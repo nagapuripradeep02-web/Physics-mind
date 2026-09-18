@@ -52,18 +52,38 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(θ = Tan⁻¹x lies in (−π/2, π/2))",
+          {
+            "text": "\\left(\\theta \\ = \\ \\operatorname{Tan}^{-1} x\\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{2},\\ \\dfrac{\\pi }{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put x = tan θ,  so θ = Tan⁻¹x",
-          "(the double angle formula tan 2θ = 2 tan θ/(1 − tan²θ))",
-          "2x/(1 − x²) = 2 tan θ/(1 − tan²θ) = tan 2θ",
+          {
+            "text": "\\left(\\text{the}\\ \\text{double}\\ \\text{angle}\\ \\text{formula}\\ \\tan 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta }\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{2x}{1\\ - \\ x^{2}} = \\ \\dfrac{2\\tan \\theta }{1\\ - \\ \\tan ^{2} \\theta } = \\ \\tan 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
           "(|x| < 1 gives −π/4 < θ < π/4, so 2θ lies in (−π/2, π/2),",
           {
             "text": "  the principal range of Tan⁻¹)",
             "style": "indent"
           },
           "∴ y = Tan⁻¹(tan 2θ) = 2θ = 2 Tan⁻¹x,  for |x| < 1",
-          "(d/dx(Tan⁻¹x) = 1/(1 + x²), multiplied by 2)",
-          "Differentiating once,  dy/dx = 2 · 1/(1 + x²) = 2/(1 + x²)"
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\left(\\operatorname{Tan}^{-1} x\\right)\\ = \\ \\dfrac{1}{1\\ + \\ x^{2}},\\ \\text{multiplied}\\ \\text{by}\\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Differentiating}\\ \\text{once},\\ \\dfrac{dy}{dx}\\ = \\ 2\\ \\cdot \\ \\dfrac{1}{1\\ + \\ x^{2}} = \\ \\dfrac{2}{1\\ + \\ x^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,13 +122,23 @@
         "margin_note": "Second mark. x ≠ ±1 because 2x/(1 − x²) is not defined there. Check the sign: y″ is 0 at x = 0, negative for x > 0 and positive for x < 0.",
         "memory_tip": "One power down, one minus sign from the power −1, and the inner 2x: (−1) × 2 × 2x gives −4x on top.",
         "lines": [
-          "Write the first derivative as a power:  dy/dx = 2(1 + x²)⁻¹",
+          {
+            "text": "\\text{Write}\\ \\text{the}\\ \\text{first}\\ \\text{derivative}\\ \\text{as}\\ a\\ \\text{power}:\\ \\dfrac{dy}{dx}\\ = \\ 2\\left(1\\ + \\ x^{2}\\right)^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate again by the chain rule:",
           {
-            "text": "(d/dx(1 + x²)⁻¹ = (−1)(1 + x²)⁻² · 2x)",
+            "text": "\\left(\\dfrac{d}{dx}\\left(1\\ + \\ x^{2}\\right)^{-1}\\ = \\ \\left( - 1\\right)\\left(1\\ + \\ x^{2}\\right)^{-2}\\ \\cdot \\ 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "d²y/dx² = 2 · (−1)(1 + x²)⁻² · 2x",
+          {
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ 2\\ \\cdot \\ \\left( - 1\\right)\\left(1\\ + \\ x^{2}\\right)^{-2}\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 · (−1) · 2x = −4x; for |x| > 1 y differs from 2 Tan⁻¹x",
             "added": true
@@ -119,8 +149,9 @@
             "added": true
           },
           {
-            "text": "∴ y″ = −4x/(1 + x²)²,  x ≠ ±1",
-            "style": "boxed"
+            "text": "\\therefore \\ y''\\ = \\ - \\dfrac{4x}{\\left(1\\ + \\ x^{2}\\right)^{2}},\\ x\\ \\ne \\ \\pm 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,12 +182,21 @@
           "Losing the minus sign that comes from the power −1."
         ],
         "lines_compact": [
-          "Write the first derivative as a power:  dy/dx = 2(1 + x²)⁻¹",
-          "Differentiate again by the chain rule:",
-          "d²y/dx² = 2 · (−1)(1 + x²)⁻² · 2x",
           {
-            "text": "∴ y″ = −4x/(1 + x²)²,  x ≠ ±1",
-            "style": "boxed"
+            "text": "\\text{Write}\\ \\text{the}\\ \\text{first}\\ \\text{derivative}\\ \\text{as}\\ a\\ \\text{power}:\\ \\dfrac{dy}{dx}\\ = \\ 2\\left(1\\ + \\ x^{2}\\right)^{-1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "Differentiate again by the chain rule:",
+          {
+            "text": "\\dfrac{d^{2}y}{dx^{2}}\\ = \\ 2\\ \\cdot \\ \\left( - 1\\right)\\left(1\\ + \\ x^{2}\\right)^{-2}\\ \\cdot \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ y''\\ = \\ - \\dfrac{4x}{\\left(1\\ + \\ x^{2}\\right)^{2}},\\ x\\ \\ne \\ \\pm 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

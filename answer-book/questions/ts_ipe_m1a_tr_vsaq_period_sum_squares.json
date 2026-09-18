@@ -76,8 +76,16 @@
           },
           "x + 4x + 9x + … + n²x = (1² + 2² + 3² + … + n²)x",
           "Use the sum of the first n squares:",
-          "= [n(n+1)(2n+1)/6] x",
-          "  [∵ 1² + 2² + … + n² = n(n+1)(2n+1)/6]"
+          {
+            "text": "= \\ \\left[\\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6}\\right]x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left[\\because \\ 1^{2}\\ + \\ 2^{2}\\ + \\ \\dots \\ + \\ n^{2}\\ = \\ \\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -120,14 +128,21 @@
             "text": "(tan repeats every π, not every 2π)",
             "added": true
           },
-          "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
           {
-            "text": "(k > 0, so |k| = k; and π ÷ (p/6) = 6π/p)",
+            "text": "\\text{Period}\\ \\text{of}\\ \\tan kx\\ = \\ \\dfrac{\\pi }{\\left|k\\right|},\\ \\text{with}\\ k\\ = \\ \\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(k\\ > \\ 0,\\ \\text{so}\\ \\left|k\\right|\\ = \\ k;\\ \\text{and}\\ \\pi \\ \\div \\ \\left(\\dfrac{p}{6}\\right)\\ = \\ \\dfrac{6\\pi }{p}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ Period = 6π / [n(n+1)(2n+1)]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{6\\pi }{n\\left(n + 1\\right)\\left(2n + 1\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,10 +172,15 @@
           "Using 2π instead of π, and getting 12π/[n(n+1)(2n+1)]."
         ],
         "lines_compact": [
-          "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
           {
-            "text": "∴ Period = 6π / [n(n+1)(2n+1)]",
-            "style": "boxed"
+            "text": "\\text{Period}\\ \\text{of}\\ \\tan kx\\ = \\ \\dfrac{\\pi }{\\left|k\\right|},\\ \\text{with}\\ k\\ = \\ \\dfrac{n\\left(n + 1\\right)\\left(2n + 1\\right)}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{6\\pi }{n\\left(n + 1\\right)\\left(2n + 1\\right)}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

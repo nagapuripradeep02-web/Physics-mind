@@ -72,7 +72,11 @@
           "edges from O are",
           "OA = a, OB = b, OC = c.",
           "For any pyramid,",
-          "Volume = (1/3) × base area × height."
+          {
+            "text": "\\text{Volume}\\ = \\ \\left(\\dfrac{1}{3}\\right)\\ \\times \\ \\text{base}\\ \\text{area}\\ \\times \\ \\text{height}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -125,7 +129,11 @@
           "The parallelogram with sides a and b has",
           "area |a × b|, and the triangle is half",
           "of that parallelogram, so",
-          "base area = (1/2)|a × b|"
+          {
+            "text": "\\text{base}\\ \\text{area}\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left|a\\ \\times \\ b\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,7 +168,11 @@
           "The parallelogram with sides a and b has",
           "area |a × b|, and the triangle is half",
           "of that parallelogram, so",
-          "base area = (1/2)|a × b|"
+          {
+            "text": "\\text{base}\\ \\text{area}\\ = \\ \\left(\\dfrac{1}{2}\\right)\\left|a\\ \\times \\ b\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -179,7 +191,11 @@
             "text": "(a vector divided by its length has length 1)",
             "added": true
           },
-          "(a × b)/|a × b|"
+          {
+            "text": "\\dfrac{a\\ \\times \\ b}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -212,7 +228,11 @@
           "a × b is at right angles to the base",
           "plane OAB, so the unit vector at right",
           "angles to the base is",
-          "(a × b)/|a × b|"
+          {
+            "text": "\\dfrac{a\\ \\times \\ b}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -230,7 +250,11 @@
           },
           "The height is the length of the",
           "projection of c on that unit vector:",
-          "h = |c·(a × b)| / |a × b|",
+          {
+            "text": "h\\ = \\ \\dfrac{\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The modulus is needed because a height",
           "is a length and cannot be negative."
         ],
@@ -264,7 +288,11 @@
         "lines_compact": [
           "The height is the length of the",
           "projection of c on that unit vector:",
-          "h = |c·(a × b)| / |a × b|",
+          {
+            "text": "h\\ = \\ \\dfrac{\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The modulus is needed because a height",
           "is a length and cannot be negative."
         ]
@@ -278,14 +306,28 @@
         "margin_note": "Seventh mark. Put the base area and the height into the pyramid formula. The factor |a × b| appears once on top and once underneath, so it cancels.",
         "memory_tip": "|a × b| appears on top and underneath, so it cancels and leaves one sixth.",
         "lines": [
-          "Volume = (1/3) × (1/2)|a × b| × h",
           {
-            "text": "(put h = |c·(a × b)|/|a × b|)",
+            "text": "\\text{Volume}\\ = \\ \\left(\\dfrac{1}{3}\\right)\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\left|a\\ \\times \\ b\\right|\\ \\times \\ h",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ h\\ = \\ \\dfrac{\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|}{\\left|a\\ \\times \\ b\\right|}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/6)|a × b| × |c·(a × b)|/|a × b|",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left|a\\ \\times \\ b\\right|\\ \\times \\ \\dfrac{\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The factor |a × b| cancels, leaving",
-          "Volume = (1/6)|c·(a × b)|"
+          {
+            "text": "\\text{Volume}\\ = \\ \\left(\\dfrac{1}{6}\\right)\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -315,10 +357,22 @@
           "Writing one third times one half as one fifth."
         ],
         "lines_compact": [
-          "Volume = (1/3) × (1/2)|a × b| × h",
-          "= (1/6)|a × b| × |c·(a × b)|/|a × b|",
+          {
+            "text": "\\text{Volume}\\ = \\ \\left(\\dfrac{1}{3}\\right)\\ \\times \\ \\left(\\dfrac{1}{2}\\right)\\left|a\\ \\times \\ b\\right|\\ \\times \\ h",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{6}\\right)\\left|a\\ \\times \\ b\\right|\\ \\times \\ \\dfrac{\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|}{\\left|a\\ \\times \\ b\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The factor |a × b| cancels, leaving",
-          "Volume = (1/6)|c·(a × b)|"
+          {
+            "text": "\\text{Volume}\\ = \\ \\left(\\dfrac{1}{6}\\right)\\left|c \\cdot \\left(a\\ \\times \\ b\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -334,8 +388,9 @@
           "because a scalar triple product does not",
           "change under a cyclic change of order.",
           {
-            "text": "∴ Volume = (1/6)|[a b c]|",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Volume}\\ = \\ \\left(\\dfrac{1}{6}\\right)\\left|\\left[abc\\right]\\right|",
+            "style": "boxed",
+            "render": "katex"
           },
           "The parallelepiped on the same three",
           "edges has volume |[a b c]|, so the",

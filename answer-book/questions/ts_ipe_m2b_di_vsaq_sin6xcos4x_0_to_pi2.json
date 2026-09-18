@@ -67,10 +67,22 @@
             "style": "normal"
           },
           "=",
-          "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
+          {
+            "text": "\\dfrac{\\left[\\left(m - 1\\right)\\left(m - 3\\right) \\cdot \\cdot \\cdot \\right]\\left[\\left(n - 1\\right)\\left(n - 3\\right) \\cdot \\cdot \\cdot \\right]}{\\left(m + n\\right)\\left(m + n - 2\\right) \\cdot \\cdot \\cdot }",
+            "style": "normal",
+            "render": "katex"
+          },
           "· K",
-          "K = π/2 if both m and n are even, else K = 1.",
-          "Here m=6 and n=4 are BOTH even, so K = π/2"
+          {
+            "text": "K\\ = \\ \\dfrac{\\pi }{2}\\text{if}\\ \\text{both}\\ m\\ \\text{and}\\ n\\ \\text{are}\\ \\text{even},\\ \\text{else}\\ K\\ = \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Here}\\ m = 6\\ \\text{and}\\ n = 4\\ \\text{are}\\ \\text{BOTH}\\ \\text{even},\\ \\text{so}\\ K\\ = \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Both powers 6 and 4 are even, so the trailing factor K in the mixed-power Walli formula is π/2 rather than 1 — this is the one case where the extra π/2 appears.",
         "common_mistakes": [
@@ -95,15 +107,26 @@
             "text": "Bottom: m + n = 10, so 10·8·6·4·2 = 3840",
             "added": true
           },
-          "= [(5)(3)(1)][(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
-          "= (15)(3)/3840 · π/2",
           {
-            "text": "45/3840 = 3/256, and (3/256)(π/2) = 3π/512",
+            "text": "= \\ \\dfrac{\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]\\left[\\left(3\\right)\\left(1\\right)\\right]}{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(15\\right)\\left(3\\right)}{3840} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{45}{3840} = \\ \\dfrac{3}{256},\\ \\text{and}\\ \\left(\\dfrac{3}{256}\\right)\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{3\\pi }{512}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ I = 3π/512",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{512}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The m=6 product descends as 5·3·1=15, the n=4 product descends as 3·1=3, and the combined (m+n)=10 product descends as 10·8·6·4·2=3840; multiplying gives 45/3840, and multiplying by π/2 gives 3π/512 after simplifying.",
@@ -112,11 +135,20 @@
           "Multiplying by π instead of π/2."
         ],
         "lines_compact": [
-          "= [(5)(3)(1)][(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
-          "= (15)(3)/3840 · π/2",
           {
-            "text": "∴ I = 3π/512",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\left[\\left(5\\right)\\left(3\\right)\\left(1\\right)\\right]\\left[\\left(3\\right)\\left(1\\right)\\right]}{\\left(10\\right)\\left(8\\right)\\left(6\\right)\\left(4\\right)\\left(2\\right)} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(15\\right)\\left(3\\right)}{3840} \\cdot \\ \\dfrac{\\pi }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\dfrac{3\\pi }{512}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

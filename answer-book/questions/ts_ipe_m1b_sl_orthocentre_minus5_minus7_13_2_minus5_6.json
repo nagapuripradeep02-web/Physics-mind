@@ -244,18 +244,36 @@
             "style": "indent",
             "added": true
           },
-          "Slope of BC is m = (6 − 2)/(−5 − 13) = 4/(−18) = −2/9",
           {
-            "text": "(−1 ÷ (−2/9) = −1 × (−9/2) = 9/2)",
+            "text": "\\text{Slope}\\ \\text{of}\\ BC\\ \\text{is}\\ m\\ = \\ \\dfrac{6\\ - \\ 2}{ - 5\\ - \\ 13} = \\ \\dfrac{4}{ - 18} = \\ - \\dfrac{2}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 1\\ \\div \\ \\left( - \\dfrac{2}{9}\\right)\\ = \\ - 1\\ \\times \\ \\left( - \\dfrac{9}{2}\\right)\\ = \\ \\dfrac{9}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Its perpendicular slope is −1/m = −1/(−2/9) = 9/2",
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - \\dfrac{2}{9}} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the point-slope form at A; multiply both sides by 2)",
             "added": true
           },
-          "Eq. of line through A(−5, −7) with slope 9/2 is",
-          "y + 7 = (9/2)(x + 5)   ⇒   2y + 14 = 9x + 45",
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 5,\\ - 7\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{9}{2}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 7\\ = \\ \\left(\\dfrac{9}{2}\\right)\\left(x\\ + \\ 5\\right)\\ \\Rightarrow \\ 2y\\ + \\ 14\\ = \\ 9x\\ + \\ 45",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take 2y + 14 to the right: 0 = 9x − 2y + 45 − 14)",
             "added": true
@@ -292,10 +310,26 @@
         "mark_note": "Method",
         "lines_compact": [
           "Step-1: Finding altitude through A(−5, −7):",
-          "Slope of BC is m = (6 − 2)/(−5 − 13) = 4/(−18) = −2/9",
-          "Its perpendicular slope is −1/m = −1/(−2/9) = 9/2",
-          "Eq. of line through A(−5, −7) with slope 9/2 is",
-          "y + 7 = (9/2)(x + 5)   ⇒   2y + 14 = 9x + 45",
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ BC\\ \\text{is}\\ m\\ = \\ \\dfrac{6\\ - \\ 2}{ - 5\\ - \\ 13} = \\ \\dfrac{4}{ - 18} = \\ - \\dfrac{2}{9}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - \\dfrac{2}{9}} = \\ \\dfrac{9}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "Eq.\\ \\text{of}\\ \\text{line}\\ \\text{through}\\ A\\left( - 5,\\ - 7\\right)\\ \\text{with}\\ \\text{slope}\\ \\dfrac{9}{2}\\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ + \\ 7\\ = \\ \\left(\\dfrac{9}{2}\\right)\\left(x\\ + \\ 5\\right)\\ \\Rightarrow \\ 2y\\ + \\ 14\\ = \\ 9x\\ + \\ 45",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 9x − 2y + 31 = 0  ……(1)"
         ]
       },
@@ -388,8 +422,9 @@
             "added": true
           },
           {
-            "text": "  from C(−5, 6) to O(−3, 2) has slope −4/2 = −2;",
+            "text": "\\text{from}\\ C\\left( - 5,\\ 6\\right)\\ \\text{to}\\ O\\left( - 3,\\ 2\\right)has\\ \\text{slope}\\ - \\dfrac{4}{2} = \\ - 2;",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {

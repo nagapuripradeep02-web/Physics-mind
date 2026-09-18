@@ -57,14 +57,38 @@
           "and B, so it lies on the perpendicular",
           "bisector of AB.",
           "(the midpoint formula)",
-          "Midpoint of AB = ((−5 + 3)/2, (6 + 2)/2)",
+          {
+            "text": "\\text{Midpoint}\\ \\text{of}\\ AB\\ = \\ \\left(\\dfrac{ - 5\\ + \\ 3}{2},\\ \\dfrac{6\\ + \\ 2}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(−5 + 3 = −2 and 6 + 2 = 8; halve each)",
           "= (−1, 4)",
-          "(2 − 6 = −4 and 3 − (−5) = 8; −4/8 = −1/2)",
-          "Slope of AB  m₁ = (2 − 6)/(3 + 5) = −1/2",
-          "(−1 ÷ (−1/2) = 2)",
-          "Perpendicular slope  m₂ = −1/m₁ = 2",
-          "Check:  m₁m₂ = (−1/2)(2) = −1",
+          {
+            "text": "\\left(2\\ - \\ 6\\ = \\ - 4\\ \\text{and}\\ 3\\ - \\ \\left( - 5\\right)\\ = \\ 8;\\ - \\dfrac{4}{8} = \\ - \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Slope}\\ \\text{of}\\ ABm_{1}\\ = \\ \\dfrac{2\\ - \\ 6}{3\\ + \\ 5} = \\ - \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left( - 1\\ \\div \\ \\left( - \\dfrac{1}{2}\\right)\\ = \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Perpendicular}\\ \\text{slope}\\ m_{2}\\ = \\ - \\dfrac{1}{m_{1}} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ m_{1}m_{2}\\ = \\ \\left( - \\dfrac{1}{2}\\right)\\left(2\\right)\\ = \\ - 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "Bisector through (−1, 4) with slope 2:",
           "y − 4 = 2(x + 1)",
           "(y − 4 = 2x + 2; take y − 4 to the right:",

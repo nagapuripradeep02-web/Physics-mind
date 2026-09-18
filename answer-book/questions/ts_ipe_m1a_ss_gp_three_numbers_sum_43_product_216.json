@@ -53,11 +53,27 @@
             "style": "heading"
           },
           "(three terms in G.P. with middle term a and ratio r)",
-          "Let the three numbers be  a/r,  a,  ar",
-          "(the r and the 1/r cancel; 6³ = 216)",
-          "Product:  (a/r)(a)(ar) = a³ = 216  ⇒  a = 6",
+          {
+            "text": "\\text{Let}\\ \\text{the}\\ \\text{three}\\ \\text{numbers}\\ \\text{be}\\ \\dfrac{a}{r},\\ a,\\ ar",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ r\\ \\text{and}\\ \\text{the}\\ \\dfrac{1}{r}\\text{cancel};\\ 6^{3}\\ = \\ 216\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Product}:\\ \\left(\\dfrac{a}{r}\\right)\\left(a\\right)\\left(ar\\right)\\ = \\ a^{3}\\ = \\ 216\\ \\Rightarrow \\ a\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take 6 from both sides)",
-          "Sum:  6/r + 6 + 6r = 43  ⇒  6/r + 6r = 37",
+          {
+            "text": "\\text{Sum}:\\ \\dfrac{6}{r} + \\ 6\\ + \\ 6r\\ = \\ 43\\ \\Rightarrow \\ \\dfrac{6}{r} + \\ 6r\\ = \\ 37",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply through by r:  6 + 6r² = 37r",
           "6r² − 37r + 6 = 0"
         ],
@@ -109,9 +125,21 @@
             "added": true
           },
           "6r(r − 6) − 1(r − 6) = 0  ⇒  (r − 6)(6r − 1) = 0",
-          "r = 6  or  r = 1/6",
-          "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
-          "r = 1/6 gives the same three numbers reversed: 36, 6, 1",
+          {
+            "text": "r\\ = \\ 6\\ \\text{or}\\ r\\ = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ 6\\ \\text{gives}\\ \\dfrac{6}{6},\\ 6,\\ 6\\left(6\\right)\\ = \\ 1,\\ 6,\\ 36",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ \\dfrac{1}{6}\\text{gives}\\ \\text{the}\\ \\text{same}\\ \\text{three}\\ \\text{numbers}\\ \\text{reversed}:\\ 36,\\ 6,\\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the numbers are 1, 6, 36",
             "style": "boxed"
@@ -151,9 +179,21 @@
         "lines_compact": [
           "6r² − 36r − r + 6 = 0",
           "6r(r − 6) − 1(r − 6) = 0  ⇒  (r − 6)(6r − 1) = 0",
-          "r = 6  or  r = 1/6",
-          "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
-          "r = 1/6 gives the same three numbers reversed: 36, 6, 1",
+          {
+            "text": "r\\ = \\ 6\\ \\text{or}\\ r\\ = \\ \\dfrac{1}{6}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ 6\\ \\text{gives}\\ \\dfrac{6}{6},\\ 6,\\ 6\\left(6\\right)\\ = \\ 1,\\ 6,\\ 36",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "r\\ = \\ \\dfrac{1}{6}\\text{gives}\\ \\text{the}\\ \\text{same}\\ \\text{three}\\ \\text{numbers}\\ \\text{reversed}:\\ 36,\\ 6,\\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the numbers are 1, 6, 36",
             "style": "boxed"

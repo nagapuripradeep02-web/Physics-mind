@@ -65,8 +65,16 @@
             "style": "heading"
           },
           "Equation of the normal at (x₁, y₁):",
-          "a²x/x₁ − b²y/y₁ = a² − b²",
-          "Let L = (ae, b²/a) be the end of the",
+          {
+            "text": "\\dfrac{a^{2}x}{x_{1}} - \\ \\dfrac{b^{2}y}{y_{1}} = \\ a^{2}\\ - \\ b^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Let}\\ L\\ = \\ \\left(ae,\\ \\dfrac{b^{2}}{a}\\right)\\ \\text{be}\\ \\text{the}\\ \\text{end}\\ \\text{of}\\ \\text{the}",
+            "style": "normal",
+            "render": "katex"
+          },
           "latus rectum",
           "(At x = ae: y² = b²(1 − e²) = b⁴/a², so y = b²/a,",
           {
@@ -74,10 +82,26 @@
             "style": "indent"
           },
           "Normal at L:",
-          "Put x₁ = ae and y₁ = b²/a:",
-          "a²x/(ae) − b²y/(b²/a) = a² − b²",
-          "(a²x/(ae) = ax/e and b²y ÷ (b²/a) = ay)",
-          "⇒ ax/e − ay = a² − b² …(1)"
+          {
+            "text": "\\text{Put}\\ x_{1}\\ = \\ ae\\ \\text{and}\\ y_{1}\\ = \\ \\dfrac{b^{2}}{a}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{a^{2}x}{ae} - \\ \\dfrac{b^{2}y}{\\dfrac{b^{2}}{a}} = \\ a^{2}\\ - \\ b^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{a^{2}x}{ae} = \\ \\dfrac{ax}{e}\\text{and}\\ b^{2}y\\ \\div \\ \\left(\\dfrac{b^{2}}{a}\\right)\\ = \\ ay\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{ax}{e} - \\ ay\\ = \\ a^{2}\\ - \\ b^{2}\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The general normal formula applies at any point on the ellipse, so substituting the specific point L directly gives the normal at the end of the latus rectum.",
         "common_mistakes": [
@@ -109,7 +133,11 @@
             "text": "Put x = 0 and y = −b in (1):",
             "added": true
           },
-          "a(0)/e − a(−b) = a² − b² ⇒ ab = a² − b²"
+          {
+            "text": "\\dfrac{a\\left(0\\right)}{e} - \\ a\\left( - b\\right)\\ = \\ a^{2}\\ - \\ b^{2}\\ \\Rightarrow \\ ab\\ = \\ a^{2}\\ - \\ b^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The condition 'the normal passes through one end of the minor axis' becomes an algebraic equation once the coordinates of that end are substituted into the normal's equation (1).",
         "common_mistakes": [
@@ -119,7 +147,11 @@
         "lines_compact": [
           "This normal passes through B′(0, −b),",
           "one end of the minor axis:",
-          "a(0)/e − a(−b) = a² − b² ⇒ ab = a² − b²"
+          {
+            "text": "\\dfrac{a\\left(0\\right)}{e} - \\ a\\left( - b\\right)\\ = \\ a^{2}\\ - \\ b^{2}\\ \\Rightarrow \\ ab\\ = \\ a^{2}\\ - \\ b^{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -173,12 +205,22 @@
             "text": "Divide both sides by a² (a ≠ 0):",
             "added": true
           },
-          "From ab = a²e²: e² = b/a",
           {
-            "text": "Square e² = b/a, and use b² = a²(1 − e²):",
+            "text": "\\text{From}\\ ab\\ = \\ a^{2}e^{2}:\\ e^{2}\\ = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Square}\\ e^{2}\\ = \\ \\dfrac{b}{a},\\ \\text{and}\\ \\text{use}\\ b^{2}\\ = \\ a^{2}\\left(1\\ - \\ e^{2}\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "e⁴ = b²/a² = a²(1 − e²)/a² = 1 − e²",
+          {
+            "text": "e^{4}\\ = \\ \\dfrac{b^{2}}{a^{2}} = \\ \\dfrac{a^{2}\\left(1\\ - \\ e^{2}\\right)}{a^{2}} = \\ 1\\ - \\ e^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the a² on top and bottom cancel)",
             "added": true
@@ -198,8 +240,16 @@
           "Stopping at e⁴ = 1 − e² without writing the final rearranged form e⁴ + e² = 1."
         ],
         "lines_compact": [
-          "From ab = a²e²: e² = b/a",
-          "e⁴ = b²/a² = a²(1 − e²)/a² = 1 − e²",
+          {
+            "text": "\\text{From}\\ ab\\ = \\ a^{2}e^{2}:\\ e^{2}\\ = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e^{4}\\ = \\ \\dfrac{b^{2}}{a^{2}} = \\ \\dfrac{a^{2}\\left(1\\ - \\ e^{2}\\right)}{a^{2}} = \\ 1\\ - \\ e^{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "e⁴ + e² = 1",
             "style": "boxed"

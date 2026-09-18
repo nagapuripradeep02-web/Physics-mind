@@ -106,9 +106,15 @@
             "text": "⁹C₅ = ⁹C₉₋₅ = ⁹C₄   [ⁿCᵣ = ⁿCₙ₋ᵣ]",
             "added": true
           },
-          "= (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
           {
-            "text": "= 3024/24",
+            "text": "= \\ \\dfrac{9\\ \\cdot \\ 8\\ \\cdot \\ 7\\ \\cdot \\ 6}{1\\ \\cdot \\ 2\\ \\cdot \\ 3\\ \\cdot \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3024}{24}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -143,7 +149,11 @@
           "Leaving the answer as ⁹C₅."
         ],
         "lines_compact": [
-          "⁹C₅ = ⁹C₄ = (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
+          {
+            "text": "{}^{9}C_{5}\\ = \\ {}^{9}C_{4}\\ = \\ \\dfrac{9\\ \\cdot \\ 8\\ \\cdot \\ 7\\ \\cdot \\ 6}{1\\ \\cdot \\ 2\\ \\cdot \\ 3\\ \\cdot \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 126",
             "style": "boxed"

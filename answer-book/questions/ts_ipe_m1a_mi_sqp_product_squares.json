@@ -63,9 +63,17 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The nth factor is (1 + (2n+1)/n²) = (n² + 2n + 1)/n²",
+          {
+            "text": "\\text{The}\\ \\text{nth}\\ \\text{factor}\\ \\text{is}\\ \\left(1\\ + \\ \\dfrac{2n + 1}{n^{2}}\\right)\\ = \\ \\dfrac{n^{2}\\ + \\ 2n\\ + \\ 1}{n^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(n² + 2n + 1 = (n + 1)²)",
-          "= (n+1)²/n²",
+          {
+            "text": "= \\ \\dfrac{\\left(n + 1\\right)^{2}}{n^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let S(n): (1 + 3/1)(1 + 5/4) … (1 + (2n+1)/n²) = (n+1)²"
         ],
         "recall": {
@@ -109,7 +117,11 @@
             "text": "(the left side has only the first factor)",
             "added": true
           },
-          "For n = 1: L.H.S = 1 + 3/1 = 4",
+          {
+            "text": "\\text{For}\\ n\\ = \\ 1:\\ L.H.S\\ = \\ 1\\ + \\ \\dfrac{3}{1} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           "R.H.S = (1+1)² = 2² = 4",
           "∴ S(1) is true."
         ],
@@ -141,7 +153,11 @@
         ],
         "memory_tip": "n = 1 gives the single factor 1 + 3/1 = 4, and (1 + 1)² = 4.",
         "lines_compact": [
-          "For n = 1: L.H.S = 1 + 3/1 = 4",
+          {
+            "text": "\\text{For}\\ n\\ = \\ 1:\\ L.H.S\\ = \\ 1\\ + \\ \\dfrac{3}{1} = \\ 4",
+            "style": "normal",
+            "render": "katex"
+          },
           "R.H.S = (1+1)² = 2² = 4",
           "∴ S(1) is true."
         ]
@@ -155,7 +171,11 @@
         "margin_note": "Second mark. The hypothesis, written as a numbered equation.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
-          "(1 + 3/1)(1 + 5/4) … (1 + (2k+1)/k²) = (k+1)²   …(1)"
+          {
+            "text": "\\left(1\\ + \\ \\dfrac{3}{1}\\right)\\left(1\\ + \\ \\dfrac{5}{4}\\right)\\ \\dots \\ \\left(1\\ + \\ \\dfrac{2k + 1}{k^{2}}\\right)\\ = \\ \\left(k + 1\\right)^{2}\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -197,9 +217,17 @@
             "text": "(put n = k + 1: (k + 1)² + 2(k + 1) + 1 = (k + 2)²)",
             "added": true
           },
-          "The (k+1)th factor is (1 + (2k+3)/(k+1)²) = (k+2)²/(k+1)²",
+          {
+            "text": "\\text{The}\\ \\left(k + 1\\right)th\\ \\text{factor}\\ \\text{is}\\ \\left(1\\ + \\ \\dfrac{2k + 3}{\\left(k + 1\\right)^{2}}\\right)\\ = \\ \\dfrac{\\left(k + 2\\right)^{2}}{\\left(k + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiplying both sides of (1) by it:",
-          "L.H.S = (k+1)² × (k+2)²/(k+1)²",
+          {
+            "text": "L.H.S\\ = \\ \\left(k + 1\\right)^{2}\\ \\times \\ \\dfrac{\\left(k + 2\\right)^{2}}{\\left(k + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the (k + 1)² cancels)",
             "added": true
@@ -236,9 +264,17 @@
         ],
         "memory_tip": "This is a PRODUCT, so MULTIPLY both sides by (k+2)²/(k+1)². The (k+1)² cancels exactly.",
         "lines_compact": [
-          "The (k+1)th factor is (1 + (2k+3)/(k+1)²) = (k+2)²/(k+1)²",
+          {
+            "text": "\\text{The}\\ \\left(k + 1\\right)th\\ \\text{factor}\\ \\text{is}\\ \\left(1\\ + \\ \\dfrac{2k + 3}{\\left(k + 1\\right)^{2}}\\right)\\ = \\ \\dfrac{\\left(k + 2\\right)^{2}}{\\left(k + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiplying both sides of (1) by it:",
-          "L.H.S = (k+1)² × (k+2)²/(k+1)²",
+          {
+            "text": "L.H.S\\ = \\ \\left(k + 1\\right)^{2}\\ \\times \\ \\dfrac{\\left(k + 2\\right)^{2}}{\\left(k + 1\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= (k+2)² = ((k+1) + 1)²",
           "∴ S(k+1) is true."
         ]

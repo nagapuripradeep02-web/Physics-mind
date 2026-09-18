@@ -100,7 +100,11 @@
         "margin_note": "Second mark. Maximum = (4ac − b²)/(4a) = (4(−5)(−7) − 4)/(−20) = 136/(−20) = −34/5. The maximum value is NEGATIVE: the whole expression is below the axis (a < 0 and b² − 4ac = 4 − 140 < 0), so its highest point is still negative. The maximum occurs at x = −b/2a = 1/5.",
         "memory_tip": "(4ac − b²)/(4a), with 4ac = +140. The maximum is NEGATIVE, −34/5 — do not 'correct' the sign.",
         "lines": [
-          "Maximum value = (4ac − b²)/(4a)",
+          {
+            "text": "\\text{Maximum}\\ \\text{value}\\ = \\ \\dfrac{4ac\\ - \\ b^{2}}{4a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "4ac = 4(−5)(−7) = 140",
             "added": true
@@ -114,16 +118,21 @@
             "added": true
           },
           {
-            "text": "= (140 − 4)/(−20)",
+            "text": "= \\ \\dfrac{140\\ - \\ 4}{ - 20}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 136/(−20) = −34/5",
+            "text": "= \\ \\dfrac{136}{ - 20} = \\ - \\dfrac{34}{5}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ maximum value = −34/5",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{maximum}\\ \\text{value}\\ = \\ - \\dfrac{34}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,12 +165,25 @@
           "Answering x = 1/5 (where the maximum occurs) instead of the maximum value."
         ],
         "lines_compact": [
-          "Maximum value = (4ac − b²)/(4a)",
-          "= (4(−5)(−7) − 2²)/(4(−5))",
-          "= (140 − 4)/(−20) = 136/(−20)",
           {
-            "text": "∴ maximum value = −34/5",
-            "style": "boxed"
+            "text": "\\text{Maximum}\\ \\text{value}\\ = \\ \\dfrac{4ac\\ - \\ b^{2}}{4a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4\\left( - 5\\right)\\left( - 7\\right)\\ - \\ 2^{2}}{4\\left( - 5\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{140\\ - \\ 4}{ - 20} = \\ \\dfrac{136}{ - 20}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{maximum}\\ \\text{value}\\ = \\ - \\dfrac{34}{5}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

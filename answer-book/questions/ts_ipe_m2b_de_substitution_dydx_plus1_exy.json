@@ -57,11 +57,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx + 1 = eˣ⁺ʸ … (1)",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ + \\ 1\\ = \\ e^{x+y}\\ \\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "x + y sits in the power, so substitute for it.",
-          "Put x + y = t. Then 1 + dy/dx = dt/dx",
+          {
+            "text": "\\text{Put}\\ x\\ + \\ y\\ = \\ t.\\ \\text{Then}\\ 1\\ + \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{dt}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(differentiating both sides with respect to x)",
-          "(1) ⇒ dt/dx = eᵗ"
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ \\dfrac{dt}{dx}\\ = \\ e^{t}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Setting t = x + y makes dt/dx equal to 1 + dy/dx by the chain rule, which is exactly the left-hand side of the given equation, so the whole equation collapses to a single separable equation in t and x alone.",
         "common_mistakes": [
@@ -82,7 +94,11 @@
             "text": "Separate t and x:",
             "added": true
           },
-          "⇒ dt/eᵗ = dx ⇒ e⁻ᵗ dt = dx",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dt}{e^{t}} = \\ dx\\ \\Rightarrow \\ e^{-t}dt\\ = \\ dx",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "and ∫e⁻ᵗ dt = −e⁻ᵗ:",
             "added": true
@@ -104,7 +120,11 @@
           "Dropping the minus sign on e⁻ᵗ when moving it across, writing e⁻⁽ˣ⁺ʸ⁾ = x + c instead of e⁻⁽ˣ⁺ʸ⁾ + x + c = 0."
         ],
         "lines_compact": [
-          "⇒ dt/eᵗ = dx ⇒ e⁻ᵗ dt = dx",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dt}{e^{t}} = \\ dx\\ \\Rightarrow \\ e^{-t}dt\\ = \\ dx",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ ∫e⁻ᵗ dt = ∫dx ⇒ −e⁻ᵗ = x + c",
           {
             "text": "\\therefore e^{-(x+y)} + x + c = 0",

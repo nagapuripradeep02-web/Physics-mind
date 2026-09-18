@@ -59,7 +59,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curve:  y = 2e⁻ˣ⁄³",
+          {
+            "text": "\\text{Given}\\ \\text{curve}:\\ y\\ = \\ \\dfrac{2e^{-x}}{^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Every point on the y-axis has x = 0.",
           "Put x = 0 in the curve:",
           "(e⁰ = 1)",
@@ -106,7 +110,11 @@
         "margin_note": "Second mark. The chain rule brings out the factor −1/3 from the exponent. Do not miss that factor.",
         "lines": [
           "Differentiate with respect to x.",
-          "The chain rule gives the factor −1/3 from the exponent:",
+          {
+            "text": "\\text{The}\\ \\text{chain}\\ \\text{rule}\\ \\text{gives}\\ \\text{the}\\ \\text{factor}\\ - \\dfrac{1}{3}\\text{from}\\ \\text{the}\\ \\text{exponent}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(d/dx of eᵘ is eᵘ · du/dx with u = −x/3,",
             "added": true
@@ -116,18 +124,36 @@
             "style": "indent",
             "added": true
           },
-          "dy/dx = 2 · e⁻ˣ⁄³ · (−1/3)",
           {
-            "text": "(2 × (−1/3) = −2/3)",
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2\\ \\cdot \\ \\dfrac{e^{-x}}{^{3}} \\cdot \\ \\left( - \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\times \\ \\left( - \\dfrac{1}{3}\\right)\\ = \\ - \\dfrac{2}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−2/3)e⁻ˣ⁄³",
+          {
+            "text": "= \\ \\dfrac{\\left( - \\dfrac{2}{3}\\right)e^{-x}}{^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put 0 in place of x: e⁰ = 1)",
             "added": true
           },
-          "At x = 0:   m = (−2/3)e⁰ = (−2/3)(1)",
-          "∴ m = −2/3"
+          {
+            "text": "\\text{At}\\ x\\ = \\ 0:\\ m\\ = \\ \\left( - \\dfrac{2}{3}\\right)e^{0}\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -161,11 +187,31 @@
         "memory_tip": "Differentiate the exponential as it stands, then multiply by the derivative of the exponent. Here the exponent −x/3 differentiates to −1/3.",
         "lines_compact": [
           "Differentiate with respect to x.",
-          "The chain rule gives the factor −1/3 from the exponent:",
-          "dy/dx = 2 · e⁻ˣ⁄³ · (−1/3)",
-          "= (−2/3)e⁻ˣ⁄³",
-          "At x = 0:   m = (−2/3)e⁰ = (−2/3)(1)",
-          "∴ m = −2/3"
+          {
+            "text": "\\text{The}\\ \\text{chain}\\ \\text{rule}\\ \\text{gives}\\ \\text{the}\\ \\text{factor}\\ - \\dfrac{1}{3}\\text{from}\\ \\text{the}\\ \\text{exponent}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ 2\\ \\cdot \\ \\dfrac{e^{-x}}{^{3}} \\cdot \\ \\left( - \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left( - \\dfrac{2}{3}\\right)e^{-x}}{^{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ x\\ = \\ 0:\\ m\\ = \\ \\left( - \\dfrac{2}{3}\\right)e^{0}\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ - \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -177,12 +223,22 @@
         "margin_note": "Third mark. x₁ = 0, so the bracket is just x. Multiply by 3 to clear the fraction before collecting the terms.",
         "lines": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
-          "Here (x₁, y₁) = (0, 2) and m = −2/3:",
           {
-            "text": "(put x₁ = 0, y₁ = 2 and m = −2/3)",
+            "text": "\\text{Here}\\ \\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(0,\\ 2\\right)\\ \\text{and}\\ m\\ = \\ - \\dfrac{2}{3}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ x_{1}\\ = \\ 0,\\ y_{1}\\ = \\ 2\\ \\text{and}\\ m\\ = \\ - \\dfrac{2}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − 2 = (−2/3)(x − 0)",
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 3)",
             "added": true
@@ -227,8 +283,16 @@
         "memory_tip": "When the point sits on the y-axis, x₁ = 0 and the bracket (x − x₁) is simply x.",
         "lines_compact": [
           "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
-          "Here (x₁, y₁) = (0, 2) and m = −2/3:",
-          "y − 2 = (−2/3)(x − 0)",
+          {
+            "text": "\\text{Here}\\ \\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(0,\\ 2\\right)\\ \\text{and}\\ m\\ = \\ - \\dfrac{2}{3}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left( - \\dfrac{2}{3}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "3(y − 2) = −2x",
           "3y − 6 = −2x",
           "∴ 2x + 3y − 6 = 0"
@@ -243,17 +307,29 @@
         "margin_note": "Fourth mark. m = −2/3 is negative, so −1/m is positive: 3/2, not −3/2. Check the boxed normal at (0, 2): 0 − 4 + 4 = 0.",
         "lines": [
           {
-            "text": "(−1 ÷ (−2/3) = −1 × (−3/2) = 3/2)",
+            "text": "\\left( - 1\\ \\div \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ - 1\\ \\times \\ \\left( - \\dfrac{3}{2}\\right)\\ = \\ \\dfrac{3}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1 ÷ (−2/3) = 3/2.",
           {
-            "text": "(the point-slope form with slope 3/2 at (0, 2))",
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - 1\\ \\div \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ \\dfrac{3}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{point} - \\text{slope}\\ \\text{form}\\ \\text{with}\\ \\text{slope}\\ \\dfrac{3}{2}\\text{at}\\ \\left(0,\\ 2\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y − 2 = (3/2)(x − 0)",
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left(\\dfrac{3}{2}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by 2)",
             "added": true
@@ -311,8 +387,16 @@
         "lines_compact": [
           "The normal is perpendicular to the tangent",
           "at the same point,",
-          "so its slope is −1/m = −1 ÷ (−2/3) = 3/2.",
-          "y − 2 = (3/2)(x − 0)",
+          {
+            "text": "\\text{so}\\ \\text{its}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - 1\\ \\div \\ \\left( - \\dfrac{2}{3}\\right)\\ = \\ \\dfrac{3}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ - \\ 2\\ = \\ \\left(\\dfrac{3}{2}\\right)\\left(x\\ - \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "2(y − 2) = 3x",
           "2y − 4 = 3x",
           {

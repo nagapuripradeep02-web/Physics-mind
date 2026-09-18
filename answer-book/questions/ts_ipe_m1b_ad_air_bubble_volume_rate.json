@@ -52,16 +52,28 @@
             "style": "heading"
           },
           "An air bubble is a sphere, so let r be its radius at time t.",
-          "Given: dr/dt = 1/2 cm/sec.  Asked: dV/dt when r = 1 cm.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{\\dfrac{1}{2}cm}{\\sec }.\\ \\text{Asked}:\\ \\dfrac{dV}{dt}\\ \\text{when}\\ r\\ = \\ 1cm.",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the formula for the volume of a sphere)",
-          "Volume of a sphere:  V = (4/3)πr³",
+          {
+            "text": "\\text{Volume}\\ \\text{of}\\ a\\ \\text{sphere}:\\ V\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi r^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate both sides with respect to time t:",
           "(chain rule: d/dt of r³ is 3r² · (dr/dt), because",
           {
             "text": "  r changes with t; then (4/3) × 3 = 4)",
             "style": "indent"
           },
-          "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ \\left(\\dfrac{4}{3}\\right)\\pi \\cdot 3r^{2} \\cdot \\left(\\dfrac{dr}{dt}\\right)\\ = \\ 4\\pi r^{2}\\left(\\dfrac{dr}{dt}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,12 +115,22 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Here the unknown dV/dt is already alone on the left, so this is a direct substitution with no rearranging. Keep the answer as 2π and write cm³/sec.",
         "lines": [
-          "Put r = 1 and dr/dt = 1/2:",
           {
-            "text": "(1² = 1, and 4π × 1/2 = 4π/2 = 2π)",
+            "text": "\\text{Put}\\ r\\ = \\ 1\\ \\text{and}\\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1^{2}\\ = \\ 1,\\ \\text{and}\\ 4\\pi \\ \\times \\ \\dfrac{1}{2} = \\ \\dfrac{4\\pi }{2} = \\ 2\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dV/dt = 4π(1²)(1/2) = 4π × 1/2 = 2π",
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ 4\\pi \\left(1^{2}\\right)\\left(\\dfrac{1}{2}\\right)\\ = \\ 4\\pi \\ \\times \\ \\dfrac{1}{2} = \\ 2\\pi",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(π ≈ 3.1416, so 2π ≈ 6.28; a volume per second",
             "added": true
@@ -119,8 +141,9 @@
             "added": true
           },
           {
-            "text": "∴ dV/dt = 2π cm³/sec ≈ 6.28 cm³/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dV}{dt}\\ = \\ \\dfrac{2\\pi cm^{3}}{\\sec } \\approx \\ \\dfrac{6.28cm^{3}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -154,11 +177,20 @@
         ],
         "memory_tip": "With r = 1 the factor r² is 1, so the answer is 4π × 1/2, which is 2π.",
         "lines_compact": [
-          "Put r = 1 and dr/dt = 1/2:",
-          "dV/dt = 4π(1²)(1/2) = 4π × 1/2 = 2π",
           {
-            "text": "∴ dV/dt = 2π cm³/sec ≈ 6.28 cm³/sec",
-            "style": "boxed"
+            "text": "\\text{Put}\\ r\\ = \\ 1\\ \\text{and}\\ \\dfrac{dr}{dt}\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dV}{dt}\\ = \\ 4\\pi \\left(1^{2}\\right)\\left(\\dfrac{1}{2}\\right)\\ = \\ 4\\pi \\ \\times \\ \\dfrac{1}{2} = \\ 2\\pi",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dV}{dt}\\ = \\ \\dfrac{2\\pi cm^{3}}{\\sec } \\approx \\ \\dfrac{6.28cm^{3}}{\\sec }",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

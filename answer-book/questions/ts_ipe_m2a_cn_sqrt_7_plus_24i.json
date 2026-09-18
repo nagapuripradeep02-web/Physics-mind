@@ -109,13 +109,21 @@
             "text": "Here b = 24, which is positive, and for b > 0",
             "added": true
           },
-          "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
           {
-            "text": "(r + a)/2 = (25 + 7)/2 = 32/2 = 16",
+            "text": "\\sqrt{a\\ + \\ ib}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{r\\ + \\ a}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{r\\ - \\ a}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{r\\ + \\ a}{2} = \\ \\dfrac{25\\ + \\ 7}{2} = \\ \\dfrac{32}{2} = \\ 16",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "(r − a)/2 = (25 − 7)/2 = 18/2 = 9",
+            "text": "\\dfrac{r\\ - \\ a}{2} = \\ \\dfrac{25\\ - \\ 7}{2} = \\ \\dfrac{18}{2} = \\ 9",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -166,12 +174,14 @@
         "lines_compact": [
           "For b > 0:",
           {
-            "text": "√(a + ib) = ±(√((r + a)/2) + i·√((r − a)/2))",
-            "style": "eq"
+            "text": "\\sqrt{a\\ + \\ ib}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{r\\ + \\ a}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{r\\ - \\ a}{2}}\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           {
-            "text": "√(7 + 24i) = ±(√((25 + 7)/2) + i·√((25 − 7)/2))",
-            "style": "eq"
+            "text": "\\sqrt{7\\ + \\ 24i}\\ = \\ \\pm \\left(\\sqrt{\\dfrac{25\\ + \\ 7}{2}}\\ + \\ i \\cdot \\sqrt{\\dfrac{25\\ - \\ 7}{2}}\\right)",
+            "style": "eq",
+            "render": "katex"
           },
           "= ±(√16 + i√9)",
           {

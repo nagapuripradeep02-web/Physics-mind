@@ -79,7 +79,11 @@
             "style": "indent"
           },
           "All four brackets must be positive for the logarithms",
-          "to exist, which holds for −1/7 < x < 1/6."
+          {
+            "text": "\\text{to}\\ \\text{exist},\\ \\text{which}\\ \\text{holds}\\ \\text{for}\\ - \\dfrac{1}{7} < \\ x\\ < \\ \\dfrac{1}{6}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,10 +148,15 @@
             "added": true
           },
           "Bringing each power down in front,",
-          "∴ log y = (2/3)log(1 − 2x) − (3/4)log(1 + 3x)",
           {
-            "text": "  − (5/6)log(1 − 6x) + (6/7)log(1 + 7x)      …(1)",
-            "style": "indent"
+            "text": "\\therefore \\ \\log y\\ = \\ \\left(\\dfrac{2}{3}\\right)\\log \\left(1\\ - \\ 2x\\right)\\ - \\ \\left(\\dfrac{3}{4}\\right)\\log \\left(1\\ + \\ 3x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left(\\dfrac{5}{6}\\right)\\log \\left(1\\ - \\ 6x\\right)\\ + \\ \\left(\\dfrac{6}{7}\\right)\\log \\left(1\\ + \\ 7x\\right)\\ \\dots \\left(1\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -187,10 +196,15 @@
             "style": "indent"
           },
           "Bringing each power down in front,",
-          "∴ log y = (2/3)log(1 − 2x) − (3/4)log(1 + 3x)",
           {
-            "text": "  − (5/6)log(1 − 6x) + (6/7)log(1 + 7x)      …(1)",
-            "style": "indent"
+            "text": "\\therefore \\ \\log y\\ = \\ \\left(\\dfrac{2}{3}\\right)\\log \\left(1\\ - \\ 2x\\right)\\ - \\ \\left(\\dfrac{3}{4}\\right)\\log \\left(1\\ + \\ 3x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left(\\dfrac{5}{6}\\right)\\log \\left(1\\ - \\ 6x\\right)\\ + \\ \\left(\\dfrac{6}{7}\\right)\\log \\left(1\\ + \\ 7x\\right)\\ \\dots \\left(1\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -214,10 +228,15 @@
           },
           "Differentiating (1) with respect to x,",
           "using the chain rule on each term,",
-          "(1/y)(dy/dx) = (2/3)·(−2)/(1 − 2x) − (3/4)·(3)/(1 + 3x)",
           {
-            "text": "  − (5/6)·(−6)/(1 − 6x) + (6/7)·(7)/(1 + 7x)  …(2)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{2}{3}\\right) \\cdot \\dfrac{ - 2}{1\\ - \\ 2x} - \\ \\left(\\dfrac{3}{4}\\right) \\cdot \\dfrac{3}{1\\ + \\ 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left(\\dfrac{5}{6}\\right) \\cdot \\dfrac{ - 6}{1\\ - \\ 6x} + \\ \\left(\\dfrac{6}{7}\\right) \\cdot \\dfrac{7}{1\\ + \\ 7x}\\dots \\left(2\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -252,10 +271,15 @@
         "lines_compact": [
           "Differentiating (1) with respect to x,",
           "using the chain rule on each term,",
-          "(1/y)(dy/dx) = (2/3)·(−2)/(1 − 2x) − (3/4)·(3)/(1 + 3x)",
           {
-            "text": "  − (5/6)·(−6)/(1 − 6x) + (6/7)·(7)/(1 + 7x)  …(2)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ \\left(\\dfrac{2}{3}\\right) \\cdot \\dfrac{ - 2}{1\\ - \\ 2x} - \\ \\left(\\dfrac{3}{4}\\right) \\cdot \\dfrac{3}{1\\ + \\ 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ \\left(\\dfrac{5}{6}\\right) \\cdot \\dfrac{ - 6}{1\\ - \\ 6x} + \\ \\left(\\dfrac{6}{7}\\right) \\cdot \\dfrac{7}{1\\ + \\ 7x}\\dots \\left(2\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },
@@ -269,15 +293,24 @@
         "memory_tip": "In the last two terms the fraction and the bracket derivative cancel exactly: 5/6 with 6, and 6/7 with 7. Only the first two stay as fractions.",
         "lines": [
           "Simplifying each coefficient,",
-          "(2/3)·(−2) = −4/3,   (3/4)·(3) = 9/4,",
-          "(5/6)·(−6) = −5,   (6/7)·(7) = 6",
+          {
+            "text": "\\left(\\dfrac{2}{3}\\right) \\cdot \\left( - 2\\right)\\ = \\ - \\dfrac{4}{3},\\ \\left(\\dfrac{3}{4}\\right) \\cdot \\left(3\\right)\\ = \\ \\dfrac{9}{4},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{6}\\right) \\cdot \\left( - 6\\right)\\ = \\ - 5,\\ \\left(\\dfrac{6}{7}\\right) \\cdot \\left(7\\right)\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((−4/3)/(1 − 2x) = −4/(3(1 − 2x)),",
             "added": true
           },
           {
-            "text": "  and (9/4)/(1 + 3x) = 9/(4(1 + 3x));",
+            "text": "\\text{and}\\ \\dfrac{\\dfrac{9}{4}}{1\\ + \\ 3x} = \\ \\dfrac{9}{4\\left(1\\ + \\ 3x\\right)};",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -285,10 +318,15 @@
             "style": "indent",
             "added": true
           },
-          "∴ (1/y)(dy/dx) = −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
           {
-            "text": "  + 5/(1 − 6x) + 6/(1 + 7x)      …(3)",
-            "style": "indent"
+            "text": "\\therefore \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ - \\dfrac{4}{3\\left(1\\ - \\ 2x\\right)} - \\ \\dfrac{9}{4\\left(1\\ + \\ 3x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{5}{1\\ - \\ 6x} + \\ \\dfrac{6}{1\\ + \\ 7x}\\dots \\left(3\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -322,12 +360,25 @@
         ],
         "lines_compact": [
           "Simplifying each coefficient,",
-          "(2/3)·(−2) = −4/3,   (3/4)·(3) = 9/4,",
-          "(5/6)·(−6) = −5,   (6/7)·(7) = 6",
-          "∴ (1/y)(dy/dx) = −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
           {
-            "text": "  + 5/(1 − 6x) + 6/(1 + 7x)      …(3)",
-            "style": "indent"
+            "text": "\\left(\\dfrac{2}{3}\\right) \\cdot \\left( - 2\\right)\\ = \\ - \\dfrac{4}{3},\\ \\left(\\dfrac{3}{4}\\right) \\cdot \\left(3\\right)\\ = \\ \\dfrac{9}{4},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{6}\\right) \\cdot \\left( - 6\\right)\\ = \\ - 5,\\ \\left(\\dfrac{6}{7}\\right) \\cdot \\left(7\\right)\\ = \\ 6",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\ = \\ - \\dfrac{4}{3\\left(1\\ - \\ 2x\\right)} - \\ \\dfrac{9}{4\\left(1\\ + \\ 3x\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\dfrac{5}{1\\ - \\ 6x} + \\ \\dfrac{6}{1\\ + \\ 7x}\\dots \\left(3\\right)",
+            "style": "indent",
+            "render": "katex"
           }
         ]
       },

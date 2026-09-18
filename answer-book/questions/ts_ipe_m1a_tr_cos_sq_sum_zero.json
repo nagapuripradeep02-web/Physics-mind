@@ -119,17 +119,31 @@
             "style": "indent",
             "added": true
           },
-          "cos²θ = (1 + cos2θ)/2",
+          {
+            "text": "\\cos ^{2} \\theta \\ = \\ \\dfrac{1\\ + \\ \\cos 2\\theta }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(from cos2θ = 2cos²θ − 1)",
             "added": true
           },
-          "= (1 + cos2A)/2 + (1 + cos2B)/2 + cos²C",
           {
-            "text": "Add the two halves: 1/2 + 1/2 = 1",
+            "text": "= \\ \\dfrac{1\\ + \\ \\cos 2A}{2} + \\ \\dfrac{1\\ + \\ \\cos 2B}{2} + \\ \\cos ^{2} C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Add}\\ \\text{the}\\ \\text{two}\\ \\text{halves}:\\ \\dfrac{1}{2} + \\ \\dfrac{1}{2} = \\ 1",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 1 + (cos2A + cos2B)/2 + cos²C"
+          {
+            "text": "= \\ 1\\ + \\ \\dfrac{\\cos 2A\\ + \\ \\cos 2B}{2} + \\ \\cos ^{2} C",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,9 +174,21 @@
         ],
         "lines_compact": [
           "L.H.S = cos²A + cos²B + cos²C",
-          "cos²θ = (1 + cos2θ)/2",
-          "= (1 + cos2A)/2 + (1 + cos2B)/2 + cos²C",
-          "= 1 + (cos2A + cos2B)/2 + cos²C"
+          {
+            "text": "\\cos ^{2} \\theta \\ = \\ \\dfrac{1\\ + \\ \\cos 2\\theta }{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ \\cos 2A}{2} + \\ \\dfrac{1\\ + \\ \\cos 2B}{2} + \\ \\cos ^{2} C",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 1\\ + \\ \\dfrac{\\cos 2A\\ + \\ \\cos 2B}{2} + \\ \\cos ^{2} C",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -179,13 +205,21 @@
             "added": true
           },
           "cos2A + cos2B = 2 cos(A+B) cos(A−B)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
-            "text": "((p+q)/2 = A + B and (p−q)/2 = A − B)",
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{p + q}{2} = \\ A\\ + \\ B\\ \\text{and}\\ \\dfrac{p - q}{2} = \\ A\\ - \\ B\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put this in, and halve it (2/2 = 1):",
+            "text": "\\text{Put}\\ \\text{this}\\ \\text{in},\\ \\text{and}\\ \\text{halve}\\ \\text{it}\\ \\left(\\dfrac{2}{2} = \\ 1\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 1 + cos(A+B) cos(A−B) + cos²C"
@@ -219,7 +253,11 @@
         ],
         "lines_compact": [
           "cos2A + cos2B = 2 cos(A+B) cos(A−B)",
-          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          {
+            "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 1 + cos(A+B) cos(A−B) + cos²C"
         ]
       },

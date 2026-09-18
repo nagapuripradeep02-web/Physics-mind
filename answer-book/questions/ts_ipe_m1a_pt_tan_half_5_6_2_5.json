@@ -51,12 +51,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "(half-angle formulas for tan(A/2) and tan(C/2))",
-          "tan(A/2) = √((s−b)(s−c)/(s(s−a)))",
-          "tan(C/2) = √((s−a)(s−b)/(s(s−c)))",
-          "(multiply: (s − c) and (s − a) cancel, leaving (s − b)²/s²)",
-          "∴ tan(A/2) tan(C/2) = √((s−b)²/s²)",
-          "= (s−b)/s   [∵ s > b, both are positive]"
+          {
+            "text": "\\left(\\text{half} - \\text{angle}\\ \\text{formulas}\\ \\text{for}\\ \\tan \\left(\\dfrac{A}{2}\\right)\\ \\text{and}\\ \\tan \\left(\\dfrac{C}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{A}{2}\\right)\\ = \\ \\sqrt{\\dfrac{\\left(s - b\\right)\\left(s - c\\right)}{s\\left(s - a\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{C}{2}\\right)\\ = \\ \\sqrt{\\dfrac{\\left(s - a\\right)\\left(s - b\\right)}{s\\left(s - c\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{multiply}:\\ \\left(s\\ - \\ c\\right)\\ \\text{and}\\ \\left(s\\ - \\ a\\right)\\ \\text{cancel},\\ \\text{leaving}\\ \\dfrac{\\left(s\\ - \\ b\\right)^{2}}{s^{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{C}{2}\\right)\\ = \\ \\sqrt{\\dfrac{\\left(s - b\\right)^{2}}{s^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{s - b}{s}\\left[\\because \\ s\\ > \\ b,\\ \\text{both}\\ \\text{are}\\ \\text{positive}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -95,7 +119,11 @@
         "margin_note": "One of the two marks. (5/6)(2/5) = 1/3, and clearing the fraction gives 3s − 3b = s, that is 2s = 3b.",
         "memory_tip": "(5/6)(2/5) = 1/3, so 3(s − b) = s and therefore 2s = 3b.",
         "lines": [
-          "(s−b)/s = (5/6)(2/5) = 10/30 = 1/3",
+          {
+            "text": "\\dfrac{s - b}{s} = \\ \\left(\\dfrac{5}{6}\\right)\\left(\\dfrac{2}{5}\\right)\\ = \\ \\dfrac{10}{30} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cross-multiply)",
             "added": true
@@ -135,7 +163,11 @@
           "Writing s − b = 1/3 instead of (s − b)/s = 1/3."
         ],
         "lines_compact": [
-          "(s−b)/s = (5/6)(2/5) = 10/30 = 1/3",
+          {
+            "text": "\\dfrac{s - b}{s} = \\ \\left(\\dfrac{5}{6}\\right)\\left(\\dfrac{2}{5}\\right)\\ = \\ \\dfrac{10}{30} = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 3(s − b) = s ⇒ 3s − 3b = s",
           "⇒ 2s = 3b"
         ]
@@ -148,29 +180,51 @@
         "margin_note": "No separate mark at this length. Because the three half angles add to 90°, the sum of the three pairwise products is 1, which fixes tan(B/2) = 20/37.",
         "memory_tip": "The three half angles add to 90°, so the sum of their pairwise tangent products is 1.",
         "lines": [
-          "Check: A/2 + B/2 + C/2 = 90°, so",
-          "tan(A/2)tan(B/2) + tan(B/2)tan(C/2)",
           {
-            "text": "+ tan(C/2)tan(A/2) = 1",
-            "style": "indent"
+            "text": "\\text{Check}:\\ \\dfrac{A}{2} + \\ \\dfrac{B}{2} + \\ \\dfrac{C}{2} = \\ 90^{\\circ},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "(put in the two known tangents; tan(A/2)tan(C/2) = 1/3)",
+            "text": "\\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{B}{2}\\right)\\ + \\ \\tan \\left(\\dfrac{B}{2}\\right)\\tan \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\tan \\left(\\dfrac{C}{2}\\right)\\tan \\left(\\dfrac{A}{2}\\right)\\ = \\ 1",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\text{in}\\ \\text{the}\\ \\text{two}\\ \\text{known}\\ \\text{tangents};\\ \\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{C}{2}\\right)\\ = \\ \\dfrac{1}{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
           {
-            "text": "(5/6 + 2/5 = 25/30 + 12/30 = 37/30)",
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\left(\\dfrac{5}{6} + \\ \\dfrac{2}{5}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{3} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{5}{6} + \\ \\dfrac{2}{5} = \\ \\dfrac{25}{30} + \\ \\dfrac{12}{30} = \\ \\dfrac{37}{30}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\left(\\dfrac{37}{30}\\right)\\ = \\ \\dfrac{2}{3} \\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\ = \\ \\dfrac{20}{37}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(sin θ = 2t/(1 + t²) with t = tan(θ/2) gives",
             "added": true
           },
           {
-            "text": "  sinA : sinB : sinC = 60/61 : 1480/1769 : 20/29,",
+            "text": "\\sin A\\ :\\ \\sin B\\ :\\ \\sin C\\ = \\ \\dfrac{60}{61}:\\ \\dfrac{1480}{1769}:\\ \\dfrac{20}{29},",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           {
@@ -209,14 +263,31 @@
           "Adding 5/6 and 2/5 as 7/11."
         ],
         "lines_compact": [
-          "Check: A/2 + B/2 + C/2 = 90°, so",
-          "tan(A/2)tan(B/2) + tan(B/2)tan(C/2)",
           {
-            "text": "+ tan(C/2)tan(A/2) = 1",
-            "style": "indent"
+            "text": "\\text{Check}:\\ \\dfrac{A}{2} + \\ \\dfrac{B}{2} + \\ \\dfrac{C}{2} = \\ 90^{\\circ},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
           },
-          "⇒ tan(B/2)(5/6 + 2/5) = 1 − 1/3 = 2/3",
-          "⇒ tan(B/2)(37/30) = 2/3 ⇒ tan(B/2) = 20/37",
+          {
+            "text": "\\tan \\left(\\dfrac{A}{2}\\right)\\tan \\left(\\dfrac{B}{2}\\right)\\ + \\ \\tan \\left(\\dfrac{B}{2}\\right)\\tan \\left(\\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\tan \\left(\\dfrac{C}{2}\\right)\\tan \\left(\\dfrac{A}{2}\\right)\\ = \\ 1",
+            "style": "indent",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\left(\\dfrac{5}{6} + \\ \\dfrac{2}{5}\\right)\\ = \\ 1\\ - \\ \\dfrac{1}{3} = \\ \\dfrac{2}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\left(\\dfrac{37}{30}\\right)\\ = \\ \\dfrac{2}{3} \\Rightarrow \\ \\tan \\left(\\dfrac{B}{2}\\right)\\ = \\ \\dfrac{20}{37}",
+            "style": "normal",
+            "render": "katex"
+          },
           "These three fix a : b : c = 87 : 74 : 61,",
           "and 87 + 61 = 2 × 74, so 87, 74, 61 are in A.P."
         ]

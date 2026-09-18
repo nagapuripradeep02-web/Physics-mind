@@ -66,11 +66,27 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let S = C₀ + C₁/2 + C₂/3 + … + Cₙ/(n + 1)",
+          {
+            "text": "\\text{Let}\\ S\\ = \\ C_{0}\\ + \\ \\dfrac{C_{1}}{2} + \\ \\dfrac{C_{2}}{3} + \\ \\dots \\ + \\ \\dfrac{C_{n}}{n\\ + \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here Cᵣ means ⁿCᵣ, so",
-          "S = ⁿC₀ + (1/2)ⁿC₁ + (1/3)ⁿC₂ + …",
-          "  + (1/(n + 1))ⁿCₙ",
-          "The r-th bracket is (1/(r + 1))ⁿCᵣ"
+          {
+            "text": "S\\ = \\ {}^{n}C_{0}\\ + \\ \\left(\\dfrac{1}{2}\\right){}^{n}C_{1}\\ + \\ \\left(\\dfrac{1}{3}\\right){}^{n}C_{2}\\ + \\ \\dots",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{1}{n\\ + \\ 1}\\right){}^{n}C_{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{r-th}\\ \\text{bracket}\\ \\text{is}\\ \\left(\\dfrac{1}{r\\ + \\ 1}\\right){}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,10 +127,20 @@
             "text": "Multiplying both sides by (n + 1):",
             "added": true
           },
-          "(n + 1)S = (n + 1)ⁿC₀ + ((n + 1)/2)ⁿC₁",
-          "  + ((n + 1)/3)ⁿC₂ + … + ((n + 1)/(n + 1))ⁿCₙ",
           {
-            "text": "Each term has the shape ((n + 1)/(r + 1))ⁿCᵣ",
+            "text": "\\left(n\\ + \\ 1\\right)S\\ = \\ \\left(n\\ + \\ 1\\right){}^{n}C_{0}\\ + \\ \\left(\\dfrac{n\\ + \\ 1}{2}\\right){}^{n}C_{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{3}\\right){}^{n}C_{2}\\ + \\ \\dots \\ + \\ \\left(\\dfrac{n\\ + \\ 1}{n\\ + \\ 1}\\right){}^{n}C_{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Each}\\ \\text{term}\\ has\\ \\text{the}\\ \\text{shape}\\ \\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right){}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -144,8 +170,16 @@
           "Writing the last factor as (n + 1)/n."
         ],
         "lines_compact": [
-          "(n + 1)S = ((n + 1)/1)ⁿC₀ + ((n + 1)/2)ⁿC₁",
-          "  + ((n + 1)/3)ⁿC₂ + … + ((n + 1)/(n + 1))ⁿCₙ"
+          {
+            "text": "\\left(n\\ + \\ 1\\right)S\\ = \\ \\left(\\dfrac{n\\ + \\ 1}{1}\\right){}^{n}C_{0}\\ + \\ \\left(\\dfrac{n\\ + \\ 1}{2}\\right){}^{n}C_{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "+ \\ \\left(\\dfrac{n\\ + \\ 1}{3}\\right){}^{n}C_{2}\\ + \\ \\dots \\ + \\ \\left(\\dfrac{n\\ + \\ 1}{n\\ + \\ 1}\\right){}^{n}C_{n}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -158,19 +192,27 @@
         "memory_tip": "((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁ — one row down, one index along. The sum now starts at ⁿ⁺¹C₁.",
         "lines": [
           {
-            "text": "Now ⁿCᵣ = n!/(r!(n − r)!)",
+            "text": "\\text{Now}\\ {}^{n}C_{r}\\ = \\ \\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "((n + 1)/(r + 1))ⁿCᵣ",
+            "text": "\\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right){}^{n}C_{r}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n + 1)·n!/((r + 1)·r!·(n − r)!)",
+            "text": "= \\ \\left(n\\ + \\ 1\\right) \\cdot \\dfrac{n!}{\\left(r\\ + \\ 1\\right) \\cdot r! \\cdot \\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= (n + 1)!/((r + 1)!(n − r)!)",
+            "text": "= \\ \\dfrac{\\left(n\\ + \\ 1\\right)!}{\\left(r\\ + \\ 1\\right)!\\left(n\\ - \\ r\\right)!}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -210,7 +252,11 @@
         ],
         "lines_compact": [
           "= ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + ⁿ⁺¹C₃ + … + ⁿ⁺¹Cₙ₊₁",
-          "  [((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁]"
+          {
+            "text": "\\left[\\left(\\dfrac{n\\ + \\ 1}{r\\ + \\ 1}\\right) \\cdot {}^{n}C_{r}\\ = \\ {}^{n+1}C_{r+1}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -251,8 +297,9 @@
             "added": true
           },
           {
-            "text": "∴ S = (2ⁿ⁺¹ − 1)/(n + 1)",
-            "style": "boxed"
+            "text": "\\therefore \\ S\\ = \\ \\dfrac{2^{n+1}\\ - \\ 1}{n\\ + \\ 1}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -285,8 +332,9 @@
           "= 2ⁿ⁺¹ − 1",
           "  [ⁿ⁺¹C₀ + ⁿ⁺¹C₁ + … + ⁿ⁺¹Cₙ₊₁ = 2ⁿ⁺¹]",
           {
-            "text": "∴ S = (2ⁿ⁺¹ − 1)/(n + 1)",
-            "style": "boxed"
+            "text": "\\therefore \\ S\\ = \\ \\dfrac{2^{n+1}\\ - \\ 1}{n\\ + \\ 1}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

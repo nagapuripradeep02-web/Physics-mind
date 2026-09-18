@@ -51,13 +51,25 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The derivative of logx is 1/x, and that",
+          {
+            "text": "\\text{The}\\ \\text{derivative}\\ \\text{of}\\ \\log x\\ \\text{is}\\ \\dfrac{1}{x},\\ \\text{and}\\ \\text{that}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  factor is already present:",
             "style": "indent"
           },
-          "Put logx = t ⇒ (1/x)dx = dt",
-          "I = ∫ dt/t"
+          {
+            "text": "\\text{Put}\\ \\log x\\ = \\ t\\ \\Rightarrow \\ \\left(\\dfrac{1}{x}\\right)dx\\ = \\ dt",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "I\\ = \\ \\int \\ \\dfrac{dt}{t}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "1/(x logx) dx splits naturally into (1/logx)·(dx/x), and the second factor is exactly dt once t=logx — leaving the most basic ∫dt/t form.",
         "common_mistakes": [
@@ -75,7 +87,9 @@
         "margin_note": "Solution",
         "lines": [
           {
-            "text": "∫dt/t = log|t| + c",
+            "text": "\\int \\dfrac{dt}{t} = \\ \\log \\left|t\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -83,8 +97,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ dx/(x logx) = log|logx| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{x\\log x} = \\ \\log \\left|\\log x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "∫dt/t = log|t| + c, and substituting t=logx back in gives the final answer in x, with the modulus bars kept since logx can be negative for 0<x<1.",
@@ -95,8 +110,9 @@
         "memory_tip": "Keep |·| on the final log — logx is negative for x between 0 and 1, so the bars are not optional here.",
         "lines_compact": [
           {
-            "text": "∴ ∫ dx/(x logx) = log|logx| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\dfrac{dx}{x\\log x} = \\ \\log \\left|\\log x\\right|\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -54,9 +54,21 @@
           },
           "Let x be the side of the square and A = x² its area.",
           "Here x = 3 cm and dx = 3.01 − 3 = 0.01 cm",
-          "(d/dx of x² is 2x)",
-          "A = x²   ⇒   dA/dx = 2x",
-          "(dA = (dA/dx) · dx)",
+          {
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ x^{2}\\ \\text{is}\\ 2x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "A\\ = \\ x^{2}\\ \\Rightarrow \\ \\dfrac{dA}{dx}\\ = \\ 2x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(dA\\ = \\ \\left(\\dfrac{dA}{dx}\\right)\\ \\cdot \\ dx\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ dA = 2x · dx"
         ],
         "recall": {

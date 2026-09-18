@@ -55,15 +55,43 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given curve:   y = b sin(x/a)",
+          {
+            "text": "\\text{Given}\\ \\text{curve}:\\ y\\ = \\ b\\sin \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Differentiate with respect to x.",
-          "(chain rule: d/dx of sin u is cos u · du/dx, u = x/a)",
-          "The angle x/a differentiates to 1/a:",
-          "dy/dx = b cos(x/a) · (1/a)",
-          "∴ m = dy/dx = (b/a) cos(x/a)",
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{dx}\\ \\text{of}\\ \\sin u\\ \\text{is}\\ \\cos u\\ \\cdot \\ \\dfrac{du}{dx},\\ u\\ = \\ \\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{angle}\\ \\dfrac{x}{a}\\text{differentiates}\\ \\text{to}\\ \\dfrac{1}{a}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ b\\cos \\left(\\dfrac{x}{a}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ m\\ = \\ \\dfrac{dy}{dx}\\ = \\ \\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the two standard lengths at a point (x, y))",
-          "At a point (x, y) with m = dy/dx:",
-          "subtangent = y/m   and   subnormal = y · m"
+          {
+            "text": "\\text{At}\\ a\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{with}\\ m\\ = \\ \\dfrac{dy}{dx}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{subtangent}\\ = \\ \\dfrac{y}{m}\\text{and}\\ \\text{subnormal}\\ = \\ y\\ \\cdot \\ m",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -106,26 +134,52 @@
         "margin_note": "Second mark. b cancels between numerator and denominator, and sin ÷ cos leaves a tangent. The a in the denominator of m moves up and multiplies.",
         "lines": [
           {
-            "text": "(y = b sin(x/a) and m = (b/a) cos(x/a))",
+            "text": "\\left(y\\ = \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\text{and}\\ m\\ = \\ \\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Length of the subtangent = y/m",
-          "= b sin(x/a) ÷ [(b/a) cos(x/a)]",
           {
-            "text": "(dividing by b/a is multiplying by a/b)",
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\div \\ \\left[\\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{b}{a}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{a}{b}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= b sin(x/a) · a / [b cos(x/a)]",
+          {
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\cdot \\ \\dfrac{a}{b\\cos \\left(\\dfrac{x}{a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(b cancels)",
             "added": true
           },
-          "= a · sin(x/a) / cos(x/a)",
           {
-            "text": "(sin/cos = tan)",
+            "text": "= \\ a\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{x}{a}\\right)}{\\cos \\left(\\dfrac{x}{a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin }{\\cos } = \\ \\tan \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ length of the subtangent = |a tan(x/a)|"
+          {
+            "text": "\\therefore \\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\left|a\\tan \\left(\\dfrac{x}{a}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -158,11 +212,31 @@
         ],
         "memory_tip": "Dividing by b/a is multiplying by a/b. The b's cancel and a is left in front of the tangent.",
         "lines_compact": [
-          "Length of the subtangent = y/m",
-          "= b sin(x/a) ÷ [(b/a) cos(x/a)]",
-          "= b sin(x/a) · a / [b cos(x/a)]",
-          "= a · sin(x/a) / cos(x/a)",
-          "∴ length of the subtangent = |a tan(x/a)|"
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{y}{m}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\div \\ \\left[\\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\cdot \\ \\dfrac{a}{b\\cos \\left(\\dfrac{x}{a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ a\\ \\cdot \\ \\dfrac{\\sin \\left(\\dfrac{x}{a}\\right)}{\\cos \\left(\\dfrac{x}{a}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\left|a\\tan \\left(\\dfrac{x}{a}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -178,18 +252,41 @@
             "added": true
           },
           "Length of the subnormal = y · m",
-          "= b sin(x/a) · (b/a) cos(x/a)",
           {
-            "text": "(b · (b/a) = b²/a)",
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\cdot \\ \\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(b\\ \\cdot \\ \\left(\\dfrac{b}{a}\\right)\\ = \\ \\dfrac{b^{2}}{a}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (b²/a) sin(x/a) cos(x/a)",
-          "Use  2 sin A cos A = sin 2A  with  A = x/a,",
-          "so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
-          "= (b²/a) · (1/2) sin(2x/a)",
           {
-            "text": "∴ Subtangent = |a tan(x/a)|",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{b^{2}}{a}\\right)\\sin \\left(\\dfrac{x}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Use}\\ 2\\sin A\\cos A\\ = \\ \\sin 2A\\ \\text{with}\\ A\\ = \\ \\dfrac{x}{a},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\sin \\left(\\dfrac{x}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\sin \\left(\\dfrac{2x}{a}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{b^{2}}{a}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{2}\\right)\\sin \\left(\\dfrac{2x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Subtangent}\\ = \\ \\left|a\\tan \\left(\\dfrac{x}{a}\\right)\\right|",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "Subnormal = |(b²/2a) sin(2x/a)|",
@@ -228,14 +325,35 @@
         "memory_tip": "sin A cos A is half of sin 2A. Whenever a sine and a cosine of the SAME angle multiply, that identity shortens the answer.",
         "lines_compact": [
           "Length of the subnormal = y · m",
-          "= b sin(x/a) · (b/a) cos(x/a)",
-          "= (b²/a) sin(x/a) cos(x/a)",
-          "Use  2 sin A cos A = sin 2A  with  A = x/a,",
-          "so sin(x/a)cos(x/a) = (1/2)sin(2x/a):",
-          "= (b²/a) · (1/2) sin(2x/a)",
           {
-            "text": "∴ Subtangent = |a tan(x/a)|",
-            "style": "boxed"
+            "text": "= \\ b\\sin \\left(\\dfrac{x}{a}\\right)\\ \\cdot \\ \\left(\\dfrac{b}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{b^{2}}{a}\\right)\\sin \\left(\\dfrac{x}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Use}\\ 2\\sin A\\cos A\\ = \\ \\sin 2A\\ \\text{with}\\ A\\ = \\ \\dfrac{x}{a},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{so}\\ \\sin \\left(\\dfrac{x}{a}\\right)\\cos \\left(\\dfrac{x}{a}\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\sin \\left(\\dfrac{2x}{a}\\right):",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{b^{2}}{a}\\right)\\ \\cdot \\ \\left(\\dfrac{1}{2}\\right)\\sin \\left(\\dfrac{2x}{a}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Subtangent}\\ = \\ \\left|a\\tan \\left(\\dfrac{x}{a}\\right)\\right|",
+            "style": "boxed",
+            "render": "katex"
           },
           {
             "text": "Subnormal = |(b²/2a) sin(2x/a)|",

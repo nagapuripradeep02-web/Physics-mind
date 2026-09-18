@@ -59,9 +59,21 @@
           "(compare with y² = 4ax)",
           "Every point of y² = 4ax is (at², 2at) for some t.",
           "Write the given point as (at², 2at)",
-          "= (1/2, 2) ⇒ 2at = 2 ⇒ at = 1 ⇒ t = 1/2",
-          "(a = 2, so 2t = 1 and t = 1/2)",
-          "Check: at² = 2 × 1/4 = 1/2, as given."
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2},\\ 2\\right)\\ \\Rightarrow \\ 2\\text{at}\\ = \\ 2\\ \\Rightarrow \\ \\text{at}\\ = \\ 1\\ \\Rightarrow \\ t\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(a\\ = \\ 2,\\ \\text{so}\\ 2t\\ = \\ 1\\ \\text{and}\\ t\\ = \\ \\dfrac{1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Check}:\\ at^{2}\\ = \\ 2\\ \\times \\ \\dfrac{1}{4} = \\ \\dfrac{1}{2},\\ \\text{as}\\ \\text{given}.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Matching the given point to the parametric form (at²,2at) is the fastest way to find its own parameter t, and here the second coordinate 2at = 2 gives t directly without even needing the first coordinate.",
         "common_mistakes": [
@@ -79,19 +91,37 @@
         "margin_note": "Second mark, for the other extremity using (a/t², −2a/t).",
         "lines": [
           "For a focal chord, if one end is (at², 2at),",
-          "the other end is (a/t², −2a/t).",
           {
-            "text": "(the ends of a focal chord have parameters t and −1/t)",
+            "text": "\\text{the}\\ \\text{other}\\ \\text{end}\\ \\text{is}\\ \\left(\\dfrac{a}{t^{2}},\\ - \\dfrac{2a}{t}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ \\text{ends}\\ \\text{of}\\ a\\ \\text{focal}\\ \\text{chord}\\ \\text{have}\\ \\text{parameters}\\ t\\ \\text{and}\\ - \\dfrac{1}{t}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Put a = 2 and t = 1/2:",
+            "text": "\\text{Put}\\ a\\ = \\ 2\\ \\text{and}\\ t\\ = \\ \\dfrac{1}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Other end = (2/(1/2)², −2(2)/(1/2))",
-          "= (2/(1/4), −4/(1/2)) = (8, −8)",
           {
-            "text": "(2 ÷ 1/4 = 2 × 4 = 8 and −4 ÷ 1/2 = −4 × 2 = −8)",
+            "text": "\\text{Other}\\ \\text{end}\\ = \\ \\left(\\dfrac{2}{\\left(\\dfrac{1}{2}\\right)^{2}},\\ - \\dfrac{2\\left(2\\right)}{\\dfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\dfrac{1}{4}},\\ - \\dfrac{4}{\\dfrac{1}{2}}\\right)\\ = \\ \\left(8,\\ - 8\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\div \\ \\dfrac{1}{4} = \\ 2\\ \\times \\ 4\\ = \\ 8\\ \\text{and}\\ - 4\\ \\div \\ \\dfrac{1}{2} = \\ - 4\\ \\times \\ 2\\ = \\ - 8\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -111,9 +141,21 @@
         "memory_tip": "A focal chord's two ends always have parameters t and −1/t — the sign flips, which is why the second coordinate's sign flips too.",
         "lines_compact": [
           "For a focal chord, if one end is (at², 2at),",
-          "the other end is (a/t², −2a/t).",
-          "Other end = (2/(1/2)², −2(2)/(1/2))",
-          "= (2/(1/4), −4/(1/2)) = (8, −8)",
+          {
+            "text": "\\text{the}\\ \\text{other}\\ \\text{end}\\ \\text{is}\\ \\left(\\dfrac{a}{t^{2}},\\ - \\dfrac{2a}{t}\\right).",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Other}\\ \\text{end}\\ = \\ \\left(\\dfrac{2}{\\left(\\dfrac{1}{2}\\right)^{2}},\\ - \\dfrac{2\\left(2\\right)}{\\dfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{\\dfrac{1}{4}},\\ - \\dfrac{4}{\\dfrac{1}{2}}\\right)\\ = \\ \\left(8,\\ - 8\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ the other extremity is (8, −8)",
             "style": "boxed"

@@ -77,8 +77,16 @@
             "style": "heading"
           },
           "Given hyperbola is x² − 4y² = 4",
-          "Divide by 4: x²/4 − y²/1 = 1",
-          "(x²/4 stays, and 4y²/4 = y²)",
+          {
+            "text": "\\text{Divide}\\ \\text{by}\\ 4:\\ \\dfrac{x^{2}}{4} - \\ \\dfrac{y^{2}}{1} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{x^{2}}{4}\\text{stays},\\ \\text{and}\\ \\dfrac{4y^{2}}{4} = \\ y^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here a² = 4, b² = 1. Centre C = (0, 0).",
           "The x² term is positive, so the transverse",
           {
@@ -102,19 +110,31 @@
         "memory_tip": "Hyperbola eccentricity ADDS a² and b² under the root — unlike an ellipse, which subtracts.",
         "lines": [
           {
-            "text": "For x²/a² − y²/b² = 1, b² = a²(e² − 1),",
+            "text": "\\text{For}\\ \\dfrac{x^{2}}{a^{2}} - \\ \\dfrac{y^{2}}{b^{2}} = \\ 1,\\ b^{2}\\ = \\ a^{2}\\left(e^{2}\\ - \\ 1\\right),",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  so e² = (a² + b²)/a²:",
+            "text": "\\text{so}\\ e^{2}\\ = \\ \\dfrac{a^{2}\\ + \\ b^{2}}{a^{2}}:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "e = √(a² + b²) / a",
-          "= √(4 + 1) / 2",
           {
-            "text": "e = √5 / 2",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{4\\ + \\ 1}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{5}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "For a hyperbola with the transverse axis along the x-axis, the eccentricity is the square root of a² + b², divided by a.",
@@ -123,11 +143,20 @@
           "Leaving a² in the denominator (e = √(a² + b²)/a²) instead of a = √(a²)."
         ],
         "lines_compact": [
-          "e = √(a² + b²) / a",
-          "= √(4 + 1) / 2",
           {
-            "text": "e = √5 / 2",
-            "style": "boxed"
+            "text": "e\\ = \\ \\dfrac{\\sqrt{a^{2}\\ + \\ b^{2}}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\sqrt{4\\ + \\ 1}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "e\\ = \\ \\dfrac{\\sqrt{5}}{2}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },
@@ -150,9 +179,15 @@
             "added": true
           },
           "Foci = (±ae, 0)",
-          "= (±2 · √5/2, 0)",
           {
-            "text": "(2 · √5/2 = √5)",
+            "text": "= \\ \\left( \\pm 2\\ \\cdot \\ \\dfrac{\\sqrt{5}}{2},\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\cdot \\ \\dfrac{\\sqrt{5}}{2} = \\ \\sqrt{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -167,7 +202,11 @@
         ],
         "lines_compact": [
           "Foci = (±ae, 0)",
-          "= (±2 · √5/2, 0)",
+          {
+            "text": "= \\ \\left( \\pm 2\\ \\cdot \\ \\dfrac{\\sqrt{5}}{2},\\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Foci = (±√5, 0)",
             "style": "boxed"
@@ -188,18 +227,31 @@
             "added": true
           },
           {
-            "text": "  distance a/e from the centre:",
+            "text": "\\text{distance}\\ \\dfrac{a}{e}\\text{from}\\ \\text{the}\\ \\text{centre}:",
             "style": "indent",
-            "added": true
-          },
-          "Equations of the directrices: x = ±a/e",
-          "= ±2 / (√5/2) = ±4/√5",
-          {
-            "text": "(2 ÷ √5/2 = 2 × 2/√5 = 4/√5)",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "Multiply x = ±4/√5 by √5 and move 4:",
+            "text": "\\text{Equations}\\ \\text{of}\\ \\text{the}\\ \\text{directrices}:\\ x\\ = \\ \\pm \\dfrac{a}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{2}{\\dfrac{\\sqrt{5}}{2}} = \\ \\pm \\dfrac{4}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\ \\div \\ \\dfrac{\\sqrt{5}}{2} = \\ 2\\ \\times \\ \\dfrac{2}{\\sqrt{5}} = \\ \\dfrac{4}{\\sqrt{5}}\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{Multiply}\\ x\\ = \\ \\pm \\dfrac{4}{\\sqrt{5}}\\text{by}\\ \\sqrt{5}\\ \\text{and}\\ \\text{move}\\ 4:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -213,8 +265,16 @@
           "Leaving an irrational number in the denominator instead of clearing it."
         ],
         "lines_compact": [
-          "Equations of the directrices: x = ±a/e",
-          "= ±2 / (√5/2) = ±4/√5",
+          {
+            "text": "\\text{Equations}\\ \\text{of}\\ \\text{the}\\ \\text{directrices}:\\ x\\ = \\ \\pm \\dfrac{a}{e}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\pm \\dfrac{2}{\\dfrac{\\sqrt{5}}{2}} = \\ \\pm \\dfrac{4}{\\sqrt{5}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "√5x − 4 = 0 and √5x + 4 = 0",
             "style": "boxed"
@@ -239,8 +299,16 @@
             "style": "indent",
             "added": true
           },
-          "Length of the latus rectum = 2b² / a",
-          "= 2(1) / 2",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2b^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 1",
             "style": "boxed"
@@ -252,8 +320,16 @@
           "Forgetting to double b² before dividing by a."
         ],
         "lines_compact": [
-          "Length of the latus rectum = 2b² / a",
-          "= 2(1) / 2",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{latus}\\ \\text{rectum}\\ = \\ \\dfrac{2b^{2}}{a}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(1\\right)}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 1",
             "style": "boxed"

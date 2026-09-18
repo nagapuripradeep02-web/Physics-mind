@@ -79,7 +79,11 @@
           "n = 8 is even, so there are two middle",
           "values, the 4th and the 5th, and the",
           "median is their average.",
-          "M = (10 + 12)/2 = 22/2",
+          {
+            "text": "M\\ = \\ \\dfrac{10\\ + \\ 12}{2} = \\ \\dfrac{22}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "∴ Median M = 11"
         ],
         "recall": {
@@ -137,10 +141,16 @@
             "added": true
           },
           {
-            "text": "= (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
+            "text": "= \\ \\dfrac{7\\ + \\ 5\\ + \\ 4\\ + \\ 1\\ + \\ 1\\ + \\ 1\\ + \\ 2\\ + \\ 5}{8}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 26/8 = 3.25",
+          {
+            "text": "= \\ \\dfrac{26}{8} = \\ 3.25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the median = 3.25",
             "style": "boxed"
@@ -178,7 +188,11 @@
         "lines_compact": [
           "|xᵢ − M| : 7, 5, 4, 1, 1, 1, 2, 5",
           "M.D. = Σ|xᵢ − M|/n = (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",
-          "= 26/8 = 3.25",
+          {
+            "text": "= \\ \\dfrac{26}{8} = \\ 3.25",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the median = 3.25",
             "style": "boxed"

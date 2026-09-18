@@ -116,7 +116,11 @@
             "text": "(divide by 4)",
             "added": true
           },
-          "∴ R.H.S = (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "\\therefore \\ R.H.S\\ = \\ \\dfrac{e^{x+y}\\ - \\ e^{-(x+y)}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= sinh(x + y) = L.H.S",
             "style": "boxed"
@@ -156,7 +160,11 @@
             "style": "indent"
           },
           "= 2eˣ⁺ʸ − 2e⁻⁽ˣ⁺ʸ⁾",
-          "∴ R.H.S = (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "\\therefore \\ R.H.S\\ = \\ \\dfrac{e^{x+y}\\ - \\ e^{-(x+y)}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= sinh(x + y) = L.H.S",
             "style": "boxed"

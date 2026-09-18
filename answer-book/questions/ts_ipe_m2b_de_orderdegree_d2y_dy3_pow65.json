@@ -79,8 +79,16 @@
             "render": "katex",
             "style": "normal"
           },
-          "Raising both sides to the power 5/6:",
-          "(6/5)·(5/6) = 1, so the bracket has no power:",
+          {
+            "text": "\\text{Raising}\\ \\text{both}\\ \\text{sides}\\ \\text{to}\\ \\text{the}\\ \\text{power}\\ \\dfrac{5}{6}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{6}{5}\\right) \\cdot \\left(\\dfrac{5}{6}\\right)\\ = \\ 1,\\ \\text{so}\\ \\text{the}\\ \\text{bracket}\\ has\\ \\text{no}\\ \\text{power}:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "d^{2}y/dx^{2} + (dy/dx)^{3} = (6y)^{5/6}",
             "render": "katex",
@@ -102,13 +110,23 @@
         "margin_note": "The last mark. Degree is read from the exponent of the HIGHEST order derivative only, never from a lower-order term.",
         "memory_tip": "Degree only ever looks at the highest-order derivative's own exponent — every other term in the equation is irrelevant to it.",
         "lines": [
-          "The highest order derivative present is d²y/dx²,",
+          {
+            "text": "\\text{The}\\ \\text{highest}\\ \\text{order}\\ \\text{derivative}\\ \\text{present}\\ \\text{is}\\ \\dfrac{d^{2}y}{dx^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the order is 2.",
-          "The exponent of d²y/dx² in the cleared",
+          {
+            "text": "\\text{The}\\ \\text{exponent}\\ \\text{of}\\ \\dfrac{d^{2}y}{dx^{2}}\\ \\text{in}\\ \\text{the}\\ \\text{cleared}",
+            "style": "normal",
+            "render": "katex"
+          },
           "equation is 1,",
           "so the degree is 1.",
           {
-            "text": "(the power 5/6 is on y, not on a derivative)",
+            "text": "\\left(\\text{the}\\ \\text{power}\\ \\dfrac{5}{6}\\text{is}\\ \\text{on}\\ y,\\ \\text{not}\\ \\text{on}\\ a\\ \\text{derivative}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -122,9 +140,17 @@
           "Reading the degree from the (dy/dx)³ term instead of from the highest-order derivative d²y/dx²."
         ],
         "lines_compact": [
-          "The highest order derivative present is d²y/dx²,",
+          {
+            "text": "\\text{The}\\ \\text{highest}\\ \\text{order}\\ \\text{derivative}\\ \\text{present}\\ \\text{is}\\ \\dfrac{d^{2}y}{dx^{2}},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the order is 2.",
-          "The exponent of d²y/dx² in the cleared",
+          {
+            "text": "\\text{The}\\ \\text{exponent}\\ \\text{of}\\ \\dfrac{d^{2}y}{dx^{2}}\\ \\text{in}\\ \\text{the}\\ \\text{cleared}",
+            "style": "normal",
+            "render": "katex"
+          },
           "equation is 1,",
           "so the degree is 1.",
           {

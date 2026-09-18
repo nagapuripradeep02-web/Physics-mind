@@ -61,7 +61,11 @@
           "Let −1 − i√3 = x + iy, so x = −1 and y = −√3",
           "The modulus-amplitude form is",
           "z = r(cos θ + i sin θ), where",
-          "r = √(x² + y²) and tan θ = y/x",
+          {
+            "text": "r\\ = \\ \\sqrt{x^{2}\\ + \\ y^{2}}\\ \\text{and}\\ \\tan \\theta \\ = \\ \\dfrac{y}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "r = √((−1)² + (−√3)²) = √(1 + 3)",
           "= √4 = 2"
         ],
@@ -101,7 +105,11 @@
         "margin_note": "Second mark. tan θ = √3, but (−1, −√3) is in the THIRD quadrant, so the principal amplitude is θ = −π + π/3 = −2π/3. Check: 2 cos(−2π/3) = −1 and 2 sin(−2π/3) = −√3.",
         "memory_tip": "tan θ = √3 also fits π/3. Both coordinates negative means the third quadrant: θ = −π + π/3 = −2π/3.",
         "lines": [
-          "tan θ = y/x = (−√3)/(−1) = √3",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - \\sqrt{3}}{ - 1} = \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The point (−1, −√3) lies in the third quadrant,",
           {
             "text": "where the amplitude is taken as",
@@ -111,12 +119,21 @@
             "text": "θ = −π + (the acute angle with tan = √3)",
             "added": true
           },
-          "= −π + π/3 = −2π/3",
           {
-            "text": "∴ −1 − i√3 = 2(cos(−2π/3) + i sin(−2π/3))",
-            "style": "boxed"
+            "text": "= \\ - \\pi \\ + \\ \\dfrac{\\pi }{3} = \\ - \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
           },
-          "= 2(cos(2π/3) − i sin(2π/3))"
+          {
+            "text": "\\therefore \\ - 1\\ - \\ i\\sqrt{3}\\ = \\ 2\\left(\\cos \\left( - \\dfrac{2\\pi }{3}\\right)\\ + \\ i\\sin \\left( - \\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left(\\cos \\left(\\dfrac{2\\pi }{3}\\right)\\ - \\ i\\sin \\left(\\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -148,13 +165,26 @@
           "Forgetting the r = 2."
         ],
         "lines_compact": [
-          "tan θ = y/x = (−√3)/(−1) = √3",
-          "(−1, −√3) lies in the third quadrant",
-          "⇒ θ = −π + π/3 = −2π/3",
-          "∴ −1 − i√3 = 2(cos(−2π/3) + i sin(−2π/3))",
           {
-            "text": "= 2(cos(2π/3) − i sin(2π/3))",
-            "style": "boxed"
+            "text": "\\tan \\theta \\ = \\ \\dfrac{y}{x} = \\ \\dfrac{ - \\sqrt{3}}{ - 1} = \\ \\sqrt{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          "(−1, −√3) lies in the third quadrant",
+          {
+            "text": "\\Rightarrow \\ \\theta \\ = \\ - \\pi \\ + \\ \\dfrac{\\pi }{3} = \\ - \\dfrac{2\\pi }{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ - 1\\ - \\ i\\sqrt{3}\\ = \\ 2\\left(\\cos \\left( - \\dfrac{2\\pi }{3}\\right)\\ + \\ i\\sin \\left( - \\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2\\left(\\cos \\left(\\dfrac{2\\pi }{3}\\right)\\ - \\ i\\sin \\left(\\dfrac{2\\pi }{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

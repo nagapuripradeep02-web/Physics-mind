@@ -69,7 +69,11 @@
           "a and b are constants, so aᵇ is a constant",
           "and its derivative is zero.",
           "(differentiate u + v = aᵇ with respect to x)",
-          "∴ du/dx + dv/dx = 0      …(1)",
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ + \\ \\dfrac{dv}{dx}\\ = \\ 0\\ \\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Each of u and v has x in the base and in the power,",
           "so take logarithms of u and of v separately.",
           "This needs x > 0 and y > 0."
@@ -129,17 +133,31 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = log x · (dy/dx) + y · (1/x)",
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by u = xʸ)",
             "added": true
           },
-          "du/dx = xʸ [ log x · (dy/dx) + y/x ]",
           {
-            "text": "(xʸ · y/x = y · xʸ/x = yxʸ⁻¹)",
+            "text": "\\dfrac{du}{dx}\\ = \\ x^{y}\\left[\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\dfrac{y}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x^{y}\\ \\cdot \\ \\dfrac{y}{x} = \\ y\\ \\cdot \\ \\dfrac{x^{y}}{x} = \\ yx^{y-1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ du/dx = xʸ log x · (dy/dx) + yxʸ⁻¹      …(2)"
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ x^{y}\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ yx^{y-1}\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -174,9 +192,21 @@
           "u = xʸ",
           "Taking logarithms,   log u = y log x",
           "Differentiating both sides with respect to x,",
-          "(1/u)(du/dx) = log x · (dy/dx) + y · (1/x)",
-          "du/dx = xʸ [ log x · (dy/dx) + y/x ]",
-          "∴ du/dx = xʸ log x · (dy/dx) + yxʸ⁻¹      …(2)"
+          {
+            "text": "\\left(\\dfrac{1}{u}\\right)\\left(\\dfrac{du}{dx}\\right)\\ = \\ \\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ y\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ x^{y}\\left[\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ \\dfrac{y}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{du}{dx}\\ = \\ x^{y}\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ yx^{y-1}\\ \\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -204,17 +234,31 @@
             "added": true
           },
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = 1 · log y + x · (1/y)(dy/dx)",
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ 1\\ \\cdot \\ \\log y\\ + \\ x\\ \\cdot \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by v = yˣ)",
             "added": true
           },
-          "dv/dx = yˣ [ log y + (x/y)(dy/dx) ]",
           {
-            "text": "(yˣ · x/y = x · yˣ/y = xyˣ⁻¹)",
+            "text": "\\dfrac{dv}{dx}\\ = \\ y^{x}\\left[\\log y\\ + \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y^{x}\\ \\cdot \\ \\dfrac{x}{y} = \\ x\\ \\cdot \\ \\dfrac{y^{x}}{y} = \\ xy^{x-1}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dv/dx = yˣ log y + xyˣ⁻¹ · (dy/dx)      …(3)"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ y^{x}\\log y\\ + \\ xy^{x-1}\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -249,9 +293,21 @@
           "v = yˣ",
           "Taking logarithms,   log v = x log y",
           "Differentiating both sides with respect to x,",
-          "(1/v)(dv/dx) = 1 · log y + x · (1/y)(dy/dx)",
-          "dv/dx = yˣ [ log y + (x/y)(dy/dx) ]",
-          "∴ dv/dx = yˣ log y + xyˣ⁻¹ · (dy/dx)      …(3)"
+          {
+            "text": "\\left(\\dfrac{1}{v}\\right)\\left(\\dfrac{dv}{dx}\\right)\\ = \\ 1\\ \\cdot \\ \\log y\\ + \\ x\\ \\cdot \\ \\left(\\dfrac{1}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dv}{dx}\\ = \\ y^{x}\\left[\\log y\\ + \\ \\left(\\dfrac{x}{y}\\right)\\left(\\dfrac{dy}{dx}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ y^{x}\\log y\\ + \\ xy^{x-1}\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ \\dots \\left(3\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -264,7 +320,11 @@
         "memory_tip": "Sort the four terms into two groups: the terms with dy/dx and the terms without. The first group forms the bracket; the second group moves to the other side and changes sign.",
         "lines": [
           "Adding (2) and (3) and using (1),",
-          "xʸ log x · (dy/dx) + yxʸ⁻¹ + yˣ log y + xyˣ⁻¹ · (dy/dx) = 0",
+          {
+            "text": "x^{y}\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ yx^{y-1}\\ + \\ y^{x}\\log y\\ + \\ xy^{x-1}\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(take out dy/dx from the first and last terms,",
             "added": true
@@ -279,8 +339,16 @@
             "style": "indent",
             "added": true
           },
-          "Collecting the dy/dx terms,",
-          "∴ (dy/dx)[xʸ log x + xyˣ⁻¹] = −[yxʸ⁻¹ + yˣ log y]      …(4)"
+          {
+            "text": "\\text{Collecting}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{dy}{dx}\\right)\\left[x^{y}\\log x\\ + \\ xy^{x-1}\\right]\\ = \\ - \\left[yx^{y-1}\\ + \\ y^{x}\\log y\\right]\\ \\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -313,9 +381,21 @@
         ],
         "lines_compact": [
           "Adding (2) and (3) and using (1),",
-          "xʸ log x · (dy/dx) + yxʸ⁻¹ + yˣ log y + xyˣ⁻¹ · (dy/dx) = 0",
-          "Collecting the dy/dx terms,",
-          "∴ (dy/dx)[xʸ log x + xyˣ⁻¹] = −[yxʸ⁻¹ + yˣ log y]      …(4)"
+          {
+            "text": "x^{y}\\log x\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ + \\ yx^{y-1}\\ + \\ y^{x}\\log y\\ + \\ xy^{x-1}\\ \\cdot \\ \\left(\\dfrac{dy}{dx}\\right)\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Collecting}\\ \\text{the}\\ \\dfrac{dy}{dx}\\ \\text{terms},",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(\\dfrac{dy}{dx}\\right)\\left[x^{y}\\log x\\ + \\ xy^{x-1}\\right]\\ = \\ - \\left[yx^{y-1}\\ + \\ y^{x}\\log y\\right]\\ \\dots \\left(4\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -329,8 +409,9 @@
         "lines": [
           "Dividing both sides of (4) by [xʸ log x + xyˣ⁻¹],",
           {
-            "text": "∴ dy/dx = −[(yxʸ⁻¹ + yˣ log y)/(xʸ log x + xyˣ⁻¹)]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\left[\\dfrac{yx^{y-1}\\ + \\ y^{x}\\log y}{x^{y}\\log x\\ + \\ xy^{x-1}}\\right]",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {

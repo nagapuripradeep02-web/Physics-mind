@@ -68,7 +68,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let x = (A−B)/2 and y = (A+B)/2.",
+          {
+            "text": "\\text{Let}\\ x\\ = \\ \\dfrac{A - B}{2}\\text{and}\\ y\\ = \\ \\dfrac{A + B}{2}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Here n is a positive integer.",
           "sinA − sinB ≠ 0 and cosA − cosB ≠ 0,",
           "so sin x ≠ 0, sin y ≠ 0 and cos y ≠ 0.",
@@ -119,14 +123,16 @@
             "added": true
           },
           {
-            "text": "  cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)",
+            "text": "\\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "cosA + cosB = 2 cos y cos x",
           {
-            "text": "  sin p − sin q = 2 cos((p+q)/2) sin((p−q)/2)",
+            "text": "\\sin p\\ - \\ \\sin q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\sin \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "sinA − sinB = 2 cos y sin x",
@@ -143,8 +149,16 @@
             "text": "Divide; 2 cos y cancels, since cos y ≠ 0:",
             "added": true
           },
-          "⇒ (cosA + cosB)/(sinA − sinB)",
-          "     = cos x / sin x = cot x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cos A\\ + \\ \\cos B}{\\sin A\\ - \\ \\sin B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos x}{\\sin x} = \\ \\cot x",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -176,8 +190,16 @@
         "lines_compact": [
           "cosA + cosB = 2 cos y cos x",
           "sinA − sinB = 2 cos y sin x",
-          "⇒ (cosA + cosB)/(sinA − sinB)",
-          "     = cos x / sin x = cot x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\cos A\\ + \\ \\cos B}{\\sin A\\ - \\ \\sin B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\cos x}{\\sin x} = \\ \\cot x",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -194,14 +216,16 @@
             "added": true
           },
           {
-            "text": "  sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)",
+            "text": "\\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "sinA + sinB = 2 sin y cos x",
           {
-            "text": "  cos p − cos q = −2 sin((p+q)/2) sin((p−q)/2)",
+            "text": "\\cos p\\ - \\ \\cos q\\ = \\ - 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\sin \\left(\\dfrac{p - q}{2}\\right)",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "cosA − cosB = −2 sin y sin x",
@@ -209,8 +233,16 @@
             "text": "Divide; 2 sin y cancels, since sin y ≠ 0:",
             "added": true
           },
-          "⇒ (sinA + sinB)/(cosA − cosB)",
-          "     = −cos x / sin x = −cot x",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sin A\\ + \\ \\sin B}{\\cos A\\ - \\ \\cos B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\cos x}{\\sin x} = \\ - \\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the minus sign stays in front)",
             "added": true
@@ -246,8 +278,16 @@
         "lines_compact": [
           "sinA + sinB = 2 sin y cos x",
           "cosA − cosB = −2 sin y sin x",
-          "⇒ (sinA + sinB)/(cosA − cosB)",
-          "     = −cos x / sin x = −cot x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sin A\\ + \\ \\sin B}{\\cos A\\ - \\ \\cos B}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\cos x}{\\sin x} = \\ - \\cot x",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -324,12 +364,15 @@
           },
           "L.H.S = [1 + 1] cotⁿ x = 2 cotⁿ x",
           {
-            "text": "Put back x = (A−B)/2:",
+            "text": "\\text{Put}\\ \\text{back}\\ x\\ = \\ \\dfrac{A - B}{2}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 2 cotⁿ((A−B)/2)",
-            "style": "boxed"
+            "text": "= \\ 2\\cot ^{n}\\left(\\dfrac{A - B}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -363,8 +406,9 @@
           "If n is even, (−1)ⁿ = 1.",
           "L.H.S = [1 + 1] cotⁿ x = 2 cotⁿ x",
           {
-            "text": "= 2 cotⁿ((A−B)/2)",
-            "style": "boxed"
+            "text": "= \\ 2\\cot ^{n}\\left(\\dfrac{A - B}{2}\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       },

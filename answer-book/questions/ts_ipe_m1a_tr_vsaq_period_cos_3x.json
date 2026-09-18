@@ -63,7 +63,11 @@
             "text": "  the period)",
             "style": "indent"
           },
-          "Period of cos(kx + l) = 2π/|k|",
+          {
+            "text": "\\text{Period}\\ \\text{of}\\ \\cos \\left(kx\\ + \\ l\\right)\\ = \\ \\dfrac{2\\pi }{\\left|k\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos repeats every 2π, and x has to grow by",
           {
             "text": "  2π/|k| for kx + l to grow by 2π)",
@@ -117,11 +121,14 @@
             "added": true
           },
           {
-            "text": "∴ Period = 2π/|3| = 2π/3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{2\\pi }{\\left|3\\right|} = \\ \\dfrac{2\\pi }{3}",
+            "style": "boxed",
+            "render": "katex"
           },
           {
-            "text": "Check: cos(3(x + 2π/3) + 5) = cos(3x + 5 + 2π)",
+            "text": "\\text{Check}:\\ \\cos \\left(3\\left(x\\ + \\ \\dfrac{2\\pi }{3}\\right)\\ + \\ 5\\right)\\ = \\ \\cos \\left(3x\\ + \\ 5\\ + \\ 2\\pi \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -159,8 +166,9 @@
         "lines_compact": [
           "Here k = 3",
           {
-            "text": "∴ Period = 2π/|3| = 2π/3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Period}\\ = \\ \\dfrac{2\\pi }{\\left|3\\right|} = \\ \\dfrac{2\\pi }{3}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

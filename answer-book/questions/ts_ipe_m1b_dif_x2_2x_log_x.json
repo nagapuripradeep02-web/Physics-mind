@@ -54,11 +54,23 @@
           },
           "f(x) = x² · 2ˣ · log x, for x > 0",
           "Take u = x²,  v = 2ˣ,  w = log x",
-          "(the power rule d/dx(xⁿ) = nxⁿ⁻¹)",
+          {
+            "text": "\\left(\\text{the}\\ \\text{power}\\ \\text{rule}\\ \\dfrac{d}{dx}\\left(x^{n}\\right)\\ = \\ nx^{n-1}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "u′ = 2x",
-          "v′ = 2ˣ log 2   [since d/dx(aˣ) = aˣ log a]",
+          {
+            "text": "v'\\ = \\ 2^{x}\\log 2\\left[\\sin ce\\dfrac{d}{dx}\\left(a^{x}\\right)\\ = \\ a^{x}\\log a\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(the standard derivative of log x, for x > 0)",
-          "w′ = 1/x"
+          {
+            "text": "w'\\ = \\ \\dfrac{1}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,9 +123,15 @@
             "style": "indent",
             "added": true
           },
-          "= (2x)(2ˣ)(log x) + (x²)(2ˣ log 2)(log x) + (x²)(2ˣ)(1/x)",
           {
-            "text": "(x² · (1/x) = x)",
+            "text": "= \\ \\left(2x\\right)\\left(2^{x}\\right)\\left(\\log x\\right)\\ + \\ \\left(x^{2}\\right)\\left(2^{x}\\log 2\\right)\\left(\\log x\\right)\\ + \\ \\left(x^{2}\\right)\\left(2^{x}\\right)\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x^{2}\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 2x·2ˣ log x + x²·2ˣ (log 2)(log x) + x·2ˣ",
@@ -166,7 +184,11 @@
         ],
         "lines_compact": [
           "f′(x) = u′vw + uv′w + uvw′",
-          "= (2x)(2ˣ)(log x) + (x²)(2ˣ log 2)(log x) + (x²)(2ˣ)(1/x)",
+          {
+            "text": "= \\ \\left(2x\\right)\\left(2^{x}\\right)\\left(\\log x\\right)\\ + \\ \\left(x^{2}\\right)\\left(2^{x}\\log 2\\right)\\left(\\log x\\right)\\ + \\ \\left(x^{2}\\right)\\left(2^{x}\\right)\\left(\\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2x·2ˣ log x + x²·2ˣ (log 2)(log x) + x·2ˣ",
           "Take x2ˣ common from all three terms:",
           {

@@ -52,14 +52,42 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "f(x) = (x + 1)/(x − 1), x ≠ ±1",
-          "(fof)(x) = f[f(x)] = (f(x) + 1)/(f(x) − 1)",
-          "(1 = (x − 1)/(x − 1); (x + 1) + (x − 1) = 2x)",
-          "Numerator: (x + 1)/(x − 1) + 1 = 2x/(x − 1)",
+          {
+            "text": "f\\left(x\\right)\\ = \\ \\dfrac{x\\ + \\ 1}{x\\ - \\ 1},\\ x\\ \\ne \\ \\pm 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(fof\\right)\\left(x\\right)\\ = \\ f\\left[f\\left(x\\right)\\right]\\ = \\ \\dfrac{f\\left(x\\right)\\ + \\ 1}{f\\left(x\\right)\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ = \\ \\dfrac{x\\ - \\ 1}{x\\ - \\ 1};\\ \\left(x\\ + \\ 1\\right)\\ + \\ \\left(x\\ - \\ 1\\right)\\ = \\ 2x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Numerator}:\\ \\dfrac{x\\ + \\ 1}{x\\ - \\ 1} + \\ 1\\ = \\ \\dfrac{2x}{x\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           "((x + 1) − (x − 1) = 2)",
-          "Denominator: (x + 1)/(x − 1) − 1 = 2/(x − 1)",
-          "(dividing by 2/(x − 1) is multiplying by (x − 1)/2)",
-          "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x",
+          {
+            "text": "\\text{Denominator}:\\ \\dfrac{x\\ + \\ 1}{x\\ - \\ 1} - \\ 1\\ = \\ \\dfrac{2}{x\\ - \\ 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{2}{x\\ - \\ 1}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{x\\ - \\ 1}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\left(fof\\right)\\left(x\\right)\\ = \\ \\dfrac{2x}{x\\ - \\ 1} \\times \\ \\dfrac{x\\ - \\ 1}{2} = \\ x",
+            "style": "normal",
+            "render": "katex"
+          },
           "(f(0) = −1 is outside the domain, so fof also needs x ≠ 0)"
         ],
         "recall": {
@@ -104,11 +132,21 @@
           "Inside: (fof)(x) = x",
           "So (fofofof)(x) = (fof)(x) = x",
           {
-            "text": "(f(5) = 6/4 = 3/2 and f(3/2) = (5/2)/(1/2) = 5)",
+            "text": "\\left(f\\left(5\\right)\\ = \\ \\dfrac{6}{4} = \\ \\dfrac{3}{2}\\text{and}\\ f\\left(\\dfrac{3}{2}\\right)\\ = \\ \\dfrac{\\dfrac{5}{2}}{\\dfrac{1}{2}} = \\ 5\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Check at x = 5: f(5) = 3/2, f(3/2) = 5,",
-          "then again 3/2 and 5, which is x.",
+          {
+            "text": "\\text{Check}\\ \\text{at}\\ x\\ = \\ 5:\\ f\\left(5\\right)\\ = \\ \\dfrac{3}{2},\\ f\\left(\\dfrac{3}{2}\\right)\\ = \\ 5,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{then}\\ \\text{again}\\ \\dfrac{3}{2}\\text{and}\\ 5,\\ \\text{which}\\ \\text{is}\\ x.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (fofofof)(x) = x, x ≠ 0, ±1",
             "style": "boxed"
@@ -146,8 +184,16 @@
           "(fofofof)(x) = (fof)[(fof)(x)]",
           "Inside: (fof)(x) = x",
           "So (fofofof)(x) = (fof)(x) = x",
-          "Check at x = 5: f(5) = 3/2, f(3/2) = 5,",
-          "then again 3/2 and 5, which is x.",
+          {
+            "text": "\\text{Check}\\ \\text{at}\\ x\\ = \\ 5:\\ f\\left(5\\right)\\ = \\ \\dfrac{3}{2},\\ f\\left(\\dfrac{3}{2}\\right)\\ = \\ 5,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{then}\\ \\text{again}\\ \\dfrac{3}{2}\\text{and}\\ 5,\\ \\text{which}\\ \\text{is}\\ x.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ (fofofof)(x) = x, x ≠ 0, ±1",
             "style": "boxed"

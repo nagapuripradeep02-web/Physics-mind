@@ -68,15 +68,31 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "The denominator has cosx, so the tan(x/2)",
+          {
+            "text": "\\text{The}\\ \\text{denominator}\\ has\\cos x,\\ \\text{so}\\ \\text{the}\\ \\tan \\left(\\dfrac{x}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  substitution turns it into a rational one.",
             "style": "indent"
           },
-          "Put tan(x/2) = t. Then cosx",
-          "= (1 − t²)/(1 + t²) and dx = 2dt/(1 + t²)",
+          {
+            "text": "\\text{Put}\\ \\tan \\left(\\dfrac{x}{2}\\right)\\ = \\ t.\\ \\text{Then}\\ \\cos x",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ t^{2}}{1\\ + \\ t^{2}}\\text{and}\\ dx\\ = \\ \\dfrac{2dt}{1\\ + \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Change the limits:",
-          "Also x = 0 ⇒ t = 0; x = π/2 ⇒ t = tan(π/4) = 1"
+          {
+            "text": "\\text{Also}\\ x\\ = \\ 0\\ \\Rightarrow \\ t\\ = \\ 0;\\ x\\ = \\ \\dfrac{\\pi }{2} \\Rightarrow \\ t\\ = \\ \\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The half-angle substitution tan(x/2) = t turns any rational combination of sinx and cosx into a rational function of t, which can then be integrated by partial fractions or a standard formula.",
         "common_mistakes": [
@@ -94,17 +110,29 @@
         "memory_tip": "4(1+t²) + 5(1−t²) always simplifies to 9 − t² for this exact denominator — check the arithmetic collapses this way.",
         "lines": [
           "I",
-          "= ∫₀¹ [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)]",
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{\\dfrac{2dt}{1 + t^{2}}}{4\\ + \\ \\dfrac{5\\left(1 - t^{2}\\right)}{1 + t^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply above and below by (1 + t²):",
             "added": true
           },
-          "= ∫₀¹ 2dt/[4(1+t²) + 5(1−t²)]",
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{2dt}{4\\left(1 + t^{2}\\right)\\ + \\ 5\\left(1 - t^{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "4 + 4t² + 5 − 5t² = 9 − t²:",
             "added": true
           },
-          "= ∫₀¹ 2dt/(9 − t²) = 2∫₀¹ dt/(3² − t²)"
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{2dt}{9\\ - \\ t^{2}} = \\ 2\\int _{0}^{1}\\ \\dfrac{dt}{3^{2}\\ - \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Multiplying every term by (1+t²) clears the compound fraction, and 4(1+t²) + 5(1−t²) collapses to 9 − t², a standard a² − x² form with a = 3.",
         "common_mistakes": [
@@ -113,9 +141,21 @@
         ],
         "lines_compact": [
           "I",
-          "= ∫₀¹ [2dt/(1+t²)]/[4 + 5(1−t²)/(1+t²)]",
-          "= ∫₀¹ 2dt/[4(1+t²) + 5(1−t²)]",
-          "= ∫₀¹ 2dt/(9 − t²) = 2∫₀¹ dt/(3² − t²)"
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{\\dfrac{2dt}{1 + t^{2}}}{4\\ + \\ \\dfrac{5\\left(1 - t^{2}\\right)}{1 + t^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{2dt}{4\\left(1 + t^{2}\\right)\\ + \\ 5\\left(1 - t^{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\int _{0}^{1}\\ \\dfrac{2dt}{9\\ - \\ t^{2}} = \\ 2\\int _{0}^{1}\\ \\dfrac{dt}{3^{2}\\ - \\ t^{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -128,7 +168,9 @@
         "memory_tip": "∫dx/(a²−x²) = 1/(2a) log|(a+x)/(a−x)| + c — with a = 3 here.",
         "lines": [
           {
-            "text": "Use ∫dt/(a² − t²) = (1/(2a))log|(a+t)/(a−t)|",
+            "text": "\\text{Use}\\ \\int \\dfrac{dt}{a^{2}\\ - \\ t^{2}} = \\ \\left(\\dfrac{1}{2a}\\right)\\log \\left|\\dfrac{a + t}{a - t}\\right|",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -136,20 +178,35 @@
             "style": "indent",
             "added": true
           },
-          "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀¹",
           {
-            "text": "At t = 1: (3+1)/(3−1) = 4/2; at t = 0: 3/3:",
+            "text": "= \\ 2 \\cdot \\left(\\dfrac{1}{2 \\cdot 3}\\right)\\left[\\log \\left|\\dfrac{3 + t}{3 - t}\\right|\\right]_{0}^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{At}\\ t\\ = \\ 1:\\ \\dfrac{3 + 1}{3 - 1} = \\ \\dfrac{4}{2};\\ \\text{at}\\ t\\ = \\ 0:\\ \\dfrac{3}{3}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1/3)[log(4/2) − log(3/3)]",
-          "= (1/3)[log2 − log1]",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\left[\\log \\left(\\dfrac{4}{2}\\right)\\ - \\ \\log \\left(\\dfrac{3}{3}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\left[\\log 2\\ - \\ \\log 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "and log1 = 0:",
             "added": true
           },
           {
-            "text": "∴ I = (1/3) log2",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{1}{3}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "The standard formula for ∫dx/(a²−x²) with a = 3 gives a log ratio; evaluating it at t = 1 and t = 0 leaves log2 minus log1, and log1 = 0 removes the second term entirely.",
@@ -158,12 +215,25 @@
           "Leaving log1 in the answer instead of recognising it equals 0."
         ],
         "lines_compact": [
-          "= 2·(1/(2·3))[log|(3+t)/(3−t)|]₀¹",
-          "= (1/3)[log(4/2) − log(3/3)]",
-          "= (1/3)[log2 − log1]",
           {
-            "text": "∴ I = (1/3) log2",
-            "style": "boxed"
+            "text": "= \\ 2 \\cdot \\left(\\dfrac{1}{2 \\cdot 3}\\right)\\left[\\log \\left|\\dfrac{3 + t}{3 - t}\\right|\\right]_{0}^{1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\left[\\log \\left(\\dfrac{4}{2}\\right)\\ - \\ \\log \\left(\\dfrac{3}{3}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{3}\\right)\\left[\\log 2\\ - \\ \\log 1\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{1}{3}\\right)\\log 2",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

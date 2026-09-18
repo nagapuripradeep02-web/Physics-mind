@@ -99,12 +99,20 @@
             "text": "So csc²x dx = −dt and cotⁿ⁻²x = tⁿ⁻²:",
             "added": true
           },
-          "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1)",
+          {
+            "text": "\\int \\ \\cot ^{n-2} x\\csc ^{2} xdx\\ = \\ - \\int \\ t^{n-2}dt\\ = \\ - \\dfrac{t^{n-1}}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Put t = cotx back:",
             "added": true
           },
-          "= −cotⁿ⁻¹x/(n−1)",
+          {
+            "text": "= \\ - \\dfrac{\\cot ^{n-1} x}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The second integral is Iₙ₋₂ by definition:",
             "added": true
@@ -123,8 +131,16 @@
         "memory_tip": "cotx's derivative carries a minus that tanx's does not — that minus is the only difference from the tanⁿ formula.",
         "lines_compact": [
           "In the first integral put t = cotx ⇒ dt = −csc²x dx",
-          "∫ cotⁿ⁻²x csc²x dx = −∫ tⁿ⁻²dt = −tⁿ⁻¹/(n−1)",
-          "= −cotⁿ⁻¹x/(n−1)",
+          {
+            "text": "\\int \\ \\cot ^{n-2} x\\csc ^{2} xdx\\ = \\ - \\int \\ t^{n-2}dt\\ = \\ - \\dfrac{t^{n-1}}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\dfrac{\\cot ^{n-1} x}{n - 1}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore\\ I_n = -\\frac{\\cot^{n-1}x}{n-1} - I_{n-2}\\ \\dots(1)",
             "render": "katex",
@@ -141,7 +157,11 @@
         "margin_note": "Method",
         "lines": [
           "Put n = 4, 2 successively in (1):",
-          "I₄ = −cot³x/3 − I₂",
+          {
+            "text": "I_{4}\\ = \\ - \\dfrac{\\cot ^{3} x}{3} - \\ I_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "I₂ = −cotx − I₀, and I₀ = ∫dx = x",
           {
             "text": "(for n = 2 the power cotⁿ⁻¹x is cotx",
@@ -161,7 +181,11 @@
         "memory_tip": "Both terms of formula (1) are negative; after substituting, −(−cotx − x) correctly turns them positive.",
         "lines_compact": [
           "Put n = 4, 2 successively in (1):",
-          "I₄ = −cot³x/3 − I₂",
+          {
+            "text": "I_{4}\\ = \\ - \\dfrac{\\cot ^{3} x}{3} - \\ I_{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "I₂ = −cotx − I₀, and I₀ = ∫dx = x"
         ]
       },
@@ -174,14 +198,19 @@
         "margin_note": "Solution",
         "lines": [
           "So I₂ = −cotx − x",
-          "I₄ = −cot³x/3 − (−cotx − x)",
+          {
+            "text": "I_{4}\\ = \\ - \\dfrac{\\cot ^{3} x}{3} - \\ \\left( - \\cot x\\ - \\ x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The two minus signs make a plus:",
             "added": true
           },
           {
-            "text": "∴ ∫ cot⁴x dx = −cot³x/3 + cotx + x + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int \\ \\cot ^{4} xdx\\ = \\ - \\dfrac{\\cot ^{3} x}{3} + \\ \\cot x\\ + \\ x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Subtracting the negative I₂ flips both its terms positive, which is why the final answer for cot⁴x ends up with a plus sign on cotx and on x despite every earlier line being negative.",
@@ -192,10 +221,15 @@
         "memory_tip": "−(−cotx − x) = +cotx + x — two minus signs on a bracket flip both terms inside it.",
         "lines_compact": [
           "So I₂ = −cotx − x",
-          "I₄ = −cot³x/3 − (−cotx − x)",
           {
-            "text": "∴ ∫ cot⁴x dx = −cot³x/3 + cotx + x + c",
-            "style": "boxed"
+            "text": "I_{4}\\ = \\ - \\dfrac{\\cot ^{3} x}{3} - \\ \\left( - \\cot x\\ - \\ x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\int \\ \\cot ^{4} xdx\\ = \\ - \\dfrac{\\cot ^{3} x}{3} + \\ \\cot x\\ + \\ x\\ + \\ c",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

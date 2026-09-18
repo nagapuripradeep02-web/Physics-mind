@@ -456,9 +456,21 @@
             "text": "(each unknown is its own Δ divided by Δ)",
             "added": true
           },
-          "x = Δ₁/Δ = 0/40 = 0",
-          "y = Δ₂/Δ = 40/40 = 1",
-          "z = Δ₃/Δ = 80/40 = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{0}{40} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{40}{40} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{80}{40} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Check in the three equations:",
             "added": true
@@ -514,9 +526,21 @@
         ],
         "lines_compact": [
           "By Cramer's rule:",
-          "x = Δ₁/Δ = 0/40 = 0",
-          "y = Δ₂/Δ = 40/40 = 1",
-          "z = Δ₃/Δ = 80/40 = 2",
+          {
+            "text": "x\\ = \\ \\dfrac{\\Delta _{1}}{\\Delta } = \\ \\dfrac{0}{40} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{\\Delta _{2}}{\\Delta } = \\ \\dfrac{40}{40} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "z\\ = \\ \\dfrac{\\Delta _{3}}{\\Delta } = \\ \\dfrac{80}{40} = \\ 2",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ x = 0, y = 1, z = 2",
             "style": "boxed"

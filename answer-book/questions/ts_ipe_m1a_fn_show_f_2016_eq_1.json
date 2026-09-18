@@ -102,9 +102,15 @@
         "memory_tip": "The top and the bottom are the same expression, so f is the constant 1. The number 2016 changes nothing.",
         "lines": [
           "The two halves are the same expression.",
-          "Also t² − t + 1 = (t − 1/2)² + 3/4 > 0,",
           {
-            "text": "((t − 1/2)² = t² − t + 1/4, and 1/4 + 3/4 = 1)",
+            "text": "\\text{Also}\\ t^{2}\\ - \\ t\\ + \\ 1\\ = \\ \\left(t\\ - \\ \\dfrac{1}{2}\\right)^{2}\\ + \\ \\dfrac{3}{4} > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(t\\ - \\ \\dfrac{1}{2}\\right)^{2}\\ = \\ t^{2}\\ - \\ t\\ + \\ \\dfrac{1}{4},\\ \\text{and}\\ \\dfrac{1}{4} + \\ \\dfrac{3}{4} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "so the denominator is never zero and f(x)",
@@ -147,7 +153,11 @@
         ],
         "lines_compact": [
           "The two halves are the same expression.",
-          "Also t² − t + 1 = (t − 1/2)² + 3/4 > 0,",
+          {
+            "text": "\\text{Also}\\ t^{2}\\ - \\ t\\ + \\ 1\\ = \\ \\left(t\\ - \\ \\dfrac{1}{2}\\right)^{2}\\ + \\ \\dfrac{3}{4} > \\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the denominator is never zero and f(x)",
           "is defined for every x ∈ R.",
           "∴ f(x) = 1 for every real x, and 2016 is",

@@ -54,15 +54,27 @@
           },
           "x and y are both given in terms of t,",
           "so use the parametric rule",
-          "dy/dx = (dy/dt)/(dx/dt)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(d/dt(cos t)³ = 3cos²t · d/dt(cos t)",
           {
             "text": "  and d/dt(cos t) = −sin t)",
             "style": "indent"
           },
           "x = a cos³t  ⇒  dx/dt = 3a cos²t · (−sin t) = −3a cos²t sin t",
-          "(d/dt(sin t)³ = 3sin²t · d/dt(sin t) and d/dt(sin t) = cos t)",
-          "y = a sin³t  ⇒  dy/dt = 3a sin²t · (cos t) = 3a sin²t cos t"
+          {
+            "text": "\\left(\\dfrac{d}{dt}\\left(\\sin t\\right)^{3}\\ = \\ 3\\sin ^{2} t\\ \\cdot \\ \\dfrac{d}{dt}\\left(\\sin t\\right)\\ \\text{and}\\ \\dfrac{d}{dt}\\left(\\sin t\\right)\\ = \\ \\cos t\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ a\\sin ^{3} t\\ \\Rightarrow \\ \\dfrac{dy}{dt}\\ = \\ 3a\\sin ^{2} t\\ \\cdot \\ \\left(\\cos t\\right)\\ = \\ 3a\\sin ^{2} t\\cos t",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,13 +114,20 @@
         "memory_tip": "After cancelling, −sin t over cos t is left, so the answer is −tan t.",
         "lines": [
           {
-            "text": "(put dy/dt and dx/dt from step 1)",
+            "text": "\\left(\\text{put}\\ \\dfrac{dy}{dt}\\ \\text{and}\\ \\dfrac{dx}{dt}\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dx = (dy/dt)/(dx/dt)",
           {
-            "text": "  = (3a sin²t cos t)/(−3a cos²t sin t)",
-            "style": "indent"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3a\\sin ^{2} t\\cos t}{ - 3a\\cos ^{2} t\\sin t}",
+            "style": "indent",
+            "render": "katex"
           },
           "The factor 3a cancels, and one sin t",
           "and one cos t cancel as well.",
@@ -121,14 +140,21 @@
             "style": "indent",
             "added": true
           },
-          "= −(sin t)/(cos t)",
           {
-            "text": "(sin t/cos t = tan t)",
+            "text": "= \\ - \\dfrac{\\sin t}{\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin t}{\\cos t} = \\ \\tan t\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "∴ dy/dx = −tan t",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\tan t",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -159,17 +185,27 @@
           "Leaving a in the final answer, when every a has already cancelled."
         ],
         "lines_compact": [
-          "dy/dx = (dy/dt)/(dx/dt)",
           {
-            "text": "  = (3a sin²t cos t)/(−3a cos²t sin t)",
-            "style": "indent"
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{3a\\sin ^{2} t\\cos t}{ - 3a\\cos ^{2} t\\sin t}",
+            "style": "indent",
+            "render": "katex"
           },
           "The factor 3a cancels, and one sin t",
           "and one cos t cancel as well.",
-          "= −(sin t)/(cos t)",
           {
-            "text": "∴ dy/dx = −tan t",
-            "style": "boxed"
+            "text": "= \\ - \\dfrac{\\sin t}{\\cos t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ - \\tan t",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

@@ -67,10 +67,26 @@
           },
           "(standard values of cos)",
           "f(0) = cos 0 = 1",
-          "f(π/6) = cos π/6 = √3/2",
-          "f(π/4) = cos π/4 = 1/√2",
-          "f(π/3) = cos π/3 = 1/2",
-          "f(π/2) = cos π/2 = 0"
+          {
+            "text": "f\\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{\\cos \\pi }{6} = \\ \\dfrac{\\sqrt{3}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{\\pi }{4}\\right)\\ = \\ \\dfrac{\\cos \\pi }{4} = \\ \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{\\pi }{3}\\right)\\ = \\ \\dfrac{\\cos \\pi }{3} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "f\\left(\\dfrac{\\pi }{2}\\right)\\ = \\ \\dfrac{\\cos \\pi }{2} = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -121,8 +137,9 @@
             "added": true
           },
           {
-            "text": "B = {1, √3/2, 1/√2, 1/2, 0}",
-            "style": "boxed"
+            "text": "B\\ = \\ \\{1,\\ \\dfrac{\\sqrt{3}}{2},\\ \\dfrac{1}{\\sqrt{2}},\\ \\dfrac{1}{2},\\ 0\\}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -156,8 +173,9 @@
         "lines_compact": [
           "f is a surjection ⇒ B = f(A)",
           {
-            "text": "B = {1, √3/2, 1/√2, 1/2, 0}",
-            "style": "boxed"
+            "text": "B\\ = \\ \\{1,\\ \\dfrac{\\sqrt{3}}{2},\\ \\dfrac{1}{\\sqrt{2}},\\ \\dfrac{1}{2},\\ 0\\}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

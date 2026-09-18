@@ -79,16 +79,32 @@
           },
           "Given D.E is (x² + y²)dx = 2xy dy",
           "Divide both sides by 2xy dx:",
-          "⇒ dy/dx = (x² + y²)/(2xy) … (1)",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{x^{2}\\ + \\ y^{2}}{2xy}\\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "Every term top and bottom has degree 2, so",
           {
             "text": "  (1) is a homogeneous D.E.",
             "style": "indent"
           },
-          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
-          "(1) ⇒ v + x·dv/dx = (x² + v²x²)/(2x²v)",
+          {
+            "text": "\\text{Put}\\ y\\ = \\ vx\\ \\Rightarrow \\ \\dfrac{dy}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{x^{2}\\ + \\ v^{2}x^{2}}{2x^{2}v}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Take x² out above and below; it cancels:",
-          "= (1 + v²)/(2v)"
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ v^{2}}{2v}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "In a homogeneous equation, every occurrence of x and y can be replaced by the single ratio v = y/x, which turns two unknowns into one and makes the equation separable.",
         "common_mistakes": [
@@ -109,17 +125,31 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = (1 + v²)/(2v) − v",
           {
-            "text": "Write v as 2v²/(2v):",
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{1\\ + \\ v^{2}}{2v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Write}\\ v\\ \\text{as}\\ \\dfrac{2v^{2}}{2v}:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ v^{2}\\ - \\ 2v^{2}}{2v} = \\ \\dfrac{1\\ - \\ v^{2}}{2v}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Separate v and x:",
             "added": true
           },
-          "⇒ 2v/(1 − v²) dv = dx/x"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2v}{1\\ - \\ v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Once x·dv/dx equals a function of v alone, cross-multiplying puts every v term with dv and every x term with dx, which is the separable form the equation needs before it can be integrated.",
         "common_mistakes": [
@@ -127,9 +157,21 @@
           "Leaving the equation as x dv = (1 − v²)/(2v) dx instead of separating v to its own side."
         ],
         "lines_compact": [
-          "x·dv/dx = (1 + v²)/(2v) − v",
-          "= (1 + v² − 2v²)/(2v) = (1 − v²)/(2v)",
-          "⇒ 2v/(1 − v²) dv = dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{1\\ + \\ v^{2}}{2v} - \\ v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ + \\ v^{2}\\ - \\ 2v^{2}}{2v} = \\ \\dfrac{1\\ - \\ v^{2}}{2v}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\dfrac{2v}{1\\ - \\ v^{2}}dv\\ = \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -141,14 +183,19 @@
         "margin_note": "Two marks. The left integral is a direct log form once the sign is fixed.",
         "memory_tip": "2v/(1−v²) is minus the derivative of log(1−v²), over its own denominator — a standard log-integral shape.",
         "lines": [
-          "∫ 2v/(1 − v²) dv = ∫ dx/x",
+          {
+            "text": "\\int \\ \\dfrac{2v}{1\\ - \\ v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "The derivative of 1 − v² is −2v, so",
             "added": true
           },
           {
-            "text": "  ∫2v/(1 − v²) dv = −log(1 − v²):",
+            "text": "\\int \\dfrac{2v}{1\\ - \\ v^{2}}dv\\ = \\ - \\log \\left(1\\ - \\ v^{2}\\right):",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
           "⇒ −log(1 − v²) = log x + log c",
@@ -169,7 +216,11 @@
           "Writing the constant of integration as a bare c instead of log c, which makes the next line harder to simplify."
         ],
         "lines_compact": [
-          "∫ 2v/(1 − v²) dv = ∫ dx/x",
+          {
+            "text": "\\int \\ \\dfrac{2v}{1\\ - \\ v^{2}}dv\\ = \\ \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ −log(1 − v²) = log x + log c",
           "⇒ log x + log(1 − v²) = log c"
         ]
@@ -188,7 +239,11 @@
             "added": true
           },
           "⇒ log(x(1 − v²)) = log c ⇒ x(1 − v²) = c",
-          "Put v = y/x: x(1 − y²/x²) = c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ x\\left(1\\ - \\ \\dfrac{y^{2}}{x^{2}}\\right)\\ = \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Combining the two logs into a single log of a product removes the logs in one step, and only then is it worth substituting v = y/x back in, since the fraction would otherwise need to be carried through the log rule twice.",
         "common_mistakes": [
@@ -197,7 +252,11 @@
         ],
         "lines_compact": [
           "⇒ log(x(1 − v²)) = log c ⇒ x(1 − v²) = c",
-          "Put v = y/x: x(1 − y²/x²) = c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ x\\left(1\\ - \\ \\dfrac{y^{2}}{x^{2}}\\right)\\ = \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -213,7 +272,11 @@
             "text": "Multiply out the bracket:",
             "added": true
           },
-          "x(1 − y²/x²) = x − y²/x = c",
+          {
+            "text": "x\\left(1\\ - \\ \\dfrac{y^{2}}{x^{2}}\\right)\\ = \\ x\\ - \\ \\dfrac{y^{2}}{x} = \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Multiply every term by x:",
             "added": true
@@ -229,7 +292,11 @@
           "Writing the final line as y² − x² = cx, with the sign of the squared terms swapped."
         ],
         "lines_compact": [
-          "x(1 − y²/x²) = x − y²/x = c",
+          {
+            "text": "x\\left(1\\ - \\ \\dfrac{y^{2}}{x^{2}}\\right)\\ = \\ x\\ - \\ \\dfrac{y^{2}}{x} = \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x² − y² = cx",
             "style": "boxed"

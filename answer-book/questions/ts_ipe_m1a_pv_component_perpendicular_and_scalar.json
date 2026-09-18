@@ -106,12 +106,20 @@
           "it is the signed length of the shadow of b",
           "on the direction of a (negative when the",
           "angle between them is obtuse).",
-          "Component of b on a = (a·b)/|a|",
+          {
+            "text": "\\text{Component}\\ \\text{of}\\ b\\ \\text{on}\\ a\\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply top and bottom by √3)",
             "added": true
           },
-          "  = 6/√3 = 6√3/3",
+          {
+            "text": "= \\ \\dfrac{6}{\\sqrt{3}} = \\ \\dfrac{6\\sqrt{3}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(6 ÷ 3 = 2)",
             "added": true
@@ -150,8 +158,16 @@
           "it is the signed length of the shadow of b",
           "on the direction of a (negative when the",
           "angle between them is obtuse).",
-          "Component of b on a = (a·b)/|a|",
-          "  = 6/√3 = 6√3/3",
+          {
+            "text": "\\text{Component}\\ \\text{of}\\ b\\ \\text{on}\\ a\\ = \\ \\dfrac{a \\cdot b}{\\left|a\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{6}{\\sqrt{3}} = \\ \\dfrac{6\\sqrt{3}}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "  = 2√3"
         ]
       },
@@ -165,8 +181,16 @@
         "memory_tip": "Vector form divides by |a|² and keeps a; scalar form divides by |a| and drops a.",
         "lines": [
           "The vector component of b along a",
-          "  = ((a·b)/|a|²) a",
-          "  = (6/3)(i + j + k)",
+          {
+            "text": "= \\ \\left(\\dfrac{a \\cdot b}{\\left|a\\right|^{2}}\\right)a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{6}{3}\\right)\\left(i\\ + \\ j\\ + \\ k\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "  = 2(i + j + k)",
           "  = 2i + 2j + 2k"
         ],

@@ -60,11 +60,23 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let u = (x − 1)/(x − 2)",
-          "and v = (x + 1)/(x + 2),",
+          {
+            "text": "\\text{Let}\\ u\\ = \\ \\dfrac{x\\ - \\ 1}{x\\ - \\ 2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ v\\ = \\ \\dfrac{x\\ + \\ 1}{x\\ + \\ 2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "with x ≠ 2 and x ≠ −2.",
           "(the denominators must not be 0)",
-          "Given: Tan⁻¹u + Tan⁻¹v = π/4"
+          {
+            "text": "\\text{Given}:\\ \\operatorname{Tan}^{-1} u\\ + \\ \\operatorname{Tan}^{-1} v\\ = \\ \\dfrac{\\pi }{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,7 +119,11 @@
             "text": "(the tan(A + B) formula, with tan(Tan⁻¹u) = u)",
             "added": true
           },
-          "tan(Tan⁻¹u + Tan⁻¹v) = (u + v)/(1 − uv)",
+          {
+            "text": "\\tan \\left(\\operatorname{Tan}^{-1} u\\ + \\ \\operatorname{Tan}^{-1} v\\right)\\ = \\ \\dfrac{u\\ + \\ v}{1\\ - \\ uv}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(common denominator (x − 2)(x + 2) = x² − 4; the tops",
             "added": true
@@ -117,17 +133,29 @@
             "style": "indent",
             "added": true
           },
-          "u + v = (2x² − 4)/(x² − 4)",
+          {
+            "text": "u\\ + \\ v\\ = \\ \\dfrac{2x^{2}\\ - \\ 4}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((x − 1)(x + 1) = x² − 1)",
             "added": true
           },
-          "uv = (x² − 1)/(x² − 4)",
+          {
+            "text": "uv\\ = \\ \\dfrac{x^{2}\\ - \\ 1}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "((x² − 4) − (x² − 1) = −3, over x² − 4)",
             "added": true
           },
-          "1 − uv = −3/(x² − 4)"
+          {
+            "text": "1\\ - \\ uv\\ = \\ - \\dfrac{3}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -157,10 +185,26 @@
           "Writing 1 − uv as uv − 1."
         ],
         "lines_compact": [
-          "tan(Tan⁻¹u + Tan⁻¹v) = (u + v)/(1 − uv)",
-          "u + v = (2x² − 4)/(x² − 4)",
-          "uv = (x² − 1)/(x² − 4)",
-          "1 − uv = −3/(x² − 4)"
+          {
+            "text": "\\tan \\left(\\operatorname{Tan}^{-1} u\\ + \\ \\operatorname{Tan}^{-1} v\\right)\\ = \\ \\dfrac{u\\ + \\ v}{1\\ - \\ uv}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "u\\ + \\ v\\ = \\ \\dfrac{2x^{2}\\ - \\ 4}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "uv\\ = \\ \\dfrac{x^{2}\\ - \\ 1}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ uv\\ = \\ - \\dfrac{3}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,14 +216,26 @@
         "margin_note": "Third mark. Both roots are only candidates at this stage, because taking the tangent of both sides can admit angles that differ by π.",
         "memory_tip": "The x² − 4 cancels on the top and the bottom, leaving 2x² − 4 = −3.",
         "lines": [
-          "tan(π/4) = 1, so (u + v)/(1 − uv) = 1",
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,\\ \\text{so}\\ \\dfrac{u\\ + \\ v}{1\\ - \\ uv} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the x² − 4 cancels from the top and the bottom)",
             "added": true
           },
-          "(2x² − 4)/(−3) = 1",
+          {
+            "text": "\\dfrac{2x^{2}\\ - \\ 4}{ - 3} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x² − 4 = −3 ⇒ 2x² = 1",
-          "⇒ x² = 1/2 ⇒ x = ±1/√2"
+          {
+            "text": "\\Rightarrow \\ x^{2}\\ = \\ \\dfrac{1}{2} \\Rightarrow \\ x\\ = \\ \\pm \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -209,10 +265,22 @@
           "Cancelling x² − 4 without first stating x ≠ 2 and x ≠ −2."
         ],
         "lines_compact": [
-          "tan(π/4) = 1, so (u + v)/(1 − uv) = 1",
-          "(2x² − 4)/(−3) = 1",
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1,\\ \\text{so}\\ \\dfrac{u\\ + \\ v}{1\\ - \\ uv} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{2x^{2}\\ - \\ 4}{ - 3} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ 2x² − 4 = −3 ⇒ 2x² = 1",
-          "⇒ x² = 1/2 ⇒ x = ±1/√2"
+          {
+            "text": "\\Rightarrow \\ x^{2}\\ = \\ \\dfrac{1}{2} \\Rightarrow \\ x\\ = \\ \\pm \\dfrac{1}{\\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -228,17 +296,28 @@
             "text": "(test both roots, because the formula needs uv < 1)",
             "added": true
           },
-          "At x = ±1/√2, uv = (x² − 1)/(x² − 4)",
           {
-            "text": "(x² = 1/2, so x² − 1 = −1/2 and x² − 4 = −7/2)",
+            "text": "\\text{At}\\ x\\ = \\ \\pm \\dfrac{1}{\\sqrt{2}},\\ uv\\ = \\ \\dfrac{x^{2}\\ - \\ 1}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(x^{2}\\ = \\ \\dfrac{1}{2},\\ \\text{so}\\ x^{2}\\ - \\ 1\\ = \\ - \\dfrac{1}{2}\\text{and}\\ x^{2}\\ - \\ 4\\ = \\ - \\dfrac{7}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (−1/2)/(−7/2) = 1/7 < 1, and u, v > 0",
+          {
+            "text": "= \\ \\dfrac{ - \\dfrac{1}{2}}{ - \\dfrac{7}{2}} = \\ \\dfrac{1}{7} < \\ 1,\\ \\text{and}\\ u,\\ v\\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "So Tan⁻¹u + Tan⁻¹v = Tan⁻¹(1) = π/4  ✓",
           "Neither root is rejected.",
           {
-            "text": "∴ x = 1/√2 or x = −1/√2",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{1}{\\sqrt{2}}\\text{or}\\ x\\ = \\ - \\dfrac{1}{\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -269,13 +348,22 @@
           "Skipping the uv < 1 check on the roots."
         ],
         "lines_compact": [
-          "At x = ±1/√2, uv = (x² − 1)/(x² − 4)",
-          "= (−1/2)/(−7/2) = 1/7 < 1, and u, v > 0",
+          {
+            "text": "\\text{At}\\ x\\ = \\ \\pm \\dfrac{1}{\\sqrt{2}},\\ uv\\ = \\ \\dfrac{x^{2}\\ - \\ 1}{x^{2}\\ - \\ 4}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{ - \\dfrac{1}{2}}{ - \\dfrac{7}{2}} = \\ \\dfrac{1}{7} < \\ 1,\\ \\text{and}\\ u,\\ v\\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "So Tan⁻¹u + Tan⁻¹v = Tan⁻¹(1) = π/4  ✓",
           "Neither root is rejected.",
           {
-            "text": "∴ x = 1/√2 or x = −1/√2",
-            "style": "boxed"
+            "text": "\\therefore \\ x\\ = \\ \\dfrac{1}{\\sqrt{2}}\\text{or}\\ x\\ = \\ - \\dfrac{1}{\\sqrt{2}}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

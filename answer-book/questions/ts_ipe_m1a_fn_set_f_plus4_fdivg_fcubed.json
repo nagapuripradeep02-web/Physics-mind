@@ -64,7 +64,11 @@
           "Domain of g = {4, 6, 8}",
           "f + 4 and f³ use f alone, so both have",
           "domain {4, 5, 6}.",
-          "f/g needs both f and g, so its domain is",
+          {
+            "text": "\\dfrac{f}{g}\\text{needs}\\ \\text{both}\\ f\\ \\text{and}\\ g,\\ \\text{so}\\ \\text{its}\\ \\text{domain}\\ \\text{is}",
+            "style": "normal",
+            "render": "katex"
+          },
           "the intersection {4, 6}, where also g ≠ 0."
         ],
         "recall": {
@@ -156,12 +160,22 @@
         "lines": [
           "(ii) On {4, 6}: g(4) = −4 and g(6) = 5.",
           "Neither is 0, so both pairs are kept.",
-          "f/g = {(4, 5/(−4)), (6, (−4)/5)}",
           {
-            "text": "(5 ÷ (−4) = −5/4 and (−4) ÷ 5 = −4/5)",
+            "text": "\\dfrac{f}{g} = \\ \\{\\left(4,\\ \\dfrac{5}{ - 4}\\right),\\ \\left(6,\\ \\dfrac{ - 4}{5}\\right)\\}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(5\\ \\div \\ \\left( - 4\\right)\\ = \\ - \\dfrac{5}{4}\\text{and}\\ \\left( - 4\\right)\\ \\div \\ 5\\ = \\ - \\dfrac{4}{5}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "  = {(4, −5/4), (6, −4/5)}"
+          {
+            "text": "= \\ \\{\\left(4,\\ - \\dfrac{5}{4}\\right),\\ \\left(6,\\ - \\dfrac{4}{5}\\right)\\}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -193,8 +207,16 @@
         "lines_compact": [
           "(ii) On {4, 6}: g(4) = −4 and g(6) = 5.",
           "Neither is 0, so both pairs are kept.",
-          "f/g = {(4, 5/(−4)), (6, (−4)/5)}",
-          "  = {(4, −5/4), (6, −4/5)}"
+          {
+            "text": "\\dfrac{f}{g} = \\ \\{\\left(4,\\ \\dfrac{5}{ - 4}\\right),\\ \\left(6,\\ \\dfrac{ - 4}{5}\\right)\\}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\{\\left(4,\\ - \\dfrac{5}{4}\\right),\\ \\left(6,\\ - \\dfrac{4}{5}\\right)\\}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

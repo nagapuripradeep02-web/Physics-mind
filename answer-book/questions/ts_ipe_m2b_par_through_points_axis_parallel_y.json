@@ -144,7 +144,11 @@
             "text": "(6m − (−2m) = 8m)",
             "added": true
           },
-          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2",
+          {
+            "text": "\\text{From}\\ \\left(4\\right):\\ 12l\\ + \\ 6\\left( - 2\\right)\\ = \\ - 6\\ \\Rightarrow \\ 12l\\ = \\ 6\\ \\Rightarrow \\ l\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(12l − 12 = −6, so 12l = 6)",
             "added": true
@@ -159,7 +163,11 @@
         "lines_compact": [
           "(4) − (5): (12l + 6m) − (12l − 2m) = −6 − 10",
           "⇒ 8m = −16 ⇒ m = −2",
-          "From (4): 12l + 6(−2) = −6 ⇒ 12l = 6 ⇒ l = 1/2"
+          {
+            "text": "\\text{From}\\ \\left(4\\right):\\ 12l\\ + \\ 6\\left( - 2\\right)\\ = \\ - 6\\ \\Rightarrow \\ 12l\\ = \\ 6\\ \\Rightarrow \\ l\\ = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -172,8 +180,16 @@
         "lines": [
           "From (1):",
           "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
-          "Substitute l = 1/2, m = −2, n = 5 in y = lx² + mx + n:",
-          "y = (1/2)x² − 2x + 5",
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ \\dfrac{1}{2},\\ m\\ = \\ - 2,\\ n\\ = \\ 5\\ \\text{in}\\ y\\ = \\ lx^{2}\\ + \\ mx\\ + \\ n:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\left(\\dfrac{1}{2}\\right)x^{2}\\ - \\ 2x\\ + \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 2: 2y = x² − 4x + 10",
           {
             "text": "Bring every term to the left:",
@@ -197,8 +213,16 @@
         "lines_compact": [
           "From (1):",
           "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
-          "Substitute l = 1/2, m = −2, n = 5 in y = lx² + mx + n:",
-          "y = (1/2)x² − 2x + 5",
+          {
+            "text": "\\text{Substitute}\\ l\\ = \\ \\dfrac{1}{2},\\ m\\ = \\ - 2,\\ n\\ = \\ 5\\ \\text{in}\\ y\\ = \\ lx^{2}\\ + \\ mx\\ + \\ n:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\left(\\dfrac{1}{2}\\right)x^{2}\\ - \\ 2x\\ + \\ 5",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply by 2: 2y = x² − 4x + 10",
           {
             "text": "∴ x² − 4x − 2y + 10 = 0",

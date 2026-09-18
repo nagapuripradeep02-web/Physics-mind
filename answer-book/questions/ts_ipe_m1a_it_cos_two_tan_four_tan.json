@@ -56,12 +56,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Take Tan⁻¹(1/7) = α ⇒ tanα = 1/7",
-          "and Tan⁻¹(1/3) = β ⇒ tanβ = 1/3",
+          {
+            "text": "\\text{Take}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\ = \\ \\alpha \\ \\Rightarrow \\ \\tan \\alpha \\ = \\ \\dfrac{1}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\operatorname{Tan}^{-1}\\left(\\dfrac{1}{3}\\right)\\ = \\ \\beta \\ \\Rightarrow \\ \\tan \\beta \\ = \\ \\dfrac{1}{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cos2α in terms of tanα)",
-          "L.H.S = cos2α = (1 − tan²α)/(1 + tan²α)",
-          "(1 − 1/49 = 48/49 and 1 + 1/49 = 50/49; the 49s cancel)",
-          "= (1 − 1/49)/(1 + 1/49) = 48/50 = 24/25   …(1)"
+          {
+            "text": "L.H.S\\ = \\ \\cos 2\\alpha \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\alpha }{1\\ + \\ \\tan ^{2} \\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\ - \\ \\dfrac{1}{49} = \\ \\dfrac{48}{49}\\text{and}\\ 1\\ + \\ \\dfrac{1}{49} = \\ \\dfrac{50}{49};\\ \\text{the}\\ 49s\\ \\text{cancel}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{1\\ - \\ \\dfrac{1}{49}}{1\\ + \\ \\dfrac{1}{49}} = \\ \\dfrac{48}{50} = \\ \\dfrac{24}{25}\\dots \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,17 +123,33 @@
             "text": "(the tan2β formula)",
             "added": true
           },
-          "tanβ = 1/3 ⇒ tan2β = 2tanβ/(1 − tan²β)",
           {
-            "text": "(2(1/3) = 2/3 and 1 − 1/9 = 8/9)",
+            "text": "\\tan \\beta \\ = \\ \\dfrac{1}{3} \\Rightarrow \\ \\tan 2\\beta \\ = \\ \\dfrac{2\\tan \\beta }{1\\ - \\ \\tan ^{2} \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(2\\left(\\dfrac{1}{3}\\right)\\ = \\ \\dfrac{2}{3}\\text{and}\\ 1\\ - \\ \\dfrac{1}{9} = \\ \\dfrac{8}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= 2(1/3)/(1 − 1/9) = (2/3)/(8/9)",
           {
-            "text": "(dividing by 8/9 is multiplying by 9/8)",
+            "text": "= \\ \\dfrac{2\\left(\\dfrac{1}{3}\\right)}{1\\ - \\ \\dfrac{1}{9}} = \\ \\dfrac{\\dfrac{2}{3}}{\\dfrac{8}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{8}{9}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{9}{8}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (2/3)(9/8) = 3/4"
+          {
+            "text": "= \\ \\left(\\dfrac{2}{3}\\right)\\left(\\dfrac{9}{8}\\right)\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -143,9 +179,21 @@
           "Using the sin2θ formula where the tan2θ one is needed."
         ],
         "lines_compact": [
-          "tanβ = 1/3 ⇒ tan2β = 2tanβ/(1 − tan²β)",
-          "= 2(1/3)/(1 − 1/9) = (2/3)/(8/9)",
-          "= (2/3)(9/8) = 3/4"
+          {
+            "text": "\\tan \\beta \\ = \\ \\dfrac{1}{3} \\Rightarrow \\ \\tan 2\\beta \\ = \\ \\dfrac{2\\tan \\beta }{1\\ - \\ \\tan ^{2} \\beta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\left(\\dfrac{1}{3}\\right)}{1\\ - \\ \\dfrac{1}{9}} = \\ \\dfrac{\\dfrac{2}{3}}{\\dfrac{8}{9}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{2}{3}\\right)\\left(\\dfrac{9}{8}\\right)\\ = \\ \\dfrac{3}{4}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -161,21 +209,38 @@
             "text": "(4β = 2 × 2β, so use the sin2θ formula with θ = 2β)",
             "added": true
           },
-          "R.H.S = sin(4Tan⁻¹(1/3)) = sin4β = sin(2(2β))",
           {
-            "text": "(sin2θ = 2tanθ/(1 + tan²θ))",
+            "text": "R.H.S\\ = \\ \\sin \\left(4\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{3}\\right)\\right)\\ = \\ \\sin 4\\beta \\ = \\ \\sin \\left(2\\left(2\\beta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\sin 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= 2tan2β/(1 + tan²2β) = 2(3/4)/(1 + 9/16)",
           {
-            "text": "(2(3/4) = 3/2 and 1 + 9/16 = 25/16)",
+            "text": "\\left(2\\left(\\dfrac{3}{4}\\right)\\ = \\ \\dfrac{3}{2}\\text{and}\\ 1\\ + \\ \\dfrac{9}{16} = \\ \\dfrac{25}{16}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (3/2)(16/25) = 24/25   …(2)",
-          "From (1) and (2), both sides equal 24/25.",
           {
-            "text": "∴ cos(2Tan⁻¹(1/7)) = sin(4Tan⁻¹(1/3))",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{3}{2}\\right)\\left(\\dfrac{16}{25}\\right)\\ = \\ \\dfrac{24}{25}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right),\\ \\text{both}\\ \\text{sides}\\ \\text{equal}\\ \\dfrac{24}{25}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\left(2\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\right)\\ = \\ \\sin \\left(4\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -206,13 +271,26 @@
           "Never stating that the two sides agree."
         ],
         "lines_compact": [
-          "R.H.S = sin(4Tan⁻¹(1/3)) = sin4β = sin(2(2β))",
-          "= 2tan2β/(1 + tan²2β) = 2(3/4)/(1 + 9/16)",
-          "= (3/2)(16/25) = 24/25   …(2)",
-          "From (1) and (2), both sides equal 24/25.",
           {
-            "text": "∴ cos(2Tan⁻¹(1/7)) = sin(4Tan⁻¹(1/3))",
-            "style": "boxed"
+            "text": "R.H.S\\ = \\ \\sin \\left(4\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{3}\\right)\\right)\\ = \\ \\sin 4\\beta \\ = \\ \\sin \\left(2\\left(2\\beta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          "= 2tan2β/(1 + tan²2β) = 2(3/4)/(1 + 9/16)",
+          {
+            "text": "= \\ \\left(\\dfrac{3}{2}\\right)\\left(\\dfrac{16}{25}\\right)\\ = \\ \\dfrac{24}{25}\\dots \\left(2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{From}\\ \\left(1\\right)\\ \\text{and}\\ \\left(2\\right),\\ \\text{both}\\ \\text{sides}\\ \\text{equal}\\ \\dfrac{24}{25}.",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\cos \\left(2\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{7}\\right)\\right)\\ = \\ \\sin \\left(4\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{3}\\right)\\right)",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

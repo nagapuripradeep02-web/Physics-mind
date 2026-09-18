@@ -80,9 +80,15 @@
         "margin_note": "Second mark, for the tangent equation with the surd cleared.",
         "lines": [
           "Equation of the tangent",
-          "with slope m is y = mx + a/m ⇒ y = √3x + 4/√3",
           {
-            "text": "(y = mx + c touches y² = 4ax exactly when c = a/m)",
+            "text": "\\text{with}\\ \\text{slope}\\ m\\ \\text{is}\\ y\\ = \\ mx\\ + \\ \\dfrac{a}{m} \\Rightarrow \\ y\\ = \\ \\sqrt{3}x\\ + \\ \\dfrac{4}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(y\\ = \\ mx\\ + \\ c\\ \\text{touches}\\ y^{2}\\ = \\ 4ax\\ \\text{exactly}\\ \\text{when}\\ c\\ = \\ \\dfrac{a}{m}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -90,7 +96,9 @@
             "added": true
           },
           {
-            "text": "(√3 × √3x = 3x and √3 × 4/√3 = 4)",
+            "text": "\\left(\\sqrt{3}\\ \\times \\ \\sqrt{3}x\\ = \\ 3x\\ \\text{and}\\ \\sqrt{3}\\ \\times \\ \\dfrac{4}{\\sqrt{3}} = \\ 4\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ √3y = 3x + 4 ⇒ 3x − √3y + 4 = 0",
@@ -107,7 +115,11 @@
         "memory_tip": "Multiply through by √3 the moment it appears in a denominator, the same habit as clearing any other fraction.",
         "lines_compact": [
           "Equation of the tangent",
-          "with slope m is y = mx + a/m ⇒ y = √3x + 4/√3",
+          {
+            "text": "\\text{with}\\ \\text{slope}\\ m\\ \\text{is}\\ y\\ = \\ mx\\ + \\ \\dfrac{a}{m} \\Rightarrow \\ y\\ = \\ \\sqrt{3}x\\ + \\ \\dfrac{4}{\\sqrt{3}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ √3y = 3x + 4 ⇒ 3x − √3y + 4 = 0",
           {
             "text": "∴ 3x − √3y + 4 = 0",

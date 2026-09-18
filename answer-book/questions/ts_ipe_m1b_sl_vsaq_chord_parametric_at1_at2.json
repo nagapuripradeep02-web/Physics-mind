@@ -59,15 +59,27 @@
             "text": "  over the difference of the x's)",
             "style": "indent"
           },
-          "Slope m = (2at₂ − 2at₁)/(at₂² − at₁²)",
+          {
+            "text": "\\text{Slope}\\ m\\ = \\ \\dfrac{2at_{2}\\ - \\ 2at_{1}}{at_{2}^{2}\\ - \\ at_{1}^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(take out 2a on top; take out a below, and",
           {
             "text": "  t₂² − t₁² = (t₂ − t₁)(t₂ + t₁))",
             "style": "indent"
           },
-          "= 2a(t₂ − t₁)/[a(t₂ − t₁)(t₂ + t₁)]",
+          {
+            "text": "= \\ \\dfrac{2a\\left(t_{2}\\ - \\ t_{1}\\right)}{a\\left(t_{2}\\ - \\ t_{1}\\right)\\left(t_{2}\\ + \\ t_{1}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cancel a(t₂ − t₁), which is not 0)",
-          "∴ m = 2/(t₁ + t₂),  if t₁ + t₂ ≠ 0"
+          {
+            "text": "\\therefore \\ m\\ = \\ \\dfrac{2}{t_{1}\\ + \\ t_{2}},\\ \\text{if}\\ t_{1}\\ + \\ t_{2}\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -107,7 +119,11 @@
         "memory_tip": "Clear the fraction first, expand second. The 2at₁² terms then cancel on their own.",
         "lines": [
           "Point-slope form at A(at₁², 2at₁):",
-          "y − 2at₁ = [2/(t₁ + t₂)](x − at₁²)",
+          {
+            "text": "y\\ - \\ 2at_{1}\\ = \\ \\left[\\dfrac{2}{t_{1}\\ + \\ t_{2}}\\right]\\left(x\\ - \\ at_{1}^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(multiply both sides by t₁ + t₂)",
             "added": true
@@ -161,7 +177,11 @@
         ],
         "lines_compact": [
           "Point-slope form at A(at₁², 2at₁):",
-          "y − 2at₁ = [2/(t₁ + t₂)](x − at₁²)",
+          {
+            "text": "y\\ - \\ 2at_{1}\\ = \\ \\left[\\dfrac{2}{t_{1}\\ + \\ t_{2}}\\right]\\left(x\\ - \\ at_{1}^{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ (t₁ + t₂)(y − 2at₁) = 2(x − at₁²)",
           "⇒ (t₁ + t₂)y − 2at₁² − 2at₁t₂ = 2x − 2at₁²",
           "⇒ (t₁ + t₂)y − 2at₁t₂ = 2x",

@@ -353,8 +353,16 @@
         "margin_note": "The last three marks. 108 over 12 is 9 exactly. A distance is never negative, which is what the modulus in the formula guarantees.",
         "memory_tip": "108 over 12 is 9 exactly. A distance is never negative — that is what the modulus guarantees.",
         "lines": [
-          "S.D = |(a−c)·(b×d)| / |b×d|",
-          "= 108 / 12",
+          {
+            "text": "S.D\\ = \\ \\dfrac{\\left|\\left(a - c\\right) \\cdot \\left(b \\times d\\right)\\right|}{\\left|b \\times d\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{108}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(108 ÷ 12 = 9)",
             "added": true
@@ -391,8 +399,16 @@
           "Dividing the other way round."
         ],
         "lines_compact": [
-          "S.D = |(a−c)·(b×d)| / |b×d|",
-          "= 108 / 12",
+          {
+            "text": "S.D\\ = \\ \\dfrac{\\left|\\left(a - c\\right) \\cdot \\left(b \\times d\\right)\\right|}{\\left|b \\times d\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{108}{12}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ Shortest distance = 9 units",
             "style": "boxed"

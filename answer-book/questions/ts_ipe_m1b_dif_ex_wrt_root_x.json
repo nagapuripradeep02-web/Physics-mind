@@ -54,15 +54,27 @@
           },
           "(√x is defined for x ≥ 0, and its derivative needs x > 0)",
           "Let u = eˣ  and  v = √x,  x > 0",
-          "The question asks for du/dv, not du/dx.",
+          {
+            "text": "\\text{The}\\ \\text{question}\\ \\text{asks}\\ \\text{for}\\ \\dfrac{du}{dv},\\ \\text{not}\\ \\dfrac{du}{dx}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "To differentiate one function with respect to another, use",
-          "du/dv = (du/dx)/(dv/dx)",
+          {
+            "text": "\\dfrac{du}{dv}\\ = \\ \\dfrac{\\dfrac{du}{dx}}{\\dfrac{dv}{dx}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(d/dx(eˣ) = eˣ;",
           {
             "text": "  √x = x¹ᐟ², so d/dx(√x) = ½x⁻¹ᐟ² = 1/(2√x))",
             "style": "indent"
           },
-          "du/dx = eˣ    and    dv/dx = d/dx(√x) = 1/(2√x)"
+          {
+            "text": "\\dfrac{du}{dx}\\ = \\ e^{x}\\ \\text{and}\\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{d}{dx}\\left(\\sqrt{x}\\right)\\ = \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -102,20 +114,29 @@
         "memory_tip": "The 2 in the answer comes from dividing by 1/(2√x), which is the same as multiplying by 2√x.",
         "lines": [
           {
-            "text": "(put du/dx = eˣ and dv/dx = 1/(2√x))",
+            "text": "\\left(\\text{put}\\ \\dfrac{du}{dx}\\ = \\ e^{x}\\ \\text{and}\\ \\dfrac{dv}{dx}\\ = \\ \\dfrac{1}{2\\sqrt{x}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "du/dv = (du/dx)/(dv/dx) = eˣ ÷ 1/(2√x)",
+          {
+            "text": "\\dfrac{du}{dv}\\ = \\ \\dfrac{\\dfrac{du}{dx}}{\\dfrac{dv}{dx}} = \\ e^{x}\\ \\div \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Dividing by a fraction",
           "is the same as multiplying by its reciprocal.",
           {
-            "text": "(the reciprocal of 1/(2√x) is 2√x)",
+            "text": "\\left(\\text{the}\\ \\text{reciprocal}\\ \\text{of}\\ \\dfrac{1}{2\\sqrt{x}}\\text{is}\\ 2\\sqrt{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= eˣ · 2√x",
           {
-            "text": "∴ d(eˣ)/d(√x) = 2√x · eˣ,  x > 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d\\left(e^{x}\\right)}{d\\left(\\sqrt{x}\\right)} = \\ 2\\sqrt{x}\\ \\cdot \\ e^{x},\\ x\\ > \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -146,13 +167,18 @@
           "Writing 2√x · eˣ as 2√(x eˣ), putting eˣ inside the square root."
         ],
         "lines_compact": [
-          "du/dv = (du/dx)/(dv/dx) = eˣ ÷ 1/(2√x)",
+          {
+            "text": "\\dfrac{du}{dv}\\ = \\ \\dfrac{\\dfrac{du}{dx}}{\\dfrac{dv}{dx}} = \\ e^{x}\\ \\div \\ \\dfrac{1}{2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Dividing by a fraction",
           "is the same as multiplying by its reciprocal.",
           "= eˣ · 2√x",
           {
-            "text": "∴ d(eˣ)/d(√x) = 2√x · eˣ,  x > 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d\\left(e^{x}\\right)}{d\\left(\\sqrt{x}\\right)} = \\ 2\\sqrt{x}\\ \\cdot \\ e^{x},\\ x\\ > \\ 0",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

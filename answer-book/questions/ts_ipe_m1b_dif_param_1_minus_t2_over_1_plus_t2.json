@@ -60,7 +60,11 @@
             "style": "heading"
           },
           "Both x and y are given through the parameter t, so",
-          "dy/dx = (dy/dt) / (dx/dt),   provided dx/dt ≠ 0",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}},\\ \\text{provided}\\ \\dfrac{dx}{dt}\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "(t = tan θ, with θ in (−π/2, π/2), gives every real t;",
           {
             "text": "  by the chain rule dy/dx = (dy/dθ)/(dx/dθ) as well)",
@@ -107,20 +111,38 @@
         "margin_note": "Second mark. Both standard forms follow from 1 + tan²θ = sec²θ: (1 − tan²θ)/(1 + tan²θ) = cos 2θ and 2 tan θ/(1 + tan²θ) = sin 2θ.",
         "lines": [
           {
-            "text": "(cos 2θ = (1 − tan²θ)/(1 + tan²θ))",
+            "text": "\\left(\\cos 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{1\\ + \\ \\tan ^{2} \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "x = a(1 − tan²θ)/(1 + tan²θ) = a cos 2θ",
           {
-            "text": "(sin 2θ = 2 tan θ/(1 + tan²θ))",
-            "added": true
+            "text": "x\\ = \\ \\dfrac{a\\left(1\\ - \\ \\tan ^{2} \\theta \\right)}{1\\ + \\ \\tan ^{2} \\theta } = \\ a\\cos 2\\theta",
+            "style": "normal",
+            "render": "katex"
           },
-          "y = 2b tan θ/(1 + tan²θ) = b sin 2θ",
           {
-            "text": "(x/a = cos 2θ and y/b = sin 2θ, and cos²2θ + sin²2θ = 1)",
+            "text": "\\left(\\sin 2\\theta \\ = \\ \\dfrac{2\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta }\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "So the point (x, y) lies on the ellipse x²/a² + y²/b² = 1"
+          {
+            "text": "y\\ = \\ \\dfrac{2b\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta } = \\ b\\sin 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{x}{a} = \\ \\cos 2\\theta \\ \\text{and}\\ \\dfrac{y}{b} = \\ \\sin 2\\theta ,\\ \\text{and}\\ \\cos ^{2} 2\\theta \\ + \\ \\sin ^{2} 2\\theta \\ = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{the}\\ \\text{ellipse}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -151,9 +173,21 @@
         ],
         "memory_tip": "Both forms carry 2θ: numerator 2 tan θ gives sin 2θ, numerator 1 − tan²θ gives cos 2θ.",
         "lines_compact": [
-          "x = a(1 − tan²θ)/(1 + tan²θ) = a cos 2θ",
-          "y = 2b tan θ/(1 + tan²θ) = b sin 2θ",
-          "So the point (x, y) lies on the ellipse x²/a² + y²/b² = 1"
+          {
+            "text": "x\\ = \\ \\dfrac{a\\left(1\\ - \\ \\tan ^{2} \\theta \\right)}{1\\ + \\ \\tan ^{2} \\theta } = \\ a\\cos 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "y\\ = \\ \\dfrac{2b\\tan \\theta }{1\\ + \\ \\tan ^{2} \\theta } = \\ b\\sin 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{So}\\ \\text{the}\\ \\text{point}\\ \\left(x,\\ y\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{the}\\ \\text{ellipse}\\ \\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -178,7 +212,11 @@
             "text": "(the 2s cancel, and cos 2θ/sin 2θ = cot 2θ)",
             "added": true
           },
-          "dy/dx = (2b cos 2θ) / (−2a sin 2θ) = −(b/a) cot 2θ"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{2b\\cos 2\\theta }{ - 2a\\sin 2\\theta } = \\ - \\left(\\dfrac{b}{a}\\right)\\cot 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -211,7 +249,11 @@
         "lines_compact": [
           "dx/dθ = a(−sin 2θ)(2) = −2a sin 2θ",
           "dy/dθ = b(cos 2θ)(2) = 2b cos 2θ",
-          "dy/dx = (2b cos 2θ) / (−2a sin 2θ) = −(b/a) cot 2θ"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{2b\\cos 2\\theta }{ - 2a\\sin 2\\theta } = \\ - \\left(\\dfrac{b}{a}\\right)\\cot 2\\theta",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -231,12 +273,22 @@
             "style": "indent",
             "added": true
           },
-          "cot 2θ = (1 − tan²θ) / (2 tan θ) = (1 − t²) / (2t)",
           {
-            "text": "(put (1 − t²)/(2t) in place of cot 2θ)",
+            "text": "\\cot 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{2\\tan \\theta } = \\ \\dfrac{1\\ - \\ t^{2}}{2t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{1\\ - \\ t^{2}}{2t}\\text{in}\\ \\text{place}\\ \\text{of}\\ \\cot 2\\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dx = −(b/a) · (1 − t²)/(2t)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\left(\\dfrac{b}{a}\\right)\\ \\cdot \\ \\dfrac{1\\ - \\ t^{2}}{2t}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−(1 − t²) = t² − 1, and a · 2t = 2at)",
             "added": true
@@ -275,8 +327,16 @@
         ],
         "memory_tip": "Check at t = 1: the point is (0, b), the top of the ellipse, where the tangent is horizontal — and the answer gives dy/dx = 0.",
         "lines_compact": [
-          "cot 2θ = (1 − tan²θ) / (2 tan θ) = (1 − t²) / (2t)",
-          "dy/dx = −(b/a) · (1 − t²)/(2t)",
+          {
+            "text": "\\cot 2\\theta \\ = \\ \\dfrac{1\\ - \\ \\tan ^{2} \\theta }{2\\tan \\theta } = \\ \\dfrac{1\\ - \\ t^{2}}{2t}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ - \\left(\\dfrac{b}{a}\\right)\\ \\cdot \\ \\dfrac{1\\ - \\ t^{2}}{2t}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ dy/dx = b(t² − 1) / (2at)",
             "style": "boxed"

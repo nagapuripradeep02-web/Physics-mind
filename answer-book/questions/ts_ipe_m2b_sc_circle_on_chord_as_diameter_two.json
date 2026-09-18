@@ -89,7 +89,9 @@
             "added": true
           },
           {
-            "text": "2g = 2λ ⇒ g = λ, and 2f = 3λ ⇒ f = 3λ/2",
+            "text": "2g\\ = \\ 2\\lambda \\ \\Rightarrow \\ g\\ = \\ \\lambda ,\\ \\text{and}\\ 2f\\ = \\ 3\\lambda \\ \\Rightarrow \\ f\\ = \\ \\dfrac{3\\lambda }{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -97,7 +99,11 @@
             "added": true
           },
           "Centre of the above circle is",
-          "( −λ , −3λ/2 )"
+          {
+            "text": "\\left( - \\lambda \\ ,\\ - \\dfrac{3\\lambda }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Reading the centre (−g, −f) directly from the coefficients of x and y in step 1 gives the centre of every member of the family, in terms of λ.",
         "common_mistakes": [
@@ -107,7 +113,11 @@
         "memory_tip": "Coefficient of x is 2λ, so g = λ and the centre's x-coordinate is −λ — halve, then negate, exactly as always.",
         "lines_compact": [
           "Centre of the above circle is",
-          "( −λ , −3λ/2 )"
+          {
+            "text": "\\left( - \\lambda \\ ,\\ - \\dfrac{3\\lambda }{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -130,12 +140,20 @@
           "Line L = 0 becomes a diameter if the",
           "centre lies on L ≡ 2x + 3y − 1 = 0",
           {
-            "text": "Put x = −λ and y = −3λ/2 in L:",
+            "text": "\\text{Put}\\ x\\ = \\ - \\lambda \\ \\text{and}\\ y\\ = \\ - \\dfrac{3\\lambda }{2}\\text{in}\\ L:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ 2(−λ) + 3(−3λ/2) − 1 = 0",
           {
-            "text": "That is −2λ − 9λ/2 − 1 = 0. Multiply by 2:",
+            "text": "\\Rightarrow \\ 2\\left( - \\lambda \\right)\\ + \\ 3\\left( - \\dfrac{3\\lambda }{2}\\right)\\ - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{That}\\ \\text{is}\\ - 2\\lambda \\ - \\ \\dfrac{9\\lambda }{2} - \\ 1\\ = \\ 0.\\ \\text{Multiply}\\ \\text{by}\\ 2:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
@@ -143,17 +161,27 @@
             "text": "(−4λ − 9λ = −13λ, so −13λ = 2)",
             "added": true
           },
-          "⇒ λ = −2/13",
           {
-            "text": "Put λ = −2/13 in (1):",
+            "text": "\\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{2}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Put}\\ \\lambda \\ = \\ - \\dfrac{2}{13}\\text{in}\\ \\left(1\\right):",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "2λ = −4/13, 3λ = −6/13, 4 + λ = 50/13",
+            "text": "2\\lambda \\ = \\ - \\dfrac{4}{13},\\ 3\\lambda \\ = \\ - \\dfrac{6}{13},\\ 4\\ + \\ \\lambda \\ = \\ \\dfrac{50}{13}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "x² + y² − (4/13)x − (6/13)y − 50/13 = 0",
+            "text": "x^{2}\\ + \\ y^{2}\\ - \\ \\left(\\dfrac{4}{13}\\right)x\\ - \\ \\left(\\dfrac{6}{13}\\right)y\\ - \\ \\dfrac{50}{13} = \\ 0",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -175,9 +203,17 @@
         "lines_compact": [
           "Line L = 0 becomes a diameter if the",
           "centre lies on L ≡ 2x + 3y − 1 = 0",
-          "⇒ 2(−λ) + 3(−3λ/2) − 1 = 0",
+          {
+            "text": "\\Rightarrow \\ 2\\left( - \\lambda \\right)\\ + \\ 3\\left( - \\dfrac{3\\lambda }{2}\\right)\\ - \\ 1\\ = \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ −4λ − 9λ − 2 = 0 ⇒ 13λ = −2",
-          "⇒ λ = −2/13",
+          {
+            "text": "\\Rightarrow \\ \\lambda \\ = \\ - \\dfrac{2}{13}",
+            "style": "normal",
+            "render": "katex"
+          },
           "From (1), the required circle is",
           {
             "text": "13(x² + y²) − 4x − 6y − 50 = 0",

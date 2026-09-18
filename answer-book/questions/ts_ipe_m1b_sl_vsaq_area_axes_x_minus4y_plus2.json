@@ -60,7 +60,11 @@
             "text": "  ½ · |c/a| · |c/b| = c²/(2|ab|))",
             "style": "indent"
           },
-          "Area of the triangle is  Δ = c²/(2|ab|)"
+          {
+            "text": "\\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -103,12 +107,20 @@
             "text": "(put a = 1, b = −4 and c = 2)",
             "added": true
           },
-          "∴ Δ = c²/(2|ab|) = 2²/(2|(1)(−4)|)",
+          {
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|} = \\ \\dfrac{2^{2}}{2\\left|\\left(1\\right)\\left( - 4\\right)\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2² = 4 and |(1)(−4)| = 4)",
             "added": true
           },
-          "= 4/(2 × 4) = 4/8 = 1/2",
+          {
+            "text": "= \\ \\dfrac{4}{2\\ \\times \\ 4} = \\ \\dfrac{4}{8} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(check: the intercepts are −2 and 1/2,",
             "added": true
@@ -119,8 +131,9 @@
             "added": true
           },
           {
-            "text": "∴ Area of the triangle is 1/2 sq.units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\dfrac{1}{2}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -151,11 +164,20 @@
           "Dropping the square on c and writing 2/(2 × 4)."
         ],
         "lines_compact": [
-          "∴ Δ = c²/(2|ab|) = 2²/(2|(1)(−4)|)",
-          "= 4/(2 × 4) = 4/8 = 1/2",
           {
-            "text": "∴ Area of the triangle is 1/2 sq.units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\Delta \\ = \\ \\dfrac{c^{2}}{2\\left|ab\\right|} = \\ \\dfrac{2^{2}}{2\\left|\\left(1\\right)\\left( - 4\\right)\\right|}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{4}{2\\ \\times \\ 4} = \\ \\dfrac{4}{8} = \\ \\dfrac{1}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\text{Area}\\ \\text{of}\\ \\text{the}\\ \\text{triangle}\\ \\text{is}\\ \\dfrac{1}{2}sq.\\text{units}",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }

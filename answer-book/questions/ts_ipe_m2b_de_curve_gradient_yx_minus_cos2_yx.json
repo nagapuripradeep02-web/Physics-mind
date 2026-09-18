@@ -77,16 +77,36 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given D.E is dy/dx = y/x − cos²(y/x) … (1)",
-          "The right side depends only on y/x, so",
+          {
+            "text": "\\text{Given}\\ D.E\\ \\text{is}\\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{y}{x} - \\ \\cos ^{2}\\left(\\dfrac{y}{x}\\right)\\ \\dots \\ \\left(1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{The}\\ \\text{right}\\ \\text{side}\\ \\text{depends}\\ \\text{only}\\ \\text{on}\\ \\dfrac{y}{x},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  (1) is a homogeneous D.E.",
             "style": "indent"
           },
           "Put y = vx. By the product rule,",
-          "dy/dx = v·1 + x·dv/dx = v + x·dv/dx",
-          "Also y/x = vx/x = v, so",
-          "(1) ⇒ v + x·dv/dx = vx/x − cos²(vx/x)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ v \\cdot 1\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{Also}\\ \\dfrac{y}{x} = \\ \\dfrac{vx}{x} = \\ v,\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(1\\right)\\ \\Rightarrow \\ v\\ + \\ x \\cdot \\dfrac{dv}{dx}\\ = \\ \\dfrac{vx}{x} - \\ \\cos ^{2}\\left(\\dfrac{vx}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "= v − cos²v"
         ],
         "why": "A gradient given purely in terms of y/x is already homogeneous, so substituting y = vx and dy/dx = v + x·dv/dx immediately turns the equation into one for v alone.",
@@ -108,17 +128,26 @@
             "text": "Take v to the right side:",
             "added": true
           },
-          "x·dv/dx = v − cos²v − v = −cos²v",
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ - \\ \\cos ^{2} v\\ - \\ v\\ = \\ - \\cos ^{2} v",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Divide both sides by cos²v and by x,",
             "added": true
           },
           {
-            "text": "  and 1/cos²v = sec²v:",
+            "text": "\\text{and}\\ \\dfrac{1}{\\cos ^{2} v} = \\ \\sec ^{2} v:",
             "style": "indent",
+            "render": "katex",
             "added": true
           },
-          "⇒ sec²v dv = −dx/x"
+          {
+            "text": "\\Rightarrow \\ \\sec ^{2} vdv\\ = \\ - \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The two v terms cancel exactly, leaving x·dv/dx = −cos²v; dividing by cos²v and by x gives sec²v dv = −dx/x, with v on the left and x on the right.",
         "common_mistakes": [
@@ -126,8 +155,16 @@
           "Writing 1/cos²v as cos²v instead of sec²v."
         ],
         "lines_compact": [
-          "x·dv/dx = v − cos²v − v = −cos²v",
-          "⇒ sec²v dv = −dx/x"
+          {
+            "text": "x \\cdot \\dfrac{dv}{dx}\\ = \\ v\\ - \\ \\cos ^{2} v\\ - \\ v\\ = \\ - \\cos ^{2} v",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ \\sec ^{2} vdv\\ = \\ - \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -143,9 +180,15 @@
             "text": "Integrate both sides:",
             "added": true
           },
-          "∫ sec²v dv = −∫ dx/x",
           {
-            "text": "∫sec²v dv = tan v and ∫dx/x = log|x|:",
+            "text": "\\int \\ \\sec ^{2} vdv\\ = \\ - \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\int \\sec ^{2} vdv\\ = \\ \\tan v\\ \\text{and}\\ \\int \\dfrac{dx}{x} = \\ \\log \\left|x\\right|:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "⇒ tan v = −log|x| + c"
@@ -156,7 +199,11 @@
           "Writing the integral of sec²v as sec v tan v instead of tan v."
         ],
         "lines_compact": [
-          "∫ sec²v dv = −∫ dx/x",
+          {
+            "text": "\\int \\ \\sec ^{2} vdv\\ = \\ - \\int \\ \\dfrac{dx}{x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "⇒ tan v = −log|x| + c"
         ]
       },
@@ -174,7 +221,11 @@
             "added": true
           },
           "⇒ tan v + log|x| = c … (2)",
-          "Put v = y/x: tan(y/x) + log|x| = c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\tan \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log \\left|x\\right|\\ = \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Rearranging tan v = −log|x| + c into tan v + log|x| = c gives the general family of curves in the ratio v, and substituting v = y/x writes it back in terms of the original x and y.",
         "common_mistakes": [
@@ -183,7 +234,11 @@
         ],
         "lines_compact": [
           "⇒ tan v + log|x| = c … (2)",
-          "Put v = y/x: tan(y/x) + log|x| = c"
+          {
+            "text": "\\text{Put}\\ v\\ = \\ \\dfrac{y}{x}:\\ \\tan \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log \\left|x\\right|\\ = \\ c",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -195,19 +250,32 @@
         "margin_note": "The last mark. Substitute x = 1, y = π/4 to find c, then write the final particular solution.",
         "memory_tip": "log|1| = 0 and tan(π/4) = 1 — both simplify away instantly at this point.",
         "lines": [
-          "If the curve passes through (x, y) = (1, π/4), then",
           {
-            "text": "y/x = (π/4)/1 = π/4 at that point, and",
-            "added": true
-          },
-          "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
-          {
-            "text": "since tan(π/4) = 1 and log 1 = 0. Put c = 1:",
-            "added": true
+            "text": "\\text{If}\\ \\text{the}\\ \\text{curve}\\ \\text{passes}\\ \\text{through}\\ \\left(x,\\ y\\right)\\ = \\ \\left(1,\\ \\dfrac{\\pi }{4}\\right),\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "tan(y/x) + log|x| = 1",
-            "style": "boxed"
+            "text": "\\dfrac{y}{x} = \\ \\dfrac{\\dfrac{\\pi }{4}}{1} = \\ \\dfrac{\\pi }{4}\\text{at}\\ \\text{that}\\ \\text{point},\\ \\text{and}",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\log \\left|1\\right|\\ = \\ c\\ \\Rightarrow \\ 1\\ + \\ 0\\ = \\ c\\ \\Rightarrow \\ c\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\sin ce\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ = \\ 1\\ \\text{and}\\ \\log 1\\ = \\ 0.\\ \\text{Put}\\ c\\ = \\ 1:",
+            "style": "normal",
+            "render": "katex",
+            "added": true
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log \\left|x\\right|\\ = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ],
         "why": "Substituting the given point into the general family fixes the arbitrary constant, and putting that value of c back into (2) gives the one curve through (1, π/4), which is what the question actually asks for.",
@@ -216,11 +284,20 @@
           "Evaluating tan(π/4) as an approximate decimal instead of the exact value 1."
         ],
         "lines_compact": [
-          "If the curve passes through (x, y) = (1, π/4), then",
-          "tan(π/4) + log|1| = c ⇒ 1 + 0 = c ⇒ c = 1",
           {
-            "text": "tan(y/x) + log|x| = 1",
-            "style": "boxed"
+            "text": "\\text{If}\\ \\text{the}\\ \\text{curve}\\ \\text{passes}\\ \\text{through}\\ \\left(x,\\ y\\right)\\ = \\ \\left(1,\\ \\dfrac{\\pi }{4}\\right),\\ \\text{then}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{\\pi }{4}\\right)\\ + \\ \\log \\left|1\\right|\\ = \\ c\\ \\Rightarrow \\ 1\\ + \\ 0\\ = \\ c\\ \\Rightarrow \\ c\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan \\left(\\dfrac{y}{x}\\right)\\ + \\ \\log \\left|x\\right|\\ = \\ 1",
+            "style": "boxed",
+            "render": "katex"
           }
         ]
       }
