@@ -1,5 +1,23 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚀 SESSION — The Vidi window resizes: a corner grip, and the phone sheet pulls taller (2026-09-18, `feat/answerbook-vidi-resize`, DEPLOYED)
+
+**Bottom line: a student can now make the chat as big as they want.** The founder's phone screenshot showed Vidi as a 358 × 560 postage stamp — Chrome's desktop-site view gives a phone a 980px viewport, taller than wide, where the phone bottom-sheet CSS (≤720px) never applies and the floating window's default size is tiny on a 2,000px-tall screen.
+
+### What changed
+
+- `answer-book/shell.html` + `notebook.css`: a `#vidiResize` grip over the window's TOP-LEFT corner — the free corner when the window rests in its default bottom-right place. 44 × 44px hit area for a thumb, a 16px diagonal glyph for the eye; the header's left padding makes room. Hidden when docked (≥1180px, fixed-width column; the docked block also pins `height: auto !important` so a size chosen while floating cannot shorten the column). On the sheet (≤720px) the header and the grip both show `ns-resize`.
+- `answer-book/notebook.js` (`VidiPanel`): `WinResize` — begin/move/end shared by the grip everywhere and by the HEADER on the phone sheet (dragging the header, which did nothing there, now pulls the sheet taller or shorter). The bottom-right corner stays put: on begin the window is pinned by left/top, then left/top/width/height move together; clamps `MIN_W 280 · MIN_H 240 · 6px from every edge`. Inline width/height/max-height beat the stylesheet's height caps (560px / 74vh). Size persists beside the position (`pm_vidi_win.w/h`) and is re-applied on open (`applyStoredSize`: the sheet keeps only `h`, docked keeps neither). Double-tap the grip = reset. Telemetry `vidi_resize {w,h,sheet}` rides the existing batch.
+- `e2e/answer_book.spec.ts`: two gates — "the Vidi window resizes from its corner grip, the far corner stays put, and the size sticks" (980 × 1600: grows >250 wide / >400 tall, bottom-right corner within 3px, thread grew, size survives reload, double-tap resets) and "on the phone sheet the header pulls Vidi taller, and never sideways" (390 × 844: +150px tall, still 390 wide at x=0, no sideways scroll).
+
+### Evidence
+
+Targeted gates green on the offline build: the two new ones + drag-by-header + docked column + phone minimize + drag-to-ask (6/6). `smoke:answers:gated` **32 passed** on the deployed artifact. Playwright screenshots at 980 × 1600 confirmed the grip glyph and a 678 × 751 window after one drag with the corner fixed; at 390 × 844 the sheet grew from the header. Deployed as version `224240cf`; the live `index.html` is byte-identical to the artifact and carries the grip. The full `smoke:answers` sweep was still running when this shipped (it takes ~20 min; two failures reproduce on untouched master per the 2026-09-17 note) — its result is recorded below if it differs.
+
+**Next:** watch `vidi_resize` in the telemetry for whether students find the grip; if desktop-site-view phones are common, consider a larger default window when `innerHeight > 1.4 × innerWidth`.
+
+---
+
 ## 🚀 SESSION — MEC opens in the Answer Book, both years, maths only (2026-09-18, `feat/answerbook-mec`)
 
 **Bottom line: the door's MEC tile is live in both years. An MEC student gets Maths-1A + 1B (931 answers, 22 chapters) in first year and Maths-2A + 2B (528 answers, 18 chapters) in second year — the SAME cards MPC ships — and is told at the door that Economics and Commerce are not in this book.** Nothing was authored; the change is registry + door + copy.
