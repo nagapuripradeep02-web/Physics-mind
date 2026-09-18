@@ -61,11 +61,7 @@
           },
           "(the point (3, 2) is on the line: 3(3) − 4(2) − 1 = 0)",
           "Given line is 3x − 4y − 1 = 0",
-          {
-            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 3,\\ b\\ = \\ - 4\\right)",
-            "style": "normal",
-            "render": "katex"
-          },
+          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = −4)",
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{ - 4} = \\ \\dfrac{3}{4}",
             "style": "normal",

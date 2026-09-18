@@ -308,11 +308,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "\\text{From}\\ \\left(3\\right),\\ \\text{slope}\\ \\text{of}\\ x\\ + \\ y\\ + \\ 2\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{1}{1} = \\ - 1",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (3), slope of x + y + 2 = 0 is m = −a/b = −1/1 = −1",
           {
             "text": "(perpendicular slopes multiply to −1: −1 ÷ (−1) = 1)",
             "added": true
@@ -358,11 +354,7 @@
         ],
         "mark_note": "Method",
         "lines_compact": [
-          {
-            "text": "\\text{From}\\ \\left(3\\right),\\ \\text{slope}\\ \\text{of}\\ x\\ + \\ y\\ + \\ 2\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{1}{1} = \\ - 1",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (3), slope of x + y + 2 = 0 is m = −a/b = −1/1 = −1",
           {
             "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 1} = \\ 1",
             "style": "normal",

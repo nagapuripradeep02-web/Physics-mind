@@ -114,11 +114,7 @@
             "text": "Pair the first two with p = S−A and q = S−B:",
             "added": true
           },
-          {
-            "text": "= \\ 2\\sin \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\sin C",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
           {
             "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
             "style": "normal",
@@ -163,11 +159,7 @@
         ],
         "lines_compact": [
           "L.H.S = sin(S−A) + sin(S−B) + sinC",
-          {
-            "text": "= \\ 2\\sin \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\sin C",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= 2 sin(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + sinC",
           {
             "text": "\\left[\\because \\ \\sin p\\ + \\ \\sin q\\ = \\ 2\\sin \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
             "style": "normal",

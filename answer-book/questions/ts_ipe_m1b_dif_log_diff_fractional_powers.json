@@ -124,9 +124,7 @@
         "memory_tip": "Numerator terms get a plus, denominator terms get a minus, and a negative power changes that sign once more.",
         "lines": [
           {
-            "text": "\\left(\\log \\left(\\dfrac{P}{Q}\\right)\\ = \\ \\log P\\ - \\ \\log Q\\ \\text{and}\\ \\log \\left(PQ\\right)\\ = \\ \\log P\\ + \\ \\log Q\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(log(P/Q) = log P − log Q and log(PQ) = log P + log Q)",
             "added": true
           },
           "Taking logarithms on both sides,",

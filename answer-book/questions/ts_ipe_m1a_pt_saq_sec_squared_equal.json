@@ -143,11 +143,7 @@
             "render": "katex",
             "added": true
           },
-          {
-            "text": "\\Rightarrow \\ \\left(r_{1}\\ + \\ r_{2}\\right)\\sec ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ 4R\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ \\times \\ \\dfrac{1}{\\cos ^{2}\\left(\\dfrac{C}{2}\\right)} = \\ 4R",
-            "style": "normal",
-            "render": "katex"
-          },
+          "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
           "By the same working with the letters rotated,",
           {
             "text": "\\left(r_{2}\\ + \\ r_{3}\\right)\\sec ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 4R\\ \\text{and}\\ \\left(r_{3}\\ + \\ r_{1}\\right)\\sec ^{2}\\left(\\dfrac{B}{2}\\right)\\ = \\ 4R",
@@ -191,11 +187,7 @@
           "Writing sec² as cos² and multiplying instead of cancelling."
         ],
         "lines_compact": [
-          {
-            "text": "\\Rightarrow \\ \\left(r_{1}\\ + \\ r_{2}\\right)\\sec ^{2}\\left(\\dfrac{C}{2}\\right)\\ = \\ 4R\\cos ^{2}\\left(\\dfrac{C}{2}\\right)\\ \\times \\ \\dfrac{1}{\\cos ^{2}\\left(\\dfrac{C}{2}\\right)} = \\ 4R",
-            "style": "normal",
-            "render": "katex"
-          },
+          "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
           "By the same working with the letters rotated,",
           {
             "text": "\\left(r_{2}\\ + \\ r_{3}\\right)\\sec ^{2}\\left(\\dfrac{A}{2}\\right)\\ = \\ 4R\\ \\text{and}\\ \\left(r_{3}\\ + \\ r_{1}\\right)\\sec ^{2}\\left(\\dfrac{B}{2}\\right)\\ = \\ 4R",

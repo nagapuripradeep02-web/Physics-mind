@@ -119,16 +119,8 @@
             "render": "katex"
           },
           "  ∴ 6 − a = 3 ⇒ a = 3",
-          {
-            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{6}{3} = \\ 2\\ \\Rightarrow \\ 6\\ - \\ b\\ = \\ 2\\ \\Rightarrow \\ b\\ = \\ 4",
-            "style": "normal",
-            "render": "katex"
-          },
-          {
-            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{6}{6} = \\ 1\\ \\Rightarrow \\ 6\\ - \\ c\\ = \\ 1\\ \\Rightarrow \\ c\\ = \\ 5",
-            "style": "normal",
-            "render": "katex"
-          }
+          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 6/3 = 2 ⇒ 6 − b = 2 ⇒ b = 4",
+          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 6/6 = 1 ⇒ 6 − c = 1 ⇒ c = 5"
         ],
         "recall": {
           "credit": "say_it",
@@ -166,16 +158,8 @@
             "render": "katex"
           },
           "  ∴ 6 − a = 3 ⇒ a = 3",
-          {
-            "text": "\\left(ii\\right)r_{2}\\ = \\ \\dfrac{\\Delta }{s - b} \\Rightarrow \\ s\\ - \\ b\\ = \\ \\dfrac{6}{3} = \\ 2\\ \\Rightarrow \\ 6\\ - \\ b\\ = \\ 2\\ \\Rightarrow \\ b\\ = \\ 4",
-            "style": "normal",
-            "render": "katex"
-          },
-          {
-            "text": "\\left(iii\\right)r_{3}\\ = \\ \\dfrac{\\Delta }{s - c} \\Rightarrow \\ s\\ - \\ c\\ = \\ \\dfrac{6}{6} = \\ 1\\ \\Rightarrow \\ 6\\ - \\ c\\ = \\ 1\\ \\Rightarrow \\ c\\ = \\ 5",
-            "style": "normal",
-            "render": "katex"
-          }
+          "(ii) r₂ = Δ/(s−b) ⇒ s − b = 6/3 = 2 ⇒ 6 − b = 2 ⇒ b = 4",
+          "(iii) r₃ = Δ/(s−c) ⇒ s − c = 6/6 = 1 ⇒ 6 − c = 1 ⇒ c = 5"
         ]
       },
       {

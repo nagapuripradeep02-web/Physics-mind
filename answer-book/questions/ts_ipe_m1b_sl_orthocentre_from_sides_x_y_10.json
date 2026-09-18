@@ -257,11 +257,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "\\text{From}\\ \\left(3\\right),\\ \\text{slope}\\ \\text{of}\\ 2x\\ + \\ y\\ - \\ 7\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{2}{1} = \\ - 2",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
           {
             "text": "\\left(\\text{perpendicular}\\ \\text{slopes}\\ \\text{multiply}\\ \\text{to}\\ - 1:\\ - 1\\ \\div \\ \\left( - 2\\right)\\ = \\ \\dfrac{1}{2}\\right)",
             "style": "normal",
@@ -322,11 +318,7 @@
         ],
         "mark_note": "Method",
         "lines_compact": [
-          {
-            "text": "\\text{From}\\ \\left(3\\right),\\ \\text{slope}\\ \\text{of}\\ 2x\\ + \\ y\\ - \\ 7\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{2}{1} = \\ - 2",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (3), slope of 2x + y − 7 = 0 is m = −a/b = −2/1 = −2",
           {
             "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{ - 2} = \\ \\dfrac{1}{2}",
             "style": "normal",
@@ -378,11 +370,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "\\text{From}\\ \\left(2\\right),\\ \\text{slope}\\ \\text{of}\\ x\\ - \\ y\\ - \\ 2\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{1}{ - 1} = \\ 1",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
           {
             "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{1} = \\ - 1",
             "style": "normal",
@@ -428,11 +416,7 @@
           "Solving (1) and (3), we get B;",
           "(3) − (1) ⇒ x − 17 = 0   ⇒   x = 17",
           "(1) ⇒ 17 + y + 10 = 0   ⇒   y = −27   ∴ B = (17, −27)",
-          {
-            "text": "\\text{From}\\ \\left(2\\right),\\ \\text{slope}\\ \\text{of}\\ x\\ - \\ y\\ - \\ 2\\ = \\ 0\\ \\text{is}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{1}{ - 1} = \\ 1",
-            "style": "normal",
-            "render": "katex"
-          },
+          "From (2), slope of x − y − 2 = 0 is m = −a/b = −1/(−1) = 1",
           {
             "text": "\\text{Its}\\ \\text{perpendicular}\\ \\text{slope}\\ \\text{is}\\ - \\dfrac{1}{m} = \\ - \\dfrac{1}{1} = \\ - 1",
             "style": "normal",

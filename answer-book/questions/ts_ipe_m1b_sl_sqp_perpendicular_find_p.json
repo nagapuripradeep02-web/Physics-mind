@@ -58,11 +58,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          {
-            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 3,\\ b\\ = \\ 7\\right)",
-            "style": "normal",
-            "render": "katex"
-          },
+          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = 7)",
           {
             "text": "\\text{Slope}\\ \\text{of}\\ \\text{the}\\ \\text{line}\\ 3x\\ + \\ 7y\\ - \\ 1\\ = \\ 0\\ \\text{is}\\ m_{1}\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{7}",
             "style": "normal",

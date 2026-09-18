@@ -62,11 +62,7 @@
             "render": "katex"
           },
           "(9 = 10 − 1, 99 = 10² − 1, …)",
-          {
-            "text": "= \\ \\left(\\dfrac{8}{9}\\right)\\left[\\left(10\\ - \\ 1\\right)\\ + \\ \\left(10^{2}\\ - \\ 1\\right)\\ + \\ \\left(10^{3}\\ - \\ 1\\right)\\ + \\ \\dots \\ + \\ \\left(10^{n}\\ - \\ 1\\right)\\right]",
-            "style": "normal",
-            "render": "katex"
-          }
+          "= (8/9)[(10 − 1) + (10² − 1) + (10³ − 1) + … + (10ⁿ − 1)]"
         ],
         "recall": {
           "credit": "say_it",
@@ -132,11 +128,7 @@
             "render": "katex",
             "added": true
           },
-          {
-            "text": "S_{n}\\ = \\ \\left(\\dfrac{8}{9}\\right)\\left[\\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9} - \\ n\\right]\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left[10\\left(10^{n}\\ - \\ 1\\right)\\ - \\ 9n\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
           {
             "text": "(10(10ⁿ − 1) − 9n = 10ⁿ⁺¹ − 10 − 9n)",
             "added": true
@@ -186,11 +178,7 @@
             "style": "normal",
             "render": "katex"
           },
-          {
-            "text": "S_{n}\\ = \\ \\left(\\dfrac{8}{9}\\right)\\left[\\dfrac{10\\left(10^{n}\\ - \\ 1\\right)}{9} - \\ n\\right]\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left[10\\left(10^{n}\\ - \\ 1\\right)\\ - \\ 9n\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Sₙ = (8/9)[10(10ⁿ − 1)/9 − n] = (8/81)[10(10ⁿ − 1) − 9n]",
           {
             "text": "\\therefore \\ S_{n}\\ = \\ \\left(\\dfrac{8}{81}\\right)\\left(10^{n+1}\\ - \\ 9n\\ - \\ 10\\right)",
             "style": "boxed",

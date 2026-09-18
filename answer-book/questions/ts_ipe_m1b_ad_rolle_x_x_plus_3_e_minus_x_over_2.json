@@ -156,11 +156,7 @@
             "text": "(a product is 0 only when a factor is 0)",
             "added": true
           },
-          {
-            "text": "\\dfrac{e^{-x}}{^{2}} > \\ 0\\ \\text{for}\\ \\text{every}\\ \\text{real}\\ x,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ \\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)\\ = \\ 0",
-            "style": "normal",
-            "render": "katex"
-          },
+          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
           {
             "text": "  ⇒ x = 3 or x = −2",
             "style": "indent"
@@ -219,11 +215,7 @@
           "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
           "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
           "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
-          {
-            "text": "\\dfrac{e^{-x}}{^{2}} > \\ 0\\ \\text{for}\\ \\text{every}\\ \\text{real}\\ x,\\ \\text{so}\\ f'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ \\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)\\ = \\ 0",
-            "style": "normal",
-            "render": "katex"
-          },
+          "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
           {
             "text": "  ⇒ x = 3 or x = −2",
             "style": "indent"

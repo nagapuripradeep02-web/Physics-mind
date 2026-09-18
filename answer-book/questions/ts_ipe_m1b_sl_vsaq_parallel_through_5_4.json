@@ -52,11 +52,7 @@
             "style": "heading"
           },
           "Given line is 2x + 3y + 7 = 0",
-          {
-            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 2,\\ b\\ = \\ 3\\right)",
-            "style": "normal",
-            "render": "katex"
-          },
+          "(the slope of ax + by + c = 0 is −a/b; here a = 2, b = 3)",
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{2}{3}",
             "style": "normal",
@@ -107,9 +103,7 @@
         "memory_tip": "Point-slope form, then clear the fraction and collect.",
         "lines": [
           {
-            "text": "\\left(\\text{the}\\ \\text{point} - \\text{slope}\\ \\text{form},\\ \\text{with}\\ \\left(x_{1},\\ y_{1}\\right)\\ = \\ \\left(5,\\ 4\\right)\\ \\text{and}\\ m\\ = \\ - \\dfrac{2}{3}\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(the point-slope form, with (x₁, y₁) = (5, 4) and m = −2/3)",
             "added": true
           },
           {

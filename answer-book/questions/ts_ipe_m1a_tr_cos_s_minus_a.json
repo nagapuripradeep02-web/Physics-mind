@@ -114,11 +114,7 @@
             "text": "Pair the first two with p = S−A and q = S−B:",
             "added": true
           },
-          {
-            "text": "= \\ 2\\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\cos C",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
           {
             "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
             "style": "normal",
@@ -162,11 +158,7 @@
         ],
         "lines_compact": [
           "L.H.S = cos(S−A) + cos(S−B) + cosC",
-          {
-            "text": "= \\ 2\\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\cos \\left(\\dfrac{\\left(S - A\\right) - \\left(S - B\\right)}{2}\\right)\\ + \\ \\cos C",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= 2 cos(((S−A)+(S−B))/2) cos(((S−A)−(S−B))/2) + cosC",
           {
             "text": "\\left[\\because \\ \\cos p\\ + \\ \\cos q\\ = \\ 2\\cos \\left(\\dfrac{p + q}{2}\\right)\\cos \\left(\\dfrac{p - q}{2}\\right)\\right]",
             "style": "normal",
@@ -294,11 +286,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
           "  [∵ C = (S−A) + (S−B)]"
         ],
         "recall": {
@@ -334,11 +322,7 @@
             "style": "normal",
             "render": "katex"
           },
-          {
-            "text": "= \\ - 1\\ + \\ 2\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{B - A}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{\\left(S - A\\right) + \\left(S - B\\right)}{2}\\right)\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(((S−A)+(S−B))/2)]",
           "  [∵ C = (S−A) + (S−B)]"
         ]
       },

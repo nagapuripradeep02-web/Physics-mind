@@ -121,11 +121,7 @@
             "style": "normal",
             "render": "katex"
           },
-          {
-            "text": "\\text{Now}\\ \\Delta ^{2}\\ = \\ s\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)\\ \\Rightarrow \\ \\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)\\ = \\ \\dfrac{\\Delta ^{2}}{s}",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
           {
             "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{\\Delta ^{2}}{s}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{s}{\\Delta ^{2}}\\right)",
             "style": "normal",
@@ -179,11 +175,7 @@
             "style": "normal",
             "render": "katex"
           },
-          {
-            "text": "\\text{Now}\\ \\Delta ^{2}\\ = \\ s\\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)\\ \\Rightarrow \\ \\left(s - a\\right)\\left(s - b\\right)\\left(s - c\\right)\\ = \\ \\dfrac{\\Delta ^{2}}{s}",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",
           {
             "text": "= \\ \\dfrac{4\\Delta ^{2}s}{\\dfrac{\\Delta ^{2}}{s}} = \\ 4s^{2}",
             "style": "normal",

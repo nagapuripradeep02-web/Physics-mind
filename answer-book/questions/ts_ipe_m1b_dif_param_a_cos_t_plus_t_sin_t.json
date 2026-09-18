@@ -216,9 +216,7 @@
             "render": "katex"
           },
           {
-            "text": "\\left(\\dfrac{d}{dt}\\left(\\sin t\\right)\\ = \\ \\cos t,\\ \\text{and}\\ \\text{put}\\ \\dfrac{d}{dt}\\left(t\\cos t\\right)\\ = \\ - t\\sin t\\ + \\ \\cos t\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(d/dt(sin t) = cos t, and put d/dt(t cos t) = −t sin t + cos t)",
             "added": true
           },
           {

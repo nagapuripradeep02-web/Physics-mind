@@ -170,11 +170,7 @@
             "added": true
           },
           "⇒ 2m + n = 0  (or)  m + 2n = 0",
-          {
-            "text": "\\text{So},\\ 2m\\ + \\ n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ - \\dfrac{n}{2}\\left(\\text{or}\\right)m\\ + \\ 2n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ - 2n",
-            "style": "normal",
-            "render": "katex"
-          }
+          "So, 2m + n = 0 ⇒ m = −n/2  (or)  m + 2n = 0 ⇒ m = −2n"
         ],
         "recall": {
           "credit": "say_it",
@@ -215,11 +211,7 @@
           },
           "⇒ (2m + n)(m + 2n) = 0",
           "⇒ 2m + n = 0  (or)  m + 2n = 0",
-          {
-            "text": "\\text{So},\\ 2m\\ + \\ n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ - \\dfrac{n}{2}\\left(\\text{or}\\right)m\\ + \\ 2n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ - 2n",
-            "style": "normal",
-            "render": "katex"
-          }
+          "So, 2m + n = 0 ⇒ m = −n/2  (or)  m + 2n = 0 ⇒ m = −2n"
         ]
       },
       {

@@ -135,9 +135,7 @@
             "render": "katex"
           },
           {
-            "text": "\\left(\\sin \\left(\\dfrac{\\pi }{2} - \\ \\phi \\right)\\ = \\ \\cos \\phi ,\\ \\text{and}\\ \\cos \\left(\\operatorname{Sin}^{-1} k\\right)\\ = \\ \\sqrt{1\\ - \\ k^{2}}\\ \\ge \\ 0\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(sin(π/2 − φ) = cos φ, and cos(Sin⁻¹k) = √(1 − k²) ≥ 0)",
             "added": true
           },
           {

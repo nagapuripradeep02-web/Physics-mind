@@ -74,11 +74,7 @@
             "style": "indent"
           },
           "Centroid of Tetrahedron ABCD",
-          {
-            "text": "G\\ = \\ \\left(\\dfrac{x_{1} + x_{2} + x_{3} + x_{4}}{4},\\ \\dfrac{y_{1} + y_{2} + y_{3} + y_{4}}{4},\\ \\dfrac{z_{1} + z_{2} + z_{3} + z_{4}}{4}\\right)",
-            "style": "normal",
-            "render": "katex"
-          },
+          "G = ((x₁+x₂+x₃+x₄)/4, (y₁+y₂+y₃+y₄)/4, (z₁+z₂+z₃+z₄)/4)",
           "(put the three given vertices)",
           {
             "text": "\\Rightarrow \\ \\left(\\dfrac{3 + 4 + 6 + x_{4}}{4},\\ \\dfrac{2 + 1 + 2 + y_{4}}{4},\\ \\dfrac{ - 1 + 1 + 5 + z_{4}}{4}\\right)",

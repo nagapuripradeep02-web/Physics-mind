@@ -124,9 +124,7 @@
             "render": "katex"
           },
           {
-            "text": "\\left(\\dfrac{d}{dx}\\left(x^{2}\\ + \\ x\\ + \\ 2\\right)\\ = \\ 2x\\ + \\ 1\\ \\text{and}\\ \\dfrac{d}{dx}\\left(x^{2}\\ - \\ x\\ + \\ 2\\right)\\ = \\ 2x\\ - \\ 1\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(d/dx(x² + x + 2) = 2x + 1 and d/dx(x² − x + 2) = 2x − 1)",
             "added": true
           },
           {
@@ -194,11 +192,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "\\dfrac{dy}{dx}\\ = \\ \\left[\\left(2x\\ + \\ 1\\right)\\left(x^{2}\\ - \\ x\\ + \\ 2\\right)\\ - \\ \\left(2x\\ - \\ 1\\right)\\left(x^{2}\\ + \\ x\\ + \\ 2\\right)\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "dy/dx = [(2x + 1)(x² − x + 2) − (2x − 1)(x² + x + 2)]",
           {
             "text": "  /[(x² + x + 2)(x² − x + 2)]",
             "style": "indent"
@@ -290,11 +284,7 @@
         ],
         "memory_tip": "The two quadratics differ only by the sign of x, so they are (something + x) and (something − x) — always a difference of two squares.",
         "lines_compact": [
-          {
-            "text": "\\dfrac{dy}{dx}\\ = \\ \\left[\\left(2x\\ + \\ 1\\right)\\left(x^{2}\\ - \\ x\\ + \\ 2\\right)\\ - \\ \\left(2x\\ - \\ 1\\right)\\left(x^{2}\\ + \\ x\\ + \\ 2\\right)\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "dy/dx = [(2x + 1)(x² − x + 2) − (2x − 1)(x² + x + 2)]",
           {
             "text": "  /[(x² + x + 2)(x² − x + 2)]",
             "style": "indent"

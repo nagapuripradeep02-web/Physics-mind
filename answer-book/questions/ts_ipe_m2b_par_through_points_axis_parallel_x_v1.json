@@ -110,9 +110,7 @@
             "render": "katex"
           },
           {
-            "text": "\\left(l\\ - \\ l\\ = \\ 0\\ \\text{and}\\ - m\\ - \\ m\\ = \\ - 2m;\\ - 2m\\ = \\ - 1,\\ \\text{so}\\ m\\ = \\ \\dfrac{1}{2}\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(l − l = 0 and −m − m = −2m; −2m = −1, so m = 1/2)",
             "added": true
           }
         ],

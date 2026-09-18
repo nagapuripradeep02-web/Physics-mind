@@ -190,9 +190,8 @@
             "render": "katex"
           },
           {
-            "text": "\\Rightarrow \\ P\\left(A\\right)\\ = \\ 1\\ - \\ P\\left(A\\right)\\ \\Rightarrow \\ 2P\\left(A\\right)\\ = \\ 1\\ \\Rightarrow \\ P\\left(A\\right)\\ = \\ \\dfrac{1}{2}",
-            "style": "eq",
-            "render": "katex"
+            "text": "⇒ P(A) = 1 − P(A) ⇒ 2P(A) = 1 ⇒ P(A) = 1/2",
+            "style": "eq"
           }
         ]
       },
@@ -265,9 +264,8 @@
             "render": "katex"
           },
           {
-            "text": "\\Rightarrow \\ 2P\\left(B\\right)\\ = \\ 1\\ - \\ P\\left(B\\right)\\ \\Rightarrow \\ 3P\\left(B\\right)\\ = \\ 1\\ \\Rightarrow \\ P\\left(B\\right)\\ = \\ \\dfrac{1}{3}",
-            "style": "eq",
-            "render": "katex"
+            "text": "⇒ 2P(B) = 1 − P(B) ⇒ 3P(B) = 1 ⇒ P(B) = 1/3",
+            "style": "eq"
           }
         ]
       },

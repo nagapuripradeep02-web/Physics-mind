@@ -121,11 +121,7 @@
             "style": "boxed",
             "render": "katex"
           },
-          {
-            "text": "\\text{Check}\\ \\text{with}\\ n\\ = \\ 3:\\ f'\\left(1\\right)\\ = \\ 1\\ + \\ 2\\ + \\ 3\\ = \\ 6\\ \\text{and}\\ \\dfrac{n\\left(n + 1\\right)}{2} = \\ 6.",
-            "style": "normal",
-            "render": "katex"
-          }
+          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
         ],
         "recall": {
           "credit": "say_it",
@@ -164,11 +160,7 @@
             "style": "boxed",
             "render": "katex"
           },
-          {
-            "text": "\\text{Check}\\ \\text{with}\\ n\\ = \\ 3:\\ f'\\left(1\\right)\\ = \\ 1\\ + \\ 2\\ + \\ 3\\ = \\ 6\\ \\text{and}\\ \\dfrac{n\\left(n + 1\\right)}{2} = \\ 6.",
-            "style": "normal",
-            "render": "katex"
-          }
+          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
         ]
       }
     ]

@@ -598,11 +598,7 @@
             "render": "katex",
             "added": true
           },
-          {
-            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left( - l + m - n\\right)^{2}\\ + \\ \\left( - l + m + n\\right)^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
           {
             "text": "((−p)² = p², so (−l + m − n)² = (l − m + n)²",
             "added": true
@@ -612,11 +608,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left(l - m + n\\right)^{2}\\ + \\ \\left(l - m - n\\right)^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
           {
             "text": "(pair the first two and the last two)",
             "added": true
@@ -634,11 +626,7 @@
             "text": "(take out the common factor 2)",
             "added": true
           },
-          {
-            "text": "= \\ \\dfrac{2}{3}\\left[\\left(l + m\\right)^{2}\\ + \\ \\left(l - m\\right)^{2}\\ + \\ 2n^{2}\\right]\\ = \\ \\dfrac{2}{3}\\left[2\\left(l^{2}\\ + \\ m^{2}\\right)\\ + \\ 2n^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
           {
             "text": "((l + m)² + (l − m)² = 2l² + 2m²;",
             "added": true
@@ -688,16 +676,8 @@
         ],
         "lines_compact": [
           "∴ cos²α + cos²β + cos²γ + cos²δ",
-          {
-            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left( - l + m - n\\right)^{2}\\ + \\ \\left( - l + m + n\\right)^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
-          {
-            "text": "= \\ \\dfrac{1}{3}\\left[\\left(l + m + n\\right)^{2}\\ + \\ \\left(l + m - n\\right)^{2}\\ + \\ \\left(l - m + n\\right)^{2}\\ + \\ \\left(l - m - n\\right)^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= ⅓[(l+m+n)² + (l+m−n)² + (−l+m−n)² + (−l+m+n)²]",
+          "= ⅓[(l+m+n)² + (l+m−n)² + (l−m+n)² + (l−m−n)²]",
           {
             "text": "= \\ \\dfrac{1}{3}\\left[2\\left(\\left(l + m\\right)^{2}\\ + \\ n^{2}\\right)\\ + \\ 2\\left(\\left(l - m\\right)^{2}\\ + \\ n^{2}\\right)\\right]",
             "style": "normal",
@@ -707,11 +687,7 @@
             "text": "  [∵ (a+b)² + (a−b)² = 2(a² + b²)]",
             "style": "indent"
           },
-          {
-            "text": "= \\ \\dfrac{2}{3}\\left[\\left(l + m\\right)^{2}\\ + \\ \\left(l - m\\right)^{2}\\ + \\ 2n^{2}\\right]\\ = \\ \\dfrac{2}{3}\\left[2\\left(l^{2}\\ + \\ m^{2}\\right)\\ + \\ 2n^{2}\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "= ⅔[(l+m)² + (l−m)² + 2n²] = ⅔[2(l² + m²) + 2n²]",
           {
             "text": "= \\ \\left(\\dfrac{4}{3}\\right)\\left(l^{2}\\ + \\ m^{2}\\ + \\ n^{2}\\right)\\ = \\ \\left(\\dfrac{4}{3}\\right)\\left(1\\right)",
             "style": "normal",

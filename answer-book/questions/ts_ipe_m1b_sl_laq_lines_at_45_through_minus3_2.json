@@ -64,11 +64,7 @@
             "style": "heading"
           },
           "Given line:  3x − y + 4 = 0",
-          {
-            "text": "\\left(\\text{the}\\ \\text{slope}\\ \\text{of}\\ ax\\ + \\ \\text{by}\\ + \\ c\\ = \\ 0\\ \\text{is}\\ - \\dfrac{a}{b};\\ \\text{here}\\ a\\ = \\ 3,\\ b\\ = \\ - 1\\right)",
-            "style": "normal",
-            "render": "katex"
-          },
+          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = −1)",
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m_{1}\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{ - 1} = \\ 3",
             "style": "normal",

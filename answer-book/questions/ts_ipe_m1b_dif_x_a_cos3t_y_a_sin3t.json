@@ -64,11 +64,7 @@
             "text": "  and d/dt(cos t) = −sin t)",
             "style": "indent"
           },
-          {
-            "text": "x\\ = \\ a\\cos ^{3} t\\ \\Rightarrow \\ \\dfrac{dx}{dt}\\ = \\ 3a\\cos ^{2} t\\ \\cdot \\ \\left( - \\sin t\\right)\\ = \\ - 3a\\cos ^{2} t\\sin t",
-            "style": "normal",
-            "render": "katex"
-          },
+          "x = a cos³t  ⇒  dx/dt = 3a cos²t · (−sin t) = −3a cos²t sin t",
           {
             "text": "\\left(\\dfrac{d}{dt}\\left(\\sin t\\right)^{3}\\ = \\ 3\\sin ^{2} t\\ \\cdot \\ \\dfrac{d}{dt}\\left(\\sin t\\right)\\ \\text{and}\\ \\dfrac{d}{dt}\\left(\\sin t\\right)\\ = \\ \\cos t\\right)",
             "style": "normal",

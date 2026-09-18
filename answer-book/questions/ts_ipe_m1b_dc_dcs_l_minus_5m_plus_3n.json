@@ -165,11 +165,7 @@
             "text": "(a product is 0 when one of its factors is 0)",
             "added": true
           },
-          {
-            "text": "\\Rightarrow \\ 3m\\ - \\ 2n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ \\dfrac{2n}{3}\\left(\\text{or}\\right)2m\\ - \\ n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ \\dfrac{n}{2}",
-            "style": "normal",
-            "render": "katex"
-          }
+          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
         ],
         "recall": {
           "credit": "say_it",
@@ -211,11 +207,7 @@
             "style": "indent"
           },
           "⇒ (3m − 2n)(2m − n) = 0",
-          {
-            "text": "\\Rightarrow \\ 3m\\ - \\ 2n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ \\dfrac{2n}{3}\\left(\\text{or}\\right)2m\\ - \\ n\\ = \\ 0\\ \\Rightarrow \\ m\\ = \\ \\dfrac{n}{2}",
-            "style": "normal",
-            "render": "katex"
-          }
+          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
         ]
       },
       {
@@ -329,11 +321,7 @@
             "text": "(divide by n and multiply by 2)",
             "added": true
           },
-          {
-            "text": "\\text{Now},\\ l\\ :\\ m\\ :\\ n\\ = \\ - \\dfrac{n}{2}:\\ \\dfrac{n}{2}:\\ n\\ = \\ - \\dfrac{1}{2}:\\ \\dfrac{1}{2}:\\ 1\\ = \\ - 1\\ :\\ 1\\ :\\ 2",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ],
         "recall": {
@@ -374,11 +362,7 @@
             "style": "normal",
             "render": "katex"
           },
-          {
-            "text": "\\text{Now},\\ l\\ :\\ m\\ :\\ n\\ = \\ - \\dfrac{n}{2}:\\ \\dfrac{n}{2}:\\ n\\ = \\ - \\dfrac{1}{2}:\\ \\dfrac{1}{2}:\\ 1\\ = \\ - 1\\ :\\ 1\\ :\\ 2",
-            "style": "normal",
-            "render": "katex"
-          },
+          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ]
       },

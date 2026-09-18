@@ -126,9 +126,7 @@
             "render": "katex"
           },
           {
-            "text": "\\left(\\text{check}:\\ \\text{the}\\ \\text{intercepts}\\ \\text{are}\\ - 4\\ \\text{and}\\ 3,\\ \\text{and}\\ \\dfrac{1}{2}\\ \\times \\ 4\\ \\times \\ 3\\ = \\ 6\\right)",
-            "style": "normal",
-            "render": "katex",
+            "text": "(check: the intercepts are −4 and 3, and ½ × 4 × 3 = 6)",
             "added": true
           },
           {

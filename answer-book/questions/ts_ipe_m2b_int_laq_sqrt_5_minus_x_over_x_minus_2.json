@@ -249,11 +249,7 @@
         "mark_note": "Method",
         "margin_note": "Solution",
         "lines": [
-          {
-            "text": "7x - 10 - x^{2}\\ = \\ - \\left(x^{2} - 7x + 10\\right)\\ = \\ - \\left[\\left(x - \\dfrac{7}{2}\\right)^{2} - \\dfrac{49}{4} + 10\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
           {
             "text": "= \\ \\dfrac{9}{4} - \\left(x - \\dfrac{7}{2}\\right)^{2}\\ = \\ \\left(\\dfrac{3}{2}\\right)^{2} - \\left(x - \\dfrac{7}{2}\\right)^{2}",
             "style": "normal",
@@ -289,11 +285,7 @@
         ],
         "memory_tip": "Factor out the leading −1 BEFORE completing the square whenever the x² coefficient is negative — skipping this is the most common slip on this question.",
         "lines_compact": [
-          {
-            "text": "7x - 10 - x^{2}\\ = \\ - \\left(x^{2} - 7x + 10\\right)\\ = \\ - \\left[\\left(x - \\dfrac{7}{2}\\right)^{2} - \\dfrac{49}{4} + 10\\right]",
-            "style": "normal",
-            "render": "katex"
-          },
+          "7x−10−x² = −(x²−7x+10) = −[(x−7/2)²−49/4+10]",
           {
             "text": "= \\ \\dfrac{9}{4} - \\left(x - \\dfrac{7}{2}\\right)^{2}\\ = \\ \\left(\\dfrac{3}{2}\\right)^{2} - \\left(x - \\dfrac{7}{2}\\right)^{2}",
             "style": "normal",

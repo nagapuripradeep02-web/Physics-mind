@@ -159,11 +159,7 @@
             "style": "indent",
             "added": true
           },
-          {
-            "text": "4\\sqrt{3}\\ + \\ \\dfrac{2b}{\\sqrt{3}} = \\ 0\\ \\Rightarrow \\ 2b\\ = \\ - 4\\sqrt{3} \\cdot \\sqrt{3}\\ = \\ - 12\\ \\Rightarrow \\ b\\ = \\ - 6",
-            "style": "normal",
-            "render": "katex"
-          },
+          "4√3 + 2b/√3 = 0 ⇒ 2b = −4√3·√3 = −12 ⇒ b = −6",
           {
             "text": "(put b = −6 in a = −13 − 4b)",
             "added": true
@@ -226,11 +222,7 @@
             "render": "katex"
           },
           "From (1), a = −13 − 4b. Substituting:",
-          {
-            "text": "4\\sqrt{3}\\ + \\ \\dfrac{2b}{\\sqrt{3}} = \\ 0\\ \\Rightarrow \\ 2b\\ = \\ - 4\\sqrt{3} \\cdot \\sqrt{3}\\ = \\ - 12\\ \\Rightarrow \\ b\\ = \\ - 6",
-            "style": "normal",
-            "render": "katex"
-          },
+          "4√3 + 2b/√3 = 0 ⇒ 2b = −4√3·√3 = −12 ⇒ b = −6",
           "Then a = −13 − 4(−6) = 11",
           {
             "text": "∴ a = 11, b = −6",
