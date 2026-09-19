@@ -3204,6 +3204,41 @@
     var history = {};
     try { history = JSON.parse(lsGet('pm_vidi_history') || '{}') || {}; } catch (e) { history = {}; }
 
+    // ── the chat thread, kept across a reload (2026-09-19) ──────────────────
+    // A reload used to wipe the conversation: recentMsgs is page memory and the
+    // thread element is rebuilt on every question open. So a student who
+    // reloaded — a dropped network, a switched tab, coming back after dinner —
+    // met a Vidi that greeted them and remembered nothing, while the window
+    // reopened in the same corner still wearing the name they had given it. The
+    // furniture promised a continuity the memory could not deliver, which reads
+    // as the tutor not listening rather than as a limitation.
+    //
+    // Stored per QUESTION, because that is the unit Vidi is scoped to: the
+    // thread is cleared whenever a different question opens, so one question is
+    // one conversation.
+    //
+    // Compact on purpose — [role, text] pairs rather than objects — because this
+    // shares one ~5MB localStorage with progress, the plan and the bank itself.
+    //
+    // THREAD_KEEP is PER SUBJECT (founder, 2026-09-19): a student revises one
+    // paper for a fortnight, and a single shared budget let that paper quietly
+    // evict every chat from another — work they would miss only at revision time.
+    // Subject = the PAPER, so mathematics_2a and mathematics_2b keep separate
+    // budgets; they are two exams. THREAD_TOTAL is the backstop that keeps the
+    // per-subject rule from multiplying into the whole quota across eight papers
+    // and taking the student's PROGRESS down with it.
+    var THREAD_MSGS = 20;              // matches VidiPanel's own recentMsgs cap
+    var THREAD_KEEP = 12;              // questions remembered per subject
+    var THREAD_TOTAL = 60;             // hard ceiling across every subject
+    function readThreads() {
+      try { return JSON.parse(lsGet('pm_vidi_threads') || '{}') || {}; }
+      catch (e) { return {}; }
+    }
+    /** Newest first, so both trims below drop the oldest. */
+    function byRecency(t) {
+      return Object.keys(t).sort(function (a, b) { return (t[b].at || 0) - (t[a].at || 0); });
+    }
+
     // ── planner storage ─────────────────────────────────────────────────────
     // Stage ticks are DATE STRINGS, not epoch ms: the planner's whole clock is
     // todayStr(), which honours the test-only pm_today_override key — so a tick
@@ -3346,6 +3381,43 @@
         lsSet('pm_vidi_history', JSON.stringify(history));
       },
       checkFor: function (qid) { return history[qid] || null; },
+      /** Keep this question's conversation so a reload does not lose it. An
+          empty list REMOVES the entry rather than storing a husk, so a cleared
+          thread does not occupy one of the THREAD_KEEP slots. */
+      saveThread: function (qid, msgs, subject) {
+        if (!qid) return;
+        var t = readThreads();
+        if (!msgs || !msgs.length) {
+          delete t[qid];
+        } else {
+          t[qid] = {
+            m: msgs.slice(-THREAD_MSGS).map(function (x) { return [x.role, x.text]; }),
+            s: String(subject || ''),
+            at: Date.now()
+          };
+        }
+        // Trim within each subject first — that is the rule a student feels —
+        // then apply the overall ceiling, which should almost never bite.
+        var seen = {};
+        var keys = byRecency(t);
+        for (var i = 0; i < keys.length; i++) {
+          var s = t[keys[i]].s || '';
+          seen[s] = (seen[s] || 0) + 1;
+          if (seen[s] > THREAD_KEEP) delete t[keys[i]];
+        }
+        keys = byRecency(t);
+        for (var j = THREAD_TOTAL; j < keys.length; j++) delete t[keys[j]];
+        lsSet('pm_vidi_threads', JSON.stringify(t));
+      },
+      /** {at, msgs:[{role,text}]} for a question, or null when there is none. */
+      loadThread: function (qid) {
+        var t = readThreads()[qid];
+        if (!t || !t.m || !t.m.length) return null;
+        return {
+          at: t.at || 0,
+          msgs: t.m.map(function (p) { return { role: p[0], text: p[1] }; })
+        };
+      },
       /** Window state {open, x, y} — position + open/minimized, per device. */
       getWin: function () { try { return JSON.parse(lsGet('pm_vidi_win') || 'null'); } catch (e) { return null; } },
       setWin: function (w) { lsSet('pm_vidi_win', JSON.stringify(w)); },
@@ -4896,6 +4968,60 @@
       return m;
     }
 
+    /** The day a restored thread was last spoken on, in plain words. */
+    function dayMark(ts) {
+      var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+      var d = new Date(ts);
+      var y = new Date(Date.now() - 86400000);
+      if (d.getFullYear() === y.getFullYear() && d.getMonth() === y.getMonth() &&
+        d.getDate() === y.getDate()) return 'Yesterday';
+      return d.getDate() + ' ' + MONTHS[d.getMonth()];
+    }
+
+    /** Write the live thread through to storage after a turn. The student's own
+        question is saved BEFORE the reply arrives, so a request that never comes
+        back still leaves what they asked.
+
+        The notebook guard is load-bearing: on the CATALOG the module globals
+        still hold PM_QUESTIONS[0] as a boot fallback, so without it a catalog
+        conversation would be filed under — and would overwrite — the thread of a
+        question the student never opened. */
+    function persistThread() {
+      var qid = question && question.question_id;
+      if (qid && currentView === 'notebook') {
+        Vidi.saveThread(qid, recentMsgs, question.subject || '');
+      }
+    }
+
+    /** Put back the conversation this question already had, so a reload lands the
+        student where they left off instead of on a greeting. Returns true when
+        something came back — the caller's signal to SKIP the greeting, because a
+        fresh greeting appended under the student's own last answer reads as a
+        non-sequitur.
+
+        Known: a quoted ask comes back as its full sent text ("I am asking about
+        these lines… My question: …") rather than the quote cards it was typed
+        as. Every word is there; the card styling is not. */
+    function restoreThread() {
+      var qid = question && question.question_id;
+      if (!qid) return false;
+      var t = Vidi.loadThread(qid);
+      if (!t) return false;
+      var d = new Date(t.at);
+      var stamp = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) +
+        '-' + ('0' + d.getDate()).slice(-2);
+      if (t.at && stamp !== Vidi.todayStr()) {
+        threadEl().appendChild(el('div', 'vidi-daymark', dayMark(t.at)));
+      }
+      for (var i = 0; i < t.msgs.length; i++) {
+        bubble(t.msgs[i].text, t.msgs[i].role === 'student' ? 'student' : 'tutor');
+        recentMsgs.push({ role: t.msgs[i].role, text: t.msgs[i].text });
+      }
+      threadEl().scrollTop = threadEl().scrollHeight;
+      return true;
+    }
+
     /** Tutor bubble with a short typing beat first. extraDelay staggers a second
         bubble so two messages land in order, like a person typing twice. */
     function say(text, extraDelay) {
@@ -6293,7 +6419,10 @@
       // The quote rides in the history too, so "and the next line?" still knows
       // which lines the student meant.
       recentMsgs.push({ role: 'student', text: sent });
-      if (recentMsgs.length > 12) recentMsgs = recentMsgs.slice(-12);
+      // 20 = the 10 sent (5 exchanges, below) with headroom, so trimming the
+      // buffer can never eat a turn the next request still needs.
+      if (recentMsgs.length > 20) recentMsgs = recentMsgs.slice(-20);
+      persistThread();
       var g = gen;
       var typing = el('div', 'vidi-msg tutor vidi-typing', '· · ·');
       threadEl().appendChild(typing);
@@ -6310,7 +6439,13 @@
         cut_key: home ? 'home' : cut.key,
         step_id: (!home && stepIndex >= 0) ? steps[stepIndex].id : null,
         question: sent,
-        recent_messages: recentMsgs.slice(-6),
+        // 10 messages = 5 exchanges (founder, 2026-09-19; was 6 = 3). A student
+        // digging into one question runs well past three turns — one real
+        // session asked 14 times across two questions — and at 3 the earliest
+        // exchange fell away silently, so Vidi answered a follow-up as if the
+        // thing it was following up on had never been said. The server slices to
+        // the same number; both must move together or the smaller one wins.
+        recent_messages: recentMsgs.slice(-10),
         // NOT in tutor_context: that string is byte-stable per question+cut so
         // the model's prompt-prefix cache hits; plan facts change daily, so
         // they ride the per-request situation block server-side instead.
@@ -6335,6 +6470,7 @@
           : 'I cannot answer that right now. The book still works — keep going.';
         bubble(reply, 'tutor');
         recentMsgs.push({ role: 'tutor', text: reply });
+        persistThread();
       }).catch(function () {
         if (g !== gen) return;
         typing.remove();
@@ -6614,11 +6750,16 @@
         clearQuotes();
         DragAsk.sync();
         updatePlanStrip();
+        // Before any greeting: if this question already has a conversation, that
+        // conversation IS the panel's content. A restore therefore suppresses the
+        // greeting below — the student came back to their own chat, not to a
+        // fresh hello underneath it.
+        var restored = restoreThread();
         if (ob.active) {
           resumeOnboarding();                    // mid-onboarding navigation
         } else if (!Vidi.introDone()) {
           startIntro();                          // first experience = Viditra, never stars
-        } else {
+        } else if (!restored) {
           var plan = Vidi.getPlan();
           if (plan && plan.implemented && !plan.archived) planCheckin(plan);
           greet();                               // plan-aware; silent without a plan

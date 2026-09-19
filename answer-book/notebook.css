@@ -722,6 +722,18 @@ button.door-tile:hover {
 .vidi-msg.vidi-typing { color: var(--chrome-dim); letter-spacing: 3px; animation: vidiBlink 0.9s ease-in-out infinite; }
 @keyframes vidiBlink { 50% { opacity: 0.35; } }
 
+/* A conversation restored from an earlier day opens with the day it happened on,
+   so the student reads the messages below it as their own past chat rather than
+   as Vidi answering again. Same-day restores carry no mark — there is nothing to
+   explain about a chat from an hour ago. */
+.vidi-daymark {
+  align-self: center; flex: none;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--chrome-dim);
+  padding: 2px 10px; border-radius: 999px;
+  background: rgba(43, 38, 32, 0.05);
+}
+
 .vidi-chips {
   flex: none; display: flex; flex-wrap: wrap; gap: 6px;
   padding: 9px 12px 3px; border-top: 1px dashed var(--chrome-line);
