@@ -354,6 +354,128 @@ async function deviceIsInternal(device: string | null): Promise<boolean> {
     }
 }
 
+/**
+ * One RPC call, one place. writeEvents and deviceIsInternal each grew their own
+ * fetch before the chat endpoints existed; everything added since shares this.
+ * Returns null on any failure — chat history is a convenience, and a database
+ * hiccup must never be the reason a student cannot get an answer.
+ */
+async function rpc(name: string, payload: Record<string, unknown>): Promise<unknown | null> {
+    try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SERVICE_KEY,
+                Authorization: 'Bearer ' + SERVICE_KEY,
+            },
+            body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+            console.error('[answerbook-vidi-chat] rpc ' + name + ' failed', res.status, (await res.text()).slice(0, 200));
+            return null;
+        }
+        return await res.json();
+    } catch (e) {
+        console.error('[answerbook-vidi-chat] rpc ' + name + ' threw', e);
+        return null;
+    }
+}
+
+/**
+ * The chat-history endpoints: list, open, save, delete.
+ *
+ * Like telemetry, these need NO model call, so they are dispatched before the
+ * key check and before every spend guard — the history keeps working on a day
+ * the tutor is resting, which is exactly when a student most wants to reread an
+ * old answer.
+ *
+ * THE DEVICE ID IS THE ONLY CREDENTIAL, and that is deliberate, not an
+ * oversight: it is an unguessable random UUID minted in the browser, the same
+ * posture as answerbook-sync's progress and plan. Every RPC below carries
+ * p_device INTO ITS WHERE CLAUSE, so a guessed chat id reads, saves or deletes
+ * nothing. Do not "simplify" any of them to look up by chat id alone.
+ *
+ * No per-IP limit here. These are indexed single-device lookups with a server
+ * side row cap, so the shape matches the existing events endpoint. If abuse ever
+ * shows up in ab_events, the limit belongs here, next to this note.
+ *
+ * Returns null when `body.type` is not a chat call, so the caller falls through.
+ */
+async function handleChats(body: Record<string, any>, origin: string): Promise<Response | null> {
+    const t = String(body.type ?? '');
+    if (t !== 'chat_list' && t !== 'chat_open' && t !== 'chat_save' && t !== 'chat_delete') return null;
+
+    const device = typeof body.device_id === 'string' && UUID_RE.test(body.device_id) ? body.device_id : null;
+    // An offline build, or one with no sync base, has no device and therefore no
+    // server history. Say so plainly rather than erroring: the page treats this
+    // as "no history to show" and falls back to its own localStorage thread.
+    if (!device) return reply(origin, 200, { ok: false, error: 'device_required' });
+
+    const chat = typeof body.chat_id === 'string' && UUID_RE.test(body.chat_id) ? body.chat_id : null;
+
+    if (t === 'chat_list') {
+        const chats = await rpc('ab_chat_list', {
+            p_device: device,
+            p_subject: String(body.subject ?? '').slice(0, 64),
+        });
+        return reply(origin, 200, { ok: chats !== null, chats: chats ?? [] });
+    }
+
+    if (!chat) return reply(origin, 200, { ok: false, error: 'chat_required' });
+
+    if (t === 'chat_open') {
+        const msgs = await rpc('ab_chat_open', { p_device: device, p_chat: chat });
+        return reply(origin, 200, { ok: msgs !== null, msgs: msgs ?? [] });
+    }
+    if (t === 'chat_save') {
+        const out = await rpc('ab_chat_save', {
+            p_device: device, p_chat: chat, p_saved: body.saved === true,
+        });
+        return reply(origin, 200, (out as Record<string, unknown>) ?? { ok: false });
+    }
+    // chat_delete — irreversible by design. The confirm lives in the page; by the
+    // time a request reaches here the student has already said yes twice.
+    const out = await rpc('ab_chat_delete', { p_device: device, p_chat: chat });
+    return reply(origin, 200, (out as Record<string, unknown>) ?? { ok: false });
+}
+
+/**
+ * Store the exchange that just happened. Fire-and-forget alongside the ledger
+ * write, so it costs the student no latency, and never throws.
+ *
+ * The chat is resolved server-side by (device, question) — the page holds no
+ * chat id, so there is nothing for it to lose or fork. `home` is the catalog
+ * conversation and carries an EMPTY subject: its question id does not match any
+ * paper's prefix, so the subject derivation would otherwise label a study-plan
+ * chat as physics and file it under that paper's retention budget.
+ */
+async function appendChat(
+    device: string | null,
+    body: Record<string, any>,
+    subjectKey: string,
+    student: string,
+    vidi: string,
+): Promise<string | null> {
+    if (!device) return null;
+    const qid = String(body.question_id ?? '');
+    if (!qid) return null;
+    const out = await rpc('ab_chat_append', {
+        p_device: device,
+        p_question_id: qid,
+        p_subject: qid === 'home' ? '' : subjectKey,
+        p_unit: body.unit == null ? null : String(body.unit).slice(0, 64),
+        p_title: typeof body.title === 'string' ? body.title.slice(0, 300) : null,
+        p_student: student,
+        p_vidi: vidi,
+    });
+    // The id goes back to the page so the bookmark button has something to act
+    // on straight away, without a second round trip to find the chat it just
+    // added to.
+    const id = (out as Record<string, unknown> | null)?.chat_id;
+    return typeof id === 'string' ? id : null;
+}
+
 Deno.serve(async (req: Request) => {
     const origin = req.headers.get('origin') ?? '';
 
@@ -377,6 +499,11 @@ Deno.serve(async (req: Request) => {
         await writeEvents(body, origin);
         return reply(origin, 200, { ok: true });
     }
+
+    // Chat history — also free of any model call, so it answers on a day the
+    // tutor is resting. Returns null for anything that is not a chat call.
+    const chatRes = await handleChats(body, origin);
+    if (chatRes) return chatRes;
 
     if (!DEEPSEEK_KEY) return reply(origin, 200, { reply: FRIENDLY_QUIET, questions_left: 0 });
 
@@ -641,7 +768,13 @@ Deno.serve(async (req: Request) => {
                 : claimsTeam ? 'client_claim'
                     : 'none';
 
-    await writeUsage({
+    // The ledger row and the stored conversation are written TOGETHER, in
+    // parallel, because they record the same moment from two angles: the ledger
+    // is what this cost us, the chat is what the student got. Running them side
+    // by side means the history costs no latency, and neither can be delayed by
+    // the other. Both swallow their own failures — a student must still receive
+    // the reply that has already been generated and paid for.
+    const [chatId] = await Promise.all([appendChat(deviceId, body, subjectKey, question, text), writeUsage({
         session_id: String(body.session_id ?? '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'anon',
         task_type: TASK_TYPE,
         provider: 'deepseek',
@@ -684,10 +817,13 @@ Deno.serve(async (req: Request) => {
             usd_to_inr_rate: USD_TO_INR,
             spent_today_usd_before: Number(spentToday.toFixed(6)),
         },
-    });
+    })]);
 
     return reply(origin, 200, {
         reply: text || FRIENDLY_DOWN,
         questions_left: Math.max(0, IP_PER_DAY - ipDay - 1),
+        // null whenever there is no device, or the write failed. The page treats
+        // a missing id as "no bookmark for this one yet", never as an error.
+        chat_id: chatId,
     });
 });
