@@ -4994,6 +4994,397 @@
       }
     }
 
+    // ── chat history, server-backed ──────────────────────────────────────────
+    // The localStorage thread above keeps ONE question's conversation across a
+    // reload. This keeps every conversation, on the device, so it survives a
+    // cleared browser and a new phone — and it is the surface a student browses.
+    //
+    // Both layers stay: the local one is instant and works offline, the server
+    // one is complete. When they disagree the SERVER wins, because it is the one
+    // that has everything.
+    var MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var histShown = false;
+    var histCache = null;         // { subject: <key>, rows: [...] }
+    var histCur = null;           // chat_id of the conversation on screen
+    var histSaved = false;        // is that conversation bookmarked
+    var histMenuFor = null;       // chat_id whose ⋯ menu is open
+
+    function ymd(d) {
+      return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) +
+        '-' + ('0' + d.getDate()).slice(-2);
+    }
+
+    /** The device is the only credential the history has, and Sync mints one
+        only when it has a base of its own — so an offline build returns null
+        here and the whole feature stays inert, controls included. */
+    function histDevice() {
+      if (!VIDI_BASE || !(window.PM_SYNC_BASE || '').trim() || typeof Sync === 'undefined') return null;
+      try { return Sync.deviceId() || null; } catch (e) { return null; }
+    }
+
+    /** Never rejects. History is a convenience: a failed request leaves the
+        student exactly where they were, with the chat they can already see. */
+    function histPost(body) {
+      var d = histDevice();
+      if (!d) return Promise.resolve(null);
+      body.device_id = d;
+      return fetch(VIDI_BASE, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }).then(function (r) { return r.json(); }).catch(function () { return null; });
+    }
+
+    /** The subject the list is scoped to: the paper on screen, or '' on the
+        catalog, where the only conversation that exists is the plan one. */
+    function histSubject() {
+      return (currentView === 'notebook' && question && question.subject) ? question.subject : '';
+    }
+
+    /** One list request per subject per session, unless `force`. */
+    function histEnsure(force) {
+      var subj = histSubject();
+      if (!force && histCache && histCache.subject === subj) return Promise.resolve(histCache.rows);
+      return histPost({ type: 'chat_list', subject: subj }).then(function (res) {
+        var rows = (res && res.ok && res.chats) ? res.chats : [];
+        histCache = { subject: subj, rows: rows };
+        return rows;
+      });
+    }
+
+    /** Which chat belongs to the question on screen, if the list knows. Lets the
+        bookmark work on a conversation restored from localStorage, where no ask
+        has happened yet in this session and so no chat id has come back. */
+    function histAdopt() {
+      if (!question || currentView !== 'notebook') return;
+      var rows = (histCache && histCache.rows) || [];
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].question_id === question.question_id) {
+          histCur = rows[i].chat_id;
+          histSaved = !!rows[i].saved;
+          syncHistBtns();
+          return;
+        }
+      }
+    }
+
+    /** The two header buttons exist only when there is a device to ask about,
+        and the bookmark only once we know WHICH chat it would act on. */
+    function syncHistBtns() {
+      var on = !!histDevice();
+      var hb = $('vidiHistBtn'), sb = $('vidiSaveBtn');
+      if (!hb || !sb) return;
+      hb.hidden = !on;
+      sb.hidden = !on || !histCur;
+      sb.setAttribute('aria-pressed', histSaved ? 'true' : 'false');
+      sb.setAttribute('aria-label', histSaved ? 'Saved — tap to unsave this chat' : 'Save this chat');
+    }
+
+    function histWhen(iso) {
+      var d = new Date(iso);
+      if (ymd(d) === Vidi.todayStr()) {
+        var h = d.getHours(), m = d.getMinutes(), ap = h < 12 ? 'am' : 'pm';
+        h = h % 12; if (!h) h = 12;
+        return h + ':' + ('0' + m).slice(-2) + ' ' + ap;
+      }
+      return d.getDate() + ' ' + MONTHS_SHORT[d.getMonth()];
+    }
+
+    /** Grouped by retain_from, LABELLED by last_at (Rule of the two clocks: a
+        just-unsaved chat sits at the top of the list still showing its real
+        date). Saved chats leave their date group rather than appearing twice. */
+    function histGroup(r) {
+      if (r.saved) return 'saved';
+      var d = new Date(r.retain_from);
+      if (ymd(d) === Vidi.todayStr()) return 'today';
+      return (Date.now() - d.getTime()) < 7 * 86400000 ? 'week' : 'older';
+    }
+    var HIST_GROUPS = [
+      ['saved', 'Saved'], ['today', 'Today'],
+      ['week', 'Earlier this week'], ['older', 'Earlier']
+    ];
+
+    function bookmarkSvg(filled) {
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('width', '11'); s.setAttribute('height', '11');
+      s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true');
+      s.setAttribute('fill', filled ? 'currentColor' : 'none');
+      s.setAttribute('stroke', filled ? 'none' : 'currentColor');
+      s.setAttribute('stroke-width', '2');
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', 'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z');
+      s.appendChild(p);
+      return s;
+    }
+    function dotsSvg() {
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('width', '15'); s.setAttribute('height', '15');
+      s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'currentColor');
+      s.setAttribute('aria-hidden', 'true');
+      [5, 12, 19].forEach(function (cy) {
+        var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', '12'); c.setAttribute('cy', String(cy)); c.setAttribute('r', '1.7');
+        s.appendChild(c);
+      });
+      return s;
+    }
+
+    function histRow(r) {
+      var wrap = el('div', 'vidi-hist-row' + (r.chat_id === histCur ? ' on' : ''));
+
+      var open = el('button', 'vidi-hist-open');
+      open.type = 'button';
+      var top = el('div', 'vidi-hist-top');
+      if (r.saved) {
+        var mk = el('span', 'vidi-hist-mark');
+        mk.appendChild(bookmarkSvg(true));
+        top.appendChild(mk);
+      }
+      // A chat whose title never arrived still needs a name a student can read.
+      top.appendChild(el('div', 'vidi-hist-name',
+        r.question_id === 'home' ? 'My study plan' : (r.title || 'This question')));
+      top.appendChild(el('div', 'vidi-hist-when', histWhen(r.last_at)));
+      open.appendChild(top);
+
+      var meta = el('div', 'vidi-hist-meta');
+      if (r.question_id === 'home') {
+        var tag = el('span', 'vidi-hist-tag', 'Every subject');
+        var holder = el('div', 'vidi-hist-where');
+        holder.appendChild(tag);
+        meta.appendChild(holder);
+      } else {
+        meta.appendChild(el('div', 'vidi-hist-where', unitName(r)));
+      }
+      meta.appendChild(el('div', 'vidi-hist-count',
+        r.msg_count + (r.msg_count === 1 ? ' message' : ' messages')));
+      open.appendChild(meta);
+
+      if (r.snippet) open.appendChild(el('div', 'vidi-hist-snip', '“' + r.snippet + '”'));
+      open.addEventListener('click', function () { histOpenRow(r); });
+      wrap.appendChild(open);
+
+      var more = el('button', 'vidi-hist-more');
+      more.type = 'button';
+      more.setAttribute('aria-label', 'More actions');
+      more.setAttribute('aria-expanded', histMenuFor === r.chat_id ? 'true' : 'false');
+      more.appendChild(dotsSvg());
+      more.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        histMenuFor = (histMenuFor === r.chat_id) ? null : r.chat_id;
+        renderHist();
+      });
+      wrap.appendChild(more);
+
+      if (histMenuFor === r.chat_id) wrap.appendChild(histMenu(r));
+      return wrap;
+    }
+
+    /** The chapter, when the bank told us. `unit` is stored as the number, so a
+        row reads "Unit 6" rather than a bare digit. */
+    function unitName(r) {
+      if (!r.unit) return '';
+      return /^\d+$/.test(String(r.unit)) ? 'Unit ' + r.unit : String(r.unit);
+    }
+
+    function histMenu(r) {
+      var m = el('div', 'vidi-hist-menu');
+      var save = el('button', 'vidi-hist-act');
+      save.type = 'button';
+      save.appendChild(bookmarkSvg(false));
+      save.appendChild(el('span', '', r.saved ? 'Remove from saved' : 'Save this chat'));
+      save.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        histMenuFor = null;
+        histSetSaved(r.chat_id, !r.saved);
+      });
+      m.appendChild(save);
+
+      var del = el('button', 'vidi-hist-act danger');
+      del.type = 'button';
+      del.appendChild(el('span', '', 'Delete'));
+      del.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        m.innerHTML = '';
+        // Delete cannot be undone, so it asks once, right here, rather than
+        // behind a browser dialog a student will tap through without reading.
+        m.appendChild(el('div', 'vidi-hist-confirm', 'Delete this chat? This cannot be undone.'));
+        var row = el('div', 'vidi-hist-confirm-row');
+        var yes = el('button', 'btn', 'Delete');
+        yes.type = 'button';
+        yes.addEventListener('click', function (e2) {
+          e2.stopPropagation();
+          histMenuFor = null;
+          histDelete(r.chat_id);
+        });
+        var no = el('button', 'btn', 'Keep it');
+        no.type = 'button';
+        no.addEventListener('click', function (e2) {
+          e2.stopPropagation();
+          histMenuFor = null;
+          renderHist();
+        });
+        row.appendChild(yes); row.appendChild(no);
+        m.appendChild(row);
+      });
+      m.appendChild(del);
+      return m;
+    }
+
+    /** The same list, rendered into whichever surfaces are live: the drawer
+        inside Vidi, and on a wide screen the rail beside the question list. Rows
+        are rebuilt per surface rather than moved — one DOM node cannot be in two
+        places, and a shared row would vanish from one the moment the other
+        re-rendered. */
+    function renderHist() {
+      renderHistInto($('vidiHistList'), $('vidiHistSub'), $('vidiHistFoot'));
+      var rail = $('catHist');
+      if (rail && !rail.hidden) {
+        renderHistInto($('catHistList'), $('catHistSub'), $('catHistFoot'));
+      }
+    }
+
+    function renderHistInto(list, sub, foot) {
+      if (!list) return;
+      list.innerHTML = '';
+      var rows = (histCache && histCache.rows) || [];
+      var subj = histSubject();
+
+      if (sub) sub.textContent = subj ? subjLabel(subj) : 'Your study plan';
+
+      if (foot) {
+        foot.innerHTML = '';
+        foot.appendChild(el('div', '', 'Saved chats are never deleted'));
+        foot.appendChild(el('div', '', subj
+          ? 'Every other ' + subjLabel(subj) + ' chat: last 30, kept 30 days'
+          : 'Every other chat: last 30, kept 30 days'));
+      }
+
+      if (!rows.length) {
+        list.appendChild(el('div', 'vidi-hist-empty',
+          'No chats here yet. Ask me about an answer and it will be waiting for you next time.'));
+        return;
+      }
+      for (var g = 0; g < HIST_GROUPS.length; g++) {
+        var key = HIST_GROUPS[g][0];
+        var mine = rows.filter(function (r) { return histGroup(r) === key; });
+        if (!mine.length) continue;
+        var head = el('div', 'vidi-hist-group');
+        if (key === 'saved') head.appendChild(bookmarkSvg(true));
+        head.appendChild(el('span', '', HIST_GROUPS[g][1]));
+        list.appendChild(head);
+        for (var i = 0; i < mine.length; i++) list.appendChild(histRow(mine[i]));
+      }
+    }
+
+    /** Show or hide the catalog rail. Called on every view change: it belongs to
+        the question list, so it goes away the moment a question opens. */
+    function syncCatHist() {
+      var railEl = $('catHist');
+      if (!railEl) return;
+      var on = currentView === 'catalog' && !!histDevice();
+      railEl.hidden = !on;
+      document.body.classList.toggle('cat-hist-on', on);
+      if (!on) {
+        // Empty it on the way out. A hidden panel holding last subject's rows is
+        // a thing waiting to be shown at the wrong moment.
+        $('catHistList').innerHTML = '';
+        return;
+      }
+      renderHistInto($('catHistList'), $('catHistSub'), $('catHistFoot'));
+      histEnsure(false).then(function () {
+        if (!$('catHist').hidden) renderHistInto($('catHistList'), $('catHistSub'), $('catHistFoot'));
+      });
+    }
+
+    function openHist() {
+      histShown = true;
+      histMenuFor = null;
+      winEl().classList.add('vidi-showhist');
+      renderHist();                       // whatever is cached, straight away
+      Vidi.log('vidi_hist_open', { view: currentView });
+      histEnsure(true).then(function () { if (histShown) renderHist(); });
+    }
+    function closeHist() {
+      histShown = false;
+      histMenuFor = null;
+      winEl().classList.remove('vidi-showhist');
+    }
+
+    function histSetSaved(id, on) {
+      histPost({ type: 'chat_save', chat_id: id, saved: !!on }).then(function (res) {
+        if (!res || res.ok !== true) return;
+        var rows = (histCache && histCache.rows) || [];
+        for (var i = 0; i < rows.length; i++) {
+          if (rows[i].chat_id === id) {
+            rows[i].saved = !!on;
+            // Unsaving restarts the retention clock server-side, so the row also
+            // moves to the top of the unsaved list. Mirror that here rather than
+            // re-fetching, so the list does not appear to ignore the tap.
+            if (!on) rows[i].retain_from = new Date().toISOString();
+          }
+        }
+        if (id === histCur) { histSaved = !!on; syncHistBtns(); }
+        if (histShown) renderHist();
+      });
+    }
+
+    function histDelete(id) {
+      histPost({ type: 'chat_delete', chat_id: id }).then(function (res) {
+        if (!res || res.ok !== true) return;
+        if (histCache) {
+          histCache.rows = histCache.rows.filter(function (r) { return r.chat_id !== id; });
+        }
+        if (id === histCur) {
+          // The conversation on screen was just deleted. Clear the panel and the
+          // local copy too, so a reload cannot resurrect what they removed.
+          histCur = null; histSaved = false;
+          gen++;
+          threadEl().innerHTML = '';
+          recentMsgs = [];
+          if (question && currentView === 'notebook') Vidi.saveThread(question.question_id, []);
+          syncHistBtns();
+        }
+        if (histShown) renderHist();
+      });
+    }
+
+    /** Load one stored conversation into the panel. The server's copy replaces
+        whatever the local restore put there: same conversation, fuller record. */
+    function histOpenRow(r) {
+      closeHist();
+      var elsewhere = r.question_id && r.question_id !== 'home' &&
+        (!question || r.question_id !== question.question_id);
+      if (elsewhere && window.PM_ANSWER && PM_ANSWER.openQuestion) {
+        PM_ANSWER.openQuestion(r.question_id);
+      }
+      histPost({ type: 'chat_open', chat_id: r.chat_id }).then(function (res) {
+        if (!res || !res.ok || !res.msgs || !res.msgs.length) return;
+        var g = ++gen;
+        threadEl().innerHTML = '';
+        recentMsgs = [];
+        var lastDay = null;
+        for (var i = 0; i < res.msgs.length; i++) {
+          var m = res.msgs[i];
+          var day = ymd(new Date(m.at));
+          if (day !== lastDay) {
+            if (day !== Vidi.todayStr()) {
+              threadEl().appendChild(el('div', 'vidi-daymark', dayMark(new Date(m.at).getTime())));
+            }
+            lastDay = day;
+          }
+          var who = m.role === 'student' ? 'student' : 'tutor';
+          bubble(m.body, who);
+          recentMsgs.push({ role: who, text: m.body });
+        }
+        if (recentMsgs.length > 20) recentMsgs = recentMsgs.slice(-20);
+        if (g !== gen) return;
+        histCur = r.chat_id;
+        histSaved = !!r.saved;
+        syncHistBtns();
+        threadEl().scrollTop = threadEl().scrollHeight;
+      });
+    }
+
     /** Put back the conversation this question already had, so a reload lands the
         student where they left off instead of on a greeting. Returns true when
         something came back — the caller's signal to SKIP the greeting, because a
@@ -6439,6 +6830,11 @@
         cut_key: home ? 'home' : cut.key,
         step_id: (!home && stepIndex >= 0) ? steps[stepIndex].id : null,
         question: sent,
+        // The question as a student reads it. Stored with the conversation so the
+        // history list can name a chat without the server having to hold a copy
+        // of the bank — it is display copy, never grounding.
+        title: home ? 'My study plan'
+          : String(cut.question_text || question.question_text || '').slice(0, 300),
         // 10 messages = 5 exchanges (founder, 2026-09-19; was 6 = 3). A student
         // digging into one question runs well past three turns — one real
         // session asked 14 times across two questions — and at 3 the earliest
@@ -6471,6 +6867,16 @@
         bubble(reply, 'tutor');
         recentMsgs.push({ role: 'tutor', text: reply });
         persistThread();
+        // The server tells us which conversation it appended to, so the bookmark
+        // button can act immediately without a second round trip. A null id means
+        // there is no device or the write failed — the button simply stays hidden.
+        if (res.body && typeof res.body.chat_id === 'string') {
+          histCur = res.body.chat_id;
+          syncHistBtns();
+          // The cached list no longer matches: this chat is newer, and it may be
+          // one the list has never seen. Refresh it the next time it is needed.
+          histCache = null;
+        }
       }).catch(function () {
         if (g !== gen) return;
         typing.remove();
@@ -6677,7 +7083,10 @@
       var head = $('vidiHead');
       var sx = 0, sy = 0, ox = 0, oy = 0, dragging = false;
       head.addEventListener('pointerdown', function (e) {
-        if (e.target && e.target.id === 'vidiClose') return;
+        // ANY button in the header, not just #vidiClose by id: the history and
+        // bookmark buttons hold an <svg>, so e.target is the svg or its path and
+        // an id test never matches — the drag would swallow both taps.
+        if (e.target && e.target.closest && e.target.closest('button')) return;
         if (window.innerWidth >= 1180) return;       // docked column: no drag
         if (window.innerWidth <= 720) { WinResize.begin(e, head); return; }   // sheet: the header pulls it taller
         var r = winEl().getBoundingClientRect();
@@ -6741,6 +7150,15 @@
         else if (currentView === 'notebook') renderVidiChips();
       },
       syncName: syncName,
+      // ── chat history ──────────────────────────────────────────────────────
+      toggleHist: function () { if (histShown) closeHist(); else openHist(); },
+      closeHist: closeHist,
+      /** Show or hide the catalog rail for the current view. Also called once at
+          boot, because the first paint of the catalog happens before any view
+          change fires. */
+      syncCatHist: syncCatHist,
+      /** The header bookmark, acting on the conversation currently on screen. */
+      toggleSaved: function () { if (histCur) histSetSaved(histCur, !histSaved); },
       onQuestion: function () {
         gen++;
         threadEl().innerHTML = '';
@@ -6750,6 +7168,16 @@
         clearQuotes();
         DragAsk.sync();
         updatePlanStrip();
+        // A new question is a new conversation: forget which chat the bookmark
+        // was pointing at, close the drawer if it was open, and ask the list
+        // which chat this question owns so the bookmark works on a thread the
+        // student restored rather than one they just typed.
+        closeHist();
+        syncCatHist();                 // an answer is open: the rail steps aside
+        histCur = null;
+        histSaved = false;
+        syncHistBtns();
+        histEnsure(false).then(histAdopt);
         // Before any greeting: if this question already has a conversation, that
         // conversation IS the panel's content. A restore therefore suppresses the
         // greeting below — the student came back to their own chat, not to a
@@ -6789,6 +7217,9 @@
       onView: function (v) {
         updatePlanStrip();
         if (v === 'catalog' && !Vidi.introDone()) markUnread();
+        // The rail belongs to the question list, so it appears and disappears
+        // with that view rather than lingering over an answer.
+        syncCatHist();
       },
       /** The fab on the CATALOG opens the home conversation (plan status /
           onboarding). On the notebook it re-opens the question thread as-is. */
@@ -6950,6 +7381,10 @@
     VidiPanel.initMic();
     $('vidiFab').addEventListener('click', VidiPanel.openHome);
     $('vidiClose').addEventListener('click', VidiPanel.minWin);
+    $('vidiHistBtn').addEventListener('click', VidiPanel.toggleHist);
+    $('vidiHistBack').addEventListener('click', VidiPanel.closeHist);
+    $('vidiSaveBtn').addEventListener('click', VidiPanel.toggleSaved);
+    VidiPanel.syncCatHist();
     $('vidiSend').addEventListener('click', VidiPanel.ask);
     $('vidiInput').addEventListener('keydown', function (e) {
       if (e.key === 'Enter') VidiPanel.ask();

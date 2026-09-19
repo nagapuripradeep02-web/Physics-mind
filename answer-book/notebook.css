@@ -722,6 +722,135 @@ button.door-tile:hover {
 .vidi-msg.vidi-typing { color: var(--chrome-dim); letter-spacing: 3px; animation: vidiBlink 0.9s ease-in-out infinite; }
 @keyframes vidiBlink { 50% { opacity: 0.35; } }
 
+/* ── the chat log beside the question list ───────────────────────────────────
+   Wide screens only. Below 1180px it is display:none no matter what JS thinks —
+   a phone reaches the same list through the drawer inside Vidi, and two surfaces
+   competing for a 390px screen would be a worse answer than one. The catalog
+   column takes a left margin to make room; it keeps its own max-width, so the
+   reading measure of the question list never changes. */
+.cat-hist { display: none; }
+@media (min-width: 1180px) {
+  .cat-hist {
+    display: flex; flex-direction: column;
+    position: fixed; top: 61px; left: 0; bottom: 0; width: 260px; z-index: 12;
+    box-sizing: border-box;
+    background: var(--paper); border-right: 1px solid var(--chrome-line);
+  }
+  .cat-hist[hidden] { display: none; }
+  body.cat-hist-on .catalog { margin-left: 260px; }
+}
+.cat-hist-ico { flex: none; color: var(--chrome-dim); }
+
+/* ── the chat history drawer ─────────────────────────────────────────────────
+   Shown by .vidi-showhist on the window, which hides the thread, chips, attach
+   row, plan strip and ask row at the same time. !important because those five
+   carry inline display writes from the code that owns them; this way the drawer
+   never has to touch their [hidden] state, so closing it cannot strand the ask
+   row hidden. */
+.vidi-hist { display: none; }
+.vidi-win.vidi-showhist .vidi-hist { display: flex; flex: 1 1 auto; min-height: 0; flex-direction: column; }
+.vidi-win.vidi-showhist .vidi-thread,
+.vidi-win.vidi-showhist .vidi-chips,
+.vidi-win.vidi-showhist .vidi-attach,
+.vidi-win.vidi-showhist .vidi-askrow,
+.vidi-win.vidi-showhist .vidi-rename,
+.vidi-win.vidi-showhist .vidi-plan-strip { display: none !important; }
+
+.vidi-hist-head {
+  flex: none; display: flex; align-items: center; gap: 8px;
+  padding: 9px 10px; border-bottom: 1px solid var(--chrome-line);
+}
+.vidi-hist-title { font-size: 12.5px; font-weight: 700; color: var(--chrome-ink); line-height: 1.2; }
+/* The subject the list is scoped to. Without it a short list reads as broken
+   rather than as filtered. */
+.vidi-hist-sub { display: block; font-size: 10.5px; font-weight: 500; color: var(--chrome-dim); }
+
+.vidi-hist-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+.vidi-hist-group {
+  padding: 11px 12px 4px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--chrome-dim);
+  display: flex; align-items: center; gap: 6px;
+}
+.vidi-hist-foot {
+  flex: none; padding: 8px 12px; border-top: 1px solid var(--chrome-line);
+  background: var(--chrome-card); text-align: center;
+  font-size: 10.5px; line-height: 1.5; color: var(--chrome-dim);
+}
+.vidi-hist-empty { padding: 26px 18px; text-align: center; font-size: 12.5px; color: var(--chrome-dim); line-height: 1.6; }
+
+/* One chat. The row is a button, not a div with a click handler, so Tab reaches
+   it and Enter opens it. The ⋯ sits OUTSIDE it — nested interactive elements
+   swallow each other's clicks. */
+.vidi-hist-row { position: relative; border-bottom: 1px solid #F3EEE4; }
+.vidi-hist-open {
+  display: block; width: 100%; box-sizing: border-box; text-align: left;
+  font: inherit; background: none; border: none; cursor: pointer;
+  padding: 9px 34px 9px 12px; color: inherit;
+}
+.vidi-hist-open:hover { background: #FBF7EF; }
+.vidi-hist-row.on .vidi-hist-open { background: var(--clay-wash); }
+.vidi-hist-top { display: flex; align-items: center; gap: 6px; }
+.vidi-hist-name {
+  flex: 1 1 auto; min-width: 0; font-size: 12.5px; font-weight: 600; color: var(--chrome-ink);
+  line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.vidi-hist-when { flex: none; font-size: 10px; color: var(--chrome-dim); }
+.vidi-hist-meta { display: flex; align-items: baseline; gap: 6px; margin-top: 3px; }
+.vidi-hist-where {
+  flex: 1 1 auto; min-width: 0; font-size: 10.5px; color: var(--chrome-dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.vidi-hist-count { flex: none; font-size: 10px; color: var(--chrome-dim); }
+.vidi-hist-snip {
+  font-size: 11px; color: var(--chrome-dim); margin-top: 4px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.vidi-hist-mark { flex: none; color: var(--accent); display: flex; align-items: center; }
+/* The catalog conversation belongs to the student, not to one paper, so it
+   appears in every subject's list and says so. */
+.vidi-hist-tag {
+  flex: none; font-size: 9.5px; font-weight: 600; padding: 1px 6px; border-radius: 999px;
+  color: var(--red); background: var(--clay-wash); border: 1px solid rgba(203, 104, 67, 0.28);
+}
+
+.vidi-hist-more {
+  position: absolute; right: 4px; top: 8px;
+  width: 26px; height: 26px; border-radius: 7px; border: none; background: none;
+  color: var(--pencil); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.vidi-hist-more:hover, .vidi-hist-more[aria-expanded="true"] { background: #F1ECE1; color: var(--chrome-ink); }
+.vidi-hist-menu {
+  position: absolute; right: 6px; top: 34px; z-index: 6; min-width: 156px;
+  background: var(--chrome-card); border: 1px solid var(--chrome-line); border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(43, 38, 32, 0.20); overflow: hidden;
+}
+.vidi-hist-act {
+  display: flex; align-items: center; gap: 9px; width: 100%; box-sizing: border-box;
+  font: 500 12.5px Inter, system-ui, sans-serif; text-align: left; cursor: pointer;
+  padding: 9px 12px; border: none; background: none; color: var(--chrome-ink);
+}
+.vidi-hist-act + .vidi-hist-act { border-top: 1px solid #F1ECE1; }
+.vidi-hist-act:hover { background: #FBF7EF; }
+.vidi-hist-act.danger { color: var(--red); }
+/* Delete is the one irreversible thing here, so it asks once, in place. */
+.vidi-hist-confirm { padding: 9px 12px; font-size: 11.5px; color: var(--chrome-ink); line-height: 1.5; }
+.vidi-hist-confirm-row { display: flex; gap: 6px; margin-top: 7px; }
+.vidi-hist-confirm-row .btn { flex: 1 1 auto; font-size: 11.5px; padding: 5px 8px; }
+
+/* The header icons: history and the bookmark. They wear the dark head, so their
+   hover is a light wash rather than a dark one. */
+.vidi-ico {
+  flex: none; width: 26px; height: 26px; border-radius: 7px;
+  border: none; background: none; color: rgba(255, 255, 255, 0.8);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.vidi-ico:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.vidi-ico[aria-pressed="true"] { background: rgba(203, 104, 67, 0.32); color: var(--clay-soft); }
+.vidi-ico[aria-pressed="true"] svg { fill: currentColor; }
+/* Inside the drawer the head is paper, not the dark bar. */
+.vidi-hist-head .vidi-ico { color: var(--chrome-dim); }
+.vidi-hist-head .vidi-ico:hover { background: #F1ECE1; color: var(--chrome-ink); }
+
 /* A conversation restored from an earlier day opens with the day it happened on,
    so the student reads the messages below it as their own past chat rather than
    as Vidi answering again. Same-day restores carry no mark — there is nothing to

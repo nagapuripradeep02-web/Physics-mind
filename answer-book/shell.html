@@ -129,6 +129,21 @@
      Anatomy echoes the Viditra teacher catalog (narrow column, chapter
      sections with count pills, title+arrow cards, border-tint hover) but in
      the Answer Book's own light paper palette. -->
+<!-- The chat log beside the question list, on wide screens only (founder,
+     2026-09-19: on the questions page, not inside an answer). A phone has no
+     room for a permanent rail and uses the drawer inside Vidi instead, so this
+     is display:none below 1180px and shown by JS only on the catalog with a
+     device to ask about. Its own element rather than a wrapper around
+     #catalogView, so nothing that selects that column has to change. -->
+<aside class="cat-hist" id="catHist" hidden>
+  <div class="vidi-hist-head">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="cat-hist-ico"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg>
+    <div class="vidi-hist-title">Your chats<span class="vidi-hist-sub" id="catHistSub"></span></div>
+  </div>
+  <div class="vidi-hist-list" id="catHistList"></div>
+  <div class="vidi-hist-foot" id="catHistFoot"></div>
+</aside>
+
 <main class="catalog" id="catalogView" hidden>
   <div class="cat-hero">
     <!-- Subject-neutral since the book stopped being physics-only: it now carries
@@ -255,7 +270,32 @@
     <span class="vidi-dot"></span>
     <span class="vidi-name">Vidi</span>
     <span class="vidi-role">answer helper</span>
+    <!-- Chat history. Both buttons stay hidden until the page knows it has a
+         device to ask about (a hosted build with a sync base) — an offline copy
+         has no server history, and a control that can only disappoint is worse
+         than no control. -->
+    <button class="vidi-ico" id="vidiHistBtn" type="button" aria-label="Your chats" hidden>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg>
+    </button>
+    <button class="vidi-ico" id="vidiSaveBtn" type="button" aria-label="Save this chat" aria-pressed="false" hidden>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+    </button>
     <button class="vidi-min" id="vidiClose" type="button" aria-label="Minimize">&#8211;</button>
+  </div>
+
+  <!-- The history drawer. NOT an [hidden] element: it is shown and hidden by
+       .vidi-showhist on the window, which also hides the thread, the chips and
+       the ask row. That keeps [hidden] free for the code that already owns those
+       elements, so opening the history can never strand the ask row hidden. -->
+  <div class="vidi-hist" id="vidiHist">
+    <div class="vidi-hist-head">
+      <button class="vidi-ico" id="vidiHistBack" type="button" aria-label="Back to the chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="vidi-hist-title">Your chats<span class="vidi-hist-sub" id="vidiHistSub"></span></div>
+    </div>
+    <div class="vidi-hist-list" id="vidiHistList"></div>
+    <div class="vidi-hist-foot" id="vidiHistFoot"></div>
   </div>
   <!-- The study-plan countdown strip. Lives OUTSIDE the thread (the thread is
        wiped on every question open) and inside the window, so gate 223's

@@ -14,6 +14,12 @@
  *   - no origin allowlist (localhost only, never exposed)
  *   - in-memory request counter instead of the ai_usage_log ledger
  *   - usage rows are written to a local JSONL, not to Supabase
+ *   - NO chat-history endpoints (chat_list / chat_open / chat_save / chat_delete)
+ *     and no ab_chat_append: all five need the Supabase tables, and this server
+ *     deliberately touches no database. A page pointed here therefore shows no
+ *     server-side history and falls back to its own localStorage thread, which
+ *     is the same path an offline build takes. Exercise the history against a
+ *     deployed function, never here.
  * The PERSONA, the context handling and the reply shape are identical.
  */
 import { createServer } from 'http';

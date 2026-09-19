@@ -78,7 +78,8 @@
 -- One row per conversation. A conversation is scoped to ONE question, because
 -- that is how Vidi is scoped: the thread is cleared when the student opens a
 -- different question, so a new question is genuinely a new conversation. The
--- catalog/plan conversation has no question, hence the nullable column.
+-- catalog/plan conversation rides the same table under the reserved question id
+-- 'home'.
 --
 -- subject / unit / title are DENORMALISED from the bank on purpose: the history
 -- list must render from one query, and the bank is a static build artifact the
@@ -86,12 +87,22 @@
 create table if not exists ab_chats (
     chat_id     uuid primary key default gen_random_uuid(),
     device_id   uuid not null references ab_devices(device_id) on delete cascade,
-    -- null = the catalog conversation (study plan, onboarding), which belongs to
-    -- the student rather than to any one question.
-    question_id text,
-    subject     text,
+    -- 'home' is the catalog conversation (study plan, onboarding), which belongs
+    -- to the student rather than to any one question. It is a real value rather
+    -- than NULL so that the uniqueness rule below covers it too — in SQL two
+    -- NULLs are distinct, so a nullable column would let a device collect an
+    -- unbounded pile of catalog chats.
+    question_id text not null,
+    -- '' for the catalog conversation. NOT NULL for the same reason: subject
+    -- partitions the retention cap, and a NULL partition is easy to reason about
+    -- wrongly.
+    subject     text not null default '',
     unit        text,
     title       text,
+    -- The last thing the STUDENT said, for the list. Denormalised deliberately:
+    -- the history list must render from one query, and the alternative is a
+    -- lateral join to the messages table on every open of the drawer.
+    snippet     text,
     -- The bookmark. See the retention note above: this exempts the row from both
     -- limits, so it is the one column here a student changes deliberately.
     saved       boolean not null default false,
@@ -112,6 +123,14 @@ create table if not exists ab_chats (
 -- adds `saved` because saved chats are grouped above the rest.
 create index if not exists ab_chats_device_idx on ab_chats (device_id, subject, saved, retain_from desc);
 create index if not exists ab_chats_prune_idx  on ab_chats (device_id, subject, retain_from desc) where not saved;
+
+-- ONE conversation per question per device, enforced rather than assumed. The
+-- append below resolves a chat by (device, question) instead of asking the page
+-- to remember a chat id, which means the page cannot fork a question's thread by
+-- losing track of an id — and a student returning to a question in December adds
+-- to the thread they started in September rather than starting a parallel one.
+create unique index if not exists ab_chats_one_per_question
+    on ab_chats (device_id, question_id);
 
 -- ── 2. the messages ─────────────────────────────────────────────────────────
 -- Both sides, in full. The 500-character clip that the live history window
@@ -140,7 +159,11 @@ comment on table ab_chats is
 comment on table ab_chat_messages is
     'Answer Book: every turn of a Vidi conversation, student and Vidi, stored in full. 2026-09-19.';
 comment on column ab_chats.subject is
-    'The PAPER, as the bank writes it (mathematics_2a, physics_2, botany_2 — 2a and 2b are two subjects, two exams). Not display copy: it scopes the list a student sees AND partitions the newest-30 cap, so one paper can never evict another. Null = the catalog/plan conversation, which forms its own partition.';
+    'The PAPER, as the bank writes it (mathematics_2a, physics_2, botany_2 — 2a and 2b are two subjects, two exams). Not display copy: it scopes the list a student sees AND partitions the newest-30 cap, so one paper can never evict another. '' = the catalog/plan conversation (question_id ''home''), which forms its own partition.';
+comment on column ab_chats.snippet is
+    'The last thing the STUDENT said, for the history list. Denormalised so the drawer renders from one query; never read back as truth.';
+comment on column ab_chats.question_id is
+    'The question this conversation is about, or ''home'' for the catalog/plan conversation. NOT NULL so the one-chat-per-question unique index covers the catalog case too.';
 comment on column ab_chats.saved is
     'Bookmarked by the student. Exempt from the 30-day sweep AND from the newest-30 cap (the cap counts unsaved rows only).';
 comment on column ab_chats.retain_from is
@@ -154,18 +177,25 @@ comment on column ab_chats.last_at is
 -- row), so writing them together keeps the pair atomic — a thread can never end
 -- up holding a question with no answer.
 --
--- p_chat null starts a conversation; the caller passes back the returned id for
--- every later turn. The device must already exist (answerbook-sync mints it), so
--- a chat for an unknown device is refused rather than silently orphaned.
+-- The chat is resolved by (device, question), never by an id the page has to
+-- remember. That is the whole point: the page already knows which question is
+-- open, so there is no id to lose, no way to fork a question's thread, and
+-- nothing to reconcile when a browser is cleared. The device must already exist
+-- (answerbook-sync mints it), so a chat for an unknown device is refused rather
+-- than silently orphaned.
+--
+-- MSG_CAP trims the oldest turns of a very long thread. A single question's
+-- conversation is naturally bounded by patience, but "naturally" is not a bound:
+-- without this a scripted client could grow one row's message list forever.
 create or replace function ab_chat_append(
     p_device      uuid,
-    p_chat        uuid,           -- null = start a new conversation
     p_question_id text,
     p_subject     text,
     p_unit        text,
     p_title       text,
     p_student     text,
-    p_vidi        text
+    p_vidi        text,
+    p_msg_cap     int default 60
 ) returns jsonb
 language plpgsql
 security definer
@@ -174,9 +204,10 @@ as $$
 declare
     v_chat   uuid;
     v_exists boolean;
+    v_count  int;
 begin
-    if p_device is null then
-        return jsonb_build_object('ok', false, 'error', 'device_required');
+    if p_device is null or coalesce(p_question_id, '') = '' then
+        return jsonb_build_object('ok', false, 'error', 'device_and_question_required');
     end if;
     if coalesce(p_student, '') = '' then
         return jsonb_build_object('ok', false, 'error', 'empty_turn');
@@ -187,21 +218,19 @@ begin
         return jsonb_build_object('ok', false, 'error', 'unknown_device');
     end if;
 
-    -- An unknown or foreign chat id starts a fresh conversation rather than
-    -- failing: the client's id can be stale (a pruned chat, a cleared browser),
-    -- and losing one turn is worse than losing the thread it belonged to. The
-    -- device_id match is what stops a guessed id writing into someone else's.
-    if p_chat is not null then
-        select chat_id into v_chat
-        from ab_chats
-        where chat_id = p_chat and device_id = p_device;
-    end if;
-
-    if v_chat is null then
-        insert into ab_chats (device_id, question_id, subject, unit, title)
-        values (p_device, p_question_id, p_subject, p_unit, p_title)
-        returning chat_id into v_chat;
-    end if;
+    -- Resolve or create, in one statement, so two turns racing from two tabs
+    -- cannot both create the chat. The unique index is what makes the conflict
+    -- clause reachable; without it this would silently duplicate under a race.
+    insert into ab_chats (device_id, question_id, subject, unit, title)
+    values (p_device, p_question_id, coalesce(p_subject, ''), p_unit, p_title)
+    on conflict (device_id, question_id) do update
+        -- A title and unit only ever FILL IN. The first turn of a conversation
+        -- can arrive before the page knows them; they never change afterwards,
+        -- and letting them be overwritten would let a later blank erase a good
+        -- one.
+        set title = coalesce(ab_chats.title, excluded.title),
+            unit  = coalesce(ab_chats.unit, excluded.unit)
+    returning chat_id into v_chat;
 
     insert into ab_chat_messages (chat_id, role, body)
     values (v_chat, 'student', p_student);
@@ -213,20 +242,80 @@ begin
         values (v_chat, 'vidi', p_vidi);
     end if;
 
+    select count(*) into v_count from ab_chat_messages where chat_id = v_chat;
+    if v_count > p_msg_cap then
+        delete from ab_chat_messages
+        where id in (
+            select id from ab_chat_messages
+            where chat_id = v_chat
+            order by created_at asc, id asc
+            limit (v_count - p_msg_cap)
+        );
+        v_count := p_msg_cap;
+    end if;
+
     -- Both clocks move on a real turn: the conversation genuinely happened now,
     -- so it is both the newest to display and the newest to keep. They only ever
     -- diverge on an unsave.
     update ab_chats
     set last_at     = now(),
         retain_from = now(),
-        msg_count   = (select count(*) from ab_chat_messages where chat_id = v_chat),
-        -- A title only ever fills in: the first turn of a conversation may arrive
-        -- before the page knows the question (the catalog case), never after.
-        title     = coalesce(title, p_title)
+        msg_count   = v_count,
+        snippet     = left(p_student, 160)
     where chat_id = v_chat;
 
-    return jsonb_build_object('ok', true, 'chat_id', v_chat);
+    return jsonb_build_object('ok', true, 'chat_id', v_chat, 'msg_count', v_count);
 end;
+$$;
+
+-- ── 3b. the list a student sees ─────────────────────────────────────────────
+-- One subject's chats, saved first, then newest-touched first. Ordering is
+-- retain_from (see the header); the DATE the page prints comes from last_at,
+-- which is why both are returned.
+--
+-- p_subject '' returns the catalog conversation only. The page asks for a real
+-- subject when a question is open, and the catalog conversation is added to
+-- every subject's list client-side, because a study plan belongs to the student
+-- rather than to one paper.
+create or replace function ab_chat_list(
+    p_device  uuid,
+    p_subject text,
+    p_limit   int default 60
+) returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+    select coalesce(jsonb_agg(row_to_json(c)::jsonb order by c.saved desc, c.retain_from desc), '[]'::jsonb)
+    from (
+        select chat_id, question_id, subject, unit, title, snippet,
+               saved, msg_count, last_at, retain_from
+        from ab_chats
+        where device_id = p_device
+          and (subject = coalesce(p_subject, '') or question_id = 'home')
+        order by saved desc, retain_from desc
+        limit greatest(1, least(p_limit, 200))
+    ) c;
+$$;
+
+-- ── 3c. opening one chat ────────────────────────────────────────────────────
+-- device_id is in the WHERE clause, not just the lookup: a guessed chat id must
+-- not read another device's conversation. A miss returns an empty list rather
+-- than an error — a chat pruned between listing and opening is ordinary, not
+-- exceptional.
+create or replace function ab_chat_open(
+    p_device uuid,
+    p_chat   uuid
+) returns jsonb
+language sql
+security definer
+set search_path = public
+as $$
+    select coalesce(jsonb_agg(jsonb_build_object('role', m.role, 'body', m.body, 'at', m.created_at)
+                              order by m.created_at, m.id), '[]'::jsonb)
+    from ab_chat_messages m
+    join ab_chats c on c.chat_id = m.chat_id
+    where m.chat_id = p_chat and c.device_id = p_device;
 $$;
 
 -- ── 4. the bookmark ─────────────────────────────────────────────────────────
@@ -333,7 +422,7 @@ begin
     -- arrive at rank 1 and push the oldest unsaved one in ITS OWN subject over
     -- the cap, rather than falling off itself.
     --
-    -- A null subject (the catalog/plan conversation) forms its own partition, so
+    -- The '' subject (the catalog/plan conversation) forms its own partition, so
     -- those keep their own 30 and never compete with a paper's chats.
     delete from ab_chats c
     using (
