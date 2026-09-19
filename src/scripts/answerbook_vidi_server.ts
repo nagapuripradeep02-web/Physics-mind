@@ -333,9 +333,13 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
         teluguAsk ? '- language: write the Telugu words in TELUGU SCRIPT, never Telugu in Latin letters. Only the ' + subjectWord + ' terms stay in English — ' + subjectTerms + '.' : '',
         ...mathsStyle,
     ].filter(Boolean).join('\n');
-    const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
+    // 5 exchanges, matching the deployed function (founder, 2026-09-19). The
+    // local server exists to reproduce the hosted one, so this number is not an
+    // independent choice — it tracks supabase/functions/answerbook-vidi-chat.
+    const history = (body.recent_messages ?? []).slice(-10).map((m: { role?: string; text?: string }) => ({
         role: m.role === 'student' ? 'user' : 'assistant',
-        content: String(m.text ?? '').slice(0, 500),
+        // Matches the deployed function: 2,000 chars, tied to its maxTokens.
+        content: String(m.text ?? '').slice(0, 2_000),
     }));
     const messages = [
         { role: 'system', content: system },

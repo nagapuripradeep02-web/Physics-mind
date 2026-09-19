@@ -559,9 +559,27 @@ Deno.serve(async (req: Request) => {
         ...mathsStyle,
     ].filter(Boolean).join('\n');
 
-    const history = (body.recent_messages ?? []).slice(-6).map((m: { role?: string; text?: string }) => ({
+    // 10 messages = 5 exchanges (founder, 2026-09-19; was 6 = 3). This slice is
+    // the REAL limit — the page sends the same number, but whichever is smaller
+    // decides, so the two must move together. Cost is not the constraint here:
+    // an ask averages 2,710 prompt tokens of which 1,847 are cache hits at ~1/30
+    // the price, so four more turns is a fraction of a paisa.
+    const history = (body.recent_messages ?? []).slice(-10).map((m: { role?: string; text?: string }) => ({
         role: m.role === 'student' ? 'user' : 'assistant',
-        content: String(m.text ?? '').slice(0, 500),
+        // 2,000 chars, was 500 (founder, 2026-09-19). At 500 Vidi's memory of its
+        // OWN replies was worse than its memory of the student's questions: 24% of
+        // replies measured longer than 500, up to 1,264 — so a student asking "in
+        // step 3 you said…" could be asking about a sentence Vidi could no longer
+        // see. The maths tuning (2026-09-14→18) made replies longer and better
+        // while this number stayed where it was.
+        //
+        // 2,000 is tied to `maxTokens` below, not picked by taste: the largest
+        // English budget is 500 tokens (maths papers, walkthroughs) ≈ 2,000 chars,
+        // so this can no longer be what truncates. Raise it if maxTokens rises.
+        // It stays a HARD CAP because recent_messages comes from the page, which
+        // anyone can forge — without a bound a crafted request sets the prompt,
+        // and the bill.
+        content: String(m.text ?? '').slice(0, 2_000),
     }));
 
     const messages = [
