@@ -53,8 +53,16 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "cos π/6 = √3/2 and sin π/6 = 1/2, so",
-          "√3/2 + i/2 = cos π/6 + i sin π/6",
+          {
+            "text": "\\cos \\dfrac{\\pi }{6} = \\ \\dfrac{\\sqrt{3}}{2}\\ \\text{and}\\ \\sin \\dfrac{\\pi }{6} = \\ \\dfrac{1}{2},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{\\sqrt{3}}{2} + \\ \\dfrac{i}{2} = \\ \\cos \\dfrac{\\pi }{6}\\ + \\ i\\sin \\dfrac{\\pi }{6}",
+            "style": "normal",
+            "render": "katex"
+          },
           "By De Moivre's theorem the angle is multiplied:",
           {
             "text": "\\left(\\dfrac{\\sqrt{3}}{2} + \\ \\dfrac{i}{2}\\right)^{5}\\ = \\ \\cos \\left(\\dfrac{5\\pi }{6}\\right)\\ + \\ i\\sin \\left(\\dfrac{5\\pi }{6}\\right)",

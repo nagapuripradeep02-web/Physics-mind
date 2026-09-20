@@ -66,7 +66,11 @@
           "gaps from the mean; the standard deviation",
           "is its square root, back in the original units.",
           "There are n = 8 values.",
-          "Mean x̄ = (sum of the values)/n",
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ \\dfrac{\\text{sum of the values}}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{5\\ + \\ 12\\ + \\ 3\\ + \\ 18\\ + \\ 6\\ + \\ 8\\ + \\ 2\\ + \\ 10}{8}",
             "style": "normal",

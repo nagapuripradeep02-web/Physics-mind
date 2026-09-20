@@ -260,9 +260,15 @@
             "text": "and so does the 2:",
             "added": true
           },
-          "= i sin nθ / cos nθ",
           {
-            "text": "tan nθ = sin nθ / cos nθ, so",
+            "text": "= \\ \\dfrac{i\\sin n\\theta }{\\cos n\\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\tan n\\theta \\ = \\ \\dfrac{\\sin n\\theta }{\\cos n\\theta },\\ \\text{so}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -305,7 +311,11 @@
             "render": "katex",
             "style": "eq"
           },
-          "= i sin nθ / cos nθ",
+          {
+            "text": "= \\ \\dfrac{i\\sin n\\theta }{\\cos n\\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= i tan nθ = R.H.S.",
             "style": "boxed"

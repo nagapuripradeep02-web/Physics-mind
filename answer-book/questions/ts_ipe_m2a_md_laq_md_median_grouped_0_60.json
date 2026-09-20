@@ -366,8 +366,9 @@
         "memory_tip": "517.16/50 = 10.34. Write 'about the median' in the answer line; 'about the mean' loses the mark.",
         "lines": [
           {
-            "text": "M.D. about the median = Σfᵢ|xᵢ − M|/N",
-            "style": "eq"
+            "text": "\\text{M.D.}\\ \\text{about}\\ \\text{the}\\ \\text{median}\\ = \\ \\dfrac{\\sum f_{i}\\left|x_{i}\\ - \\ M\\right|}{N}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{517.16}{50}",
@@ -413,7 +414,11 @@
           "Writing 'about the mean' when the question asked about the median."
         ],
         "lines_compact": [
-          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+          {
+            "text": "\\text{M.D.}\\ \\text{about}\\ \\text{the}\\ \\text{median}\\ = \\ \\dfrac{\\sum f_{i}\\left|x_{i}\\ - \\ M\\right|}{N}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{517.16}{50} = \\ 10.34",
             "style": "normal",

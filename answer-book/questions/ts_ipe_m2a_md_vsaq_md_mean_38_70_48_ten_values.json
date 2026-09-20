@@ -121,8 +121,9 @@
           "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
           "Σ|xᵢ − x̄| = 84",
           {
-            "text": "M.D. = Σ|xᵢ − x̄|/n",
-            "style": "eq",
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -168,7 +169,11 @@
         "lines_compact": [
           "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
           "Σ|xᵢ − x̄| = 84",
-          "M.D. = Σ|xᵢ − x̄|/n = 84/10 = 8.4",
+          {
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n} = \\ \\dfrac{84}{10} = \\ 8.4",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the mean = 8.4",
             "style": "boxed"

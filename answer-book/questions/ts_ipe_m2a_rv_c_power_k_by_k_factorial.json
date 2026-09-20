@@ -227,8 +227,9 @@
             "added": true
           },
           {
-            "text": "∴ c = logₑ 2, P = logₑ 2 + (logₑ 2)²/2",
-            "style": "boxed"
+            "text": "\\therefore \\ c\\ = \\ \\log _{e}2,\\ P\\ = \\ \\log _{e}2\\ + \\ \\dfrac{\\left(\\log _{e}2\\right)^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -266,10 +267,15 @@
             "style": "normal",
             "render": "katex"
           },
-          "= logₑ 2 + (logₑ 2)²/2",
           {
-            "text": "∴ c = logₑ 2, P(0 < X < 3) = logₑ 2 + (logₑ 2)²/2",
-            "style": "boxed"
+            "text": "= \\ \\log _{e}2\\ + \\ \\dfrac{\\left(\\log _{e}2\\right)^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ c\\ = \\ \\log _{e}2,\\ P\\left(0\\ < \\ X\\ < \\ 3\\right)\\ = \\ \\log _{e}2\\ + \\ \\dfrac{\\left(\\log _{e}2\\right)^{2}}{2}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

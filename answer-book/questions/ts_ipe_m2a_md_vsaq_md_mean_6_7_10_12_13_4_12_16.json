@@ -70,7 +70,11 @@
           "lie from a centre ON AVERAGE, using the size",
           "of each gap and ignoring its sign.",
           "There are n = 8 values.",
-          "Mean x̄ = (sum of the values)/n",
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ \\dfrac{\\text{sum of the values}}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{6\\ + \\ 7\\ + \\ 10\\ + \\ 12\\ + \\ 13\\ + \\ 4\\ + \\ 12\\ + \\ 16}{8}",
             "style": "normal",
@@ -128,8 +132,9 @@
           },
           "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
           {
-            "text": "M.D. = Σ|xᵢ − x̄|/n",
-            "style": "eq",
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -179,7 +184,11 @@
         ],
         "lines_compact": [
           "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
-          "M.D. = Σ|xᵢ − x̄|/n = (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",
+          {
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n} = \\ \\dfrac{4+3+0+2+3+6+2+6}{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{26}{8} = \\ 3.25",
             "style": "normal",

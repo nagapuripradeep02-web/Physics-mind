@@ -195,7 +195,9 @@
             "added": true
           },
           {
-            "text": "= [cos(θ/2) − i sin(θ/2)] / 2cos(θ/2)",
+            "text": "= \\ \\dfrac{\\cos \\left(\\tfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\tfrac{\\theta }{2}\\right)}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -203,15 +205,21 @@
             "added": true
           },
           {
-            "text": "= cos(θ/2)/2cos(θ/2) − i sin(θ/2)/2cos(θ/2)",
+            "text": "= \\ \\dfrac{\\cos \\left(\\tfrac{\\theta }{2}\\right)}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)} - \\ \\dfrac{i\\sin \\left(\\tfrac{\\theta }{2}\\right)}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 1/2 − (i/2) · sin(θ/2)/cos(θ/2)",
+            "text": "= \\ \\dfrac{1}{2} - \\ \\left(\\dfrac{i}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin \\left(\\tfrac{\\theta }{2}\\right)}{\\cos \\left(\\tfrac{\\theta }{2}\\right)}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "= 1/2 − (i/2) tan(θ/2)   [tan A = sin A/cos A]",
+            "text": "= \\ \\dfrac{1}{2} - \\ \\left(\\dfrac{i}{2}\\right)\\tan \\left(\\dfrac{\\theta }{2}\\right)\\quad \\left[\\tan A\\ = \\ \\dfrac{\\sin A}{\\cos A}\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           }
         ],
@@ -245,7 +253,11 @@
           "Writing the imaginary part as −(1/2) sin(θ/2) instead of −(1/2) tan(θ/2)."
         ],
         "lines_compact": [
-          "x + iy = 1 / (2cos(θ/2)[cos(θ/2) + i sin(θ/2)])",
+          {
+            "text": "x\\ + \\ iy\\ = \\ \\dfrac{1}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)\\left[\\cos \\left(\\tfrac{\\theta }{2}\\right)\\ + \\ i\\sin \\left(\\tfrac{\\theta }{2}\\right)\\right]}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by",
           {
             "text": "\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right):",
@@ -253,17 +265,14 @@
             "render": "katex"
           },
           {
-            "text": "= \\ \\left[\\cos \\left(\\dfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\dfrac{\\theta }{2}\\right)\\right]",
-            "style": "eq",
+            "text": "= \\ \\dfrac{\\cos \\left(\\tfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\tfrac{\\theta }{2}\\right)}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)\\left[\\cos ^{2}\\left(\\tfrac{\\theta }{2}\\right)\\ + \\ \\sin ^{2}\\left(\\tfrac{\\theta }{2}\\right)\\right]}",
+            "style": "normal",
             "render": "katex"
           },
           {
-            "text": "/ (2cos(θ/2)[cos²(θ/2) + sin²(θ/2)])",
-            "style": "indent"
-          },
-          {
-            "text": "= [cos(θ/2) − i sin(θ/2)] / (2cos(θ/2))",
-            "style": "eq"
+            "text": "= \\ \\dfrac{\\cos \\left(\\tfrac{\\theta }{2}\\right)\\ - \\ i\\sin \\left(\\tfrac{\\theta }{2}\\right)}{2\\cos \\left(\\tfrac{\\theta }{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{1}{2} - \\ \\left(\\dfrac{i}{2}\\right)\\tan \\left(\\dfrac{\\theta }{2}\\right)",
