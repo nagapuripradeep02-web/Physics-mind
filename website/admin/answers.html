@@ -224,6 +224,19 @@
   function pad(n){ return (n<10?'0':'')+n; }
   function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
   function fmt(n){ return (n==null?'—':Number(n).toLocaleString('en-IN')); }
+  // Money needs its OWN formatter. fmt() is integer-oriented — toLocaleString
+  // defaults to 3 fraction digits, so one DeepSeek ask ($0.0002) prints as "0"
+  // and a day of real asks reads "$0" on the one line this page exists to make
+  // trustworthy. ab_stats rounds to 4 dp; show all four below a cent.
+  function usd(n){
+    if (n == null) return '—';
+    var v = Number(n);
+    if (!isFinite(v)) return '—';
+    if (v === 0) return '0.00';
+    return v < 0.01
+      ? v.toLocaleString('en-IN', { minimumFractionDigits: 4, maximumFractionDigits: 4 })
+      : v.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
   function pct(a,b){ return (b>0) ? Math.round(a/b*100) + '%' : '—'; }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]); }); }
   function when(s){ if(!s) return '—'; var d=new Date(s); return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); }
@@ -383,11 +396,17 @@
     // team rows could vanish from this line, a forged claim would hide real
     // spend from the only page that watches it.
     $('vidiCost').innerHTML =
-      'Model ledger, this period: <b>'+fmt(v.ledger_asks)+'</b> student answers, $'+fmt(v.ledger_usd)+
-      ' &middot; team '+fmt(v.ledger_team_asks)+' ($'+fmt(v.ledger_team_usd)+')'+
-      ' &middot; automated tests '+fmt(v.ledger_probe_asks)+' ($'+fmt(v.ledger_probe_usd)+')'+
-      ' &middot; <b>everything: '+fmt(v.ledger_all_asks)+' ($'+fmt(v.ledger_all_usd)+')</b>.'+
-      '<br>Today: '+fmt(v.ledger_asks_today)+' student answers, $'+fmt(v.ledger_usd_today)+'.';
+      'Model ledger, this period: <b>'+fmt(v.ledger_asks)+'</b> student answers, $'+usd(v.ledger_usd)+
+      ' &middot; team '+fmt(v.ledger_team_asks)+' ($'+usd(v.ledger_team_usd)+')'+
+      ' &middot; automated tests '+fmt(v.ledger_probe_asks)+' ($'+usd(v.ledger_probe_usd)+')'+
+      ' &middot; <b>everything: '+fmt(v.ledger_all_asks)+' ($'+usd(v.ledger_all_usd)+')</b>.'+
+      // TODAY carries the all-actors figure too, and it is the one that matters
+      // operationally: AB_DAILY_USD_CAP is a DAILY $2 ceiling enforced over
+      // every actor, so a day of heavy probing can be about to refuse real
+      // students while the student-only number still reads near zero.
+      '<br>Today: <b>'+fmt(v.ledger_asks_today)+'</b> student answers, $'+usd(v.ledger_usd_today)+
+      ' &middot; <b>everything today: '+fmt(v.ledger_all_asks_today)+' ($'+usd(v.ledger_all_usd_today)+')</b>'+
+      ' of the $2.00 daily cap.';
 
     rows('subjBody', (d.subjects||[]).map(function(s){ return '<tr><td>'+esc(SUBJ[s.subject]||s.subject)+'</td><td class="n">'+fmt(s.opens)+'</td><td class="n">'+fmt(s.devices)+'</td></tr>'; }).join(''), 3);
     rows('unitBody', (d.top_units||[]).map(function(u){ return '<tr><td>'+esc(unitName(u.unit))+'</td><td class="n">'+fmt(u.opens)+'</td><td class="n">'+fmt(u.devices)+'</td></tr>'; }).join(''), 3);

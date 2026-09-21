@@ -45,6 +45,10 @@ declare
     -- Midnight IST, named once. The original repeated this expression four
     -- times inside the ledger CTE; the actor split needs it eight times.
     v_today timestamptz := date_trunc('day', now() at time zone 'Asia/Kolkata') at time zone 'Asia/Kolkata';
+    -- The day the INSTRUMENTED page went live. Devices minted before it carry
+    -- no events and are unattributable; see 'total' below. A fixed constant on
+    -- purpose — it is a fact about when counting began, not a user's filter.
+    v_epoch timestamptz := '2026-09-02 00:00:00+05:30';
 begin
     if not exists (select 1 from ab_admin_config where key = 'stats_token' and value = p_token) then
         return jsonb_build_object('ok', false, 'error', 'unauthorized');
@@ -182,11 +186,15 @@ begin
         'devices', jsonb_build_object(
             'active',    (select count(distinct device_id) from ev where device_id is not null),
             'new',       (select count(*) from real_dev where created_at >= p_since),
-            -- Bounded by p_since (2026-09-02). Devices minted before the
-            -- instrumented page shipped carry no events at all and can never be
-            -- attributed to anyone; counting them as students made the headline
-            -- unreadable. total_ever keeps the old, unbounded number.
-            'total',     (select count(*) from real_dev where created_at >= p_since),
+            -- Bounded by the INSTRUMENTATION EPOCH, deliberately NOT by p_since.
+            -- Devices minted before the instrumented page shipped carry no
+            -- events at all and can never be attributed to anyone, so they are
+            -- dropped here — but bounding this by p_since instead would make it
+            -- character-identical to 'new' above, and would read LOWER than
+            -- 'active' the moment a device first seen before the window comes
+            -- back inside it (active counts events, this counts creation).
+            -- total_ever keeps the original unbounded number.
+            'total',     (select count(*) from real_dev where created_at >= v_epoch),
             'total_ever',(select count(*) from real_dev),
             'returning', (select count(*) from days_per_device where days >= 2),
             'signed_in', (select count(distinct ad.device_id) from ab_account_devices ad join real_dev d on d.device_id = ad.device_id),
@@ -246,7 +254,13 @@ begin
             'ledger_probe_asks', (select asks_probe from ledger),
             'ledger_probe_usd',  (select round(usd_probe::numeric, 4) from ledger),
             'ledger_all_asks',   (select asks_all   from ledger),
-            'ledger_all_usd',    (select round(usd_all::numeric, 4)   from ledger)
+            'ledger_all_usd',    (select round(usd_all::numeric, 4)   from ledger),
+            -- TODAY, all actors. This is the operationally important one:
+            -- AB_DAILY_USD_CAP is a DAILY ceiling enforced over EVERY actor, so
+            -- a heavy probing session can be about to start refusing real
+            -- students while the student-only figure still reads near zero.
+            'ledger_all_asks_today', (select asks_today_all from ledger),
+            'ledger_all_usd_today',  (select round(usd_today_all::numeric, 4) from ledger)
         ),
         'device_rows', (select coalesce(jsonb_agg(to_jsonb(r)), '[]'::jsonb) from device_rows r)
     ) into v;
