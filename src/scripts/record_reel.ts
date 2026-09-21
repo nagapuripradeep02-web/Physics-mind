@@ -7,6 +7,10 @@
  *   npm run reel -- --q <id> --speed 4     # 52s of real writing -> a 13s Reel
  *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
  *                                          # a PHASED figure: every tap lands at a pause, then Restart
+ *   npm run reel -- --q <maths id> --shot ask_line --line "PQ = OQ - OP" --ask "Why do we subtract OP here?" \
+ *                   --dir answer-book/dist-mpc --hide "#btnAccount,.vidi-fab,#questionMeta>.chip.asked"
+ *                                          # hold ONE written line, Ask Vidi about this, the real reply
+ *                                          # (the build needs ANSWER_BOOK_VIDI_BASE, see `ask_line`)
  *
  * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
  * pace a STUDENT reads along with, and each step's marks land in the margin only
@@ -123,7 +127,20 @@ type Beat =
     // Bring an element back into frame with the eased pan, or do nothing if it
     // already is. Used before Restart: completing the answer scrolls the Total
     // block into view, which may leave the figure off-screen.
-    | { do: 'panTo'; selector: string; ms: number };
+    | { do: 'panTo'; selector: string; ms: number }
+    // A thumb held on a written line (`--shot ask_line`). DragAsk's touch route
+    // is a pointerdown that stays put for 450 ms (notebook.js `pressTimer`);
+    // Playwright's `tap()` lifts at once, so this is a CDP touchStart, a real
+    // hold, then touchEnd. The line is named by its TEXT (dashes normalised),
+    // panned into frame first so the thumb lands where a student's would.
+    | { do: 'longPress'; text: string; holdMs?: number }
+    // Ease the page so that line sits `frac` of the viewport down (setup use).
+    | { do: 'panToLine'; text: string; frac: number; ms: number }
+    // The bar's `Ask Vidi about this` — the product's own button, a real click.
+    | { do: 'tapBarAsk' }
+    // Ease the Vidi thread so the reply's sentence containing `text` is in
+    // view. The thread is its own scroll box, so `pan` (window scroll) cannot.
+    | { do: 'scrollThread'; text: string; ms: number };
 
 /** What a shot may be pointed at. Everything is a flag with a default, so a shot
     stays data and the film's beats are recorded by name rather than by hand. */
@@ -146,6 +163,9 @@ interface ShotOpts {
     /** `--shot figure`: the number of `pause` elements in the card's first
         diagram step, read from the artifact (0 when the card has no phased figure). */
     phases: number;
+    /** `--shot ask_line`: the written line the thumb holds, by a fragment of its
+        text (`--line "PQ = OQ - OP"`; any dash matches the page's minus sign). */
+    line: string;
 }
 
 interface Shot {
@@ -310,6 +330,51 @@ const SHOTS: Record<string, Shot> = {
             { do: 'wait', ms: 1500 },
         ],
     },
+    /** Hold ONE written line and ask about it — the drag-to-ask feature on the
+        maths papers (DragAsk, touch route). The whole answer is written off
+        camera so frame 0 is the finished page; on camera: the line is panned
+        under the thumb, held (the clay box draws, the bar `1 part · Ask Vidi
+        about this · ×` rises), the bar's button is tapped (the Vidi sheet with
+        the line quoted as a card, the input reading `Ask about this part…`),
+        the doubt is typed a character at a time, sent, and the REAL reply is
+        waited for — then the thread is eased to the reply's rule sentence.
+        Needs a build whose PM_VIDI_BASE is set (ANSWER_BOOK_VIDI_BASE at build
+        time, or --live): without it `VidiPanel.canQuote()` is false and no box
+        ever draws — the shot refuses rather than film a page that ignores the
+        thumb. Recorded at speed 1; the sidecar stamps press / bar / tap / ask /
+        reply so the edit can cut the model's wait. */
+    ask_line: {
+        startAt: ({ questionId }) => '#/q/' + encodeURIComponent(questionId),
+        describe: 'hold one written line, tap Ask Vidi about this, type the doubt, the real reply',
+        setup: ({ questionId, reveals, line }) => [
+            { do: 'wait', ms: 600 },
+            { do: 'openQuestion', id: questionId },
+            { do: 'revealInstant', count: reveals },  // the whole answer, off camera
+            { do: 'waitWritten', maxMs: 30_000 },
+            { do: 'wait', ms: 900 },                  // the last off-camera scroll settles
+            // Completing the answer leaves the page at its Total; frame 0 must
+            // be the written lines, so settle just below the line off camera —
+            // the on-camera press then pans it a short way up under the thumb.
+            { do: 'panToLine', text: line, frac: 0.58, ms: 300 },
+            { do: 'wait', ms: 400 },
+        ],
+        beats: ({ line, ask }) => [
+            { do: 'wait', ms: 1200 },                 // the finished page, read
+            { do: 'longPress', text: line, holdMs: 750 },
+            { do: 'wait', ms: 1600 },                 // the box + the bar, read
+            { do: 'tapBarAsk' },
+            { do: 'wait', ms: 1600 },                 // the sheet with the quote card
+            { do: 'type', selector: '#vidiInput', text: ask, perCharMs: 55 },
+            { do: 'wait', ms: 700 },
+            { do: 'click', selector: '#vidiSend' },
+            { do: 'waitReply', maxMs: 150_000 },      // the model; the edit cuts the wait
+            { do: 'wait', ms: 2500 },                 // the reply's first lines read
+            { do: 'scrollThread', text: 'rule', ms: 1200 },   // the reply varies; matched case-blind
+            { do: 'wait', ms: 3000 },
+            { do: 'scrollThread', text: 'earns', ms: 900 },
+            { do: 'wait', ms: 3000 },
+        ],
+    },
     // NO exam-eve shot, deliberately. Both the exam-eve list and Vidi's catalog
     // triage box gate on questions with stars >= 2, and only MATHS units carry
     // any — so on a physics chapter the view renders "Nothing to list yet."
@@ -372,7 +437,8 @@ function serveDist(dir: string): Promise<Server> {
     mp4 as `<out>.taps.json` so an edit can put a tap ripple exactly where the
     finger would be, cut to a named step, and tick when marks land. Always on:
     it is free and it is data. */
-type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav' | 'phase';
+type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav' | 'phase'
+    | 'press' | 'bar';
 type TakeEvent = { t: number; kind: TakeKind; label?: string; x?: number | null; y?: number | null };
 interface Take { t0: number; events: TakeEvent[] }
 const stamp = (take: Take) => (Date.now() - take.t0) / 1000;
@@ -536,7 +602,12 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
                 // keeps its frames, but it did not film a reply — say so.
                 console.warn('  ! waitReply: no reply arrived. Was this run with --live?');
             });
-            take.events.push({ t: stamp(take), kind: 'reply' });
+            const said = await page.evaluate(() => {
+                const ms = document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)');
+                const last = ms[ms.length - 1] as HTMLElement | undefined;
+                return last ? (last.innerText ?? last.textContent ?? '').trim() : '';
+            }).catch(() => '');
+            take.events.push({ t: stamp(take), kind: 'reply', label: said });
             return;
         }
         case 'waitWritten':
@@ -645,6 +716,117 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             if (to === null) return;
             await runBeat(page, { do: 'pan', to: Math.max(0, to), ms: b.ms }, take);
             take.events.push({ t: stamp(take), kind: 'nav', label: b.selector });
+            return;
+        }
+        case 'panToLine': {
+            // No inner named helper (the __name trap, see `pan`).
+            const needle = b.text.replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim();
+            const at = await page.evaluate((n: string) => {
+                const lines = Array.from(document.querySelectorAll('.line[data-line-index]')) as HTMLElement[];
+                const el = lines.find((l) => (l.textContent ?? '').replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim().includes(n));
+                if (!el) return null;
+                return { top: el.getBoundingClientRect().top, y: window.scrollY, h: window.innerHeight };
+            }, needle);
+            if (!at) throw new Error(`panToLine: no written line contains "${b.text}"`);
+            const target = at.y + at.top - at.h * b.frac;
+            if (Math.abs(target - at.y) > 4) await runBeat(page, { do: 'pan', to: Math.max(0, target), ms: b.ms }, take);
+            return;
+        }
+        case 'longPress': {
+            // Refuse, rather than hold a thumb on a page that will ignore it:
+            // the boxes exist only when Vidi can take a quote (a chat base is
+            // baked in, the page is online, the card is a maths paper).
+            // `#notebook.dq-on` is DragAsk.sync()'s own flag, set on every load.
+            const can = await page.evaluate(() => document.querySelector('#notebook.dq-on') !== null);
+            if (!can) {
+                throw new Error('longPress: DragAsk is off on this page — build with '
+                    + 'ANSWER_BOOK_VIDI_BASE set (or run --live), and use a maths card');
+            }
+            // The line, by text. The page writes a real minus sign (U+2212) and
+            // the flag is typed on a keyboard, so every dash is folded to '-'.
+            const want = b.text.replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim();
+            // No inner named helper here or below: see `pan` (the __name trap).
+            const found = await page.evaluate((needle: string) => {
+                const lines = Array.from(document.querySelectorAll('.line[data-line-index]')) as HTMLElement[];
+                const el = lines.find((l) => (l.textContent ?? '').replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim().includes(needle));
+                if (!el) return null;
+                const r = el.getBoundingClientRect();
+                return { text: (el.textContent ?? '').replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim(), top: r.top, bottom: r.bottom, h: r.height };
+            }, want);
+            if (!found) throw new Error(`longPress: no written line contains "${b.text}"`);
+            // Under the thumb: the line a third of the way down the viewport,
+            // clear of the sticky topbar and of where the bar will rise.
+            await runBeat(page, { do: 'panToLine', text: b.text, frac: 0.38, ms: 900 }, take);
+            await page.waitForTimeout(250);
+            // The thumb: a CDP touch that stays down. Coordinates are CSS px on
+            // the viewport (CDP's frame), the sidecar carries frame px (×DPR).
+            const box = await page.evaluate((needle: string) => {
+                const lines = Array.from(document.querySelectorAll('.line[data-line-index]')) as HTMLElement[];
+                const el = lines.find((l) => (l.textContent ?? '').replace(/[−–—]/g, '-').replace(/\s+/g, ' ').trim().includes(needle))!;
+                const r = el.getBoundingClientRect();
+                // on the ink, not the margin: 40 % across the line's own width
+                return { x: r.left + r.width * 0.4, y: r.top + r.height / 2 };
+            }, want);
+            const cdp = await page.context().newCDPSession(page);
+            const pt = { x: Math.round(box.x), y: Math.round(box.y), radiusX: 6, radiusY: 6, force: 1 };
+            await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [pt] });
+            take.events.push({ t: stamp(take), kind: 'press', label: found.text, x: box.x * DPR, y: box.y * DPR });
+            await page.waitForTimeout(b.holdMs ?? 750);
+            await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+            await cdp.detach();
+            // The bar is the proof the hold landed. Its label is what the sidecar keeps.
+            const bar = await page.waitForFunction(() => {
+                const el = document.querySelector('.dq-bar') as HTMLElement | null;
+                return el && !el.hidden
+                    ? Array.from(el.children).map((c) => (c.textContent ?? '').trim()).filter(Boolean).join(' · ')
+                    : null;
+            }, undefined, { timeout: 4_000 })
+                .then((h) => h.jsonValue() as Promise<string>)
+                .catch(() => null);
+            if (!bar) throw new Error('longPress: the hold did not select the line (no .dq-bar shown)');
+            take.events.push({ t: stamp(take), kind: 'bar', label: bar, ...(await boxOf(page, '.dq-bar')) });
+            return;
+        }
+        case 'tapBarAsk': {
+            const box = await boxOf(page, '.dq-bar-ask');
+            await page.click('.dq-bar-ask');
+            take.events.push({ t: stamp(take), kind: 'tap', label: 'Ask Vidi about this', ...box });
+            // The sheet with the quote card is the proof the tap landed.
+            await page.waitForSelector('.vidi-quote', { timeout: 6_000 });
+            take.events.push({ t: stamp(take), kind: 'vidi', label: 'quote' });
+            return;
+        }
+        case 'scrollThread': {
+            // Ease the nearest scroll box around the LAST tutor bubble so the
+            // element whose text carries `text` sits a third of the way down.
+            // Inline easing again (the __name trap, see `pan`).
+            const ok = await page.evaluate(async ({ text, ms }) => {
+                const msgs = Array.from(document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)'));
+                const last = msgs[msgs.length - 1] as HTMLElement | undefined;
+                if (!last) return false;
+                const walker = document.createTreeWalker(last, NodeFilter.SHOW_TEXT);
+                let hit: HTMLElement | null = null;
+                for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+                    if ((n.textContent ?? '').toLowerCase().includes(text.toLowerCase())) { hit = n.parentElement; break; }
+                }
+                if (!hit) return false;
+                let sc: HTMLElement | null = hit;
+                while (sc && !(sc.scrollHeight > sc.clientHeight + 4 && /(auto|scroll)/.test(getComputedStyle(sc).overflowY))) sc = sc.parentElement;
+                if (!sc) return false;
+                const rs = sc.getBoundingClientRect(), rh = hit.getBoundingClientRect();
+                const from = sc.scrollTop;
+                const to = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight, from + (rh.top - rs.top) - rs.height * 0.33));
+                const steps = 60;
+                for (let i = 1; i <= steps; i++) {
+                    const p = i / steps;
+                    const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+                    sc.scrollTop = from + (to - from) * e;
+                    await new Promise((r) => setTimeout(r, ms / steps));
+                }
+                return true;
+            }, { text: b.text, ms: b.ms });
+            if (!ok) console.warn(`  ! scrollThread: "${b.text}" is not in the reply — the frame stays where it is`);
+            take.events.push({ t: stamp(take), kind: 'nav', label: `thread:${b.text}` });
             return;
         }
     }
@@ -767,6 +949,7 @@ async function main(): Promise<void> {
             chip: arg('chip', 'How to remember?'),
             holdMs: Math.max(0, Number(arg('hold-ms', '2000')) || 0),
             phases: 0,
+            line: arg('line', 'PQ = OQ - OP'),
         };
 
         const page = await context.newPage();
