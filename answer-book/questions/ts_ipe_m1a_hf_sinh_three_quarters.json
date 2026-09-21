@@ -196,5 +196,10 @@
       }
     ]
   },
-  "insider_note": "sinh = 3/4 gives cosh = 5/4 through the 3-4-5 triangle, so every number stays whole over 16. Use cosh 2x = cosh²x + sinh²x; the trigonometric version with its minus sign is wrong here."
+  "insider_note": "sinh = 3/4 gives cosh = 5/4 through the 3-4-5 triangle, so every number stays whole over 16. Use cosh 2x = cosh²x + sinh²x; the trigonometric version with its minus sign is wrong here.",
+  "formulas": [
+    "m1a.hf.cosh_double",
+    "m1a.hf.pythagorean",
+    "m1a.hf.sinh_double"
+  ]
 }

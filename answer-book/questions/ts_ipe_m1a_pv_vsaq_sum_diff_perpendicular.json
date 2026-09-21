@@ -168,5 +168,8 @@
       }
     ]
   },
-  "insider_note": "Nothing needs proving in general — just compute a + b and a − b and show their dot product is 0. Subtracting b term by term is where the signs usually go wrong."
+  "insider_note": "Nothing needs proving in general — just compute a + b and a − b and show their dot product is 0. Subtracting b term by term is where the signs usually go wrong.",
+  "formulas": [
+    "m1a.pv.dot_components"
+  ]
 }

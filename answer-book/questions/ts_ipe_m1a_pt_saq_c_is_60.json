@@ -257,5 +257,9 @@
       }
     ]
   },
-  "insider_note": "Clear the fractions and everything cancels down to a² + b² − c² = ab. Dividing by 2ab turns that straight into cos C = ½, so aim for the cosine rule from the start."
+  "insider_note": "Clear the fractions and everything cancels down to a² + b² − c² = ab. Dividing by 2ab turns that straight into cos C = ½, so aim for the cosine rule from the start.",
+  "formulas": [
+    "m1a.pt.cosine_rule",
+    "m1a.pt.sine_rule"
+  ]
 }

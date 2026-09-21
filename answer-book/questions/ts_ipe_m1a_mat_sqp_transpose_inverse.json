@@ -308,5 +308,8 @@
       }
     ]
   },
-  "insider_note": "Transpose FIRST and then invert that. The cofactors of A′ are the cofactors of A transposed, so adj(A′) = (adj A)′ — but in the exam it is safer to write A′ down and work its nine cofactors directly. |A′| = 1, so the inverse is simply the adjoint."
+  "insider_note": "Transpose FIRST and then invert that. The cofactors of A′ are the cofactors of A transposed, so adj(A′) = (adj A)′ — but in the exam it is safer to write A′ down and work its nine cofactors directly. |A′| = 1, so the inverse is simply the adjoint.",
+  "formulas": [
+    "m1a.mx.determinant_3x3"
+  ]
 }

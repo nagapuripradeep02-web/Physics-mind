@@ -332,5 +332,8 @@
       }
     ]
   },
-  "insider_note": "det A = 1, so the inverse equals the adjoint outright. The zero in the middle row keeps the cofactor arithmetic short, but the transpose step still applies."
+  "insider_note": "det A = 1, so the inverse equals the adjoint outright. The zero in the middle row keeps the cofactor arithmetic short, but the transpose step still applies.",
+  "formulas": [
+    "m1a.mx.determinant_3x3"
+  ]
 }

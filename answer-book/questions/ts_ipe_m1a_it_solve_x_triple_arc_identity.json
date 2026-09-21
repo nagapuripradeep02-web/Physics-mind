@@ -302,5 +302,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.itf.double_tan"
+  ]
 }

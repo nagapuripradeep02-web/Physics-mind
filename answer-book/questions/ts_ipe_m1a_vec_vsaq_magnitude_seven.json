@@ -148,5 +148,8 @@
       }
     ]
   },
-  "insider_note": "Find the unit vector first and then multiply by 7 — scaling the original vector by 7 gives a magnitude of 7√5, not 7. The answer keeps the √5 in the denominator."
+  "insider_note": "Find the unit vector first and then multiply by 7 — scaling the original vector by 7 gives a magnitude of 7√5, not 7. The answer keeps the √5 in the denominator.",
+  "formulas": [
+    "m1a.av.unit_vector"
+  ]
 }

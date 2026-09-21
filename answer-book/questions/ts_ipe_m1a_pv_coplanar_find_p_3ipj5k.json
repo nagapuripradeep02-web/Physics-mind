@@ -206,5 +206,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.av.coplanar_box"
+  ]
 }

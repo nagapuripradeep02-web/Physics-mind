@@ -163,5 +163,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.hf.tanh_sum"
+  ]
 }

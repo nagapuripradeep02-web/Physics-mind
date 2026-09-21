@@ -188,5 +188,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.even_odd",
+    "m1a.hf.inverse_sinh"
+  ]
 }

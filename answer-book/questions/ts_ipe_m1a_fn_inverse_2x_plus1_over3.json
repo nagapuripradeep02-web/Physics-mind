@@ -203,5 +203,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.inverse_by_solving"
+  ]
 }

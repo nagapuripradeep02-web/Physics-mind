@@ -279,5 +279,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.av.collinear",
+    "m1a.av.midpoint",
+    "m1a.av.vector_between_points"
+  ]
 }

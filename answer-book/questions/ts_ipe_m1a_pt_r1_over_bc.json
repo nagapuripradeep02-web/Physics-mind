@@ -412,5 +412,9 @@
       }
     ]
   },
-  "insider_note": "Convert everything to half angles and cancel, which turns the sum into (1/r)Σsin²(A/2). The identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is what produces the 1/(2R)."
+  "insider_note": "Convert everything to half angles and cancel, which turns the sum into (1/r)Σsin²(A/2). The identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is what produces the 1/(2R).",
+  "formulas": [
+    "m1a.pt.inradius",
+    "m1a.pt.sine_rule"
+  ]
 }

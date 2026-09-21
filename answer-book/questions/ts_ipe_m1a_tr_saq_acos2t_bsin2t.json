@@ -229,5 +229,9 @@
       }
     ]
   },
-  "insider_note": "Turn tanθ = b/a into b cosθ = a sinθ and substitute it into the sin2θ term — that substitution is the key step. Then cos2θ = 1 − 2sin²θ makes the remaining terms cancel."
+  "insider_note": "Turn tanθ = b/a into b cosθ = a sinθ and substitute it into the sin2θ term — that substitution is the key step. Then cos2θ = 1 − 2sin²θ makes the remaining terms cancel.",
+  "formulas": [
+    "m1a.tr.cos_double",
+    "m1a.tr.sin_double"
+  ]
 }

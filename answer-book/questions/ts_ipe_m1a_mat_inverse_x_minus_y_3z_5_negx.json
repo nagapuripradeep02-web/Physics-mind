@@ -483,5 +483,11 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.adjoint_product",
+    "m1a.mx.determinant_3x3",
+    "m1a.mx.inverse",
+    "m1a.mx.matrix_inversion_method"
+  ]
 }

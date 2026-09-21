@@ -160,5 +160,8 @@
       }
     ]
   },
-  "insider_note": "Perpendicular means the dot product is zero — no cross product is involved. The k terms give (−1)(2) = −2, and losing that sign turns λ = 3 into 5."
+  "insider_note": "Perpendicular means the dot product is zero — no cross product is involved. The k terms give (−1)(2) = −2, and losing that sign turns λ = 3 into 5.",
+  "formulas": [
+    "m1a.pv.perpendicular"
+  ]
 }

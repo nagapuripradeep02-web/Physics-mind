@@ -330,5 +330,9 @@
       }
     ]
   },
-  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside the bracket does not change the value."
+  "insider_note": "Pair the two terms on the SAME side, cos2θ + cos8θ, so 2cos5θcos3θ appears and cos5θ becomes a common factor. cos(−3θ) = cos3θ, so the minus sign inside the bracket does not change the value.",
+  "formulas": [
+    "m1a.te.general_cos",
+    "m1a.te.zero_cos"
+  ]
 }

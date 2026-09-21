@@ -52,6 +52,7 @@ stream means editing `STREAMS` + `TRACKS`, the `LABELS` table in `build_og_card.
 | File | What it is |
 |---|---|
 | `questions/*.json` | One question per file — the single source of truth (schema below) |
+| `formulas/<subject>.json` | One paper's formula sheet — every formula its answers use, authored once and referenced by id from the cards |
 | `shell.html` | HTML skeleton with 4 tokens the build replaces |
 | `notebook.css` | Page geometry + chrome. **Every vertical page metric is a multiple of 32px (one rule)** — break that and text drifts off the rules |
 | `notebook.js` | The engine: pagination (measure → freeze → clear → type), typing, stroke-drawn figures, marks, interaction |
@@ -59,6 +60,38 @@ stream means editing `STREAMS` + `TRACKS`, the `LABELS` table in `build_og_card.
 | `../src/scripts/build_answer_book.ts` | The ~150-line build |
 | `../e2e/answer_book.spec.ts` | Pagination/marks regression evidence |
 | `../docs/patterns/answer_book.md` | Schema reference + design decisions + rule-tension record |
+
+## The formula sheet
+
+A paper with `formulas/<subject>.json` grows a second face on the Question Bank —
+**Questions | Formulas**. The sheet lists every formula that paper's answers use, in chapter
+order, from the student's first visit; a row shows its formula once the student has **read a
+card that uses it** to the last step. The student writes nothing, and an un-earned row shows
+its name and how many unread questions away it is, never the formula (it is not in the page
+at all). Tapping an un-earned row opens the nearest card that unlocks it.
+
+Live for **Maths-1A** (97 formulas, 11 chapters). Any other paper shows no tab at all.
+
+### Adding a formula, or a whole paper
+
+1. Author the entry in `answer-book/formulas/<subject>.json` — `id`
+   (`<paper>.<chapter>.<name>`), `name` (Rule 41: basic literal English), `text` (plain
+   Unicode; `"render": "katex"` only where Unicode cannot reach — the same rule as an answer
+   line), and `match`: 2-4 **signatures**, the distinctive core of the formula as a card
+   would actually write it (`2 sinθ cosθ`), never a whole line.
+2. `python3 answer-book/tools/propose_formulas.py <subject>` — the report says how many cards
+   each formula matches. A **0 is the signal to fix the signature**, or to drop a formula this
+   paper's cards never use: the build refuses a formula no card names, because that row could
+   never be earned. `--find "<text>"` shows how the cards really spell something.
+3. `… --write` once the report reads right. It writes `formulas` into every card of that
+   paper (`[]` where none), and refuses while any formula still matches nothing.
+4. `npm run build:answers` — it prints the coverage line and fails loudly on an unknown id, a
+   missing key, a duplicate, or an idiom in a name.
+
+A formula is listed in the chapter it BELONGS to and may be used by a card in any chapter.
+The sheet is authored from our own cards — the source books' printed "IPE 24 QF" pages are a
+coverage cross-check only, never transcribed (`docs/ORIGINALITY_MATHS.md`). Full design
+record, including the signature traps found the hard way: `docs/patterns/answer_book.md`.
 
 ## How to add a question
 

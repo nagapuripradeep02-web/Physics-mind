@@ -192,5 +192,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

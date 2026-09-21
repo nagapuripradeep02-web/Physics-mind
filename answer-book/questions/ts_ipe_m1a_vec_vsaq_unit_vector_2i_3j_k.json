@@ -154,5 +154,9 @@
       }
     ]
   },
-  "insider_note": "Divide by the magnitude, never by the number of components. √14 does not simplify, so leave the answer as a single fraction over √14."
+  "insider_note": "Divide by the magnitude, never by the number of components. √14 does not simplify, so leave the answer as a single fraction over √14.",
+  "formulas": [
+    "m1a.av.magnitude",
+    "m1a.av.unit_vector"
+  ]
 }

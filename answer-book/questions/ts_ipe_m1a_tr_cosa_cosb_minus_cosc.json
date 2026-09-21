@@ -464,5 +464,11 @@
       }
     ]
   },
-  "insider_note": "The MINUS on cos C, with cos C = 1 − 2sin²(C/2), gives the −1 and turns the bracket into a SUM of cosines, which yields cos(A/2)cos(B/2)."
+  "insider_note": "The MINUS on cos C, with cos C = 1 − 2sin²(C/2), gives the −1 and turns the bracket into a SUM of cosines, which yields cos(A/2)cos(B/2).",
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.cos_double",
+    "m1a.tr.half_angle_from_sum",
+    "m1a.tr.sum_to_product_cos_plus"
+  ]
 }

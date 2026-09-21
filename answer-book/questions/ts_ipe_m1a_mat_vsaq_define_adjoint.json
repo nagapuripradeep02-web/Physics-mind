@@ -167,5 +167,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.adjoint_product"
+  ]
 }

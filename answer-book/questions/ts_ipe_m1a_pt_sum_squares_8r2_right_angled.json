@@ -300,5 +300,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.half_angle_from_sum",
+    "m1a.pt.sine_rule"
+  ]
 }

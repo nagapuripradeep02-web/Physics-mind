@@ -164,5 +164,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.ap_nth_term",
+    "m1a.seq.ap_sum"
+  ]
 }

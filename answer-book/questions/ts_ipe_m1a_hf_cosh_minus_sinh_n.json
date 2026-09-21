@@ -184,5 +184,8 @@
       }
     ]
   },
-  "insider_note": "Simplify the bracket before using the power: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is much longer."
+  "insider_note": "Simplify the bracket before using the power: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is much longer.",
+  "formulas": [
+    "m1a.hf.definitions"
+  ]
 }

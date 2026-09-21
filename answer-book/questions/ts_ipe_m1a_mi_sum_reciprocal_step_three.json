@@ -428,5 +428,8 @@
       }
     ]
   },
-  "insider_note": "The same shape as any sum of reciprocals of consecutive A.P. terms, here with d = 3, so the APs are 3n − 2 and 3n + 1. The step needs 3k² + 4k + 1 = (3k+1)(k+1) so that the (3k+1) cancels."
+  "insider_note": "The same shape as any sum of reciprocals of consecutive A.P. terms, here with d = 3, so the APs are 3n − 2 and 3n + 1. The step needs 3k² + 4k + 1 = (3k+1)(k+1) so that the (3k+1) cancels.",
+  "formulas": [
+    "m1a.seq.ap_nth_term"
+  ]
 }

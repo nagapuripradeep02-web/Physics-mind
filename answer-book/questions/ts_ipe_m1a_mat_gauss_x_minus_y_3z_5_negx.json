@@ -527,5 +527,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.matrix_inversion_method",
+    "m1a.mx.row_operation"
+  ]
 }

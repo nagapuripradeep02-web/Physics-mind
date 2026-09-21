@@ -161,5 +161,9 @@
       }
     ]
   },
-  "insider_note": "The minus sign makes no difference, because b is squared and −4 gives the same 5 as 4. The answers are again 5 and −5."
+  "insider_note": "The minus sign makes no difference, because b is squared and −4 gives the same 5 as 4. The answers are again 5 and −5.",
+  "formulas": [
+    "m1a.tr.a_sin_b_cos_range",
+    "m1a.te.a_cos_b_sin_method"
+  ]
 }

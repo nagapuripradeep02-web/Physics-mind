@@ -440,5 +440,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.te.general_cos"
+  ]
 }

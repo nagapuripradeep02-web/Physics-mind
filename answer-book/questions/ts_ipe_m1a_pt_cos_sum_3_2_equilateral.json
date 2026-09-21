@@ -350,5 +350,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.cos_double"
+  ]
 }

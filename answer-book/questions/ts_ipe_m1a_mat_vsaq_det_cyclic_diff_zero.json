@@ -156,5 +156,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.row_operation"
+  ]
 }

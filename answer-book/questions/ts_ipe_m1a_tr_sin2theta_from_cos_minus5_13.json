@@ -189,5 +189,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.pythagorean",
+    "m1a.tr.sin_double"
+  ]
 }

@@ -170,5 +170,8 @@
       }
     ]
   },
-  "insider_note": "Adjacent SIDES are given here, so the area is the full |a × b| with no halving. Write a as 0i + 2j − k so that the determinant row is complete."
+  "insider_note": "Adjacent SIDES are given here, so the area is the full |a × b| with no halving. Write a as 0i + 2j − k so that the determinant row is complete.",
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

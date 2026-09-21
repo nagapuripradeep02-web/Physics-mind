@@ -184,5 +184,9 @@
       }
     ]
   },
-  "insider_note": "sin θ needs the CROSS product, so a dot product is no use here. |a||b| comes to exactly 2, which is what makes the answer the standard √3/2."
+  "insider_note": "sin θ needs the CROSS product, so a dot product is no use here. |a||b| comes to exactly 2, which is what makes the answer the standard √3/2.",
+  "formulas": [
+    "m1a.pv.cross_determinant",
+    "m1a.pv.cross_magnitude"
+  ]
 }

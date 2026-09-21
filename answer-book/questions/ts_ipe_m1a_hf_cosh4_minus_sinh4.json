@@ -156,5 +156,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.hf.cosh_double",
+    "m1a.hf.pythagorean"
+  ]
 }

@@ -446,5 +446,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

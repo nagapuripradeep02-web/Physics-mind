@@ -222,5 +222,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.gp_sum"
+  ]
 }

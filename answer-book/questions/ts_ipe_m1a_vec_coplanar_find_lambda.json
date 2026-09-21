@@ -323,5 +323,8 @@
       }
     ]
   },
-  "insider_note": "The unknown sits in PS alone, so build the other two rows numerically first. Setting the determinant to zero gives 17λ + 146 = 0; the answer is meant to be an awkward fraction."
+  "insider_note": "The unknown sits in PS alone, so build the other two rows numerically first. Setting the determinant to zero gives 17λ + 146 = 0; the answer is meant to be an awkward fraction.",
+  "formulas": [
+    "m1a.av.vector_between_points"
+  ]
 }

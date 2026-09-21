@@ -200,5 +200,6 @@
       }
     ]
   },
-  "insider_note": "The order REVERSES: (AB)′ = B′A′, never A′B′. A′B′ can be formed here, but it comes out 3×3 while (AB)′ is 2×2, so it cannot be the answer. Both sides have to be computed separately and shown equal."
+  "insider_note": "The order REVERSES: (AB)′ = B′A′, never A′B′. A′B′ can be formed here, but it comes out 3×3 while (AB)′ is 2×2, so it cannot be the answer. Both sides have to be computed separately and shown equal.",
+  "formulas": []
 }

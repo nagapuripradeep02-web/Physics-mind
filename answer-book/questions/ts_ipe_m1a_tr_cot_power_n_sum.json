@@ -473,5 +473,11 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sum_to_product_cos_minus",
+    "m1a.tr.sum_to_product_cos_plus",
+    "m1a.tr.sum_to_product_sin_minus",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

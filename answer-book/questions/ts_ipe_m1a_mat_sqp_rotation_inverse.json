@@ -168,5 +168,6 @@
       }
     ]
   },
-  "insider_note": "|A| = 1 by the Pythagorean identity, so the inverse IS the adjoint and no division is needed. The answer also equals Aᵀ, which is worth stating."
+  "insider_note": "|A| = 1 by the Pythagorean identity, so the inverse IS the adjoint and no division is needed. The answer also equals Aᵀ, which is worth stating.",
+  "formulas": []
 }

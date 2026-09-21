@@ -293,5 +293,8 @@
       }
     ]
   },
-  "insider_note": "The order REVERSES: it is f⁻¹og⁻¹, never g⁻¹of⁻¹, and the domains prove it — g⁻¹ must act first because it is the one starting from C. Equal domains and equal values are both marked."
+  "insider_note": "The order REVERSES: it is f⁻¹og⁻¹, never g⁻¹of⁻¹, and the domains prove it — g⁻¹ must act first because it is the one starting from C. Equal domains and equal values are both marked.",
+  "formulas": [
+    "m1a.fn.inverse_of_composite"
+  ]
 }

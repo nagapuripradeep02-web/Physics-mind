@@ -303,5 +303,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.pythagorean",
+    "m1a.te.general_sin"
+  ]
 }

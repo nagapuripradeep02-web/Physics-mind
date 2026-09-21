@@ -168,5 +168,9 @@
       }
     ]
   },
-  "insider_note": "The word VECTOR matters: divide by |a|² and keep the a, giving (4/3)(i − j − k). Dividing by |a| once instead gives the scalar projection, which answers a different question."
+  "insider_note": "The word VECTOR matters: divide by |a|² and keep the a, giving (4/3)(i − j − k). Dividing by |a| once instead gives the scalar projection, which answers a different question.",
+  "formulas": [
+    "m1a.pv.dot_components",
+    "m1a.pv.projection"
+  ]
 }

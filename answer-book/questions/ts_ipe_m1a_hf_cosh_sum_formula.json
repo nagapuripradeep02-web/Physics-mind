@@ -172,5 +172,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.hf.cosh_sum"
+  ]
 }

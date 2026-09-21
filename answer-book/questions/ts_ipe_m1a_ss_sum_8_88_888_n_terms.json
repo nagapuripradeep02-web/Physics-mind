@@ -187,5 +187,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.gp_nth_term",
+    "m1a.seq.gp_sum"
+  ]
 }

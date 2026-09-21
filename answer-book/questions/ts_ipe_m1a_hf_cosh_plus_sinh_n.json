@@ -181,5 +181,8 @@
       }
     ]
   },
-  "insider_note": "The bracket simplifies to eˣ before the power is used, so the left side is eⁿˣ in one line. Simplify each side to eⁿˣ and then say the two sides are equal; stopping after the left side alone does not reach the right side."
+  "insider_note": "The bracket simplifies to eˣ before the power is used, so the left side is eⁿˣ in one line. Simplify each side to eⁿˣ and then say the two sides are equal; stopping after the left side alone does not reach the right side.",
+  "formulas": [
+    "m1a.hf.definitions"
+  ]
 }

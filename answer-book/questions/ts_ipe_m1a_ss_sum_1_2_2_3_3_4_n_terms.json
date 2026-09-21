@@ -190,5 +190,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.sum_n",
+    "m1a.seq.sum_n_squared"
+  ]
 }

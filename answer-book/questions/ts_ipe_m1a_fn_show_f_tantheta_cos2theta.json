@@ -192,5 +192,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.cos_double",
+    "m1a.tr.pythagorean",
+    "m1a.te.zero_cos"
+  ]
 }

@@ -141,5 +141,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.domain_of_fraction"
+  ]
 }

@@ -373,5 +373,11 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.cos_double",
+    "m1a.tr.half_angle_from_sum",
+    "m1a.pt.inradius"
+  ]
 }
