@@ -1,5 +1,25 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🎬 SESSION — the Answer Book recorder films a PHASED figure; V06_HEART reel v2 PASS (2026-09-21, PR #233 OPEN — recorder only; the reel lives in `C:\Tutoriditra-film-igreg` on `feat/reel-v06-heart`, local commit `6b286ff`, awaiting the founder)
+
+**Bottom line: `npm run reel -- --shot figure` now films a "watch it drawn" figure the way a student sees it — every tap lands at a pause, Restart on camera — and its `--instant-scroll` takes no frame around a product scroll, so the header never bounces. That recording is the app world of V06_HEART, Bhavana's heart-diagram reel, which the five-agent studio crew took to reviewer PASS at v2 (`~/Downloads/V06_HEART_v2_web.mp4`). Nothing is posted; only the founder ships.**
+
+### The recorder (this branch, two commits)
+
+- **`--shot figure`** (`bc6d1801`): the `answer` shot's `waitWritten` polls `.btn-next` for "Finish this step now", which persists through every pause of a phased figure (`playFigure` never calls `updateChrome`) — 45-s timeouts at every boundary. The figure shot reveals the text steps off camera (the e2e's double-`revealNext` trick), reveals the figure step, and at each of the card's `pause` elements blocks on a computed-style probe (caption text === the k-th pause's caption AND every earlier element final) before it taps — never mid-phase. Sidecar gains a `phase` event per pause. The pause count is READ from the card (`< 2` = refused). No change to `notebook.js`.
+- **`--instant-scroll` settle guard** (`46d07dce`): the sticky `.topbar` was captured 100–240 px low for 2–3 frames after each of the product's own `scrollIntoView` calls. Measured per frame with a clay-logo-row scan: 13 displaced frames with smooth scrolls → 5 with scrolls forced instant → **4 with the header made `position: fixed` on top** — so the capture's compositing, not CSS; a fix that measured as no fix was dropped. What reached **0 in 2506**: hold each screenshot until the page has been still 220 ms after the last scroll event, checked before AND after the capture (a scroll landing during the ~80 ms capture is dropped and re-taken; checking only before turned one such frame into a 7-frame freeze). A `pan` beat is exempt (`__pmPanning`). One probe per frame keeps ~11.7 fps.
+- Command: `npm run reel -- --shot figure --q ts_ipe_z2_bfc_laq_heart_structure --hold-ms 2000 --instant-scroll --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked" --dir answer-book/dist` (the UNGATED local build; 83.5 s at speed 1, the time-lapse is downstream).
+
+### The reel (viditra-film-igreg — the studio's own records are the truth: `reels/V06_HEART/{PRODUCER_NOTES,SHOT_SCRIPT,RENDER_LOG,REVIEW}.md`)
+
+- Three worlds in the R28 4:3 window: her wall ↔ the night desk (photoreal AI from OUR desk still — 96.75 credits billed of the 120 cap, ledgered before each call) ↔ the app alone. Her own Kalam words are the only type.
+- The producer's Whisper gloss "pencil sharp" was WRONG ("page chinpi"); the scriptwriter's two-candidate listen-check caught it before a brief was spent on it → memory `feedback_whisper_gloss_is_not_a_motif_change`.
+- Reviewer v1 FAIL with 11 routed items → each to its owner verbatim (hard rule 7) → ONE re-render → reviewer v2 **PASS** (−14.0 LUFS / −4.5 dBTP, `check:ledger` PASS, 118/118 tests). Library grew: R30 (a lapsed product recording is cut by its sidecar — `tools/timelapse.mjs`), an R10 amendment (clay on a photo takes a paper halo), `WriteOn` centres the real ink (a V02-era bug), `HeartPlate` from the bank card's own SVG.
+- **Founder's eye (undecided):** the app's last 1.17 s shows the MARK SPLIT card; the 17.5-s app wall; two pencils in A01; the stamp edge to edge; A03 = the pushed still (95 % sharp at rest, 54→40 % under the push) vs the Kling motion kept on disk; the bed's CC-BY line must reach the post caption ("Fluffing a Duck" — Kevin MacLeod, incompetech.com, CC BY 4.0). `marketing/CONTENT_TRACKER.md` row 11 (V06_HEART) was added by the session — founder-owned, review it.
+
+### Next session's first task
+The founder's verdict on `V06_HEART_v2_web.mp4`; then merge PR #233 (recorder), and the reel's cover (`reels/V01_LAW/cover/render.mjs` recipe) after approval. Balance check before any further AI: 308.6 credits after the V05_ASK desk's own −12.5.
+
 ## 🧠 SESSION — Vidi remembers: reload, chat history, bookmarks, delete, and a nightly prune (2026-09-19, PRs #220 / #221 / #222, MERGED, **not deployed**)
 
 **Bottom line: Vidi's conversation used to exist only in page memory. It now survives a reload, remembers five exchanges instead of three, keeps every past chat on the device, and lets a student bookmark one to keep it for good or delete one outright — with a nightly job enforcing the 30 days the history list promises. Everything is merged and the database is live; NOTHING is deployed, so students still get the old Vidi.**
