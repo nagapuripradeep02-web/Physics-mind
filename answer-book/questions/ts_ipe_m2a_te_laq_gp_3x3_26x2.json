@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would solve a cubic whose roots are in G.P. — how you name the roots, which relation you use first and why, and how you finish.",
   "insider_note": "For a G.P. use the PRODUCT first: (a/r)·a·(ar) = a³ has one unknown; students who start with the sum are left with two.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

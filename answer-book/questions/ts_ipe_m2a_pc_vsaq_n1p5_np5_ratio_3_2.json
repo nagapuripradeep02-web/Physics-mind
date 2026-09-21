@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find n when n plus 1 P 5 to n P 5 is 3 to 2.",
   "insider_note": "Four of the five factors are common, so the ratio collapses to (n + 1)/(n − 4) = 3/2. Keep the sides in order when cross-multiplying: the swapped version 3(n + 1) = 2(n − 4) gives n = −11.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

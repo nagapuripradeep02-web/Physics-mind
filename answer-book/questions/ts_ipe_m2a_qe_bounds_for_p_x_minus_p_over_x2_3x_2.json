@@ -55,6 +55,10 @@
   },
   "recall_prompt": "Say how you would find the bounds for p — say what you call y, what quadratic in x you form, what x being real gives, why that inequality must hold for every y, what condition on p that gives, and why the two end values are left out.",
   "insider_note": "'Takes all real values' turns the second discriminant condition into ≤ 0 — true for every y, not for some y. And the end values of p are excluded with a written reason: there the numerator cancels a factor of the denominator, so the bounds are strict.",
+  "formulas": [
+    "m2a.qe.discriminant",
+    "m2a.qe.sign"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

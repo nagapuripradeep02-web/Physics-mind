@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would count the selections of three vowels and two consonants from EQUATION — the two groups, the two selections and how they combine.",
   "insider_note": "EQUATION has five vowels — U counts even though it follows Q — leaving three consonants. The question says selecting only, so the answer stops at ⁵C₃ · ³C₂ = 30; an extra 5! for arranging answers a different question.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the square root of a complex number — what you compute first and what formula you put it into.",
   "insider_note": "Keep the sign on a = −5 all the way through: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, which halve to 4 and 9. Then say the sign choice — b = 12 is positive, so both parts take the same sign — and keep the ±.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

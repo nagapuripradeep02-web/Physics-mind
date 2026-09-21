@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find x² + y² — what the product of two cis values is, and what identity finishes it.",
   "insider_note": "cis α · cis β adds the angles in one line, and then x² + y² is cos² + sin² of the single angle α + β, which is 1. Expanding the two brackets term by term reaches the same 1 with four extra products and four chances for a sign slip.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

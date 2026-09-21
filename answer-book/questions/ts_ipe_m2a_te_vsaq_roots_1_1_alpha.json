@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say which root relation you would use to find α, and what it gives.",
   "insider_note": "Two roots are 1, so the product relation gives α in one line; the sum relation is the check.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

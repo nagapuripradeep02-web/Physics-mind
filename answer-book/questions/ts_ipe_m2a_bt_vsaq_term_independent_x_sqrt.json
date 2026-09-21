@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find the term independent of x — the power of x in the general term, the r that makes it zero, and the value of that term.",
   "insider_note": "The square root halves the power: x carries (10 − r)/2 − 2r, and that whole expression is set to zero. Treating √(x/3) as power 1 gives a wrong r before any arithmetic starts.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

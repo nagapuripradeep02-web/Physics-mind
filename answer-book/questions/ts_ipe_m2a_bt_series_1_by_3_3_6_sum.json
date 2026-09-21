@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the sum of this series — how you rewrite it, what you compare it with, how you find p, q and x, and what the sum comes to.",
   "insider_note": "The marks are for matching p, q and x, and x is not the common ratio: the bracket holds x/q, so x = 2/3, not 1/3. The answer stays as √3 — a decimal is not the expected final form.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

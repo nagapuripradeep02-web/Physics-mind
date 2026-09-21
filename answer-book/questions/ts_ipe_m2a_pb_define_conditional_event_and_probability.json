@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say what a conditional event is and how it is written, then say the conditional probability formula and the condition on P(A).",
   "insider_note": "Two definitions, two marks each. The formula mark needs the condition P(A) ≠ 0 written with it — it is part of the definition, not a footnote.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

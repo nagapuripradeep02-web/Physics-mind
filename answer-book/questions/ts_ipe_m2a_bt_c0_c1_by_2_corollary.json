@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would prove this — what you multiply the sum by and why, which identity raises the index to n + 1, what the new sum adds up to, and how you divide back.",
   "insider_note": "After the identity the sum starts at ⁿ⁺¹C₁, so it is 2ⁿ⁺¹ − 1, not 2ⁿ⁺¹. The −1 in the answer is the missing ⁿ⁺¹C₀ = 1 — forget it and the last two marks are gone.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

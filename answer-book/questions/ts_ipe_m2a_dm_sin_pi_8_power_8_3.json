@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would show this — what you call z, why the fraction is just z, how you write z in cis form, and what the 8/3 power does to the angle.",
   "insider_note": "The question looks long and is short: the fraction is z itself. Students who convert both brackets to mod-amp form separately run out of time.",
+  "formulas": [
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of the word INTERMEDIATE — what you count first and which formula you use.",
   "insider_note": "INTERMEDIATE has three repeat groups, not two: E three times, and both I and T twice. The middle E and the second pair are the usual misses — write the word out and number its 12 letters before applying the formula.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

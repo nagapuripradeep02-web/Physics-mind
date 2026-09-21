@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would count the selections of four boys and three girls — the two separate selections and how they combine.",
   "insider_note": "The boys and girls are chosen separately and the two counts multiply: ⁸C₄ · ⁵C₃ = 70 · 10 = 700. Adding them, or choosing 7 from all 13, ignores the split the question fixes.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

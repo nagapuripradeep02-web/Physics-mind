@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would count the terms — the formula for a trinomial expansion and the number for n = 7.",
   "insider_note": "Three entries in the bracket, so the count is (n + 1)(n + 2)/2, not the binomial's n + 1. The coefficients 2 and 3 change nothing about the count.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

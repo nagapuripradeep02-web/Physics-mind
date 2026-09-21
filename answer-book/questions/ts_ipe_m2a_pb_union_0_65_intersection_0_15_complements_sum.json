@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find P(A complement) plus P(B complement) from the union and intersection — the theorem, what it gives, and the last step.",
   "insider_note": "The answer 1.2 is bigger than 1 and that is correct: it is a sum of two probabilities. Students \"correct\" it to 0.2 and lose the mark.",
+  "formulas": [
+    "m2a.pr.addition"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

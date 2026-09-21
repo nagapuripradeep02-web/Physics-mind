@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would count the functions from a five-element set into a four-element set — how many choices each element has, and the number.",
   "insider_note": "The base is the size of the target set: each of the 5 elements of A has 4 choices of image, so the count is 4⁵ = 1024, not 5⁴ = 625. Saying \"each element has 4 choices\" fixes the base before the slip can happen.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -46,6 +46,9 @@
   },
   "recall_prompt": "Say how you would prove both results — what De Moivre's theorem gives for xᵐ and yⁿ, what the product and its reciprocal are, and what adding and subtracting give.",
   "insider_note": "Four of the seven marks are the last two lines, one addition and one subtraction of the same pair. The mark most often dropped is the reciprocal, 1/cis θ = cis(−θ), and the i must stay in the second answer: 2i sin(mα + nβ).",
+  "formulas": [
+    "m2a.dm.add_conjugates"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

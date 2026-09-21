@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say what you replace x by, and which terms change sign as a result.",
   "insider_note": "Only the odd-power terms change sign; the x² term is absent here, so exactly two signs flip.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

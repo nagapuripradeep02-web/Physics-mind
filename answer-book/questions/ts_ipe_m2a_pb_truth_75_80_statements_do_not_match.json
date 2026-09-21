@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find the probability that A and B contradict each other — the events, the two ways it can happen, and why they are added.",
   "insider_note": "\"Do not match\" happens in TWO disjoint ways; each way is a product (independent) and the two are added (mutually exclusive). Both words must be used.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

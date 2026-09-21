@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would prove that the complements of independent events are independent — the set identity you start from, where independence is used, and the factoring at the end.",
   "insider_note": "The proof is one chain of equalities; the mark is in the two reasons written beside it — De Morgan at the start and \"A, B independent\" in the middle.",
+  "formulas": [
+    "m2a.pr.addition",
+    "m2a.pr.independent"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

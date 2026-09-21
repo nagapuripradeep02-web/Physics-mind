@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean by the step deviation method — what you put in the table, how you get the mean from dᵢ, and what you divide at the end.",
   "insider_note": "Seven classes put the assumed mean at A = 35, not the 25 of the five-class version; Σfᵢdᵢ = −8 keeps its minus sign, so the mean comes out below 35, at 33.4.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

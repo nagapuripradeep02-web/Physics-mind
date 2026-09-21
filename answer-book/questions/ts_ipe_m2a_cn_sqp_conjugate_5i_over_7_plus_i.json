@@ -39,6 +39,11 @@
   },
   "recall_prompt": "Say how you would find the conjugate of this quotient — what you do first, and what a conjugate changes.",
   "insider_note": "Simplify the quotient to a + ib first and only then flip the sign of the i part. Watch −5i² in the numerator: it is +5, and after cancelling 5 the number is (1 + 7i)/10 — the conjugate is then one sign change.",
+  "formulas": [
+    "m2a.cn.conjugate",
+    "m2a.cn.conjugate_product",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

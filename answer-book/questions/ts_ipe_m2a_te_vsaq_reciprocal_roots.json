@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say what you replace x by, and how you turn the result back into a polynomial equation.",
   "insider_note": "The answer is the coefficients in reverse order; writing f(1/x) and multiplying by x⁴ is what earns the first mark, not the memory rule.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

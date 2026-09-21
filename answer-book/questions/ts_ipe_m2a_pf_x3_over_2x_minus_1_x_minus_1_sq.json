@@ -42,6 +42,10 @@
   },
   "recall_prompt": "Say how you would resolve x³/((2x − 1)(x − 1)²) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "The fraction is improper, so the constant 1/2 from the leading coefficients 1 and 2 must stand in front of the form; and the substitution for A uses x = 1/2, the root of 2x − 1, not x = 1.",
+  "formulas": [
+    "m2a.pf.improper",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

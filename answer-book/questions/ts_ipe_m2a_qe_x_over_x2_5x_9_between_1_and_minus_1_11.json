@@ -59,6 +59,10 @@
   },
   "recall_prompt": "Say how you would prove the expression lies between −1/11 and 1 — say what you call y, what equation in x you form, what condition x being real gives, and how the two bounds come out.",
   "insider_note": "Squaring b = −(5y + 1) removes its minus, and the condition becomes a product ≤ 0 between the two bounds. Both bounds are reached — end by stating the question's own sentence; stopping at the y-inequality loses the last mark.",
+  "formulas": [
+    "m2a.qe.discriminant",
+    "m2a.qe.sign"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

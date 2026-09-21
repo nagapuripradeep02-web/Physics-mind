@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find n when n P 4 is 1680.",
   "insider_note": "Same method as ⁿP₃ = 1320 but with FOUR consecutive factors: 1680 = 8 · 7 · 6 · 5, so n = 8 — writing only three factors is the slip this version is built around.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

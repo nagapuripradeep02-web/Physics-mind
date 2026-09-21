@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find these values of x — say what you find first, what the sign of a tells you, and how you write the answer.",
   "insider_note": "With a = 1 > 0 the expression is positive outside the two roots. The brackets stay round — at a root the expression is zero, not positive — and the 'or' between the two intervals must not become 'and'.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

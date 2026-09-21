@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find the three winning probabilities — how A and B are written in terms of C, why the three add to 1, and the values.",
   "insider_note": "Two facts are needed and both must be written: only one horse wins (disjoint), and one of the three does win (exhaustive). Together they make the three probabilities add to 1.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -42,6 +42,9 @@
   },
   "recall_prompt": "Say how you would find x and y — how you combine the fractions, what you compare, and how you solve the two equations.",
   "insider_note": "The two denominators are conjugates, so one multiplication gives the real common denominator 10 — rationalising each fraction separately doubles the work for the same marks. The right side becomes 10i, whose real part is 0: those two comparisons are where the third mark sits.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

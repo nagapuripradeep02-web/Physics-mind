@@ -59,6 +59,7 @@
   },
   "recall_prompt": "Say how you would simplify this sum of combinations — what you write out first, which identity you use, and how it collapses.",
   "insider_note": "The chain must be written line by line — ³⁵C₅, ³⁶C₅, ³⁷C₅, ³⁸C₅, then ³⁹C₅ — because two of the four marks are those lines, and a jump straight from the sum to ³⁹C₅ skips them. Start at the 34 pair, the only pair with a C₅ partner.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

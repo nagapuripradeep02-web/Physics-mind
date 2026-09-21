@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would simplify this product without expanding a cube.",
   "insider_note": "Pair one (1 − i) with (1 + i) before touching the cube: that pair is the real number 2, and what is left is only (1 − i)². Expanding the cube term by term is longer and is where the sign slips happen.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

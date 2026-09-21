@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would resolve x⁴/((x − 1)(x − 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "The division must run until the remainder degree drops below 2 — quotient x² + 3x + 7, remainder 15x − 14 — and that quotient returns in the final answer; stopping the division early makes every later constant wrong.",
+  "formulas": [
+    "m2a.pf.improper",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

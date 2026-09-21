@@ -39,6 +39,10 @@
   },
   "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "A calculator gives θ = −π/6, which is the fourth-quadrant point (√3, −1), not this number. (−√3, 1) is in the second quadrant, so θ = π − π/6 = 5π/6 — the quadrant sentence is what earns the second mark.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.cn.polar_form"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

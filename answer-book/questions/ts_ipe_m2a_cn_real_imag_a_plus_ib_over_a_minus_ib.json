@@ -34,6 +34,10 @@
   },
   "recall_prompt": "Say how you would find the real and imaginary parts of this quotient — what you multiply by and what you read off.",
   "insider_note": "The multiplier a + ib is the numerator itself, so the top is one known expansion (a + ib)² and the bottom is a² + b², never a² − b². Report the imaginary part as the real number 2ab/(a² + b²), with no i attached.",
+  "formulas": [
+    "m2a.cn.conjugate_product",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

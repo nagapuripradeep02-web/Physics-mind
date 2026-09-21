@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find the square root of a complex number — what you compute first and what formula you put it into.",
   "insider_note": "The formula's sign choice needs a sentence: b = 24 is positive, so the two parts of the root take the same sign, giving ±(4 + 3i). Keep the ± — a square root has two values — and the one-line check by squaring catches any swap of the 16 and the 9.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

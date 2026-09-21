@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the value of 10 C 5 plus twice 10 C 4 plus 10 C 3.",
   "insider_note": "Split 2·¹⁰C₄ into two copies and pair each with the neighbour whose lower number differs by one — the sum collapses to ¹¹C₅ + ¹¹C₄ = ¹²C₅. Evaluating the three terms numerically reaches the same 792 in three times the working.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

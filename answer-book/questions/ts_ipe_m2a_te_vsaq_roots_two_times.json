@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say what you replace x by, and how you clear the fractions afterwards.",
   "insider_note": "Doubling the roots means replacing x by x/2, not 2x — the direction is the first mark.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

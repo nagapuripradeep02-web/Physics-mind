@@ -43,6 +43,11 @@
   },
   "recall_prompt": "Say how you would show the two numbers are conjugates — what you simplify, how you divide, and what you compare at the end.",
   "insider_note": "z₁ is already finished, so all four marks sit on z₂: expand (1 − 2i)², divide by the conjugate, and only then compare. The denominator coming out as 25 — the same 25 as in z₁ — is the mid-question check that the arithmetic is right.",
+  "formulas": [
+    "m2a.cn.conjugate",
+    "m2a.cn.conjugate_product",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

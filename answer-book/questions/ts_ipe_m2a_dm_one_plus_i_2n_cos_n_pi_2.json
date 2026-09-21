@@ -47,6 +47,11 @@
   },
   "recall_prompt": "Say how you would prove this — how you write 1 + i, what De Moivre's theorem does to it, and how the two powers combine.",
   "insider_note": "The mark most often lost is the first one: writing r = √2 and θ = π/4 with the quadrant checked. The rest is one theorem and one addition.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.dm.add_conjugates",
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would resolve (2x² + 2x + 1)/(x³ + x²) into partial fractions — name each move in order.",
   "insider_note": "The first mark is the form: x² is the factor x repeated, so it needs a fraction over x AND one over x² — three fractions in all, and a form with only two cannot be made to match.",
+  "formulas": [
+    "m2a.pf.repeated",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

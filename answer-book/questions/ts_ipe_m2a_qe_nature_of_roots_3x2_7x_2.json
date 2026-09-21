@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the nature of these roots — say what you compute and what its value tells you.",
   "insider_note": "Write Δ = 25 as 5², because 'perfect square' is the phrase the examiner reads. The full answer needs both words — rational AND unequal; 'real and unequal' alone is the half answer.",
+  "formulas": [
+    "m2a.qe.discriminant"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

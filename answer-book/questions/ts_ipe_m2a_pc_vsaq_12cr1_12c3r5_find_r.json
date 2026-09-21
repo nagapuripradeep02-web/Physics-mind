@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find r when 12 C r plus 1 equals 12 C 3r minus 5.",
   "insider_note": "¹²Cᵣ = ¹²Cₛ has two branches — r = s or r + s = 12 — and this question needs both: the equal branch gives r = 3, the sum branch gives r = 4. One value alone is half the answer.",
+  "formulas": [
+    "m2a.pc.ncr_equal"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

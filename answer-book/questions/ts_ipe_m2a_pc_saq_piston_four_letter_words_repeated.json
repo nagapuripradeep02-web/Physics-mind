@@ -38,6 +38,9 @@
   },
   "recall_prompt": "Say how you would count the four-letter words from PISTON with at least one repeated letter — what you count first, what you count next, and why you subtract.",
   "insider_note": "\"At least one letter repeated\" is counted by subtraction: all words 6⁴ minus the no-repeat words ⁶P₄. Two of the four marks sit on the subtraction step, so say in words what is taken from what — the bare line 1296 − 360 is not the full step.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

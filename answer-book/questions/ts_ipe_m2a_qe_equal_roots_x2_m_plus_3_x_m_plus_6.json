@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find m — say what form you put the equation in, what condition equal roots gives, and how you solve it.",
   "insider_note": "Equal roots means Δ is exactly zero, not ≥ 0, and the question asks for both values of m. They come out with opposite signs — a same-sign pair means the factors were flipped.",
+  "formulas": [
+    "m2a.qe.discriminant"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

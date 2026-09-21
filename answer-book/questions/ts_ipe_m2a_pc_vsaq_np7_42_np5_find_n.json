@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would find n when n P 7 is 42 times n P 5.",
   "insider_note": "Dividing the two permutations leaves (n − 5)(n − 6) = 42, two consecutive factors 7 · 6. The larger factor is n − 5, so n = 12 — matching 7 to n − 6 instead gives 13, which fails a one-line check.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

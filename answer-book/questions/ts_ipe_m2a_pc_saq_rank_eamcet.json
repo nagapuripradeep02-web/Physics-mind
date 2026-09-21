@@ -59,6 +59,7 @@
   },
   "recall_prompt": "Say how you would find the dictionary rank of EAMCET — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "The two E letters are what make this rank different from a word whose letters are all distinct: the A and C blocks are 5!/2! = 60 each, not 120. Miss that division and every later number moves — the marks are in the block table, not the final addition.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

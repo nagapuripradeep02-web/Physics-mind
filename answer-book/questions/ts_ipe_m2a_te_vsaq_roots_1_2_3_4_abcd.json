@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how each of a, b, c, d comes from the roots, and which ones carry a minus sign.",
   "insider_note": "The signs alternate −, +, −, +; students who write all four positive lose both marks at once.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

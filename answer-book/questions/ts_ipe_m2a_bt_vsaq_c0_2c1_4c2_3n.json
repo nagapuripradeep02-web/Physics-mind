@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would prove this — which expansion you start from and which value of x you put in.",
   "insider_note": "The multipliers 1, 2, 4, 8 are powers of 2, so the whole question is x = 2 in (1 + x)ⁿ. Write the (1 + 2)ⁿ line before 3ⁿ — that written substitution is the second mark.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

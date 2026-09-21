@@ -34,6 +34,10 @@
   },
   "recall_prompt": "Say how you would find the conjugate of this product — what you do first, and what a conjugate changes.",
   "insider_note": "Multiply first and take the conjugate last — the conjugate needs the product written as one number a + ib. Both real contributions are negative here, −8 and 30i² = −30, so the real part is −38; the conjugate then changes only the sign of the i part.",
+  "formulas": [
+    "m2a.cn.conjugate",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

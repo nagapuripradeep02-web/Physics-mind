@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would find P(X = 5) for this Poisson variable — what equation gives λ and what you substitute.",
   "insider_note": "Cancelling the common factor e⁻λ is the whole first mark: λ/1! = λ²/2! gives λ = 2, with λ = 0 rejected because a Poisson parameter is positive; leave e⁻² as it is in the answer — no decimals.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would prove this — what the three coefficients are, what being in A.P. means once you divide by the middle one, the two ratio formulas you substitute, and how the algebra reaches n² − 41n + 398 = 0.",
   "insider_note": "The coefficient of x⁹ is ⁿC₉ — here the power IS the index, and shifting to ⁿC₈ proves a different equation. Write 2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁ and divide by the middle coefficient so the two ratios appear. The question asks only for the equation, and that is the whole answer: n² − 41n + 398 = 0 has discriminant 89, which is not a perfect square, so there is no whole number n for which those three coefficients are in A.P. Do not lose time trying to solve it.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

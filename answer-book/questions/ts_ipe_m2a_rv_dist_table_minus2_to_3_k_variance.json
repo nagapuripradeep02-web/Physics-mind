@@ -47,6 +47,11 @@
   },
   "recall_prompt": "Say how you would find k and the variance from this table — what equation gives k, why you still need the mean, and what you square in the variance formula.",
   "insider_note": "The question never mentions the mean, but two of the seven marks are for finding it — the variance formula subtracts μ² = 0.64; keep the minus signs on the −2 and −1 rows, since they disappear only when the values are squared.",
+  "formulas": [
+    "m2a.rv.mean",
+    "m2a.rv.total_one",
+    "m2a.rv.variance"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

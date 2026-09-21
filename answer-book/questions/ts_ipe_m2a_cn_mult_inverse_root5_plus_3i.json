@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find the multiplicative inverse — what the inverse is, and how you write it as a + ib.",
   "insider_note": "The trap is answering with the conjugate √5 − 3i itself — the inverse is 1/z, and the conjugate is only the multiplier. (√5)² is 5, not 25, so the denominator is 5 + 9 = 14.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

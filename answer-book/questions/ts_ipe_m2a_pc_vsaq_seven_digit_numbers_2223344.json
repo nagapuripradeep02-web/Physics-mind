@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of the digits 2, 2, 2, 3, 3, 4, 4 into seven-digit numbers — what you count first and which formula you use.",
   "insider_note": "All seven digits are used and none is 0, so there is no leading-digit case to remove: the whole question is 7!/(3!·2!·2!) = 210. The divisor holds one factorial per repeated digit — three of them, product 24.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say what you replace x by, and how you clear the fractions afterwards.",
   "insider_note": "Each coefficient is multiplied by a power of 3 that grows as the degree falls: 1, 3, 9, 27, 81.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find the locus — what |z| is in x and y, and what shape the equation is.",
   "insider_note": "A locus answer ends as an equation in x and y: square the modulus to x² + y² = 1 and say it is a circle with centre the origin and radius 1. Leaving the root in the final line is the usual way the second mark is lost.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

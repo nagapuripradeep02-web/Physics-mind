@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean for ten numbers — what you find first and what you average at the end.",
   "insider_note": "One mark is the mean 50, the other is the deviation step: take every deviation without its sign — with signs they add to 0 — and divide by n = 10 both times.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

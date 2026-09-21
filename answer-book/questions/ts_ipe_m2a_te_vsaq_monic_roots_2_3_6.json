@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say what monic means and how you build the equation from its roots.",
   "insider_note": "The coefficients are −S₁, +S₂, −S₃ = −11, 36, −36; expanding the factors and the root relations must give the same three numbers.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

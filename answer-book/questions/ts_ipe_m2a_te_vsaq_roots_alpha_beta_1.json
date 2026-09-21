@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say which two relations you would use, what each gives, and how you get the two roots from them.",
   "insider_note": "The book prints +5x in three places; 1 is not a root of that equation, and the textbook's −5x is the one whose roots are 3 and −2.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

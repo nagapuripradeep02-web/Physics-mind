@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would prove this — say what the equal roots tell you about the common root, and where you put what you find.",
   "insider_note": "'Equal roots' gives two facts about the common root: 2α = −a and α² = b, and both go into the second equation. The discriminant a² − 4b = 0 is true but produces no value of α to substitute.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

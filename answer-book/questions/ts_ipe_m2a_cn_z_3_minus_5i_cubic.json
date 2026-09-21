@@ -38,6 +38,9 @@
   },
   "recall_prompt": "Say how you would show the cubic is zero — what quadratic you build from z first, how you use it inside the cubic, and why the whole thing collapses to zero.",
   "insider_note": "Do not substitute 3 − 5i into the cubic — build the real quadratic z² − 6z + 34 = 0 first and factor the cubic as (z − 4)(z² − 6z + 34). Half the marks are that factorisation, and the last mark is the sentence that says the second bracket is zero.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

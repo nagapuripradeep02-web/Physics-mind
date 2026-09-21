@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the probability that a member is proficient in both — what \"either or both\" tells you, the counting formula, and the answer.",
   "insider_note": "\"Each member is proficient in either … or both\" is the sentence that says the union is the whole committee, n(M ∪ St) = 25. Without reading it, the question cannot be started.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of the word MATHEMATICS — what you count first and which formula you use.",
   "insider_note": "MATHEMATICS is 11 letters with three pairs — M, A and T each appear twice — so the divisor is 2!·2!·2! = 8. The T pair is the one most often missed, and each missed pair doubles the answer.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

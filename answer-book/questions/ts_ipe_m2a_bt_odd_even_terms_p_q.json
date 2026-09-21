@@ -42,6 +42,7 @@
   },
   "recall_prompt": "Say how you would prove both parts — what P and Q are, why (x + a)ⁿ is P + Q and (x − a)ⁿ is P − Q, and how multiplying gives (i) and squaring-and-subtracting gives (ii).",
   "insider_note": "P holds the odd TERMS, and the odd terms carry the EVEN powers of a. Sort by that and (x − a)ⁿ = P − Q comes in one line; sort by odd powers and both proofs break.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

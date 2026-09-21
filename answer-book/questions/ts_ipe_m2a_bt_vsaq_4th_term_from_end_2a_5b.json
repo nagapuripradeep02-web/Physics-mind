@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find the 4th term from the end — how you turn it into a term from the beginning, and what the term comes to.",
   "insider_note": "Reverse the bracket first: the 4th term from the end of (2a + 5b)⁸ is the 4th term from the beginning of (5b + 2a)⁸. One line, and the from-the-end formula is never needed.",
+  "formulas": [
+    "m2a.bt.general_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

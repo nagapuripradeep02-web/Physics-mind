@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find n when n plus 1 P 5 to n P 6 is 2 to 7.",
   "insider_note": "The denominator here is ⁿP₆ — six factors, so two of them survive the cancelling and the equation is a quadratic; with ⁿP₅ below, only one factor survives and the equation is linear. Both roots appear, 11 and 3/2, and the fraction is rejected because n must be a whole number.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

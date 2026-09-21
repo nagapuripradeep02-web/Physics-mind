@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find the variance of eight numbers — what you find first, what you square, and what you divide.",
   "insider_note": "The deviations are squared here — the sum is 74, not the 22 the unsquared deviations give — and the question stops at the variance 9.25: adding a square root at the end makes the answer wrong.",
+  "formulas": [
+    "m2a.md.mean"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

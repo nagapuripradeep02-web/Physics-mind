@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would resolve (3x − 18)/(x³(x + 3)) into partial fractions — name each move in order.",
   "insider_note": "x³ is the factor x three times, so the form has four fractions and four constants; the roots 0 and −3 give only C and D, and A and B must come from comparing coefficients.",
+  "formulas": [
+    "m2a.pf.repeated",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

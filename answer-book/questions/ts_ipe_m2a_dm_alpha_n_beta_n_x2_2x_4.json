@@ -63,6 +63,11 @@
   },
   "recall_prompt": "Say how you would prove this — how you get α and β, how you write 1 + i√3, what De Moivre's theorem does to it, and how the two powers combine.",
   "insider_note": "Five printed mark tags and a four-times-asked question. The one mark most students drop is the first: the roots must be written as 1 ± i√3 before anything else.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.dm.add_conjugates",
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
