@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_fullerene_carbon_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the state of hybridisation of carbon in fullerene?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The state of hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "The fourth electron",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 1(d). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The one-word answer is sp², but the fullerene cage is only explained once the fourth valence electron is placed, so name where that electron goes as well.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "The state of hybridisation",
+        "marks": 1,
+        "mark_note": "The state",
+        "lines": [
+          "Every carbon atom in fullerene C₆₀ is",
+          "sp² hybridised.",
+          "Each carbon atom is bonded to three",
+          "other carbon atoms, so it forms three",
+          "sigma bonds and carries no lone pair.",
+          "Three bonded atoms with no lone pair",
+          "need three hybrid orbitals, which is",
+          "sp² hybridisation."
+        ],
+        "why": "The state of hybridisation is read from the number of sigma bonds and lone pairs on the atom. A carbon atom of C₆₀ is joined to three neighbours and carries no lone pair, so three hybrid orbitals are needed and the state is sp².",
+        "common_mistakes": [
+          "Writing sp³. That is the state of carbon in diamond, where each carbon atom is bonded to four other carbon atoms.",
+          "Counting four sigma bonds on a fullerene carbon atom. There are three sigma bonds; the fourth electron is not in a sigma bond."
+        ],
+        "memory_tip": "Three neighbours, three sigma bonds, so sp² — the same count as in graphite.",
+        "margin_note": "State sp² and give the count of sigma bonds beside it, so the number is on the page."
+      },
+      {
+        "id": "s2_fourth_electron",
+        "kind": "boxed_final",
+        "label": "The fourth electron",
+        "marks": 1,
+        "mark_note": "The fourth electron",
+        "lines": [
+          "Carbon has four valence electrons and",
+          "only three of them are used in sigma",
+          "bonds.",
+          "The fourth electron stays in an",
+          "unhybridised p orbital and is",
+          "delocalised over the whole cage.",
+          "This delocalisation gives fullerene",
+          "aromatic character.",
+          {
+            "text": "Carbon in fullerene is sp² hybridised",
+            "style": "boxed"
+          }
+        ],
+        "why": "Carbon brings four valence electrons and the sp² state uses only three of them, so the fourth has to be accounted for. It stays in a p orbital and spreads over the cage, and that delocalisation is the reason fullerene is described as aromatic.",
+        "common_mistakes": [
+          "Leaving the fourth electron out. Naming where it goes is what completes the answer.",
+          "Writing that the fourth electron forms a fourth sigma bond. It stays in an unhybridised p orbital."
+        ],
+        "memory_tip": "Three electrons go into sigma bonds and the fourth is delocalised over the cage.",
+        "margin_note": "One closing line naming the delocalised fourth electron completes the answer."
+      }
+    ]
+  }
+}

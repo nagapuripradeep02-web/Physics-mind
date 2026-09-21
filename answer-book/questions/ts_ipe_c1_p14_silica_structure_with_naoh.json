@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silica_structure_with_naoh",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the structure of silica, and describe how silica reacts with NaOH.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and forms of silica",
+      "marks": 1
+    },
+    {
+      "label": "The three-dimensional network",
+      "marks": 2
+    },
+    {
+      "label": "Properties that follow from it",
+      "marks": 1
+    },
+    {
+      "label": "Silica as an acidic oxide",
+      "marks": 1
+    },
+    {
+      "label": "The reaction with sodium hydroxide",
+      "marks": 2
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.109, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 42(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the same chapter asks for the structure of silica a second time, with the reaction with HF in place of the reaction with NaOH. Both cards describe the same structure — the SiO₄ tetrahedron, every oxygen atom shared between two silicon atoms, one giant three-dimensional network. THE MARK SHARES WERE COUNTED 2026-09-03 and the earlier claim that each card spends the larger share of its marks on its own reaction is CORRECTED: this card gives three marks to the structure, one to the properties that follow from it and three to the acidic character and the reaction with sodium hydroxide; the HF card gives three to the structure and four to the hydrogen halides and the two equations. This card reaches the alkali through the acidic character of silica; the HF card reaches the acid through silica being unreactive towards HCl, HBr and HI."
+  },
+  "insider_note": "The structure and the reaction are one argument, not two topics: silica is an acidic oxide built as a covalent network, so the reagent that breaks it down is an alkali.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula_and_forms",
+        "kind": "text",
+        "label": "Formula and forms of silica",
+        "marks": 1,
+        "mark_note": "Formula and forms",
+        "lines": [
+          "Silica is silicon dioxide, SiO₂.",
+          "It occurs in nature as quartz, as",
+          "cristobalite and as tridymite, and sand",
+          "is largely silica.",
+          "All three forms are crystalline, and",
+          "all three are built from the same unit."
+        ],
+        "why": "Naming the crystalline forms first shows that silica is not one substance with one arrangement but a family of arrangements of a single repeating unit. That unit is what the next step describes.",
+        "common_mistakes": [
+          "Writing the formula as SiO₄. SiO₂ is the formula of silica; SiO₄ is the tetrahedral unit it is built from.",
+          "Writing that silica is amorphous. Quartz, cristobalite and tridymite are crystalline forms."
+        ],
+        "memory_tip": "Quartz, cristobalite and tridymite are three crystalline forms of the same SiO₂.",
+        "margin_note": "Open with the formula and one or two named forms before starting on the structure."
+      },
+      {
+        "id": "s2_network",
+        "kind": "text",
+        "label": "The three-dimensional network",
+        "marks": 2,
+        "mark_note": "The structure",
+        "lines": [
+          "Each silicon atom is sp³ hybridised and",
+          "is bonded covalently to four oxygen",
+          "atoms placed at the corners of a",
+          "tetrahedron.",
+          "Each of those oxygen atoms is shared",
+          "between two such tetrahedra.",
+          "So one silicon atom has four half",
+          "shares of oxygen, that is two oxygen",
+          "atoms of its own, which gives the",
+          "formula SiO₂.",
+          "The tetrahedra join corner to corner in",
+          "every direction and build one giant",
+          "three-dimensional network.",
+          "The whole crystal is a single covalent",
+          "structure; there is no separate SiO₂",
+          "molecule inside it."
+        ],
+        "why": "The formula and the structure are connected by the sharing. Four oxygen atoms surround each silicon atom, but each of them belongs equally to a second silicon atom, so the ratio of silicon to oxygen in the crystal is one to two.",
+        "common_mistakes": [
+          "Writing that silica exists as O=Si=O molecules. Silicon forms four single bonds to oxygen and does not form pπ–pπ double bonds.",
+          "Writing that each oxygen atom belongs to one silicon atom. Each oxygen atom is shared between two tetrahedra, which is what gives the formula SiO₂.",
+          "Writing sp² for silicon. Four bonded oxygen atoms and no lone pair give sp³."
+        ],
+        "memory_tip": "Four oxygen atoms round each silicon, each shared with a second silicon, so four halves make two.",
+        "margin_note": "Draw two tetrahedra joined through one corner oxygen atom; the sharing is clearer drawn than written."
+      },
+      {
+        "id": "s3_properties",
+        "kind": "text",
+        "label": "Properties that follow from it",
+        "marks": 1,
+        "mark_note": "Properties",
+        "lines": [
+          "Every bond in the crystal is a strong",
+          "Si–O covalent bond.",
+          "Melting silica or dissolving it means",
+          "breaking those bonds, so silica is very",
+          "hard, has a very high melting point and",
+          "is insoluble in water.",
+          "It does not react with the ordinary",
+          "acids."
+        ],
+        "why": "These properties are not a separate list to be learnt. Each one is the same fact stated differently: nothing can be taken away from the crystal without breaking strong covalent bonds.",
+        "common_mistakes": [
+          "Giving weak van der Waals forces as the reason silica is hard. There are no separate molecules in silica; every bond in it is covalent.",
+          "Writing that silica dissolves in water. It is insoluble in water."
+        ],
+        "memory_tip": "One giant network of strong covalent bonds gives hardness, a high melting point and insolubility.",
+        "margin_note": "Tie each property to the network in the same sentence rather than listing them on their own."
+      },
+      {
+        "id": "s4_acidic_oxide",
+        "kind": "text",
+        "label": "Silica as an acidic oxide",
+        "marks": 1,
+        "mark_note": "Acidic character",
+        "lines": [
+          "Silica is an acidic oxide, like CO₂ and",
+          "B₂O₃.",
+          "An acidic oxide reacts with a base, so",
+          "the reagent that breaks down silica is",
+          "an alkali and not an acid.",
+          "Silica is therefore dissolved by hot",
+          "concentrated sodium hydroxide, and",
+          "still more readily when the two are",
+          "fused together."
+        ],
+        "why": "This step is the link between the two halves of the question. The network explains why silica is unreactive towards most reagents, and its acidic character explains which reagent is the exception.",
+        "common_mistakes": [
+          "Calling silica a basic or a neutral oxide. It is acidic; CO is the neutral oxide of this group.",
+          "Writing that silica reacts with an alkali only in the cold and in dilute solution. Hot concentrated alkali or fusion is needed."
+        ],
+        "memory_tip": "Acidic oxide plus base, so the reagent for silica is an alkali.",
+        "margin_note": "Name silica as an acidic oxide before writing the equation; it is what makes the reaction expected."
+      },
+      {
+        "id": "s5_reaction_with_naoh",
+        "kind": "equation",
+        "label": "The reaction with sodium hydroxide",
+        "marks": 2,
+        "mark_note": "The reaction",
+        "lines": [
+          "When silica is fused with sodium",
+          "hydroxide it gives sodium silicate and",
+          "water:",
+          {
+            "text": "SiO₂ + 2NaOH → Na₂SiO₃ + H₂O",
+            "style": "eq"
+          },
+          "Two molecules of NaOH are needed for",
+          "one of SiO₂.",
+          "The two sodium ions balance the two",
+          "negative charges of the silicate ion",
+          "SiO₃²⁻, and the two hydrogen atoms",
+          "leave with one oxygen atom as water.",
+          "Sodium silicate, Na₂SiO₃, is the",
+          "sodium salt of silicic acid, and it",
+          "dissolves in water."
+        ],
+        "why": "The alkali supplies hydroxide ions that break the Si–O–Si bridges of the network, and the sodium ions balance the charge on the silicate ion that is set free. That is why a giant covalent solid can be brought into solution at all.",
+        "common_mistakes": [
+          "Writing SiO₂ + NaOH → Na₂SiO₃ + H₂O. That equation does not balance; two molecules of NaOH are needed.",
+          "Writing the product as sodium silicide or as sodium silicone. It is sodium silicate, Na₂SiO₃.",
+          "Writing NaSiO₃. The silicate ion carries two negative charges, so two sodium ions are needed."
+        ],
+        "memory_tip": "Two NaOH for one SiO₂, giving Na₂SiO₃ and one molecule of water.",
+        "margin_note": "Count the sodium, silicon, oxygen and hydrogen atoms on both sides before moving on."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "So the network of strong Si–O bonds is",
+          "what makes silica hard, high melting",
+          "and unreactive to the ordinary acids,",
+          "and its acidic character is what makes",
+          "an alkali the reagent that breaks it",
+          "down.",
+          {
+            "text": "SiO₂ + 2NaOH → Na₂SiO₃ + H₂O",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question sets a structure beside a reaction, so the closing lines have to join them. The same network that makes silica unreactive towards the ordinary acids is broken down by an alkali, because silica is an acidic oxide.",
+        "common_mistakes": [
+          "Closing with the structure alone. The reaction with sodium hydroxide is half of what was asked.",
+          "Closing with the equation and no sentence. The sentence is what connects the reaction to the structure above it."
+        ],
+        "memory_tip": "Silica is unreactive towards the acids; its acidic character is why an alkali reacts with it.",
+        "margin_note": "Close with the balanced equation written out, since it is the reaction the question names."
+      }
+    ]
+  }
+}

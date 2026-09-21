@@ -1,0 +1,251 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_classification_of_hydrocarbons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the classification of hydrocarbons.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrocarbons and the first division",
+      "marks": 1
+    },
+    {
+      "label": "Open chain hydrocarbons",
+      "marks": 2
+    },
+    {
+      "label": "Closed chain hydrocarbons",
+      "marks": 1
+    },
+    {
+      "label": "Alicyclic hydrocarbons",
+      "marks": 1
+    },
+    {
+      "label": "Aromatic hydrocarbons",
+      "marks": 2
+    },
+    {
+      "label": "Rings with another element",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.117, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this chapter, so appearances[] is empty. A MISMATCH IN THE SOURCE, HANDLED DELIBERATELY: the question asks for the classification of HYDROCARBONS, while the heading over the printed answer says classification of organic compounds based on the carbon skeleton. Those are not the same set. A hydrocarbon contains carbon and hydrogen only, so a heterocyclic ring — which contains nitrogen, oxygen or sulphur besides carbon — is not a hydrocarbon at all. This card answers the question that was asked, uses the same tree as its framework, and closes by naming the heterocyclic branch and saying plainly why it falls outside. A student who copies the whole organic-compound tree is not writing anything false about organic compounds; this card simply does not present heterocyclic compounds as hydrocarbons. CARRIED AS EXTRA CONTENT, not from the source book: the general formulae CₙH₂ₙ₊₂, CₙH₂ₙ and CₙH₂ₙ₋₂, Huckel's (4n + 2) rule quoted in the aromatic step, and azulene C₁₀H₈ as the non-benzenoid example. All are standard NCERT-level content and a teacher should confirm they are wanted at eight marks. NO FIGURE: this chapter's cards carry no figure objects, so the tree is written as named branches in order rather than drawn. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_division",
+        "kind": "text",
+        "label": "Hydrocarbons and the first division",
+        "marks": 1,
+        "mark_note": "Definition and the two branches",
+        "lines": [
+          "A hydrocarbon is a compound made of",
+          "carbon and hydrogen only.",
+          "Hydrocarbons are classified first by the",
+          "shape of the carbon skeleton, which",
+          "gives two branches.",
+          "Open chain, also called acyclic: the",
+          "carbon atoms form a chain, straight or",
+          "branched, and there is no ring. These",
+          "are also called aliphatic compounds.",
+          "Closed chain, also called cyclic: the",
+          "carbon atoms form a ring."
+        ],
+        "why": "A long answer that is a classification needs its top-level split on the page before any example, because everything after it is a subdivision of one branch or the other. Defining the word hydrocarbon first also fixes the boundary of the whole answer, which the last step returns to.",
+        "common_mistakes": [
+          "Starting with alkanes and alkenes. Those are two boxes inside the open chain branch, so the two branches have to be named first.",
+          "Including a compound that contains oxygen or nitrogen. A hydrocarbon is made of carbon and hydrogen only."
+        ],
+        "memory_tip": "Two branches first: no ring is open chain, a ring is closed chain.",
+        "margin_note": "Write the split before any example; everything after it belongs to one of these two branches."
+      },
+      {
+        "id": "s2_open_chain",
+        "kind": "text",
+        "label": "Open chain hydrocarbons",
+        "marks": 2,
+        "mark_note": "Alkanes, alkenes and alkynes",
+        "lines": [
+          "Open chain hydrocarbons are saturated or",
+          "unsaturated.",
+          "Saturated — the alkanes. Every carbon to",
+          "carbon bond is a single bond.",
+          {
+            "text": "Alkanes: CₙH₂ₙ₊₂",
+            "style": "eq"
+          },
+          "Examples: ethane C₂H₆, propane C₃H₈ and",
+          "the branched 2-methylpropane C₄H₁₀.",
+          "Unsaturated — the alkenes. There is at",
+          "least one carbon to carbon double bond.",
+          {
+            "text": "Alkenes: CₙH₂ₙ (one C=C)",
+            "style": "eq"
+          },
+          "Examples: ethene CH₂=CH₂ and propene",
+          "CH₃–CH=CH₂.",
+          "Unsaturated — the alkynes. There is at",
+          "least one carbon to carbon triple bond.",
+          {
+            "text": "Alkynes: CₙH₂ₙ₋₂ (one C≡C)",
+            "style": "eq"
+          },
+          "Examples: ethyne HC≡CH and propyne",
+          "CH₃–C≡CH."
+        ],
+        "why": "The open chain branch carries two marks here because it covers three families, and each family is fixed by three things: the kind of bond, the general formula, and an example. Writing all three every time makes the three families comparable line by line instead of being three separate paragraphs.",
+        "common_mistakes": [
+          "Giving the alkene formula as CₙH₂ₙ₊₂. That is the alkane formula; an alkene with one double bond is CₙH₂ₙ.",
+          "Putting branched chain compounds in a branch of their own. A branched chain still has no ring, so 2-methylpropane is an open chain alkane.",
+          "Calling an alkene saturated. Among the open chain families only the alkanes are saturated; a double or triple bond makes a hydrocarbon unsaturated."
+        ],
+        "memory_tip": "Single, double, triple bond: alkane, alkene, alkyne, and the formula drops by two hydrogen atoms each time.",
+        "margin_note": "Give bond, formula and example for each family; the three lines repeat in the same order."
+      },
+      {
+        "id": "s3_closed_chain",
+        "kind": "text",
+        "label": "Closed chain hydrocarbons",
+        "marks": 1,
+        "mark_note": "Homocyclic, and its two kinds",
+        "lines": [
+          "In a closed chain hydrocarbon the ring",
+          "is built of carbon atoms only, because a",
+          "hydrocarbon contains no other element.",
+          "Such a ring is called homocyclic, or",
+          "carbocyclic. Every cyclic hydrocarbon is",
+          "of this kind.",
+          "Homocyclic compounds are of two kinds:",
+          "alicyclic and aromatic."
+        ],
+        "why": "This step is short because it does one job: it names the branch that every cyclic hydrocarbon belongs to and splits it in two. Saying why the ring must be all carbon also prepares the closing step, where the branch that is not all carbon is named and set aside.",
+        "common_mistakes": [
+          "Writing that a cyclic hydrocarbon may be homocyclic or heterocyclic. A heterocyclic ring contains nitrogen, oxygen or sulphur, so it is not a hydrocarbon.",
+          "Using the word homocyclic for an open chain compound. The word describes a ring built of one kind of atom."
+        ],
+        "memory_tip": "Homo means the same, so a homocyclic ring is carbon all the way round.",
+        "margin_note": "Name both kinds here; the next two steps take one each."
+      },
+      {
+        "id": "s4_alicyclic",
+        "kind": "text",
+        "label": "Alicyclic hydrocarbons",
+        "marks": 1,
+        "mark_note": "Rings that are not aromatic",
+        "lines": [
+          "Alicyclic hydrocarbons are rings that",
+          "behave like the open chain compounds.",
+          "The saturated ones are the cycloalkanes,",
+          "in which every ring bond is single.",
+          {
+            "text": "Cycloalkanes: CₙH₂ₙ (one ring)",
+            "style": "eq"
+          },
+          "Examples: cyclopropane C₃H₆, cyclobutane",
+          "C₄H₈ and cyclohexane C₆H₁₂.",
+          "A ring may also be unsaturated, as in",
+          "cyclohexene C₆H₁₀, which has one double",
+          "bond in the ring."
+        ],
+        "why": "The alicyclic box is where a student sees that the ring and the chain families run in parallel: a cycloalkane is an alkane bent into a ring, and its formula is the alkene formula because closing the ring costs the same two hydrogen atoms a double bond does.",
+        "common_mistakes": [
+          "Giving cyclohexane the formula C₆H₁₄. Closing the ring removes two hydrogen atoms, so cyclohexane is C₆H₁₂.",
+          "Calling every ring aromatic. A ring is aromatic only if it is planar and has delocalised π electrons; cyclohexane is not."
+        ],
+        "memory_tip": "A cycloalkane shares its formula with the alkenes: closing a ring costs two hydrogen atoms.",
+        "margin_note": "Give the ring formula here; it is the line that separates a cycloalkane from an alkane."
+      },
+      {
+        "id": "s5_aromatic",
+        "kind": "text",
+        "label": "Aromatic hydrocarbons",
+        "marks": 2,
+        "mark_note": "Benzenoid and non-benzenoid",
+        "lines": [
+          "Aromatic hydrocarbons have a planar ring",
+          "in which the π electrons are delocalised",
+          "over the whole ring.",
+          {
+            "text": "Huckel's rule: (4n + 2) π electrons",
+            "style": "eq"
+          },
+          "n is a whole number 0, 1, 2 … Benzene",
+          "has six π electrons, so n = 1.",
+          "Aromatic hydrocarbons are of two kinds.",
+          "Benzenoid: the molecule contains one or",
+          "more benzene rings.",
+          "Examples: benzene C₆H₆, toluene",
+          "C₆H₅–CH₃, and naphthalene C₁₀H₈, which",
+          "is two benzene rings sharing an edge.",
+          "Non-benzenoid: the molecule is aromatic",
+          "but has no benzene ring in it.",
+          "Example: azulene C₁₀H₈, built from a",
+          "five-membered and a seven-membered ring",
+          "joined along one bond."
+        ],
+        "why": "Aromatic character is a property of the electrons, not of a particular ring size, so the rule is written before the examples. That order is what makes the non-benzenoid box possible to explain at all: azulene has no six-membered benzene ring, and it is still aromatic because it satisfies the same electron count.",
+        "common_mistakes": [
+          "Writing that every aromatic hydrocarbon contains a benzene ring. The non-benzenoid compounds are aromatic without one.",
+          "Giving Huckel's rule as 4n π electrons. It is (4n + 2) π electrons, which is six for benzene.",
+          "Putting naphthalene among the non-benzenoid compounds. It is built of two benzene rings, so it is benzenoid."
+        ],
+        "memory_tip": "Aromatic means flat with (4n + 2) delocalised π electrons; benzene has six, so n = 1.",
+        "margin_note": "Write Huckel's rule before the two boxes; it is what the word aromatic means."
+      },
+      {
+        "id": "s6_heterocyclic_excluded",
+        "kind": "boxed_final",
+        "label": "Rings with another element",
+        "marks": 1,
+        "mark_note": "Why heterocyclic rings fall outside",
+        "lines": [
+          {
+            "text": "Only carbon and hydrogen, in every branch",
+            "style": "boxed"
+          },
+          "The wider classification of organic",
+          "compounds by carbon skeleton adds one",
+          "more branch on the cyclic side:",
+          "heterocyclic compounds, whose ring",
+          "contains nitrogen, oxygen or sulphur",
+          "besides carbon, and which are aromatic",
+          "or non-aromatic.",
+          "Those compounds contain an element",
+          "other than carbon and hydrogen, so they",
+          "are not hydrocarbons and fall outside",
+          "this classification."
+        ],
+        "why": "The question is about hydrocarbons, and the tree a student has usually seen drawn is the wider one for organic compounds, which carries a heterocyclic branch. Naming that branch and saying in one line why it falls outside is what keeps the answer to the question asked without leaving a reader wondering where the missing box went.",
+        "common_mistakes": [
+          "Listing pyridine or furan as cyclic hydrocarbons. Their rings contain nitrogen and oxygen, so they are heterocyclic compounds and not hydrocarbons.",
+          "Leaving the heterocyclic branch out with no comment. Naming it and saying why it is excluded shows the boundary of the classification."
+        ],
+        "memory_tip": "If the ring contains anything but carbon, the compound is not a hydrocarbon.",
+        "margin_note": "One closing line naming the boundary of the classification completes the answer."
+      }
+    ]
+  },
+  "insider_note": "This is a tree, so the answer is easiest to read when it works down the branches in order rather than as a list of families. Starting from open chain and closed chain, and giving one general formula and one named example in every box, is a comfortable length for eight marks."
+}

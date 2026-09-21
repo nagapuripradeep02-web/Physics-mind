@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_magnesium_similarities",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "In what ways does lithium show similarities to magnesium in its chemical behaviour?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why lithium resembles magnesium",
+      "marks": 1
+    },
+    {
+      "label": "With water, nitrogen and oxygen",
+      "marks": 1
+    },
+    {
+      "label": "Carbonates and hydrogen carbonates",
+      "marks": 1
+    },
+    {
+      "label": "The chlorides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 44. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE FOUR EQUATIONS WERE CHECKED ATOM BY ATOM: 6Li + N₂ → 2Li₃N (Li 6, N 2 each side); 3Mg + N₂ → Mg₃N₂ (Mg 3, N 2 each side); Li₂CO₃ → Li₂O + CO₂ (Li 2, C 1, O 3 each side); MgCO₃ → MgO + CO₂ (Mg 1, C 1, O 3 each side). THE HYDRATE FORMULA MgCl₂·8H₂O IS CORRECT IN THIS COMPARISON — it is the figure NCERT prints in the lithium and magnesium similarity list, and it is the figure used here. A different card, discussing hydration of the alkaline earth ions, uses MgCl₂·6H₂O. Both are correct in their own context and neither should be changed to match the other. CARRIED AS EXTRA CONTENT: the ionic radii, 76 pm for Li⁺ and 72 pm for Mg²⁺, appear in the reasoning of the first step but not on the written page; they are standard values and a teacher should confirm them before they are relied on."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Why lithium resembles magnesium",
+        "marks": 1,
+        "mark_note": "The diagonal relationship",
+        "lines": [
+          "Lithium is in group 1 of period 2 and",
+          "magnesium is in group 2 of period 3,",
+          "placed diagonally to it.",
+          "Li⁺ and Mg²⁺ have nearly the same size",
+          "and nearly the same charge to radius",
+          "ratio.",
+          "This diagonal relationship is the reason",
+          "for the similarities that follow."
+        ],
+        "why": "The two ionic radii are close, about 76 pm for Li⁺ and 72 pm for Mg²⁺, so the two ions behave alike even though they sit in different groups. Naming the diagonal relationship first turns a list of facts into an explanation.",
+        "common_mistakes": [
+          "Writing that lithium and magnesium are in the same group. They are diagonal neighbours in different groups.",
+          "Giving the similarities with no reason. The diagonal relationship is what the whole list rests on."
+        ],
+        "memory_tip": "Li⁺ and Mg²⁺ are almost the same size, so they behave alike.",
+        "margin_note": "One line on the diagonal relationship opens the answer."
+      },
+      {
+        "id": "s2_water_nitrogen",
+        "kind": "equation",
+        "label": "With water, nitrogen and oxygen",
+        "marks": 1,
+        "mark_note": "Water, nitride, monoxide",
+        "lines": [
+          "1. Both react slowly with water, unlike",
+          "    the other alkali metals.",
+          "2. Both combine directly with nitrogen",
+          "    to give nitrides:",
+          {
+            "text": "6Li + N₂ → 2Li₃N",
+            "style": "eq"
+          },
+          {
+            "text": "3Mg + N₂ → Mg₃N₂",
+            "style": "eq"
+          },
+          "3. Neither forms a superoxide; both",
+          "    give mainly the monoxide, Li₂O and",
+          "    MgO.",
+          "4. The hydroxides of both decompose on",
+          "    heating."
+        ],
+        "why": "Sodium and potassium react violently with water and go on to form peroxides and superoxides, so these points are exactly where lithium leaves its own group and follows magnesium instead. The two nitride equations are the strongest single piece of evidence, because lithium is the only alkali metal that forms a nitride.",
+        "common_mistakes": [
+          "Writing a superoxide for lithium. No cation as small as Li⁺ forms one; the product to write is the monoxide Li₂O.",
+          "Leaving the nitride equations unbalanced. Six lithium atoms are needed for one nitrogen molecule, and three magnesium atoms for one."
+        ],
+        "memory_tip": "Slow with water, direct with nitrogen, and mainly the monoxide.",
+        "margin_note": "Both nitride equations belong here; write them one under the other."
+      },
+      {
+        "id": "s3_carbonates",
+        "kind": "equation",
+        "label": "Carbonates and hydrogen carbonates",
+        "marks": 1,
+        "mark_note": "Decomposition of carbonates",
+        "lines": [
+          "5. The carbonates of both decompose",
+          "    easily on heating:",
+          {
+            "text": "Li₂CO₃ → Li₂O + CO₂",
+            "style": "eq"
+          },
+          {
+            "text": "MgCO₃ → MgO + CO₂",
+            "style": "eq"
+          },
+          "6. Neither forms a solid hydrogen",
+          "    carbonate. LiHCO₃ and Mg(HCO₃)₂",
+          "    exist only in solution."
+        ],
+        "why": "The carbonates of the other alkali metals are stable to heat, so a carbonate that breaks up on heating is a clear point of similarity. The hydrogen carbonate point has the same cause: a small, strongly polarising cation cannot hold the large hydrogen carbonate ion in a solid.",
+        "common_mistakes": [
+          "Writing that Na₂CO₃ also decomposes on heating. It is stable to heat; Li₂CO₃ is the carbonate that decomposes.",
+          "Writing solid LiHCO₃. Lithium hydrogen carbonate exists only in solution."
+        ],
+        "memory_tip": "Both carbonates break up on heating, and neither hydrogen carbonate can be got as a solid.",
+        "margin_note": "Two short equations are all this step needs."
+      },
+      {
+        "id": "s4_chlorides",
+        "kind": "boxed_final",
+        "label": "The chlorides",
+        "marks": 1,
+        "mark_note": "Ethanol and hydrates",
+        "lines": [
+          {
+            "text": "LiCl·2H₂O and MgCl₂·8H₂O are hydrates",
+            "style": "boxed"
+          },
+          "7. Both chlorides dissolve in ethanol.",
+          "8. Both are deliquescent and crystallise",
+          "    from solution as the hydrates written",
+          "    above."
+        ],
+        "why": "Dissolving in an organic solvent points to covalent character, which both chlorides have because both cations are small and strongly polarising. The hydrated forms are worth writing in full, because the number of water molecules is the part most often left out.",
+        "common_mistakes": [
+          "Writing that LiCl and MgCl₂ crystallise from solution without water. Both crystallise as hydrates.",
+          "Saying the chlorides are insoluble in organic solvents. Both dissolve in ethanol."
+        ],
+        "memory_tip": "Both chlorides dissolve in ethanol and both crystallise with water.",
+        "margin_note": "Write the two hydrate formulae in full, with the number of water molecules."
+      }
+    ]
+  },
+  "insider_note": "Number the similarities and put the four equations in; a paragraph with no equations reads as a general statement rather than an answer."
+}

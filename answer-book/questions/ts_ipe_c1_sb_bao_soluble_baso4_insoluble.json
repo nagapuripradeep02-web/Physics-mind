@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_bao_soluble_baso4_insoluble",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the following observation: BaO is soluble in water, but BaSO₄ is insoluble in water.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule that decides solubility",
+      "marks": 1
+    },
+    {
+      "label": "Why BaO dissolves",
+      "marks": 1
+    },
+    {
+      "label": "Why BaSO₄ is insoluble",
+      "marks": 1
+    },
+    {
+      "label": "The two results together",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, SAQ question 48(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. PAIRED WITH 48(a): this card and the BeO/BeSO₄ card use the same lattice enthalpy against hydration enthalpy comparison and must stay consistent. The insolubility of BaSO₄ is stated on the hydration side, which is the NCERT reason — across group 2 the sulphate lattice enthalpies change little because the anion is large, while the hydration enthalpy falls from Be²⁺ to Ba²⁺ — so no claim is made that the lattice enthalpy of BaSO₄ is larger than that of BaO."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_rule",
+        "kind": "text",
+        "label": "The rule that decides solubility",
+        "marks": 1,
+        "mark_note": "The principle",
+        "lines": [
+          "An ionic solid dissolves in water only",
+          "if the hydration enthalpy released is at",
+          "least as large as the lattice enthalpy",
+          "that has to be supplied.",
+          "Small, highly charged ions raise both",
+          "quantities, so the two have to be",
+          "compared for each compound separately."
+        ],
+        "why": "The oxide and the sulphate of the same metal behave in opposite ways, so the explanation cannot come from barium alone. Stating the comparison first makes it clear that the difference has to come from the anion.",
+        "common_mistakes": [
+          "Explaining the difference by the barium ion alone. The cation is the same in both compounds, so it cannot be the reason.",
+          "Comparing only the lattice enthalpies. Solubility is decided by the lattice enthalpy compared with the hydration enthalpy."
+        ],
+        "memory_tip": "Same cation in both compounds, so whatever explains the difference has to be the anion.",
+        "margin_note": "State the rule before either case. The anion is what changes between the two compounds."
+      },
+      {
+        "id": "s2_bao_soluble",
+        "kind": "equation",
+        "label": "Why BaO dissolves",
+        "marks": 1,
+        "mark_note": "The oxide",
+        "lines": [
+          "Ba²⁺ is a large ion, so the ions are far",
+          "apart in BaO and the lattice enthalpy of",
+          "BaO is much lower than that of BeO.",
+          "The oxide ion O²⁻ is small and doubly",
+          "charged, so it is strongly hydrated, and",
+          "being a strong base it accepts a proton",
+          "from water:",
+          {
+            "text": "BaO + H₂O → Ba(OH)₂",
+            "style": "eq"
+          },
+          "The hydration enthalpy is larger than",
+          "the lattice enthalpy, and the barium",
+          "hydroxide formed is itself soluble."
+        ],
+        "why": "Barium oxide does not merely dissolve, it reacts: the small oxide ion is a strong enough base to take a proton from water. The hydroxide it produces is the most soluble hydroxide in the group, so nothing is left to come back out of solution.",
+        "common_mistakes": [
+          "Writing BaO + H₂O → BaOH. Barium is in the +2 state, so the hydroxide is Ba(OH)₂.",
+          "Writing that BaO simply dissolves unchanged. It reacts with water and gives the hydroxide."
+        ],
+        "memory_tip": "A large cation gives a loosely held lattice, and the small oxide ion accepts a proton from water, so the hydroxide forms.",
+        "margin_note": "The equation belongs here. Saying only that BaO is soluble does not show the hydroxide it forms."
+      },
+      {
+        "id": "s3_baso4_insoluble",
+        "kind": "text",
+        "label": "Why BaSO₄ is insoluble",
+        "marks": 1,
+        "mark_note": "The sulphate",
+        "lines": [
+          "In BaSO₄ the cation Ba²⁺ and the anion",
+          "SO₄²⁻ are both large ions.",
+          "Large ions hold water molecules only",
+          "weakly, so the hydration enthalpy of",
+          "BaSO₄ is small.",
+          "It is too small to overcome the lattice",
+          "enthalpy, so BaSO₄ stays insoluble.",
+          "For the same reason the sulphates get",
+          "less soluble from BeSO₄ to BaSO₄ down",
+          "the group."
+        ],
+        "why": "Down group 2 the sulphate lattice enthalpies change very little, because the large sulphate ion sets the distance between the ion centres whatever the cation is. The hydration enthalpy, however, falls steadily from Be²⁺ to Ba²⁺, so by the time barium is reached it is no longer large enough to overcome the lattice enthalpy.",
+        "common_mistakes": [
+          "Writing that BaSO₄ is insoluble because its lattice enthalpy is unusually large. The group trend comes from the hydration enthalpy falling, not the lattice enthalpy rising.",
+          "Writing that the sulphate ion is small. SO₄²⁻ is a large anion, and that is what keeps the hydration enthalpy low."
+        ],
+        "memory_tip": "Two large ions hydrate weakly, and weak hydration cannot pull the lattice apart.",
+        "margin_note": "Name both ions as large here. That is the difference from the oxide, where one of the two ions is small."
+      },
+      {
+        "id": "s4_together",
+        "kind": "boxed_final",
+        "label": "The two results together",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "BaO dissolves, BaSO₄ does not",
+            "style": "boxed"
+          },
+          "In BaO the small oxide ion is strongly",
+          "hydrated and accepts a proton from",
+          "water, so Ba(OH)₂ forms and dissolves.",
+          "In BaSO₄ both ions are large, the",
+          "hydration enthalpy is small, and it",
+          "cannot overcome the lattice enthalpy.",
+          "The same rule gives the two opposite",
+          "results."
+        ],
+        "why": "The observation has two halves and one cation, so the closing lines must put the two anions side by side. Doing that shows the reader that a single comparison, applied twice, produced both the solubility and the insolubility.",
+        "common_mistakes": [
+          "Explaining only one of the two compounds. Both halves of the observation need the comparison.",
+          "Ending without naming which enthalpy is larger in each case. That comparison is the answer."
+        ],
+        "memory_tip": "One rule, two anions: with the large Ba²⁺ ion the oxide still hydrates strongly, the sulphate does not.",
+        "margin_note": "Close by placing the two cases side by side so the single rule behind them is visible."
+      }
+    ]
+  },
+  "insider_note": "The cation is barium in both compounds, so an answer that talks only about barium cannot explain the difference; the size of the anion, oxide against sulphate, is what has to be compared."
+}

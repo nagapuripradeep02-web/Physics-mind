@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_co",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide CO as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification",
+      "marks": 1
+    },
+    {
+      "label": "What neutral means for CO",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of CO as neutral is correct and is what this card gives. SCOPE OF THE NEUTRAL CLAIM: the card says CO does not behave as an acid or a base UNDER ORDINARY CONDITIONS, which is the honest statement — carbon monoxide does react with sodium hydroxide at high temperature and pressure to give sodium formate, and it burns in oxygen, so an unqualified \"CO does not react\" would be wrong. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "text",
+        "label": "The classification",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Carbon monoxide CO is a neutral oxide.",
+          "A neutral oxide is neither acidic nor",
+          "basic, so it gives no salt with an acid",
+          "and no salt with an alkali.",
+          "Carbon in CO is in its lower oxidation",
+          "state, +2."
+        ],
+        "why": "The class of an oxide is settled by how it behaves towards acids and bases, not by whether the element is a metal or a non-metal. Carbon has two oxides, and only the higher one, CO₂, is acidic; the lower oxide CO is neutral.",
+        "common_mistakes": [
+          "Calling CO acidic because carbon is a non-metal. Most non-metal oxides are acidic, but CO is one of the exceptions.",
+          "Writing that CO dissolves in water to give carbonic acid. Carbonic acid H₂CO₃ comes from CO₂, not from CO."
+        ],
+        "memory_tip": "The lower oxide of carbon is neutral, the higher oxide is acidic: CO neutral, CO₂ acidic.",
+        "margin_note": "Name the class in the first line, then say what neutral means."
+      },
+      {
+        "id": "s2_evidence",
+        "kind": "boxed_final",
+        "label": "What neutral means for CO",
+        "marks": 1,
+        "mark_note": "The evidence",
+        "lines": [
+          {
+            "text": "CO is a neutral oxide",
+            "style": "boxed"
+          },
+          "Under ordinary conditions CO gives no acid",
+          "with water, no salt with an alkali and no",
+          "salt with an acid.",
+          "It leaves moist litmus paper unchanged.",
+          "N₂O and NO are neutral oxides as well."
+        ],
+        "why": "A neutral oxide is recognised by three negatives together — no acid with water, no salt with a base, no salt with an acid — so all three belong in the answer. Naming two other neutral oxides shows this is a real class and not one exception invented for carbon monoxide.",
+        "common_mistakes": [
+          "Writing that a neutral oxide takes part in no reaction at all. CO burns in oxygen to give CO₂; what it does not do is behave as an acid or as a base.",
+          "Naming CO₂ as neutral because CO is. CO₂ turns moist blue litmus red and is acidic."
+        ],
+        "memory_tip": "Neutral means three noes: no acid with water, no salt with alkali, no salt with acid.",
+        "margin_note": "Say what CO does not do; that is what the word neutral states."
+      }
+    ]
+  },
+  "insider_note": "Carbon has two oxides and only one of them is neutral. Write the word neutral and then say what CO does not do, because the single word on its own is not the complete answer."
+}

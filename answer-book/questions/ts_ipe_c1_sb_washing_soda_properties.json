@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_washing_soda_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of the properties of washing soda.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What washing soda is",
+      "marks": 1
+    },
+    {
+      "label": "Action of heat",
+      "marks": 1
+    },
+    {
+      "label": "The alkaline solution",
+      "marks": 1
+    },
+    {
+      "label": "Action on hard water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.88, chapter 7 s-BLOCK ELEMENTS, SAQ question 33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE TWO DEHYDRATION TEMPERATURES ARE NCERT'S OWN FIGURES: about 375 K for the loss of nine water molecules and above 373 K for the last one. Every equation was checked atom by atom: Na₂CO₃·10H₂O → Na₂CO₃·H₂O + 9H₂O (H 20 = 20, O 13 = 13); Na₂CO₃·H₂O → Na₂CO₃ + H₂O; Na₂CO₃ + 2H₂O → 2Na⁺ + 2OH⁻ + H₂CO₃ (H 4 = 4, O 5 = 5, charge 0 = 0); CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻ (charge −2 = −2); Na₂CO₃ + CaCl₂ → CaCO₃ + 2NaCl and Na₂CO₃ + MgCl₂ → MgCO₃ + 2NaCl. TWO ADDITIONS BEYOND THE SOURCE ANSWER, both standard syllabus content and both to be confirmed by a teacher: the ionic hydrolysis form CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻ is given alongside the book's molecular form because the NCERT text uses the ionic one and both are correct; and the two water-softening equations are carried because the softening action is the chemical property the substance is named for. HYDROLYSIS ARROW: the carbonate hydrolysis is an equilibrium, so both the molecular and the ionic form are printed with the equilibrium arrow. A full arrow would claim complete conversion to carbonic acid, which is not what happens; the source book prints a full arrow, and a student who writes one is not making an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "text",
+        "label": "What washing soda is",
+        "marks": 1,
+        "mark_note": "Formula and physical nature",
+        "lines": [
+          "Washing soda is sodium carbonate",
+          "decahydrate, Na₂CO₃·10H₂O.",
+          "It is a white crystalline solid.",
+          "It is readily soluble in water.",
+          "Its solution in water is alkaline and",
+          "not neutral."
+        ],
+        "why": "An account of properties has to open with the substance itself: the formula fixes the ten water molecules that the heating equations then remove, and the ready solubility is what makes the alkaline solution possible at all.",
+        "common_mistakes": [
+          "Writing the formula as Na₂CO₃. Washing soda is the decahydrate Na₂CO₃·10H₂O; the anhydrous salt is soda ash.",
+          "Confusing it with baking soda. Baking soda is sodium hydrogen carbonate, NaHCO₃."
+        ],
+        "memory_tip": "Washing soda carries ten water molecules: Na₂CO₃·10H₂O.",
+        "margin_note": "Open with the formula; the later steps all rest on it."
+      },
+      {
+        "id": "s2_action_of_heat",
+        "kind": "equation",
+        "label": "Action of heat",
+        "marks": 1,
+        "mark_note": "Both stages of dehydration",
+        "lines": [
+          "On heating to about 375 K it loses nine",
+          "of its ten water molecules and gives the",
+          "monohydrate:",
+          {
+            "text": "Na₂CO₃·10H₂O → Na₂CO₃·H₂O + 9H₂O",
+            "style": "eq"
+          },
+          "Above 373 K the last water molecule goes",
+          "and anhydrous soda ash is left:",
+          {
+            "text": "Na₂CO₃·H₂O → Na₂CO₃ + H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "The water leaves in two stages and not in one, and the white powder called soda ash is only the end of the second stage — writing both equations with their temperatures is what shows that.",
+        "common_mistakes": [
+          "Removing all ten water molecules in one step. Nine leave first and the monohydrate is formed.",
+          "Calling the product of the first stage soda ash. Soda ash is the anhydrous salt formed above 373 K."
+        ],
+        "memory_tip": "Nine water molecules first, then the tenth: decahydrate, monohydrate, soda ash.",
+        "margin_note": "Two equations and two temperatures belong in this step."
+      },
+      {
+        "id": "s3_alkaline_solution",
+        "kind": "equation",
+        "label": "The alkaline solution",
+        "marks": 1,
+        "mark_note": "Hydrolysis with an equation",
+        "lines": [
+          "Washing soda is the salt of a strong",
+          "base and a weak acid, so it hydrolyses",
+          "in water and gives hydroxide ions:",
+          {
+            "text": "Na₂CO₃ + 2H₂O ⇌ 2Na⁺ + 2OH⁻ + H₂CO₃",
+            "style": "eq"
+          },
+          "The ionic form says the same thing:",
+          {
+            "text": "CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻",
+            "style": "eq"
+          },
+          "The solution therefore turns red litmus",
+          "blue."
+        ],
+        "why": "The alkaline solution is the property behind every cleaning use of washing soda, and it arises because the carbonate ion takes a proton from water and leaves a hydroxide ion behind.",
+        "common_mistakes": [
+          "Saying the solution is neutral because it is a salt. The salt of a strong base and a weak acid gives an alkaline solution.",
+          "Writing the sodium ion as the one that hydrolyses. It is the carbonate ion that takes a proton from water."
+        ],
+        "memory_tip": "Strong base with weak acid gives an alkaline solution.",
+        "margin_note": "Both forms of the equation are correct; write whichever one you learned."
+      },
+      {
+        "id": "s4_hard_water",
+        "kind": "boxed_final",
+        "label": "Action on hard water",
+        "marks": 1,
+        "mark_note": "The softening action",
+        "lines": [
+          "Its solution reacts with the soluble",
+          "calcium and magnesium salts of hard",
+          "water and changes them into insoluble",
+          "carbonates:",
+          {
+            "text": "Na₂CO₃ + CaCl₂ → CaCO₃↓ + 2NaCl",
+            "style": "eq"
+          },
+          {
+            "text": "Na₂CO₃ + MgCl₂ → MgCO₃↓ + 2NaCl",
+            "style": "eq"
+          },
+          "This is why it is used in laundry and in",
+          "the glass, soap and paper industries.",
+          {
+            "text": "Washing soda softens hard water",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is the property the substance is named for: the hardness is removed because the calcium and magnesium ions leave the solution as solid carbonates, so soap is no longer used up on them.",
+        "common_mistakes": [
+          "Saying it removes only temporary hardness. It removes permanent hardness too, because the carbonate removes the calcium and magnesium ions as solid carbonates.",
+          "Leaving out the precipitate. The carbonates formed are insoluble and settle out of the solution."
+        ],
+        "memory_tip": "The carbonate takes calcium and magnesium out of the water as solids.",
+        "margin_note": "Close with the softening action; it is the property behind the name."
+      }
+    ]
+  },
+  "insider_note": "The account is complete when it carries all four parts: the formula with its ten water molecules, the two stages of heating, the alkaline solution, and the softening of hard water."
+}

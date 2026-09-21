@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_dry_ice_use",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the use of dry ice?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What dry ice is",
+      "marks": 1
+    },
+    {
+      "label": "Its use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_dry_ice_is",
+        "kind": "text",
+        "label": "What dry ice is",
+        "marks": 1,
+        "mark_note": "The substance",
+        "lines": [
+          "Dry ice is solid carbon dioxide, CO₂ in",
+          "the solid state.",
+          "It is obtained by compressing carbon",
+          "dioxide gas to a liquid and then",
+          "letting it expand rapidly, which cools",
+          "it to a solid.",
+          "At ordinary pressure it does not melt",
+          "into a liquid. It changes straight from",
+          "the solid to the gas, and that is why it",
+          "is called dry ice."
+        ],
+        "why": "The name is worth explaining because it is the reason the substance is useful. Ordinary ice melts and wets whatever it is packed with; solid carbon dioxide goes straight to gas at ordinary pressure, so nothing is left behind.",
+        "common_mistakes": [
+          "Writing that dry ice is solid water or frozen ice without water. Dry ice is solid carbon dioxide.",
+          "Writing that dry ice melts to a liquid. At ordinary pressure it changes directly from solid to gas."
+        ],
+        "memory_tip": "Dry because it leaves no liquid behind: solid carbon dioxide goes straight to gas.",
+        "margin_note": "Naming the substance as solid CO₂ is the first thing to write, before any use."
+      },
+      {
+        "id": "s2_its_use",
+        "kind": "boxed_final",
+        "label": "Its use",
+        "marks": 1,
+        "mark_note": "The use",
+        "lines": [
+          {
+            "text": "Dry ice is used as a refrigerant",
+            "style": "boxed"
+          },
+          "It is used to keep ice cream and frozen",
+          "food cold during storage and transport.",
+          "Because it turns straight into gas, it",
+          "does not wet the food it is packed with."
+        ],
+        "why": "A refrigerant is a substance used to keep other things cold. Dry ice is much colder than ordinary ice and leaves no liquid behind, so it is used where food has to stay frozen and dry at the same time.",
+        "common_mistakes": [
+          "Writing that dry ice is used as a fuel. It is not burnt; it is used for cooling.",
+          "Giving the use with no mention of what dry ice is. One opening line naming it as solid CO₂ completes the answer."
+        ],
+        "memory_tip": "Refrigerant for ice cream and frozen food — cooling is the use this question is asking for.",
+        "margin_note": "Naming ice cream and frozen food makes the use concrete rather than general."
+      }
+    ]
+  },
+  "insider_note": "Naming the substance and naming the use are the two halves of this answer: dry ice is solid carbon dioxide, and it is used as a refrigerant for ice cream and frozen food. Saying that it leaves nothing wet behind shows why that use follows."
+}

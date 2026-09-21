@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_preparation_and_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is diborane prepared? Explain its structure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation",
+      "marks": 2
+    },
+    {
+      "label": "Electron deficiency",
+      "marks": 1
+    },
+    {
+      "label": "Shape",
+      "marks": 2
+    },
+    {
+      "label": "Bond lengths and angles",
+      "marks": 1
+    },
+    {
+      "label": "The two kinds of bond",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.102, chapter 8 p-BLOCK ELEMENTS : GROUP 13, LONG ANSWER QUESTIONS question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two source figures disagree with each other on the numbers: the bridge bond length is printed as 134 pm in one and 1.33 Å in the other, and the terminal angle as 120° in one and 121.5° in the other. This card prints one value for each — 133 pm and 121.5°, the accepted values — and does not print the alternatives. The first preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; that form is named as equally acceptable in the step's reasoning line and neither form is called an error."
+  },
+  "insider_note": "In this card's split the two preparation equations carry 2 marks and the structure carries 6, so the electron count, the two bond lengths, the two bond angles and the words three-centre two-electron all have to appear before the answer is complete.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 13 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_preparation",
+        "kind": "equation",
+        "label": "Preparation — two methods",
+        "marks": 2,
+        "mark_note": "Preparation",
+        "lines": [
+          "Diborane is B₂H₆. It is prepared by",
+          "either of these two methods.",
+          "Method 1 — boron trifluoride is reduced by",
+          "lithium aluminium hydride in dry ether:",
+          {
+            "text": "4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃",
+            "style": "eq"
+          },
+          "Method 2 — sodium borohydride is oxidised",
+          "by iodine. This is the usual laboratory",
+          "method:",
+          {
+            "text": "2NaBH₄ + I₂ → B₂H₆ + 2NaI + H₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Each method takes a boron compound in which boron is already bonded to fluorine or to hydrogen and hands boron a share of hydride, so two BH₃ units form and pair up as B₂H₆. The by-products depend on which boron compound was used, so they are read off the equation rather than remembered. The first preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; both forms are correct.",
+        "common_mistakes": [
+          "Copying the by-products from the boron trichloride method. That method is also correct, but with BCl₃ the by-products are AlCl₃ and LiCl; with BF₃ they are AlF₃ and LiF. The boron trichloride method is also correctly written with the double salt lithium tetrachloroaluminate, 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄; both forms are correct.",
+          "Dropping the coefficients. Four BF₃ and three LiAlH₄ give two B₂H₆.",
+          "Writing NaBH₄ + I₂ without the 2 in front of NaBH₄. Two NaBH₄ are needed for one B₂H₆."
+        ],
+        "memory_tip": "Two ways in: the fluoride with the hydride (BF₃ with LiAlH₄), and the borohydride with iodine (NaBH₄ with I₂).",
+        "margin_note": "Name the reagents in words on one line, then write the balanced equation on its own line below."
+      },
+      {
+        "id": "s2_electron_count",
+        "kind": "text",
+        "label": "Electron deficiency",
+        "marks": 1,
+        "mark_note": "Electron deficiency",
+        "lines": [
+          "Diborane is an electron deficient molecule.",
+          "Each boron atom has 3 valence electrons and",
+          "each hydrogen atom has 1, so in B₂H₆:",
+          {
+            "text": "(2 × 3) + (6 × 1) = 12 valence electrons",
+            "style": "eq"
+          },
+          "There are eight B–H links in the molecule.",
+          "If every one of them were an ordinary",
+          "two-centre two-electron bond, they would",
+          "need 8 × 2 = 16 electrons.",
+          "Diborane is therefore short by two electron",
+          "pairs, and cannot be drawn with eight",
+          "ordinary covalent bonds."
+        ],
+        "why": "This count is the reason the structure is unusual. Twelve electrons cannot make eight ordinary bonds, so two of the links have to be held in a different way, and that is exactly what the two hydrogen bridges do.",
+        "common_mistakes": [
+          "Saying diborane is short of two electrons. It is short of two electron PAIRS, which is four electrons: 12 against 16.",
+          "Counting only the 6 electrons of the two boron atoms and leaving out the 6 electrons of the six hydrogen atoms."
+        ],
+        "memory_tip": "12 held against 16 needed. The gap of 4 electrons is two pairs, and each pair becomes one bridge.",
+        "margin_note": "Show both numbers on the page — the 12 that exist and the 16 that eight ordinary bonds would need. The gap is the argument."
+      },
+      {
+        "id": "s3_shape",
+        "kind": "text",
+        "label": "Shape of the molecule",
+        "marks": 2,
+        "mark_note": "Shape",
+        "lines": [
+          "Structure of diborane:",
+          "The four terminal hydrogen atoms and the",
+          "two boron atoms all lie in ONE plane.",
+          "The remaining two hydrogen atoms are called",
+          "bridging hydrogen atoms. One of them sits",
+          "above that plane and the other below it.",
+          "Each bridging hydrogen atom is bonded to",
+          "BOTH boron atoms, giving two B–H–B bridges.",
+          "So the molecule is two BH₂ units held",
+          "together by the two hydrogen bridges."
+        ],
+        "why": "The molecule is not flat, and saying which atoms lie in the plane and which two sit outside it is what separates a correct description from a vague one. The two bridges are the only thing joining the two halves, so they are the centre of the structure.",
+        "common_mistakes": [
+          "Drawing all six hydrogen atoms in one plane. Two of them are bridging and lie above and below the plane.",
+          "Joining each bridging hydrogen atom to one boron only. A bridging hydrogen atom is bonded to both boron atoms."
+        ],
+        "memory_tip": "Four out, two across: four terminal H spread outwards in the plane, two bridging H reach across it, one above and one below.",
+        "margin_note": "Describe the plane first, then the two bridging hydrogen atoms. The sketch at the end follows the same order."
+      },
+      {
+        "id": "s4_lengths_angles",
+        "kind": "text",
+        "label": "Bond lengths and bond angles",
+        "marks": 1,
+        "mark_note": "Bond lengths and angles",
+        "lines": [
+          "Bond lengths:",
+          "terminal B–H = 119 pm",
+          "bridging B–H = 133 pm",
+          "Bond angles:",
+          "terminal H–B–H = 121.5°",
+          "bridging H–B–H = 97°",
+          "The bridging bond is longer than the",
+          "terminal bond, and it is weaker."
+        ],
+        "why": "These four numbers are the measured evidence that the bridge is not an ordinary bond. A longer bond is a weaker bond, and the bridge B–H distance is clearly longer than the terminal one.",
+        "common_mistakes": [
+          "Giving one bond length for the whole molecule. Terminal and bridging B–H bonds are different: 119 pm and 133 pm.",
+          "Swapping the two angles. The wide angle 121.5° is between the terminal hydrogen atoms; the narrow 97° is at the bridge."
+        ],
+        "memory_tip": "Terminal is short and wide, 119 pm and 121.5°. Bridge is long and narrow, 133 pm and 97°.",
+        "margin_note": "Label every number terminal or bridging. An unlabelled length or angle cannot be read by anyone."
+      },
+      {
+        "id": "s5_bonding",
+        "kind": "text",
+        "label": "The two kinds of bond",
+        "marks": 2,
+        "mark_note": "The two kinds of bond",
+        "lines": [
+          "Each boron atom is sp³ hybridised.",
+          "Of its four sp³ orbitals, three hold one",
+          "electron each and the fourth is vacant.",
+          "The four terminal B–H bonds are ordinary",
+          "two-centre two-electron (2c–2e) bonds:",
+          "one pair of electrons between two atoms.",
+          "Each B–H–B bridge is a three-centre",
+          "two-electron (3c–2e) bond, also called a",
+          "banana bond.",
+          "A bridge is formed from the singly occupied",
+          "sp³ orbital of one boron atom, the 1s",
+          "orbital of the bridging hydrogen atom, and",
+          "the vacant sp³ orbital of the second boron",
+          "atom. One electron pair holds all three",
+          "of those atoms together."
+        ],
+        "why": "This is where the electron shortage is settled. Four bonds are ordinary, and each of the two bridges spreads a single electron pair over three atoms, so eight links are held by only twelve electrons.",
+        "common_mistakes": [
+          "Calling the bridge bonds ordinary covalent bonds. Each bridge is a three-centre two-electron bond.",
+          "Writing sp² for boron in diborane. Each boron atom here is sp³ hybridised.",
+          "Leaving out the vacant orbital. A bridge needs a singly occupied sp³ orbital from one boron atom and a vacant sp³ orbital from the other."
+        ],
+        "memory_tip": "Four ordinary bonds plus two banana bonds. A banana bond joins three atoms with one electron pair.",
+        "margin_note": "Write two-centre two-electron and three-centre two-electron in full at least once, and give the alternative name banana bond."
+      },
+      {
+        "id": "s6_sketch",
+        "kind": "boxed_final",
+        "label": "How to draw it",
+        "marks": 0,
+        "lines": [
+          "Draw the two boron atoms side by side.",
+          "From each boron atom draw two lines going",
+          "outwards, in the plane of the paper, to two",
+          "terminal hydrogen atoms — four terminal",
+          "hydrogen atoms in all.",
+          "Now draw one hydrogen atom above the pair",
+          "of boron atoms and one below them, and join",
+          "each of these two hydrogen atoms to BOTH",
+          "boron atoms.",
+          "Mark 119 pm and 121.5° on a terminal bond,",
+          "and 133 pm and 97° on a bridge.",
+          "The 12 valence electrons are used up as",
+          "four terminal bonds and two bridges:",
+          {
+            "text": "(4 × 2) + (2 × 2) = 12 electrons",
+            "style": "boxed"
+          }
+        ],
+        "why": "Reading these lines in order produces the correct picture: the terminal hydrogen atoms spread out in the plane, the bridging pair reaching across it. The closing sum is the check on the whole answer, because it uses up every valence electron exactly once.",
+        "common_mistakes": [
+          "Leaving the sketch unlabelled. The bond lengths and angles written on the drawing are part of the description.",
+          "Drawing the bridging hydrogen atoms in line with the terminal ones. They belong above and below the plane."
+        ],
+        "memory_tip": "Two boron atoms, four hydrogen atoms spread out sideways, two hydrogen atoms reaching across above and below.",
+        "margin_note": "Unmarked closing step. The labelled sketch and the electron sum together confirm that the structure described uses every electron."
+      }
+    ]
+  }
+}

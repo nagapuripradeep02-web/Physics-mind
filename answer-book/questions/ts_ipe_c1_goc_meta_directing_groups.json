@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_meta_directing_groups",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are meta-directing groups? Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A meta-directing group is a group",
+          "already present on a benzene ring",
+          "which directs the next incoming group",
+          "to position 3 (meta).",
+          "These groups withdraw electrons from",
+          "the ring, so they also deactivate it."
+        ],
+        "why": "A group that withdraws electrons lowers the electron density at positions 2 and 4 more than at position 3, so the next substitution takes place at position 3, and it takes place more slowly than on benzene itself. That is why these are also called ring-deactivating groups.",
+        "common_mistakes": [
+          "Giving only the position. The answer also has to say that these groups withdraw electrons and deactivate the ring.",
+          "Writing position 4. Para is position 4; meta is position 3."
+        ],
+        "memory_tip": "Meta is position 3, neither neighbouring nor straight across.",
+        "margin_note": "Write the position number 3 and the words electron withdrawing."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "The examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "The nitro group –NO₂, as in",
+          "nitrobenzene C₆H₅NO₂, is one example.",
+          "The carboxy group –COOH, as in",
+          "benzoic acid C₆H₅COOH, is another.",
+          "Aldehyde –CHO, sulphonic acid –SO₃H",
+          "and cyano –CN behave in the same way.",
+          {
+            "text": "–NO₂ and –COOH direct to meta",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both examples withdraw electrons from the ring, the nitro group through its two oxygen atoms and the carboxy group through its C=O bond, so in both compounds position 3 is where the next substitution takes place.",
+        "common_mistakes": [
+          "Giving –CH₃ as an example. The methyl group releases electrons and directs to positions 2 and 4.",
+          "Naming the group without naming a compound that carries it. Write –NO₂ in nitrobenzene."
+        ],
+        "memory_tip": "Electron-withdrawing groups — NO₂, COOH, CHO, SO₃H, CN — direct to meta.",
+        "margin_note": "One closing line naming the two example groups completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The position number 3 alone is only half the answer. The other half is that these groups withdraw electrons and deactivate the ring, which is what makes position 3 the site of the next substitution."
+}

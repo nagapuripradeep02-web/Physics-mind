@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_tlcl_higher_stability",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How do you explain the higher stability of TlCl?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Thallium is +1 in TlCl",
+      "marks": 1
+    },
+    {
+      "label": "The inert pair effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.99, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_oxidation_state",
+        "kind": "text",
+        "label": "Thallium is +1 in TlCl",
+        "marks": 1,
+        "mark_note": "Thallium is +1 in TlCl",
+        "lines": [
+          "Thallium is the last member of group 13,",
+          "with the valence configuration 6s²6p¹.",
+          "In TlCl the oxidation state of thallium",
+          "is +1, and in TlCl₃ it is +3.",
+          "The question compares these two",
+          "chlorides of the same element."
+        ],
+        "why": "The comparison asked for is between the two chlorides of thallium, so the first thing to settle is which oxidation state each one carries. One chloride ion balances one positive charge, so TlCl holds thallium in the +1 state.",
+        "common_mistakes": [
+          "Giving thallium as +3 in TlCl. One chloride ion needs one positive charge only.",
+          "Answering without naming TlCl₃. The word higher is a comparison, so the other chloride has to appear."
+        ],
+        "memory_tip": "One chlorine, one positive charge: TlCl is thallium in the +1 state.",
+        "margin_note": "Name both chlorides, TlCl and TlCl₃, so the comparison is on the page."
+      },
+      {
+        "id": "s2_inert_pair_effect",
+        "kind": "text",
+        "label": "The inert pair effect",
+        "marks": 1,
+        "mark_note": "The inert pair effect",
+        "lines": [
+          {
+            "text": "The inert pair effect makes Tl⁺ stable",
+            "style": "boxed"
+          },
+          "For thallium the +1 state is more stable",
+          "than +3 because of the inert pair effect:",
+          "the 6s² electron pair does not readily",
+          "take part in bonding, so in TlCl only the",
+          "6p¹ electron is used.",
+          "TlCl holds thallium in that stable +1",
+          "state, so TlCl is more stable than TlCl₃."
+        ],
+        "why": "The stability of a compound follows the stability of the oxidation state inside it. Since +1 is the stable state for thallium, the chloride built on +1 is the stable chloride.",
+        "common_mistakes": [
+          "Naming the inert pair effect without saying which pair. In thallium it is the 6s² pair.",
+          "Writing that TlCl₃ does not exist. It does exist, but it is less stable and changes to TlCl."
+        ],
+        "memory_tip": "The 6s² pair does not readily take part in bonding, so thallium bonds with one electron and TlCl is the stable chloride.",
+        "margin_note": "The words inert pair effect and the pair 6s² both belong in this step."
+      }
+    ]
+  },
+  "insider_note": "The answer is a comparison, so TlCl₃ has to be named as the less stable chloride; the inert pair effect on its own does not show which compound is being explained."
+}

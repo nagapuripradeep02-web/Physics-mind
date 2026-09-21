@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_water_gas_preparation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is water gas prepared?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The method and the conditions",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 21. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method_and_conditions",
+        "kind": "text",
+        "label": "The method and the conditions",
+        "marks": 1,
+        "mark_note": "Method and conditions",
+        "lines": [
+          "Steam is passed over white-hot coke,",
+          "that is over carbon heated until it",
+          "glows.",
+          "The temperature is kept in the range",
+          "473–1273 K.",
+          "The steam is reduced by the hot carbon,",
+          "and the gas that comes off is a mixture",
+          "of carbon monoxide and hydrogen."
+        ],
+        "why": "The two things that have to be named are what is passed in and what it is passed over. Steam supplies both the oxygen that becomes carbon monoxide and the hydrogen that comes off, and the coke supplies the carbon and the heat needed for the reaction.",
+        "common_mistakes": [
+          "Writing that air is passed over the coke. Air gives producer gas; steam is what gives water gas.",
+          "Leaving the temperature out. The range 473–1273 K has to be written with the equation, above the arrow or on the line just below it."
+        ],
+        "memory_tip": "Water gas comes from water: steam over white-hot coke.",
+        "margin_note": "Name steam and white-hot coke together — one without the other does not describe the preparation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "C(s) + H₂O(g) → CO(g) + H₂(g)",
+            "style": "boxed"
+          },
+          "At 473–1273 K.",
+          "Atoms: 1 C, 2 H and 1 O on each side.",
+          "The mixture of CO and H₂ collected is",
+          "water gas. The same mixture is also",
+          "called synthesis gas, or syn gas."
+        ],
+        "why": "The single oxygen atom of the water molecule combines with one carbon atom to give carbon monoxide, and the two hydrogen atoms are left over as one molecule of hydrogen. That is why the coefficients are all one.",
+        "common_mistakes": [
+          "Writing CO₂ as the product. Only one oxygen atom combines with each carbon atom here, so the product is carbon monoxide.",
+          "Writing the hydrogen as separate H atoms. Hydrogen leaves as the molecule H₂."
+        ],
+        "memory_tip": "One carbon, one water, one carbon monoxide, one hydrogen — every coefficient in this equation is one.",
+        "margin_note": "Add that the same mixture is also called synthesis gas; the name follows from its use in making methanol."
+      }
+    ]
+  },
+  "insider_note": "The question asks how the gas is prepared, so the reagent, the conditions and the equation are all needed. Water gas and synthesis gas are two names for this one mixture, which is worth writing down here."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_distillation_explained",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain distillation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it separates",
+      "marks": 1
+    },
+    {
+      "label": "Boiling, condensing and collecting",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 8(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE NOTE: at two marks this card carries the two cases the method covers, the one-line reason it works, and the boil-condense-collect sequence with a worked pair of boiling points. The apparatus, the fractions and the limits of the method need a long answer and are deliberately left out. BOILING POINTS USED: benzene 80 °C and aniline 184 °C, a gap of 104 °C, comfortably above the difference of about 40 °C that a simple distillation needs."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_separates",
+        "kind": "text",
+        "label": "What it separates",
+        "marks": 1,
+        "mark_note": "The two cases",
+        "lines": [
+          "Distillation purifies a LIQUID.",
+          "It is used for a volatile liquid mixed",
+          "with a non-volatile impurity, and for",
+          "two liquids whose boiling points differ",
+          "by more than about 40 °C.",
+          "The liquid with the lower boiling point",
+          "vaporises first."
+        ],
+        "why": "The two cases are really one case. A non-volatile impurity has almost no vapour pressure, and a liquid boiling more than about 40 °C higher has very little, so in both the vapour that comes off is nearly all the more volatile component.",
+        "common_mistakes": [
+          "Saying distillation separates any two liquids. The boiling points must differ by more than about 40 °C.",
+          "Saying it purifies solids. It is a method for liquids."
+        ],
+        "memory_tip": "Two cases: a non-volatile impurity, or a boiling point gap wider than about 40 °C.",
+        "margin_note": "State both cases in the opening lines, and give the 40 °C figure as a number."
+      },
+      {
+        "id": "s2_boil_condense_collect",
+        "kind": "boxed_final",
+        "label": "Boiling, condensing and collecting",
+        "marks": 1,
+        "mark_note": "The sequence and an example",
+        "lines": [
+          "The mixture is boiled in a distillation",
+          "flask.",
+          "The vapour is led into a condenser,",
+          "where it is cooled back to a liquid,",
+          "and this distillate is collected in a",
+          "receiver.",
+          "Benzene, boiling at 80 °C, is separated",
+          "from aniline, boiling at 184 °C, in",
+          "this way.",
+          {
+            "text": "Benzene distils over, aniline stays",
+            "style": "boxed"
+          }
+        ],
+        "why": "Boiling turns the more volatile liquid into vapour and leaves the rest in the flask; condensing turns that vapour back into a liquid in a different vessel. The separation happens because those two changes are made to occur in two different places.",
+        "common_mistakes": [
+          "Stopping at boiling. Without the condenser the vapour is lost and nothing is collected.",
+          "Giving aniline as the distillate. Benzene has the lower boiling point, so benzene comes over first."
+        ],
+        "memory_tip": "Boil it in one vessel and condense it in another, and the two liquids end up in different places.",
+        "margin_note": "Write both boiling points with the example. One closing line naming which liquid distils first completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two marks, so two things: the two cases the method covers with the 40 °C figure, and the sequence boil, condense, collect. A named pair of liquids with their boiling points, such as benzene at 80 °C and aniline at 184 °C, turns a bare definition into a full answer."
+}

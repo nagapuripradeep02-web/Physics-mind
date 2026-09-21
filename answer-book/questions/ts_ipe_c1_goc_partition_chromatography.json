@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_partition_chromatography",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain partition chromatography.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What partition chromatography is",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The paper and the two liquids",
+      "marks": 1
+    },
+    {
+      "label": "Running a paper chromatogram",
+      "marks": 2
+    },
+    {
+      "label": "Reading the chromatogram",
+      "marks": 1
+    },
+    {
+      "label": "The two forms, and uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.123, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 40(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the paper strip, the base line 2 cm from one end, the closed jar and the solvent front are described precisely enough to be drawn from the words. THE DEFINING POINT, stated at the head of the answer and again at the close: in partition chromatography BOTH phases are liquids. In paper chromatography the stationary phase is the WATER trapped in the fibres of the paper, and the cellulose is only an inert support — the paper is not the adsorbent. That is the whole difference between this method and an adsorption method, and it is what the question is asking for. The mobile phase named, butanol saturated with water, is a standard one and is immiscible with the trapped water as the method requires."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What partition chromatography is",
+        "marks": 1,
+        "mark_note": "Both phases are liquids",
+        "lines": [
+          "In partition chromatography BOTH phases",
+          "are liquids.",
+          "One liquid is fixed on an inert solid",
+          "support and is the stationary phase.",
+          "A second liquid, immiscible with the",
+          "first, flows over that support and is",
+          "the mobile phase.",
+          "Nothing is adsorbed on a solid surface",
+          "here; the solid only carries the",
+          "stationary liquid.",
+          "Paper chromatography is the everyday",
+          "example of the method."
+        ],
+        "why": "This is the one sentence the question is asking for. In an adsorption method the stationary phase is a solid and the components stick to its surface; here the stationary phase is a liquid and the components dissolve in it, and everything else about the method follows from that difference.",
+        "common_mistakes": [
+          "Saying the solid support is the stationary phase. The stationary phase is the LIQUID fixed on it.",
+          "Describing adsorption on a surface. Nothing is adsorbed; the components are shared between two liquids."
+        ],
+        "memory_tip": "Two liquids: one fixed on a solid support and one flowing over it.",
+        "margin_note": "Write \"both phases are liquids\" in the opening line. It is what separates this method from the adsorption ones."
+      },
+      {
+        "id": "s2_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "Repeated partition between two liquids",
+        "lines": [
+          "A substance shaken with two immiscible",
+          "liquids distributes itself between them",
+          "in a fixed ratio at a given temperature.",
+          "That ratio is called the distribution",
+          "ratio, and it is different for every",
+          "substance.",
+          "As the mobile liquid flows past, each",
+          "component is partitioned again and again",
+          "between the moving liquid and the",
+          "stationary liquid.",
+          "A component whose larger share goes into",
+          "the mobile liquid travels quickly, and",
+          "one whose larger share goes into the",
+          "stationary liquid travels slowly.",
+          "Repeating the partition thousands of",
+          "times along the paper turns a small",
+          "difference in the two ratios into a wide",
+          "separation of the spots."
+        ],
+        "why": "One partition between two liquids separates almost nothing, because the two distribution ratios are usually close. The method works because the sharing out happens again at every point along the paper, so a difference too small to use once becomes a large difference after thousands of repetitions.",
+        "common_mistakes": [
+          "Saying the components are separated by one partition. It is repeated continuously along the paper.",
+          "Saying the compound moves entirely into one liquid. It is shared between the two in a fixed ratio."
+        ],
+        "memory_tip": "Each component is shared between the two liquids in its own ratio, and the sharing happens over and over along the paper.",
+        "margin_note": "Two marks here, so give the distribution ratio AND the repetition of the partition along the paper."
+      },
+      {
+        "id": "s3_paper_and_liquids",
+        "kind": "text",
+        "label": "The paper and the two liquids",
+        "marks": 1,
+        "mark_note": "The trapped water is the stationary phase",
+        "lines": [
+          "Chromatography paper is a special grade",
+          "of filter paper.",
+          "Water is trapped in the fibres of this",
+          "paper, and it is that trapped water, not",
+          "the cellulose, that is the stationary",
+          "phase.",
+          "The cellulose is only the inert support",
+          "that keeps the water in place.",
+          "The mobile phase is a different liquid,",
+          "such as butanol saturated with water,",
+          "and it must not mix with the water in",
+          "the paper."
+        ],
+        "why": "Calling the paper itself the stationary phase would make this an adsorption method, which it is not. The water trapped in the fibres is a genuine liquid phase, and it is the liquid the components dissolve into when they are retained.",
+        "common_mistakes": [
+          "Saying the paper adsorbs the components. The paper carries water, and the components dissolve in that water.",
+          "Choosing a mobile liquid that mixes with water. It must be immiscible with the trapped water, or there is only one phase."
+        ],
+        "memory_tip": "The paper is only the holder; the water inside it is the stationary phase.",
+        "margin_note": "Say plainly that the trapped water is the stationary phase. This line carries the answer."
+      },
+      {
+        "id": "s4_running_it",
+        "kind": "text",
+        "label": "Running a paper chromatogram",
+        "marks": 2,
+        "mark_note": "Base line, closed jar, solvent front",
+        "lines": [
+          "A base line is drawn about 2 cm from one",
+          "end of a strip of the paper.",
+          "The solution of the mixture is applied",
+          "on the base line as a small spot and is",
+          "dried.",
+          "The strip is suspended in a closed jar,",
+          "so that only the end below the base line",
+          "dips into the mobile liquid.",
+          "The jar is kept closed, so that the air",
+          "inside stays saturated with the vapour",
+          "of the solvent and the paper does not",
+          "dry as the liquid climbs.",
+          "The liquid rises through the paper and",
+          "the components move up with it, each at",
+          "its own rate.",
+          "The strip is taken out when the solvent",
+          "front is near the top, the front is",
+          "marked, and the paper is dried."
+        ],
+        "why": "The spot has to sit above the liquid level for the same reason as on any chromatogram: if the spot were dipped into the mobile liquid the mixture would dissolve away into the jar, and nothing would travel up the paper at all.",
+        "common_mistakes": [
+          "Dipping the spot into the mobile liquid. Only the end below the base line goes into the liquid.",
+          "Leaving the jar open. The closed jar keeps the air saturated with solvent vapour."
+        ],
+        "memory_tip": "Spot on the base line, only the end below it in the liquid, jar closed, and mark the front when the paper comes out.",
+        "margin_note": "Two marks here, so give the applying of the spot AND the run in the closed jar with the front marked."
+      },
+      {
+        "id": "s5_reading",
+        "kind": "text",
+        "label": "Reading the chromatogram",
+        "marks": 1,
+        "mark_note": "Locating and identifying the spots",
+        "lines": [
+          "The dried strip carrying the separated",
+          "spots is the chromatogram.",
+          "A coloured component shows at once as a",
+          "separate coloured spot.",
+          "A colourless component is located under",
+          "ultraviolet light, or by spraying a",
+          "reagent that gives a coloured spot with",
+          "it.",
+          "The distance each spot has moved from",
+          "the base line, compared with the",
+          "distance moved by the solvent, is",
+          "characteristic of the substance and",
+          "identifies it."
+        ],
+        "why": "A chromatogram carries two kinds of information at once. The number of spots says how many components the mixture had, and the position of each spot says which substance it is, because that position is fixed for a given paper and a given solvent.",
+        "common_mistakes": [
+          "Counting only the coloured spots. Colourless components are there too and have to be located.",
+          "Measuring the distances from the bottom edge of the paper. They are measured from the base line."
+        ],
+        "memory_tip": "The number of spots gives the number of components, and the distance each has moved names it.",
+        "margin_note": "Say how a colourless spot is located, and how the position of a spot identifies the substance."
+      },
+      {
+        "id": "s6_forms_and_uses",
+        "kind": "boxed_final",
+        "label": "The two forms, and uses",
+        "marks": 1,
+        "mark_note": "Ascending and descending, and uses",
+        "lines": [
+          "When the mobile liquid rises up the",
+          "paper the method is called ascending",
+          "paper chromatography.",
+          "When the liquid is fed at the top and",
+          "allowed to flow down, it is called",
+          "descending paper chromatography.",
+          "The method separates amino acids,",
+          "sugars and plant pigments, and it needs",
+          "only a drop of solution, which is why it",
+          "is used to examine very small samples.",
+          {
+            "text": "Two liquid phases, not an adsorbent",
+            "style": "boxed"
+          }
+        ],
+        "why": "Naming the two forms shows that the direction of flow is a detail of the apparatus and not of the principle. In both, the separation comes from the same repeated partition between the trapped water and the mobile liquid.",
+        "common_mistakes": [
+          "Saying the two forms work on different principles. Both separate by partition; only the direction of flow differs.",
+          "Ending at the chromatogram. A full answer names what the method is used for."
+        ],
+        "memory_tip": "Ascending or descending, the principle is the same partition between the two liquids.",
+        "margin_note": "One closing line naming the two liquid phases completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question is really asking for one distinction, so make it in the first line: both phases here are liquids. In paper chromatography the stationary phase is the water trapped in the fibres and the cellulose is only an inert support, and the separation comes from the components being partitioned between that water and the mobile liquid over and over along the paper."
+}

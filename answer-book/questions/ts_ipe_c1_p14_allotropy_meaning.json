@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_allotropy_meaning",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you understand by allotropy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "How allotropes differ",
+      "marks": 1
+    },
+    {
+      "label": "The forms of carbon",
+      "marks": 1
+    },
+    {
+      "label": "Allotropy in other elements",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, Short Answer Questions question 33(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is the four-mark treatment of allotropy: the same definition is asked at two marks elsewhere in the chapter, and the extra marks here are spent on why the properties differ, on carbon's crystalline and amorphous forms, and on other elements — not on restating the definition. THE CRYSTALLINE FORMS: the book names diamond and graphite as the crystalline allotropes of carbon and calls fullerene the third form of carbon; NCERT counts diamond, graphite and the fullerenes as crystalline, so this card names diamond and graphite and adds the fullerenes. The two-item answer is not an error. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Allotropy is the property by which one",
+          "element exists in two or more different",
+          "forms in the same physical state.",
+          "Each such form is called an allotrope of",
+          "that element.",
+          "Allotropes are made of the same atoms,",
+          "joined or packed in different ways."
+        ],
+        "why": "The last line is the one that carries the meaning: nothing about the atoms changes, only the way they are arranged. Every later part of this answer follows from that one idea.",
+        "common_mistakes": [
+          "Leaving out the words same physical state. Liquid oxygen and oxygen gas are not allotropes — that is one form of oxygen in two physical states.",
+          "Writing that the atoms themselves are different. The atoms are identical; their arrangement is what differs."
+        ],
+        "memory_tip": "Same atoms, different arrangement, same physical state.",
+        "margin_note": "Open with the one-sentence definition; the rest of the answer explains it."
+      },
+      {
+        "id": "s2_how_they_differ",
+        "kind": "text",
+        "label": "How allotropes differ",
+        "marks": 1,
+        "mark_note": "Physical against chemical",
+        "lines": [
+          "Allotropes of one element differ in",
+          "physical properties: hardness, density,",
+          "colour, melting point and electrical",
+          "conductivity.",
+          "Their chemical properties are the same,",
+          "because the atoms are the same.",
+          "Diamond and graphite look and behave",
+          "very differently, yet both burn in",
+          "excess oxygen to give carbon dioxide:",
+          {
+            "text": "C(s) + O₂(g) → CO₂(g)",
+            "style": "eq"
+          }
+        ],
+        "why": "This is the test that separates allotropy from every other kind of difference. Two allotropes can differ as widely as diamond and graphite in every physical property, and still give exactly the same products in exactly the same reactions.",
+        "common_mistakes": [
+          "Writing that allotropes give different products. Diamond and graphite both give carbon dioxide when burnt in oxygen, though they do not catch fire equally easily.",
+          "Listing only one property. Hardness, density, colour, melting point and conductivity can all differ between allotropes."
+        ],
+        "memory_tip": "Physical properties differ, chemical properties do not.",
+        "margin_note": "Give the burning reaction as the evidence that the chemistry is the same."
+      },
+      {
+        "id": "s3_carbon_forms",
+        "kind": "text",
+        "label": "The forms of carbon",
+        "marks": 1,
+        "mark_note": "Carbon's two classes",
+        "lines": [
+          "Carbon has crystalline forms and",
+          "amorphous forms.",
+          "The crystalline forms are diamond and",
+          "graphite, and the fullerenes such as C₆₀",
+          "are also counted as crystalline. In",
+          "these the carbon atoms are arranged in",
+          "a regular repeating pattern.",
+          "The amorphous forms are coal, coke,",
+          "animal charcoal, lamp black and gas",
+          "carbon. In these there is no such",
+          "regular pattern."
+        ],
+        "why": "Carbon is the standard example of allotropy because it shows both kinds of form. Splitting the list into crystalline and amorphous, and saying what the word crystalline means, turns a memorised list into an explanation.",
+        "common_mistakes": [
+          "Putting coal or coke among the crystalline forms. Those are the amorphous forms.",
+          "Writing that amorphous carbon is a different element from diamond. All of these forms are pure carbon."
+        ],
+        "memory_tip": "Crystalline: diamond, graphite, fullerene. Amorphous: coal, coke, charcoal, lamp black, gas carbon.",
+        "margin_note": "Write the two class names as headings and put the forms under them."
+      },
+      {
+        "id": "s4_other_elements",
+        "kind": "boxed_final",
+        "label": "Allotropy in other elements",
+        "marks": 1,
+        "mark_note": "Other elements",
+        "lines": [
+          "Allotropy is not limited to carbon.",
+          "Oxygen exists as dioxygen O₂ and as",
+          "ozone O₃.",
+          "Sulphur exists in a rhombic form and a",
+          "monoclinic form.",
+          "Phosphorus exists as white phosphorus,",
+          "red phosphorus and black phosphorus.",
+          "In every case the element is one and",
+          "the same, and only the arrangement of",
+          "its atoms changes.",
+          {
+            "text": "Allotropes differ in form, not element",
+            "style": "boxed"
+          }
+        ],
+        "why": "Examples from three more elements show that allotropy is a general property and not something peculiar to carbon. The closing line restates the definition in the shortest form the answer can end on.",
+        "common_mistakes": [
+          "Naming an oxide or a compound as an allotrope. An allotrope contains only one element; carbon dioxide is a compound.",
+          "Stopping after carbon. One example from another element shows that allotropy is general."
+        ],
+        "memory_tip": "Carbon, oxygen, sulphur, phosphorus — four elements that all show allotropy.",
+        "margin_note": "One closing line naming the idea completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer defines allotropy, says the chemical properties stay the same while the physical properties differ, gives carbon's crystalline and amorphous forms, and adds one example from another element."
+}

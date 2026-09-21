@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_co3_carbon_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the state of hybridisation of carbon in CO₃²⁻?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "Shape and the fourth orbital",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 1(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "The hybridisation",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "lines": [
+          "In the carbonate ion CO₃²⁻ the carbon",
+          "atom is sp² hybridised.",
+          "Carbon is bonded to three oxygen atoms",
+          "and carries no lone pair, so it needs",
+          "three hybrid orbitals.",
+          "One 2s orbital and two 2p orbitals mix",
+          "to give three sp² orbitals."
+        ],
+        "why": "The number of hybrid orbitals a carbon atom needs is the number of atoms bonded to it plus the number of lone pairs on it. In the carbonate ion that number is three, so one s orbital and two p orbitals are mixed and the hybridisation is sp².",
+        "common_mistakes": [
+          "Answering sp³ because carbon has four valence electrons. The count that fixes the hybridisation is the three bonded oxygen atoms, not the electron count.",
+          "Counting a double bond as two bonded atoms. A double bond joins carbon to one oxygen atom, so the count of bonded atoms is still three."
+        ],
+        "memory_tip": "Three bonded atoms and no lone pair means sp².",
+        "margin_note": "State sp², then give the count of three bonded oxygen atoms as the reason."
+      },
+      {
+        "id": "s2_shape",
+        "kind": "text",
+        "label": "Shape and the fourth orbital",
+        "marks": 1,
+        "mark_note": "Shape",
+        "lines": [
+          "The three sp² orbitals lie in one plane",
+          "at 120° to one another, so the ion is",
+          "trigonal planar.",
+          "The unhybridised 2p orbital of carbon",
+          "stands at right angles to that plane.",
+          "It forms a pi bond that is spread over",
+          "all three oxygen atoms.",
+          {
+            "text": "Carbon is sp²; the CO₃²⁻ ion is planar",
+            "style": "boxed"
+          }
+        ],
+        "why": "Three sp² orbitals point to the corners of an equilateral triangle, so the ion is flat and the O–C–O angles are 120°. The 2p orbital left over is what makes the pi bond, and because that pi bond is spread over all three oxygen atoms the three C–O bonds are of equal length.",
+        "common_mistakes": [
+          "Calling the carbonate ion pyramidal. Three sp² orbitals lie in one plane, so the ion is flat.",
+          "Drawing one short double bond and two long single bonds. The pi bond is spread over all three oxygen atoms, so the three C–O bonds are equal."
+        ],
+        "memory_tip": "sp² gives a flat triangle with 120° angles.",
+        "margin_note": "Add the shape and the 120° angle after naming the hybridisation."
+      }
+    ]
+  },
+  "insider_note": "The answer itself is one word, sp², so a complete answer also gives the count of three bonded oxygen atoms and the flat shape with 120° angles."
+}

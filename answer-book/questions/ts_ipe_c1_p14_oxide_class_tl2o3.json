@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_tl2o3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide Tl₂O₃ as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification",
+      "marks": 1
+    },
+    {
+      "label": "The trend down group 13",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(g). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of Tl₂O₃ as basic is correct and is what this card gives. The group-13 run written on this card — B₂O₃ acidic, Al₂O₃ and Ga₂O₃ amphoteric, In₂O₃ and Tl₂O₃ basic — is NCERT's, and is carried here because the class of a single oxide is easiest to hold as part of the trend. The acid equation was atom-counted: Tl₂O₃ + 6HCl → 2TlCl₃ + 3H₂O has Tl 2, O 3, H 6, Cl 6 on each side. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "equation",
+        "label": "The classification",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Thallium(III) oxide Tl₂O₃ is a basic",
+          "oxide.",
+          "A basic oxide reacts with an acid to give",
+          "a salt and water:",
+          {
+            "text": "Tl₂O₃ + 6HCl → 2TlCl₃ + 3H₂O",
+            "style": "eq"
+          },
+          "It gives no salt with an alkali."
+        ],
+        "why": "Thallium is the heaviest and most metallic member of group 13, and a metallic element gives a basic oxide. A reaction with an acid, together with no reaction with a base, is exactly what separates a basic oxide from an amphoteric one.",
+        "common_mistakes": [
+          "Calling Tl₂O₃ amphoteric because Al₂O₃ is. Tl₂O₃ reacts with an acid but not with an alkali, so it is basic.",
+          "Writing TlCl as the salt in this equation. Tl₂O₃ has thallium at +3, so the chloride formed here is TlCl₃; the +1 chloride TlCl is the one the inert pair effect makes more stable, but it is not the product of this reaction."
+        ],
+        "memory_tip": "The heaviest member is the most metallic, and a metallic element gives a basic oxide.",
+        "margin_note": "The acid equation with no alkali reaction is what makes the oxide basic."
+      },
+      {
+        "id": "s2_trend",
+        "kind": "boxed_final",
+        "label": "The trend down group 13",
+        "marks": 1,
+        "mark_note": "The trend",
+        "lines": [
+          {
+            "text": "Tl₂O₃ is a basic oxide",
+            "style": "boxed"
+          },
+          "Down group 13 the oxides change class as",
+          "the metallic character rises:",
+          "B₂O₃ is acidic, Al₂O₃ and Ga₂O₃ are",
+          "amphoteric, In₂O₃ and Tl₂O₃ are basic.",
+          {
+            "text": "Basic character: B < Al < Ga < In < Tl",
+            "style": "eq"
+          }
+        ],
+        "why": "The class of an oxide follows the metallic character of the element, and metallic character rises down a group as the atoms get larger and the ionisation enthalpy falls. Writing the whole run from boron to thallium shows the answer as a trend rather than one fact remembered for one oxide.",
+        "common_mistakes": [
+          "Writing that every group 13 oxide is amphoteric because Al₂O₃ is. Only aluminium and gallium give amphoteric oxides.",
+          "Reversing the trend and calling B₂O₃ basic. Boron is the least metallic member and its oxide is the acidic one."
+        ],
+        "memory_tip": "Acidic at the top, basic at the bottom: B₂O₃ acidic, Tl₂O₃ basic.",
+        "margin_note": "One line of trend from boron to thallium places the oxide inside the group."
+      }
+    ]
+  },
+  "insider_note": "Down group 13 the oxides go from acidic to basic as the metallic character rises: B₂O₃ acidic, Al₂O₃ and Ga₂O₃ amphoteric, In₂O₃ and Tl₂O₃ basic. Thallium is at the far end of that run, so the class is easiest to hold as part of the trend rather than as one fact on its own."
+}

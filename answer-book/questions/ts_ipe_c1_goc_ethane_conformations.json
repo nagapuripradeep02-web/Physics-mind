@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethane_conformations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the possible conformations of ethane and explain which one is more stable.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The conformations of ethane",
+      "marks": 1
+    },
+    {
+      "label": "Which one is more stable",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.112, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this chapter, so appearances[] is empty. WORD CHOICE CORRECTED — AN EARLIER RECORD HERE WAS WRONG AND IS REPLACED: that record told later editors never to write conformational isomers, and it was mistaken. Conformational isomerism is standard correct vocabulary, and the sibling card ts_ipe_c1_goc_structural_vs_stereoisomers names conformational isomers as one of the two kinds of stereoisomerism (checked in that file). This card therefore calls the two forms CONFORMATIONS throughout and states that conformational isomers names the same thing. What is genuinely wrong is calling them CONFIGURATIONAL isomers, because they change into one another by free rotation about the C–C single bond and cannot be separated, and that is what the common mistake now says. CARRIED AS EXTRA CONTENT, not from the source book: the dihedral angles (60° staggered, 0° eclipsed) and the word skew for the forms in between. Both are standard NCERT content and both are what let the two forms be described exactly without a figure, but a teacher should confirm they are wanted at two marks. GAUCHE REMOVED: an earlier version also gave gauche as a name for the forms in between. Gauche names the particular conformation of n-butane in which the two methyl groups stand 60° apart, so it carries no meaning for ethane, whose six substituents are all hydrogen atoms. NCERT uses skew here. THE ENERGY FIGURE: about 12.5 kJ mol⁻¹ is the standard textbook value for the difference between the two extreme forms and is written as an approximate value, not an exact one. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_forms",
+        "kind": "text",
+        "label": "The conformations of ethane",
+        "marks": 1,
+        "mark_note": "The two forms",
+        "lines": [
+          "Rotation about the C–C single bond of",
+          "ethane is nearly free, so ethane has an",
+          "infinite number of conformations.",
+          "Staggered form: seen along the C–C bond,",
+          "each front hydrogen lies midway between",
+          "two rear hydrogens.",
+          {
+            "text": "Staggered: dihedral angle = 60°",
+            "style": "eq"
+          },
+          "Eclipsed form: each front hydrogen lies",
+          "directly in front of a rear hydrogen.",
+          {
+            "text": "Eclipsed: dihedral angle = 0°",
+            "style": "eq"
+          },
+          "Any form between the two is called a",
+          "skew conformation.",
+          "Both are drawn as saw-horse projections",
+          "and as Newman projections."
+        ],
+        "why": "The question asks which forms are possible, so the answer has to name the two extremes and fix each one by a quantity a reader can check. The dihedral angle is that quantity: 60° and 0° describe the staggered and the eclipsed forms exactly, so the two are told apart without a figure.",
+        "common_mistakes": [
+          "Calling the staggered and eclipsed forms configurational isomers. They change into one another by free rotation about the C–C single bond and cannot be separated, so they are conformations, also called conformational isomers.",
+          "Writing that ethane has only two conformations. Rotation is continuous, so there are an infinite number; staggered and eclipsed are the two extremes."
+        ],
+        "memory_tip": "Staggered 60°, eclipsed 0°, and anything in between is skew.",
+        "margin_note": "Give the dihedral angle for each form; it fixes both extremes without a figure."
+      },
+      {
+        "id": "s2_stability",
+        "kind": "boxed_final",
+        "label": "Which one is more stable",
+        "marks": 1,
+        "mark_note": "Staggered, with the reason",
+        "lines": [
+          {
+            "text": "Staggered ethane is the more stable form",
+            "style": "boxed"
+          },
+          "In the staggered form the front and the",
+          "rear hydrogen atoms are as far apart as",
+          "they can be, so the repulsion between",
+          "the C–H bonding electron pairs is least.",
+          "In the eclipsed form the same hydrogen",
+          "atoms are closest, so the repulsion is",
+          "greatest and this form is the least",
+          "stable.",
+          {
+            "text": "Energy difference ≈ 12.5 kJ mol⁻¹",
+            "style": "eq"
+          },
+          "That difference is small, so rotation",
+          "goes on at room temperature and the",
+          "conformations cannot be separated."
+        ],
+        "why": "Stability here comes from one cause only, which is how close the hydrogen atoms on the two carbon atoms are forced to be. Writing the distance first and the repulsion second makes the conclusion follow instead of being asserted. The energy figure is then the reason no one has ever isolated either form.",
+        "common_mistakes": [
+          "Answering that the eclipsed form is more stable. Its hydrogen atoms are closest, so its repulsion is greatest and it is the least stable form.",
+          "Writing that the staggered form can be separated and kept. The energy difference is only about 12.5 kJ mol⁻¹, so rotation continues at room temperature."
+        ],
+        "memory_tip": "Farthest apart means least repulsion, so the staggered form is the stable one.",
+        "margin_note": "One closing line naming the staggered form completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves, the forms and the reason, so both belong on the page. Naming staggered and eclipsed without the repulsion argument answers only the first half."
+}

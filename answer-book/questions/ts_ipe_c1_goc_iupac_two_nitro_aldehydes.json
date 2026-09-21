@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_iupac_two_nitro_aldehydes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the IUPAC names of the two aromatic aldehydes: benzaldehyde with a nitro group meta to the CHO group, and benzaldehyde with a nitro group para to it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meta compound",
+      "marks": 1
+    },
+    {
+      "label": "The para compound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 5(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH NAMES WERE RE-DERIVED WHILE AUTHORING: benzaldehyde is a retained IUPAC name and the ring carbon carrying –CHO is numbered 1 in it, so a meta substituent is at 3 and a para substituent is at 4. That gives 3-nitrobenzaldehyde and 4-nitrobenzaldehyde, both C₇H₅NO₃. The form 3-nitrobenzenecarbaldehyde names the same meta compound and is stated on the card as such, and the older o/m/p letters (m-nitrobenzaldehyde, p-nitrobenzaldehyde) name the same two compounds. QUESTION FORM: the book prints the two structures as drawn benzene rings; they are stated here in words and condensed formulae, because a ring with two named substituents reads correctly as text and needs no figure."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meta_compound",
+        "kind": "text",
+        "label": "The meta compound",
+        "marks": 1,
+        "mark_note": "First name",
+        "lines": [
+          "Benzaldehyde is C₆H₅–CHO. The ring",
+          "carbon that carries the –CHO group",
+          "is numbered 1.",
+          "A meta group sits two carbons round",
+          "the ring from carbon 1, so it is at",
+          "position 3.",
+          {
+            "text": "3-nitrobenzaldehyde",
+            "style": "boxed"
+          },
+          "Also written",
+          "3-nitrobenzenecarbaldehyde."
+        ],
+        "why": "Benzaldehyde is a retained name, and the carbon carrying the –CHO group is carbon 1 in it. Once that is settled, meta and para are only two ways of saying the numbers 3 and 4.",
+        "common_mistakes": [
+          "Numbering from the nitro group and writing 3-formylnitrobenzene. The –CHO group is the principal group, so its carbon is number 1.",
+          "Writing 2-nitrobenzaldehyde. Position 2 is the ortho position; meta is position 3."
+        ],
+        "memory_tip": "Counting round from the –CHO carbon: 2 is ortho, 3 is meta, 4 is para.",
+        "margin_note": "Draw the ring and mark carbon 1 at the –CHO group before counting round to the nitro group."
+      },
+      {
+        "id": "s2_para_compound",
+        "kind": "boxed_final",
+        "label": "The para compound",
+        "marks": 1,
+        "mark_note": "Second name",
+        "lines": [
+          "In benzaldehyde the ring carbon",
+          "carrying –CHO is numbered 1. The para",
+          "group sits directly opposite it,",
+          "three carbons round the ring, so it",
+          "is at position 4.",
+          {
+            "text": "4-nitrobenzaldehyde",
+            "style": "boxed"
+          },
+          "The older letters name the same two",
+          "compounds: m-nitrobenzaldehyde and",
+          "p-nitrobenzaldehyde.",
+          "Both are C₇H₅NO₃."
+        ],
+        "why": "A benzene ring has six carbons, so the carbon directly opposite carbon 1 is carbon 4. Writing the number rather than the letter is what makes the name an IUPAC name.",
+        "common_mistakes": [
+          "Writing 5-nitrobenzaldehyde. Counting round from carbon 1 in either direction, the carbon directly opposite is the fourth one, so a para substituent is always at 4 and never at 5.",
+          "Giving only the letter p-. The question asks for the IUPAC names, which use the locant numbers."
+        ],
+        "memory_tip": "Opposite carbon 1 on a six-carbon ring is always carbon 4.",
+        "margin_note": "One closing line naming the shared molecular formula C₇H₅NO₃ completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Both names are the same word with one digit changed, so the whole of this question is knowing that meta is 3 and para is 4 counted from the carbon carrying the –CHO group."
+}

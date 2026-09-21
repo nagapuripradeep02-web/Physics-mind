@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_good_conductor",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Graphite is a good conductor. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The fourth electron",
+      "marks": 1
+    },
+    {
+      "label": "How it carries the current",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This chapter also asks the conduction question as a comparison with diamond; this card is asked about graphite alone, so it stays on graphite and adds the direction of the conduction and the electrode use, rather than describing diamond. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fourth_electron",
+        "kind": "text",
+        "label": "The fourth electron",
+        "marks": 1,
+        "mark_note": "The spare electron",
+        "lines": [
+          "In graphite each carbon atom is sp²",
+          "hybridised and uses three of its four",
+          "valence electrons to make three sigma",
+          "bonds with three other carbon atoms.",
+          "The fourth valence electron is left in",
+          "an unhybridised p orbital."
+        ],
+        "why": "The whole answer rests on a count. Carbon has four valence electrons and graphite uses only three of them for bonding, so exactly one electron per carbon atom is available for something else.",
+        "common_mistakes": [
+          "Writing that each carbon makes four sigma bonds in graphite. It makes three, and that is what leaves the fourth electron over.",
+          "Answering sp³ for graphite. Three bonded neighbours means sp²."
+        ],
+        "memory_tip": "Three bonds used, one electron left over, on every carbon atom.",
+        "margin_note": "Count the bonds first: three sigma bonds out of four valence electrons."
+      },
+      {
+        "id": "s2_conduction",
+        "kind": "text",
+        "label": "How it carries the current",
+        "marks": 1,
+        "mark_note": "Conduction",
+        "lines": [
+          "That fourth electron is not fixed",
+          "between two atoms. It is delocalised",
+          "over the whole sheet.",
+          "When a potential difference is applied,",
+          "these delocalised electrons move",
+          "through the sheet and carry the",
+          "current, so graphite conducts.",
+          "Conduction is much better along a sheet",
+          "than from one sheet to the next.",
+          "This is why graphite is used for",
+          "electrodes and in electroplating.",
+          {
+            "text": "The delocalised fourth electron conducts",
+            "style": "boxed"
+          }
+        ],
+        "why": "A substance conducts when it holds charged particles that can move. In graphite those particles are the delocalised electrons, and because they are spread along the sheets the current passes far more easily along a layer than across the stack.",
+        "common_mistakes": [
+          "Saying graphite conducts because it contains free ions. Graphite is covalent; the moving charges are electrons, not ions.",
+          "Writing that graphite conducts equally in every direction. Conduction along a sheet is much better than conduction across the sheets."
+        ],
+        "memory_tip": "A delocalised electron is a moving electron, and a moving electron is a current.",
+        "margin_note": "Name the electron as delocalised and say plainly that it carries the current."
+      }
+    ]
+  },
+  "insider_note": "A complete answer counts the bonds first — three sigma bonds from four valence electrons — and then says the fourth electron is delocalised over the sheet and carries the current."
+}

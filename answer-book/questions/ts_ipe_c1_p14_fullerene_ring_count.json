@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_fullerene_ring_count",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How many five-membered and six-membered rings are present in fullerene?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two counts",
+      "marks": 1
+    },
+    {
+      "label": "How the rings are fused",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the two counts here — twenty six-membered rings and twelve five-membered rings — are the same numbers used on the eight-mark note on fullerenes and on the allotropy cards of this chapter."
+  },
+  "insider_note": "The counts are twenty six-membered and twelve five-membered rings, and the number sixty is the count of carbon atoms, not of rings.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_counts",
+        "kind": "text",
+        "label": "The two counts",
+        "marks": 1,
+        "mark_note": "The counts",
+        "lines": [
+          "Fullerene C₆₀ has twelve five-membered",
+          "rings and twenty six-membered rings.",
+          "That is thirty-two rings in all.",
+          "The sixty carbon atoms of the molecule",
+          "sit one at each of the sixty vertices",
+          "of the cage."
+        ],
+        "why": "The question asks for two numbers, so both are named separately: twelve rings of five carbon atoms and twenty rings of six. Together those thirty-two rings close the cage that carries the sixty carbon atoms.",
+        "common_mistakes": [
+          "Swapping the two numbers. There are twelve five-membered rings and twenty six-membered rings.",
+          "Writing sixty as a ring count. Sixty is the number of carbon atoms in C₆₀, not the number of rings."
+        ],
+        "memory_tip": "Twelve five-membered rings and twenty six-membered rings, thirty-two rings in all.",
+        "margin_note": "Write both counts on one line, each with its ring size named next to it."
+      },
+      {
+        "id": "s2_fusion",
+        "kind": "boxed_final",
+        "label": "How the rings are fused",
+        "marks": 1,
+        "mark_note": "The fusion rule",
+        "lines": [
+          "A six-membered ring is fused either to",
+          "another six-membered ring or to a",
+          "five-membered ring.",
+          "A five-membered ring is fused only to",
+          "six-membered rings; two five-membered",
+          "rings are never fused to each other.",
+          {
+            "text": "12 five-membered, 20 six-membered rings",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two counts say how many rings there are but not how they are placed. The fusion rule adds that: every five-membered ring is surrounded by six-membered rings, so the twelve of them are spread over the cage rather than joined together.",
+        "common_mistakes": [
+          "Writing that two five-membered rings are fused to each other. A five-membered ring is fused only to six-membered rings.",
+          "Writing that a six-membered ring is fused only to six-membered rings. It may also be fused to a five-membered ring."
+        ],
+        "memory_tip": "Five-membered rings are never fused to each other; each one is surrounded by six-membered rings.",
+        "margin_note": "One line naming the fusion rule completes the answer after the two counts."
+      }
+    ]
+  }
+}

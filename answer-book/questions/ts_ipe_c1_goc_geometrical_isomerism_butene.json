@@ -1,0 +1,176 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_geometrical_isomerism_butene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you understand by geometrical isomerism? Explain the geometrical isomers of 2-butene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What geometrical isomerism is",
+      "marks": 1
+    },
+    {
+      "label": "cis-but-2-ene",
+      "marks": 1
+    },
+    {
+      "label": "trans-but-2-ene",
+      "marks": 1
+    },
+    {
+      "label": "Two separate compounds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 21. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this chapter, so appearances[] is empty. NAME FORM: the question as printed says 2-butene, which is the older style, and question_text keeps the printed wording. The answer writes but-2-ene, the current IUPAC form, which is also what the NCERT text uses. A student who writes either form is naming the same compound and neither form is an error. NO FIGURE: this chapter's cards carry no figure objects, so the two arrangements are described in words — which group sits on which side of the double bond — precisely enough to draw. CARRIED AS EXTRA CONTENT, not from the source book: the dipole moment statement (a small net dipole moment for the cis form, zero for the symmetrical trans form) and the note that trans-but-2-ene is the more stable of the two because the methyl groups are farther apart. Both are standard NCERT-level content, but a teacher should confirm they are wanted at four marks. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What geometrical isomerism is",
+        "marks": 1,
+        "mark_note": "The definition and the condition",
+        "lines": [
+          "Geometrical isomerism is the kind of",
+          "stereoisomerism in which two compounds",
+          "have the same molecular formula and the",
+          "same structural formula, but differ in",
+          "the arrangement of the groups in space",
+          "about a C=C double bond.",
+          "Rotation about a C=C double bond is",
+          "restricted, so the two arrangements do",
+          "not change into each other.",
+          "Condition: each of the two doubly bonded",
+          "carbon atoms must carry two different",
+          "groups."
+        ],
+        "why": "Geometrical isomerism is the one kind of isomerism whose cause can be stated in a single sentence: the double bond does not turn. Writing the restricted rotation before the two forms means the rest of the answer describes a difference that has already been explained rather than one that has to be taken on trust.",
+        "common_mistakes": [
+          "Writing that the two isomers have different structural formulae. They have the same structural formula, and only the arrangement in space is different.",
+          "Leaving out the condition. A doubly bonded carbon atom carrying two identical groups gives the same molecule either way round, so there are no geometrical isomers."
+        ],
+        "memory_tip": "The double bond does not turn, so the two sides stay where they are put.",
+        "margin_note": "State the restricted rotation before naming the forms; it is the cause of the whole answer."
+      },
+      {
+        "id": "s2_cis",
+        "kind": "text",
+        "label": "cis-but-2-ene",
+        "marks": 1,
+        "mark_note": "The cis arrangement",
+        "lines": [
+          "But-2-ene is CH₃–CH=CH–CH₃.",
+          "The double bond joins C-2 and C-3, and",
+          "each of them carries one methyl group",
+          "and one hydrogen atom, so the condition",
+          "for geometrical isomerism is met.",
+          "Draw the double bond horizontally.",
+          {
+            "text": "cis: both CH₃ groups on the same side",
+            "style": "eq"
+          },
+          "In cis-but-2-ene the methyl group on",
+          "C-2 and the methyl group on C-3 are",
+          "both above the double bond, and the two",
+          "hydrogen atoms are both below it.",
+          "The two bond dipoles point the same way",
+          "and do not cancel, so cis-but-2-ene has",
+          "a small net dipole moment."
+        ],
+        "why": "The whole difference between the two isomers is which side of the double bond each methyl group is on, so the answer has to say it in those words. Naming the two carbon atoms and the groups on each of them first is what makes the description exact enough to draw from.",
+        "common_mistakes": [
+          "Describing the cis form as the one with the methyl groups next to each other along the chain. The words same side and opposite side are about the double bond, not about the chain.",
+          "Writing that cis-but-2-ene has no dipole moment. Its two bond dipoles point the same way, so it has a small net dipole moment."
+        ],
+        "memory_tip": "Cis means both methyl groups on one side of the double bond.",
+        "margin_note": "Say which side each group is on; that sentence is the description of the isomer."
+      },
+      {
+        "id": "s3_trans",
+        "kind": "text",
+        "label": "trans-but-2-ene",
+        "marks": 1,
+        "mark_note": "The trans arrangement",
+        "lines": [
+          {
+            "text": "trans: CH₃ groups on opposite sides",
+            "style": "eq"
+          },
+          "In trans-but-2-ene the methyl group on",
+          "C-2 is above the double bond and the",
+          "methyl group on C-3 is below it.",
+          "On each carbon atom the hydrogen atom",
+          "is on the side opposite its own methyl",
+          "group, so one hydrogen is below the",
+          "double bond and the other is above it.",
+          "The molecule is symmetrical about the",
+          "centre of the double bond, so the two",
+          "bond dipoles cancel and the dipole",
+          "moment is zero."
+        ],
+        "why": "The trans form is described by the same three facts as the cis form, in the same order, so the two can be compared line by line. The dipole moment is the property that separates them without any measurement of shape: one has a small dipole moment and the other has none.",
+        "common_mistakes": [
+          "Putting both hydrogen atoms on the same side in the trans form. Each hydrogen atom is opposite the methyl group on its own carbon atom, so the two hydrogen atoms are also on opposite sides.",
+          "Giving trans-but-2-ene a dipole moment. The molecule is symmetrical, so its two bond dipoles cancel."
+        ],
+        "memory_tip": "Trans means across: one methyl group above the double bond, the other below.",
+        "margin_note": "Write the hydrogen positions too; a reader can then draw the molecule from the words alone."
+      },
+      {
+        "id": "s4_separate",
+        "kind": "boxed_final",
+        "label": "Two separate compounds",
+        "marks": 1,
+        "mark_note": "Why they are different compounds",
+        "lines": [
+          {
+            "text": "Cis and trans are separate compounds",
+            "style": "boxed"
+          },
+          "Turning one form into the other means",
+          "breaking the π bond, so at ordinary",
+          "temperatures neither changes into the",
+          "other. Each can be prepared and kept.",
+          "Both have the molecular formula C₄H₈",
+          "and the structural formula",
+          "CH₃–CH=CH–CH₃, but they have different",
+          "melting points and different boiling",
+          "points.",
+          "trans-but-2-ene is the more stable of",
+          "the two, because its two methyl groups",
+          "are farther apart."
+        ],
+        "why": "A student who has read that the two forms differ only in space can reasonably ask why they are counted as two compounds at all. The answer is that separating them needs a bond to be broken, and the different melting and boiling points are the evidence that two compounds really are there.",
+        "common_mistakes": [
+          "Writing that the two forms change into each other on standing, or on gentle warming. Turning one into the other means breaking the π bond, which does not happen at ordinary temperatures.",
+          "Giving the two isomers the same boiling point. Their melting points and boiling points are different, which is how they are told apart."
+        ],
+        "memory_tip": "The π bond has to break, so the two forms stay separate and can be bottled.",
+        "margin_note": "One closing line naming the two as separate compounds completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question asks for a definition and then for one named example worked out, so the four marks are spread across both halves. A definition on its own, with no description of where each group sits in the two forms of but-2-ene, answers only the first half."
+}

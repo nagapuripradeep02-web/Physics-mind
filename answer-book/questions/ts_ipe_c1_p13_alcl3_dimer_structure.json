@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_alcl3_dimer_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the structure of AlCl₃ as a dimer.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Al₂Cl₆ and why the dimer forms",
+      "marks": 1
+    },
+    {
+      "label": "The bridged structure with its bond lengths",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dimer_forms",
+        "kind": "equation",
+        "label": "AlCl₃ exists as Al₂Cl₆",
+        "marks": 1,
+        "mark_note": "The dimer and the reason for it",
+        "lines": [
+          {
+            "text": "2AlCl₃ ⇌ Al₂Cl₆",
+            "style": "eq"
+          },
+          "Aluminium in AlCl₃ has only six valence",
+          "electrons, so it is electron deficient.",
+          "Each molecule donates a chlorine lone",
+          "pair to the aluminium of the other, so",
+          "both aluminium atoms reach an octet."
+        ],
+        "why": "The dimer exists because a six-electron aluminium atom can accept a lone pair, so writing the electron count first makes the bridged drawing follow from a reason instead of from memory.",
+        "common_mistakes": [
+          "Drawing two AlCl₃ molecules side by side without joining them. They are held together through two bridging chlorine atoms.",
+          "Saying aluminium already has an octet in AlCl₃. It has six electrons, which is why the dimer forms."
+        ],
+        "memory_tip": "Six electrons on aluminium, one lone pair from chlorine, octet complete.",
+        "margin_note": "Write the words electron deficient. They carry the reason for the dimer."
+      },
+      {
+        "id": "s2_bridged_structure",
+        "kind": "text",
+        "label": "The bridged structure",
+        "marks": 1,
+        "mark_note": "The bridged structure with bond lengths",
+        "lines": [
+          {
+            "text": "Al₂Cl₆ has two bridging chlorine atoms",
+            "style": "boxed"
+          },
+          "Draw the two aluminium atoms with two",
+          "chlorine atoms between them, forming a",
+          "four-membered Al–Cl–Al–Cl ring.",
+          "Give each aluminium two more chlorine",
+          "atoms, one above and one below the ring.",
+          "Each aluminium is sp³ and tetrahedral.",
+          "Terminal Al–Cl ≈ 206 pm,",
+          "bridging Al–Cl ≈ 221 pm."
+        ],
+        "why": "Each bridging chlorine atom is shared between the two aluminium atoms, so its bonds are longer and weaker than the four terminal bonds, and marking the two lengths is what shows the bridge is different.",
+        "common_mistakes": [
+          "Drawing all six Al–Cl bonds the same length. The two bridge bonds are longer, about 221 pm against 206 pm.",
+          "Drawing only one bridging chlorine atom. Two chlorine atoms bridge the two aluminium atoms.",
+          "Drawing the aluminium atoms flat. Each is sp³ and tetrahedral in the dimer."
+        ],
+        "memory_tip": "Four terminal chlorines outside and two bridging chlorines in the middle make six.",
+        "margin_note": "Mark both bond lengths on the sketch, 206 pm and 221 pm. Each bridging chlorine makes one ordinary bond and one coordinate bond, so draw one arrow from each."
+      }
+    ]
+  },
+  "insider_note": "The two bridging chlorine atoms are the point of this drawing; a sketch with six equal Al–Cl bonds and no bridge shows a different molecule."
+}

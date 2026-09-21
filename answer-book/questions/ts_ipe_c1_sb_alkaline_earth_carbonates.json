@@ -1,0 +1,245 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_carbonates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the carbonates of the alkaline earth metals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation",
+      "marks": 2
+    },
+    {
+      "label": "Solubility in water",
+      "marks": 2
+    },
+    {
+      "label": "Action of heat",
+      "marks": 2
+    },
+    {
+      "label": "Thermal stability trend",
+      "marks": 1
+    },
+    {
+      "label": "Beryllium carbonate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.93, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 53(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the thermal stability statement here — stability increases with cation size, so BaCO₃ is the most stable — is the same statement made by the short card on the most stable alkaline earth carbonate, and the solubility reasoning is the same hydration-enthalpy argument used on the sulphate cards of this chapter. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the unmarked closing step, that MgCO₃ and CaCO₃ dissolve in water containing carbon dioxide as the soluble hydrogen carbonates M(HCO₃)₂. This is standard NCERT content and it is the cause of the temporary hardness of water. The equation was checked atom by atom: CaCO₃ + H₂O + CO₂ → Ca(HCO₃)₂ gives Ca 1 = 1, C 2 = 2, O 6 = 6, H 2 = 2."
+  },
+  "insider_note": "The two trends run in opposite directions down the group — the carbonates get less soluble while they get more stable to heat — and an answer that gives only one of them has discussed only half the question.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_preparation",
+        "kind": "equation",
+        "label": "Preparation",
+        "marks": 2,
+        "mark_note": "Preparation",
+        "lines": [
+          "The carbonates of the alkaline earth",
+          "metals have the general formula MCO₃,",
+          "where M is Be, Mg, Ca, Sr or Ba.",
+          "They are made by adding a solution of",
+          "sodium carbonate or ammonium carbonate",
+          "to a soluble salt of the metal.",
+          "The carbonate formed is insoluble, so it",
+          "comes down at once as a precipitate:",
+          {
+            "text": "CaCl₂ + Na₂CO₃ → CaCO₃↓ + 2NaCl",
+            "style": "eq"
+          },
+          "In ionic form the same change is:",
+          {
+            "text": "M²⁺ + CO₃²⁻ → MCO₃↓",
+            "style": "eq"
+          }
+        ],
+        "why": "Every carbonate of this group is insoluble in water, so the simplest way to obtain one is to bring the metal ion and the carbonate ion together in solution and let the solid separate out. The ionic equation shows that the metal ion supplied by the soluble salt is the only part of the starting material that ends up in the product.",
+        "common_mistakes": [
+          "Writing the carbonate as a soluble product. The carbonate is the insoluble solid here, and it separates out as a precipitate.",
+          "Dropping the 2 in front of NaCl. One calcium ion releases two chloride ions.",
+          "Using an insoluble carbonate as the reagent. Sodium carbonate and ammonium carbonate are chosen because both dissolve."
+        ],
+        "memory_tip": "A soluble carbonate is added to a soluble salt of the metal, and the insoluble carbonate settles out.",
+        "margin_note": "Give the ionic form as well as the full equation. It shows what the change really is."
+      },
+      {
+        "id": "s2_solubility",
+        "kind": "text",
+        "label": "Solubility in water",
+        "marks": 2,
+        "mark_note": "Solubility",
+        "lines": [
+          "All the carbonates of this group are",
+          "insoluble in water.",
+          "Their solubility decreases as the atomic",
+          "number of the metal increases:",
+          {
+            "text": "BeCO₃ > MgCO₃ > CaCO₃ > SrCO₃ > BaCO₃",
+            "style": "eq"
+          },
+          "An ionic solid dissolves only if the",
+          "hydration enthalpy released is at least",
+          "as large as the lattice enthalpy that",
+          "has to be supplied.",
+          "The carbonate ion is large, so it sets",
+          "the distance between the ion centres and",
+          "the lattice enthalpy changes little",
+          "down the group.",
+          "The hydration enthalpy falls steadily",
+          "from Be²⁺ to Ba²⁺, so the solubility",
+          "falls with it."
+        ],
+        "why": "The anion is the same in all five compounds and only the cation changes, so the explanation has to be looked for on the side that changes. The large carbonate ion keeps the ion centres far apart whatever the cation is, which is why the lattice enthalpy stays nearly the same while the hydration enthalpy falls.",
+        "common_mistakes": [
+          "Writing that solubility increases down the group. It decreases, so barium carbonate is the least soluble of the five.",
+          "Explaining the trend by the lattice enthalpy rising. It is the hydration enthalpy falling from Be²⁺ to Ba²⁺ that lowers the solubility."
+        ],
+        "memory_tip": "Larger cation, weaker hydration, less soluble carbonate.",
+        "margin_note": "Write the solubility order on one line, then put the reason underneath it."
+      },
+      {
+        "id": "s3_action_of_heat",
+        "kind": "equation",
+        "label": "Action of heat",
+        "marks": 2,
+        "mark_note": "Action of heat",
+        "lines": [
+          "All these carbonates decompose on",
+          "heating and give the metal oxide and",
+          "carbon dioxide:",
+          {
+            "text": "MCO₃ → MO + CO₂",
+            "style": "eq"
+          },
+          "For calcium carbonate:",
+          {
+            "text": "CaCO₃ → CaO + CO₂",
+            "style": "eq"
+          },
+          "The oxide left behind is a basic oxide,",
+          "and the gas given off turns lime water",
+          "milky."
+        ],
+        "why": "Heat splits the carbonate ion into an oxide ion and carbon dioxide, so the solid left in the dish is the metal oxide in every case. Writing the general equation once and then one worked example shows that the same change happens for all five metals.",
+        "common_mistakes": [
+          "Writing the metal itself as the product. Heating a carbonate of this group gives the oxide, not the metal.",
+          "Writing carbon monoxide as the gas. A carbonate gives carbon dioxide."
+        ],
+        "memory_tip": "Carbonate to oxide, with carbon dioxide given off.",
+        "margin_note": "Write the general equation first, then one named example under it."
+      },
+      {
+        "id": "s4_thermal_stability",
+        "kind": "text",
+        "label": "Trend in thermal stability",
+        "marks": 1,
+        "mark_note": "Thermal stability",
+        "lines": [
+          "Thermal stability increases as the size",
+          "of the cation increases down the group:",
+          {
+            "text": "BeCO₃ < MgCO₃ < CaCO₃ < SrCO₃ < BaCO₃",
+            "style": "eq"
+          },
+          "Barium carbonate is the most stable of",
+          "the five and needs the highest",
+          "temperature to decompose.",
+          "A large cation has a low polarising",
+          "power, so it distorts the carbonate ion",
+          "only slightly and the C–O bonds in it",
+          "stay strong."
+        ],
+        "why": "A carbonate decomposes when the cation pulls electron density away from the carbonate ion and weakens a C–O bond. A large cation with a low charge density does this least, so the carbonate of the largest cation needs the highest temperature to decompose.",
+        "common_mistakes": [
+          "Writing that thermal stability decreases down the group. It increases, which is why BaCO₃ is the most stable.",
+          "Giving the order without the reason. The size of the cation is what the reason rests on."
+        ],
+        "memory_tip": "A larger cation pulls on the carbonate ion less, so the carbonate needs more heat to decompose.",
+        "margin_note": "The stability order runs the opposite way to the solubility order, so write each of them out in full."
+      },
+      {
+        "id": "s5_beryllium_carbonate",
+        "kind": "text",
+        "label": "Beryllium carbonate",
+        "marks": 1,
+        "mark_note": "Beryllium carbonate",
+        "lines": [
+          "Beryllium carbonate is the least stable",
+          "member of the group.",
+          "Be²⁺ is very small and its polarising",
+          "power is high, so it pulls electron",
+          "density away from the carbonate ion and",
+          "weakens it.",
+          "BeCO₃ decomposes so readily that it is",
+          "kept in an atmosphere of carbon",
+          "dioxide.",
+          "Carbon dioxide is one of the products",
+          "of the decomposition, and extra carbon",
+          "dioxide in the surroundings slows that",
+          "decomposition down."
+        ],
+        "why": "Beryllium is the extreme case of the same argument that gives the whole trend: the smallest cation of the group has the highest polarising power, so its carbonate is the one that breaks up most readily. Naming the carbon dioxide atmosphere shows how an unstable compound is handled in practice.",
+        "common_mistakes": [
+          "Writing that BeCO₃ cannot exist. It exists, but it is kept in an atmosphere of carbon dioxide.",
+          "Naming magnesium carbonate as the least stable. Beryllium carbonate is below it in stability, because Be²⁺ is the smaller ion."
+        ],
+        "memory_tip": "The smallest cation gives the least stable carbonate, so BeCO₃ is kept under carbon dioxide.",
+        "margin_note": "Say what BeCO₃ is kept in, and say why carbon dioxide is the gas chosen."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "Solubility in water containing CO₂",
+        "marks": 0,
+        "lines": [
+          "These carbonates are insoluble in pure",
+          "water only.",
+          "MgCO₃ and CaCO₃ dissolve in water that",
+          "contains carbon dioxide, because the",
+          "soluble hydrogen carbonate is formed:",
+          {
+            "text": "CaCO₃ + H₂O + CO₂ → Ca(HCO₃)₂",
+            "style": "eq"
+          },
+          "This is how rain water dissolves",
+          "limestone, and it is the cause of the",
+          "temporary hardness of water:",
+          {
+            "text": "MCO₃ + H₂O + CO₂ → M(HCO₃)₂, soluble",
+            "style": "boxed"
+          }
+        ],
+        "why": "The rest of this answer says these carbonates are insoluble, which is true of pure water only. Carbon dioxide dissolved in the water converts the carbonate into the hydrogen carbonate, which does dissolve, and that one reaction is behind both the dissolving of limestone by rain and the temporary hardness of water.",
+        "common_mistakes": [
+          "Writing that a carbonate of this group dissolves in pure water. It dissolves only in water that contains carbon dioxide, and it is the hydrogen carbonate that is soluble.",
+          "Writing the product as M(CO₃)₂. Water and carbon dioxide turn the carbonate ion into the hydrogen carbonate ion HCO₃⁻."
+        ],
+        "memory_tip": "Carbon dioxide in the water turns the insoluble carbonate into the soluble hydrogen carbonate.",
+        "margin_note": "Unmarked closing step. It adds the one condition under which these carbonates do dissolve."
+      }
+    ]
+  }
+}

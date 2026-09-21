@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_distillation_reduced_pressure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on distillation under reduced pressure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The problem it solves",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The apparatus",
+      "marks": 1
+    },
+    {
+      "label": "The procedure",
+      "marks": 2
+    },
+    {
+      "label": "A worked example",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 39(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the Claisen flask, the capillary that admits a fine stream of air, the condenser, the receiver, the vacuum pump or water aspirator and the manometer are described precisely enough to be drawn from the words. NO BOILING POINT IS QUOTED FOR GLYCEROL, deliberately. The fact the answer needs is that glycerol begins to decompose at the temperature at which it would boil under ordinary pressure, and that is stated; a numerical boiling point for glycerol was not in the settled list for this chapter, so none is invented here. The example itself, glycerol recovered from spent lye in soap manufacture, is the standard one."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_problem",
+        "kind": "text",
+        "label": "The problem it solves",
+        "marks": 1,
+        "mark_note": "Liquids that decompose on heating",
+        "lines": [
+          "Some liquids decompose at or below the",
+          "temperature at which they would boil",
+          "under ordinary atmospheric pressure.",
+          "Heating such a liquid to its normal",
+          "boiling point destroys it, so an",
+          "ordinary distillation cannot be used at",
+          "all.",
+          "Distillation under reduced pressure",
+          "boils the liquid at a much lower",
+          "temperature by lowering the pressure",
+          "above it, and so distils it undamaged."
+        ],
+        "why": "This method is defined by a limit of the ordinary one. Where the earlier methods change how the vapour is handled, this one changes the temperature at which the boiling happens, because for these liquids the temperature itself is the problem.",
+        "common_mistakes": [
+          "Saying the method is for liquids with close boiling points. That is a different case; this one is for liquids that decompose on heating.",
+          "Saying the liquid is heated less, so it does not boil. It does boil, and fully, but at a lower temperature."
+        ],
+        "memory_tip": "The liquid would be destroyed before it boiled, so the boiling is brought down to a safe temperature.",
+        "margin_note": "Open by naming the difficulty: the liquid decomposes at or below its normal boiling point."
+      },
+      {
+        "id": "s2_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "Boiling point falls with pressure",
+        "lines": [
+          "A liquid boils when its vapour pressure",
+          "becomes equal to the external pressure",
+          "above its surface.",
+          "The vapour pressure of a liquid rises as",
+          "the temperature rises, so at ordinary",
+          "atmospheric pressure the two are equal",
+          "only at the normal boiling point.",
+          "If the space above the liquid is partly",
+          "evacuated, the external pressure is much",
+          "smaller, and a much smaller vapour",
+          "pressure is now enough to match it.",
+          "That smaller vapour pressure is reached",
+          "at a much lower temperature, so the",
+          "liquid boils well below its normal",
+          "boiling point and below the temperature",
+          "at which it would begin to decompose."
+        ],
+        "why": "The boiling point is not a fixed property of a liquid; it is the temperature at which vapour pressure equals whatever pressure is above the liquid. Lowering that pressure lowers the boiling point, and that single relation is the whole of the method.",
+        "common_mistakes": [
+          "Saying reduced pressure lowers the vapour pressure of the liquid. Vapour pressure depends on the temperature, not on the pressure above; what is lowered is the value it has to reach.",
+          "Calling the normal boiling point the boiling point. It is the boiling point at atmospheric pressure only."
+        ],
+        "memory_tip": "Boiling is vapour pressure matching the pressure above, so a smaller pressure above means a lower boiling temperature.",
+        "margin_note": "Two marks here, so state the vapour pressure condition for boiling AND the effect of reducing the external pressure."
+      },
+      {
+        "id": "s3_apparatus",
+        "kind": "text",
+        "label": "The apparatus",
+        "marks": 1,
+        "mark_note": "Claisen flask, pump, manometer",
+        "lines": [
+          "The liquid is put in a round-bottomed",
+          "flask, usually a Claisen flask, which",
+          "has two necks so that the thermometer",
+          "and the capillary are kept apart.",
+          "A fine capillary tube dips almost to the",
+          "bottom of the liquid and admits a slow",
+          "stream of air bubbles, which keeps the",
+          "boiling smooth and prevents bumping.",
+          "The side arm leads to a condenser and",
+          "then to a receiver.",
+          "The receiver is joined to a vacuum pump",
+          "or a water aspirator, and a manometer is",
+          "connected so that the pressure inside",
+          "can be read at any moment."
+        ],
+        "why": "Boiling chips cannot be used here, because at a low pressure they stop working and the liquid bumps violently. The fine stream of air from the capillary provides a steady supply of bubbles instead, which is why the capillary replaces the porcelain pieces of an ordinary distillation.",
+        "common_mistakes": [
+          "Putting porcelain pieces in the flask instead of a capillary. Under reduced pressure they do not keep the boiling smooth.",
+          "Leaving out the manometer. A boiling point measured here means nothing unless the pressure is known."
+        ],
+        "memory_tip": "Claisen flask, capillary for smooth boiling, condenser, receiver, pump and manometer.",
+        "margin_note": "Name the capillary and say what it is for. It is the part that distinguishes this apparatus from an ordinary one."
+      },
+      {
+        "id": "s4_procedure",
+        "kind": "text",
+        "label": "The procedure",
+        "marks": 2,
+        "mark_note": "Pump first, gentle bath, record both",
+        "lines": [
+          "The pump is started first and the",
+          "pressure is brought down to the value",
+          "chosen for the distillation.",
+          "Only then is the flask heated, and a",
+          "water bath or an oil bath is used so",
+          "that the heating is gentle and even.",
+          "The liquid boils at the lowered",
+          "temperature, and the vapour passes into",
+          "the condenser and is collected.",
+          "Both the temperature of the vapour and",
+          "the pressure are recorded, because a",
+          "boiling point measured here has no",
+          "meaning without the pressure it was",
+          "measured at.",
+          "At the end the heating is stopped first",
+          "and the vacuum is released only after",
+          "the flask has cooled."
+        ],
+        "why": "The order of operations is the safety of the method. Heating a sealed apparatus before the pressure is reduced, or letting air in while the flask is still hot, exposes the hot liquid to air and can undo exactly the protection the low pressure was giving it.",
+        "common_mistakes": [
+          "Heating the flask before the pump is started. The pressure is lowered first, and only then is heat applied.",
+          "Recording the temperature alone. The pressure must be recorded with it."
+        ],
+        "memory_tip": "Pump first, then heat gently; cool first, then let the air back in.",
+        "margin_note": "Two marks here, so give the order of operations AND the recording of temperature with pressure."
+      },
+      {
+        "id": "s5_worked_example",
+        "kind": "text",
+        "label": "A worked example",
+        "marks": 1,
+        "mark_note": "Glycerol from spent lye",
+        "lines": [
+          "Glycerol is recovered from spent lye,",
+          "the liquid left after soap has been",
+          "made.",
+          "Glycerol begins to decompose at the",
+          "temperature at which it would boil under",
+          "ordinary atmospheric pressure, so it",
+          "cannot be distilled in the ordinary way.",
+          "Under reduced pressure it boils well",
+          "below that temperature and passes over",
+          "undecomposed.",
+          "The glycerol collected in the receiver",
+          "is pure, and the salts of the spent lye",
+          "are left behind."
+        ],
+        "why": "Glycerol is the standard example because it shows both halves of the case at once: it is valuable enough to be worth recovering, and it cannot be recovered by an ordinary distillation, since the heat needed would destroy the very substance being collected.",
+        "common_mistakes": [
+          "Saying glycerol is simply too high boiling. The reason for the low pressure is that it decomposes at that temperature.",
+          "Naming a low boiling solvent as the example. Those are distilled in the ordinary way."
+        ],
+        "memory_tip": "Glycerol from spent lye: it would be destroyed at its ordinary boiling point, so the pressure is lowered instead.",
+        "margin_note": "Name the source, spent lye from soap making, along with the compound. The pairing is what makes the example concrete."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Heat-sensitive substances",
+        "lines": [
+          "The method is used for any liquid that",
+          "is damaged by heat.",
+          "Glycerol is recovered by it, sugar",
+          "syrups are concentrated by it in vacuum",
+          "pans, and many liquids used in medicine",
+          "are purified by it.",
+          "It is also used for a compound whose",
+          "boiling point is so high that ordinary",
+          "heating would char it.",
+          {
+            "text": "Less pressure means a lower boiling point",
+            "style": "boxed"
+          }
+        ],
+        "why": "Every one of these uses is the same case in a different setting: a substance that is worth recovering and that will not stand the temperature needed to boil it at atmospheric pressure. Reducing the pressure is the only way to boil it without changing it.",
+        "common_mistakes": [
+          "Listing uses without a common reason. In every one of them the substance is heat-sensitive.",
+          "Ending at the example. A note should close on where the method is used."
+        ],
+        "memory_tip": "Anything that heat would spoil is distilled under reduced pressure.",
+        "margin_note": "One closing line naming the relation between pressure and boiling point completes the answer."
+      }
+    ]
+  },
+  "insider_note": "One relation carries this whole answer: a liquid boils when its vapour pressure equals the pressure above it, so lowering that pressure lowers the boiling point. Say that first, then the apparatus with its capillary, then glycerol from spent lye as the example. The capillary and the manometer are the two parts most answers leave out."
+}

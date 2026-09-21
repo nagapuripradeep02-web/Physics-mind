@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_allotropy_and_crystalline_allotropes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is allotropy? Give the crystalline allotropes of carbon.",
+  "appearances": [
+    {
+      "year": 2013
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The meaning of allotropy",
+      "marks": 1
+    },
+    {
+      "label": "The crystalline allotropes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. APPEARANCES: the book records this question as having been asked in May 2013 and in March 2013, so appearances[] carries two 2013 entries; the schema holds the year only, so the month of each sitting is not carried in the data. THE CRYSTALLINE FORMS: the book answers this question with diamond and graphite, and two questions later calls fullerene the third form of carbon. NCERT counts diamond, graphite and the fullerenes as the crystalline allotropes, so this card names diamond and graphite first and then adds the fullerenes as a third crystalline form. The two-item answer is not an error. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning of allotropy",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "Allotropy is the existence of an element",
+          "in two or more forms in the same",
+          "physical state, the forms having",
+          "different physical properties but the",
+          "same chemical properties.",
+          "These forms are called allotropes, and",
+          "carbon shows allotropy."
+        ],
+        "why": "The question asks two things, so the definition is written in one compact sentence and the rest of the page is spent on the forms. The words that carry the definition are two or more forms, the same physical state, different physical properties, and the same chemical properties.",
+        "common_mistakes": [
+          "Writing that allotropes are different elements. They are different forms of one and the same element.",
+          "Saying the chemical properties differ. It is the physical properties that differ; the chemical properties are the same."
+        ],
+        "memory_tip": "Same element, same chemistry, different physical form.",
+        "margin_note": "Define the word in one sentence, then move straight to the forms."
+      },
+      {
+        "id": "s2_crystalline",
+        "kind": "text",
+        "label": "The crystalline allotropes",
+        "marks": 1,
+        "mark_note": "The forms",
+        "lines": [
+          "The crystalline allotropes of carbon are",
+          "diamond and graphite.",
+          "The fullerenes, of which C₆₀ is the best",
+          "known, are also counted as a crystalline",
+          "form of carbon.",
+          "In all of them the carbon atoms are",
+          "arranged in a regular repeating pattern,",
+          "which is what crystalline means.",
+          {
+            "text": "Crystalline: diamond, graphite, fullerene",
+            "style": "boxed"
+          }
+        ],
+        "why": "Crystalline means the atoms sit in a regular repeating pattern. Diamond and graphite are the two forms named everywhere, and the fullerenes are also built on a regular pattern of rings, so they are counted as crystalline as well. Carbon's amorphous forms, such as coal and coke, are a separate group and are not asked for here.",
+        "common_mistakes": [
+          "Naming coal, coke or charcoal here. Those are the amorphous forms of carbon, not the crystalline ones.",
+          "Writing that diamond and graphite are different elements. Both are pure carbon; only the arrangement of the atoms differs."
+        ],
+        "memory_tip": "Crystalline carbon: diamond, graphite and the fullerenes.",
+        "margin_note": "Name diamond and graphite, and add the fullerenes as a third crystalline form."
+      }
+    ]
+  },
+  "insider_note": "A complete answer defines allotropy in one sentence and then names the crystalline forms of carbon: diamond and graphite, with the fullerenes counted as a third."
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethylene_preparation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe two methods of preparation of ethylene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dehydration of ethyl alcohol",
+      "marks": 3
+    },
+    {
+      "label": "Dehydrohalogenation of ethyl bromide",
+      "marks": 3
+    },
+    {
+      "label": "What the methods have in common",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 33. PAGE AND NUMBER CHECKED AGAINST THE SOURCE INDEX (answer-book/sources/chaitanya_c1_2027_ch10_general_organic_chemistry.json) on 2026-09-03 and both are correct: the index carries an entry with ref laq33 and no part letter whose stem is \"Describe two methods of preparation of ethylene\", on printed page 118. PRINTED QUESTION 33 IS ONE QUESTION WITH FIVE ASKS: this opening ask, then the lettered parts (a)-(d), each asking for the equation of one reaction of ethylene. The four parts are carded separately as ethylene_with_ozone, ethylene_with_hocl, ethylene_with_baeyer_reagent and ethylene_heated_with_oxygen, so the shared number 33 is not a citation clash; those four cards cited p.119 until 2026-09-03 and were corrected to p.118, which is where the index records them (p.119 carries question 34, the acetylene question). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: CH₃CH₂OH → CH₂=CH₂ + H₂O has C 2 = 2, H 6 = 4 + 2 and O 1 = 1; CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O has C 2 = 2, H 6 = 4 + 2, Br 1 = 1, K 1 = 1 and O 1 = 1; BrCH₂–CH₂Br + Zn → CH₂=CH₂ + ZnBr₂ has C 2 = 2, H 4 = 4, Br 2 = 2 and Zn 1 = 1; HC≡CH + H₂ → CH₂=CH₂ has C 2 = 2 and H 4 = 4; C₂H₆ → C₂H₄ + H₂ has C 2 = 2 and H 6 = 4 + 2. LINDLAR'S CATALYST IS WRITTEN AS THE SOURCE'S OWN EQUATION SETS IT — palladium supported on barium sulphate, poisoned with quinoline (Pd–BaSO₄ / quinoline). The chapter's prose elsewhere describes it as palladium coated charcoal and barium sulphate, which does not match its own equation; the equation's form is the one carried here, and palladium on calcium carbonate is an equally correct support. NO TEMPERATURE IS STATED for the pyrolysis of ethane: the source settles 773 K for the pyrolysis of hexane only. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the 140 °C ether product named as a mistake under the dehydration, the substitution product from aqueous KOH, the term β-elimination, and the closing statement of the common pattern. ONE CONDITION HAS NO RECORDED PROVENANCE: the alternative dehydrating agent, aluminium oxide at 350 °C. It was not recorded at authoring time whether the printed answer names it, and the source index carries stems only. Treat it as unattributed until a teacher confirms both the value and where it came from. THE MARK SPLIT WAS RE-CUT ON 2026-09-03 after an examiner audit: the old split gave 1 mark each to dehalogenation, controlled hydrogenation and pyrolysis — 3 of the 8 — while the insider note and a common mistake both tell the student to write only two methods, so a student who followed the card scored 5 of 8 on the card's own scheme. The three extra routes are now a single unmarked step and the split is 3 (dehydration) + 3 (dehydrohalogenation) + 2 (the common pattern) = 8. All five equations are unchanged."
+  },
+  "insider_note": "The question asks for two methods, so write two of them in full — reagent, conditions and balanced equation for each — rather than five names with no equations. Dehydration of ethyl alcohol and dehydrohalogenation with alcoholic potassium hydroxide are the two that carry the most detail.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dehydration",
+        "kind": "equation",
+        "label": "Dehydration of ethyl alcohol",
+        "marks": 3,
+        "mark_note": "Dehydration",
+        "lines": [
+          "Ethyl alcohol is heated with an excess of",
+          "concentrated sulphuric acid at 170 °C.",
+          {
+            "text": "CH₃CH₂OH → CH₂=CH₂ + H₂O",
+            "style": "eq"
+          },
+          "The acid removes one molecule of water",
+          "from the alcohol, so the reaction is a",
+          "dehydration.",
+          "The OH comes off one carbon and a",
+          "hydrogen atom off the carbon next to it,",
+          "leaving a double bond between them.",
+          "Aluminium oxide at 350 °C removes the",
+          "water in the same way and may be used in",
+          "its place.",
+          "Atoms: 2 C, 6 H and 1 O on each side."
+        ],
+        "why": "Ethyl alcohol carries an OH on one carbon and hydrogen atoms on the next, so removing one molecule of water takes a group from each carbon and leaves one free bond on each; those two free bonds pair into the double bond. The temperature is part of the method: about 140 °C gives diethyl ether instead of ethylene.",
+        "common_mistakes": [
+          "Using dilute sulphuric acid. The acid must be concentrated, because it acts as a dehydrating agent.",
+          "Heating to about 140 °C. At that temperature the product is diethyl ether; ethylene needs about 170 °C.",
+          "Removing the OH and the hydrogen from the same carbon. They come from neighbouring carbons."
+        ],
+        "memory_tip": "Take OH from one carbon and H from the next, and a double bond is left.",
+        "margin_note": "Name the concentrated acid and the temperature, then show the water leaving."
+      },
+      {
+        "id": "s2_dehydrohalogenation",
+        "kind": "equation",
+        "label": "Dehydrohalogenation of ethyl bromide",
+        "marks": 3,
+        "mark_note": "Dehydrohalogenation",
+        "lines": [
+          "Ethyl bromide is heated with potassium",
+          "hydroxide dissolved in alcohol.",
+          {
+            "text": "CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O",
+            "style": "eq"
+          },
+          "Bromine is removed from one carbon and a",
+          "hydrogen atom from the carbon next to it.",
+          "Removing two atoms from neighbouring",
+          "carbons in this way is a β-elimination.",
+          "The alcoholic solution is essential: an",
+          "aqueous solution gives ethyl alcohol by",
+          "substitution instead.",
+          "Atoms: 2 C, 6 H, 1 Br, 1 K and 1 O each",
+          "side."
+        ],
+        "why": "Removing HBr from two neighbouring carbons leaves each of them one bond short, and the two carbons then form the second bond between themselves. Whether the potassium hydroxide eliminates or substitutes depends on the solvent, so naming the alcoholic solution is part of the method and not a detail.",
+        "common_mistakes": [
+          "Using aqueous potassium hydroxide. That gives ethyl alcohol; ethylene needs the alcoholic solution.",
+          "Removing both atoms from the same carbon. The hydrogen comes from the carbon next to the one carrying bromine.",
+          "Leaving KBr or water out of the equation. Both are formed, and without them the equation does not balance."
+        ],
+        "memory_tip": "Alcoholic KOH eliminates and gives the alkene; aqueous KOH substitutes.",
+        "margin_note": "Write alcoholic KOH into the equation and take the hydrogen from the neighbouring carbon."
+      },
+      {
+        "id": "s3_other_routes",
+        "kind": "equation",
+        "label": "Three other routes",
+        "marks": 0,
+        "lines": [
+          "Three more routes are also correct, and",
+          "any one of them may be used as a method.",
+          "Dehalogenation: 1,2-dibromoethane is",
+          "warmed with zinc dust in alcohol.",
+          {
+            "text": "BrCH₂–CH₂Br + Zn → CH₂=CH₂ + ZnBr₂",
+            "style": "eq"
+          },
+          "Controlled hydrogenation: acetylene",
+          "takes one molecule of hydrogen over",
+          "Lindlar's catalyst, palladium on barium",
+          "sulphate poisoned with quinoline.",
+          {
+            "text": "HC≡CH + H₂ → CH₂=CH₂",
+            "style": "eq"
+          },
+          "Pyrolysis: ethane is heated strongly",
+          "in the absence of air. This is the",
+          "industrial method.",
+          {
+            "text": "C₂H₆ → C₂H₄ + H₂",
+            "style": "eq"
+          }
+        ],
+        "why": "These three are named for completeness, and each one is correct if it is written out in full with its reagent and its conditions. Zinc removes one bromine atom from each of two neighbouring carbon atoms and leaves them joined by a double bond; the poisoned catalyst stops the hydrogenation at the alkene, where an ordinary nickel catalyst would carry it on to ethane; and cracking ethane is the route used on the large scale, because ethane is cheap and plentiful.",
+        "common_mistakes": [
+          "Using a nickel catalyst for the hydrogenation. Nickel carries the addition on to ethane, so the alkene needs the poisoned catalyst, and only one molecule of hydrogen is added.",
+          "Starting the dehalogenation from 1,1-dibromoethane, or writing ZnBr as the by-product. The two bromine atoms must be on different, neighbouring carbon atoms, and zinc is divalent, so the by-product is ZnBr₂.",
+          "Naming three routes instead of writing two out in full. The marks are for two complete methods."
+        ],
+        "memory_tip": "Remove two bromine atoms, add one hydrogen molecule, or use heat alone.",
+        "margin_note": "Unmarked step. These three are extra; the marks are for the two methods above."
+      },
+      {
+        "id": "s6_pattern",
+        "kind": "boxed_final",
+        "label": "What the methods have in common",
+        "marks": 2,
+        "mark_note": "The common pattern",
+        "lines": [
+          {
+            "text": "Each method leaves a C=C double bond",
+            "style": "boxed"
+          },
+          "Dehydration removes H and OH; alcoholic",
+          "KOH removes H and Br; zinc removes two",
+          "bromine atoms; heat removes two hydrogen",
+          "atoms.",
+          "In each of these, two atoms are taken from",
+          "neighbouring carbons and the two free",
+          "bonds pair into the double bond.",
+          "Hydrogenation of acetylene reaches the",
+          "same bond the other way, by adding."
+        ],
+        "why": "Four of the five routes are one change with different atoms removed, so a student who sees the pattern can rebuild any of the equations instead of memorising each. It also shows why the acetylene route is the odd one out: there the double bond is reached by adding hydrogen to a triple bond, not by removing anything.",
+        "common_mistakes": [
+          "Writing the product of an elimination with a single bond. The two free bonds pair into a double bond.",
+          "Describing only one method. The question asks for two, each with its reagent, its conditions and its equation."
+        ],
+        "memory_tip": "Take two atoms off neighbouring carbons and the double bond appears.",
+        "margin_note": "Close by naming what the methods share: each one leaves a C=C double bond."
+      }
+    ]
+  }
+}

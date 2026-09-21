@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_co2_in_photosynthesis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the use of CO₂ in photosynthesis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What green plants use CO₂ for",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_plants_use_it_for",
+        "kind": "text",
+        "label": "What green plants use CO₂ for",
+        "marks": 1,
+        "mark_note": "The use",
+        "lines": [
+          "Green plants take in carbon dioxide CO₂",
+          "from the air.",
+          "They combine it with water to build",
+          "glucose, C₆H₁₂O₆, which is a",
+          "carbohydrate.",
+          "This process is photosynthesis. It needs",
+          "sunlight and the green pigment",
+          "chlorophyll.",
+          "Oxygen is released at the same time."
+        ],
+        "why": "Carbon dioxide is the source of the carbon in the sugar. Every carbon atom in the glucose came from a CO₂ molecule taken from the air, which is what makes CO₂ the raw material of photosynthesis rather than a by-product.",
+        "common_mistakes": [
+          "Writing that plants use oxygen in photosynthesis. Oxygen is the gas given out; CO₂ is the gas taken in.",
+          "Naming the product as starch only. Glucose is formed first, and the plant then stores it as starch."
+        ],
+        "memory_tip": "Carbon dioxide supplies the carbon: six CO₂ molecules build one six-carbon glucose molecule.",
+        "margin_note": "Name sunlight and chlorophyll as the two conditions before writing the equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "6CO₂ + 12H₂O → C₆H₁₂O₆ + 6O₂ + 6H₂O",
+            "style": "boxed"
+          },
+          "In sunlight, in the presence of",
+          "chlorophyll.",
+          "Atoms: 6 C, 24 H and 24 O on each side.",
+          "The shorter net form below is the same",
+          "equation with the six re-formed water",
+          "molecules cancelled, and it is also",
+          "correct:",
+          {
+            "text": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Twelve molecules of water are used on the left and six are re-formed on the right, so this form shows how much water the process actually takes in. Cancelling the six that come back gives the shorter form, which balances just as exactly — the two are the same equation written at two levels of detail.",
+        "common_mistakes": [
+          "Writing CO₂ + H₂O → C₆H₁₂O₆ + O₂ with no coefficients. The atoms have to be counted and balanced on both sides.",
+          "Leaving out the conditions. Sunlight and chlorophyll have to be written with the equation, above the arrow or on the line just below it."
+        ],
+        "memory_tip": "Six carbon dioxide molecules build one six-carbon glucose and release six oxygen molecules.",
+        "margin_note": "Count the atoms on both sides before moving on. Either the twelve-water form or the six-water net form is a correct answer."
+      }
+    ]
+  },
+  "insider_note": "The question asks for the use of CO₂, so the answer has to say that it supplies the carbon for glucose, not just that plants take it in. A balanced equation with sunlight and chlorophyll named as the conditions completes it."
+}

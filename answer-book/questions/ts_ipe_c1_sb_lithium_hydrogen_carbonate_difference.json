@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_hydrogen_carbonate_difference",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In what respect does lithium hydrogen carbonate differ from the other alkali metal hydrogen carbonates?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The difference",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The decomposition equation 2LiHCO₃ → Li₂CO₃ + CO₂ + H₂O is this book's own working, balanced atom by atom (Li 2, H 2, C 2, O 6 on both sides); the brief's equation table does not print the lithium form, only the sodium one. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_difference",
+        "kind": "text",
+        "label": "The difference",
+        "marks": 1,
+        "mark_note": "The difference",
+        "lines": [
+          "Lithium hydrogen carbonate, LiHCO₃, is",
+          "known only in solution.",
+          "It cannot be obtained as a solid.",
+          "The hydrogen carbonates of sodium,",
+          "potassium, rubidium and caesium are",
+          "stable solids and can be isolated."
+        ],
+        "why": "The question asks for a difference, so the answer has to state both sides: what lithium hydrogen carbonate does, and what the other alkali metal hydrogen carbonates do.",
+        "common_mistakes": [
+          "Writing that LiHCO₃ does not exist at all. It exists in solution; it is the solid that cannot be obtained.",
+          "Giving the lithium half only. Say plainly that the other alkali metal hydrogen carbonates are solids."
+        ],
+        "memory_tip": "Lithium's hydrogen carbonate exists only in solution; the rest of group 1 give solids.",
+        "margin_note": "Both sides of the difference must be written."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "equation",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Li⁺ is the smallest alkali metal ion, so",
+          "its charge to size ratio is the highest",
+          "in group 1.",
+          "It distorts the large HCO₃⁻ ion strongly",
+          "and weakens it, so on evaporating the",
+          "solution the salt changes to lithium",
+          "carbonate, carbon dioxide and water:",
+          {
+            "text": "2LiHCO₃ → Li₂CO₃ + CO₂ + H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "The high charge to size ratio of Li⁺ is what sets lithium apart from the rest of group 1. Here it weakens the large hydrogen carbonate ion so much that the solid salt never forms.",
+        "common_mistakes": [
+          "Writing that Li⁺ carries a bigger charge. Every alkali metal ion is +1; lithium differs by size.",
+          "Naming lithium hydroxide as the product. The decomposition gives lithium carbonate, carbon dioxide and water."
+        ],
+        "memory_tip": "The smallest cation distorts the large hydrogen carbonate ion so strongly that no solid salt forms.",
+        "margin_note": "Name the three products if the equation is written."
+      }
+    ]
+  },
+  "insider_note": "Magnesium behaves the same way, and this is one item on the lithium and magnesium similarity list: neither forms a solid hydrogen carbonate."
+}

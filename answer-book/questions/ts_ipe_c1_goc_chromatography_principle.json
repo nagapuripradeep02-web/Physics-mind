@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_chromatography_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the principle of chromatography.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two phases and the separation",
+      "marks": 1
+    },
+    {
+      "label": "Elution and analysis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE NOTE: the question asks for the PRINCIPLE, so this card carries the three general steps — retention on the stationary phase, by adsorption on a solid or by dissolving in a stationary liquid, with separation by the mobile phase; recovery by a continuous flow of the mobile phase (elution); then qualitative and quantitative analysis — and no apparatus of any one chromatographic method. RETENTION IS STATED GENERALLY, NOT AS ADSORPTION ALONE, and that wording is deliberate: the sibling ts_ipe_c1_goc_partition_chromatography was opened and read on 2026-09-03, and it states at s1 that nothing is adsorbed on a solid surface in partition chromatography and lists \"Describing adsorption on a surface\" among its common mistakes. An adsorption-only statement of the principle here would tell a student that the words this card gives them are an error on that question. The general principle is differential distribution between the two phases; adsorption on a solid is one mechanism of it and dissolving in a stationary liquid is the other, and both are named."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_phases",
+        "kind": "text",
+        "label": "The two phases and the separation",
+        "marks": 1,
+        "mark_note": "Stationary and mobile phase",
+        "lines": [
+          "Chromatography separates the parts of",
+          "a mixture using two phases.",
+          "The STATIONARY phase stays fixed.",
+          "The MOBILE phase moves over it.",
+          "Step 1 — the mixture is applied to the",
+          "stationary phase, and its components are",
+          "retained by it to different extents:",
+          "by adsorption on a solid, or by",
+          "dissolving in a stationary liquid.",
+          "The mobile phase then separates them by",
+          "carrying them along at different rates."
+        ],
+        "why": "Every form of chromatography, whatever the apparatus, rests on the same fact: a component that is retained strongly by the stationary phase is carried only a short way by the mobile phase, and a component that is retained weakly is carried much further. Unequal rates are what produce the separation.",
+        "common_mistakes": [
+          "Naming only one phase. Both a stationary phase and a mobile phase are needed, and the principle is about what happens between them.",
+          "Describing a column or a plate. The question asks for the principle, so the three general steps are the answer."
+        ],
+        "memory_tip": "One phase stays still, one phase moves, and the components move at their own rates.",
+        "margin_note": "Name both phases in the opening line. The whole principle is the difference between them."
+      },
+      {
+        "id": "s2_elution_and_analysis",
+        "kind": "boxed_final",
+        "label": "Elution and analysis",
+        "marks": 1,
+        "mark_note": "Elution named",
+        "lines": [
+          "Step 2 — the separated substances are",
+          "recovered by a continuous flow of the",
+          "mobile phase, and this washing out is",
+          "called elution.",
+          "Step 3 — each separated substance is",
+          "then examined qualitatively and",
+          "quantitatively.",
+          {
+            "text": "Each component moves at its own rate",
+            "style": "boxed"
+          }
+        ],
+        "why": "Separating the components is only the first half of the method. The mobile phase has to keep flowing until each separated substance has been washed out and collected on its own, and only then can it be identified and measured.",
+        "common_mistakes": [
+          "Leaving out the word elution. It is the name for the recovery step and it is the term the question is looking for.",
+          "Stopping at the separation. The analysis, qualitative and quantitative, is the third step."
+        ],
+        "memory_tip": "Elution is simply washing the separated substances out with more of the mobile phase.",
+        "margin_note": "Number the three steps on the answer sheet. A two-mark answer is read quickly, and numbered steps are read fastest."
+      }
+    ]
+  },
+  "insider_note": "This asks for the principle, not for a method. Write the three steps and stop: retention on the stationary phase, by adsorption on a solid or by dissolving in a stationary liquid, with separation by the mobile phase; then elution; then analysis. The word elution is the one most answers leave out."
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_carbon_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the state of hybridisation of carbon in diamond?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "The tetrahedral arrangement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 1(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "The hybridisation",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "lines": [
+          "In diamond every carbon atom is sp³",
+          "hybridised.",
+          "Each carbon is joined to four other",
+          "carbon atoms and carries no lone pair,",
+          "so it needs four hybrid orbitals.",
+          "One 2s orbital and three 2p orbitals",
+          "mix to give four sp³ orbitals."
+        ],
+        "why": "Each carbon in diamond has four bonded neighbours and no lone pair, so four hybrid orbitals are needed. Four orbitals can only come from one s orbital and all three p orbitals, which is sp³.",
+        "common_mistakes": [
+          "Answering sp² for diamond. That is the hybridisation in graphite, where each carbon is joined to three others.",
+          "Writing that carbon uses only two of its 2p orbitals. All three 2p orbitals are used here, so the hybridisation is sp³."
+        ],
+        "memory_tip": "Four bonded carbon atoms means four orbitals, so sp³.",
+        "margin_note": "Answer sp³ and say each carbon is joined to four other carbon atoms."
+      },
+      {
+        "id": "s2_tetrahedral",
+        "kind": "text",
+        "label": "The tetrahedral arrangement",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "The four sp³ orbitals point to the four",
+          "corners of a regular tetrahedron.",
+          "The C–C–C bond angle is 109°28′ and the",
+          "C–C bond length is 154 pm.",
+          "The same pattern repeats in all three",
+          "directions, so the whole crystal is one",
+          "giant covalent network.",
+          {
+            "text": "Carbon in diamond is sp³ hybridised",
+            "style": "boxed"
+          }
+        ],
+        "why": "Four sp³ orbitals repel one another equally and point to the corners of a regular tetrahedron, which fixes the angle at 109°28′. Because each of the four neighbours is bonded in the same way, the arrangement repeats through the crystal instead of stopping at a molecule.",
+        "common_mistakes": [
+          "Giving the bond angle as 120°. That is the graphite angle; in diamond the angle is 109°28′.",
+          "Calling diamond a molecule of carbon atoms. There are no separate molecules; the whole crystal is one covalent network."
+        ],
+        "memory_tip": "sp³ points to a tetrahedron: 109°28′ and a C–C length of 154 pm.",
+        "margin_note": "The angle and the bond length complete the description of the arrangement."
+      }
+    ]
+  },
+  "insider_note": "The answer itself is sp³, so a complete answer adds the reason: each carbon is joined to four others at 109°28′ in a tetrahedral pattern that repeats through the crystal."
+}

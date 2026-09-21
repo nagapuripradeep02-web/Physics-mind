@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethyl_chloride_from_ethylene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is ethyl chloride prepared from ethylene?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The addition reaction",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.112, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED ATOM BY ATOM: CH₂=CH₂ + HCl → CH₃CH₂Cl has C 2 = 2, H 5 = 5 and Cl 1 = 1. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the words dry hydrogen chloride gas, the IUPAC name chloroethane, and the two named wrong products in the common mistakes (1,2-dichloroethane from Cl₂). No temperature or catalyst is stated on this card because the source gives none for this addition."
+  },
+  "insider_note": "Ethylene is symmetrical, so both carbons carry the same number of hydrogen atoms and it makes no difference which one takes the chlorine. One product only, and no rule is needed to choose between the carbons.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_addition",
+        "kind": "text",
+        "label": "The addition reaction",
+        "marks": 1,
+        "mark_note": "The reaction",
+        "lines": [
+          "Ethylene has a carbon-carbon double bond.",
+          "Dry hydrogen chloride gas is passed into",
+          "ethylene and adds across that bond.",
+          "The double bond becomes a single bond.",
+          "One carbon takes the hydrogen atom and",
+          "the other takes the chlorine atom.",
+          "Nothing is left over, so the reaction is",
+          "an addition and not a substitution."
+        ],
+        "why": "An alkene reacts by addition because the π bond between the two carbons is weaker than the σ bond, so it breaks and leaves one free bond on each carbon. Hydrogen chloride supplies exactly two parts, one hydrogen and one chlorine, so both carbons become saturated and no by-product is formed.",
+        "common_mistakes": [
+          "Using chlorine Cl₂ in place of hydrogen chloride. Cl₂ gives 1,2-dichloroethane, not ethyl chloride.",
+          "Writing a substitution that releases HCl. Ethylene adds the hydrogen chloride whole.",
+          "Adding both atoms to the same carbon. One atom goes to each carbon of the double bond."
+        ],
+        "memory_tip": "One carbon of the double bond takes H and the other takes Cl.",
+        "margin_note": "Say that the hydrogen chloride adds across the double bond."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ + HCl → CH₃CH₂Cl",
+            "style": "boxed"
+          },
+          "Atoms: 2 C, 5 H and 1 Cl on each side.",
+          "The product is ethyl chloride, whose",
+          "IUPAC name is chloroethane.",
+          "Every atom of both reactants appears in",
+          "the single product."
+        ],
+        "why": "Writing the equation balanced shows that the two molecules simply combine: there is no second product to look for. The atom count is the check — two carbon, five hydrogen and one chlorine on each side.",
+        "common_mistakes": [
+          "Leaving the double bond in the product. After addition the two carbons are joined by a single bond.",
+          "Writing the product as CH₂ClCH₂Cl. That is the product with chlorine, not with hydrogen chloride."
+        ],
+        "memory_tip": "Ethylene plus HCl gives one product only: CH₃CH₂Cl.",
+        "margin_note": "Show the product with a single bond between the two carbons."
+      }
+    ]
+  }
+}

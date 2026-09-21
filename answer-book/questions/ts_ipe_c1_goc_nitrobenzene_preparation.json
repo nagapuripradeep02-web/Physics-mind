@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_nitrobenzene_preparation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is nitrobenzene prepared?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The method",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.112, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The temperature is printed here as below 60 °C; NCERT gives the same condition as 323–333 K, and 333 K is 60 °C, so the two forms agree."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "text",
+        "label": "The method",
+        "marks": 1,
+        "mark_note": "Method",
+        "lines": [
+          "Nitrobenzene is prepared by the",
+          "nitration of benzene.",
+          "Benzene is warmed with a nitrating",
+          "mixture: concentrated nitric acid and",
+          "concentrated sulphuric acid.",
+          "The temperature is kept below 60 °C."
+        ],
+        "why": "Concentrated sulphuric acid is present to convert nitric acid into the nitronium ion, which is the species that replaces a hydrogen atom of the ring. The temperature limit is part of the method: at a higher temperature a second nitro group enters the ring and dinitrobenzene is formed.",
+        "common_mistakes": [
+          "Using dilute nitric acid. Both acids of the nitrating mixture are concentrated.",
+          "Leaving out the concentrated sulphuric acid. It is half of the nitrating mixture.",
+          "Heating strongly. At a higher temperature, with more of the nitrating mixture, a second nitro group can enter the ring."
+        ],
+        "memory_tip": "Nitrating mixture is two concentrated acids, HNO₃ and H₂SO₄, kept below 60 °C.",
+        "margin_note": "Name both acids and give the temperature limit before writing the equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O",
+            "style": "boxed"
+          },
+          "Conditions: conc. H₂SO₄, below 60 °C.",
+          "The nitro group –NO₂ replaces one",
+          "hydrogen atom of the ring.",
+          "The product C₆H₅NO₂ is nitrobenzene,",
+          "a pale yellow oily liquid."
+        ],
+        "why": "The displaced hydrogen atom and the –OH of the nitric acid leave together as water, so water is the second product here and not hydrogen chloride. Counting atoms, there are 6 C, 7 H, 1 N and 3 O on each side.",
+        "common_mistakes": [
+          "Writing HCl as the second product. In nitration the second product is water.",
+          "Writing the product as C₆H₆NO₂. Benzene loses one hydrogen atom, so it is C₆H₅NO₂."
+        ],
+        "memory_tip": "The nitro group goes on and water comes off.",
+        "margin_note": "One closing line naming the product nitrobenzene completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two details are easy to leave out of this short answer: that both acids are concentrated, and that the temperature is held below 60 °C. Write the equation with water as the second product, not hydrogen chloride."
+}

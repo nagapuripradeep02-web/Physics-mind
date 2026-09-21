@@ -1,0 +1,214 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_inductive_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the inductive effect with a suitable example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 2
+    },
+    {
+      "label": "–I groups and +I groups",
+      "marks": 2
+    },
+    {
+      "label": "The example: 1-chloropropane",
+      "marks": 2
+    },
+    {
+      "label": "What the effect explains",
+      "marks": 1
+    },
+    {
+      "label": "How far it reaches",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The card contrasts the inductive effect with the mesomeric effect in the same words used wherever that contrast appears in this chapter: the inductive effect acts through SIGMA bonds, weakens sharply from bond to bond and is negligible beyond the third carbon atom, while the mesomeric effect acts through π electrons or a lone pair and is passed through the whole conjugated system without weakening. Both are permanent; the electromeric effect is the temporary one. The example 1-chloropropane, CH₃–CH₂–CH₂–Cl, is chosen because it has exactly three carbon atoms, so the point at which the effect becomes negligible falls inside the molecule and can be shown."
+  },
+  "insider_note": "Two words fix this definition and both must appear: permanent, and sigma. The example has to show the charge falling off — δ⁺ on the first carbon, δδ⁺ on the second, δδδ⁺ on the third.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "When two atoms of different",
+          "electronegativity are joined by a single",
+          "bond, the shared pair of electrons lies",
+          "nearer the more electronegative atom.",
+          "The bond becomes polar, and that",
+          "polarity is passed along the sigma bonds",
+          "next to it.",
+          "This permanent displacement of",
+          "sigma-bond electrons is the inductive",
+          "effect."
+        ],
+        "why": "Two words in the definition carry its whole meaning. Permanent means the displacement is a property of the molecule at rest and is not produced by an approaching reagent. Sigma bonds means it travels through single bonds, which is what separates it from every effect that works through π electrons.",
+        "common_mistakes": [
+          "Calling it a temporary effect. It is permanent and is present in the molecule whether or not a reagent is near.",
+          "Writing that electrons are transferred. They are only displaced; no ion is formed and the bond stays covalent."
+        ],
+        "memory_tip": "Permanent, and through sigma bonds.",
+        "margin_note": "Use the words permanent and sigma. They are what fix the definition."
+      },
+      {
+        "id": "s2_two_classes",
+        "kind": "text",
+        "label": "–I groups and +I groups",
+        "marks": 2,
+        "mark_note": "The two classes",
+        "lines": [
+          "Every group is compared with a hydrogen",
+          "atom in the same place.",
+          "–I groups draw electrons away:",
+          "–NO₂, –CN, –COOH, –F, –Cl, –Br, –I.",
+          "Their order is",
+          "–NO₂ > –CN > –COOH > –F > –Cl > –Br > –I.",
+          "+I groups release electrons towards the",
+          "chain: the alkyl groups.",
+          "Their order is",
+          "(CH₃)₃C– > (CH₃)₂CH– > CH₃CH₂– > CH₃–."
+        ],
+        "why": "Each label is a comparison and never an absolute. A group is called –I because it draws the bonding electrons more strongly than a hydrogen atom would in the same place, and +I because it draws them less. Among the alkyl groups the order follows the number of carbon atoms joined to the attached carbon, so a tertiary group releases most.",
+        "common_mistakes": [
+          "Writing that a +I group carries a negative charge. It is neutral; it simply draws the bonding electrons less strongly than hydrogen does.",
+          "Putting the halogens among the +I groups. All four are –I, and fluorine is the strongest of them."
+        ],
+        "memory_tip": "–I draws electrons away, +I releases them; the alkyl groups are the +I set.",
+        "margin_note": "Name several groups in each class and write the order with the > sign."
+      },
+      {
+        "id": "s3_example",
+        "kind": "text",
+        "label": "The example: 1-chloropropane",
+        "marks": 2,
+        "mark_note": "The example",
+        "lines": [
+          "Take 1-chloropropane:",
+          {
+            "text": "CH₃–CH₂–CH₂–Cl",
+            "style": "eq"
+          },
+          "Chlorine is more electronegative than",
+          "carbon, so the C–Cl bonding pair lies",
+          "nearer the chlorine.",
+          "The chlorine becomes δ⁻ and the carbon",
+          "joined to it becomes δ⁺.",
+          "That carbon then draws the pair of the",
+          "next C–C bond, so the second carbon",
+          "becomes δδ⁺ and the third δδδ⁺.",
+          "Each partial charge is far smaller than",
+          "the one before it."
+        ],
+        "why": "Following one molecule atom by atom is what makes the effect visible: the charge is largest on the carbon next to the chlorine and falls away sharply along the chain. The signs δδ⁺ and δδδ⁺ are not new kinds of charge — they are a way of writing that the same positive charge is much weaker two and three bonds away.",
+        "common_mistakes": [
+          "Writing full + and − charges on the atoms. The charges are partial, written δ⁺ and δ⁻.",
+          "Giving every carbon atom the same charge. It falls sharply from one carbon atom to the next."
+        ],
+        "memory_tip": "δ⁺ on the first carbon, δδ⁺ on the second, δδδ⁺ on the third.",
+        "margin_note": "Mark the partial charges on the formula. They are the evidence for the effect."
+      },
+      {
+        "id": "s4_what_it_explains",
+        "kind": "text",
+        "label": "What the effect explains",
+        "marks": 1,
+        "mark_note": "One use",
+        "lines": [
+          "The effect explains acid strength.",
+          "In chloroacetic acid, ClCH₂COOH, the –I",
+          "chlorine draws electrons away from the",
+          "–COOH group, so the hydrogen ion comes",
+          "away more easily.",
+          "Chloroacetic acid is therefore a",
+          "stronger acid than acetic acid, CH₃COOH,",
+          "and trichloroacetic acid, Cl₃C–COOH, is",
+          "stronger still."
+        ],
+        "why": "The comparison works because the three acids differ in one thing only, the number of chlorine atoms. Each chlorine draws electron density away from the carboxyl group and leaves the negative charge of the carboxylate ion better spread out, and an ion that is more stable is formed more readily.",
+        "common_mistakes": [
+          "Writing that acetic acid is the strongest of the three. Its alkyl group is +I, which works the other way and makes the acid weaker.",
+          "Comparing acids with different numbers of carbon atoms. The comparison holds only when one thing is changed at a time."
+        ],
+        "memory_tip": "More chlorine atoms on the acid, stronger acid.",
+        "margin_note": "Give the three acids in order. The comparison is what shows the effect at work."
+      },
+      {
+        "id": "s5_how_far",
+        "kind": "text",
+        "label": "How far it reaches",
+        "marks": 1,
+        "mark_note": "Reach and contrast",
+        "lines": [
+          "The inductive effect acts through sigma",
+          "bonds. It weakens sharply from bond to",
+          "bond and is negligible beyond the third",
+          "carbon atom.",
+          "The mesomeric effect is the other",
+          "permanent effect. It acts through π",
+          "electrons or a lone pair in a conjugated",
+          "system, and it is passed through the",
+          "whole conjugated system without",
+          "weakening."
+        ],
+        "why": "Setting the two effects side by side is the clearest way to fix each of them, because they differ in exactly two things: the kind of electrons displaced, and whether the displacement fades along the chain.",
+        "common_mistakes": [
+          "Writing that the inductive effect reaches the whole molecule. It is negligible beyond the third carbon atom.",
+          "Writing that the mesomeric effect works through sigma bonds. It works through π electrons or a lone pair in a conjugated system."
+        ],
+        "memory_tip": "Sigma and fading is inductive; π and unfading is mesomeric.",
+        "margin_note": "Close with the contrast. It places this effect against the other permanent one."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The effect in one line",
+        "marks": 0,
+        "lines": [
+          "The inductive effect is the permanent",
+          "displacement of a sigma-bond electron",
+          "pair towards the more electronegative",
+          "atom, passed along the chain and falling",
+          "away within about three carbon atoms.",
+          {
+            "text": "–I draws away, +I releases",
+            "style": "boxed"
+          }
+        ],
+        "why": "One closing line puts the definition and the two classes together, which is what a reader looking back over the answer needs to find in a single place.",
+        "common_mistakes": [
+          "Closing without naming the two classes. The –I and +I labels are part of the account.",
+          "Writing the definition without the word permanent. A temporary displacement is a different effect."
+        ],
+        "memory_tip": "Permanent, sigma, and fading with distance.",
+        "margin_note": "Unmarked closing step. It states the definition and the two classes in one line."
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_sio2_solid_co2_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "SiO₂ is a solid while CO₂ is a gas. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Silica is a giant network",
+      "marks": 1
+    },
+    {
+      "label": "Carbon dioxide is molecular",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "The two oxides have the same kind of formula and completely different structures, so the answer is a comparison: name the network on one side and the separate molecules on the other.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_silica_network",
+        "kind": "text",
+        "label": "Silica is a giant network",
+        "marks": 1,
+        "mark_note": "The network in SiO₂",
+        "lines": [
+          "In SiO₂ each silicon atom is bonded",
+          "covalently to four oxygen atoms, and",
+          "each oxygen atom is shared between two",
+          "silicon atoms.",
+          "This builds one giant three-dimensional",
+          "network, so the whole crystal is a",
+          "single covalent structure.",
+          "Melting it means breaking strong",
+          "covalent bonds, so silica is a solid of",
+          "very high melting point."
+        ],
+        "why": "Silicon is too large to form pπ–pπ double bonds with oxygen, so it forms four single bonds instead and the structure continues in every direction. There is no small SiO₂ molecule to be set free, and that is why silica stays solid.",
+        "common_mistakes": [
+          "Writing that SiO₂ exists as separate O=Si=O molecules. Silicon forms four single bonds to oxygen, not two double bonds.",
+          "Giving the higher molecular mass of SiO₂ as the reason. The difference is the structure, not the mass."
+        ],
+        "memory_tip": "Silica is one giant network, so melting it means breaking covalent bonds.",
+        "margin_note": "Say how many oxygen atoms surround each silicon atom, and that each oxygen is shared."
+      },
+      {
+        "id": "s2_carbon_dioxide",
+        "kind": "boxed_final",
+        "label": "Carbon dioxide is molecular",
+        "marks": 1,
+        "mark_note": "The molecules in CO₂",
+        "lines": [
+          "Carbon is small enough to form pπ–pπ",
+          "double bonds with oxygen, so CO₂ exists",
+          "as separate O=C=O molecules.",
+          "Each molecule is complete in itself.",
+          "Between the molecules there are only",
+          "weak van der Waals forces, which need",
+          "very little energy to overcome, so",
+          "carbon dioxide is a gas.",
+          {
+            "text": "SiO₂ is a network; CO₂ is molecular",
+            "style": "boxed"
+          }
+        ],
+        "why": "Carbon forms two double bonds and closes off a small molecule, and only weak van der Waals forces then act between one molecule and the next. Those weak forces are what a gas needs, while silica has strong covalent bonds everywhere instead.",
+        "common_mistakes": [
+          "Writing that the bonds inside a CO₂ molecule are weak. The C=O bonds are strong; it is the forces between the molecules that are weak.",
+          "Answering with the state of each oxide and no structure. The structure is the explanation the question asks for."
+        ],
+        "memory_tip": "Strong bonds throughout the crystal give a solid; weak forces between small molecules give a gas.",
+        "margin_note": "Close by naming the weak van der Waals forces between the CO₂ molecules."
+      }
+    ]
+  }
+}

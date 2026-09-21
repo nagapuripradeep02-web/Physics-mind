@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_sequence_ethylene_bromine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Name the products A, B and C formed in the following reaction sequence and give the equations: ethylene with Br₂ in CCl₄ gives A, A with alcoholic KOH gives B, and B with Br₂ gives C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A from ethylene and bromine",
+      "marks": 1
+    },
+    {
+      "label": "B by dehydrohalogenation",
+      "marks": 1
+    },
+    {
+      "label": "C from acetylene and bromine",
+      "marks": 1
+    },
+    {
+      "label": "A, B and C named",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every equation was counted atom by atom: CH₂=CH₂ + Br₂ → BrCH₂–CH₂Br (C 2 = 2, H 4 = 4, Br 2 = 2); BrCH₂–CH₂Br + 2KOH → HC≡CH + 2KBr + 2H₂O (C 2 = 2, H 6 = 6, Br 2 = 2, K 2 = 2, O 2 = 2); HC≡CH + 2Br₂ → Br₂CH–CHBr₂ (C 2 = 2, H 2 = 2, Br 4 = 4). TWO ROUTES FOR THE SECOND STEP ARE BOTH CORRECT and the card names both, neither as an error: the question gives alcoholic KOH, and the card writes the overall equation with two formula units of it, which is the form this book and many others print. The change in fact runs in two stages through vinyl bromide, CH₂=CHBr, and a large number of books carry the SECOND stage out with sodamide, NaNH₂, rather than a second molecule of alcoholic KOH. A student who writes either route is describing the same change."
+  },
+  "insider_note": "Three arrows, so three balanced equations — and the question also asks for the names, so write out A 1,2-dibromoethane, B acetylene, C 1,1,2,2-tetrabromoethane at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product_a",
+        "kind": "equation",
+        "label": "A from ethylene and bromine",
+        "marks": 1,
+        "mark_note": "Product A",
+        "lines": [
+          "Bromine dissolved in carbon",
+          "tetrachloride adds across the double",
+          "bond of ethylene:",
+          {
+            "text": "CH₂=CH₂ + Br₂ → BrCH₂–CH₂Br",
+            "style": "eq"
+          },
+          "A is 1,2-dibromoethane, also named",
+          "ethylene dibromide.",
+          "The red-brown colour of the bromine",
+          "fades as it adds."
+        ],
+        "why": "Carbon tetrachloride is only the solvent and takes no part in the change. One bromine atom joins each of the two carbon atoms of the double bond, so the product carries a bromine on carbon 1 and a bromine on carbon 2, and the double bond becomes a single bond.",
+        "common_mistakes": [
+          "Writing 1,1-dibromoethane. The two bromine atoms add to different carbon atoms, one at each end of the double bond.",
+          "Writing HBr as a second product. This is an addition, so nothing leaves the molecule."
+        ],
+        "memory_tip": "Bromine adds one atom to each carbon of the double bond.",
+        "margin_note": "Say that the bromine colour fades. It is the visible sign of the addition."
+      },
+      {
+        "id": "s2_product_b",
+        "kind": "equation",
+        "label": "B by dehydrohalogenation",
+        "marks": 1,
+        "mark_note": "Product B",
+        "lines": [
+          "Alcoholic KOH removes two molecules of",
+          "HBr from 1,2-dibromoethane:",
+          {
+            "text": "BrCH₂–CH₂Br + 2KOH →",
+            "style": "eq"
+          },
+          {
+            "text": "HC≡CH + 2KBr + 2H₂O",
+            "style": "eq"
+          },
+          "B is acetylene, HC≡CH.",
+          "The change runs in two stages, through",
+          "vinyl bromide CH₂=CHBr."
+        ],
+        "why": "Each stage removes one hydrogen atom and one bromine atom from adjacent carbon atoms, so two eliminations turn the single bond into a triple bond. The first stage gives vinyl bromide and the second gives acetylene; many books carry the second stage out with sodamide, NaNH₂, in place of a second molecule of alcoholic KOH, and both routes are correct.",
+        "common_mistakes": [
+          "Stopping at vinyl bromide, CH₂=CHBr. Two molecules of HBr are removed in all, so the product is acetylene.",
+          "Writing one formula unit of KOH. Two molecules of HBr are removed, so two are used and two of KBr are formed."
+        ],
+        "memory_tip": "Two HBr removed, and a single bond becomes a triple bond.",
+        "margin_note": "Write the coefficient 2 on the KOH. Two eliminations happen here, not one."
+      },
+      {
+        "id": "s3_product_c",
+        "kind": "equation",
+        "label": "C from acetylene and bromine",
+        "marks": 1,
+        "mark_note": "Product C",
+        "lines": [
+          "Acetylene adds two molecules of",
+          "bromine, one across each bond of the",
+          "triple bond:",
+          {
+            "text": "HC≡CH + 2Br₂ → Br₂CH–CHBr₂",
+            "style": "eq"
+          },
+          "C is 1,1,2,2-tetrabromoethane."
+        ],
+        "why": "The first molecule of bromine gives 1,2-dibromoethene, and the second adds across the double bond that is left, so each carbon atom finishes with two bromine atoms. A triple bond takes twice as much bromine as a double bond, which is why the coefficient here is 2.",
+        "common_mistakes": [
+          "Writing one molecule of bromine. A triple bond takes two, so the product carries four bromine atoms.",
+          "Naming the product as 1,2-dibromoethene. That is the intermediate; with the second molecule of bromine the tetrabromide is formed."
+        ],
+        "memory_tip": "A triple bond adds two molecules of bromine, a double bond one.",
+        "margin_note": "Say that each carbon finishes with two bromine atoms. That fixes the name."
+      },
+      {
+        "id": "s4_named",
+        "kind": "boxed_final",
+        "label": "A, B and C named",
+        "marks": 1,
+        "mark_note": "The three names",
+        "lines": [
+          "A is 1,2-dibromoethane, BrCH₂–CH₂Br.",
+          "B is acetylene, HC≡CH.",
+          "C is 1,1,2,2-tetrabromoethane.",
+          {
+            "text": "A dibromoethane, B acetylene,",
+            "style": "boxed"
+          },
+          {
+            "text": "C tetrabromoethane",
+            "style": "boxed"
+          }
+        ],
+        "why": "The sequence adds bromine, removes two molecules of HBr, and adds bromine again — so it goes from a two-carbon alkene to an alkyne and then to a fully brominated ethane. Naming the three products in order is what shows that path.",
+        "common_mistakes": [
+          "Giving the equations without the names. The question asks for A, B and C by name.",
+          "Naming C as tetrabromoethene. All four bromine atoms have added, so no multiple bond is left and the compound is an ethane."
+        ],
+        "memory_tip": "Add bromine, remove two HBr, add bromine again.",
+        "margin_note": "One closing line naming A, B and C completes the answer."
+      }
+    ]
+  }
+}

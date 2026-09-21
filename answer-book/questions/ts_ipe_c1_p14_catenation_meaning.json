@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_catenation_meaning",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you understand by catenation?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meaning",
+      "marks": 1
+    },
+    {
+      "label": "What catenation depends on",
+      "marks": 1
+    },
+    {
+      "label": "The order down group 14",
+      "marks": 1
+    },
+    {
+      "label": "Where else it is seen",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, SAQ question 33(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWIN QUESTION: the same chapter asks catenation in Section A at 2 marks, and the two cards were written together so they agree. The 2-mark card carries the definition and the C–C bond energy; this 4-mark card adds the rest of the bond energies, the order down the group and the elements outside group 14 that catenate. BOND ENERGIES: the four values written here in kJ mol⁻¹ — C–C 348, Si–Si 297, Ge–Ge 260, Sn–Sn 240 — are NCERT's, not the source book's, and a teacher should confirm them before they are relied on. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning",
+        "marks": 1,
+        "mark_note": "The meaning",
+        "lines": [
+          "Catenation is the linking of atoms of the",
+          "same element to one another by covalent",
+          "bonds.",
+          "The atoms join into straight chains,",
+          "branched chains or closed rings.",
+          "Carbon shows it best: chains of many",
+          "carbon atoms are stable."
+        ],
+        "why": "The definition has two halves that both have to be written: the atoms joined are atoms of one element, and the bond between them is covalent. Chains and rings are named together because catenation covers both shapes.",
+        "common_mistakes": [
+          "Defining catenation as bonding with hydrogen. The bond that matters is the one between two atoms of the same element.",
+          "Writing that only chains are formed. Rings come from the same self-linking and count as catenation."
+        ],
+        "memory_tip": "Same element, covalent bond, chain or ring: that is catenation.",
+        "margin_note": "Open with the definition in one sentence, then give the reason below it."
+      },
+      {
+        "id": "s2_depends_on",
+        "kind": "equation",
+        "label": "What catenation depends on",
+        "marks": 1,
+        "mark_note": "The bond energies",
+        "lines": [
+          "Catenation depends on the strength of the",
+          "bond between two atoms of the element.",
+          "The stronger that bond, the longer the",
+          "chain that stays together.",
+          "Bond energies in kJ mol⁻¹:",
+          {
+            "text": "C–C 348 · Si–Si 297",
+            "style": "eq"
+          },
+          {
+            "text": "Ge–Ge 260 · Sn–Sn 240",
+            "style": "eq"
+          },
+          "The C–C bond is the strongest, so carbon",
+          "catenates most."
+        ],
+        "why": "This is the reason the short form of the question does not need: the bond energy is a measured quantity, and it explains the order without any further assumption. The bond gets weaker down the group because the atoms get larger and the shared pair sits further from each nucleus.",
+        "common_mistakes": [
+          "Writing that catenation depends on valency. Every member of group 14 is tetravalent; the bond energy is what differs.",
+          "Putting the bond energies in the wrong order. C–C is the strongest at 348 kJ mol⁻¹ and Sn–Sn the weakest of these four at 240."
+        ],
+        "memory_tip": "348, 297, 260, 240: the bond between atoms of the same element weakens down the group.",
+        "margin_note": "The bond energies are the reason; one line of numbers carries this part."
+      },
+      {
+        "id": "s3_order",
+        "kind": "text",
+        "label": "The order down group 14",
+        "marks": 1,
+        "mark_note": "The order",
+        "lines": [
+          "The ability to catenate falls steadily",
+          "down the group:",
+          {
+            "text": "C ≫ Si > Ge ≈ Sn ≫ Pb",
+            "style": "eq"
+          },
+          "Carbon forms chains of many atoms.",
+          "Silicon forms much shorter chains, and",
+          "lead shows almost no catenation."
+        ],
+        "why": "The order is the answer in one line, and the two large gaps in it are the point: carbon stands far above silicon, and lead far below tin, because the Pb–Pb bond is too weak to hold a chain together.",
+        "common_mistakes": [
+          "Writing the order the other way round, with lead first. Catenation falls from carbon to lead.",
+          "Placing silicon level with carbon. Silicon catenates far less, and its chains are much shorter."
+        ],
+        "memory_tip": "Carbon far above the rest and lead far below: C ≫ Si > Ge ≈ Sn ≫ Pb.",
+        "margin_note": "Write the order as one line; the two large gaps are worth a word each."
+      },
+      {
+        "id": "s4_elsewhere",
+        "kind": "boxed_final",
+        "label": "Where else it is seen",
+        "marks": 1,
+        "mark_note": "Beyond group 14",
+        "lines": [
+          {
+            "text": "Catenation falls as the bond weakens",
+            "style": "boxed"
+          },
+          "Catenation is not limited to carbon:",
+          "sulphur shows it in rings such as S₈,",
+          "and selenium shows it too.",
+          "The catenation of carbon is why the",
+          "number of carbon compounds is far greater",
+          "than that of any other element."
+        ],
+        "why": "Closing on the consequence shows why the property matters: long carbon chains and rings are what the whole of organic chemistry is built from, and they rest on one bond energy. Naming sulphur keeps the definition general, because catenation is a property of an element and not a rule about carbon alone.",
+        "common_mistakes": [
+          "Writing that carbon is the only element that catenates. Silicon and sulphur do as well, though far less.",
+          "Stopping at the definition. The reason and the order down the group are both part of a complete answer."
+        ],
+        "memory_tip": "Carbon most of all, then silicon and sulphur: a strong bond between atoms of the same element makes a long chain.",
+        "margin_note": "Close by restating the reason: the stronger the bond between atoms of the same element, the greater the catenation."
+      }
+    ]
+  },
+  "insider_note": "At four marks the definition alone is short. Add the bond energies, the order from carbon to lead, and one element outside group 14, such as sulphur, that also catenates."
+}

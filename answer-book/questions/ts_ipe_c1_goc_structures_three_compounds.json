@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_structures_three_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the structure of each of the following: trichloroethanoic acid, neopentane and p-nitrobenzaldehyde.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two chain structures",
+      "marks": 1
+    },
+    {
+      "label": "The ring structure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE GROUPING IS ALSO OURS: the question asks for three structures against two marks, so the two open-chain compounds are taken together and the ring compound, where the substituent position has to be placed, stands on its own. EACH STRUCTURE WAS BUILT FROM ITS NAME WHILE AUTHORING. Trichloroethanoic acid: ethanoic acid is CH₃COOH, and replacing all three hydrogens on the methyl carbon by chlorine gives Cl₃C–COOH, molecular formula C₂HCl₃O₂. Neopentane: a central carbon carrying four methyl groups, C(CH₃)₄, whose IUPAC name is 2,2-dimethylpropane, molecular formula C₅H₁₂. p-Nitrobenzaldehyde: a benzene ring with –CHO at position 1 and –NO₂ at position 4, OHC–C₆H₄–NO₂, molecular formula C₇H₅NO₃; its IUPAC name is 4-nitrobenzaldehyde. QUESTION FORM: the book prints its answers as drawn structures. They are written here as condensed formulae with the substituent positions named, which is precise enough to draw from and needs no figure."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_chain_structures",
+        "kind": "text",
+        "label": "Trichloroethanoic acid and neopentane",
+        "marks": 1,
+        "mark_note": "The two chain structures",
+        "lines": [
+          "Trichloroethanoic acid. Ethanoic acid",
+          "is CH₃COOH. Replace all three",
+          "hydrogens on the methyl carbon by",
+          "chlorine:",
+          {
+            "text": "Cl₃C–COOH",
+            "style": "eq"
+          },
+          "Neopentane. One central carbon atom",
+          "carries four methyl groups:",
+          {
+            "text": "C(CH₃)₄",
+            "style": "eq"
+          },
+          "Its IUPAC name is",
+          "2,2-dimethylpropane, and its formula",
+          "is C₅H₁₂."
+        ],
+        "why": "Each name is built from a parent that is already known. Ethanoic acid gives the two-carbon acid skeleton and the prefix says which hydrogens are replaced, while neopentane is the branched five-carbon alkane in which every carbon except the central one is a methyl group.",
+        "common_mistakes": [
+          "Putting the three chlorines on the –COOH carbon. That carbon already carries an =O and an –OH group, so the chlorines go on the methyl carbon.",
+          "Drawing neopentane as a straight five-carbon chain. That is pentane; neopentane has one carbon joined to four methyl groups."
+        ],
+        "memory_tip": "Neo means one central carbon carrying four methyl groups.",
+        "margin_note": "Write the parent first, CH₃COOH and then pentane, and change it. Building from the parent is quicker than drawing from the name."
+      },
+      {
+        "id": "s2_ring_structure",
+        "kind": "boxed_final",
+        "label": "p-Nitrobenzaldehyde",
+        "marks": 1,
+        "mark_note": "The ring structure",
+        "lines": [
+          "Benzaldehyde is a benzene ring",
+          "carrying –CHO. That ring carbon is",
+          "numbered 1.",
+          "Para means directly opposite, which",
+          "is position 4, so the nitro group",
+          "goes there:",
+          {
+            "text": "OHC–C₆H₄–NO₂ (1,4)",
+            "style": "eq"
+          },
+          "Its IUPAC name is",
+          "4-nitrobenzaldehyde, C₇H₅NO₃.",
+          {
+            "text": "Cl₃C–COOH, C(CH₃)₄, OHC–C₆H₄–NO₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "The only decision left in this structure is where the nitro group sits, and para fixes it at the ring carbon directly opposite the –CHO group. Drawing the ring with the two groups facing each other shows that at once.",
+        "common_mistakes": [
+          "Placing the nitro group next to the –CHO group. That is the ortho position; para is directly opposite.",
+          "Writing –NO₂ as –ON₂ or as –NO. The nitro group is nitrogen joined to two oxygen atoms."
+        ],
+        "memory_tip": "Ortho next door, meta one further, para straight across.",
+        "margin_note": "One closing line setting the three structures side by side completes the answer."
+      }
+    ]
+  },
+  "insider_note": "All three structures are built by changing a parent that is already known: ethanoic acid, pentane and benzaldehyde. The position of the nitro group is the one place in this question where a structure can go wrong without looking wrong."
+}

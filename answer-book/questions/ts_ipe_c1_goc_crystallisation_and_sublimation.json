@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_crystallisation_and_sublimation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain crystallisation and sublimation, the phenomena used in the purification of organic compounds.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Crystallisation: the principle",
+      "marks": 1
+    },
+    {
+      "label": "Crystallisation: the procedure",
+      "marks": 1
+    },
+    {
+      "label": "Sublimation: the principle",
+      "marks": 1
+    },
+    {
+      "label": "Sublimation: the procedure",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.116, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWO METHODS, FOUR MARKS, so the split is two marks each: principle and procedure for crystallisation, principle and procedure for sublimation. APPARATUS IN WORDS, NOT A FIGURE: the sublimation set-up is described as a china dish covered by an inverted funnel with a cotton plug in its stem, precisely enough to be drawn from the words. EXAMPLES USED for sublimation — camphor, naphthalene, benzoic acid and anthracene — are all organic solids that sublime; ammonium chloride is the classic school demonstration but is inorganic, so it is not offered here as an organic purification."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_crystallisation_principle",
+        "kind": "text",
+        "label": "Crystallisation: the principle",
+        "marks": 1,
+        "mark_note": "Difference in solubility",
+        "lines": [
+          "Crystallisation purifies a solid organic",
+          "compound.",
+          "It uses the difference between the",
+          "solubility of the compound and the",
+          "solubility of the impurity in one chosen",
+          "solvent.",
+          "The right solvent dissolves the compound",
+          "freely at a high temperature and only",
+          "slightly at a low one, while the",
+          "impurity either stays insoluble",
+          "throughout or stays dissolved",
+          "throughout."
+        ],
+        "why": "Choosing the solvent is the whole of the method. If the compound were as soluble cold as hot, cooling would bring nothing out; if the impurity dissolved in the same way as the compound, both would separate together. The solvent has to be one in which the compound and the impurity differ.",
+        "common_mistakes": [
+          "Saying crystallisation depends on the melting points. It depends on the solubilities in a chosen solvent.",
+          "Saying any solvent will do. The compound must be much more soluble hot than cold in the solvent chosen."
+        ],
+        "memory_tip": "One solvent, two solubilities: a big gap between hot and cold for the compound, and different behaviour for the impurity.",
+        "margin_note": "Open with the word SOLID and the word SOLUBILITY. Both are needed before any procedure is written."
+      },
+      {
+        "id": "s2_crystallisation_procedure",
+        "kind": "text",
+        "label": "Crystallisation: the procedure",
+        "marks": 1,
+        "mark_note": "Hot solution, cooling, mother liquor",
+        "lines": [
+          "The impure solid is dissolved in the",
+          "minimum amount of hot solvent.",
+          "Insoluble matter is removed by filtering",
+          "the solution while it is still hot.",
+          "The filtrate is concentrated until it is",
+          "nearly saturated, and is then",
+          "cooled slowly.",
+          "The pure compound separates as crystals,",
+          "which are filtered off, washed and",
+          "dried, and the impurities remain",
+          "dissolved in the mother liquor.",
+          "A coloured impurity is removed by",
+          "boiling the solution with activated",
+          "charcoal before it is filtered.",
+          "When the two solubilities are close,",
+          "the process is repeated, and this is",
+          "called fractional crystallisation."
+        ],
+        "why": "Slow cooling matters here: crystals that form slowly are large and well formed and carry very little of the mother liquor with them, while a fast chill throws down a fine powder that traps the impure liquid inside it.",
+        "common_mistakes": [
+          "Filtering the hot solution after it has cooled. Insoluble matter is filtered off while the solution is hot, or the compound crystallises on the filter paper.",
+          "Discarding the crystals and keeping the mother liquor. The crystals are the pure compound.",
+          "Using activated charcoal for every impurity. It is used for a coloured impurity."
+        ],
+        "memory_tip": "Minimum hot solvent, hot filtration, cool slowly, filter the crystals, and the mother liquor takes the impurities away.",
+        "margin_note": "Name the mother liquor by that name and say what is in it. That is the line that closes the crystallisation half."
+      },
+      {
+        "id": "s3_sublimation_principle",
+        "kind": "text",
+        "label": "Sublimation: the principle",
+        "marks": 1,
+        "mark_note": "Solid to vapour, no liquid stage",
+        "lines": [
+          "Sublimation is the direct change of a",
+          "solid into its vapour on heating, and",
+          "back into the solid on cooling, without",
+          "passing through the liquid state.",
+          "A solid that behaves in this way is",
+          "called a sublimable solid.",
+          "The method purifies such a solid when",
+          "the impurity present with it does not",
+          "sublime.",
+          "The compound goes off as vapour and",
+          "condenses elsewhere as the pure solid,",
+          "and the impurity is left where it was."
+        ],
+        "why": "The separation needs the two components to differ in one property only: one of them passes into the vapour on heating and the other does not. Nothing dissolves and nothing melts, which is why sublimation suits a solid that would decompose if it were heated to its melting point.",
+        "common_mistakes": [
+          "Saying the solid melts first. In sublimation the solid becomes vapour without any liquid stage.",
+          "Using the method when both components sublime. It works only if the impurity is non-sublimable."
+        ],
+        "memory_tip": "Solid straight to vapour and back again, with no liquid in between.",
+        "margin_note": "Write the words \"without passing through the liquid state\". They are the definition."
+      },
+      {
+        "id": "s4_sublimation_procedure",
+        "kind": "boxed_final",
+        "label": "Sublimation: the procedure",
+        "marks": 1,
+        "mark_note": "Apparatus and examples",
+        "lines": [
+          "The impure solid is spread in a china",
+          "dish.",
+          "The dish is covered with an inverted",
+          "funnel whose stem is plugged with",
+          "cotton, so that the vapour is not lost.",
+          "The dish is heated gently on a sand",
+          "bath.",
+          "The compound sublimes and the pure solid",
+          "collects on the cool inner wall of the",
+          "funnel, from where it is scraped off.",
+          "The non-sublimable impurity is left in",
+          "the dish.",
+          "Camphor, naphthalene, benzoic acid and",
+          "anthracene are purified in this way.",
+          {
+            "text": "The sublimate is the pure compound",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cotton plug and the inverted funnel do the same job as a condenser in a distillation: they give the vapour a cool surface to settle on and stop it from being carried away, so that all of the sublimed compound is recovered in one place.",
+        "common_mistakes": [
+          "Heating strongly. Gentle heating on a sand bath is used, or the compound chars.",
+          "Leaving the funnel open at the top. The stem is plugged with cotton so the vapour is not lost.",
+          "Scraping the dish for the product. The pure compound is the solid on the funnel, not what is left in the dish."
+        ],
+        "memory_tip": "China dish, inverted funnel, cotton plug: the pure solid settles on the funnel and the impurity stays in the dish.",
+        "margin_note": "Describe the apparatus in words and name two examples. One closing line saying which part is the pure compound completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two methods and four marks, so give each of them a principle and a procedure and do not spend the whole answer on crystallisation. The two lines that carry most weight are the difference in solubility for crystallisation and \"without passing through the liquid state\" for sublimation."
+}

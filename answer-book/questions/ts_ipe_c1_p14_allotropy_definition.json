@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_allotropy_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is allotropy?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The reason and examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This chapter asks for the meaning of allotropy more than once, at more than one length; this card is the bare definition, so it spends its second mark on the reason the forms differ and on examples drawn from several elements rather than on carbon's list of forms. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An element shows allotropy when it",
+          "exists in more than one form in the",
+          "same physical state.",
+          "These forms are called allotropes.",
+          "They differ in physical properties such",
+          "as hardness, density, colour and",
+          "melting point, while their chemical",
+          "properties stay the same."
+        ],
+        "why": "Three things make the definition complete: more than one form, the same physical state, and physical properties that differ while the chemical properties do not. Leaving out the physical state would let a liquid and its vapour count as allotropes, which they are not.",
+        "common_mistakes": [
+          "Writing that allotropes are different elements. They are different forms of one element.",
+          "Saying the chemical properties differ. The chemical properties are the same; only the physical properties differ.",
+          "Leaving out the words same physical state. Liquid oxygen and oxygen gas are not allotropes — that is one form of oxygen in two physical states."
+        ],
+        "memory_tip": "One element, more than one form, same physical state.",
+        "margin_note": "Name the physical state inside the definition; it is part of the meaning."
+      },
+      {
+        "id": "s2_reason_examples",
+        "kind": "text",
+        "label": "The reason and examples",
+        "marks": 1,
+        "mark_note": "Reason and examples",
+        "lines": [
+          "The forms differ because the same atoms",
+          "are joined or packed in different ways.",
+          "Carbon exists as diamond, which is hard",
+          "and does not conduct, and as graphite,",
+          "which is soft and conducts.",
+          "Oxygen exists as dioxygen O₂ and as",
+          "ozone O₃.",
+          "Sulphur exists in a rhombic form and a",
+          "monoclinic form.",
+          {
+            "text": "Allotropy: one element, different forms",
+            "style": "boxed"
+          }
+        ],
+        "why": "The definition on its own is a sentence a student can write without understanding it. Naming the cause — the same atoms arranged differently — and one worked pair such as diamond and graphite shows what the sentence actually means.",
+        "common_mistakes": [
+          "Confusing allotropy with isotopes. Isotopes are atoms of one element with different mass numbers; allotropes are different forms of one element in the same physical state.",
+          "Giving oxygen and hydrogen as an example. Allotropes belong to one element, so O₂ and O₃ are allotropes but oxygen and hydrogen are not."
+        ],
+        "memory_tip": "Diamond and graphite, O₂ and O₃, rhombic and monoclinic sulphur.",
+        "margin_note": "One named pair of allotropes completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer defines allotropy in one sentence, including the words same physical state, and gives one named pair of allotropes such as diamond and graphite."
+}

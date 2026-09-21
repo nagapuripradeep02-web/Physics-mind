@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_group_reducing_nature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their reducing nature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "All are strong reducing agents",
+      "marks": 2
+    },
+    {
+      "label": "The three enthalpy terms",
+      "marks": 2
+    },
+    {
+      "label": "The order in aqueous solution",
+      "marks": 1
+    },
+    {
+      "label": "Why lithium is the strongest",
+      "marks": 2
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 49(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: question 49 is printed as one question with three parts and this card answers part (ii) only, the reducing nature. Parts (i) and (iii), the electronic configuration and the oxides and hydroxides, are answered on their own cards; nothing here is repeated there. THE EQUATIONS WERE CHECKED ATOM BY ATOM AND FOR CHARGE: M → M⁺ + e⁻ (charge 0 = +1 − 1); 2M + 2H₂O → 2M⁺ + 2OH⁻ + H₂ (M 2 = 2, H 4 = 4, O 2 = 2, charge 0 = +2 − 2). THE FORM SRP = S + I.P + H.E IS THE SOURCE BOOK'S SHORTHAND and is written here as the book writes it, with the three enthalpies named in words beside it. It is a memory device for which three quantities decide the order, not a dimensionally exact equation: sublimation and ionisation enthalpies are supplied to the metal while hydration enthalpy is released by the ion, so the three do not carry the same sign. The card states that in words and does not call the shorthand wrong. THE SIGNS ARE NOW WRITTEN OUT beside the shorthand, because the plain sum leaves a student free to read a higher ionisation enthalpy as a stronger reducing agent, which is the belief the lithium step then has to undo. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: the standard reduction potential E° = −3.04 V for the Li⁺/Li couple, and the statement that on ionisation enthalpy alone caesium would head the order, which is the contrast that makes lithium's position understandable."
+  },
+  "insider_note": "The order Li > Cs > Rb > K > Na looks wrong to a student who has just learned that lithium has the highest ionisation enthalpy, so the hydration enthalpy of the small Li⁺ ion has to be written out as the reason and not merely mentioned.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_all_strong",
+        "kind": "equation",
+        "label": "All of them are strong reducing agents",
+        "marks": 2,
+        "mark_note": "The shared property with an equation",
+        "lines": [
+          "A reducing agent is a substance that",
+          "gives up electrons to something else.",
+          "Every alkali metal has one loosely held",
+          "electron in its outermost s orbital and",
+          "gives it up readily:",
+          {
+            "text": "M → M⁺ + e⁻",
+            "style": "eq"
+          },
+          "So every member of the group is a strong",
+          "reducing agent. Not one of them is an",
+          "exception.",
+          "The strength shows in their reaction",
+          "with water, where the metal reduces",
+          "hydrogen out of the water itself:",
+          {
+            "text": "2M + 2H₂O → 2M⁺ + 2OH⁻ + H₂",
+            "style": "eq"
+          }
+        ],
+        "why": "The justification starts from a property that every member shares, and this one does: a single loosely held electron makes each of these metals a strong reducing agent. The reaction with water is the everyday demonstration of it, because water is a weak enough oxidising agent that only a strong reducing metal will take hydrogen out of it.",
+        "common_mistakes": [
+          "Calling the alkali metals oxidising agents. They give up electrons, so they are reducing agents.",
+          "Writing the water equation without the hydrogen gas. The hydrogen released is the visible evidence of the reduction.",
+          "Leaving the charges off the ionic equation. The charges must balance across the arrow as well as the atoms."
+        ],
+        "memory_tip": "One loose electron given away easily is exactly what a strong reducing agent does.",
+        "margin_note": "Open by defining a reducing agent, then show the electron being given up."
+      },
+      {
+        "id": "s2_three_terms",
+        "kind": "equation",
+        "label": "What decides the reducing strength",
+        "marks": 2,
+        "mark_note": "The three enthalpies named",
+        "lines": [
+          "In aqueous solution the reducing strength",
+          "of a metal is measured by its standard",
+          "reduction potential, SRP.",
+          "Three enthalpy terms decide it:",
+          {
+            "text": "SRP = S + I.P + H.E",
+            "style": "eq"
+          },
+          "S is the sublimation enthalpy, the",
+          "energy needed to turn the solid metal",
+          "into free atoms. It is positive.",
+          "I.P is the ionisation enthalpy, the",
+          "energy needed to remove the ns¹ electron",
+          "from a free atom. It is positive too.",
+          "H.E is the hydration enthalpy, the",
+          "energy given out when the ion M⁺ is",
+          "surrounded by water molecules. It is",
+          "negative, because energy is released.",
+          "The three are added with these signs, so",
+          "no single term settles the order.",
+          "The more negative the total, the more",
+          "negative the standard reduction",
+          "potential and the stronger the metal is",
+          "as a reducing agent.",
+          "Lithium has the most negative value in",
+          "the group:",
+          {
+            "text": "E° = −3.04 V",
+            "style": "eq"
+          }
+        ],
+        "why": "This step is what makes the rest of the answer possible. Reducing strength in solution is not the same thing as ionisation enthalpy, because the metal must first be broken out of the solid and the ion must then be taken up by water, and both of those cost or release energy of the same size as the ionisation step.",
+        "common_mistakes": [
+          "Using ionisation enthalpy alone to decide the order in solution. Sublimation and hydration enthalpies matter just as much.",
+          "Leaving out hydration enthalpy. It is the term that decides where lithium stands.",
+          "Saying lithium has the highest standard reduction potential. Its value is the most negative, −3.04 V, and that is what makes it the strongest reducing agent in solution."
+        ],
+        "memory_tip": "Three energies in turn: break the solid apart, remove the electron, then wrap the ion in water.",
+        "margin_note": "Name all three enthalpies in words after the shorthand; the shorthand alone does not say what the three letters are."
+      },
+      {
+        "id": "s3_order",
+        "kind": "text",
+        "label": "The order in aqueous solution",
+        "marks": 1,
+        "mark_note": "The order written out",
+        "lines": [
+          "Measured in aqueous solution, the order",
+          "of reducing strength is:",
+          {
+            "text": "Li > Cs > Rb > K > Na",
+            "style": "eq"
+          },
+          "Lithium is the strongest reducing agent",
+          "of the alkali metals in solution.",
+          "Sodium is the weakest of the five.",
+          "Apart from lithium, the strength rises",
+          "steadily down the group from sodium to",
+          "caesium."
+        ],
+        "why": "Writing the order out in full is what shows the property is graded and not just shared. Lithium sits at the front and the remaining four rise in order down the group, so the order has one clear pattern and one clear exception, and the next step explains the exception.",
+        "common_mistakes": [
+          "Writing caesium first. In aqueous solution lithium is the strongest reducing agent.",
+          "Writing the order as Li > Na > K > Rb > Cs. Apart from lithium the strength increases down the group, so sodium is last, not second."
+        ],
+        "memory_tip": "Lithium first, then the group in order from sodium up to caesium.",
+        "margin_note": "Write the order on its own line so the exception at the front is easy to see."
+      },
+      {
+        "id": "s4_lithium",
+        "kind": "text",
+        "label": "Why lithium is the strongest",
+        "marks": 2,
+        "mark_note": "Hydration enthalpy outweighs ionisation enthalpy",
+        "lines": [
+          "Lithium has the HIGHEST ionisation",
+          "enthalpy in the group, because its atom",
+          "is the smallest and holds its outer",
+          "electron most tightly.",
+          "On that term alone caesium would head",
+          "the order and lithium would come last.",
+          "But the Li⁺ ion is the smallest cation",
+          "of the group, so water molecules come",
+          "very close to it and are held strongly.",
+          "The hydration enthalpy of Li⁺ is",
+          "therefore by far the largest in the",
+          "group.",
+          "That large hydration enthalpy more than",
+          "makes up for the high ionisation",
+          "enthalpy, so lithium ends up as the",
+          "strongest reducing agent in solution."
+        ],
+        "why": "This is the whole difficulty of the question in one step. The high ionisation enthalpy and the strong reducing power look like a contradiction until the third enthalpy term is brought in, and then they are two consequences of the same small size: a small atom holds its electron tightly, and the small ion it leaves behind holds water tightly.",
+        "common_mistakes": [
+          "Saying lithium has the lowest ionisation enthalpy. It has the highest in the group; the hydration enthalpy is what puts it first.",
+          "Saying lithium is the most reactive alkali metal. It is the least reactive metal of the group, and the strongest reducing agent in aqueous solution — the two statements are about different things.",
+          "Giving the order with no reason. The reason is the large hydration enthalpy of the small Li⁺ ion."
+        ],
+        "memory_tip": "Small atom holds its electron tightly; the small ion it leaves holds water tightly, and the hydration term is the larger of the two.",
+        "margin_note": "Both enthalpies belong in this step: the high one that works against lithium and the large one that decides it."
+      },
+      {
+        "id": "s5_conclusion",
+        "kind": "boxed_final",
+        "label": "The justification",
+        "marks": 1,
+        "mark_note": "The conclusion stated",
+        "lines": [
+          {
+            "text": "Alkali metals are strong reducing agents",
+            "style": "boxed"
+          },
+          "Every member of the group shows this",
+          "property, and it comes from the one",
+          "loosely held ns¹ electron that they all",
+          "have.",
+          "The strength also changes in an orderly",
+          "way across the group.",
+          "A property shared by all and graded",
+          "across the set is what justifies placing",
+          "these metals in one group."
+        ],
+        "why": "The word justify asks for a closing statement, and the statement has two halves: the property belongs to every member, and it changes in an orderly way. The reducing nature satisfies both, which is why it is offered as evidence for the group at all.",
+        "common_mistakes": [
+          "Stopping after the explanation of lithium. The question asks for a justification of the group, so the closing sentence has to be written.",
+          "Writing that lithium being first breaks the group. Lithium follows the same three enthalpy terms as the rest; only the size of one term is different."
+        ],
+        "memory_tip": "Shared by every member and graded across the set: that is what makes it a group property.",
+        "margin_note": "Close by naming both halves: every member shows it, and it changes in order."
+      }
+    ]
+  }
+}

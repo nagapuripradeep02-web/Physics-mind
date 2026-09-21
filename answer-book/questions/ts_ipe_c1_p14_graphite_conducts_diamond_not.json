@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_conducts_diamond_not",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Graphite is an electric conductor whereas diamond is not. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why graphite conducts",
+      "marks": 1
+    },
+    {
+      "label": "Why diamond does not",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This question is a comparison, so the split gives one mark to each substance; the chapter also asks about graphite's conduction on its own, and that form goes further into graphite while this one has to reach diamond. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_graphite",
+        "kind": "text",
+        "label": "Why graphite conducts",
+        "marks": 1,
+        "mark_note": "Graphite",
+        "lines": [
+          "In graphite each carbon atom is sp²",
+          "hybridised and forms only three sigma",
+          "bonds.",
+          "Its fourth valence electron is",
+          "delocalised over the sheet and can move",
+          "through it.",
+          "A moving electron is a current, so",
+          "graphite conducts electricity."
+        ],
+        "why": "The comparison rests on one number: how many of carbon's four valence electrons are used in bonds. In graphite three are used and one is left over, and that spare electron is what carries the current.",
+        "common_mistakes": [
+          "Giving the sliding layers as the reason for conduction. The layers explain why graphite is a lubricant, not why it conducts.",
+          "Writing that graphite conducts because it is a metal. Graphite is a non-metal; the delocalised electrons come from its own structure."
+        ],
+        "memory_tip": "Three bonds in graphite leave one electron free to move.",
+        "margin_note": "The question has two halves. This half is graphite, so answer it in full before starting on diamond."
+      },
+      {
+        "id": "s2_diamond",
+        "kind": "text",
+        "label": "Why diamond does not",
+        "marks": 1,
+        "mark_note": "Diamond",
+        "lines": [
+          "In diamond each carbon atom is sp³",
+          "hybridised and forms four sigma bonds",
+          "to four other carbon atoms.",
+          "All four valence electrons are used up",
+          "in those bonds, so there is no free or",
+          "delocalised electron anywhere in the",
+          "crystal.",
+          "Diamond is therefore a bad conductor of",
+          "electricity.",
+          {
+            "text": "Free electron in graphite, none in diamond",
+            "style": "boxed"
+          }
+        ],
+        "why": "Diamond is the comparison that proves the point. Its bonds are made of exactly the same element and are just as covalent, and the one thing it lacks is a spare electron — which shows that the spare electron, not the element, is what does the conducting.",
+        "common_mistakes": [
+          "Saying diamond does not conduct because its bonds are strong. Bond strength is not the reason; the reason is that no electron is left over.",
+          "Writing that diamond conducts electricity weakly. It is a bad conductor of electricity, because it has no free electrons."
+        ],
+        "memory_tip": "Four bonds in diamond use up all four electrons, so none is left.",
+        "margin_note": "Say plainly that diamond has no free electron; that sentence is the second half of the answer."
+      }
+    ]
+  },
+  "insider_note": "The question has two halves, so a complete answer explains graphite's delocalised fourth electron and then says diamond uses all four of its valence electrons in bonds and has none left over."
+}

@@ -1,0 +1,245 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_fractional_distillation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on fractional distillation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "When fractional distillation is needed",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The fractionating column",
+      "marks": 1
+    },
+    {
+      "label": "The procedure",
+      "marks": 2
+    },
+    {
+      "label": "A worked example",
+      "marks": 1
+    },
+    {
+      "label": "Uses and the azeotrope",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 39(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the column is described as a long tube between the flask and the condenser, packed with glass beads or built with shelves or bubble-cap plates. BOILING POINTS USED: propanone 57 °C and methanol 65 °C, a gap of 8 °C; benzene 80 °C and toluene 110 °C, a gap of 30 °C. Both gaps are under the 40 °C at which a simple distillation stops working, which is what puts these two pairs in this method and not in the plain one. The azeotrope is named as the limit of the method: a mixture that boils at a constant temperature and distils without change of composition cannot be separated by any number of stages, because its vapour has the same composition as the liquid."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_when_it_is_needed",
+        "kind": "text",
+        "label": "When fractional distillation is needed",
+        "marks": 1,
+        "mark_note": "Close boiling points",
+        "lines": [
+          "Fractional distillation separates two or",
+          "more liquids that mix completely and",
+          "whose boiling points are close together,",
+          "differing by less than about 40 °C.",
+          "With so small a gap both liquids",
+          "vaporise at nearly the same temperature,",
+          "so one boiling and condensing gives a",
+          "distillate that is still a mixture.",
+          "A fractionating column is fitted between",
+          "the distillation flask and the",
+          "condenser."
+        ],
+        "why": "The method is defined by the case it handles. A gap of less than about 40 °C means the vapour is only slightly richer in the more volatile liquid than the liquid is, so the improvement made by a single distillation is too small to be useful.",
+        "common_mistakes": [
+          "Saying fractional distillation is needed only when the boiling points are far apart. It is needed when they are close, under about 40 °C; a column also works on a wider gap, but there a simple distillation is already enough.",
+          "Saying the liquids must be immiscible. They mix completely; that is why they cannot simply be run off in layers."
+        ],
+        "memory_tip": "Close boiling points, so a single distillation is not enough and a column is put in the path.",
+        "margin_note": "Open by saying how close the boiling points are, and name the column as the one piece of apparatus that is added."
+      },
+      {
+        "id": "s2_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "Repeated distillations in one column",
+        "lines": [
+          "Inside the column the vapour rising from",
+          "the flask meets liquid running back down",
+          "the packing.",
+          "The vapour gives up part of its heat and",
+          "condenses on the packing, and the",
+          "condensate is at once vaporised again by",
+          "the hot vapour coming up behind it.",
+          "At every such stage the new vapour is",
+          "richer in the more volatile liquid, and",
+          "the liquid that runs back is richer in",
+          "the less volatile one.",
+          "One column therefore performs a whole",
+          "series of distillations, one above the",
+          "next, in a single operation.",
+          "By the time the vapour reaches the top",
+          "it is almost entirely the more volatile",
+          "liquid."
+        ],
+        "why": "A single condensation improves the composition only slightly when the boiling points are close. The column works by doing that slight improvement many times over, one stage above the next, so that many small gains add up to a clean separation.",
+        "common_mistakes": [
+          "Saying the column cools the vapour so the less volatile liquid is filtered out. Nothing is filtered; the vapour is condensed and re-vaporised many times.",
+          "Treating the column as one extra condenser. Its value is that it provides many stages, not one."
+        ],
+        "memory_tip": "A fractionating column is a stack of distillations, each one making the vapour a little purer than the one below it.",
+        "margin_note": "Two marks here, so write both halves: the vapour meeting the returning liquid, and the repetition that makes the vapour purer at every stage."
+      },
+      {
+        "id": "s3_the_column",
+        "kind": "text",
+        "label": "The fractionating column",
+        "marks": 1,
+        "mark_note": "Packing and stages",
+        "lines": [
+          "A fractionating column is a long tube",
+          "placed between the distillation flask",
+          "and the condenser.",
+          "In the laboratory it is packed with",
+          "glass beads or has a series of glass",
+          "obstructions inside it.",
+          "In industry it is a tall tower built",
+          "with a row of shelves, each carrying",
+          "bubble caps through which the vapour is",
+          "made to pass up through liquid.",
+          "The packing gives a large surface on",
+          "which vapour can condense and liquid can",
+          "be vaporised again.",
+          "The more stages a column provides, the",
+          "closer the boiling points it can",
+          "separate."
+        ],
+        "why": "Everything in the design exists to increase the contact between the rising vapour and the returning liquid. Beads in the laboratory and bubble-cap plates in a tower are two ways of doing the same thing, which is why a taller or better packed column separates a closer pair.",
+        "common_mistakes": [
+          "Saying the column must be cooled. It is lagged, not cooled; the temperature gradient along it is produced by the distillation itself.",
+          "Leaving out the packing. An empty tube gives very few stages and separates almost nothing."
+        ],
+        "memory_tip": "Beads in the laboratory, bubble-cap plates in a tower, and more stages mean a closer separation.",
+        "margin_note": "Describe the packing in words. The whole purpose of the column is the surface it provides."
+      },
+      {
+        "id": "s4_procedure",
+        "kind": "text",
+        "label": "The procedure",
+        "marks": 2,
+        "mark_note": "Gradient, steady reading, fractions",
+        "lines": [
+          "The mixture is heated slowly in the",
+          "flask.",
+          "A temperature gradient builds up along",
+          "the column, hottest at the bottom and",
+          "coolest at the top.",
+          "The thermometer at the top of the column",
+          "stays steady at the boiling point of the",
+          "more volatile liquid while that liquid",
+          "distils over, and this fraction is",
+          "collected.",
+          "When it is used up the reading rises to",
+          "the boiling point of the next liquid,",
+          "and the receiver is changed.",
+          "Slow heating matters, because a fast",
+          "boil drives the mixed vapour straight",
+          "through the column and undoes the",
+          "separation the stages have made."
+        ],
+        "why": "The temperature gradient is what separates the two liquids. The less volatile one condenses low down, at a level where the temperature is still high enough for the other to remain a vapour, so only the more volatile liquid reaches the top of the column.",
+        "common_mistakes": [
+          "Heating fast to save time. A fast boil carries mixed vapour to the top and the reading never steadies.",
+          "Reading the thermometer at the flask. It is set at the top of the column, where the vapour leaves for the condenser."
+        ],
+        "memory_tip": "Heat slowly, watch the top of the column, and change the receiver when the reading rises.",
+        "margin_note": "Two marks here, so give the temperature gradient AND the collecting of fractions at steady readings."
+      },
+      {
+        "id": "s5_worked_example",
+        "kind": "text",
+        "label": "A worked example",
+        "marks": 1,
+        "mark_note": "Named liquids with boiling points",
+        "lines": [
+          "A mixture of methanol and propanone is",
+          "separated in this way.",
+          "Propanone boils at 57 °C and methanol",
+          "boils at 65 °C, a gap of only 8 °C.",
+          "Propanone, being the more volatile of",
+          "the two, distils over first.",
+          "Benzene, boiling at 80 °C, and toluene,",
+          "boiling at 110 °C, are separated the",
+          "same way, the gap here being 30 °C.",
+          "Both gaps are under 40 °C, which is why",
+          "neither pair can be separated by a plain",
+          "distillation."
+        ],
+        "why": "The two examples show the range of the method. Eight degrees is a very close pair and needs a good column; thirty degrees is just inside the limit. In both, the reason for using a column is the same, and it is the size of the gap.",
+        "common_mistakes": [
+          "Naming methanol as the first distillate. Propanone boils lower, at 57 °C against 65 °C, so propanone comes over first.",
+          "Quoting the boiling points without the gap. The gap is what shows why a column is needed."
+        ],
+        "memory_tip": "Propanone 57 °C and methanol 65 °C, a gap of 8 °C; benzene 80 °C and toluene 110 °C, a gap of 30 °C.",
+        "margin_note": "Write both boiling points and subtract them on the page. The size of the gap is the justification."
+      },
+      {
+        "id": "s6_uses_and_azeotrope",
+        "kind": "boxed_final",
+        "label": "Uses and the azeotrope",
+        "marks": 1,
+        "mark_note": "Uses and the one limit",
+        "lines": [
+          "Fractional distillation separates crude",
+          "oil in a refinery into petrol, kerosene,",
+          "diesel and the heavier fractions.",
+          "It also separates the gases of liquefied",
+          "air, and it purifies laboratory solvents",
+          "that boil close to one another.",
+          "It has one clear limit.",
+          "A mixture that boils at a constant",
+          "temperature and distils without any",
+          "change in its composition is called an",
+          "azeotrope, and no column can separate",
+          "it.",
+          {
+            "text": "The column repeats the distillation",
+            "style": "boxed"
+          }
+        ],
+        "why": "An azeotrope cannot be separated because its vapour has exactly the same composition as the liquid it comes from. Adding more stages then changes nothing, since each stage can only act on a difference between vapour and liquid, and here there is none.",
+        "common_mistakes": [
+          "Saying a taller column will separate an azeotrope. No number of stages will, because vapour and liquid have the same composition.",
+          "Ending at the procedure. A note should say where the method is used and where it fails."
+        ],
+        "memory_tip": "An azeotrope gives vapour of the same composition as the liquid, so no number of stages changes anything.",
+        "margin_note": "One closing line saying what the column really does completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Everything here follows from one fact: the boiling points are close, so one distillation is not enough. Say that first, then explain the column as a stack of distillations, then give a named pair with the gap worked out — propanone 57 °C and methanol 65 °C is a gap of 8 °C. The azeotrope is the limit worth naming at the end."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_pure_nacl_from_crude",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How do you obtain pure NaCl from a crude sample?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Crude salt and its impurities",
+      "marks": 1
+    },
+    {
+      "label": "Dissolve in minimum water and filter",
+      "marks": 1
+    },
+    {
+      "label": "Saturating the filtrate with HCl gas",
+      "marks": 1
+    },
+    {
+      "label": "Separating the pure salt",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.88, chapter 7 s-BLOCK ELEMENTS, SAQ question 35. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ONE DELIBERATE REWORDING OF THE SOURCE: the book writes that common salt is obtained by evaporating sea water in tropical countries and names one country. This product ships the same content to several syllabuses, so no country is named in any rendered line; the card writes the same fact as warm coastal regions instead. The chemistry is untouched. The solubility equilibrium NaCl(s) ⇌ Na⁺(aq) + Cl⁻(aq) is carried as support for the common ion effect and is not from the source answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_crude_salt",
+        "kind": "text",
+        "label": "Crude salt and its impurities",
+        "marks": 1,
+        "mark_note": "The impurities named",
+        "lines": [
+          "In warm coastal regions, common salt is",
+          "obtained by evaporating sea water.",
+          "The salt got in this way is crude.",
+          "It carries sodium sulphate, calcium",
+          "sulphate, calcium chloride and magnesium",
+          "chloride as impurities.",
+          "Calcium chloride and magnesium chloride",
+          "are deliquescent, so crude salt turns",
+          "damp in air."
+        ],
+        "why": "The purification is built around these impurities: the insoluble matter is filtered off, and the two chlorides that make the salt damp are more soluble than sodium chloride, which is exactly what the last step uses.",
+        "common_mistakes": [
+          "Saying crude salt is pure sodium chloride. It carries sulphates and chlorides of calcium and magnesium.",
+          "Naming the wrong impurity as the deliquescent one. Calcium chloride and magnesium chloride are the two that take up moisture."
+        ],
+        "memory_tip": "Two sulphates and two chlorides, and it is the chlorides that make the salt damp.",
+        "margin_note": "Name the impurities before the method; the method is built on them."
+      },
+      {
+        "id": "s2_dissolve_and_filter",
+        "kind": "text",
+        "label": "Dissolve in minimum water and filter",
+        "marks": 1,
+        "mark_note": "Minimum water, then filtration",
+        "lines": [
+          "The crude salt is dissolved in the",
+          "smallest amount of water that will",
+          "dissolve it.",
+          "The solution is then filtered.",
+          "The insoluble matter stays on the filter",
+          "paper and is thrown away.",
+          "The clear filtrate holds the sodium",
+          "chloride and the soluble impurities."
+        ],
+        "why": "The minimum amount of water is used on purpose: the solution has to be as concentrated as it can be, so that the next step brings the sodium chloride out of it at once.",
+        "common_mistakes": [
+          "Using plenty of water. The minimum amount is used so that the solution is close to saturated.",
+          "Keeping the residue and discarding the filtrate. The sodium chloride is in the filtrate."
+        ],
+        "memory_tip": "Least water, then filter, and the salt you want stays in the filtrate.",
+        "margin_note": "Say minimum water; the amount matters to the step that follows."
+      },
+      {
+        "id": "s3_hcl_gas",
+        "kind": "equation",
+        "label": "Saturating the filtrate with HCl gas",
+        "marks": 1,
+        "mark_note": "The gas and the common ion effect",
+        "lines": [
+          "The filtrate is saturated with hydrogen",
+          "chloride gas.",
+          "The gas supplies a large number of",
+          "chloride ions to the solution.",
+          "In the solution sodium chloride is in",
+          "this equilibrium:",
+          {
+            "text": "NaCl(s) ⇌ Na⁺(aq) + Cl⁻(aq)",
+            "style": "eq"
+          },
+          "The added chloride ions drive it to the",
+          "left, so pure sodium chloride",
+          "crystallises out."
+        ],
+        "why": "This is the whole of the method: the extra chloride ions from the gas push the dissolving equilibrium backwards by the common ion effect, so it is the sodium chloride and not the impurities that is forced out of the solution.",
+        "common_mistakes": [
+          "Passing the gas over the residue. The gas is passed into the clear filtrate.",
+          "Using dilute hydrochloric acid instead. The solution is saturated with the gas, which adds chloride ions without adding much water."
+        ],
+        "memory_tip": "More chloride ions in the solution means less sodium chloride can stay dissolved.",
+        "margin_note": "Name the common ion effect; it is the principle of the method."
+      },
+      {
+        "id": "s4_separating",
+        "kind": "boxed_final",
+        "label": "Separating the pure salt",
+        "marks": 1,
+        "mark_note": "Where the impurities go",
+        "lines": [
+          "Calcium chloride and magnesium chloride",
+          "are more soluble than sodium chloride,",
+          "so they stay behind in the solution.",
+          "The crystals are filtered off and dried.",
+          "What is left is pure sodium chloride.",
+          {
+            "text": "CaCl₂ and MgCl₂ stay in solution",
+            "style": "boxed"
+          }
+        ],
+        "why": "The separation works only because of a difference in solubility: of the three chlorides present, sodium chloride is the least soluble, so it is the only one forced out when the solution is saturated with the gas.",
+        "common_mistakes": [
+          "Saying the impurities crystallise along with the salt. Being more soluble, they remain in the solution.",
+          "Stopping at the crystals. They still have to be filtered off and dried."
+        ],
+        "memory_tip": "The least soluble chloride leaves first; the more soluble ones stay behind.",
+        "margin_note": "Close by saying where the impurities end up."
+      }
+    ]
+  },
+  "insider_note": "The step that carries this answer is the hydrogen chloride gas: name the common ion effect, and say that the more soluble calcium and magnesium chlorides remain behind in the solution."
+}

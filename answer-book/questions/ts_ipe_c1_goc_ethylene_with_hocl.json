@@ -1,0 +1,212 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethylene_with_hocl",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the equation for the reaction of ethylene with hypochlorous acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagent",
+      "marks": 1
+    },
+    {
+      "label": "How the addition happens",
+      "marks": 2
+    },
+    {
+      "label": "The equation",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    },
+    {
+      "label": "Why only one product forms",
+      "marks": 1
+    },
+    {
+      "label": "The overall change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 33(b). PAGE AND NUMBER CHECKED AGAINST THE SOURCE INDEX (answer-book/sources/chaitanya_c1_2027_ch10_general_organic_chemistry.json), which records laq33 and all of its parts on printed page 118; p.119 carries question 34, the acetylene question. PRINTED QUESTION 33 IS ONE QUESTION WITH FIVE ASKS: it opens by asking for two methods of preparation of ethylene and then continues with the lettered parts (a)-(d), each asking for the equation of one reaction of ethylene. The opening ask is carded as ts_ipe_c1_goc_ethylene_preparation and the four lettered parts as four cards, so the shared number 33 is not a citation clash. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED ATOM BY ATOM: CH₂=CH₂ + HOCl → HOCH₂–CH₂Cl has C 2 = 2, H 5 = 5, O 1 = 1 and Cl 1 = 1. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the preparation of hypochlorous acid by passing chlorine into cold water; the statement that the OH group is the negative part of HOCl and the chlorine the positive part, which follows from oxygen being more electronegative than chlorine; the IUPAC name 2-chloroethanol and the definition of a chlorohydrin; and the closing point that Markovnikov's rule is not needed for a symmetrical alkene. The equation itself and the common name ethylene chlorohydrin are the source's own."
+  },
+  "insider_note": "Hypochlorous acid adds as two parts, OH and Cl, one to each carbon of the double bond. The product is ethylene chlorohydrin, HOCH₂–CH₂Cl, and there is no by-product at all.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "The reagent",
+        "marks": 1,
+        "mark_note": "The reagent",
+        "lines": [
+          "Hypochlorous acid has the formula HOCl.",
+          "It is obtained by passing chlorine into",
+          "cold water.",
+          "It is an unsymmetrical reagent: the two",
+          "parts that add are the OH group and the",
+          "chlorine atom.",
+          "Oxygen is more electronegative than",
+          "chlorine, so the OH group is the negative",
+          "part and the chlorine the positive part."
+        ],
+        "why": "The answer needs the reagent broken into the two parts that will add, because that is what an addition to a double bond consumes. Which part is negative follows from the electronegativities in the O–Cl bond, and that is what settles the product when the alkene is unsymmetrical.",
+        "common_mistakes": [
+          "Writing the reagent as HClO₂ or as Cl₂. Hypochlorous acid is HOCl.",
+          "Treating chlorine as the negative part. In HOCl the OH group is the negative part."
+        ],
+        "memory_tip": "HOCl adds in two parts: OH and Cl, one to each carbon.",
+        "margin_note": "Name the reagent and split it into the two parts that add."
+      },
+      {
+        "id": "s2_addition",
+        "kind": "text",
+        "label": "How the addition happens",
+        "marks": 2,
+        "mark_note": "The addition",
+        "lines": [
+          "Ethylene has a carbon-carbon double bond,",
+          "and the π bond is the weaker of the two",
+          "bonds between those carbons.",
+          "Hypochlorous acid adds across it, and the",
+          "double bond becomes a single bond.",
+          "One carbon takes the chlorine atom and the",
+          "other takes the OH group.",
+          "Nothing is released, so the reaction is an",
+          "addition and not a substitution."
+        ],
+        "why": "An alkene reacts by addition because the π bond breaks and leaves one free bond on each carbon. Hypochlorous acid supplies exactly two parts, so each carbon takes one and no atom is left over — which is why there is no by-product to write.",
+        "common_mistakes": [
+          "Writing a substitution that releases HCl. Ethylene adds the hypochlorous acid whole.",
+          "Putting both parts on the same carbon. One part goes to each carbon of the double bond.",
+          "Keeping the double bond in the product. It becomes a single bond when the addition happens."
+        ],
+        "memory_tip": "Cl on one carbon, OH on the other, and the double bond becomes single.",
+        "margin_note": "Say that the reaction is an addition across the double bond."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 2,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ + HOCl → HOCH₂–CH₂Cl",
+            "style": "eq"
+          },
+          "Atoms: 2 C, 5 H, 1 O and 1 Cl each side.",
+          "The product may also be written",
+          "ClCH₂–CH₂OH; it is the same compound.",
+          "Every atom of both reactants appears in",
+          "the single product, so there is no",
+          "by-product."
+        ],
+        "why": "Writing the OH and the chlorine on different carbons is the whole content of the equation. The atom count then confirms it: five hydrogen, one oxygen and one chlorine on each side, so nothing has been created or lost.",
+        "common_mistakes": [
+          "Writing the product as CH₂=CHCl. That keeps the double bond; here the double bond opens.",
+          "Writing ClCH₂–CH₂Cl. That is the product with chlorine, not with hypochlorous acid.",
+          "Adding a second product to the equation. There is none."
+        ],
+        "memory_tip": "One reactant plus one reactant gives one product, with nothing released.",
+        "margin_note": "Write the OH group and the chlorine atom on different carbons."
+      },
+      {
+        "id": "s4_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "The product",
+        "lines": [
+          "The product is ethylene chlorohydrin.",
+          "Its IUPAC name is 2-chloroethanol.",
+          "A chlorohydrin is a compound carrying a",
+          "chlorine atom and a hydroxyl group on",
+          "neighbouring carbon atoms.",
+          "Both groups are present in HOCH₂–CH₂Cl,",
+          "one on each carbon."
+        ],
+        "why": "Naming the product names its class as well: chlorohydrin says exactly what the structure is. The IUPAC name numbers the carbons from the OH end, so the chlorine sits on carbon 2.",
+        "common_mistakes": [
+          "Naming the product ethylene glycol. Glycol carries two OH groups; here one of them is a chlorine atom.",
+          "Calling it 1-chloroethanol. The carbon carrying the OH is number 1, so the chlorine is on carbon 2."
+        ],
+        "memory_tip": "Chlorohydrin: one chlorine and one OH, on neighbouring carbons.",
+        "margin_note": "Give both names, the common one and the IUPAC one."
+      },
+      {
+        "id": "s5_one_product",
+        "kind": "text",
+        "label": "Why only one product forms",
+        "marks": 1,
+        "mark_note": "One product only",
+        "lines": [
+          "Ethylene is a symmetrical alkene: each",
+          "carbon of the double bond carries two",
+          "hydrogen atoms.",
+          "So it makes no difference which carbon",
+          "takes the chlorine, and only one product",
+          "is possible.",
+          "With an unsymmetrical alkene the two",
+          "carbons differ, and Markovnikov's rule",
+          "then places the OH group on the carbon",
+          "with fewer hydrogen atoms."
+        ],
+        "why": "A rule is only needed when the two carbons of the double bond are different. In ethylene they are identical, so a single product follows without any rule at all — and saying so shows the rule has been understood rather than forgotten.",
+        "common_mistakes": [
+          "Applying Markovnikov's rule to ethylene. Both carbons are alike, so the rule makes no difference here.",
+          "Expecting a mixture of two products. Ethylene is symmetrical, so there is only one."
+        ],
+        "memory_tip": "Symmetrical alkene, one product; unsymmetrical alkene, use Markovnikov's rule.",
+        "margin_note": "Add one line saying why no rule is needed for ethylene itself."
+      },
+      {
+        "id": "s6_overall",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 1,
+        "mark_note": "The overall change",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ → HOCH₂–CH₂Cl (HOCl)",
+            "style": "boxed"
+          },
+          "One molecule of ethylene and one of",
+          "hypochlorous acid give one molecule of",
+          "ethylene chlorohydrin.",
+          "The reaction is an addition across the",
+          "carbon-carbon double bond."
+        ],
+        "why": "The boxed line states the whole change on one line that can be read on its own: ethylene in, ethylene chlorohydrin out, the reagent named beside the arrow and no by-product. The full equation with HOCl on the left is written out in step 3.",
+        "common_mistakes": [
+          "Adding a by-product to the boxed line. Every atom appears in the single product.",
+          "Leaving the double bond in the boxed product."
+        ],
+        "memory_tip": "Ethylene plus HOCl gives ethylene chlorohydrin, and nothing else.",
+        "margin_note": "Close with the overall change on one line, with the reagent named beside it."
+      }
+    ]
+  }
+}

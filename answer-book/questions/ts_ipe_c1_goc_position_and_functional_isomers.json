@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_position_and_functional_isomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give two examples each of position isomerism and functional isomerism.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Position isomers — the propanols",
+      "marks": 1
+    },
+    {
+      "label": "Position isomers — the dichlorobenzenes",
+      "marks": 1
+    },
+    {
+      "label": "Functional isomers — ether and alcohol",
+      "marks": 1
+    },
+    {
+      "label": "Functional isomers — aldehyde and ketone",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.116, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 26. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this chapter, so appearances[] is empty. SOURCE-BOOK ERROR CORRECTED, and this is the reason the correction is also written into common_mistakes: the book prints propan-1-ol as CH₃–CH₂–CH₃–OH. As printed, the third carbon atom carries three hydrogen atoms and an –OH group, which is five bonds on one carbon atom, so the structure cannot exist. The name propan-1-ol is right and the structure is wrong; this card writes CH₃–CH₂–CH₂–OH. NAME CORRECTED: the book writes propanaldehyde for CH₃CH₂CHO. The IUPAC name is propanal, and that is what this card writes; the older common name propionaldehyde names the same compound. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position_propanols",
+        "kind": "text",
+        "label": "Position isomers — the propanols",
+        "marks": 1,
+        "mark_note": "First position example",
+        "lines": [
+          "Position isomers have the same molecular",
+          "formula and the same functional group,",
+          "but the group is at a different place on",
+          "the carbon chain.",
+          "First example, molecular formula C₃H₈O:",
+          {
+            "text": "CH₃–CH₂–CH₂–OH   propan-1-ol",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃–CH(OH)–CH₃   propan-2-ol",
+            "style": "eq"
+          },
+          "Both are alcohols with three carbon",
+          "atoms. The –OH group is on carbon 1 in",
+          "the first and on carbon 2 in the second."
+        ],
+        "why": "A position isomer pair is only convincing when the reader can count the carbon atoms and see the group move, so the two structures are written out in full rather than named. Propan-1-ol and propan-2-ol are the shortest pair where the group has somewhere else to go: propane has three carbon atoms, and carbon 1 and carbon 3 are the two ends of the same chain, so putting the –OH group on either of them gives the same compound.",
+        "common_mistakes": [
+          "Writing propan-1-ol as CH₃–CH₂–CH₃–OH. That third carbon atom would carry three hydrogen atoms and an –OH group, which is five bonds on one carbon atom. The chain is CH₃–CH₂–CH₂–OH.",
+          "Offering propan-1-ol and ethanol as a pair. Their molecular formulae are C₃H₈O and C₂H₆O, so they are not isomers of each other."
+        ],
+        "memory_tip": "Same group and same molecular formula; only the carbon number changes.",
+        "margin_note": "Write both structures out in full; the position of the –OH group is the whole example."
+      },
+      {
+        "id": "s2_position_dichlorobenzenes",
+        "kind": "text",
+        "label": "Position isomers — the dichlorobenzenes",
+        "marks": 1,
+        "mark_note": "Second position example",
+        "lines": [
+          "Second example, molecular formula",
+          "C₆H₄Cl₂: a benzene ring carrying two",
+          "chlorine atoms.",
+          "Number the ring carbon atoms 1 to 6 and",
+          "put the first chlorine atom on carbon 1.",
+          {
+            "text": "1,2-dichlorobenzene (ortho)",
+            "style": "eq"
+          },
+          {
+            "text": "1,3-dichlorobenzene (meta)",
+            "style": "eq"
+          },
+          {
+            "text": "1,4-dichlorobenzene (para)",
+            "style": "eq"
+          },
+          "The three compounds differ only in",
+          "where the second chlorine atom sits on",
+          "the ring, so they are position isomers."
+        ],
+        "why": "The second example is deliberately a ring rather than another chain, because it shows that position isomerism is about the numbered skeleton and not about chains alone. On a benzene ring the three possible places have their own names, ortho, meta and para, and those names are worth writing beside the numbers.",
+        "common_mistakes": [
+          "Naming only two of the three. On a benzene ring the second chlorine atom has three different places to go, which gives 1,2-, 1,3- and 1,4-dichlorobenzene.",
+          "Calling 1,3-dichlorobenzene the para compound. 1,3- is meta and 1,4- is para."
+        ],
+        "memory_tip": "Ortho 1,2 · meta 1,3 · para 1,4 — the numbers rise as the atoms move apart.",
+        "margin_note": "Give the ortho, meta and para names beside the numbers; both forms name the same three compounds."
+      },
+      {
+        "id": "s3_functional_ether_alcohol",
+        "kind": "text",
+        "label": "Functional isomers — ether and alcohol",
+        "marks": 1,
+        "mark_note": "First functional example",
+        "lines": [
+          "Functional isomers have the same",
+          "molecular formula but different",
+          "functional groups, so they belong to",
+          "different families of compounds.",
+          "First example, molecular formula C₂H₆O:",
+          {
+            "text": "CH₃–O–CH₃   dimethyl ether",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃–CH₂–OH   ethanol",
+            "style": "eq"
+          },
+          "The first is an ether, with the oxygen",
+          "atom between two carbon atoms.",
+          "The second is an alcohol, with the",
+          "oxygen atom in an –OH group."
+        ],
+        "why": "The difference between the two kinds of isomerism is easiest to see when the two answers sit one after the other: in the first two examples the group moved, and here the group itself has changed. Saying where the oxygen atom sits in each structure is what makes the change of family visible.",
+        "common_mistakes": [
+          "Writing that the two compounds have different molecular formulae. Both are C₂H₆O; that is what makes them isomers.",
+          "Calling them position isomers. The functional group itself is different, an ether in one and an alcohol in the other, so the isomerism is functional."
+        ],
+        "memory_tip": "Same atoms, different family: an ether and an alcohol both from C₂H₆O.",
+        "margin_note": "Name the family beside each structure; the change of family is the point of the example."
+      },
+      {
+        "id": "s4_functional_aldehyde_ketone",
+        "kind": "boxed_final",
+        "label": "Functional isomers — aldehyde and ketone",
+        "marks": 1,
+        "mark_note": "Second functional example",
+        "lines": [
+          {
+            "text": "Propanal and propanone are both C₃H₆O",
+            "style": "boxed"
+          },
+          "Second example, molecular formula C₃H₆O:",
+          {
+            "text": "CH₃–CH₂–CHO   propanal",
+            "style": "eq"
+          },
+          {
+            "text": "CH₃–CO–CH₃   propanone",
+            "style": "eq"
+          },
+          "Propanal is an aldehyde. Its carbonyl",
+          "group is at the end of the chain, so",
+          "that carbon atom also carries a",
+          "hydrogen atom.",
+          "Propanone is a ketone. Its carbonyl",
+          "group is on the middle carbon atom,",
+          "between two other carbon atoms."
+        ],
+        "why": "The two functional groups are different: propanal carries an aldehyde group, –CHO, at the end of the chain, and propanone carries a ketone group, >C=O, between two carbon atoms. Different groups from one molecular formula is what makes the isomerism functional, not the place on the chain.",
+        "common_mistakes": [
+          "Writing the aldehyde as propanaldehyde. The IUPAC name is propanal.",
+          "Drawing propanone with the C=O group at the end of the chain. A carbonyl group at the end of a chain makes an aldehyde, which is propanal."
+        ],
+        "memory_tip": "Carbonyl at the end is an aldehyde; carbonyl in the middle is a ketone.",
+        "margin_note": "One closing line naming the shared molecular formula completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question asks for two examples of each kind, so four pairs of structures belong on the page. A definition of each kind without the structures written out answers only part of it."
+}

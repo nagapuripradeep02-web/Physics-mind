@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_sicl4_account",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write an account of SiCl₄.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Nature and structure",
+      "marks": 1
+    },
+    {
+      "label": "Hydrolysis",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "An account of SiCl₄ is short but it has two halves: what the molecule is, and what water does to it — and the hydrolysis is the half that carries the chemistry of the group.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nature",
+        "kind": "text",
+        "label": "Nature and structure",
+        "marks": 1,
+        "mark_note": "Nature and shape",
+        "lines": [
+          "Silicon tetrachloride, SiCl₄, is a",
+          "covalent halide of silicon.",
+          "It is a colourless liquid.",
+          "Silicon is sp³ hybridised in it, so the",
+          "molecule is tetrahedral with the four",
+          "chlorine atoms at the corners.",
+          "It is made by heating silicon in a",
+          "stream of chlorine."
+        ],
+        "why": "Silicon shares its four valence electrons with four chlorine atoms rather than forming ions, so SiCl₄ is covalent. Four bonded atoms and no lone pair on silicon give sp³ hybridisation and a tetrahedral shape.",
+        "common_mistakes": [
+          "Calling SiCl₄ an ionic chloride. It is covalent, which is why it is a liquid and not a high-melting solid.",
+          "Writing sp² and a planar shape. Silicon is bonded to four chlorine atoms, so it is sp³ and tetrahedral."
+        ],
+        "memory_tip": "Four chlorine atoms, no lone pair, so sp³ and tetrahedral.",
+        "margin_note": "Name the bond type, the hybridisation and the shape together in the opening lines."
+      },
+      {
+        "id": "s2_hydrolysis",
+        "kind": "boxed_final",
+        "label": "Hydrolysis",
+        "marks": 1,
+        "mark_note": "Hydrolysis",
+        "lines": [
+          "SiCl₄ hydrolyses readily in water,",
+          "giving silicic acid and hydrochloric",
+          "acid.",
+          "Silicon has vacant d orbitals that",
+          "accept a lone pair from a water",
+          "molecule, so the reaction can proceed.",
+          "Carbon has no d orbitals in its valence",
+          "shell, and CCl₄ does not hydrolyse.",
+          {
+            "text": "SiCl₄ + 4H₂O → Si(OH)₄ + 4HCl",
+            "style": "boxed"
+          }
+        ],
+        "why": "The hydrolysis is the property that separates SiCl₄ from CCl₄, and the reason is the vacant d orbitals of silicon. A water molecule gives a lone pair into one of them, and the chlorine atoms are then replaced one by one by OH groups.",
+        "common_mistakes": [
+          "Writing SiO₂ with no explanation. The first product is silicic acid, Si(OH)₄; it loses water to give hydrated silica, so SiCl₄ + 2H₂O → SiO₂ + 4HCl is also correct.",
+          "Writing that CCl₄ hydrolyses in the same way. Carbon has no d orbitals in its valence shell, so it cannot take the lone pair from water."
+        ],
+        "memory_tip": "Vacant d orbitals on silicon accept the lone pair from water; carbon has none, so CCl₄ stays unchanged.",
+        "margin_note": "The balanced hydrolysis equation with the reason beside it completes the account."
+      }
+    ]
+  }
+}

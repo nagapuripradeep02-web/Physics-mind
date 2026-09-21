@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_al2o3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide Al₂O₃ as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification",
+      "marks": 1
+    },
+    {
+      "label": "The two reactions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(e). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of Al₂O₃ as amphoteric is correct and is what this card gives. BOTH ALUMINATE FORMS ARE CORRECT, recorded here so no later editor treats one as a defect: the card writes the fusion form Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O and names Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄], the form written when water is present, as equally acceptable. Neither is an error, and this matches the group-13 card on the same chemistry. Both equations were atom-counted: Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O has Al 2, O 3, H 6, Cl 6 on each side. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "text",
+        "label": "The classification",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Aluminium oxide Al₂O₃ is an amphoteric",
+          "oxide.",
+          "An amphoteric oxide reacts with an acid",
+          "and also with a base, giving a salt and",
+          "water in each case.",
+          "Aluminium stands between the metals and",
+          "the non-metals, so its oxide shows both",
+          "characters."
+        ],
+        "why": "Aluminium sits at the boundary between metallic and non-metallic behaviour in group 13, so its oxide is neither purely basic nor purely acidic. Defining the word first is what turns the two equations below into an explanation instead of a pair of unconnected reactions.",
+        "common_mistakes": [
+          "Calling Al₂O₃ basic because aluminium is a metal. It reacts with sodium hydroxide as well, which a purely basic oxide does not do.",
+          "Writing that an amphoteric oxide reacts with water. The test is one reaction with an acid and one with a base."
+        ],
+        "memory_tip": "Amphoteric means two reactions: one with an acid and one with a base.",
+        "margin_note": "Define the word before the equations; the definition is part of the answer."
+      },
+      {
+        "id": "s2_two_reactions",
+        "kind": "boxed_final",
+        "label": "The two reactions",
+        "marks": 1,
+        "mark_note": "Both reactions",
+        "lines": [
+          {
+            "text": "Al₂O₃ is an amphoteric oxide",
+            "style": "boxed"
+          },
+          "With an acid it behaves as a base:",
+          {
+            "text": "Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O",
+            "style": "eq"
+          },
+          "With an alkali it behaves as an acid:",
+          {
+            "text": "Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O",
+            "style": "eq"
+          },
+          "The salts are aluminium chloride AlCl₃",
+          "and sodium meta-aluminate NaAlO₂."
+        ],
+        "why": "The two equations are the evidence the word amphoteric stands on, so both are written. The aluminate may also be written as Na[Al(OH)₄], from Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄], the form used when water is present; both forms describe the same chemistry and both are correct.",
+        "common_mistakes": [
+          "Writing only the reaction with the acid. Both halves are needed before the word amphoteric can be used.",
+          "Writing Al₂O₃ + 3HCl → 2AlCl₃ + 3H₂O. Six molecules of HCl are needed for the equation to balance."
+        ],
+        "memory_tip": "Acid gives the chloride AlCl₃, alkali gives the aluminate NaAlO₂.",
+        "margin_note": "Either aluminate form, NaAlO₂ or Na[Al(OH)₄], is correct; write one of them balanced."
+      }
+    ]
+  },
+  "insider_note": "The reaction with sodium hydroxide is the half usually left out, and it is the two reactions together that show the oxide is amphoteric, so write both of them."
+}

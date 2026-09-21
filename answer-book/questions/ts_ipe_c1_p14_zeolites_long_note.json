@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_zeolites_long_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on zeolites.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What zeolites are",
+      "marks": 1
+    },
+    {
+      "label": "How the framework is built",
+      "marks": 2
+    },
+    {
+      "label": "The charge and the cations",
+      "marks": 1
+    },
+    {
+      "label": "The cages and the water",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 2
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.111, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 44(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD (re-checked step by step 2026-09-03, and the earlier version of this claim CORRECTED): the same chapter also asks for a short note on zeolites at four marks. That card carries the definition, that zeolites occur both as minerals and as laboratory-made solids, the negative framework balanced by Na⁺, K⁺ or Ca²⁺, the cage-like cavities and the three uses. Both cards state the same chemistry of the charge: the aluminium atom is bonded to four oxygen atoms exactly as silicon is, and the negative charge comes from aluminium being trivalent where silicon is tetravalent. This eight-mark card adds content rather than length: the framework built from the silica network step by step, the counting rule that ties the number of negative charges to the number of aluminium atoms, the channel diameter that a molecular sieve measures by, and each of the three uses tied to the property it comes from. The heating of the water and the fixed channel size appear on BOTH cards and are not claimed here as additions — the earlier wording of this record listed them as additions and was wrong. The use of ZSM-5 stated here — converting alcohols directly into gasoline — is the same as on the short card and on the separate ZSM-5 question in this chapter."
+  },
+  "insider_note": "One change to the silica network — some silicon replaced by aluminium — produces the charge, the loose cations and the cavities, and every use of a zeolite comes from one of those three.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What zeolites are",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Zeolites are hydrated aluminosilicates.",
+          "They are a large family of compounds:",
+          "some occur as minerals and others are",
+          "made in the laboratory.",
+          "ZSM-5 is one of the made ones.",
+          "The name covers any aluminosilicate",
+          "with a cage-like framework and water",
+          "in its cavities."
+        ],
+        "why": "The definition has three parts that the rest of the note explains one at a time: hydrated, meaning water in the cavities; aluminosilicate, meaning aluminium as well as silicon; and a framework, meaning a three-dimensional structure rather than chains or sheets.",
+        "common_mistakes": [
+          "Calling a zeolite an ordinary silicate. Aluminium in place of some of the silicon is what makes it an aluminosilicate.",
+          "Writing that all zeolites are minerals. Many, including ZSM-5, are made in the laboratory."
+        ],
+        "memory_tip": "Hydrated, aluminosilicate, cage-like: those three words are the definition.",
+        "margin_note": "Give the definition in one sentence before building the framework in the next step."
+      },
+      {
+        "id": "s2_framework",
+        "kind": "text",
+        "label": "How the framework is built",
+        "marks": 2,
+        "mark_note": "The framework",
+        "lines": [
+          "Begin with the three-dimensional",
+          "network of silica, in which every",
+          "silicon atom is bonded to four oxygen",
+          "atoms and every oxygen atom is shared",
+          "between two silicon atoms.",
+          "Now replace some of the silicon atoms",
+          "by aluminium atoms.",
+          "The structure that results is an",
+          "aluminosilicate: silicon, aluminium and",
+          "oxygen joined in one three-dimensional",
+          "framework.",
+          "The tetrahedra are still joined at",
+          "their corners, so the shape of the",
+          "network is unchanged; only the identity",
+          "of some of the central atoms has",
+          "changed."
+        ],
+        "why": "Building the zeolite out of the silica network makes every later property follow from one change. The framework keeps the same corner-shared arrangement, so the difference between silica and a zeolite is not the shape but the aluminium atoms sitting in it.",
+        "common_mistakes": [
+          "Describing the framework as sheets or chains. A zeolite framework is three-dimensional, like silica.",
+          "Writing that the aluminium atoms replace oxygen atoms. They take the place of silicon atoms at the centres of tetrahedra."
+        ],
+        "memory_tip": "Take the silica network and put aluminium in some of the silicon places.",
+        "margin_note": "Start from silica; the whole of the rest of the note follows from that one change."
+      },
+      {
+        "id": "s3_charge",
+        "kind": "text",
+        "label": "The charge and the cations",
+        "marks": 1,
+        "mark_note": "Charge balance",
+        "lines": [
+          "Aluminium sits at the centre of its",
+          "tetrahedron exactly as silicon does,",
+          "bonded to four oxygen atoms.",
+          "The difference is valency: silicon is",
+          "tetravalent and aluminium trivalent, so",
+          "an AlO₄ centre brings one electron",
+          "fewer than an SiO₄ centre.",
+          "Each aluminium in the framework",
+          "therefore leaves one negative charge on",
+          "it, and the number of negative charges",
+          "is equal to the number of aluminium",
+          "atoms.",
+          "Cations such as Na⁺, K⁺ or Ca²⁺ sit in",
+          "the cavities and balance that charge.",
+          "They are not part of the framework",
+          "itself, so they can be exchanged for",
+          "other cations without the framework",
+          "changing."
+        ],
+        "why": "The bonding does not change when aluminium takes a silicon place — four oxygen atoms round a central atom, either way. Only the electron count changes, and that is what leaves the charge. The charge is in turn why a zeolite carries loose cations at all, and loose cations are what an ion exchanger needs.",
+        "common_mistakes": [
+          "Writing that aluminium forms only three bonds here. It is bonded to four oxygen atoms, at the centre of a tetrahedron, exactly as the previous step describes; the charge comes from aluminium being trivalent, not from a missing bond.",
+          "Writing that the framework is neutral. Replacing silicon by aluminium leaves a negative charge on it.",
+          "Writing the cations as part of the framework. They occupy the cavities and can be exchanged."
+        ],
+        "memory_tip": "Four oxygen atoms round the aluminium as round the silicon, but one electron fewer, so one negative charge per aluminium.",
+        "margin_note": "Name at least one cation by symbol, such as Na⁺, rather than writing metal ions."
+      },
+      {
+        "id": "s4_cages",
+        "kind": "text",
+        "label": "The cages and the water",
+        "marks": 1,
+        "mark_note": "The cavities",
+        "lines": [
+          "The cavities are not gaps left over.",
+          "They are enclosed by rings of joined",
+          "tetrahedra, and the size of a ring fixes",
+          "the diameter of the channel that opens",
+          "into the cavity behind it.",
+          "That diameter is a definite length, a",
+          "few hundred picometres across, and it",
+          "is the measurement a molecular sieve",
+          "works by: a molecule narrower than the",
+          "channel goes in, a wider one stays out.",
+          "The water of a hydrated zeolite occupies",
+          "these cavities; on heating it is driven",
+          "off and the framework is left unchanged."
+        ],
+        "why": "The sieve use rests on a measurement rather than on general porosity. The channel diameter is set by how many tetrahedra make up the ring around it, so a molecule that passes into one zeolite can be too wide for another built of the same atoms. The water is what the word hydrated in the definition refers to, and it can be driven out without the framework changing.",
+        "common_mistakes": [
+          "Describing the cavities as holes or cracks in the solid. They are enclosed by the rings of tetrahedra and are part of the structure, so every crystal of one zeolite has cavities of the same size.",
+          "Writing that heating breaks the framework. Heating drives off the water only; the Si–O and Al–O bonds are not broken."
+        ],
+        "memory_tip": "The ring of tetrahedra sets the channel diameter, and that diameter is what the sieve measures by.",
+        "margin_note": "Give the channel a size, since the sieve use in the next step rests on that measurement."
+      },
+      {
+        "id": "s5_uses",
+        "kind": "text",
+        "label": "Uses",
+        "marks": 2,
+        "mark_note": "Uses",
+        "lines": [
+          "As ion exchangers. The cations of a",
+          "zeolite can be exchanged, so a zeolite",
+          "is used to soften hard water: the Ca²⁺",
+          "and Mg²⁺ ions of the water take the",
+          "place of the Na⁺ ions of the zeolite.",
+          "As molecular sieves. The channels are",
+          "of a fixed size, so molecules small",
+          "enough to enter the cavities pass in",
+          "and larger molecules stay outside; this",
+          "is used to separate mixtures and to dry",
+          "gases and liquids.",
+          "As catalysts. ZSM-5 converts alcohols",
+          "directly into gasoline."
+        ],
+        "why": "Each use is a property already described, put to work. The exchangeable cations give the ion exchanger, the fixed size of the channels gives the molecular sieve, and inside a cavity the framework surrounds the reacting molecule on every side, which is what a catalyst needs.",
+        "common_mistakes": [
+          "Listing the uses with no property beside them. Each one follows from the charge or from the size of the cavities.",
+          "Writing that a zeolite removes every dissolved salt from water. It exchanges the Ca²⁺ and Mg²⁺ ions for Na⁺ ions, which is what softening means.",
+          "Writing that ZSM-5 converts crude oil into gasoline. It converts alcohols, and in one step."
+        ],
+        "memory_tip": "Exchange the cations, sieve by the size of the cavity, and ZSM-5 for gasoline.",
+        "margin_note": "Head each use with its own short heading; three headed uses read more clearly than one paragraph."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "So one change to the silica network,",
+          "some silicon replaced by aluminium,",
+          "gives the negative charge, the",
+          "exchangeable cations and the cavities,",
+          "and every use of a zeolite follows from",
+          "one of those three.",
+          {
+            "text": "Zeolites are cage-like aluminosilicates",
+            "style": "boxed"
+          }
+        ],
+        "why": "A note closes best on the single idea it was built from. Naming the one structural change and the three properties it produces shows that the uses were not a separate list to be learnt.",
+        "common_mistakes": [
+          "Closing with the uses alone. The structure is what the uses came from.",
+          "Closing without naming aluminium. The replacement of silicon by aluminium is the change the whole note rests on."
+        ],
+        "memory_tip": "Aluminium in the silica network gives charge, cations and cavities, and those give the uses.",
+        "margin_note": "Close by naming the one structural change again, so the note ends where it began."
+      }
+    ]
+  }
+}

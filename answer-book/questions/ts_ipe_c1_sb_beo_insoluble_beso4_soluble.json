@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_beo_insoluble_beso4_soluble",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the following observation: BeO is almost insoluble in water, but BeSO₄ is soluble in water.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule that decides solubility",
+      "marks": 1
+    },
+    {
+      "label": "Why BeO is almost insoluble",
+      "marks": 1
+    },
+    {
+      "label": "Why BeSO₄ is soluble",
+      "marks": 1
+    },
+    {
+      "label": "The two results together",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, SAQ question 48(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE-BOOK ERROR CORRECTED HERE, recorded so no later editor restores it: explaining why BeSO₄ dissolves, the source prints that the hydration enthalpy of Be²⁺ overcomes the lattice enthalpy of BaSO₄ — the wrong compound, since the sentence is about BeSO₄. This card writes the lattice enthalpy of BeSO₄. The chemistry is otherwise as the book gives it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_rule",
+        "kind": "text",
+        "label": "The rule that decides solubility",
+        "marks": 1,
+        "mark_note": "The principle",
+        "lines": [
+          "An ionic solid dissolves in water only",
+          "if the hydration enthalpy released is at",
+          "least as large as the lattice enthalpy",
+          "that has to be supplied.",
+          "Lattice enthalpy is large when both ions",
+          "are small and highly charged.",
+          "Hydration enthalpy is large when an ion",
+          "is small and highly charged."
+        ],
+        "why": "Both halves of this question are decided by the same comparison, so the comparison has to be stated once at the start. Writing it as a rule also makes clear that the sulphate and the oxide are not two separate facts to be remembered but one rule applied to two different anions.",
+        "common_mistakes": [
+          "Comparing only the lattice enthalpies. Solubility is decided by the lattice enthalpy compared with the hydration enthalpy, never by one of them alone.",
+          "Writing that small ions always give soluble salts. A small ion raises both quantities, so the comparison still has to be made."
+        ],
+        "memory_tip": "Lattice enthalpy is the energy needed to break the solid apart, hydration enthalpy the energy released when water surrounds the ions; the larger of the two decides.",
+        "margin_note": "State the rule before either case. Both parts of the question are the same comparison with a different anion."
+      },
+      {
+        "id": "s2_beo_insoluble",
+        "kind": "text",
+        "label": "Why BeO is almost insoluble",
+        "marks": 1,
+        "mark_note": "The oxide",
+        "lines": [
+          "In BeO the cation Be²⁺ and the anion O²⁻",
+          "are both very small, and each carries",
+          "two units of charge.",
+          "The ions are very close together, so the",
+          "lattice enthalpy of BeO is extremely",
+          "large.",
+          "Be²⁺ is strongly hydrated, but even that",
+          "hydration enthalpy is smaller than this",
+          "lattice enthalpy.",
+          "So BeO is almost insoluble in water."
+        ],
+        "why": "Lattice enthalpy depends on how close the centres of the two ions can come, and BeO is the extreme case in this group because both ions are small and both are doubly charged. That is why BeO is a hard, high melting solid as well as an insoluble one.",
+        "common_mistakes": [
+          "Stopping at covalent character. The explanation asked for here is the comparison of lattice enthalpy with hydration enthalpy; the covalent character of BeO is a second, consistent reason and not a wrong one.",
+          "Writing that Be²⁺ has a small hydration enthalpy. Its hydration enthalpy is the largest in the group; the lattice enthalpy of BeO is simply larger still."
+        ],
+        "memory_tip": "Two small ions, each with a double charge, give the tightest lattice in the group.",
+        "margin_note": "Name both ions as small here. The whole reason is that the oxide ion is small as well as the beryllium ion."
+      },
+      {
+        "id": "s3_beso4_soluble",
+        "kind": "text",
+        "label": "Why BeSO₄ is soluble",
+        "marks": 1,
+        "mark_note": "The sulphate",
+        "lines": [
+          "In BeSO₄ the anion is the sulphate ion",
+          "SO₄²⁻, which is a large ion.",
+          "The centres of the ions are much further",
+          "apart, so the lattice enthalpy of BeSO₄",
+          "is much lower than that of BeO.",
+          "Be²⁺ is still very small, so its",
+          "hydration enthalpy is still very large.",
+          "That hydration enthalpy now overcomes",
+          "the lattice enthalpy of BeSO₄, and the",
+          "salt dissolves."
+        ],
+        "why": "Changing the anion changes only one side of the comparison. The large sulphate ion brings the lattice enthalpy down while the small beryllium ion holds the hydration enthalpy high, so for the sulphate the hydration enthalpy is the larger of the two, though for the oxide it was the smaller.",
+        "common_mistakes": [
+          "Writing that the hydration enthalpy of Be²⁺ overcomes the lattice enthalpy of BaSO₄. The compound being explained is BeSO₄, so it is the lattice enthalpy of BeSO₄ that is overcome.",
+          "Writing that the sulphate ion is more strongly hydrated than the oxide ion. The reason is its size lowering the lattice enthalpy, not its hydration."
+        ],
+        "memory_tip": "Swap the small oxide ion for the large sulphate ion and only the lattice enthalpy falls, so the hydration enthalpy becomes the larger of the two.",
+        "margin_note": "Name BeSO₄ by its own formula in this sentence. Writing another sulphate here is the commonest slip on this question."
+      },
+      {
+        "id": "s4_together",
+        "kind": "boxed_final",
+        "label": "The two results together",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "BeSO₄ dissolves, BeO does not",
+            "style": "boxed"
+          },
+          "For BeO the lattice enthalpy is greater",
+          "than the hydration enthalpy, so it stays",
+          "almost insoluble.",
+          "For BeSO₄ the large sulphate ion lowers",
+          "the lattice enthalpy, and the very large",
+          "hydration enthalpy of the small Be²⁺ ion",
+          "overcomes the lattice enthalpy of BeSO₄.",
+          "The same rule gives the two opposite",
+          "results."
+        ],
+        "why": "The question asks for an explanation of one observation with two halves, so the closing lines have to put the two halves side by side and show that a single rule produced both. That is what makes it an explanation rather than two remembered facts.",
+        "common_mistakes": [
+          "Explaining only one of the two compounds. The observation has two halves and both need the comparison.",
+          "Ending without naming which enthalpy is larger in each case. That comparison is the answer."
+        ],
+        "memory_tip": "One rule, two anions: with the small Be²⁺ ion the oxide lattice enthalpy is the larger, the sulphate lattice enthalpy is not.",
+        "margin_note": "Close by placing the two cases side by side so the single rule behind them is visible."
+      }
+    ]
+  },
+  "insider_note": "Both halves of this answer are the same comparison of lattice enthalpy with hydration enthalpy, and the usual loss is naming the wrong sulphate in the second half, so write the lattice enthalpy of BeSO₄ in full."
+}

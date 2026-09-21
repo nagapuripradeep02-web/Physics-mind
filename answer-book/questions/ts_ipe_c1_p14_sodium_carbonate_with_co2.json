@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_sodium_carbonate_with_co2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why does a Na₂CO₃ solution turn into a suspension when it is saturated with CO₂ gas?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What is passed into what",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "Why the bicarbonate separates",
+      "marks": 1
+    },
+    {
+      "label": "What is seen",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.109, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 39. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_is_passed_in",
+        "kind": "text",
+        "label": "What is passed into what",
+        "marks": 1,
+        "mark_note": "The starting point",
+        "lines": [
+          "Sodium carbonate Na₂CO₃ is soluble in",
+          "water, so it gives a clear solution to",
+          "begin with.",
+          "Carbon dioxide gas is passed into this",
+          "solution until no more of it dissolves,",
+          "that is until the solution is saturated",
+          "with CO₂.",
+          "The carbon dioxide, the water and the",
+          "carbonate react together."
+        ],
+        "why": "The starting solution is clear, and that is the fact the question is built on. Something new has to be formed for a clear solution to become cloudy, so the first step is to name the three substances that are present and able to react.",
+        "common_mistakes": [
+          "Writing that the CO₂ only dissolves in the water. It also reacts with the sodium carbonate that is dissolved in it.",
+          "Starting from solid sodium carbonate. The question begins with a solution of Na₂CO₃ in water."
+        ],
+        "memory_tip": "Three things are present and all three take part: the carbonate, the water and the carbon dioxide.",
+        "margin_note": "Say that the solution is clear at the start. The change from clear to cloudy is what the question asks about."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "Sodium carbonate is converted into",
+          "sodium bicarbonate:",
+          {
+            "text": "Na₂CO₃ + H₂O + CO₂ → 2NaHCO₃",
+            "style": "eq"
+          },
+          "Atoms: 2 Na, 2 C, 2 H and 6 O on each",
+          "side.",
+          "Sodium bicarbonate NaHCO₃ is also called",
+          "sodium hydrogen carbonate."
+        ],
+        "why": "One carbonate unit and one added CO₂ molecule give two bicarbonate units, and the water supplies the two hydrogen atoms that appear in the two bicarbonate units. That is why the coefficient on the right is 2 while every reactant is 1.",
+        "common_mistakes": [
+          "Leaving the water out and writing Na₂CO₃ + CO₂ → 2NaHCO₃. Without water there is no hydrogen for the two H atoms in the product.",
+          "Writing NaHCO₃ with a coefficient of 1. Two bicarbonate units are formed from one carbonate unit."
+        ],
+        "memory_tip": "One carbonate plus one carbon dioxide plus one water gives two bicarbonates — the only coefficient bigger than one is the 2 on NaHCO₃.",
+        "margin_note": "Count the atoms on both sides before moving on. The water is the reactant most often left out."
+      },
+      {
+        "id": "s3_solubility",
+        "kind": "text",
+        "label": "Why the bicarbonate separates",
+        "marks": 1,
+        "mark_note": "The solubility reason",
+        "lines": [
+          "Sodium bicarbonate is much less soluble",
+          "in water than sodium carbonate.",
+          "As the NaHCO₃ is formed, the solution",
+          "soon contains more of it than that",
+          "amount of water can dissolve.",
+          "The excess therefore does not stay in",
+          "solution. It separates out as a fine",
+          "white solid."
+        ],
+        "why": "The reaction alone does not explain the cloudiness, because a soluble product would simply stay dissolved and the solution would still be clear. It is the difference in solubility between the two salts that leaves the new one undissolved.",
+        "common_mistakes": [
+          "Writing that a gas is released and that is what makes the solution cloudy. The cloudiness is a solid, the bicarbonate, coming out of solution.",
+          "Writing that sodium bicarbonate is insoluble. It is soluble, but much less so than sodium carbonate, so only the excess separates."
+        ],
+        "memory_tip": "The new salt is the less soluble one, so not all of it can stay dissolved and the rest appears as a solid.",
+        "margin_note": "The comparison of the two solubilities is the main point and should be written in one clear sentence."
+      },
+      {
+        "id": "s4_what_is_seen",
+        "kind": "boxed_final",
+        "label": "What is seen",
+        "marks": 1,
+        "mark_note": "The observation",
+        "lines": [
+          {
+            "text": "Undissolved NaHCO₃ makes a suspension",
+            "style": "boxed"
+          },
+          "The clear solution turns cloudy and",
+          "milky as the white solid appears.",
+          "The fine particles stay spread through",
+          "the liquid instead of dissolving in it,",
+          "so the mixture is now a suspension and",
+          "no longer a true solution.",
+          "On warming, the bicarbonate decomposes",
+          "and the carbonate is obtained back."
+        ],
+        "why": "A suspension is a mixture in which small solid particles are spread through a liquid without dissolving. Naming what is seen and then naming the mixture is what answers the exact wording of the question, which asks why a solution turns into a suspension.",
+        "common_mistakes": [
+          "Calling the cloudy mixture a solution. It is no longer a solution: solid NaHCO₃ is present, spread through the liquid, and the question names that a suspension.",
+          "Writing that the solid settles at the bottom straight away. The particles stay spread through the liquid, which is what makes it a suspension."
+        ],
+        "memory_tip": "Clear to milky: a solid is present that the water has not dissolved, so the mixture is a suspension.",
+        "margin_note": "Use the word suspension and say what a suspension is. The question names it, so the answer should define it."
+      }
+    ]
+  },
+  "insider_note": "This answer needs the equation and the solubility comparison together. The equation shows that sodium bicarbonate is formed, and the solubility comparison shows why that bicarbonate does not stay dissolved. An answer with only the equation explains nothing about the cloudiness."
+}

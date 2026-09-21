@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_iupac_pentene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the IUPAC name of CH₃–CH₂–CH₂–CH=CH₂.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Numbering the chain",
+      "marks": 1
+    },
+    {
+      "label": "The name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.112, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 5(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE NAME WAS RE-DERIVED WHILE AUTHORING, not copied: the chain was numbered from both ends. From the CH₂= end the double bond begins at carbon 1; from the CH₃ end it begins at carbon 4. The lower locant is 1, so the name is pent-1-ene. Molecular formula C₅H₁₀, which agrees with CₙH₂ₙ for an alkene with n = 5. The older style 1-pentene names the same compound and is stated on the card as such."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_number_the_chain",
+        "kind": "text",
+        "label": "Number the chain",
+        "marks": 1,
+        "mark_note": "Chain length and locant",
+        "lines": [
+          {
+            "text": "CH₃–CH₂–CH₂–CH=CH₂",
+            "style": "eq"
+          },
+          "The chain has five carbon atoms, so",
+          "the stem is pent-, and it has one",
+          "double bond, so the suffix is -ene.",
+          "Number from the end nearer the",
+          "double bond. Then the two doubly",
+          "bonded carbons are C1 and C2, and",
+          "the locant is 1.",
+          "Numbering from the CH₃ end would",
+          "give 4, and 1 is the lower number."
+        ],
+        "why": "The stem comes from the count of carbon atoms and the locant comes from the direction of numbering, so both have to be fixed before any name can be written. The end nearer the double bond is used because the rule asks for the lower locant.",
+        "common_mistakes": [
+          "Counting four carbons. The =CH₂ group at the end is a carbon atom of the chain, so there are five.",
+          "Numbering from the CH₃ end and writing pent-4-ene. The lower locant, 1, is the one used."
+        ],
+        "memory_tip": "Begin counting at the end the double bond is nearest to.",
+        "margin_note": "Copy the structure out and write 1 to 5 under the five carbon atoms before naming."
+      },
+      {
+        "id": "s2_the_name",
+        "kind": "boxed_final",
+        "label": "The name",
+        "marks": 1,
+        "mark_note": "The IUPAC name",
+        "lines": [
+          "Stem pent-, locant 1, suffix -ene:",
+          {
+            "text": "pent-1-ene",
+            "style": "boxed"
+          },
+          "The older style 1-pentene names the",
+          "same compound.",
+          "Molecular formula C₅H₁₀, which is",
+          "CₙH₂ₙ with n = 5."
+        ],
+        "why": "The name is the stem, the locant and the suffix written as one word, and the molecular formula is a quick check that five carbon atoms and one double bond were both read out of the structure.",
+        "common_mistakes": [
+          "Writing pentene with no number. A five-carbon chain can carry the double bond at 1 or at 2, so the locant is needed.",
+          "Writing pentane. The -ane ending is for a chain with single bonds only."
+        ],
+        "memory_tip": "Pent for five carbons, 1 for where the double bond starts, ene for the double bond.",
+        "margin_note": "One closing line naming the molecular formula completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The number in the name is the part most often left out. Pentene on its own does not say where the double bond lies, and in this structure it lies between the first and the second carbon."
+}

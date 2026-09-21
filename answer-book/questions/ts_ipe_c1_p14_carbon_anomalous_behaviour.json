@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_carbon_anomalous_behaviour",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on the anomalous behaviour of carbon in group 14.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why carbon differs",
+      "marks": 1
+    },
+    {
+      "label": "Maximum covalency four",
+      "marks": 1
+    },
+    {
+      "label": "Catenation",
+      "marks": 1
+    },
+    {
+      "label": "pπ–pπ multiple bonds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.109, chapter 9 p-BLOCK ELEMENTS GROUP 14, SAQ question 40. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. STRUCTURE: the causes are given first (small size, high electronegativity, high ionisation enthalpy, no d orbitals in the valence shell) and then the three consequences that follow from them — a maximum covalency of four against silicon's six, far greater catenation, and pπ–pπ multiple bonding. HELD IN STEP WITH THE TWO CATENATION CARDS in this chapter, and checked field by field on 2026-09-03: the C–C bond energy of 348 kJ mol⁻¹ is printed by all three. The Si–Si 297, the Sn–Sn 240 and the order C ≫ Si > Ge ≈ Sn ≫ Pb are printed by the 4-mark catenation card and by this one; the 2-mark catenation card gives the C–C value only and states no order, so it agrees by silence rather than by repetition. Those bond energies are NCERT's, not the source book's, and a teacher should confirm them before they are relied on. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reasons",
+        "kind": "text",
+        "label": "Why carbon differs",
+        "marks": 1,
+        "mark_note": "The causes",
+        "lines": [
+          "Carbon is the first member of group 14",
+          "and differs from the rest of the group.",
+          "The reasons are:",
+          "1. its small atomic size,",
+          "2. its high electronegativity,",
+          "3. its high ionisation enthalpy,",
+          "4. no d orbitals in its valence shell."
+        ],
+        "why": "Every difference written below follows from one of these four points, so they are set out first. Carbon's valence shell is the second shell, which has only one 2s and three 2p orbitals and no d orbital, and that fixes its maximum covalency at four. The small size of the carbon atom is a separate cause, and it is the one behind the strong C–C bond and the pπ–pπ multiple bonding.",
+        "common_mistakes": [
+          "Saying carbon has vacant d orbitals. Its valence shell is the second shell, which has no d orbitals at all.",
+          "Giving the small size only. High electronegativity, high ionisation enthalpy and the absence of d orbitals are separate reasons."
+        ],
+        "memory_tip": "Small, electronegative, hard to ionise, and no d orbitals.",
+        "margin_note": "Write the reasons first; each difference below follows from one of them."
+      },
+      {
+        "id": "s2_covalency",
+        "kind": "text",
+        "label": "Maximum covalency four",
+        "marks": 1,
+        "mark_note": "Covalency four",
+        "lines": [
+          "Carbon has only four orbitals in its",
+          "valence shell, one 2s and three 2p, so",
+          "its maximum covalency is four.",
+          "Silicon and the members below it have",
+          "vacant d orbitals and reach a covalency",
+          "of six, as in [SiF₆]²⁻.",
+          "This is why SiCl₄ is hydrolysed by water",
+          "and CCl₄ is not: silicon can accept a",
+          "lone pair from water into a d orbital and",
+          "carbon cannot."
+        ],
+        "why": "The number of groups an atom can bond is limited by the orbitals available to it, and hydrolysis needs one orbital more than the four already used. That is why the tetrahalides of silicon, germanium, tin and lead are hydrolysed by water while the carbon tetrahalides are not.",
+        "common_mistakes": [
+          "Writing a covalency of six for carbon. Four is its maximum, because it has only four valence orbitals.",
+          "Writing that CCl₄ is hydrolysed slowly. Carbon has no d orbital to accept a lone pair from water, so CCl₄ is not hydrolysed."
+        ],
+        "memory_tip": "Four orbitals, four bonds: carbon stops at four while silicon reaches six.",
+        "margin_note": "The covalency and the hydrolysis are one point; write them together."
+      },
+      {
+        "id": "s3_catenation",
+        "kind": "text",
+        "label": "Catenation",
+        "marks": 1,
+        "mark_note": "Catenation",
+        "lines": [
+          "Carbon catenates far better than any",
+          "other member of the group: its atoms link",
+          "into long chains and rings.",
+          "The C–C bond energy is 348 kJ mol⁻¹,",
+          "against 297 for Si–Si and 240 for Sn–Sn.",
+          {
+            "text": "C ≫ Si > Ge ≈ Sn ≫ Pb",
+            "style": "eq"
+          },
+          "So the number of carbon compounds is far",
+          "greater than that of the rest."
+        ],
+        "why": "Catenation is the difference with the largest consequence, because the whole of organic chemistry follows from the strength of the carbon–carbon bond. The order shows how quickly the ability falls once the atoms get larger and the bond between them weakens.",
+        "common_mistakes": [
+          "Writing that silicon catenates as well as carbon. Silicon chains are much shorter, because the Si–Si bond is weaker.",
+          "Leaving catenation out of the note. It is one of the main differences between carbon and the rest of group 14."
+        ],
+        "memory_tip": "348 against 297: the stronger carbon–carbon bond is why carbon chains are long.",
+        "margin_note": "One bond energy makes this point, and the order line adds the trend."
+      },
+      {
+        "id": "s4_multiple_bonds",
+        "kind": "boxed_final",
+        "label": "pπ–pπ multiple bonds",
+        "marks": 1,
+        "mark_note": "Multiple bonding",
+        "lines": [
+          {
+            "text": "Carbon alone readily forms pπ–pπ bonds",
+            "style": "boxed"
+          },
+          "Carbon forms C=C, C≡C, C=O and C=S by",
+          "pπ–pπ overlap; the other members of the",
+          "group do not do this readily.",
+          "That is why CO₂ is a gas of separate",
+          "O=C=O molecules, while SiO₂ is a giant",
+          "network solid."
+        ],
+        "why": "Carbon's 2p orbitals are small and close together, so two of them overlap sideways well, while the larger 3p and 4p orbitals of the members below overlap sideways poorly. The pair CO₂ and SiO₂ is the clearest single consequence, because it turns a difference in bonding into a difference in physical state.",
+        "common_mistakes": [
+          "Writing that silicon forms Si=Si bonds as readily as carbon forms C=C. Sideways overlap is poor for the larger 3p orbitals.",
+          "Giving no example. One pair such as CO₂ and SiO₂ shows what the multiple bonding does."
+        ],
+        "memory_tip": "Small 2p orbitals overlap sideways well, so only carbon makes double and triple bonds readily.",
+        "margin_note": "Close with CO₂ against SiO₂; that one contrast states the whole point."
+      }
+    ]
+  },
+  "insider_note": "Give the causes first and the differences after them. The absence of d orbitals explains the maximum covalency of four; the small size of the carbon atom explains the pπ–pπ bonding, and through the strong C–C bond it explains the catenation as well. Say which cause goes with which difference."
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethylene_heated_with_oxygen",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the equation for the reaction of ethylene when it is heated with O₂ at high pressure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What happens and what the oxygen does",
+      "marks": 1
+    },
+    {
+      "label": "The conditions",
+      "marks": 2
+    },
+    {
+      "label": "The equation",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    },
+    {
+      "label": "How the chain grows",
+      "marks": 1
+    },
+    {
+      "label": "The overall change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 33(d). PAGE AND NUMBER CHECKED AGAINST THE SOURCE INDEX (answer-book/sources/chaitanya_c1_2027_ch10_general_organic_chemistry.json), which records laq33 and all of its parts on printed page 118; p.119 carries question 34, the acetylene question. PRINTED QUESTION 33 IS ONE QUESTION WITH FIVE ASKS: it opens by asking for two methods of preparation of ethylene and then continues with the lettered parts (a)-(d), each asking for the equation of one reaction of ethylene. The opening ask is carded as ts_ipe_c1_goc_ethylene_preparation and the four lettered parts as four cards, so the shared number 33 is not a citation clash. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED: n CH₂=CH₂ → (–CH₂–CH₂–)ₙ conserves atoms unit for unit — each repeating unit –CH₂–CH₂– is C 2 and H 4, exactly one ethylene molecule, so both sides carry 2n carbon and 4n hydrogen atoms and there is no by-product. THE QUESTION IS READ AS THE POLYMERISATION: the source settles ethylene heated with a trace of oxygen at high pressure (1500–2000 atm, about 200 °C) as the preparation of polythene, and no other reaction of ethylene with oxygen at high pressure is given in this chapter — this reading should be confirmed by a teacher against the printed question. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the term initiator and the note that an organic peroxide serves in place of oxygen; the naming of –CH₂–CH₂– as the repeating unit; the description of the three conditions as doing three separate jobs; the uses of polythene named on the card; and the three stages of the free-radical chain — initiation, propagation and termination — added as step 5 on 2026-09-03. THE STEPS WERE RE-CUT ON 2026-09-03 after an examiner audit found the single point \"only a trace of oxygen, so the ethylene does not burn\" stated eleven times across four of the six steps, and the boxed final line repeating the step-3 equation word for word. The old 1-mark step 1 (what happens) and 1-mark step 5 (what the oxygen does) were folded into one 1-mark step, and the freed mark was spent on the chain-growth step. The mark total is unchanged at 8: 1 + 2 + 2 + 1 + 1 + 1."
+  },
+  "insider_note": "A trace of oxygen at high pressure does not burn ethylene; it starts a polymerisation. The answer is polythene, and the oxygen is the initiator, which is why it never appears in the equation.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what",
+        "kind": "text",
+        "label": "What happens and what the oxygen does",
+        "marks": 1,
+        "mark_note": "The change",
+        "lines": [
+          "Under these conditions ethylene does not",
+          "burn. It polymerises.",
+          "Many molecules join end to end into one",
+          "long chain. The double bond of each",
+          "molecule opens, and the two free bonds so",
+          "formed join it to its neighbours.",
+          "Nothing is lost as the units join, so the",
+          "reaction is an addition polymerisation.",
+          "The trace of oxygen is the initiator: it",
+          "starts the chains off, and it does not",
+          "appear in the product or in the equation."
+        ],
+        "why": "Only a trace of oxygen is present, far too little of it for combustion. What follows instead is a polymerisation: every double bond opens, and the opened units link into a chain with no by-product at all. The oxygen is used up in starting the chains and is not built into them, which is why a trace is enough and why the equation carries no oxygen.",
+        "common_mistakes": [
+          "Writing carbon dioxide and water. Only a trace of oxygen is present, so the ethylene does not burn.",
+          "Writing O₂ into the equation. The oxygen starts the chains and is not part of the product.",
+          "Describing the change as an oxidation. Nothing is added to the ethylene; the molecules add to each other."
+        ],
+        "memory_tip": "The trace of oxygen starts the chains; it never becomes part of them.",
+        "margin_note": "Say first that this is a polymerisation, and say what the oxygen is for."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "text",
+        "label": "The conditions",
+        "marks": 2,
+        "mark_note": "The conditions",
+        "lines": [
+          "The ethylene is compressed to about",
+          "1500–2000 atmospheres.",
+          "It is heated to about 200 °C.",
+          "A trace of oxygen is present.",
+          "The high pressure brings the molecules",
+          "close together, so a chain can grow.",
+          "All three conditions are needed: pressure,",
+          "heat and the trace of oxygen."
+        ],
+        "why": "The three conditions are needed for three different reasons. The pressure packs the molecules together, so the next monomer is close to the end of the growing chain; the heat gives the reaction its rate; and the trace of oxygen starts the chains off. Leaving out any one of them leaves the description incomplete.",
+        "common_mistakes": [
+          "Writing a large amount of oxygen. Only a trace is used; more would burn the ethylene.",
+          "Leaving out the pressure. The high pressure is the condition the question names.",
+          "Giving the temperature as room temperature. The mixture is heated to about 200 °C."
+        ],
+        "memory_tip": "High pressure, moderate heat, a trace of oxygen: all three together.",
+        "margin_note": "Give the pressure, the temperature and the trace of oxygen, all three."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 2,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "n CH₂=CH₂ → (–CH₂–CH₂–)ₙ",
+            "style": "eq"
+          },
+          "n is the number of ethylene units joined",
+          "into one chain, and it is large.",
+          "The repeating unit –CH₂–CH₂– is one",
+          "ethylene molecule with its double bond",
+          "opened.",
+          "Each unit is C₂H₄, the same as the",
+          "monomer, so no atom is gained or lost."
+        ],
+        "why": "The n on both sides is what makes this a polymerisation equation rather than an ordinary one: the same number of units goes in as comes out in the chain. The repeating unit has exactly the composition of the monomer, which is why an addition polymerisation has no by-product.",
+        "common_mistakes": [
+          "Leaving out the n. Without it the equation says one molecule gives one molecule.",
+          "Writing the repeating unit with a double bond. The double bond has opened.",
+          "Adding water or oxygen to the right-hand side. Nothing else is formed."
+        ],
+        "memory_tip": "n monomers in, one chain of n repeating units out.",
+        "margin_note": "Write the n on both sides and show the repeating unit inside the bracket."
+      },
+      {
+        "id": "s4_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "The product",
+        "lines": [
+          "The product is polythene, also written",
+          "polyethylene.",
+          "It is a solid made of long chains of",
+          "–CH₂–CH₂– units.",
+          "Ethylene is the monomer and polythene is",
+          "the polymer.",
+          "Polythene is the plastic used for bags,",
+          "sheets and bottles."
+        ],
+        "why": "Naming the product and naming its parts are two different things, and an answer needs both: polythene is the polymer, ethylene is the monomer, and –CH₂–CH₂– is the unit that repeats along the chain.",
+        "common_mistakes": [
+          "Calling ethylene the polymer. Ethylene is the monomer; polythene is the polymer.",
+          "Naming the product polystyrene or polypropene. Those come from different monomers."
+        ],
+        "memory_tip": "Poly plus ethylene gives polythene: the name says what it is made from.",
+        "margin_note": "Name the polymer, the monomer and the repeating unit."
+      },
+      {
+        "id": "s5_chain",
+        "kind": "text",
+        "label": "How the chain grows",
+        "marks": 1,
+        "mark_note": "The three stages",
+        "lines": [
+          "The chain grows in three stages.",
+          "Initiation: the oxygen makes the first",
+          "free radical from an ethylene molecule.",
+          "An organic peroxide may be used as the",
+          "initiator in its place.",
+          "Propagation: that radical adds to the",
+          "double bond of the next molecule, which",
+          "leaves a new radical at the end of the",
+          "chain, and the chain grows unit by unit.",
+          "Termination: two radicals join together,",
+          "and that chain stops growing."
+        ],
+        "why": "One radical starts a chain that adds many thousands of molecules before anything stops it, which is why a trace of the initiator is enough to make a large quantity of polymer. Termination happens at no fixed point, so the chains in the solid are of different lengths.",
+        "common_mistakes": [
+          "Writing that every ethylene molecule needs its own initiator. One radical starts a chain that adds many molecules.",
+          "Leaving termination out. The chain keeps growing until two radicals join and stop it."
+        ],
+        "memory_tip": "Initiation starts one chain, propagation grows it, termination stops it.",
+        "margin_note": "Name the three stages in order: initiation, propagation, termination."
+      },
+      {
+        "id": "s6_overall",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 1,
+        "mark_note": "The overall change",
+        "lines": [
+          {
+            "text": "n CH₂=CH₂ → (–CH₂–CH₂–)ₙ (trace O₂)",
+            "style": "boxed"
+          },
+          "Ethylene heated to about 200 °C under",
+          "1500–2000 atmospheres with a trace of",
+          "oxygen gives polythene.",
+          "The reaction is an addition",
+          "polymerisation, and it has no by-product."
+        ],
+        "why": "The boxed equation with its conditions written beside it is the whole answer in one place: what goes in, what comes out and under what conditions, with nothing else formed.",
+        "common_mistakes": [
+          "Naming polythene without writing the repeating unit. The bracket with the n is what shows the chain.",
+          "Giving the conditions without the equation, or the equation without the conditions."
+        ],
+        "memory_tip": "One line, one equation, three conditions: that is the whole answer.",
+        "margin_note": "Close with the equation and put the three conditions beside it."
+      }
+    ]
+  }
+}

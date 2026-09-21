@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_caustic_soda_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write a few applications (uses) of caustic soda.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What caustic soda is",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What caustic soda is",
+        "marks": 1,
+        "mark_note": "The substance",
+        "lines": [
+          "Caustic soda is sodium hydroxide, NaOH.",
+          "It is a white deliquescent solid and a",
+          "strong base, and its uses come from that",
+          "strong alkalinity."
+        ],
+        "why": "Naming the compound and its formula fixes which substance the answer is about — sodium hydroxide, not sodium carbonate — and the strong alkalinity is the property behind the uses listed next.",
+        "common_mistakes": [
+          "Writing the formula as Na₂CO₃. That is sodium carbonate; caustic soda is NaOH.",
+          "Calling it a weak base. Sodium hydroxide is a strong base."
+        ],
+        "memory_tip": "Caustic soda is NaOH, a strong alkali.",
+        "margin_note": "Give the formula first, so the substance is not confused with washing soda."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "text",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "The uses",
+        "lines": [
+          "Uses of caustic soda:",
+          "1. manufacture of soap, paper and",
+          "artificial silk (rayon),",
+          "2. refining of petroleum,",
+          "3. purification of bauxite,",
+          "4. mercerising cotton fabrics in the",
+          "textile industry,",
+          "5. as a laboratory reagent."
+        ],
+        "why": "A question that asks for a few applications is answered by short separate points. Numbering them keeps each use a complete statement on its own and makes the list easy to check.",
+        "common_mistakes": [
+          "Giving the uses of washing soda, such as softening hard water. Water softening belongs to sodium carbonate."
+        ],
+        "memory_tip": "Soap, paper, rayon, petroleum, bauxite, cotton, then the laboratory.",
+        "margin_note": "Numbered points read faster than a sentence, though either is a complete answer; four or five named uses is a comfortable length."
+      }
+    ]
+  },
+  "insider_note": "A complete answer names the substance as sodium hydroxide, NaOH, and then gives a short numbered list of uses."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_borax_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the formula of borax.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula Na₂B₄O₇·10H₂O",
+      "marks": 1
+    },
+    {
+      "label": "Chemical name or the tetranuclear form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 14(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula of borax",
+        "marks": 1,
+        "mark_note": "Formula of borax",
+        "lines": [
+          {
+            "text": "Borax = Na₂B₄O₇·10H₂O",
+            "style": "eq"
+          },
+          "Chemical name: sodium tetraborate",
+          "decahydrate. The 10H₂O is its water of",
+          "crystallisation.",
+          "It is a white crystalline solid."
+        ],
+        "why": "The question asks for one formula, so the formula itself is the answer, and giving the chemical name in the same breath shows that the ten water molecules are part of the crystal rather than an impurity.",
+        "common_mistakes": [
+          "Writing Na₂B₄O₇ alone. Borax is the decahydrate, so the 10H₂O belongs in the formula.",
+          "Writing three boron atoms. Borax has four, in B₄O₇."
+        ],
+        "memory_tip": "Read the subscripts in order: two sodium, four boron, seven oxygen, ten water.",
+        "margin_note": "Write the dot before 10H₂O. It separates the water of crystallisation from the salt."
+      },
+      {
+        "id": "s2_tetranuclear_form",
+        "kind": "boxed_final",
+        "label": "The tetranuclear form",
+        "marks": 1,
+        "mark_note": "The chemical name or the tetranuclear form",
+        "lines": [
+          "Borax contains the tetranuclear anion",
+          "[B₄O₅(OH)₄]²⁻, so it is also written",
+          {
+            "text": "Borax = Na₂[B₄O₅(OH)₄]·8H₂O",
+            "style": "boxed"
+          },
+          "Both forms have the same atoms and both",
+          "are correct. Na₂B₄O₇·10H₂O is the form",
+          "usually written."
+        ],
+        "why": "Both formulas count to two sodium, four boron, seventeen oxygen and twenty hydrogen atoms, so a student who meets the bracketed form in a textbook should recognise it as the same borax.",
+        "common_mistakes": [
+          "Treating Na₂[B₄O₅(OH)₄]·8H₂O as a different compound. It is the same borax.",
+          "Writing 10H₂O with the bracketed form. Two of the ten water molecules are used up in building the four OH groups, so eight are left."
+        ],
+        "memory_tip": "Four OH groups plus eight waters give the same twenty hydrogen atoms as ten waters.",
+        "margin_note": "Write the familiar formula first, then add the bracketed form if there is room."
+      }
+    ]
+  },
+  "insider_note": "The answer is one line of formula, so use the rest of the space on the chemical name and the water of crystallisation instead of extra sentences."
+}

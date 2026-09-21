@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_boric_acid_not_protic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Is boric acid a protic acid? Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It is not a protic acid",
+      "marks": 1
+    },
+    {
+      "label": "It accepts OH⁻ from water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.99, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_not_protic",
+        "kind": "text",
+        "label": "It is not a protic acid",
+        "marks": 1,
+        "mark_note": "It is not a protic acid",
+        "lines": [
+          "Boric acid, H₃BO₃, is not a protic acid.",
+          "A protic acid gives an H⁺ ion of its own,",
+          "and boric acid does not do this.",
+          "It is a weak monobasic acid that acts as",
+          "a Lewis acid."
+        ],
+        "why": "The question is settled by the first sentence, so the answer must say plainly that boric acid is not protic, and then say what kind of acid it is instead.",
+        "common_mistakes": [
+          "Calling H₃BO₃ tribasic because the formula carries three hydrogen atoms. It is monobasic.",
+          "Writing that it releases three H⁺ ions in water. It releases none of its own."
+        ],
+        "memory_tip": "Three hydrogen atoms in the formula and none of them given away: boric acid is monobasic, not protic.",
+        "margin_note": "Answer the question in the first line with the word not, then explain."
+      },
+      {
+        "id": "s2_accepts_hydroxide",
+        "kind": "boxed_final",
+        "label": "It accepts OH⁻ from water",
+        "marks": 1,
+        "mark_note": "It accepts OH⁻ from water",
+        "lines": [
+          "Boric acid takes a hydroxide ion from a",
+          "water molecule, and the H₃O⁺ left behind",
+          "makes the solution acidic:",
+          {
+            "text": "B(OH)₃ + 2H₂O → [B(OH)₄]⁻ + H₃O⁺",
+            "style": "boxed"
+          },
+          "Here B(OH)₃ is the same substance as",
+          "H₃BO₃. Only one hydroxide ion is taken,",
+          "so the acid is monobasic."
+        ],
+        "why": "The acidity is real, but its source is different: the H₃O⁺ comes from the water molecule that lost its hydroxide ion, not from the boric acid. Accepting a pair of electrons with that hydroxide ion is what makes it a Lewis acid.",
+        "common_mistakes": [
+          "Writing the anion as [B(OH)₃]⁻. Boron takes a whole hydroxide ion, so the anion is [B(OH)₄]⁻ with four OH groups.",
+          "Leaving out the H₃O⁺. Without it the equation does not show why the solution is acidic."
+        ],
+        "memory_tip": "Boric acid takes OH⁻ and leaves H₃O⁺ behind. The acidity comes from the water, not from the boron.",
+        "margin_note": "The equation with [B(OH)₄]⁻ and H₃O⁺ is what shows the Lewis behaviour."
+      }
+    ]
+  },
+  "insider_note": "The word not has to appear in the answer: a student who explains why the solution is acidic without saying that boric acid is not protic has answered a different question."
+}

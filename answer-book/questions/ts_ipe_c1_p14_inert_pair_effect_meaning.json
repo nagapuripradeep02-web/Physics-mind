@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_inert_pair_effect_meaning",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you understand by the inert pair effect?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meaning",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "What it does to the oxidation states",
+      "marks": 1
+    },
+    {
+      "label": "What the effect produces",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, SAQ question 33(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. WORDING HELD IN STEP WITH THE GROUP-13 CARD: the same effect is asked in the group-13 chapter of this book, and both cards say that the ns² pair does not readily take part in bonding and that poor shielding by the intervening d and f electrons is the reason. This card carries the group-14 examples (lead more stable as +2, tin more stable as +4) that the group-13 card does not, and repeats the thallium example so the two agree. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning",
+        "marks": 1,
+        "mark_note": "The meaning",
+        "lines": [
+          "In the inert pair effect the ns² electron",
+          "pair of the valence shell does not",
+          "readily take part in bonding.",
+          "Only the np electrons are then used, so",
+          "the element shows an oxidation state two",
+          "units below the group oxidation state."
+        ],
+        "why": "The name of the effect states the fact: the pair in the ns orbital does not readily take part in bonding, so two electrons fewer are used and the oxidation state falls by two. In group 14 that turns the group state of +4 into +2.",
+        "common_mistakes": [
+          "Writing that the ns² electrons are removed first. They are the pair that is left behind.",
+          "Naming the np electrons as the inert ones. It is the ns² pair that does not readily take part in bonding."
+        ],
+        "memory_tip": "Inert pair means the ns² pair does not readily bond, so the oxidation state drops by two.",
+        "margin_note": "Name the pair as ns² and say two units below the group state."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Down a group the d and f electrons that",
+          "lie in between shield the outer electrons",
+          "poorly.",
+          "The ns² pair is therefore under a greater",
+          "effective nuclear charge and is more",
+          "tightly bound, so more energy is needed",
+          "to use it in bonding.",
+          "The effect grows stronger down the group."
+        ],
+        "why": "The effect is not a rule standing on its own. It follows from poor shielding by the d and f electrons in the shells between, which leaves the ns² pair under a stronger pull from the nucleus, and the shielding gets worse as more inner subshells are filled, which is why the effect is weak at silicon and strong at lead.",
+        "common_mistakes": [
+          "Giving the definition and stopping. Poor shielding by the d and f electrons is the other half of the answer.",
+          "Writing that the effect weakens down the group. It grows stronger from silicon to lead."
+        ],
+        "memory_tip": "Poor shielding by d and f electrons binds the ns² pair tightly, and it gets worse down the group.",
+        "margin_note": "Poor shielding is the reason; write it in words, not as a formula."
+      },
+      {
+        "id": "s3_oxidation_states",
+        "kind": "text",
+        "label": "What it does to the oxidation states",
+        "marks": 1,
+        "mark_note": "The oxidation states",
+        "lines": [
+          "Because the ns² pair stays unused, the",
+          "lower oxidation state becomes the more",
+          "stable one at the bottom of a group.",
+          "In group 13 thallium is more stable as +1",
+          "than as +3.",
+          "In group 14 lead is more stable as +2",
+          "than as +4, while carbon and silicon are",
+          "stable in the +4 state.",
+          {
+            "text": "+2 stability: C < Si < Ge < Sn < Pb",
+            "style": "eq"
+          }
+        ],
+        "why": "The whole point of the effect is which oxidation state an element settles in, so the answer needs named examples. At the top of group 14 the +4 state is the stable one; at the bottom the ns² pair stays unused and +2 is stable, which is why lead(II) compounds are common and lead(IV) compounds are not.",
+        "common_mistakes": [
+          "Writing that lead is more stable as +4. Lead is more stable as +2; it is tin that is more stable as +4.",
+          "Applying the effect at the top of the group. Carbon and silicon show +4; the +2 state becomes stable only lower down."
+        ],
+        "memory_tip": "At the bottom of the group the state two units lower is the stable one: Tl⁺ and Pb²⁺.",
+        "margin_note": "Two named examples, one from each group, make this part concrete."
+      },
+      {
+        "id": "s4_consequences",
+        "kind": "boxed_final",
+        "label": "What the effect produces",
+        "marks": 1,
+        "mark_note": "The consequences",
+        "lines": [
+          {
+            "text": "Lead is more stable as +2 than as +4",
+            "style": "boxed"
+          },
+          "Because lead(IV) is unstable, PbO₂ and",
+          "PbCl₄ are strong oxidising agents: lead",
+          "ends at +2.",
+          "For tin the stable state is +4, so SnCl₂",
+          "is a reducing agent.",
+          "Down group 14 the +2 state becomes more",
+          "common and the +4 state less common."
+        ],
+        "why": "An effect is best shown by what it produces. Lead(IV) compounds oxidise other substances because lead ends in its more stable +2 state, and tin(II) compounds reduce other substances because tin ends in its more stable +4 state — one effect read in both directions.",
+        "common_mistakes": [
+          "Writing SnCl₂ as an oxidising agent. Tin is more stable as +4, so SnCl₂ is a reducing agent.",
+          "Stopping at the definition with no example. One named compound such as PbO₂ shows what the effect produces."
+        ],
+        "memory_tip": "Lead(IV) oxidises and tin(II) reduces: each ends in its own stable state.",
+        "margin_note": "Close with a named compound; PbO₂ shows the effect in one line."
+      }
+    ]
+  },
+  "insider_note": "The effect can be stated in one line, but a complete answer names the ns² pair, gives poor shielding as the reason, and shows what it produces, such as PbO₂ acting as an oxidising agent."
+}

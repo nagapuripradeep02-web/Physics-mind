@@ -1,0 +1,109 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_metal_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give any two uses of lithium metal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use one — alloys of lithium",
+      "marks": 2
+    },
+    {
+      "label": "Use two — electrochemical cells",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.88, chapter 7 s-BLOCK ELEMENTS, SAQ question 32(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question asks for two uses on a four-mark question, so the split here is two marks for each of the two uses, and the third use is carried as an unmarked closing step. The property named beside the cell — lithium is the strongest reducing agent in aqueous solution because of its very large hydration enthalpy, even though its ionisation enthalpy is the highest in the group — is standard syllabus content carried as support, not taken from the source book's answer."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alloys",
+        "kind": "text",
+        "label": "Use one — alloys of lithium",
+        "marks": 2,
+        "mark_note": "Each alloy with the article made from it",
+        "lines": [
+          "Lithium is used to make useful alloys.",
+          "With lead it gives white metal bearings",
+          "for motor engines.",
+          "With aluminium it gives light parts for",
+          "aircraft.",
+          "With magnesium it gives armour plates."
+        ],
+        "why": "Lithium is the lightest of all metals, so a small amount added to another metal gives an alloy that is harder, and in the magnesium and aluminium alloys lighter as well.",
+        "common_mistakes": [
+          "Naming an alloy without saying what it is used for. A use is the alloy together with the job it does.",
+          "Writing lithium metal itself as the bearing. The bearing is made from the alloy of lithium with lead."
+        ],
+        "memory_tip": "Lead for bearings, aluminium for aircraft parts, magnesium for armour plates.",
+        "margin_note": "Name the second metal and the article made from each alloy."
+      },
+      {
+        "id": "s2_electrochemical_cells",
+        "kind": "text",
+        "label": "Use two — electrochemical cells",
+        "marks": 2,
+        "mark_note": "The cell and the property behind it",
+        "lines": [
+          "Lithium is used to make electrochemical",
+          "cells.",
+          "It is the lightest metal and it is the",
+          "strongest reducing agent in aqueous",
+          "solution, so a lithium cell gives a high",
+          "voltage for a very small mass.",
+          "This is why lithium cells are used in",
+          "small portable equipment."
+        ],
+        "why": "The second use follows from two properties working together, the very low density and the strong reducing power, so writing the property beside the use turns a bare list into an explanation.",
+        "common_mistakes": [
+          "Saying lithium has the lowest ionisation enthalpy of the group. It has the highest; the strong reducing power in solution comes from its very large hydration enthalpy.",
+          "Naming the cell without naming the property. Say why lithium is the metal chosen for it."
+        ],
+        "memory_tip": "Lightest metal and strongest reducing agent in water, so a small cell gives a high voltage.",
+        "margin_note": "Say the property that makes lithium the right metal for a cell."
+      },
+      {
+        "id": "s3_further_use",
+        "kind": "text",
+        "label": "A further use",
+        "marks": 0,
+        "lines": [
+          "Lithium is also used in thermonuclear",
+          "reactions.",
+          "The question asks for two uses, so any",
+          "two of these three may be written."
+        ],
+        "why": "The syllabus gives three uses of lithium metal and the question asks for only two, so knowing the third leaves a safe choice if one of the first two is forgotten in the examination hall.",
+        "common_mistakes": [
+          "Writing uses of lithium compounds. The question asks for uses of lithium metal.",
+          "Stopping after one use. The question asks for two."
+        ],
+        "memory_tip": "Alloys, cells, thermonuclear reactions — three uses, and any two are asked for.",
+        "margin_note": "Unmarked closing step."
+      }
+    ]
+  },
+  "insider_note": "Name the second metal and the article for each alloy, and give the property that makes lithium right for a cell; the same list of words without its reasons is a much thinner answer."
+}

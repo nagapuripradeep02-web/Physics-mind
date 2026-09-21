@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_zsm5_use",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the use of ZSM-5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What ZSM-5 is",
+      "marks": 1
+    },
+    {
+      "label": "The use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the use given here is the same one stated on the four-mark and eight-mark notes on zeolites in this chapter — ZSM-5 converts alcohols directly into gasoline."
+  },
+  "insider_note": "ZSM-5 is a zeolite, and its use is one line: it converts alcohols directly into gasoline. Naming it as a zeolite first shows why a solid can act as the catalyst.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What ZSM-5 is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "lines": [
+          "ZSM-5 is a zeolite, that is a hydrated",
+          "aluminosilicate with a cage-like",
+          "structure.",
+          "It is made in the laboratory, not mined.",
+          "Its framework encloses cavities and",
+          "channels of a fixed size.",
+          "It is used as a catalyst."
+        ],
+        "why": "A zeolite framework is porous, so a reacting molecule can enter a cavity, where the framework surrounds it on every side. That is what allows a solid aluminosilicate such as ZSM-5 to act as a catalyst.",
+        "common_mistakes": [
+          "Calling ZSM-5 a mineral of no fixed structure. It is a zeolite made in the laboratory, an aluminosilicate with cavities of a definite size.",
+          "Writing that ZSM-5 is a reactant. It is a catalyst and is not used up."
+        ],
+        "memory_tip": "ZSM-5 is a zeolite, and a zeolite is a hydrated aluminosilicate with cavities.",
+        "margin_note": "Name it as a zeolite before giving the use, so the use has something to stand on."
+      },
+      {
+        "id": "s2_use",
+        "kind": "boxed_final",
+        "label": "The use",
+        "marks": 1,
+        "mark_note": "The use",
+        "lines": [
+          "ZSM-5 converts alcohols directly into",
+          "gasoline.",
+          "The alcohol is passed over the heated",
+          "catalyst and comes off as the mixture",
+          "of hydrocarbons called gasoline.",
+          "The word directly is part of the",
+          "answer: no separate stage is needed in",
+          "between.",
+          {
+            "text": "ZSM-5 converts alcohols to gasoline",
+            "style": "boxed"
+          }
+        ],
+        "why": "The cavities of ZSM-5 are of about the size of the hydrocarbon molecules that make up gasoline, so the products that form inside them are of that size. That is why the product comes off as gasoline-sized molecules rather than as a wide mixture.",
+        "common_mistakes": [
+          "Writing that ZSM-5 is used only to soften hard water. Softening water is a use of zeolites in general; the use asked for here is the conversion of alcohols into gasoline.",
+          "Naming petrol from crude oil. ZSM-5 converts alcohols, not crude oil."
+        ],
+        "memory_tip": "ZSM-5 takes an alcohol in and gives gasoline out, in one step.",
+        "margin_note": "One line naming the alcohol as the starting material and gasoline as the product completes the answer."
+      }
+    ]
+  }
+}

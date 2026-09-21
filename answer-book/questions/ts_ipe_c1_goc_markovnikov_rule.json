@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_markovnikov_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Markovnikov's rule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED ATOM BY ATOM: CH₃CH=CH₂ + HBr → CH₃CHBrCH₃ has C 3 = 3, H 7 = 7 and Br 1 = 1. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the worked propene example, which the source does not print on this question — it is the standard illustration of the rule and the product 2-bromopropane follows directly from the rule as stated in the step above it. The peroxide (Kharasch) effect is deliberately not mentioned on this card: it is a separate reversal of the rule and does not belong in a two-mark statement of it."
+  },
+  "insider_note": "State it for the negative part of the reagent — that is the half of the rule an answer usually leaves out. The rule is only needed when both the alkene and the reagent are unsymmetrical.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement of the rule",
+        "lines": [
+          "The rule applies when an unsymmetrical",
+          "reagent adds to an unsymmetrical alkene.",
+          "The negative part of the reagent adds to",
+          "the double-bonded carbon atom that",
+          "carries the fewer hydrogen atoms.",
+          "The positive part adds to the other",
+          "carbon, the one with more hydrogen atoms."
+        ],
+        "why": "Both carbons of a double bond can take the incoming halogen, so a rule is needed to say which of the two products actually forms. The number of hydrogen atoms on each carbon decides it, and that is a thing a student can read straight off the structure.",
+        "common_mistakes": [
+          "Putting the negative part on the carbon with more hydrogen atoms. It goes to the carbon with fewer.",
+          "Stating the rule for the positive part only. Name where the negative part goes.",
+          "Leaving out the word unsymmetrical. The rule is needed only when both the alkene and the reagent are unsymmetrical."
+        ],
+        "memory_tip": "Fewer hydrogen atoms on the carbon, so that carbon takes the negative part.",
+        "margin_note": "State the rule for the negative part of the reagent, then give one example."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "CH₃CH=CH₂ + HBr → CH₃CHBrCH₃",
+            "style": "boxed"
+          },
+          "In propene, the end carbon carries two",
+          "hydrogen atoms and the middle one carries",
+          "a single hydrogen atom.",
+          "Bromine is the negative part, so it adds",
+          "to the middle carbon.",
+          "The product is 2-bromopropane."
+        ],
+        "why": "Propene is the shortest alkene whose two double-bonded carbons differ, so it shows the rule with nothing else in the way: the bromine goes to the carbon with one hydrogen atom and the added hydrogen goes to the carbon with two.",
+        "common_mistakes": [
+          "Writing 1-bromopropane. That is the product the rule rules out for this addition.",
+          "Applying the rule to a symmetrical alkene such as ethylene. Both carbons there are alike, so one product is possible anyway."
+        ],
+        "memory_tip": "Bromine adds to the middle carbon of propene, giving 2-bromopropane.",
+        "margin_note": "Show which carbon carries how many hydrogen atoms before naming the product."
+      }
+    ]
+  }
+}

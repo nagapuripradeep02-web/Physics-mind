@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_co2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide CO₂ as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Carbonic acid and the litmus colour",
+      "marks": 1
+    },
+    {
+      "label": "Carbonate then bicarbonate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(d). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of CO₂ as acidic is correct and is what this card gives. Both equations were atom-counted while authoring: CO₂ + 2NaOH → Na₂CO₃ + H₂O (C 1, Na 2, H 2, O 4 each side) and Na₂CO₃ + H₂O + CO₂ → 2NaHCO₃ (Na 2, C 2, H 2, O 6 each side). This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "equation",
+        "label": "Carbonic acid and the litmus colour",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Carbon dioxide CO₂ is an acidic oxide.",
+          "It dissolves in water and gives a weak",
+          "acid, carbonic acid:",
+          {
+            "text": "CO₂ + H₂O → H₂CO₃",
+            "style": "eq"
+          },
+          "So moist blue litmus paper turns red.",
+          "Carbon here is in its higher state, +4."
+        ],
+        "why": "Carbon dioxide is the anhydride of carbonic acid, and the litmus colour is the same fact in visible form. Carbon follows the usual pattern of a non-metal: the higher oxide, with the element in the higher oxidation state, is the acidic one.",
+        "common_mistakes": [
+          "Calling CO₂ neutral because it is a gas. The physical state of an oxide has nothing to do with its class.",
+          "Writing H₂CO₃ as a strong acid. Carbonic acid is weak, and most of the dissolved gas stays as CO₂."
+        ],
+        "memory_tip": "CO₂ plus water gives carbonic acid, so moist blue litmus turns red.",
+        "margin_note": "The water equation and the litmus colour state the same acidic character."
+      },
+      {
+        "id": "s2_with_alkali",
+        "kind": "boxed_final",
+        "label": "Carbonate then bicarbonate",
+        "marks": 1,
+        "mark_note": "Carbonate and bicarbonate",
+        "lines": [
+          {
+            "text": "CO₂ is acidic: it gives carbonic acid",
+            "style": "boxed"
+          },
+          "With an alkali it gives a salt and water,",
+          "which is what an acidic oxide does:",
+          {
+            "text": "CO₂ + 2NaOH → Na₂CO₃ + H₂O",
+            "style": "eq"
+          },
+          "The salt is sodium carbonate.",
+          "Passing more CO₂ into that solution gives",
+          "the bicarbonate:",
+          {
+            "text": "Na₂CO₃ + H₂O + CO₂ → 2NaHCO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "Carbon dioxide gives two different salts with the same alkali, and which one forms depends on how much gas is passed in: a limited amount gives the carbonate, and an excess turns that carbonate into the bicarbonate. Sodium bicarbonate is the less soluble of the two salts, so it separates out of the solution.",
+        "common_mistakes": [
+          "Writing one NaOH and still writing Na₂CO₃: the salt has two sodium atoms, so two NaOH are used.",
+          "Giving NaHCO₃ as the product with a limited amount of CO₂. The carbonate forms first; the bicarbonate needs an excess of the gas."
+        ],
+        "memory_tip": "A little CO₂ gives the carbonate, more CO₂ gives the bicarbonate.",
+        "margin_note": "The alkali equation is the direct answer here; the bicarbonate line follows from it."
+      }
+    ]
+  },
+  "insider_note": "Carbon dioxide is the acidic oxide of carbon and carbon monoxide is the neutral one, so name the oxide before you name the class. The equation with an alkali is stronger evidence than the litmus colour alone."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_co2_and_global_warming",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is an excessive amount of CO₂ responsible for global warming?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How CO₂ absorbs the heat",
+      "marks": 1
+    },
+    {
+      "label": "Why the amount is rising",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_how_co2_absorbs_heat",
+        "kind": "text",
+        "label": "How CO₂ absorbs the heat",
+        "marks": 1,
+        "mark_note": "The mechanism",
+        "lines": [
+          "Sunlight passes through the air and",
+          "warms the surface of the earth.",
+          "The warm surface then radiates heat back",
+          "outwards.",
+          "Carbon dioxide in the air absorbs this",
+          "radiated heat, so less of it passes out",
+          "into space and more of it stays in the",
+          "atmosphere."
+        ],
+        "why": "Carbon dioxide is transparent to the incoming sunlight but absorbs the heat radiation the warm surface radiates back. Heat therefore enters the atmosphere more easily than it leaves, and that one-way difference is what raises the temperature.",
+        "common_mistakes": [
+          "Writing that CO₂ stops sunlight from reaching the earth. Sunlight passes through; it is the heat radiated back from the surface that CO₂ absorbs.",
+          "Writing that CO₂ produces heat. It does not produce heat; it absorbs the heat radiated by the earth's surface."
+        ],
+        "memory_tip": "Sunlight goes in easily but the radiated heat does not come out easily — carbon dioxide absorbs it on the way out.",
+        "margin_note": "Say that the heat radiated by the surface is absorbed, not that sunlight is blocked."
+      },
+      {
+        "id": "s2_why_amount_rises",
+        "kind": "boxed_final",
+        "label": "Why the amount is rising",
+        "marks": 1,
+        "mark_note": "The excess and its effect",
+        "lines": [
+          {
+            "text": "More CO₂ absorbs more heat",
+            "style": "boxed"
+          },
+          "The amount of CO₂ in the air increases",
+          "when fossil fuels are burnt, when",
+          "limestone decomposes, and when the",
+          "number of trees falls.",
+          "The more CO₂ there is, the more of the",
+          "radiated heat is absorbed, so the",
+          "average temperature of the atmosphere",
+          "rises. This rise is global warming."
+        ],
+        "why": "The word in the question is 'excessive'. A normal amount of CO₂ keeps the earth warm enough to live on; it is the increase above that amount which raises the temperature further, so the answer has to name what causes the increase.",
+        "common_mistakes": [
+          "Naming only the burning of fuels. Decomposition of limestone and a fall in the number of trees also raise the amount of CO₂.",
+          "Writing that CO₂ makes a hole in the ozone layer. That is a separate effect; global warming is the absorption of radiated heat."
+        ],
+        "memory_tip": "Two things add CO₂ — burning fuels and limestone breaking down — and cutting trees takes away what removes it.",
+        "margin_note": "Naming the sources of the extra CO₂ is what answers the word excessive in the question."
+      }
+    ]
+  },
+  "insider_note": "A complete answer has two halves: how carbon dioxide absorbs the heat radiated by the earth's surface, and what is putting more of it into the air. Many students write only the second half."
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_eq_bf3_with_lih",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the balanced equation for the reaction BF₃ + LiH →",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The products",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 9(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The equation was balanced atom by atom while authoring: B 2 = 2, F 6 = 6, Li 6 = 6, H 6 = 6."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_products",
+        "kind": "text",
+        "label": "The products",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          "Boron trifluoride BF₃ reacts with lithium",
+          "hydride LiH.",
+          "Each fluorine on boron is replaced by",
+          "hydrogen, and two BH₃ units join as B₂H₆.",
+          "Products: diborane B₂H₆ and lithium",
+          "fluoride LiF."
+        ],
+        "why": "LiH supplies hydride, H⁻, and BF₃ supplies boron. Every B–F bond is swapped for a B–H bond, and because BH₃ is not stable on its own the two boron atoms join as the dimer B₂H₆. The fluorine leaves with lithium as LiF.",
+        "common_mistakes": [
+          "Writing BH₃ as the boron product. BH₃ is not stable on its own, so the product is the dimer B₂H₆.",
+          "Leaving out LiF. Every fluorine atom on the left must also appear on the right, and the fluorine leaves as lithium fluoride."
+        ],
+        "memory_tip": "Swap every F for an H, then pair the two BH₃ units into B₂H₆.",
+        "margin_note": "Name both products in words as well as in formulas."
+      },
+      {
+        "id": "s2_balanced",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          "Balance boron first, then fluorine and",
+          "lithium, then hydrogen.",
+          {
+            "text": "2BF₃ + 6LiH → B₂H₆ + 6LiF",
+            "style": "boxed"
+          },
+          "Check: B 2 = 2, F 6 = 6, Li 6 = 6,",
+          "H 6 = 6."
+        ],
+        "why": "One B₂H₆ needs two boron atoms, so the equation starts with 2BF₃. Those two BF₃ molecules carry six fluorine atoms, which need six lithium atoms to leave as 6LiF, and the six hydrogen atoms of B₂H₆ come from the same six LiH.",
+        "common_mistakes": [
+          "Writing BF₃ + LiH → B₂H₆ + LiF with no coefficients. The atom counts on the two sides do not match.",
+          "Using 3LiH instead of 6LiH. Six hydrogen atoms are needed to build one B₂H₆."
+        ],
+        "memory_tip": "Two borons in B₂H₆ fixes 2BF₃, and six hydrogens fixes 6LiH.",
+        "margin_note": "Write the atom count under the equation to show it balances."
+      }
+    ]
+  },
+  "insider_note": "The balanced equation is the whole answer here, so write the coefficients the first time and put the atom count beneath it."
+}

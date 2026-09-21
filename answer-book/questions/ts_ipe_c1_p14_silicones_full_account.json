@@ -1,0 +1,254 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicones_full_account",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are silicones? How are they prepared? Give one example. What are their uses?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What silicones are",
+      "marks": 1
+    },
+    {
+      "label": "The chlorosilanes from methyl chloride",
+      "marks": 1
+    },
+    {
+      "label": "The Grignard route",
+      "marks": 1
+    },
+    {
+      "label": "Hydrolysis",
+      "marks": 1
+    },
+    {
+      "label": "The example — dimethyl silicone",
+      "marks": 2
+    },
+    {
+      "label": "Uses",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.109, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE ERROR CORRECTED: the source prints the third Grignard equation as 3CH₃MgCl + SiCl₄ → (CH₃)₃SiCl₂ + 3MgCl₂, which does not balance — chlorine is 8 on the right against 7 on the left — while the source's own name for that product, trimethyl chlorosilane, is (CH₃)₃SiCl. This card prints 3CH₃MgCl + SiCl₄ → (CH₃)₃SiCl + 3MgCl₂, checked atom by atom: C 3 = 3, H 9 = 9, Si 1 = 1, Mg 3 = 3, Cl 7 = 7. The other two Grignard equations were checked the same way and are printed as the source gives them: CH₃MgCl + SiCl₄ → CH₃SiCl₃ + MgCl₂ (Cl 5 = 5) and 2CH₃MgCl + SiCl₄ → (CH₃)₂SiCl₂ + 2MgCl₂ (Cl 6 = 6). PRODUCT LIST CORRECTED: the source names the products of the direct process as mono, di, tri and tetra methyl chlorosilanes. Read as formulae that makes the fourth (CH₃)₄SiCl, which is five bonds on a tetravalent silicon atom. The fourth product is tetramethylsilane (CH₃)₄Si, which carries no chlorine and is therefore not a chlorosilane, so this card names the three methyl chlorosilanes CH₃SiCl₃, (CH₃)₂SiCl₂ and (CH₃)₃SiCl and then names (CH₃)₄Si separately. NCERT gives the same four products. TEMPERATURE RECORD: the source prints three different temperatures for the methyl chloride and silicon reaction in this one chapter. Every silicone card in this answer book prints NCERT's value, 573 K, and prints no other figure for it. FURTHER EQUATION CHECKS: 2CH₃Cl + Si → (CH₃)₂SiCl₂ (C 2 = 2, H 6 = 6, Cl 2 = 2, Si 1 = 1); (CH₃)₂SiCl₂ + 2H₂O → (CH₃)₂Si(OH)₂ + 2HCl (C 2 = 2, H 10 = 10, O 2 = 2, Si 1 = 1, Cl 2 = 2); n(CH₃)₂Si(OH)₂ → [(CH₃)₂SiO]ₙ + nH₂O (C 2n = 2n, H 8n = 6n + 2n, O 2n = n + n, Si n = n). CONSISTENCY RECORD: this chapter asks what silicones are three times — at two marks, at four marks, and at eight marks here. All three state the same chemistry: synthetic organosilicon polymers, repeating unit R₂SiO, silicon atoms joined through oxygen as Si–O–Si, R an alkyl or an aryl group. This eight-mark card ADDS what the shorter ones do not carry: the Grignard route, the drawn structure of dimethyl silicone as the worked example, and the uses. Its four uses are the same four named by the two-mark uses card in this chapter — silicone rubbers; sealants, greases and electrical insulators; surgical and cosmetic implants; and the waterproofing of fabrics. TWO SUPPORTING REASONS ARE CARRIED BEYOND THE SOURCE LIST OF USES and should be confirmed by a teacher: that a silicone does not conduct electricity, and that water does not wet a silicone surface. Both are the standard explanations for the uses named, and without them the closing step is a bare list. CHAIN-LENGTH CONTROL ADDED: NCERT states that (CH₃)₃SiCl is used to block the chain ends and so control the chain length. The card printed its preparation without saying what it is for, which left the third equation unexplained. Carried as standard content for a teacher to confirm."
+  },
+  "insider_note": "The question is in four parts and every part has to appear on the page: what they are, how they are prepared, one worked example, and the uses. An answer that is three equations long has skipped two of the four parts.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_they_are",
+        "kind": "text",
+        "label": "What silicones are",
+        "marks": 1,
+        "mark_note": "Definition and repeating unit",
+        "lines": [
+          "Silicones are synthetic organosilicon",
+          "polymers. In the chain, silicon and",
+          "oxygen atoms alternate, and every silicon",
+          "atom carries two organic groups.",
+          "The repeating unit is:",
+          {
+            "text": "R₂SiO",
+            "style": "eq"
+          },
+          "R is an alkyl or an aryl group, and",
+          "neighbouring silicon atoms are joined",
+          "through oxygen, as Si–O–Si."
+        ],
+        "why": "Everything that follows is a way of building this one unit. Writing R₂SiO and the Si–O–Si linkage at the start gives the preparation something to aim at, so the equations later on read as construction rather than as a list.",
+        "common_mistakes": [
+          "Calling a silicone a silicate. A silicate is a metal derivative of silicic acid; a silicone carries organic R groups on the silicon.",
+          "Writing the repeating unit as SiO₂ or as RSiO₂. It is R₂SiO, with two organic groups on each silicon atom."
+        ],
+        "memory_tip": "R₂SiO: two organic groups and one oxygen atom on every silicon atom.",
+        "margin_note": "Write R₂SiO on its own line at the top. The preparation below is read against it."
+      },
+      {
+        "id": "s2_direct_process",
+        "kind": "equation",
+        "label": "Chlorosilanes from methyl chloride",
+        "marks": 1,
+        "mark_note": "The starting materials and how they are made",
+        "lines": [
+          "The starting materials are alkyl or aryl",
+          "substituted chlorosilanes, RₙSiCl₍₄₋ₙ₎.",
+          "Methyl chloride vapour is passed over",
+          "heated silicon with copper powder as the",
+          "catalyst, at 573 K:",
+          {
+            "text": "2CH₃Cl + Si → (CH₃)₂SiCl₂",
+            "style": "eq"
+          },
+          "A mixture of methyl chlorosilanes is",
+          "formed — CH₃SiCl₃, (CH₃)₂SiCl₂ and",
+          "(CH₃)₃SiCl — together with a small",
+          "amount of tetramethylsilane (CH₃)₄Si.",
+          "The dimethyl compound (CH₃)₂SiCl₂ is",
+          "the main one, and it is the one used",
+          "for silicones."
+        ],
+        "why": "The chlorine atoms on the silicon are the working part of the starting material. Each of them is replaced by an OH group when water is added, and it is the OH groups that later join one silicon atom to the next.",
+        "common_mistakes": [
+          "Leaving the copper and the temperature off the arrow. Both conditions belong on the equation.",
+          "Writing (CH₃)₂SiCl₂ as the only product. Four products form together, and this one is the largest share."
+        ],
+        "memory_tip": "Methyl chloride over hot silicon with copper at 573 K gives the chlorosilanes.",
+        "margin_note": "Write the general formula RₙSiCl₍₄₋ₙ₎ before the equation, so the equation reads as one case of it."
+      },
+      {
+        "id": "s3_grignard_route",
+        "kind": "equation",
+        "label": "The Grignard route",
+        "marks": 1,
+        "mark_note": "Chlorosilanes from SiCl₄",
+        "lines": [
+          "The same chlorosilanes are also made from",
+          "silicon tetrachloride and a Grignard",
+          "reagent. How many methyl groups go on to",
+          "the silicon depends on how much Grignard",
+          "reagent is taken:",
+          {
+            "text": "CH₃MgCl + SiCl₄ → CH₃SiCl₃ + MgCl₂",
+            "style": "eq"
+          },
+          {
+            "text": "2CH₃MgCl + SiCl₄ → (CH₃)₂SiCl₂ + 2MgCl₂",
+            "style": "eq"
+          },
+          {
+            "text": "3CH₃MgCl + SiCl₄ → (CH₃)₃SiCl + 3MgCl₂",
+            "style": "eq"
+          },
+          "Each of the three is used for a different",
+          "job. The dimethyl compound gives the",
+          "chain, the trichloro compound gives a",
+          "cross-linked network, and the trimethyl",
+          "compound has only one chlorine, so it",
+          "closes a chain end and fixes the length."
+        ],
+        "why": "Each molecule of the Grignard reagent places one methyl group on the silicon atom, and one chlorine atom leaves as part of MgCl₂. So the number of methyl groups in the product is the number of molecules of Grignard reagent used, and the chlorine atoms left on the silicon make up the rest of its four bonds. The number of chlorine atoms left on the silicon then decides what the polymer becomes: two chlorines give a chain, three give a cross-linked network, and one can only close a chain end, which is how the chain length is controlled.",
+        "common_mistakes": [
+          "Writing the third product as (CH₃)₃SiCl₂. Silicon has four bonds, so with three methyl groups on it only one chlorine atom is left. The chlorine count balances at 7 on each side only with (CH₃)₃SiCl.",
+          "Leaving MgCl₂ out. One MgCl₂ is formed for every molecule of CH₃MgCl used, so the coefficients on the two sides match.",
+          "Writing SiCl₄ as the starting material of the silicone itself. SiCl₄ carries no organic group; it is the chlorosilane made from it that is used."
+        ],
+        "memory_tip": "One, two or three CH₃MgCl put one, two or three methyl groups on the silicon.",
+        "margin_note": "Count the chlorine atoms on both sides of each of these three equations before moving on."
+      },
+      {
+        "id": "s4_hydrolysis",
+        "kind": "equation",
+        "label": "Hydrolysis of the dimethyl compound",
+        "marks": 1,
+        "mark_note": "The hydrolysis equation",
+        "lines": [
+          "The dimethyl compound is hydrolysed. Each",
+          "chlorine atom on the silicon atom is",
+          "replaced by an OH group:",
+          {
+            "text": "(CH₃)₂SiCl₂ + 2H₂O → (CH₃)₂Si(OH)₂ + 2HCl",
+            "style": "eq"
+          },
+          "The diol (CH₃)₂Si(OH)₂ has two OH groups",
+          "on one silicon atom."
+        ],
+        "why": "Two chlorine atoms on a silicon atom cannot join it to another silicon atom, but two OH groups can, by losing water between them. Hydrolysis is therefore the step that turns the chlorosilane into something that will polymerise.",
+        "common_mistakes": [
+          "Using one molecule of water. Two chlorine atoms are replaced, so two molecules of water are needed.",
+          "Writing the products as H₂ and Cl₂. The chlorine leaves as hydrogen chloride, HCl."
+        ],
+        "memory_tip": "Two chlorine atoms out, two OH groups in, two molecules of HCl away.",
+        "margin_note": "Name the product a diol here. The word explains why the chain that follows is straight."
+      },
+      {
+        "id": "s5_example_structure",
+        "kind": "text",
+        "label": "The example — dimethyl silicone",
+        "marks": 2,
+        "mark_note": "Condensation, and the structure of the example",
+        "lines": [
+          "The diol molecules polymerise by",
+          "condensation. Two OH groups on",
+          "neighbouring silicon atoms lose one",
+          "molecule of water, and a Si–O–Si linkage",
+          "is left in its place:",
+          {
+            "text": "n(CH₃)₂Si(OH)₂ → [(CH₃)₂SiO]ₙ + nH₂O",
+            "style": "eq"
+          },
+          "The example is dimethyl silicone.",
+          "To draw it, write a row in which silicon",
+          "and oxygen alternate:",
+          {
+            "text": "–O–Si–O–Si–O–Si–O–",
+            "style": "eq"
+          },
+          "Put two CH₃ groups on every silicon atom,",
+          "one above it and one below it.",
+          "Each oxygen atom joins two silicon atoms,",
+          "and the unit (CH₃)₂SiO is repeated n",
+          "times along the chain."
+        ],
+        "why": "This step answers the give one example part of the question, and it is also the check on the definition written at the start: the unit left in the chain, (CH₃)₂SiO, is R₂SiO with R read as CH₃. Each condensation adds one silicon atom to the chain and releases one molecule of water.",
+        "common_mistakes": [
+          "Stopping at the diol. The diol is not the silicone; the silicone is the polymer left after condensation.",
+          "Writing the repeating unit of the example as (CH₃)₂Si(OH)₂. The OH groups are lost as water, so the unit in the chain is (CH₃)₂SiO.",
+          "Drawing the silicon atoms bonded to each other. They are joined through the oxygen atoms, as Si–O–Si."
+        ],
+        "memory_tip": "Silicon and oxygen alternate along the row, and two CH₃ groups sit on every silicon atom.",
+        "margin_note": "A cyclic silicone is formed instead when water is lost between the OH groups at the two ends of one chain, so the chain closes into a ring."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Uses of silicones",
+        "marks": 2,
+        "mark_note": "Uses",
+        "lines": [
+          "Silicones are made into silicone rubbers.",
+          "They are used as sealants, as greases and",
+          "as electrical insulators.",
+          "They are used in surgical and cosmetic",
+          "implants.",
+          "Fabrics are treated with silicones to",
+          "make them waterproof.",
+          "These uses come from two properties: a",
+          "silicone does not conduct electricity,",
+          "and water does not wet its surface.",
+          {
+            "text": "Rubber, sealant, insulator, implant, fabric",
+            "style": "boxed"
+          }
+        ],
+        "why": "The uses are not a separate list to memorise. The outward organic groups give a surface that water does not wet, and the polymer does not conduct electricity, so the four uses named here are those two properties put to work.",
+        "common_mistakes": [
+          "Giving a property in place of a use. Water repelling is a property; waterproofing a fabric is the use.",
+          "Naming a use of silica or of a silicate. This part of the question is about silicones, the organosilicon polymers.",
+          "Leaving the medical use out. Silicones are used in surgical and cosmetic implants as well as in industry."
+        ],
+        "memory_tip": "Rubber, sealant, grease, insulator, implant, waterproof cloth: the six named here.",
+        "margin_note": "Give each use its own short sentence."
+      }
+    ]
+  }
+}

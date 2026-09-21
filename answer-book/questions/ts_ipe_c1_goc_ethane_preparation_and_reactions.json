@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethane_preparation_and_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe any two methods of preparation of ethane. Give any three reactions of ethane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation by decarboxylation",
+      "marks": 2
+    },
+    {
+      "label": "Preparation by the Wurtz reaction",
+      "marks": 2
+    },
+    {
+      "label": "Pyrolysis",
+      "marks": 1
+    },
+    {
+      "label": "Controlled oxidation",
+      "marks": 1
+    },
+    {
+      "label": "Combustion",
+      "marks": 1
+    },
+    {
+      "label": "What the reactions have in common",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 32. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: CH₃CH₂COONa + NaOH → C₂H₆ + Na₂CO₃ has C 3 = 3, H 6 = 6, O 3 = 3 and Na 2 = 2; CH₃I + 2Na + ICH₃ → CH₃–CH₃ + 2NaI has C 2 = 2, H 6 = 6, I 2 = 2 and Na 2 = 2; C₂H₆ → C₂H₄ + H₂ has C 2 = 2 and H 6 = 4 + 2; 2C₂H₆ + 3O₂ → 2CH₃COOH + 2H₂O has C 4 = 4, H 12 = 8 + 4 and O 6 = 4 + 2; C₂H₆ + 7/2 O₂ → 2CO₂ + 3H₂O has C 2 = 2, H 6 = 6 and O 7 = 4 + 3, and its doubled form 2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O has C 4 = 4, H 12 = 12 and O 14 = 8 + 6. NO TEMPERATURE IS STATED for the pyrolysis of ethane: the source settles 773 K for the pyrolysis of hexane only, and putting a figure on the ethane reaction would be inventing one. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the reason soda lime contains calcium oxide, the even-carbon limitation of the Wurtz reaction, the doubled combustion equation, and the closing statement that ethane is saturated and therefore gives no addition reaction. ONE CONDITION HAS NO RECORDED PROVENANCE: manganese ethanoate, named as the catalyst for the controlled oxidation, is the standard catalyst for that oxidation, but it was not recorded at authoring time whether the printed answer names it, and the source index carries stems only. Treat it as unattributed until a teacher confirms both the catalyst and where it came from. THE CLOSING STEP NAMES CHLORINATION IN SUNLIGHT as a fourth reaction of ethane, which the printed answer does not: it is added because the question asks for any three reactions and a student who writes the free-radical chlorination has written a correct one."
+  },
+  "insider_note": "The question has two halves and both have to be there: two complete preparations with equations, then three reactions with equations. An answer with four preparations and one reaction has done only half of the question.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_decarboxylation",
+        "kind": "equation",
+        "label": "Preparation: decarboxylation",
+        "marks": 2,
+        "mark_note": "Decarboxylation",
+        "lines": [
+          "Sodium propionate is heated with soda",
+          "lime, which is a mixture of calcium oxide",
+          "and sodium hydroxide.",
+          "The carboxyl group is removed as sodium",
+          "carbonate and ethane is left.",
+          {
+            "text": "CH₃CH₂COONa + NaOH → C₂H₆ + Na₂CO₃",
+            "style": "eq"
+          },
+          "Because one carbon leaves as carbonate,",
+          "the salt must have three carbon atoms to",
+          "give the two-carbon alkane.",
+          "Atoms: 3 C, 6 H, 3 O and 2 Na each side."
+        ],
+        "why": "Decarboxylation removes exactly one carbon, so the alkane obtained always has one carbon fewer than the salt used. Sodium propionate has three carbons and therefore gives ethane. The calcium oxide in soda lime keeps the sodium hydroxide dry and easy to handle; the hydroxide is what reacts.",
+        "common_mistakes": [
+          "Starting from sodium acetate. That salt has two carbons and gives methane; ethane needs sodium propionate.",
+          "Writing NaHCO₃ as the by-product. The by-product is sodium carbonate, Na₂CO₃.",
+          "Leaving out the soda lime. The sodium hydroxide is used with calcium oxide and the mixture is heated."
+        ],
+        "memory_tip": "One carbon leaves as carbonate, so a three-carbon salt gives a two-carbon alkane.",
+        "margin_note": "Name soda lime and show the one carbon leaving as sodium carbonate."
+      },
+      {
+        "id": "s2_wurtz",
+        "kind": "equation",
+        "label": "Preparation: Wurtz reaction",
+        "marks": 2,
+        "mark_note": "Wurtz reaction",
+        "lines": [
+          "Methyl iodide is heated with sodium metal",
+          "in dry ether.",
+          "Sodium removes the iodine from each",
+          "molecule and the two methyl groups join.",
+          {
+            "text": "CH₃I + 2Na + ICH₃ → CH₃–CH₃ + 2NaI",
+            "style": "eq"
+          },
+          "The ether must be dry, because sodium",
+          "reacts with water and with alcohols.",
+          "Two identical halide molecules are joined,",
+          "so the method suits alkanes with an even",
+          "number of carbon atoms.",
+          "Atoms: 2 C, 6 H, 2 I and 2 Na each side."
+        ],
+        "why": "The Wurtz reaction joins two hydrocarbon parts by taking the halogen off each with sodium, so the carbon count doubles: a one-carbon halide gives a two-carbon alkane. That doubling is also its limit — it makes an alkane with an even number of carbons cleanly, and a mixture when two different halides are used.",
+        "common_mistakes": [
+          "Using ethyl iodide to make ethane. Two ethyl groups would join and give butane; ethane needs methyl iodide.",
+          "Carrying out the reaction in water or in ethanol. The solvent is dry ether.",
+          "Writing NaI₂ as the by-product. Sodium iodide is NaI, and two of them are formed."
+        ],
+        "memory_tip": "Two methyl halides plus sodium give one ethane: the carbon count doubles.",
+        "margin_note": "Write both halide molecules on the left and name dry ether as the solvent."
+      },
+      {
+        "id": "s3_pyrolysis",
+        "kind": "equation",
+        "label": "Reaction: pyrolysis",
+        "marks": 1,
+        "mark_note": "Pyrolysis",
+        "lines": [
+          "Ethane heated strongly in the absence of",
+          "air decomposes.",
+          {
+            "text": "C₂H₆ → C₂H₄ + H₂",
+            "style": "eq"
+          },
+          "One hydrogen atom is lost from each",
+          "carbon, so a double bond is left and the",
+          "products are ethylene and hydrogen.",
+          "Decomposition by heat like this is called",
+          "pyrolysis, or cracking.",
+          "Atoms: 2 C and 6 H on each side."
+        ],
+        "why": "Air is excluded, so the ethane cannot burn; heat alone breaks a C–H bond on each carbon. The two carbons are then one bond short each, and they form the second bond between themselves, which is the double bond of ethylene.",
+        "common_mistakes": [
+          "Writing carbon dioxide and water as the products. Air is excluded, so this is not combustion.",
+          "Keeping the single bond in the product. Two hydrogen atoms are lost, so a double bond is formed."
+        ],
+        "memory_tip": "Lose one hydrogen from each carbon and a double bond is what is left.",
+        "margin_note": "Say that air is excluded, so this is decomposition and not burning."
+      },
+      {
+        "id": "s4_oxidation",
+        "kind": "equation",
+        "label": "Reaction: controlled oxidation",
+        "marks": 1,
+        "mark_note": "Controlled oxidation",
+        "lines": [
+          "With a limited supply of oxygen and a",
+          "catalyst, ethane is oxidised to ethanoic",
+          "acid.",
+          {
+            "text": "2C₂H₆ + 3O₂ → 2CH₃COOH + 2H₂O",
+            "style": "eq"
+          },
+          "The catalyst is manganese ethanoate and",
+          "the mixture is heated.",
+          "Atoms: 4 C, 12 H and 6 O on each side."
+        ],
+        "why": "The supply of oxygen is what separates this from burning: with plenty of oxygen the ethane goes all the way to carbon dioxide, while with a limited supply and a catalyst the oxidation stops at the acid. Both carbon atoms stay in the product, so no carbon is lost.",
+        "common_mistakes": [
+          "Writing CO₂ and water as the products. That is complete combustion; controlled oxidation stops at the acid.",
+          "Naming the product ethanol. With this catalyst the product is ethanoic acid, CH₃COOH.",
+          "Leaving out the catalyst. The oxidation is controlled by the catalyst and the limited oxygen together."
+        ],
+        "memory_tip": "Limited oxygen with a catalyst stops the oxidation at the acid.",
+        "margin_note": "Say that the oxygen supply is limited and name the catalyst."
+      },
+      {
+        "id": "s5_combustion",
+        "kind": "equation",
+        "label": "Reaction: combustion",
+        "marks": 1,
+        "mark_note": "Combustion",
+        "lines": [
+          "In excess oxygen ethane burns completely",
+          "to carbon dioxide and water.",
+          {
+            "text": "C₂H₆ + 7/2 O₂ → 2CO₂ + 3H₂O",
+            "style": "eq"
+          },
+          "Doubling every coefficient clears the",
+          "fraction:",
+          {
+            "text": "2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O",
+            "style": "eq"
+          },
+          "A large amount of heat is given out,",
+          "which is why alkanes are used as fuels."
+        ],
+        "why": "Complete combustion is the reaction that makes an alkane a fuel. The carbon count fixes the CO₂ and the hydrogen count fixes the water, so seven oxygen atoms are needed in all and the oxygen coefficient is 7/2.",
+        "common_mistakes": [
+          "Writing carbon monoxide as the product. In excess oxygen the combustion is complete.",
+          "Doubling the oxygen alone when the fraction is cleared. Every coefficient doubles together."
+        ],
+        "memory_tip": "Two carbons give 2CO₂ and six hydrogens give 3H₂O.",
+        "margin_note": "Give either the fraction form or the doubled form, and say the oxygen is in excess."
+      },
+      {
+        "id": "s6_close",
+        "kind": "boxed_final",
+        "label": "What the reactions have in common",
+        "marks": 1,
+        "mark_note": "The class of compound",
+        "lines": [
+          {
+            "text": "Ethane, C₂H₆, is a saturated alkane",
+            "style": "boxed"
+          },
+          "Both carbons are joined by a single bond",
+          "and every other bond is to hydrogen.",
+          "There is no double or triple bond, so",
+          "nothing adds to ethane.",
+          "Its reactions are substitution and",
+          "breaking down: heat splits it, controlled",
+          "oxidation stops at the acid, excess",
+          "oxygen burns it, and in sunlight chlorine",
+          "replaces a hydrogen atom.",
+          "The three reactions above are of that kind."
+        ],
+        "why": "A list of three reactions is worth more with the reason behind it stated. Ethane is saturated, so there is no bond for a reagent to add across. What is left is substitution, such as chlorination in sunlight, and breaking the molecule down by heat or by oxygen. Closing with the class of the compound ties the three reactions together.",
+        "common_mistakes": [
+          "Writing an addition reaction for ethane. Ethane is saturated and has no double bond to add across.",
+          "Answering only one half of the question. Two preparations and three reactions are both asked for."
+        ],
+        "memory_tip": "Saturated means nothing adds. Ethane is changed by heat, by oxygen, or by substitution.",
+        "margin_note": "Close by naming ethane as a saturated alkane, which is why nothing adds to it."
+      }
+    ]
+  }
+}

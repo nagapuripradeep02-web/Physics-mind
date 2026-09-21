@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_graphite_differences",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the difference in the properties of diamond and graphite on the basis of their structure.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The structure of diamond",
+      "marks": 1
+    },
+    {
+      "label": "The structure of graphite",
+      "marks": 1
+    },
+    {
+      "label": "The properties that follow",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, Short Answer Questions question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. BOND LENGTH: the source book prints the graphite C–C distance as 141.5 pm in one place and as 1.42 Å in two others; those are the same value rounded differently, and this card prints 141.5 pm only, with 154 pm for diamond. Neither form is an error. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diamond_structure",
+        "kind": "text",
+        "label": "The structure of diamond",
+        "marks": 1,
+        "mark_note": "Diamond structure",
+        "lines": [
+          "In diamond each carbon atom is sp³",
+          "hybridised and is joined to four other",
+          "carbon atoms by covalent bonds.",
+          "The bonds point to the corners of a",
+          "regular tetrahedron: the bond angle is",
+          "109°28′ and the C–C length is 154 pm.",
+          "The pattern repeats in all three",
+          "directions, so the crystal is one rigid",
+          "covalent network with no weak forces in",
+          "it anywhere."
+        ],
+        "why": "The question asks for the properties to be read off the structure, so both structures have to be on the page before any property is named. Diamond's is the three-dimensional one, and its key features are four bonds per carbon and no weak direction.",
+        "common_mistakes": [
+          "Writing the two structures and then listing properties that are never linked back to them. The question asks for the link.",
+          "Giving diamond's bond angle as 120°. That is graphite's angle; diamond's is 109°28′."
+        ],
+        "memory_tip": "Diamond: four bonds, tetrahedral, three-dimensional network.",
+        "margin_note": "Put both structures on the page first. The properties are read off them afterwards."
+      },
+      {
+        "id": "s2_graphite_structure",
+        "kind": "text",
+        "label": "The structure of graphite",
+        "marks": 1,
+        "mark_note": "Graphite structure",
+        "lines": [
+          "In graphite each carbon atom is sp²",
+          "hybridised and is joined to only three",
+          "others, forming flat sheets of",
+          "hexagonal rings.",
+          "The bond angle is 120° and the C–C",
+          "length inside a sheet is 141.5 pm.",
+          "The fourth valence electron of each",
+          "carbon is delocalised over the sheet.",
+          "The sheets are stacked one above",
+          "another and are held together only by",
+          "weak van der Waals forces."
+        ],
+        "why": "Graphite differs from diamond in exactly two ways, and both of them matter later: one bond fewer per carbon, which leaves a delocalised electron, and sheets held by weak forces instead of a network.",
+        "common_mistakes": [
+          "Writing that the sheets are joined to each other by covalent bonds. Only weak van der Waals forces act between the sheets.",
+          "Using the fourth electron to make a fourth sigma bond. Each carbon in graphite makes three sigma bonds; the fourth electron is delocalised."
+        ],
+        "memory_tip": "Graphite: three bonds, flat sheets, one delocalised electron, weak forces between sheets.",
+        "margin_note": "Name the delocalised electron and the weak forces; those two are the whole difference."
+      },
+      {
+        "id": "s3_properties",
+        "kind": "text",
+        "label": "The properties that follow",
+        "marks": 1,
+        "mark_note": "The properties",
+        "lines": [
+          "Hardness: diamond is the hardest known",
+          "substance, because its network is rigid",
+          "in three dimensions. Graphite is soft",
+          "and greasy, because its sheets slide",
+          "over one another.",
+          "Conductivity: diamond uses all four",
+          "valence electrons in bonds, has no free",
+          "electron and does not conduct. Graphite",
+          "has the delocalised electron and",
+          "conducts along its sheets.",
+          "Melting point: both are high, because",
+          "in each of them strong covalent bonds",
+          "have to be broken.",
+          "Stability: graphite is the more stable",
+          "of the two at ordinary conditions."
+        ],
+        "why": "Each property is written next to the structural feature that causes it, so the two columns of the answer line up. The melting point is included because it is the one property where the two forms agree, and it shows that the difference lies in the weak forces and the spare electron, not in the covalent bonding itself.",
+        "common_mistakes": [
+          "Writing that graphite has a low melting point because it is soft. Its melting point is high; softness comes from the sliding sheets.",
+          "Saying graphite conducts because it is a metal. Graphite is a non-metal, and the conduction comes from its delocalised electrons."
+        ],
+        "memory_tip": "Diamond: rigid network, hard, no conduction. Graphite: sliding sheets, soft, conducts.",
+        "margin_note": "Take one property at a time and give the structural cause in the same line."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Structure decides hardness and conduction",
+            "style": "boxed"
+          },
+          "Diamond and graphite are both pure",
+          "carbon, so the difference between them",
+          "is not in the element but in the way",
+          "the atoms are joined.",
+          "Diamond is used as a gem, in cutting",
+          "and drilling tools and as an abrasive.",
+          "Graphite is used as a lubricant, in",
+          "pencil leads and as electrodes."
+        ],
+        "why": "The point of the question is that one element gives two solids with opposite properties, so the answer has to say that in words. The uses are the everyday evidence that the two forms really do behave differently.",
+        "common_mistakes": [
+          "Writing that diamond and graphite are different elements. Both are pure carbon.",
+          "Listing the properties without ever naming the structure as the cause. The question asks for the properties to be explained on the basis of the structure."
+        ],
+        "memory_tip": "One element, two structures, two opposite sets of properties.",
+        "margin_note": "One closing line naming structure as the cause completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer puts both structures on the page first and then reads each property off the structure it comes from, so the hardness, the softness and the conduction each have a named structural cause."
+}

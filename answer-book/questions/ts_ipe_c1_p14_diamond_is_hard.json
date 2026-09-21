@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_is_hard",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is diamond hard?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rigid arrangement",
+      "marks": 1
+    },
+    {
+      "label": "Why nothing can move",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 26. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. Hardness and the high melting point are asked separately in this chapter and are answered from the same structure; this card argues from the rigidity of the network and the absence of sliding layers, which is what hardness measures, while the melting-point question argues from the number and strength of the bonds that heat has to break. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rigid",
+        "kind": "text",
+        "label": "The rigid arrangement",
+        "marks": 1,
+        "mark_note": "Arrangement",
+        "lines": [
+          "In diamond each carbon atom is sp³",
+          "hybridised and forms four covalent",
+          "bonds pointing to the corners of a",
+          "regular tetrahedron.",
+          "The bond angle is 109°28′ and the C–C",
+          "bond length is 154 pm.",
+          "Because the bonds point in fixed",
+          "directions in space, the pattern builds",
+          "a rigid three-dimensional network."
+        ],
+        "why": "Hardness is about shape, not only about strength. A covalent bond points in a fixed direction, so every atom in diamond is locked into position by four such directions at once and the shape of the crystal cannot be changed without breaking bonds.",
+        "common_mistakes": [
+          "Answering sp² for diamond. Each carbon is bonded to four other carbon atoms, so it is sp³.",
+          "Describing diamond as layers of atoms. Layers belong to graphite; diamond is a three-dimensional network."
+        ],
+        "memory_tip": "Four bonds in fixed directions build a rigid network.",
+        "margin_note": "Describe the tetrahedral arrangement before giving the reason."
+      },
+      {
+        "id": "s2_no_movement",
+        "kind": "text",
+        "label": "Why nothing can move",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Every carbon in the crystal is held by",
+          "four strong covalent bonds, each of",
+          "348 kJ mol⁻¹.",
+          "There are no weak forces anywhere in",
+          "diamond and no layers that can slide",
+          "over one another.",
+          "So the atoms cannot be moved out of",
+          "place without breaking covalent bonds,",
+          "and diamond is the hardest known",
+          "substance.",
+          {
+            "text": "A rigid covalent network makes it hard",
+            "style": "boxed"
+          }
+        ],
+        "why": "The contrast with graphite is what makes this convincing. Graphite is the same element with the same kind of covalent bonds, and it is soft only because it has weak forces between sliding sheets. Diamond has no such weak direction anywhere.",
+        "common_mistakes": [
+          "Saying diamond is hard only because carbon is a small atom. Small size helps make the bonds short and strong, but the hardness comes from the rigid network of four bonds per atom.",
+          "Giving the same reason here as for graphite's softness. Graphite is soft because its sheets slide; diamond has no sheets to slide."
+        ],
+        "memory_tip": "Nothing is weak and nothing slides, so nothing moves out of place.",
+        "margin_note": "Contrast with graphite in one line; it shows why the three-dimensional network matters."
+      }
+    ]
+  },
+  "insider_note": "A complete answer describes the rigid three-dimensional network of four covalent bonds per carbon and then says there are no weak forces and no sliding layers anywhere in diamond."
+}

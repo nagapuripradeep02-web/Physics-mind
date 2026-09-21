@@ -1,0 +1,254 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_group_oxides_hydroxides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their oxides and hydroxides.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Every member forms an oxide",
+      "marks": 1
+    },
+    {
+      "label": "Lithium gives the monoxide",
+      "marks": 1
+    },
+    {
+      "label": "Sodium gives the monoxide or the peroxide",
+      "marks": 2
+    },
+    {
+      "label": "The heavier metals give superoxides",
+      "marks": 2
+    },
+    {
+      "label": "The hydroxides",
+      "marks": 1
+    },
+    {
+      "label": "Gradation in basic character",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 49(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: question 49 is printed as one question with three parts and this card answers part (iii) only, the oxides and hydroxides. Parts (i) and (ii), the electronic configuration and the reducing nature, are answered on their own cards; nothing here is repeated there. EVERY EQUATION WAS CHECKED ATOM BY ATOM: 4Li + O₂ → 2Li₂O (Li 4 = 4, O 2 = 2); 4Na + O₂ → 2Na₂O (Na 4 = 4, O 2 = 2); 2Na + O₂ → Na₂O₂ (Na 2 = 2, O 2 = 2); M + O₂ → MO₂ (M 1 = 1, O 2 = 2); M₂O + H₂O → 2MOH (M 2 = 2, O 2 = 2, H 2 = 2); 2M + 2H₂O → 2MOH + H₂ (M 2 = 2, H 4 = 4, O 2 = 2). A SOURCE-BOOK CORRECTION IS CARRIED HERE, the same one the reactivity-towards-air card carries: the book elsewhere prints the schematic Li + air (O₂ + N₂) → Li₂O + Li₃N, which does not balance, so this card writes the balanced oxygen equation 4Li + O₂ → 2Li₂O instead. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: the two routes to the hydroxide, from the oxide with water and from the metal with water directly, and the statement that solubility of the hydroxides increases down the group."
+  },
+  "insider_note": "Three different oxides appear in one answer — monoxide, peroxide and superoxide — so name the oxygen supply beside each equation and say which metals give which.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common",
+        "kind": "text",
+        "label": "Every member forms an oxide",
+        "marks": 1,
+        "mark_note": "The shared behaviour",
+        "lines": [
+          "Every alkali metal has one loosely held",
+          "outer electron, so every one of them",
+          "reacts with the oxygen of the air.",
+          "A freshly cut surface is bright but",
+          "tarnishes at once.",
+          "Each metal burns in oxygen to give an",
+          "oxide, and each oxide with water gives",
+          "a hydroxide MOH.",
+          "So oxide formation and hydroxide",
+          "formation are properties of the whole",
+          "group, not of one or two members."
+        ],
+        "why": "A justification has to open with what all six elements do, and forming an oxide and then a hydroxide is exactly that. The single loosely held electron is the common cause, so the shared behaviour is traced back to the shared configuration rather than simply listed.",
+        "common_mistakes": [
+          "Saying only some alkali metals react with oxygen. All of them do; the difference is which oxide is formed.",
+          "Saying the metals are stored under water. They react with water, so they are kept under kerosene."
+        ],
+        "memory_tip": "All six react with air; only the product changes.",
+        "margin_note": "Open with the behaviour common to the group before writing any single equation."
+      },
+      {
+        "id": "s2_lithium",
+        "kind": "equation",
+        "label": "Lithium gives the monoxide",
+        "marks": 1,
+        "mark_note": "The monoxide with its reason",
+        "lines": [
+          "Lithium burns in oxygen and gives",
+          "mainly the monoxide:",
+          {
+            "text": "4Li + O₂ → 2Li₂O",
+            "style": "eq"
+          },
+          "It forms no superoxide at all.",
+          "The Li⁺ ion is very small, so it holds",
+          "the small oxide ion O²⁻ steadily and",
+          "the larger oxygen anions poorly.",
+          "Li₂O is therefore taken as the product",
+          "of burning lithium in air."
+        ],
+        "why": "Lithium is the first of the three cases, and its behaviour is the plainest: the smallest cation of the group holds the smallest of the three oxygen anions best. Naming the monoxide as the product and ruling out the superoxide is part of the answer, because the contrast with sodium comes next.",
+        "common_mistakes": [
+          "Writing Li₂O₂ as the product of burning lithium in oxygen. The product to write is the monoxide Li₂O.",
+          "Writing LiO₂ for lithium. No alkali metal as small as lithium forms a superoxide.",
+          "Leaving the equation unbalanced. Four lithium atoms are needed for one oxygen molecule."
+        ],
+        "memory_tip": "The smallest ion holds the smallest anion: lithium gives mainly Li₂O.",
+        "margin_note": "One equation and one sentence of reason are all this step needs."
+      },
+      {
+        "id": "s3_sodium",
+        "kind": "equation",
+        "label": "Sodium gives the monoxide or the peroxide",
+        "marks": 2,
+        "mark_note": "Both products with the oxygen supply named",
+        "lines": [
+          "Which oxide sodium gives depends on how",
+          "much oxygen is present.",
+          "In a limited supply of oxygen the",
+          "monoxide is formed:",
+          {
+            "text": "4Na + O₂ → 2Na₂O",
+            "style": "eq"
+          },
+          "In an excess of oxygen the peroxide is",
+          "formed instead:",
+          {
+            "text": "2Na + O₂ → Na₂O₂",
+            "style": "eq"
+          },
+          "The Na⁺ ion is larger than Li⁺, so it",
+          "can hold the bigger peroxide ion O₂²⁻",
+          "as well as the oxide ion.",
+          "Sodium peroxide with water gives the",
+          "hydroxide and hydrogen peroxide:",
+          {
+            "text": "Na₂O₂ + 2H₂O → 2NaOH + H₂O₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Sodium is the middle case and shows that the group changes gradually rather than in one jump. A larger cation can hold a larger anion, so as soon as the ion is bigger than Li⁺ a second product becomes possible, and the amount of oxygen decides which one is obtained.",
+        "common_mistakes": [
+          "Giving sodium only one product. Which oxide forms depends on whether oxygen is limited or in excess.",
+          "Calling Na₂O₂ a superoxide. Na₂O₂ is the peroxide; a superoxide has the formula MO₂.",
+          "Writing Na₂O₂ + H₂O with one water molecule. Two water molecules are needed for the equation to balance."
+        ],
+        "memory_tip": "Little oxygen gives Na₂O, plenty of oxygen gives Na₂O₂.",
+        "margin_note": "Write the oxygen supply beside each of the two equations; the products cannot be told apart without it."
+      },
+      {
+        "id": "s4_superoxides",
+        "kind": "equation",
+        "label": "The heavier metals give superoxides",
+        "marks": 2,
+        "mark_note": "The superoxide and the size reason",
+        "lines": [
+          "Potassium, rubidium and caesium burn in",
+          "excess oxygen and give superoxides:",
+          {
+            "text": "M + O₂ → MO₂   (M = K, Rb, Cs)",
+            "style": "eq"
+          },
+          "So the products in excess oxygen change",
+          "steadily down the group:",
+          "lithium the monoxide Li₂O,",
+          "sodium the peroxide Na₂O₂,",
+          "potassium and below the superoxide MO₂.",
+          "The superoxide ion O₂⁻ is large and is",
+          "held stable only by a large cation.",
+          "The small Li⁺ and Na⁺ ions cannot hold",
+          "it, so they form no superoxides.",
+          "This orderly change from one product to",
+          "the next is itself group behaviour."
+        ],
+        "why": "This is the strongest single piece of evidence in the answer. The product does not change at random from element to element; it changes once and then again as the cation gets bigger, so the trio monoxide, peroxide, superoxide reads as one gradation with one cause.",
+        "common_mistakes": [
+          "Giving potassium the peroxide. In excess oxygen potassium gives the superoxide KO₂.",
+          "Leaving out the reason. A superoxide is stable only with a large cation, and that is why the lighter metals do not form one.",
+          "Writing MO₂ for lithium or sodium. Their ions are too small to hold the superoxide ion."
+        ],
+        "memory_tip": "Monoxide, peroxide, superoxide: the anion grows as the cation grows.",
+        "margin_note": "Set the three products out one under another so the gradation is visible on the page."
+      },
+      {
+        "id": "s5_hydroxides",
+        "kind": "equation",
+        "label": "The hydroxides",
+        "marks": 1,
+        "mark_note": "Formation and general nature",
+        "lines": [
+          "Each oxide with water gives the",
+          "hydroxide:",
+          {
+            "text": "M₂O + H₂O → 2MOH",
+            "style": "eq"
+          },
+          "The metal itself also gives the",
+          "hydroxide directly with water:",
+          {
+            "text": "2M + 2H₂O → 2MOH + H₂",
+            "style": "eq"
+          },
+          "All the alkali metal hydroxides are",
+          "white crystalline solids.",
+          "They dissolve freely in water, giving",
+          "out much heat, and their solubility",
+          "increases down the group.",
+          "They are the strongest of all bases."
+        ],
+        "why": "Every member of the group gives a hydroxide, and every one of those hydroxides is a strong base that dissolves freely in water. That is the second shared property the question asks about, and it holds without exception, so it is stated for the group before the gradation is taken up.",
+        "common_mistakes": [
+          "Writing MOH for the oxide as well. The oxide is M₂O and the hydroxide is MOH.",
+          "Leaving out the hydrogen in the reaction of the metal with water. Hydrogen gas is released."
+        ],
+        "memory_tip": "Oxide plus water, or metal plus water: both give MOH.",
+        "margin_note": "Give both routes to the hydroxide, then its general nature in one sentence."
+      },
+      {
+        "id": "s6_basic_gradation",
+        "kind": "boxed_final",
+        "label": "Gradation in basic character",
+        "marks": 1,
+        "mark_note": "The order with its reason",
+        "lines": [
+          {
+            "text": "LiOH < NaOH < KOH < RbOH < CsOH",
+            "style": "boxed"
+          },
+          "Basic character increases down the",
+          "group in that order.",
+          "As the M⁺ ion gets larger the M–OH bond",
+          "gets weaker, so the hydroxide gives up",
+          "its OH⁻ ion more readily and acts as a",
+          "stronger base.",
+          "One kind of oxide chemistry and one kind",
+          "of hydroxide, changing in one steady",
+          "direction, justifies placing these",
+          "metals in the same group."
+        ],
+        "why": "The closing line does the two jobs the question needs: it states the gradation in the hydroxides with its reason, and it says what the whole answer has shown. The reason matters because the order is not memorised — a longer, weaker bond to the hydroxide group is what makes the heavier hydroxide the stronger base.",
+        "common_mistakes": [
+          "Writing the order the other way round. LiOH is the weakest base of the five and CsOH the strongest.",
+          "Ending at the order without the conclusion. The question asks for a justification, so the closing sentence has to state it."
+        ],
+        "memory_tip": "Bigger ion, weaker hold on OH⁻, stronger base down the group.",
+        "margin_note": "Close with the order, its reason, and one sentence answering the question that was asked."
+      }
+    ]
+  }
+}

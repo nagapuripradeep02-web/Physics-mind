@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_reacts_water_less_vigorously",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Lithium reacts with water less vigorously than sodium. Give the reasons.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Highest ionisation enthalpy",
+      "marks": 1
+    },
+    {
+      "label": "Strongest metallic bonding",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ionisation_enthalpy",
+        "kind": "text",
+        "label": "Highest ionisation enthalpy",
+        "marks": 1,
+        "mark_note": "Ionisation enthalpy",
+        "lines": [
+          "Lithium has the smallest atom in",
+          "group 1, so its outer 2s electron is",
+          "held closest to the nucleus.",
+          "Its ionisation enthalpy is therefore the",
+          "highest in the group, so the electron is",
+          "released least easily."
+        ],
+        "why": "The reaction with water starts with the metal giving up its outer electron. That electron is the most tightly held in lithium, so the first step of the reaction is slowest for lithium.",
+        "common_mistakes": [
+          "Writing that lithium is the largest atom of group 1. It is the smallest, and atomic size increases down the group.",
+          "Saying lithium has a low ionisation enthalpy. Its ionisation enthalpy is the highest of the alkali metals, even though every alkali metal has the lowest value in its own period."
+        ],
+        "memory_tip": "Smallest atom, tightest hold on the outer electron, slowest start to the reaction.",
+        "margin_note": "Name the ionisation enthalpy, not just the small size."
+      },
+      {
+        "id": "s2_metallic_bonding",
+        "kind": "text",
+        "label": "Strongest metallic bonding",
+        "marks": 1,
+        "mark_note": "Metallic bonding",
+        "lines": [
+          "The small atom also gives lithium the",
+          "strongest metallic bonding, so it is",
+          "the hardest alkali metal and melts at",
+          "the highest temperature in group 1.",
+          "Sodium melts in the heat of its own",
+          "reaction and spreads out fresh metal,",
+          "while lithium stays solid, so lithium",
+          "reacts with water steadily and sodium",
+          "reacts much faster."
+        ],
+        "why": "How fast the reaction runs also depends on how much metal surface meets the water. Sodium melts and spreads, which keeps exposing new surface; lithium stays a solid piece, so its reacting surface stays small.",
+        "common_mistakes": [
+          "Writing that lithium does not react with water. It does react, only more steadily than sodium.",
+          "Giving the melting points the wrong way round. Lithium melts at the highest temperature of the alkali metals."
+        ],
+        "memory_tip": "Sodium melts and spreads out; lithium stays a solid piece with a small surface.",
+        "margin_note": "Both reasons together: the tighter electron and the higher melting point."
+      }
+    ]
+  },
+  "insider_note": "Lithium is the slowest alkali metal to react with water and is still the strongest reducing agent in aqueous solution, because reducing power in solution also depends on lithium's very large hydration enthalpy."
+}

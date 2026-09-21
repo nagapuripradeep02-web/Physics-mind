@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_producer_gas_less_efficient",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Producer gas is a less efficient fuel than water gas. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What each gas contains",
+      "marks": 1
+    },
+    {
+      "label": "Why the calorific value is lower",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_each_contains",
+        "kind": "text",
+        "label": "What each gas contains",
+        "marks": 1,
+        "mark_note": "The two compositions",
+        "lines": [
+          "The two fuels differ in what they are",
+          "made of:",
+          {
+            "text": "Producer gas: CO ≈ 33% · N₂ ≈ 64%",
+            "style": "eq"
+          },
+          {
+            "text": "Water gas: CO ≈ 40–50% · H₂ ≈ 45–50%",
+            "style": "eq"
+          },
+          "Producer gas is prepared with air, so",
+          "most of it is nitrogen.",
+          "Water gas is prepared with steam, so it",
+          "contains hydrogen, and nitrogen is",
+          "present only in a small amount."
+        ],
+        "why": "The comparison can only be made once both compositions are on the page. Nitrogen enters producer gas from the air used to prepare it, and hydrogen enters water gas from the steam, so the difference between the two fuels goes back to the difference in how they are prepared.",
+        "common_mistakes": [
+          "Comparing the two gases without giving either composition. The percentages are what the explanation rests on.",
+          "Swapping the two compositions. Producer gas is the one with the nitrogen in it; water gas is the one with the hydrogen."
+        ],
+        "memory_tip": "Producer gas is made with air and water gas with steam, so one is mostly nitrogen and the other contains hydrogen.",
+        "margin_note": "Write both compositions first. The comparison in the next step then follows from them."
+      },
+      {
+        "id": "s2_calorific_value",
+        "kind": "boxed_final",
+        "label": "Why the calorific value is lower",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "Nitrogen does not burn and gives no heat",
+            "style": "boxed"
+          },
+          "In producer gas only the carbon",
+          "monoxide burns. Nitrogen is about two",
+          "thirds of the mixture and is",
+          "non-combustible, so a large part of the",
+          "gas gives no heat at all, and the",
+          "calorific value is low.",
+          "In water gas both carbon monoxide and",
+          "hydrogen burn, so the same volume of",
+          "gas releases much more heat."
+        ],
+        "why": "Efficiency here means the heat released per volume of gas burnt, which is the calorific value. Producer gas contains a large volume of nitrogen that takes no part in the burning, so every litre of it delivers less heat than a litre of water gas.",
+        "common_mistakes": [
+          "Writing that producer gas is less efficient because carbon monoxide is a poor fuel. Carbon monoxide burns well in both gases; it is the nitrogen that lowers the value.",
+          "Writing that the hydrogen in water gas does not burn. Both of its main components burn, and that is the second half of the reason."
+        ],
+        "memory_tip": "About two thirds of producer gas is nitrogen and nitrogen does not burn, so two thirds of the volume gives no heat.",
+        "margin_note": "Name the term calorific value. Saying that both components of water gas burn completes the comparison."
+      }
+    ]
+  },
+  "insider_note": "The answer is a comparison, so both gases have to appear in it. The single fact the explanation rests on is that nitrogen, about two thirds of producer gas, does not burn."
+}

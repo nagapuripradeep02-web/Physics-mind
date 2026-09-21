@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_plaster_of_paris_name_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the chemical name of plaster of Paris? Write its formula.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The chemical name",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 21. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chemical_name",
+        "kind": "text",
+        "label": "The chemical name",
+        "marks": 1,
+        "mark_note": "Chemical name",
+        "lines": [
+          "The chemical name of plaster of",
+          "Paris is calcium sulphate",
+          "hemihydrate.",
+          "It is made by heating the mineral",
+          "gypsum, which is calcium sulphate",
+          "dihydrate."
+        ],
+        "why": "Plaster of Paris is a common name. The chemical name states the compound and how much water of crystallisation it holds: calcium sulphate carrying half a water molecule for each formula unit.",
+        "common_mistakes": [
+          "Writing calcium sulphate dihydrate. That is gypsum, the material plaster of Paris is made from.",
+          "Writing calcium carbonate or calcium sulphite. The compound is a sulphate."
+        ],
+        "memory_tip": "Hemi means half, so hemihydrate means half a water molecule for each calcium sulphate unit.",
+        "margin_note": "Write the full name. Calcium sulphate on its own leaves out the water."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "Formula: CaSO₄·½H₂O",
+          "The same compound is also written",
+          "as 2CaSO₄·H₂O, which means one",
+          "water molecule for every two units",
+          "of calcium sulphate. Both forms are",
+          "correct.",
+          "Gypsum, the starting material, is",
+          "CaSO₄·2H₂O."
+        ],
+        "why": "The half water molecule is the point of the formula. Doubling everything clears the fraction, which is why the same compound is written in two ways and both are correct.",
+        "common_mistakes": [
+          "Writing CaSO₄·2H₂O. That formula is gypsum, which holds two water molecules.",
+          "Dropping the water and writing CaSO₄ only. That is the anhydrous salt."
+        ],
+        "memory_tip": "Gypsum holds two water molecules, plaster of Paris only half of one.",
+        "margin_note": "Either CaSO₄·½H₂O or 2CaSO₄·H₂O is a correct form."
+      }
+    ]
+  },
+  "insider_note": "This question asks for two exact items, the chemical name and the formula, so write both and keep the rest of the answer short."
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_benzene_preparation_and_toluene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe any two methods of preparation of benzene with the corresponding equations. Why does benzene not behave like an alkene? How do we get methyl benzene from benzene?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation from acetylene",
+      "marks": 2
+    },
+    {
+      "label": "Preparation from sodium benzoate",
+      "marks": 2
+    },
+    {
+      "label": "Substitution, not addition",
+      "marks": 1
+    },
+    {
+      "label": "The resonance reason",
+      "marks": 2
+    },
+    {
+      "label": "Methylbenzene from benzene",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.119, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 35. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWO POINTS WHERE EQUALLY CORRECT FORMS EXIST, recorded here so no later editor treats one as a defect. (1) The tube in the acetylene method: this card writes a red-hot copper tube at about 600 °C, following the source; NCERT writes a red-hot iron tube at 873 K, which is the same temperature and the same reaction, and both forms are correct. (2) The alkyl halide in the last step: the card writes methyl chloride, C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl, and methyl iodide with the same catalyst, giving HI in place of HCl, is equally correct. The benzene bond lengths quoted (139 pm, against 154 pm for a single and 134 pm for a double carbon-carbon bond) are the standard NCERT values."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_from_acetylene",
+        "kind": "equation",
+        "label": "Preparation from acetylene",
+        "marks": 2,
+        "mark_note": "Preparation 1",
+        "lines": [
+          "Method 1 — from acetylene.",
+          "Acetylene C₂H₂ is passed through a",
+          "red-hot copper tube at about 600 °C.",
+          "Three molecules join into one ring:",
+          {
+            "text": "3C₂H₂ → C₆H₆",
+            "style": "eq"
+          },
+          "Each acetylene molecule supplies two",
+          "carbon atoms, so three of them supply",
+          "the six carbon atoms of the ring.",
+          "This is called cyclic polymerisation."
+        ],
+        "why": "Acetylene carries two carbon atoms and two hydrogen atoms, which is the same ratio benzene has, so three molecules close into a six-membered ring with nothing added and nothing left over. The hot tube supplies the energy for the ring to form. Passing acetylene through a red-hot iron tube at 873 K is the same reaction with the other tube metal, and both forms are correct.",
+        "common_mistakes": [
+          "Writing 2C₂H₂ → C₆H₆. Three molecules of acetylene are needed for six carbon atoms.",
+          "Naming the product cyclohexane. Three molecules of acetylene give benzene C₆H₆, not C₆H₁₂."
+        ],
+        "memory_tip": "Three two-carbon molecules make one six-carbon ring: 3 × C₂H₂ is C₆H₆.",
+        "margin_note": "Say how many acetylene molecules are needed, then write the equation."
+      },
+      {
+        "id": "s2_from_sodium_benzoate",
+        "kind": "equation",
+        "label": "Preparation from sodium benzoate",
+        "marks": 2,
+        "mark_note": "Preparation 2",
+        "lines": [
+          "Method 2 — from sodium benzoate.",
+          "Sodium benzoate C₆H₅COONa is heated",
+          "with soda lime, which is a mixture of",
+          "sodium hydroxide and calcium oxide:",
+          {
+            "text": "C₆H₅COONa + NaOH → C₆H₆ + Na₂CO₃",
+            "style": "eq"
+          },
+          "The –COONa group leaves as sodium",
+          "carbonate and a hydrogen atom takes",
+          "its place on the ring.",
+          "This is called decarboxylation."
+        ],
+        "why": "The carboxylate group is removed as carbonate and a hydrogen atom takes its place on the ring, which is what decarboxylation means. Calcium oxide is present in soda lime to keep the sodium hydroxide dry and easy to handle, and it is the sodium hydroxide that appears in the equation.",
+        "common_mistakes": [
+          "Writing calcium oxide into the equation. Soda lime is NaOH with CaO, and the NaOH is the reagent in the equation.",
+          "Writing the product as C₆H₅Na. The benzoate group is replaced by a hydrogen atom, giving benzene C₆H₆."
+        ],
+        "memory_tip": "Soda lime takes –COONa away as Na₂CO₃ and leaves the plain ring.",
+        "margin_note": "Name soda lime and say what it is made of before writing the equation."
+      },
+      {
+        "id": "s3_not_an_alkene",
+        "kind": "text",
+        "label": "Substitution, not addition",
+        "marks": 1,
+        "mark_note": "The observation",
+        "lines": [
+          "Benzene is drawn with three double",
+          "bonds, so alkene behaviour is",
+          "expected. It is not observed.",
+          "An alkene decolourises bromine water,",
+          "and it decolourises cold dilute",
+          "alkaline KMnO₄.",
+          "Benzene decolourises neither.",
+          "With a halogen and a catalyst benzene",
+          "gives substitution, not addition."
+        ],
+        "why": "This step states the observation that the rest of the answer has to explain. Substitution keeps the ring of six carbon atoms exactly as it is, while addition would use up its double bonds, and benzene is also far more stable than an alkene of similar size.",
+        "common_mistakes": [
+          "Saying benzene has no double bonds at all. It is drawn with three, but they are not ordinary double bonds.",
+          "Writing that benzene decolourises bromine water. It does not, and that is one of the observations to be explained."
+        ],
+        "memory_tip": "An alkene adds and decolourises bromine water; benzene substitutes and does not.",
+        "margin_note": "State what benzene does not do before giving the reason for it."
+      },
+      {
+        "id": "s4_resonance",
+        "kind": "text",
+        "label": "The resonance reason",
+        "marks": 2,
+        "mark_note": "The reason",
+        "lines": [
+          "The reason is resonance.",
+          "The six π electrons are not held in",
+          "three fixed double bonds. They are",
+          "delocalised over all six carbon atoms.",
+          "X-ray diffraction shows that all six",
+          "C–C bonds are equal, 139 pm, which is",
+          "between a single bond (154 pm) and a",
+          "double bond (134 pm).",
+          "So there is no pure double bond for a",
+          "reagent to add across easily, and the",
+          "ring is unusually stable — addition",
+          "needs strong conditions.",
+          "The two Kekulé structures are the main",
+          "contributors, and the resonance hybrid",
+          "is drawn as a hexagon with an inner",
+          "circle standing for the six",
+          "delocalised electrons."
+        ],
+        "why": "Equal bond lengths are the measured evidence for the argument: if benzene held three single and three double bonds there would be two different C–C distances in the ring, and there are not. Delocalisation also lowers the energy of the molecule, so benzene is more stable than three separate double bonds would make it.",
+        "common_mistakes": [
+          "Saying the double bonds move around the ring. The π electrons are delocalised over all six carbon atoms at the same time.",
+          "Giving two different C–C bond lengths for benzene. All six are equal at 139 pm.",
+          "Drawing the inner circle without saying what it means. The circle stands for the six delocalised π electrons."
+        ],
+        "memory_tip": "One bond length for all six C–C bonds means one kind of bond, so no alkene double bond is present.",
+        "margin_note": "Name resonance, give the equal bond lengths, then state the conclusion."
+      },
+      {
+        "id": "s5_methylbenzene",
+        "kind": "equation",
+        "label": "Methylbenzene from benzene",
+        "marks": 1,
+        "mark_note": "Methylbenzene",
+        "lines": [
+          "Methylbenzene is made from benzene by",
+          "Friedel–Crafts alkylation.",
+          "Benzene is treated with methyl",
+          "chloride CH₃Cl in the presence of",
+          "anhydrous aluminium chloride AlCl₃:",
+          {
+            "text": "C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl",
+            "style": "eq"
+          },
+          "The product C₆H₅CH₃ is methylbenzene,",
+          "also called toluene."
+        ],
+        "why": "This is the third part of the question and it is one reaction: a hydrogen atom of the ring is replaced by a methyl group. The catalyst has to be anhydrous, because water hydrolyses aluminium chloride.",
+        "common_mistakes": [
+          "Leaving out the catalyst. Anhydrous AlCl₃ is part of the answer.",
+          "Writing the product as C₆H₆CH₃. One ring hydrogen atom is replaced, so the product is C₆H₅CH₃."
+        ],
+        "memory_tip": "Methyl chloride with anhydrous AlCl₃ puts a methyl group on the ring.",
+        "margin_note": "Write the catalyst beside the arrow and name the product under the equation."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The three answers together",
+        "marks": 0,
+        "lines": [
+          "Two preparations: three molecules of",
+          "acetylene through a red-hot tube, and",
+          "sodium benzoate heated with soda lime.",
+          "Benzene is not an alkene because its",
+          "π electrons are delocalised over all",
+          "six carbon atoms and all six C–C bonds",
+          "are equal.",
+          "Methylbenzene comes from benzene with",
+          "methyl chloride and anhydrous AlCl₃.",
+          {
+            "text": "No pure double bond, so substitution",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question has three parts and this line reads them back in order, so nothing is left half answered. The closing line is the single sentence the whole middle section was built to support.",
+        "common_mistakes": [
+          "Answering two parts of the three. All three parts carry marks.",
+          "Ending on the last equation. One line saying why benzene does not add is what ties the answer together."
+        ],
+        "memory_tip": "Two preparations, one reason, one reaction — three parts, answered in that order.",
+        "margin_note": "Unmarked closing step. It restates the three parts so none is left out."
+      }
+    ]
+  },
+  "insider_note": "This question has three separate parts, and the middle one is where marks are lost: the answer must say that the π electrons are delocalised and that all six carbon-carbon bond lengths are equal, not simply that benzene is stable."
+}

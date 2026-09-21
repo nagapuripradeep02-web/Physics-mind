@@ -1,0 +1,162 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_metals_by_fused_chloride_electrolysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State why the alkali metals are prepared by the electrolysis of their fused chlorides.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Chemical reduction cannot work",
+      "marks": 1
+    },
+    {
+      "label": "Why not an aqueous solution",
+      "marks": 1
+    },
+    {
+      "label": "The electrode reactions",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, SAQ question 47(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_chemical_reduction",
+        "kind": "text",
+        "label": "Chemical reduction cannot work",
+        "marks": 1,
+        "mark_note": "The first reason",
+        "lines": [
+          "An alkali metal is itself one of the",
+          "strongest reducing agents known, because",
+          "it loses its single ns¹ electron very",
+          "easily.",
+          "No ordinary reducing agent such as",
+          "carbon, carbon monoxide or hydrogen is a",
+          "stronger reducing agent than the metal.",
+          "So the metal cannot be obtained by",
+          "reducing its compound with any of them."
+        ],
+        "why": "A metal is extracted by reducing its compound, and that needs a reducing agent stronger than the metal being set free. The alkali metals are themselves among the strongest reducing agents, so this route cannot be used, and that is the first half of the answer.",
+        "common_mistakes": [
+          "Writing that the compounds are too stable to be reduced. The reason is that no common reducing agent is stronger than the alkali metal itself.",
+          "Suggesting reduction with carbon in a furnace. Carbon is a weaker reducing agent than sodium, so it cannot reduce Na⁺."
+        ],
+        "memory_tip": "To reduce a compound you need something stronger than the metal inside it, and nothing common is stronger than an alkali metal.",
+        "margin_note": "Say what is ruled out before saying what is used. The question is asking why electrolysis is the only route left."
+      },
+      {
+        "id": "s2_not_aqueous",
+        "kind": "text",
+        "label": "Why not an aqueous solution",
+        "marks": 1,
+        "mark_note": "The second reason",
+        "lines": [
+          "The metal ion must therefore be reduced",
+          "by electricity, at the cathode of an",
+          "electrolytic cell.",
+          "An aqueous solution cannot be used.",
+          "Water is reduced in preference to the",
+          "alkali metal ion, so hydrogen is given",
+          "off at the cathode and no metal is",
+          "obtained.",
+          "Any metal formed would in any case react",
+          "at once with the water."
+        ],
+        "why": "Electrolysis supplies electrons directly, so it does not need a chemical reducing agent at all. But the choice of what to electrolyse still matters: in water the easier reduction is the reduction of water itself, so the cell would deliver hydrogen instead of the metal.",
+        "common_mistakes": [
+          "Writing that an aqueous solution gives the metal, which then reacts with water. Water is reduced first, so hydrogen comes off and the metal is never deposited.",
+          "Leaving this point out. Saying only that electrolysis is used does not explain why the chloride must be fused."
+        ],
+        "memory_tip": "In an aqueous solution water is reduced before the metal ion, so the cell would give hydrogen and not the metal.",
+        "margin_note": "This step explains the word fused in the question. It is the point most answers leave out."
+      },
+      {
+        "id": "s3_electrode_reactions",
+        "kind": "equation",
+        "label": "The electrode reactions",
+        "marks": 1,
+        "mark_note": "Electrode equations",
+        "lines": [
+          "The dry molten, that is fused, chloride",
+          "is electrolysed instead. Taking sodium",
+          "chloride as the example:",
+          {
+            "text": "Cathode: 2Na⁺ + 2e⁻ → 2Na",
+            "style": "eq"
+          },
+          {
+            "text": "Anode: 2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          "Two electrons are released at the anode",
+          "and two are taken at the cathode, so the",
+          "charge balances.",
+          "Calcium chloride is added to lower the",
+          "melting point of the sodium chloride."
+        ],
+        "why": "In the fused salt the only ions present are Na⁺ and Cl⁻, so the cathode has nothing to reduce except the metal ion. Writing both electrode reactions with the same number of electrons shows that the electrons taken at one electrode are exactly the electrons released at the other.",
+        "common_mistakes": [
+          "Writing Na⁺ + e⁻ → Na at the cathode beside 2Cl⁻ → Cl₂ + 2e⁻ at the anode. The two half equations must show the same number of electrons if they are to be added, so either double the cathode equation or halve the anode one.",
+          "Writing the anode product as Cl⁻ or as HCl. The chloride ion is oxidised to chlorine gas Cl₂."
+        ],
+        "memory_tip": "At the cathode electrons are supplied and the metal is formed; at the anode electrons are removed and chlorine is released.",
+        "margin_note": "Label the two electrodes by name. An unlabelled pair of half equations does not show which change happens where."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "2NaCl → 2Na + Cl₂",
+            "style": "boxed"
+          },
+          "The overall change in the fused salt is",
+          "the boxed one, carried out by passing",
+          "electricity through the melt.",
+          "Sodium is obtained at the cathode and",
+          "chlorine at the anode.",
+          "Every alkali metal is prepared in this",
+          "way, from its fused chloride."
+        ],
+        "why": "The two half equations add up to one overall change, and writing it shows that the chlorine is a product of the same process rather than a separate reaction. Closing with the general statement answers the question as it was asked, which is about the alkali metals as a group and not about sodium alone.",
+        "common_mistakes": [
+          "Answering only for sodium. The question is about the alkali metals as a group.",
+          "Ending without stating the overall change. The two half equations together are one reaction."
+        ],
+        "memory_tip": "Nothing can reduce them chemically and water is reduced before they are, so the fused chloride is what is left.",
+        "margin_note": "Close with the overall change and the general statement about the whole group."
+      }
+    ]
+  },
+  "insider_note": "The two halves of this answer are that no common reducing agent is stronger than an alkali metal and that water is reduced before the metal ion, and the second half is the one usually missing even from otherwise complete answers."
+}

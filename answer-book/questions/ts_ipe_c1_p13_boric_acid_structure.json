@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_boric_acid_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structure of boric acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and composition",
+      "marks": 1
+    },
+    {
+      "label": "The planar BO₃ unit",
+      "marks": 1
+    },
+    {
+      "label": "The hydrogen bonded layers",
+      "marks": 1
+    },
+    {
+      "label": "Acid behaviour and summary",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer says orthoboric acid contains four atoms of oxygen. H₃BO₃ has THREE oxygen atoms. Four oxygen atoms belong to the anion [B(OH)₄]⁻, which is a different species; the card names that anion separately, in the step on acid behaviour, so the number four is not simply removed but placed where it belongs."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "Formula and composition",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "Orthoboric acid is H₃BO₃, also written as",
+          "B(OH)₃.",
+          "One molecule has one boron atom, three",
+          "hydrogen atoms and three oxygen atoms.",
+          "Each oxygen atom carries one hydrogen, so",
+          "boron is bonded to three OH groups."
+        ],
+        "why": "Writing the formula as B(OH)₃ shows the connection at once: the three hydrogen atoms are not on boron, they are on the three oxygen atoms. That is the reason the acid releases no hydrogen ion of its own.",
+        "common_mistakes": [
+          "Writing four oxygen atoms. H₃BO₃ has three; four oxygen atoms belong to the ion [B(OH)₄]⁻, which is a different species.",
+          "Drawing the hydrogen atoms bonded to boron. Each hydrogen is bonded to an oxygen."
+        ],
+        "memory_tip": "B(OH)₃: one boron, three OH groups, three oxygen atoms in all.",
+        "margin_note": "Write both forms of the formula. B(OH)₃ makes the rest of the structure obvious."
+      },
+      {
+        "id": "s2_planar_unit",
+        "kind": "text",
+        "label": "The planar BO₃ unit",
+        "marks": 1,
+        "mark_note": "Hybridisation and shape",
+        "lines": [
+          "Boron is sp² hybridised.",
+          "The three sp² orbitals point to the",
+          "corners of an equilateral triangle, so the",
+          "BO₃ unit is planar and the O–B–O angles",
+          "are 120°.",
+          "The molecule as a whole is planar and",
+          "triangular.",
+          "Boron has only six electrons here, so",
+          "H₃BO₃ is electron deficient."
+        ],
+        "why": "Boron forms three sigma bonds and keeps no lone pair, and three groups with no lone pair means sp² hybridisation and a trigonal planar shape. The flat shape is what allows the units to stack and hydrogen bond into sheets in the next step.",
+        "common_mistakes": [
+          "Writing sp³ and a pyramidal shape. Boron has three bonded groups and no lone pair, so it is sp² and planar.",
+          "Leaving out the bond angle. The O–B–O angle is 120°."
+        ],
+        "memory_tip": "Three groups, no lone pair, sp², planar, 120°.",
+        "margin_note": "Name the hybridisation and the shape together, and give the angle with them."
+      },
+      {
+        "id": "s3_layers",
+        "kind": "text",
+        "label": "The hydrogen bonded layers",
+        "marks": 1,
+        "mark_note": "Layer structure",
+        "lines": [
+          "Each OH group of one H₃BO₃ molecule forms",
+          "a hydrogen bond to an oxygen of a",
+          "neighbouring molecule, so the units link",
+          "into a flat two dimensional sheet.",
+          "The sheets are stacked one above another,",
+          "held by much weaker van der Waals forces.",
+          "Boric acid is therefore a white",
+          "crystalline solid, soft and slippery."
+        ],
+        "why": "The hydrogen bonding acts inside a sheet, while the much weaker van der Waals forces act between the sheets, so the sheets slide over one another. That difference between the two kinds of force is the reason the solid feels soapy and can be used as a lubricant.",
+        "common_mistakes": [
+          "Describing H₃BO₃ as separate molecules. In the solid the units are linked by hydrogen bonds into sheets.",
+          "Saying the hydrogen bonds hold the layers to each other. Hydrogen bonds act inside a layer; between the layers there are only van der Waals forces, which are much weaker."
+        ],
+        "memory_tip": "Hydrogen bonds inside a sheet, weaker van der Waals forces between sheets, so the sheets slide.",
+        "margin_note": "A small sketch of three molecules joined by dotted hydrogen bonds is worth drawing beside these lines."
+      },
+      {
+        "id": "s4_acid_behaviour",
+        "kind": "boxed_final",
+        "label": "Acid behaviour and summary",
+        "marks": 1,
+        "mark_note": "Acid behaviour",
+        "lines": [
+          {
+            "text": "H₃BO₃: planar sp², three OH, in layers",
+            "style": "boxed"
+          },
+          "It is a weak monobasic acid, but not a",
+          "protic acid: it releases no hydrogen ion",
+          "of its own.",
+          "It accepts OH⁻ from water instead:",
+          {
+            "text": "B(OH)₃ + 2H₂O → [B(OH)₄]⁻ + H₃O⁺",
+            "style": "indent"
+          },
+          "In that ion boron is sp³ and has four",
+          "oxygen atoms around it."
+        ],
+        "why": "The structure explains the acidity. Boron is electron deficient, so it takes a hydroxide ion from water rather than giving away a proton, and the H₃O⁺ that appears in solution comes from the water molecule and not from the OH groups of the acid.",
+        "common_mistakes": [
+          "Calling boric acid a protic acid that gives H⁺ from its OH groups. The H₃O⁺ comes from water.",
+          "Writing the anion as [B(OH)₃]⁻. Accepting a hydroxide ion gives four OH groups, so it is [B(OH)₄]⁻."
+        ],
+        "memory_tip": "Three OH groups in the acid, four in the anion it forms with water.",
+        "margin_note": "The acid behaviour line is what turns a structure answer into a complete one."
+      }
+    ]
+  },
+  "insider_note": "Boric acid has three oxygen atoms, not four; the four oxygen atoms belong to the ion [B(OH)₄]⁻ that it forms with water. Write B(OH)₃ beside H₃BO₃ and the rest of the structure follows from it."
+}
