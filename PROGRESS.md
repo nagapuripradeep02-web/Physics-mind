@@ -43,7 +43,7 @@ New question-level `formula_note` (optional and sparse, `insider_note`'s shape):
 - **Nothing is deployed**, and this rides the SAME Edge Function as the undeployed chat-history work (#220/#221/#222). `~/Desktop/VIDI_CHAT_MEMORY_DEPLOY.md` has been updated to say what else now ships when §3 of it is run. Cloudflare auth is still not on this Mac.
 - **Telugu/Hindi code-mix was explicitly deferred** by the founder this session. The persona's Telugu-script rule is untouched.
 - The confidence rating (solid/shaky/stuck) and the exit MCQ were explored and **shelved** by the founder earlier in the session.
-- The full `answer_book.spec.ts` fleet sweeps were not run — they cover construction lines and typesetting, which this does not touch.
+- The full `answer_book.spec.ts` **was** run: **82 passed, 2 failed in 2.6 h**. Both failures were then reproduced on the PRE-CHANGE tree (`HEAD~1` checked out and rebuilt), so **both are pre-existing on master, not from this change**: `hosted: telemetry AND the ask both say who is asking` (the mocked hosted build never un-hides `#vidiAskRow`, so the test times out before it can send an ask) and `Simplify writes ONE mark out in full` (an `expandableSteps` assertion on `EXPANDED_CARD`). Neither is diagnosed further here — they are red on master and want their own session.
 - Observed, not fixed: on a mark-split question Vidi said the book "made up" the split. That wording is the existing verification-honesty rule, not this change, but "made up" reads worse than it should.
 
 **Next session's first task:** founder reads the four piloted cards at `npm run serve:answers` and says whether the formula notes are worth a bulk pass over the remaining 242 Maths-1A cards.
