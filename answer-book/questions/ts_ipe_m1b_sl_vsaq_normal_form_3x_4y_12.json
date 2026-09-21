@@ -245,5 +245,8 @@
       }
     ]
   },
-  "insider_note": "Normal form needs p > 0, so multiply through by −1 (before or after dividing by 5); an answer left with a negative p is not the normal form. Both cosα and sinα then come out negative, which puts α in the third quadrant."
+  "insider_note": "Normal form needs p > 0, so multiply through by −1 (before or after dividing by 5); an answer left with a negative p is not the normal form. Both cosα and sinα then come out negative, which puts α in the third quadrant.",
+  "formulas": [
+    "m1b.sl.normal_form"
+  ]
 }

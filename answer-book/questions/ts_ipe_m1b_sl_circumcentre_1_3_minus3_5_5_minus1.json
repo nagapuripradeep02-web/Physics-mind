@@ -635,5 +635,8 @@
       }
     ]
   },
-  "insider_note": "The answer (−8, −10) lies well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
+  "insider_note": "The answer (−8, −10) lies well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra.",
+  "formulas": [
+    "m1b.sl.intersection"
+  ]
 }

@@ -200,5 +200,8 @@
       }
     ]
   },
-  "insider_note": "Differentiate implicitly; the right side is a constant, so its derivative is 0 and a never appears in the answer. The 2/3 cancels from both sides."
+  "insider_note": "Differentiate implicitly; the right side is a constant, so its derivative is 0 and a never appears in the answer. The 2/3 cancels from both sides.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

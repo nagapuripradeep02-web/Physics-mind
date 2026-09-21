@@ -179,5 +179,8 @@
       }
     ]
   },
-  "insider_note": "The numerator factorises as sec x(sec x + tan x), which cancels the whole denominator. The answer is sec x."
+  "insider_note": "The numerator factorises as sec x(sec x + tan x), which cancels the whole denominator. The answer is sec x.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

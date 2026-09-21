@@ -461,5 +461,6 @@
       }
     ]
   },
-  "insider_note": "Each side loses 2x, not x, because a square is cut at BOTH ends. The domain 0 < x < 15 comes from the shorter side, and roots outside it are rejected."
+  "insider_note": "Each side loses 2x, not x, because a square is cut at BOTH ends. The domain 0 < x < 15 comes from the shorter side, and roots outside it are rejected.",
+  "formulas": []
 }

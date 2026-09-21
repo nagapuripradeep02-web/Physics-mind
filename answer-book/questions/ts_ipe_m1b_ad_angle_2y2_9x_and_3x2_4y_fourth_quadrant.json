@@ -388,5 +388,9 @@
       }
     ]
   },
-  "insider_note": "The question names the FOURTH quadrant, so only the point with x > 0 and y < 0 is wanted — the other root is discarded. Find the intersection first, then the two slopes there."
+  "insider_note": "The question names the FOURTH quadrant, so only the point with x > 0 and y < 0 is wanted — the other root is discarded. Find the intersection first, then the two slopes there.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

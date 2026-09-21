@@ -572,5 +572,8 @@
       }
     ]
   },
-  "insider_note": "The point of intersection carries two of the four marks, and the Δ test and the inequalities carry one mark each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
+  "insider_note": "The point of intersection carries two of the four marks, and the Δ test and the inequalities carry one mark each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice.",
+  "formulas": [
+    "m1b.psl.general_pair"
+  ]
 }

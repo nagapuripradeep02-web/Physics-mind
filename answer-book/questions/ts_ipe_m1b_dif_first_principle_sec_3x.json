@@ -378,5 +378,8 @@
       }
     ]
   },
-  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears in the angle 3h/2, and the answer keeps one factor 3."
+  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears in the angle 3h/2, and the answer keeps one factor 3.",
+  "formulas": [
+    "m1b.dif.first_principle"
+  ]
 }

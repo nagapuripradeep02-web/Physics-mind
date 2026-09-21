@@ -159,5 +159,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.pl.point_normal"
+  ]
 }

@@ -197,5 +197,8 @@
       }
     ]
   },
-  "insider_note": "Divide top and bottom by x so both become standard limits, 1 and 1/2. Dividing by a half doubles, so the answer is 2 — the same shape as the 3ˣ version."
+  "insider_note": "Divide top and bottom by x so both become standard limits, 1 and 1/2. Dividing by a half doubles, so the answer is 2 — the same shape as the 3ˣ version.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

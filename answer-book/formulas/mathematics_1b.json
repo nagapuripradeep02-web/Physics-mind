@@ -1,0 +1,468 @@
+{
+  "subject": "mathematics_1b",
+  "sheet_label": "Maths 1B",
+  "chapters": [
+    {
+      "number": 1,
+      "formulas": [
+        {
+          "id": "m1b.loc.distance",
+          "name": "Distance between two points",
+          "text": "PQ = √((x₂ − x₁)² + (y₂ − y₁)²)",
+          "match": [
+            "PA² = (x − x₁)² + (y − y₁)²",
+            "the distance formula, squared",
+            "√((x₂ − x₁)² + (y₂ − y₁)²)"
+          ]
+        },
+        {
+          "id": "m1b.loc.right_angle",
+          "name": "Right angle at a point",
+          "text": "∠APB = 90° means PA² + PB² = AB²",
+          "match": [
+            "∠APB = 90°",
+            "PA² + PB² = AB²"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "formulas": [
+        {
+          "id": "m1b.ta.translation",
+          "name": "Translation of axes",
+          "text": "x = X + h, y = Y + k",
+          "match": [
+            "x = X + h",
+            "X = x − h"
+          ]
+        },
+        {
+          "id": "m1b.ta.rotation",
+          "name": "Rotation of axes",
+          "text": "x = X cos θ − Y sin θ, y = X sin θ + Y cos θ",
+          "match": [
+            "x = X cos θ − Y sin θ",
+            "y = X sin θ + Y cos θ"
+          ]
+        },
+        {
+          "id": "m1b.ta.remove_xy",
+          "name": "Angle that removes the xy term",
+          "text": "tan 2θ = 2h/(a − b)",
+          "match": [
+            "tan 2θ = 2h/(a − b)",
+            "tan2θ = 2h/(a−b)"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "formulas": [
+        {
+          "id": "m1b.sl.slope_point",
+          "name": "Slope point form of a line",
+          "text": "y − y₁ = m(x − x₁)",
+          "match": [
+            "y − y₁ = m(x − x₁)",
+            "y - y_{1} = m"
+          ]
+        },
+        {
+          "id": "m1b.sl.intercept_form",
+          "name": "Intercept form of a line",
+          "text": "x/a + y/b = 1",
+          "match": [
+            "the intercept form of a line with intercepts a and b",
+            "x/a + y/b = 1"
+          ]
+        },
+        {
+          "id": "m1b.sl.normal_form",
+          "name": "Normal form of a line",
+          "text": "x cos α + y sin α = p",
+          "match": [
+            "x cos α + y sin α = p",
+            "the normal form"
+          ]
+        },
+        {
+          "id": "m1b.sl.point_distance",
+          "name": "Distance from a point to a line",
+          "text": "d = |ax₁ + by₁ + c|/√(a² + b²)",
+          "match": [
+            "|ax₁ + by₁ + c|/√(a² + b²)",
+            "|ax_{1} + by_{1} + c|"
+          ]
+        },
+        {
+          "id": "m1b.sl.angle",
+          "name": "Angle between two lines",
+          "text": "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "match": [
+            "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
+            "the formula for the angle θ between two lines",
+            "the formula for the angle between two lines"
+          ]
+        },
+        {
+          "id": "m1b.sl.intersection",
+          "name": "Point where two lines meet",
+          "text": "x/(b₁c₂ − b₂c₁) = y/(c₁a₂ − c₂a₁) = 1/(a₁b₂ − a₂b₁)",
+          "match": [
+            "the cross-multiplication rule",
+            "= 1/(a₁b₂ − a₂b₁)"
+          ]
+        },
+        {
+          "id": "m1b.sl.parallel_distance",
+          "name": "Distance between two parallel lines",
+          "text": "d = |c₁ − c₂|/√(a² + b²)",
+          "match": [
+            "|c₁ − c₂|/√(a² + b²)",
+            "distance between the parallel lines"
+          ]
+        },
+        {
+          "id": "m1b.sl.point_at_distance",
+          "name": "Point at a given distance along a line",
+          "text": "(x₁ + r cos θ, y₁ + r sin θ)",
+          "match": [
+            "(x₁ + r cos θ, y₁ + r sin θ)",
+            "a point at distance r from"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "formulas": [
+        {
+          "id": "m1b.psl.pair_through_origin",
+          "name": "Pair of lines through the origin",
+          "text": "ax² + 2hxy + by² = 0 is a pair of lines when h² ≥ ab",
+          "match": [
+            "h² ≥ ab",
+            "h^{2} \\ge ab"
+          ]
+        },
+        {
+          "id": "m1b.psl.angle",
+          "name": "Angle between a pair of lines",
+          "text": "cos θ = |a + b|/√((a − b)² + 4h²)",
+          "match": [
+            "The angle between the pair is given by",
+            "|a + b|/√((a − b)² + 4h²)"
+          ]
+        },
+        {
+          "id": "m1b.psl.homogenise",
+          "name": "Homogenising to get the pair through two points",
+          "text": "Make every term degree 2 using the line as 1",
+          "match": [
+            "Homogenising (1) & (2)",
+            "the homogenised equation holds at both points"
+          ]
+        },
+        {
+          "id": "m1b.psl.general_pair",
+          "name": "When a second degree equation is a pair of lines",
+          "text": "abc + 2fgh − af² − bg² − ch² = 0",
+          "match": [
+            "abc + 2fgh − af² − bg² − ch²",
+            "2fgh"
+          ]
+        },
+        {
+          "id": "m1b.psl.bisectors",
+          "name": "Bisectors of the angles between a pair",
+          "text": "(x² − y²)/(a − b) = xy/h",
+          "match": [
+            "a point on a bisector is at equal distances",
+            "(x² − y²)/(a − b) = xy/h"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "formulas": [
+        {
+          "id": "m1b.td.distance",
+          "name": "Distance between two points in space",
+          "text": "PQ = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)",
+          "match": [
+            "√((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²)",
+            "the distance formula in space"
+          ]
+        },
+        {
+          "id": "m1b.td.collinear",
+          "name": "Test for three points in a line",
+          "text": "Three points are in one line when two distances add to the third",
+          "match": [
+            "three points are collinear when the sum of two distances",
+            "equals the third"
+          ]
+        },
+        {
+          "id": "m1b.td.section",
+          "name": "Section formula in space",
+          "text": "((mx₂ + nx₁)/(m + n), (my₂ + ny₁)/(m + n), (mz₂ + nz₁)/(m + n))",
+          "match": [
+            "(mx₂ + nx₁)/(m + n)",
+            "the section formula"
+          ]
+        },
+        {
+          "id": "m1b.td.centroid",
+          "name": "Centroid of a triangle in space",
+          "text": "((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3, (z₁ + z₂ + z₃)/3)",
+          "match": [
+            "(x₁ + x₂ + x₃)/3",
+            "the centroid"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "formulas": [
+        {
+          "id": "m1b.dc.sum_of_squares",
+          "name": "Direction cosines add to one",
+          "text": "l² + m² + n² = 1",
+          "match": [
+            "l² + m² + n² = 1",
+            "l^{2} + m^{2} + n^{2} = 1"
+          ]
+        },
+        {
+          "id": "m1b.dc.from_ratios",
+          "name": "Direction cosines from direction ratios",
+          "text": "l = a/√(a² + b² + c²), and the same for m and n",
+          "match": [
+            "√(a² + b² + c²)",
+            "a/√(a² + b² + c²)"
+          ]
+        },
+        {
+          "id": "m1b.dc.angle",
+          "name": "Angle between two lines from direction ratios",
+          "text": "cos θ = |a₁a₂ + b₁b₂ + c₁c₂|/(√(a₁² + b₁² + c₁²) √(a₂² + b₂² + c₂²))",
+          "match": [
+            "the angle between two lines from their direction ratios",
+            "a₁a₂ + b₁b₂ + c₁c₂"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "formulas": [
+        {
+          "id": "m1b.pl.point_normal",
+          "name": "Plane through a point with a given normal",
+          "text": "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0",
+          "match": [
+            "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0"
+          ]
+        },
+        {
+          "id": "m1b.pl.intercept",
+          "name": "Intercept form of a plane",
+          "text": "x/a + y/b + z/c = 1",
+          "match": [
+            "the intercept form",
+            "x/a + y/b + z/c = 1"
+          ]
+        },
+        {
+          "id": "m1b.pl.angle",
+          "name": "Angle between two planes",
+          "text": "cos θ = |a₁a₂ + b₁b₂ + c₁c₂|/(√(a₁² + b₁² + c₁²) √(a₂² + b₂² + c₂²)), taking a, b, c from the two normals",
+          "match": [
+            "the angle between two planes",
+            "angle between the planes"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "formulas": [
+        {
+          "id": "m1b.lim.sin",
+          "name": "Limit of sin x over x",
+          "text": "lim(x→0) (sin x)/x = 1",
+          "match": [
+            "(sin x)/x = 1",
+            "\\dfrac{\\sin x}{x} = 1",
+            "sinx/x = 1"
+          ]
+        },
+        {
+          "id": "m1b.lim.exponential",
+          "name": "Limit of (aˣ − 1) over x",
+          "text": "lim(x→0) (aˣ − 1)/x = logₑa",
+          "match": [
+            "(aˣ − 1)/x",
+            "(a^{x} - 1)",
+            "logₑa"
+          ]
+        },
+        {
+          "id": "m1b.lim.indeterminate",
+          "name": "The 0/0 form",
+          "text": "A 0/0 form must be simplified before the limit is taken",
+          "match": [
+            "indeterminate",
+            "the form is 0/0",
+            "\\dfrac{0}{0}"
+          ]
+        },
+        {
+          "id": "m1b.lim.continuity",
+          "name": "Test for continuity at a point",
+          "text": "f is continuous at a when lim(x→a) f(x) = f(a)",
+          "match": [
+            "continuous at a point",
+            "a polynomial is continuous at every point",
+            "left limit = right limit = f("
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "formulas": [
+        {
+          "id": "m1b.dif.first_principle",
+          "name": "Derivative from the first principle",
+          "text": "f′(x) = lim(h→0) [f(x + h) − f(x)]/h",
+          "match": [
+            "By the first principle",
+            "the definition of the derivative from the first principle"
+          ]
+        },
+        {
+          "id": "m1b.dif.product",
+          "name": "Product rule",
+          "text": "(uv)′ = u′v + uv′",
+          "match": [
+            "the product rule",
+            "u′v + uv′",
+            "u'v + uv'"
+          ]
+        },
+        {
+          "id": "m1b.dif.quotient",
+          "name": "Quotient rule",
+          "text": "(u/v)′ = (u′v − uv′)/v²",
+          "match": [
+            "the quotient rule",
+            "(u′v − uv′)/v²",
+            "u'v - uv'"
+          ]
+        },
+        {
+          "id": "m1b.dif.chain",
+          "name": "Chain rule",
+          "text": "dy/dx = (dy/du)(du/dx)",
+          "match": [
+            "the chain rule",
+            "(dy/du)(du/dx)"
+          ]
+        },
+        {
+          "id": "m1b.dif.parametric",
+          "name": "Derivative of a parametric curve",
+          "text": "dy/dx = (dy/dt)/(dx/dt)",
+          "match": [
+            "\\dfrac{dy}{dt}}{\\dfrac{dx}{dt}",
+            "(dy/dt)/(dx/dt)"
+          ]
+        },
+        {
+          "id": "m1b.dif.log",
+          "name": "Derivative of log x",
+          "text": "d/dx(log x) = 1/x",
+          "match": [
+            "d/dx(log x) = 1/x",
+            "\\log x\\right) = \\dfrac{1}{x}"
+          ]
+        },
+        {
+          "id": "m1b.dif.implicit",
+          "name": "Implicit differentiation",
+          "text": "Differentiate both sides with respect to x and solve for dy/dx",
+          "match": [
+            "Differentiating both sides with respect to x",
+            "Differentiating (1) with respect to x"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "formulas": [
+        {
+          "id": "m1b.ad.tangent",
+          "name": "Tangent at a point on a curve",
+          "text": "y − y₁ = m(x − x₁), with m = dy/dx at that point",
+          "match": [
+            "Tangent at (x₁, y₁) with slope m"
+          ]
+        },
+        {
+          "id": "m1b.ad.normal",
+          "name": "Normal at a point on a curve",
+          "text": "The normal has slope −1/m",
+          "match": [
+            "The normal is perpendicular to the tangent",
+            "slope −1/m",
+            "-\\dfrac{1}{m}"
+          ]
+        },
+        {
+          "id": "m1b.ad.angle_between_curves",
+          "name": "Angle between two curves",
+          "text": "tan θ = |(m₁ − m₂)/(1 + m₁m₂)| of the two tangents",
+          "match": [
+            "\\tan \\theta \\ = \\ \\left|\\dfrac{m_{1}\\ - \\ m_{2}}{1\\ + \\ m_{1}m_{2}}\\right|",
+            "with slopes m₁ and m₂"
+          ]
+        },
+        {
+          "id": "m1b.ad.approximation",
+          "name": "Small change in a function",
+          "text": "Δy ≈ f′(x) Δx",
+          "match": [
+            "this approximation is used when Δx is small",
+            "Δy ≈ f′(x)Δx"
+          ]
+        },
+        {
+          "id": "m1b.ad.rate",
+          "name": "Rates of change",
+          "text": "Differentiate both sides with respect to time t",
+          "match": [
+            "Differentiate both sides with respect to time t",
+            "rectilinear motion"
+          ]
+        },
+        {
+          "id": "m1b.ad.maxima",
+          "name": "Largest and smallest value on a closed interval",
+          "text": "Compare f where f′(x) = 0 with f at the two ends",
+          "match": [
+            "absolute maximum",
+            "absolute minimum"
+          ]
+        }
+      ]
+    }
+  ]
+}

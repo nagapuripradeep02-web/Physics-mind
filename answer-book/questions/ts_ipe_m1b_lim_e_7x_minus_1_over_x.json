@@ -178,5 +178,8 @@
       }
     ]
   },
-  "insider_note": "Make the denominator match the power: write it as 7 · (e⁷ˣ − 1)/(7x). The 7 taken outside the limit is the answer, since (e⁷ˣ − 1)/(7x) → 1."
+  "insider_note": "Make the denominator match the power: write it as 7 · (e⁷ˣ − 1)/(7x). The 7 taken outside the limit is the answer, since (e⁷ˣ − 1)/(7x) → 1.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

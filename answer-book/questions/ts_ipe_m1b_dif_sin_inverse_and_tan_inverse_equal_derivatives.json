@@ -587,5 +587,8 @@
       }
     ]
   },
-  "insider_note": "Both functions reduce to the SAME angle θ, so f(x) = g(x) exactly and their derivatives match — the given β < x < α is what keeps both radicands positive. Showing f = g first is shorter than differentiating each separately."
+  "insider_note": "Both functions reduce to the SAME angle θ, so f(x) = g(x) exactly and their derivatives match — the given β < x < α is what keeps both radicands positive. Showing f = g first is shorter than differentiating each separately.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

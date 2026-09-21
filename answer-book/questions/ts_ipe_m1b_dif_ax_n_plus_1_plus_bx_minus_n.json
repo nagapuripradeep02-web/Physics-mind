@@ -270,5 +270,6 @@
       }
     ]
   },
-  "insider_note": "Differentiate twice as plain powers; the second term's index −n − 1 times −n turns the sign positive. Multiplying by x² restores the original powers, so the bracket becomes y."
+  "insider_note": "Differentiate twice as plain powers; the second term's index −n − 1 times −n turns the sign positive. Multiplying by x² restores the original powers, so the bracket becomes y.",
+  "formulas": []
 }

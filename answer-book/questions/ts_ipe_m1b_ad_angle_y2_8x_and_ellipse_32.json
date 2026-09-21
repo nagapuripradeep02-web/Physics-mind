@@ -323,5 +323,9 @@
       }
     ]
   },
-  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The remaining root x = 2 gives y = ±4, and the angle is the same at both by symmetry."
+  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The remaining root x = 2 gives y = ±4, and the angle is the same at both by symmetry.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

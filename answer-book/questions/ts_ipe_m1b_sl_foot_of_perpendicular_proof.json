@@ -505,5 +505,6 @@
       }
     ]
   },
-  "insider_note": "The key step of the proof is naming the common ratio r, which gives h = x₁ + ar and k = y₁ + br. Q lies ON the line, so substituting those produces r directly — no distance formula is needed anywhere."
+  "insider_note": "The key step of the proof is naming the common ratio r, which gives h = x₁ + ar and k = y₁ + br. Q lies ON the line, so substituting those produces r directly — no distance formula is needed anywhere.",
+  "formulas": []
 }

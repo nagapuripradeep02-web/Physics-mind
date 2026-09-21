@@ -197,5 +197,6 @@
       }
     ]
   },
-  "insider_note": "dy = (2x + 3)Δx is the approximation; Δy needs f(10.01) worked out in full. The gap between them is (Δx)², which is tiny but not zero."
+  "insider_note": "dy = (2x + 3)Δx is the approximation; Δy needs f(10.01) worked out in full. The gap between them is (Δx)², which is tiny but not zero.",
+  "formulas": []
 }

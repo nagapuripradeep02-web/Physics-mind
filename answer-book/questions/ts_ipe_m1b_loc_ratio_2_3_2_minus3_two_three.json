@@ -326,5 +326,8 @@
       }
     ]
   },
-  "insider_note": "The ratio PA : PB = 2 : 3 becomes 3PA = 2PB by cross-multiplying, and squaring gives 9PA² = 4PB². Both numbers get squared, and the y terms collect as −54y − 24y = −78y; writing −30y there is the usual slip."
+  "insider_note": "The ratio PA : PB = 2 : 3 becomes 3PA = 2PB by cross-multiplying, and squaring gives 9PA² = 4PB². Both numbers get squared, and the y terms collect as −54y − 24y = −78y; writing −30y there is the usual slip.",
+  "formulas": [
+    "m1b.loc.distance"
+  ]
 }

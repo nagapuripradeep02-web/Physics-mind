@@ -196,5 +196,8 @@
       }
     ]
   },
-  "insider_note": "A bubble is a SPHERE, so V = (4/3)πr³ and dV/dt = 4πr²(dr/dt). Substitute r = 1 only after differentiating — putting the number in early loses the variable."
+  "insider_note": "A bubble is a SPHERE, so V = (4/3)πr³ and dV/dt = 4πr²(dr/dt). Substitute r = 1 only after differentiating — putting the number in early loses the variable.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

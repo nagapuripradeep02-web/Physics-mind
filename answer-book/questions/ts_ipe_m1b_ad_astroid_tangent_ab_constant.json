@@ -436,5 +436,10 @@
       }
     ]
   },
-  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which proves the claim."
+  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which proves the claim.",
+  "formulas": [
+    "m1b.loc.distance",
+    "m1b.sl.slope_point",
+    "m1b.pl.intercept"
+  ]
 }

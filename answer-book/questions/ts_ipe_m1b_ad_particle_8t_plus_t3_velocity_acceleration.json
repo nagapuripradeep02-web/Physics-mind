@@ -210,5 +210,8 @@
       }
     ]
   },
-  "insider_note": "Velocity is the first derivative and acceleration the second, so differentiate twice before substituting. Initial velocity means t = 0, which gives the constant term."
+  "insider_note": "Velocity is the first derivative and acceleration the second, so differentiate twice before substituting. Initial velocity means t = 0, which gives the constant term.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

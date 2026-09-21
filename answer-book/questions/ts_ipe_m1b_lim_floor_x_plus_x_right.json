@@ -157,5 +157,6 @@
       }
     ]
   },
-  "insider_note": "Approaching from ABOVE puts x in (2, 3), where [x] = 2. The answer is 4, and the gap from the left-hand version is exactly the jump in [x]."
+  "insider_note": "Approaching from ABOVE puts x in (2, 3), where [x] = 2. The answer is 4, and the gap from the left-hand version is exactly the jump in [x].",
+  "formulas": []
 }

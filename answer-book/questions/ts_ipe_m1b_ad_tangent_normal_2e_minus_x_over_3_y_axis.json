@@ -411,5 +411,11 @@
       }
     ]
   },
-  "insider_note": "The y-axis means x = 0, so the point is (0, 2) and must be found before differentiating. The inner −1/3 comes down from the exponent."
+  "insider_note": "The y-axis means x = 0, so the point is (0, 2) and must be found before differentiating. The inner −1/3 comes down from the exponent.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.dif.chain",
+    "m1b.ad.normal",
+    "m1b.ad.tangent"
+  ]
 }

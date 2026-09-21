@@ -178,5 +178,8 @@
       }
     ]
   },
-  "insider_note": "The constant is already on the right, so divide straight through by 9. The intercept is the denominator after that, which makes the y-intercept −3 rather than −1/3."
+  "insider_note": "The constant is already on the right, so divide straight through by 9. The intercept is the denominator after that, which makes the y-intercept −3 rather than −1/3.",
+  "formulas": [
+    "m1b.pl.intercept"
+  ]
 }

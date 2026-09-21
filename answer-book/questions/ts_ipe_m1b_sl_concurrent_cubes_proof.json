@@ -325,5 +325,8 @@
       }
     ]
   },
-  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² clears as soon as the point is put into the third line. What is left is 3abc − (a³ + b³ + c³) = 0, which gives the result."
+  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² clears as soon as the point is put into the third line. What is left is 3abc − (a³ + b³ + c³) = 0, which gives the result.",
+  "formulas": [
+    "m1b.sl.intersection"
+  ]
 }

@@ -410,5 +410,8 @@
       }
     ]
   },
-  "insider_note": "At 30° the halves make the denominator 4, not 2, and it is cleared only at the end. The XY terms must cancel; if any XY term is left, check the signs in x and y, the expansions, and that 2√3 multiplies all four terms of the product."
+  "insider_note": "At 30° the halves make the denominator 4, not 2, and it is cleared only at the end. The XY terms must cancel; if any XY term is left, check the signs in x and y, the expansions, and that 2√3 multiplies all four terms of the product.",
+  "formulas": [
+    "m1b.ta.rotation"
+  ]
 }

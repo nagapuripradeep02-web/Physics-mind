@@ -386,5 +386,8 @@
       }
     ]
   },
-  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constant b remains in the factor 8b/27; a cancels."
+  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constant b remains in the factor 8b/27; a cancels.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

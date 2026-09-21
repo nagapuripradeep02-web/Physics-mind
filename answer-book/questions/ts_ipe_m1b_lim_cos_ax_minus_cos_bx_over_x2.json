@@ -254,5 +254,8 @@
       }
     ]
   },
-  "insider_note": "The identity for cos C − cos D writes the numerator as a product of two sines, and x² is written as x · x so that each sine is divided by one x. The answer (b² − a²)/2 has b first — the order comes from (D − C)/2."
+  "insider_note": "The identity for cos C − cos D writes the numerator as a product of two sines, and x² is written as x · x so that each sine is divided by one x. The answer (b² − a²)/2 has b first — the order comes from (D − C)/2.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

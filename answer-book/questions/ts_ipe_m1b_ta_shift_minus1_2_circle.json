@@ -281,5 +281,8 @@
       }
     ]
   },
-  "insider_note": "Here the original equation is given, so it is x = X + h with h = −1, giving x = X − 1 and y = Y + 2. Both linear terms cancel completely, and that is the check that the shift went the right way."
+  "insider_note": "Here the original equation is given, so it is x = X + h with h = −1, giving x = X − 1 and y = Y + 2. Both linear terms cancel completely, and that is the check that the shift went the right way.",
+  "formulas": [
+    "m1b.ta.translation"
+  ]
 }

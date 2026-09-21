@@ -323,5 +323,6 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The −160x appears on both sides and cancels; miss that and a wrong x term is left in the answer. Opposite signs at the end mean a hyperbola, never an ellipse."
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term is left. The −160x appears on both sides and cancels; miss that and a wrong x term is left in the answer. Opposite signs at the end mean a hyperbola, never an ellipse.",
+  "formulas": []
 }

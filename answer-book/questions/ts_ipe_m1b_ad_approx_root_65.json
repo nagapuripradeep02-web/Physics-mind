@@ -183,5 +183,8 @@
       }
     ]
   },
-  "insider_note": "Take x = 64, the nearest perfect SQUARE, so √64 = 8 exactly and Δx = 1. f′(64) = 1/16, so the correction added is small."
+  "insider_note": "Take x = 64, the nearest perfect SQUARE, so √64 = 8 exactly and Δx = 1. f′(64) = 1/16, so the correction added is small.",
+  "formulas": [
+    "m1b.ad.approximation"
+  ]
 }

@@ -173,5 +173,6 @@
       }
     ]
   },
-  "insider_note": "The denominator 2 − 3 = −1 changes the sign, so the slope of AB is y − 7, not 7 − y. Parallel means the slopes are equal, and that gives y = 9 in one line."
+  "insider_note": "The denominator 2 − 3 = −1 changes the sign, so the slope of AB is y − 7, not 7 − y. Parallel means the slopes are equal, and that gives y = 9 in one line.",
+  "formulas": []
 }

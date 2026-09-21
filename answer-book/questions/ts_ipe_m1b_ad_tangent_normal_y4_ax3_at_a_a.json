@@ -410,5 +410,11 @@
       }
     ]
   },
-  "insider_note": "Differentiate implicitly; the point (a, a) lies on the curve for EVERY a, which is worth checking first. The a's then cancel, leaving a numerical slope of 3/4."
+  "insider_note": "Differentiate implicitly; the point (a, a) lies on the curve for EVERY a, which is worth checking first. The a's then cancel, leaving a numerical slope of 3/4.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.dif.chain",
+    "m1b.ad.normal",
+    "m1b.ad.tangent"
+  ]
 }

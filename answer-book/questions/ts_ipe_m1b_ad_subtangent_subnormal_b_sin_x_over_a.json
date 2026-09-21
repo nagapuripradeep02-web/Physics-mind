@@ -363,5 +363,6 @@
       }
     ]
   },
-  "insider_note": "Both lengths come from y and m = (b/a)cos(x/a), so find the derivative once. Subtangent is y/m and subnormal is y·m — dividing and multiplying, not the other way round."
+  "insider_note": "Both lengths come from y and m = (b/a)cos(x/a), so find the derivative once. Subtangent is y/m and subnormal is y·m — dividing and multiplying, not the other way round.",
+  "formulas": []
 }

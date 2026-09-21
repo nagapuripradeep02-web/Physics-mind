@@ -399,5 +399,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.angle"
+  ]
 }

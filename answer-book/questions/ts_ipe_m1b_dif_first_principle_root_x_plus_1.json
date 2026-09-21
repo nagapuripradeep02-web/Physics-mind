@@ -266,5 +266,9 @@
       }
     ]
   },
-  "insider_note": "The form is 0/0, so multiply by the conjugate — no trigonometric identity helps here. The h cancels and substituting h = 0 leaves 1/(2√(x + 1))."
+  "insider_note": "The form is 0/0, so multiply by the conjugate — no trigonometric identity helps here. The h cancels and substituting h = 0 leaves 1/(2√(x + 1)).",
+  "formulas": [
+    "m1b.lim.indeterminate",
+    "m1b.dif.first_principle"
+  ]
 }

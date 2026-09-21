@@ -517,5 +517,6 @@
       }
     ]
   },
-  "insider_note": "The derivative is the difference of the two exponentials over 2, and 1 + m² then becomes a perfect square. That is what lets the root be taken cleanly."
+  "insider_note": "The derivative is the difference of the two exponentials over 2, and 1 + m² then becomes a perfect square. That is what lets the root be taken cleanly.",
+  "formulas": []
 }

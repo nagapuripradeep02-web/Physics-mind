@@ -213,5 +213,6 @@
       }
     ]
   },
-  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so for 0 < x < π the root and the Tan⁻¹ cancel and y is just x/2. The answer there is the constant 1/2."
+  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so for 0 < x < π the root and the Tan⁻¹ cancel and y is just x/2. The answer there is the constant 1/2.",
+  "formulas": []
 }

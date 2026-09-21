@@ -375,5 +375,9 @@
       }
     ]
   },
-  "insider_note": "With tan 45° = 1 the formula becomes |5 + 4k| = |20 − k|, and removing the modulus gives TWO equations. Solving both carries the last three of the eight marks, so write both k = 3 and k = −25/3."
+  "insider_note": "With tan 45° = 1 the formula becomes |5 + 4k| = |20 − k|, and removing the modulus gives TWO equations. Solving both carries the last three of the eight marks, so write both k = 3 and k = −25/3.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

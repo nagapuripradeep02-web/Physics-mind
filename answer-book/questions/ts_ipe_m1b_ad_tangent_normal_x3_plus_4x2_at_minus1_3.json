@@ -292,5 +292,10 @@
       }
     ]
   },
-  "insider_note": "Check the point is on the curve first, then m = 3x² + 8x at x = −1 gives −5. Watch the signs: squaring −1 gives +1 while the linear term stays negative."
+  "insider_note": "Check the point is on the curve first, then m = 3x² + 8x at x = −1 gives −5. Watch the signs: squaring −1 gives +1 while the linear term stays negative.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.ad.normal",
+    "m1b.ad.tangent"
+  ]
 }

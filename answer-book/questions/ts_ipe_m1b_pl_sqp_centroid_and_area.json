@@ -350,5 +350,8 @@
       }
     ]
   },
-  "insider_note": "The third vertex is the ORIGIN, where the homogeneous pair meets; without it there is no triangle. With O at the origin the formula ½|x₁y₂ − x₂y₁| gives the area, much quicker than the full determinant."
+  "insider_note": "The third vertex is the ORIGIN, where the homogeneous pair meets; without it there is no triangle. With O at the origin the formula ½|x₁y₂ − x₂y₁| gives the area, much quicker than the full determinant.",
+  "formulas": [
+    "m1b.td.centroid"
+  ]
 }

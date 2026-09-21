@@ -367,5 +367,8 @@
       }
     ]
   },
-  "insider_note": "Implicit differentiation gives the neat slope −√y/√x. Substituting the point and clearing the roots produces the stated form directly."
+  "insider_note": "Implicit differentiation gives the neat slope −√y/√x. Substituting the point and clearing the roots produces the stated form directly.",
+  "formulas": [
+    "m1b.sl.slope_point"
+  ]
 }

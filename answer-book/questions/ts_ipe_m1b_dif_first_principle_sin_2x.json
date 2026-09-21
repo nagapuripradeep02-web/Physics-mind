@@ -337,5 +337,8 @@
       }
     ]
   },
-  "insider_note": "sin C − sin D turns the difference into 2cos(2x + h)sin h. Dividing by h gives sin h/h → 1, and the 2 in front is what makes the answer 2cos2x."
+  "insider_note": "sin C − sin D turns the difference into 2cos(2x + h)sin h. Dividing by h gives sin h/h → 1, and the 2 in front is what makes the answer 2cos2x.",
+  "formulas": [
+    "m1b.dif.first_principle"
+  ]
 }

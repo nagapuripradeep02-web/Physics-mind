@@ -212,5 +212,9 @@
       }
     ]
   },
-  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin gives cot, and the final 1/x comes from the inner logarithm."
+  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin gives cot, and the final 1/x comes from the inner logarithm.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.log"
+  ]
 }

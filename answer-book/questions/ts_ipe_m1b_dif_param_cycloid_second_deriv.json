@@ -383,5 +383,8 @@
       }
     ]
   },
-  "insider_note": "The half-angle forms turn dy/dx into −cot(t/2). For the SECOND derivative divide by dx/dt again — differentiating with respect to t alone is the standard error here."
+  "insider_note": "The half-angle forms turn dy/dx into −cot(t/2). For the SECOND derivative divide by dx/dt again — differentiating with respect to t alone is the standard error here.",
+  "formulas": [
+    "m1b.dif.parametric"
+  ]
 }

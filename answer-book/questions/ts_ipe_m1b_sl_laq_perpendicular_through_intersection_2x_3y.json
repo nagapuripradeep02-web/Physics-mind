@@ -368,5 +368,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.ad.normal"
+  ]
 }

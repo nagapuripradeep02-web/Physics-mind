@@ -199,5 +199,6 @@
       }
     ]
   },
-  "insider_note": "Δx = 0.1 is comparatively large here, so dy and Δy differ visibly — 2.1 against 2.11. That visible gap is the point of the question."
+  "insider_note": "Δx = 0.1 is comparatively large here, so dy and Δy differ visibly — 2.1 against 2.11. That visible gap is the point of the question.",
+  "formulas": []
 }

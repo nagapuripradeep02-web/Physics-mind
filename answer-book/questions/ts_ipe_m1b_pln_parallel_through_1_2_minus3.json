@@ -167,5 +167,8 @@
       }
     ]
   },
-  "insider_note": "Keep the coefficients 2, −3 and 6 as they are (any proportional set would also do) and find the constant. The point's z is −3, so the bracket is (z + 3), and that sign is where the +22 is usually lost."
+  "insider_note": "Keep the coefficients 2, −3 and 6 as they are (any proportional set would also do) and find the constant. The point's z is −3, so the bracket is (z + 3), and that sign is where the +22 is usually lost.",
+  "formulas": [
+    "m1b.pl.point_normal"
+  ]
 }

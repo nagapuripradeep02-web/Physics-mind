@@ -324,5 +324,8 @@
       }
     ]
   },
-  "insider_note": "Taking logarithms gives y log x = x − y, which SOLVES for y as x/(1 + log x). Differentiating that quotient is far easier than implicit differentiation of the original."
+  "insider_note": "Taking logarithms gives y log x = x − y, which SOLVES for y as x/(1 + log x). Differentiating that quotient is far easier than implicit differentiation of the original.",
+  "formulas": [
+    "m1b.dif.quotient"
+  ]
 }

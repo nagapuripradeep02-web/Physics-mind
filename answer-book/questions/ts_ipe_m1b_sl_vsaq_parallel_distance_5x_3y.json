@@ -189,5 +189,8 @@
       }
     ]
   },
-  "insider_note": "Double the first line to 10x − 6y − 8 = 0 before using the formula. The answer 1/√136 can be written more neatly: √136 = 2√34, so it is also 1/(2√34), or √34/68. It does not reduce to a whole number, so leave it in surd form."
+  "insider_note": "Double the first line to 10x − 6y − 8 = 0 before using the formula. The answer 1/√136 can be written more neatly: √136 = 2√34, so it is also 1/(2√34), or √34/68. It does not reduce to a whole number, so leave it in surd form.",
+  "formulas": [
+    "m1b.sl.parallel_distance"
+  ]
 }

@@ -229,5 +229,8 @@
       }
     ]
   },
-  "insider_note": "Use 1 − cos2θ = 2sin²θ with θ = mx — that writes the expression in sines, and no other identity is needed. Divide top and bottom by x², not by x, since both are squared."
+  "insider_note": "Use 1 − cos2θ = 2sin²θ with θ = mx — that writes the expression in sines, and no other identity is needed. Divide top and bottom by x², not by x, since both are squared.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

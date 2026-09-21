@@ -541,5 +541,8 @@
       }
     ]
   },
-  "insider_note": "The two altitudes come out as 2x − 3y + 1 = 0 and 2x + 3y − 9 = 0, so ADDING them removes y at once. The answer (2, 5/3) carries a fraction, which is normal here and not a sign of a slip."
+  "insider_note": "The two altitudes come out as 2x − 3y + 1 = 0 and 2x + 3y − 9 = 0, so ADDING them removes y at once. The answer (2, 5/3) carries a fraction, which is normal here and not a sign of a slip.",
+  "formulas": [
+    "m1b.ad.normal"
+  ]
 }

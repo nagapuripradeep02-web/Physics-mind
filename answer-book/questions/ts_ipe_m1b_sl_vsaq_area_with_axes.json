@@ -181,5 +181,6 @@
       }
     ]
   },
-  "insider_note": "The formula Δ = c²/(2|ab|) does this in one line — the intercepts never need to be found. The modulus matters because b = −4 here, and the 2 in the denominator must not be dropped."
+  "insider_note": "The formula Δ = c²/(2|ab|) does this in one line — the intercepts never need to be found. The modulus matters because b = −4 here, and the 2 in the denominator must not be dropped.",
+  "formulas": []
 }

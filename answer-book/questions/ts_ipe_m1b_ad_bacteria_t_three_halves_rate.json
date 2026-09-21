@@ -204,5 +204,6 @@
       }
     ]
   },
-  "insider_note": "Differentiate t³⁄² by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3."
+  "insider_note": "Differentiate t³⁄² by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3.",
+  "formulas": []
 }
