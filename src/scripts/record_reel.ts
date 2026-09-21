@@ -799,23 +799,44 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
         case 'scrollThread': {
             // Ease the nearest scroll box around the LAST tutor bubble so the
             // element whose text carries `text` sits a third of the way down.
-            // Inline easing again (the __name trap, see `pan`).
-            const ok = await page.evaluate(async ({ text, ms }) => {
+            // Inline easing again (the __name trap, see `pan`). Two calls: the
+            // first only measures (so the `nav` is stamped at the START of the
+            // motion, and only when there IS motion — V05_ASK's edit found a
+            // stamp 3.1 s after the picture moved and one for a scroll that
+            // never happened); the second performs the eased scroll.
+            const plan = await page.evaluate(({ text }) => {
                 const msgs = Array.from(document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)'));
                 const last = msgs[msgs.length - 1] as HTMLElement | undefined;
-                if (!last) return false;
+                if (!last) return null;
                 const walker = document.createTreeWalker(last, NodeFilter.SHOW_TEXT);
                 let hit: HTMLElement | null = null;
                 for (let n = walker.nextNode(); n; n = walker.nextNode()) {
                     if ((n.textContent ?? '').toLowerCase().includes(text.toLowerCase())) { hit = n.parentElement; break; }
                 }
-                if (!hit) return false;
+                if (!hit) return null;
                 let sc: HTMLElement | null = hit;
                 while (sc && !(sc.scrollHeight > sc.clientHeight + 4 && /(auto|scroll)/.test(getComputedStyle(sc).overflowY))) sc = sc.parentElement;
-                if (!sc) return false;
+                if (!sc) return { from: 0, to: 0 };
                 const rs = sc.getBoundingClientRect(), rh = hit.getBoundingClientRect();
                 const from = sc.scrollTop;
                 const to = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight, from + (rh.top - rs.top) - rs.height * 0.33));
+                // remember the box for the second call: a data attribute, no closure
+                sc.setAttribute('data-reel-scroll', '1');
+                return { from, to };
+            }, { text: b.text });
+            if (!plan) {
+                console.warn(`  ! scrollThread: "${b.text}" is not in the reply — no scroll, no stamp`);
+                return;
+            }
+            if (Math.abs(plan.to - plan.from) < 2) {
+                console.warn(`  ! scrollThread: "${b.text}" is already in view — no scroll, no stamp`);
+                return;
+            }
+            take.events.push({ t: stamp(take), kind: 'nav', label: `thread:${b.text}` });
+            await page.evaluate(async ({ from, to, ms }) => {
+                const sc = document.querySelector('[data-reel-scroll]') as HTMLElement | null;
+                if (!sc) return;
+                sc.removeAttribute('data-reel-scroll');
                 const steps = 60;
                 for (let i = 1; i <= steps; i++) {
                     const p = i / steps;
@@ -823,10 +844,7 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
                     sc.scrollTop = from + (to - from) * e;
                     await new Promise((r) => setTimeout(r, ms / steps));
                 }
-                return true;
-            }, { text: b.text, ms: b.ms });
-            if (!ok) console.warn(`  ! scrollThread: "${b.text}" is not in the reply — the frame stays where it is`);
-            take.events.push({ t: stamp(take), kind: 'nav', label: `thread:${b.text}` });
+            }, { from: plan.from, to: plan.to, ms: b.ms });
             return;
         }
     }
