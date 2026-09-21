@@ -233,5 +233,6 @@
       }
     ]
   },
-  "insider_note": "Two steps: find da/dt from dV/dt = 3a²(da/dt), then feed it into dS/dt = 12a(da/dt). Finding da/dt first is the simplest method."
+  "insider_note": "Two steps: find da/dt from dV/dt = 3a²(da/dt), then feed it into dS/dt = 12a(da/dt). Finding da/dt first is the simplest method.",
+  "formulas": []
 }

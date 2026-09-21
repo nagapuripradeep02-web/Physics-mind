@@ -194,5 +194,6 @@
       }
     ]
   },
-  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ; for 1/2 ≤ x ≤ 1 the expression becomes 3Cos⁻¹x. Differentiating the original directly takes much longer."
+  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ; for 1/2 ≤ x ≤ 1 the expression becomes 3Cos⁻¹x. Differentiating the original directly takes much longer.",
+  "formulas": []
 }

@@ -547,5 +547,8 @@
       }
     ]
   },
-  "insider_note": "Put x = sin A and y = sin B; the roots become cosines and the relation reduces to A − B = constant. Differentiating that gives the answer in one line."
+  "insider_note": "Put x = sin A and y = sin B; the roots become cosines and the relation reduces to A − B = constant. Differentiating that gives the answer in one line.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

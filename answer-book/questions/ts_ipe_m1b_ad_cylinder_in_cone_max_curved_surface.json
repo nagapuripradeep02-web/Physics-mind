@@ -424,5 +424,6 @@
       }
     ]
   },
-  "insider_note": "Use similar triangles to write the cylinder's height through its radius, so the surface area has ONE variable. The answer is half the cone's radius, independent of the height."
+  "insider_note": "Use similar triangles to write the cylinder's height through its radius, so the surface area has ONE variable. The answer is half the cone's radius, independent of the height.",
+  "formulas": []
 }

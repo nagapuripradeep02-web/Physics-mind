@@ -170,5 +170,6 @@
       }
     ]
   },
-  "insider_note": "This is a use of the mean value theorem: set f′(c) equal to the average slope e − 1. Then eᶜ = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
+  "insider_note": "This is a use of the mean value theorem: set f′(c) equal to the average slope e − 1. Then eᶜ = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1).",
+  "formulas": []
 }

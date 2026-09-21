@@ -211,5 +211,8 @@
       }
     ]
   },
-  "insider_note": "Both are given through t, so use dy/dx = (dy/dt)/(dx/dt) ; there is no need to eliminate t. The 3a and one factor each of sin and cos cancel, leaving −tan t."
+  "insider_note": "Both are given through t, so use dy/dx = (dy/dt)/(dx/dt) ; there is no need to eliminate t. The 3a and one factor each of sin and cos cancel, leaving −tan t.",
+  "formulas": [
+    "m1b.dif.parametric"
+  ]
 }

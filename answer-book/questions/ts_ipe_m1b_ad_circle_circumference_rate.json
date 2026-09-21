@@ -188,5 +188,8 @@
       }
     ]
   },
-  "insider_note": "C = 2πr differentiates to dC/dt = 2π(dr/dt), which contains no r at all. So the answer 1.4π holds at every radius, and no value of r is needed."
+  "insider_note": "C = 2πr differentiates to dC/dt = 2π(dr/dt), which contains no r at all. So the answer 1.4π holds at every radius, and no value of r is needed.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

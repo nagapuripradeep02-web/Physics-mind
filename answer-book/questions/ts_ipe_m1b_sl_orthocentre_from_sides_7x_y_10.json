@@ -640,5 +640,9 @@
       }
     ]
   },
-  "insider_note": "Sides are given, so a vertex must be found before each altitude. The altitude through A is perpendicular to the side that does NOT pass through A, which here is line (3); pairing them wrongly loses everything after."
+  "insider_note": "Sides are given, so a vertex must be found before each altitude. The altitude through A is perpendicular to the side that does NOT pass through A, which here is line (3); pairing them wrongly loses everything after.",
+  "formulas": [
+    "m1b.sl.intersection",
+    "m1b.ad.normal"
+  ]
 }

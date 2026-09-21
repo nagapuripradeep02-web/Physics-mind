@@ -566,5 +566,6 @@
       }
     ]
   },
-  "insider_note": "The same opening as the foot-of-perpendicular proof; only the final step differs. Here it is the MIDPOINT of PQ that lies on the line, not Q itself, and that one change is what produces the factor 2."
+  "insider_note": "The same opening as the foot-of-perpendicular proof; only the final step differs. Here it is the MIDPOINT of PQ that lies on the line, not Q itself, and that one change is what produces the factor 2.",
+  "formulas": []
 }

@@ -165,5 +165,6 @@
       }
     ]
   },
-  "insider_note": "The constant term differentiates away, so f′ has n terms and not n + 1. At x = 1 they sum to n(n+1)/2."
+  "insider_note": "The constant term differentiates away, so f′ has n terms and not n + 1. At x = 1 they sum to n(n+1)/2.",
+  "formulas": []
 }

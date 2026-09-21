@@ -702,5 +702,8 @@
       }
     ]
   },
-  "insider_note": "All four body diagonals are needed here, not one pair. Pair (l + m + n)² with (l + m − n)² and (l − m + n)² with (l − m − n)², use (a + b)² + (a − b)² = 2(a² + b²) on each pair and then on (l + m)² + (l − m)², and l² + m² + n² = 1 gives the answer."
+  "insider_note": "All four body diagonals are needed here, not one pair. Pair (l + m + n)² with (l + m − n)² and (l − m + n)² with (l − m − n)², use (a + b)² + (a − b)² = 2(a² + b²) on each pair and then on (l + m)² + (l − m)², and l² + m² + n² = 1 gives the answer.",
+  "formulas": [
+    "m1b.dc.sum_of_squares"
+  ]
 }

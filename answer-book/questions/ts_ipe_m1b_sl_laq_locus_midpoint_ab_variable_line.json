@@ -442,5 +442,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.intercept_form",
+    "m1b.pl.intercept"
+  ]
 }

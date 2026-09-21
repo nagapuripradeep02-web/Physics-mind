@@ -309,5 +309,6 @@
       }
     ]
   },
-  "insider_note": "Substitute x = 60 − y so only y remains, and differentiate. f′ = 4y²(45 − y) has a repeated root at y = 0, which is rejected, leaving y = 45 and x = 15."
+  "insider_note": "Substitute x = 60 − y so only y remains, and differentiate. f′ = 4y²(45 − y) has a repeated root at y = 0, which is rejected, leaving y = 45 and x = 15.",
+  "formulas": []
 }

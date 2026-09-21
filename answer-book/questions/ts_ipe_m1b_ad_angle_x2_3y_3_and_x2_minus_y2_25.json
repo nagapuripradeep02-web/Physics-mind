@@ -368,5 +368,9 @@
       }
     ]
   },
-  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = 4 is rejected because it makes x² negative."
+  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = 4 is rejected because it makes x² negative.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

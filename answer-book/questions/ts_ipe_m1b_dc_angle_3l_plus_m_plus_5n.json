@@ -413,5 +413,8 @@
       }
     ]
   },
-  "insider_note": "Eliminate using the LINEAR relation — rearranging the second-degree one gives a fraction, l = −6mn/(5m − 2n), and longer working. It factorises to (l + n)(l + 2n) = 0, and both factors are needed: one line each, and it takes two lines to make an angle."
+  "insider_note": "Eliminate using the LINEAR relation — rearranging the second-degree one gives a fraction, l = −6mn/(5m − 2n), and longer working. It factorises to (l + n)(l + 2n) = 0, and both factors are needed: one line each, and it takes two lines to make an angle.",
+  "formulas": [
+    "m1b.dc.angle"
+  ]
 }

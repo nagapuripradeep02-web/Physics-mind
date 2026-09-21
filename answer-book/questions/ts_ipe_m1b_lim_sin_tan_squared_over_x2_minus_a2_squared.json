@@ -224,5 +224,8 @@
       }
     ]
   },
-  "insider_note": "Count powers of (x − a): three on top, two below, so one factor is left, and it makes the limit 0. A limit of 0 is the correct answer here, not a sign of a mistake."
+  "insider_note": "Count powers of (x − a): three on top, two below, so one factor is left, and it makes the limit 0. A limit of 0 is the correct answer here, not a sign of a mistake.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

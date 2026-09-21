@@ -201,5 +201,8 @@
       }
     ]
   },
-  "insider_note": "The angle is (x − 1), so the denominator must be factorised to produce a matching (x − 1). The leftover 1/(x + 1) is then just substituted."
+  "insider_note": "The angle is (x − 1), so the denominator must be factorised to produce a matching (x − 1). The leftover 1/(x + 1) is then just substituted.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

@@ -593,5 +593,6 @@
       }
     ]
   },
-  "insider_note": "Every bracket is a multiple-angle tangent, so x = tan θ turns y into 2θ + 3θ − 4θ = θ. The derivative is then 1/(1 + x²)."
+  "insider_note": "Every bracket is a multiple-angle tangent, so x = tan θ turns y into 2θ + 3θ − 4θ = θ. The derivative is then 1/(1 + x²).",
+  "formulas": []
 }

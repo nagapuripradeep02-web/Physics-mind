@@ -219,5 +219,6 @@
       }
     ]
   },
-  "insider_note": "T depends on √l, so the index is 1/2 and the relative error is HALVED, not doubled. The constants 2π and g cancel out of dT/T entirely."
+  "insider_note": "T depends on √l, so the index is 1/2 and the relative error is HALVED, not doubled. The constants 2π and g cancel out of dT/T entirely.",
+  "formulas": []
 }

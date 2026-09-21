@@ -591,5 +591,8 @@
       }
     ]
   },
-  "insider_note": "Half-angle forms turn both derivatives into neat products, giving m = tan(t/2). All four lengths then follow from y and m, so get those two right before anything else."
+  "insider_note": "Half-angle forms turn both derivatives into neat products, giving m = tan(t/2). All four lengths then follow from y and m, so get those two right before anything else.",
+  "formulas": [
+    "m1b.dif.parametric"
+  ]
 }

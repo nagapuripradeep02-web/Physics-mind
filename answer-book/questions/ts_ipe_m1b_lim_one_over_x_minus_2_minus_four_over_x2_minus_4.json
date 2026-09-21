@@ -200,5 +200,6 @@
       }
     ]
   },
-  "insider_note": "Neither part has a limit on its own, so combine them over the common denominator FIRST. The numerator becomes x − 2, which cancels and leaves 1/(x + 2)."
+  "insider_note": "Neither part has a limit on its own, so combine them over the common denominator FIRST. The numerator becomes x − 2, which cancels and leaves 1/(x + 2).",
+  "formulas": []
 }

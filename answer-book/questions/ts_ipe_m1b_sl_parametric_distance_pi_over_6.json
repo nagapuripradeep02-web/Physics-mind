@@ -363,5 +363,8 @@
       }
     ]
   },
-  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — this gives PQ directly, with no distance formula. The 8 and the −8 cancel, leaving r = 6."
+  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — this gives PQ directly, with no distance formula. The 8 and the −8 cancel, leaving r = 6.",
+  "formulas": [
+    "m1b.sl.point_at_distance"
+  ]
 }

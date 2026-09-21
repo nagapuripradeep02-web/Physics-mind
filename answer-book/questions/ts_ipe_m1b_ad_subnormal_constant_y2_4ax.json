@@ -257,5 +257,8 @@
       }
     ]
   },
-  "insider_note": "Differentiate implicitly rather than solving for y. The y in the subnormal y·m cancels the y in dy/dx = 2a/y, leaving the constant 2a."
+  "insider_note": "Differentiate implicitly rather than solving for y. The y in the subnormal y·m cancels the y in dy/dx = 2a/y, leaving the constant 2a.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

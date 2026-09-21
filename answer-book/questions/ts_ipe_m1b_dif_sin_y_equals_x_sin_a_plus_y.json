@@ -365,5 +365,9 @@
       }
     ]
   },
-  "insider_note": "x separates but y does not, so write x = sin y/sin(a + y), find dx/dy, and invert. The numerator becomes sin a by the compound angle formula, which is the constant in the answer."
+  "insider_note": "x separates but y does not, so write x = sin y/sin(a + y), find dx/dy, and invert. The numerator becomes sin a by the compound angle formula, which is the constant in the answer.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.quotient"
+  ]
 }

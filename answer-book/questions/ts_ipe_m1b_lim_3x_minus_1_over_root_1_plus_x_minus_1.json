@@ -198,5 +198,9 @@
       }
     ]
   },
-  "insider_note": "Divide top and bottom by x so BOTH become standard limits: (aˣ − 1)/x → logₑa and (√(1+x) − 1)/x → 1/2. Dividing by a half doubles, so the answer is 2logₑ3 = logₑ9."
+  "insider_note": "Divide top and bottom by x so BOTH become standard limits: (aˣ − 1)/x → logₑa and (√(1+x) − 1)/x → 1/2. Dividing by a half doubles, so the answer is 2logₑ3 = logₑ9.",
+  "formulas": [
+    "m1b.lim.exponential",
+    "m1b.lim.indeterminate"
+  ]
 }

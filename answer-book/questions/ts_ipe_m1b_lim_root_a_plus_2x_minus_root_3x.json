@@ -269,5 +269,8 @@
       }
     ]
   },
-  "insider_note": "TWO conjugates are needed, one for the top and one for the bottom. Both give a multiple of (a − x), which cancels, and the a itself then cancels out of the answer."
+  "insider_note": "TWO conjugates are needed, one for the top and one for the bottom. Both give a multiple of (a − x), which cancels, and the a itself then cancels out of the answer.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

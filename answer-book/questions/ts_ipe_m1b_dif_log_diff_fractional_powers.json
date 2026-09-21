@@ -463,5 +463,11 @@
       }
     ]
   },
-  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would take many lines. Each power becomes a coefficient times a simple log."
+  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would take many lines. Each power becomes a coefficient times a simple log.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.implicit",
+    "m1b.dif.product",
+    "m1b.dif.quotient"
+  ]
 }

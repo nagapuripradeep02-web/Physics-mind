@@ -171,5 +171,8 @@
       }
     ]
   },
-  "insider_note": "Parallel means proportional a, b and c, so the simplest choice keeps the same a, b and c and changes only the constant; reusing the original −7 would just rewrite the same plane. Substituting the point puts −6 in its place."
+  "insider_note": "Parallel means proportional a, b and c, so the simplest choice keeps the same a, b and c and changes only the constant; reusing the original −7 would just rewrite the same plane. Substituting the point puts −6 in its place.",
+  "formulas": [
+    "m1b.pl.point_normal"
+  ]
 }

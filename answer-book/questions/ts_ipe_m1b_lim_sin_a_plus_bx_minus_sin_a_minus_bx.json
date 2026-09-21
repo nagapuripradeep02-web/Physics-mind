@@ -236,5 +236,8 @@
       }
     ]
   },
-  "insider_note": "sin C − sin D makes the half-sum a constant, cos a, and the half-difference the small angle bx. Only sin(bx)/x is left, which supplies the b."
+  "insider_note": "sin C − sin D makes the half-sum a constant, cos a, and the half-difference the small angle bx. Only sin(bx)/x is left, which supplies the b.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

@@ -196,5 +196,8 @@
       }
     ]
   },
-  "insider_note": "Take x = 8, the nearest perfect CUBE, so ∛8 = 2 exactly. Δx is negative here, −0.2, so the correction is subtracted and the answer falls just below 2."
+  "insider_note": "Take x = 8, the nearest perfect CUBE, so ∛8 = 2 exactly. Δx is negative here, −0.2, so the correction is subtracted and the answer falls just below 2.",
+  "formulas": [
+    "m1b.ad.approximation"
+  ]
 }

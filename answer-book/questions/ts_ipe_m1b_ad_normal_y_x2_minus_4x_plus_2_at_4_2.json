@@ -352,5 +352,8 @@
       }
     ]
   },
-  "insider_note": "The normal slope is −1/m, not m — check the point lies on the curve first. Here m = 4, so the normal has slope −1/4."
+  "insider_note": "The normal slope is −1/m, not m — check the point lies on the curve first. Here m = 4, so the normal has slope −1/4.",
+  "formulas": [
+    "m1b.ad.normal"
+  ]
 }

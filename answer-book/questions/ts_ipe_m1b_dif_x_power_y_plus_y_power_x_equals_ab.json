@@ -445,5 +445,10 @@
       }
     ]
   },
-  "insider_note": "aᵇ is a CONSTANT, so the derivative of the whole left side is zero — that is what makes the answer a single negative fraction. Take logarithms of u and v separately, since the logarithm of a sum cannot be split."
+  "insider_note": "aᵇ is a CONSTANT, so the derivative of the whole left side is zero — that is what makes the answer a single negative fraction. Take logarithms of u and v separately, since the logarithm of a sum cannot be split.",
+  "formulas": [
+    "m1b.dif.implicit",
+    "m1b.dif.log",
+    "m1b.dif.product"
+  ]
 }

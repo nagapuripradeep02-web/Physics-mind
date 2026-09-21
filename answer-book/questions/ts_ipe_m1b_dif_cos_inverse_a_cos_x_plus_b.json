@@ -838,5 +838,8 @@
       }
     ]
   },
-  "insider_note": "Put t = tan(x/2) so the whole bracket becomes a cosine of a single angle. The condition a > b > 0 keeps a + b cos x positive and the square roots real; 0 < x < π keeps tan(x/2) defined and positive, which the range check for Cos⁻¹ needs."
+  "insider_note": "Put t = tan(x/2) so the whole bracket becomes a cosine of a single angle. The condition a > b > 0 keeps a + b cos x positive and the square roots real; 0 < x < π keeps tan(x/2) defined and positive, which the range check for Cos⁻¹ needs.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

@@ -175,5 +175,10 @@
       }
     ]
   },
-  "insider_note": "All three distances reduce to multiples of √14, and the longest, AC = 3√14, is the one that must equal the sum of the other two. Leave the surds unsimplified and the match cannot be seen."
+  "insider_note": "All three distances reduce to multiples of √14, and the longest, AC = 3√14, is the one that must equal the sum of the other two. Leave the surds unsimplified and the match cannot be seen.",
+  "formulas": [
+    "m1b.loc.distance",
+    "m1b.td.collinear",
+    "m1b.td.distance"
+  ]
 }

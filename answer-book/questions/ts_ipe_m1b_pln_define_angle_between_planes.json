@@ -171,5 +171,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.pl.angle"
+  ]
 }

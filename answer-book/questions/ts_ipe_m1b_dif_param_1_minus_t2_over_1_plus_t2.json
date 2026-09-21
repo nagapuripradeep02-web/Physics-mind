@@ -345,5 +345,9 @@
       }
     ]
   },
-  "insider_note": "Put t = tan θ and the point becomes (a cos2θ, b sin2θ) — an ellipse — so both derivatives are one line. Differentiating the fractions in t directly is far heavier."
+  "insider_note": "Put t = tan θ and the point becomes (a cos2θ, b sin2θ) — an ellipse — so both derivatives are one line. Differentiating the fractions in t directly is far heavier.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.parametric"
+  ]
 }

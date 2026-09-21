@@ -183,5 +183,6 @@
       }
     ]
   },
-  "insider_note": "The unknown is in the DENOMINATOR: −2/(x − 2) = 2 gives x − 2 = −1, not −4. Multiplying −2 by 2 instead of dividing is what turns the answer from 1 into −2."
+  "insider_note": "The unknown is in the DENOMINATOR: −2/(x − 2) = 2 gives x − 2 = −1, not −4. Multiplying −2 by 2 instead of dividing is what turns the answer from 1 into −2.",
+  "formulas": []
 }

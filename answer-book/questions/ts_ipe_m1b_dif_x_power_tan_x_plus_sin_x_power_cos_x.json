@@ -463,5 +463,10 @@
       }
     ]
   },
-  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Both need x > 0 and sin x > 0 for the logarithms to exist."
+  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Both need x > 0 and sin x > 0 for the logarithms to exist.",
+  "formulas": [
+    "m1b.dif.implicit",
+    "m1b.dif.log",
+    "m1b.dif.product"
+  ]
 }

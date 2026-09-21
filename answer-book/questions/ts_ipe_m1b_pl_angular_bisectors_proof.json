@@ -454,5 +454,8 @@
       }
     ]
   },
-  "insider_note": "Write each line as x sinα − y cosα, so both denominators are already 1. The slope form reaches the same result, but leaves a √(1 + m²) in each denominator and takes longer. Keep the ±, let SQUARING remove it, then sin²A − sin²B = sin(A+B)sin(A−B) brings back a, b and h."
+  "insider_note": "Write each line as x sinα − y cosα, so both denominators are already 1. The slope form reaches the same result, but leaves a √(1 + m²) in each denominator and takes longer. Keep the ±, let SQUARING remove it, then sin²A − sin²B = sin(A+B)sin(A−B) brings back a, b and h.",
+  "formulas": [
+    "m1b.psl.bisectors"
+  ]
 }

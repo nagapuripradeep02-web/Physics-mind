@@ -212,5 +212,8 @@
       }
     ]
   },
-  "insider_note": "The derivative is NEGATIVE, so both dy and Δy come out negative — the function is decreasing. Losing that sign is the standard error here."
+  "insider_note": "The derivative is NEGATIVE, so both dy and Δy come out negative — the function is decreasing. Losing that sign is the standard error here.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

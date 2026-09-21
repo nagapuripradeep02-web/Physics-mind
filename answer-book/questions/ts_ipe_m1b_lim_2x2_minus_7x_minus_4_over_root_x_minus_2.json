@@ -219,5 +219,8 @@
       }
     ]
   },
-  "insider_note": "The (√x − 2) below must be matched above, so write x − 4 as (√x − 2)(√x + 2) after factorising the quadratic. Cancelling that root factor removes the 0/0."
+  "insider_note": "The (√x − 2) below must be matched above, so write x − 4 as (√x − 2)(√x + 2) after factorising the quadratic. Cancelling that root factor removes the 0/0.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

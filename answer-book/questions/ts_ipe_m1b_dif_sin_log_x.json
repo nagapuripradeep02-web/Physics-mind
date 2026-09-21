@@ -184,5 +184,8 @@
       }
     ]
   },
-  "insider_note": "One chain rule: cos of the inside, times the derivative of the inside. The condition x > 0 is stated because log x needs it, so keep it with the answer."
+  "insider_note": "One chain rule: cos of the inside, times the derivative of the inside. The condition x > 0 is stated because log x needs it, so keep it with the answer.",
+  "formulas": [
+    "m1b.dif.log"
+  ]
 }

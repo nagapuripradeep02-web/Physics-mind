@@ -219,5 +219,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.normal_form"
+  ]
 }

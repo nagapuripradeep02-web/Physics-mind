@@ -442,5 +442,6 @@
       }
     ]
   },
-  "insider_note": "Write sec x + tan x as (1 + sin x)/cos x, then use half angles on both — the common factor cancels and leaves tan(π/4 + x/2). The answer is the constant ½."
+  "insider_note": "Write sec x + tan x as (1 + sin x)/cos x, then use half angles on both — the common factor cancels and leaves tan(π/4 + x/2). The answer is the constant ½.",
+  "formulas": []
 }

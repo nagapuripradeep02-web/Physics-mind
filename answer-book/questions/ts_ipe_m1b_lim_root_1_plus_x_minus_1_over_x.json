@@ -207,5 +207,8 @@
       }
     ]
   },
-  "insider_note": "Multiply by the conjugate √(1 + x) + 1 so the root disappears from the top. The x then cancels, and 1/2 is worth remembering as a standard result."
+  "insider_note": "Multiply by the conjugate √(1 + x) + 1 so the root disappears from the top. The x then cancels, and 1/2 is worth remembering as a standard result.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

@@ -318,5 +318,6 @@
       }
     ]
   },
-  "insider_note": "Isolate PA before squaring: squaring |PA − PB| = 4 directly leaves a PA·PB cross term and needs a longer second squaring. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets changes the sign of the 16x."
+  "insider_note": "Isolate PA before squaring: squaring |PA − PB| = 4 directly leaves a PA·PB cross term and needs a longer second squaring. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets changes the sign of the 16x.",
+  "formulas": []
 }

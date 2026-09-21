@@ -302,5 +302,6 @@
       }
     ]
   },
-  "insider_note": "The homogenising is the same whatever condition is asked for; only the closing line differs. A right angle at the origin means coeff x² + coeff y² = 0, giving a²(l² + m²) = 2; the coincident condition H² = AB (A, B, 2H the coefficients of x², y², xy) would give a²(l² + m²) = 1 instead."
+  "insider_note": "The homogenising is the same whatever condition is asked for; only the closing line differs. A right angle at the origin means coeff x² + coeff y² = 0, giving a²(l² + m²) = 2; the coincident condition H² = AB (A, B, 2H the coefficients of x², y², xy) would give a²(l² + m²) = 1 instead.",
+  "formulas": []
 }

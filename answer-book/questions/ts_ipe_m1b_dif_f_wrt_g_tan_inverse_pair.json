@@ -357,5 +357,8 @@
       }
     ]
   },
-  "insider_note": "f simplifies to ½Tan⁻¹x under x = tan θ, so f′ is exactly half of g′. The ratio df/dg is the constant ½, and simplifying f before differentiating is what makes that visible."
+  "insider_note": "f simplifies to ½Tan⁻¹x under x = tan θ, so f′ is exactly half of g′. The ratio df/dg is the constant ½, and simplifying f before differentiating is what makes that visible.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

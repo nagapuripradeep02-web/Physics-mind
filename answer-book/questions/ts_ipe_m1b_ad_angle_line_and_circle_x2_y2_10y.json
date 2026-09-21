@@ -395,5 +395,9 @@
       }
     ]
   },
-  "insider_note": "Substitute the line into the circle to get the meeting points; there are two, so the working must be done at each. The line's slope is constant, only the circle's changes."
+  "insider_note": "Substitute the line into the circle to get the meeting points; there are two, so the working must be done at each. The line's slope is constant, only the circle's changes.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

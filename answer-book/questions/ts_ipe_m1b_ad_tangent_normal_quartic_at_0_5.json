@@ -343,5 +343,10 @@
       }
     ]
   },
-  "insider_note": "At x = 0 every power term vanishes, so m is just the coefficient of x, which is −10. That makes the normal slope 1/10."
+  "insider_note": "At x = 0 every power term vanishes, so m is just the coefficient of x, which is −10. That makes the normal slope 1/10.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.ad.normal",
+    "m1b.ad.tangent"
+  ]
 }

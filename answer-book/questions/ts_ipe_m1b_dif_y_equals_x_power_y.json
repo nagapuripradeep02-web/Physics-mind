@@ -342,5 +342,10 @@
       }
     ]
   },
-  "insider_note": "Take logarithms to get log y = y log x, then differentiate — the right side needs the product rule because y depends on x. Both printed forms follow from y = xʸ."
+  "insider_note": "Take logarithms to get log y = y log x, then differentiate — the right side needs the product rule because y depends on x. Both printed forms follow from y = xʸ.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.log",
+    "m1b.dif.product"
+  ]
 }

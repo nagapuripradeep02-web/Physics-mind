@@ -416,5 +416,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.point_at_distance"
+  ]
 }

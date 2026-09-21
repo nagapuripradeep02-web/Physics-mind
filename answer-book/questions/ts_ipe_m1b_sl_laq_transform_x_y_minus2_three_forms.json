@@ -380,5 +380,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.intercept_form",
+    "m1b.sl.normal_form"
+  ]
 }

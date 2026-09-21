@@ -268,5 +268,9 @@
       }
     ]
   },
-  "insider_note": "The rotation angle is the same α that is already in the equation, so do not bring in a second letter. The two mixed sinα cosα terms cancel and cos²α + sin²α = 1 gives the answer X = p."
+  "insider_note": "The rotation angle is the same α that is already in the equation, so do not bring in a second letter. The two mixed sinα cosα terms cancel and cos²α + sin²α = 1 gives the answer X = p.",
+  "formulas": [
+    "m1b.ta.rotation",
+    "m1b.sl.normal_form"
+  ]
 }

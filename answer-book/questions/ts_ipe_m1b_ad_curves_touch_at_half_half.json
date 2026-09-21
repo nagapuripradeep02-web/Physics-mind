@@ -446,5 +446,6 @@
       }
     ]
   },
-  "insider_note": "Touching means the point lies on BOTH curves and the slopes agree there — two separate checks. Verify membership first, then compare the two derivatives."
+  "insider_note": "Touching means the point lies on BOTH curves and the slopes agree there — two separate checks. Verify membership first, then compare the two derivatives.",
+  "formulas": []
 }

@@ -203,5 +203,6 @@
       }
     ]
   },
-  "insider_note": "Two statements, and the conditions (three for Rolle, two for Lagrange) are the marked content. The difference is Rolle's extra condition f(a) = f(b), which makes the chord slope (f(b) − f(a))/(b − a) equal to 0."
+  "insider_note": "Two statements, and the conditions (three for Rolle, two for Lagrange) are the marked content. The difference is Rolle's extra condition f(a) = f(b), which makes the chord slope (f(b) − f(a))/(b − a) equal to 0.",
+  "formulas": []
 }

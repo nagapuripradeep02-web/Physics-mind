@@ -305,5 +305,10 @@
       }
     ]
   },
-  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a normal of small slope −1/20. Both equations are asked for, so write both."
+  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a normal of small slope −1/20. Both equations are asked for, so write both.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.ad.normal",
+    "m1b.ad.tangent"
+  ]
 }

@@ -192,5 +192,9 @@
       }
     ]
   },
-  "insider_note": "Equal intercepts means ONE unknown, a and a, so the intercept form becomes x + y = a in a single step. The point gives a = 1; stopping at the value without writing the line loses the mark."
+  "insider_note": "Equal intercepts means ONE unknown, a and a, so the intercept form becomes x + y = a in a single step. The point gives a = 1; stopping at the value without writing the line loses the mark.",
+  "formulas": [
+    "m1b.sl.intercept_form",
+    "m1b.pl.intercept"
+  ]
 }

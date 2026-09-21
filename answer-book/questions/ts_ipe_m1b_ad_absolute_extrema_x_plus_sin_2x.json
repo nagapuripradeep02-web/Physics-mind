@@ -398,5 +398,9 @@
       }
     ]
   },
-  "insider_note": "Absolute extrema on a CLOSED interval need the endpoints tested as well as the stationary points — the largest value may be at x = π. Compare all the values at the end rather than using a second-derivative test."
+  "insider_note": "Absolute extrema on a CLOSED interval need the endpoints tested as well as the stationary points — the largest value may be at x = π. Compare all the values at the end rather than using a second-derivative test.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.ad.maxima"
+  ]
 }

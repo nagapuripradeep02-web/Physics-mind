@@ -320,5 +320,9 @@
       }
     ]
   },
-  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. y cancels, so the answer is constant, and log a makes that constant 1/log a."
+  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. y cancels, so the answer is constant, and log a makes that constant 1/log a.",
+  "formulas": [
+    "m1b.lim.exponential",
+    "m1b.dif.chain"
+  ]
 }
