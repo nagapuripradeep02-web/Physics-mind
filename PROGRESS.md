@@ -1,5 +1,76 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — the formula sheet: a printed sheet that fills itself (2026-09-21, PRs #227 / #228 / #229 / #230, MERGED, **not deployed**)
+
+**Bottom line: every maths paper now has a second face on the Question Bank — Questions | Formulas. The sheet lists every formula that paper's answers use, in chapter order, from the student's first visit; a row shows its formula once the student has READ a card that uses it. 204 formulas across the four papers, 924 of 1459 maths cards tagged. Merged to master; NOTHING is deployed, so students still get the old book.**
+
+### What the founder asked for, and the four decisions he made
+
+"Students need to remember the formulas — a note for each maths paper where the formulas from a question get added as the student goes through it, reachable as a tab on the question bank page." Refined in the same conversation to **a printed formula sheet that is always updated**, not a notes file.
+
+| Question | Decision |
+|---|---|
+| What earns a formula | **Finishing the answer** — tapping through to the last step. No tick, no claim. |
+| What an un-earned row shows | **The whole paper is listed from day one**, un-earned rows dim with the formula hidden and a "3 questions away" line. |
+| Scope | Maths-1A first, then 1B, 2A, 2B. |
+| Telling the student | A small line under the page as they finish: "2 formulas added to your sheet →". |
+
+### The mechanism (#227)
+
+- **`pm_read_v1`**, a new key shaped exactly like `pm_stage_v1`. It exists because `completed` was page memory: the moment a student finished an answer was known and then forgotten, and the only durable record was the yellow tick, which has to be CLAIMED. Written at both sites that set `completed`, through the same `lsSet` and `todayStr`, so the feature is as clock-injectable as the planner.
+- **Earned = the read set ∪ every card carrying an Understand tick.** A tick can only exist on a card read to the end, and ticks sync between devices while the read set does not — so a second device is not empty. That union is why syncing `pm_read_v1` is a follow-up and not a blocker (it would cost six coordinated edits including a migration recreating `ab_sync`).
+- **A locked row's formula is not in the DOM at all** — not hidden by CSS, not greyed. A gate asserts it; the feature is worth nothing without that.
+- **Tapping a locked row opens the nearest card that unlocks it**, which makes the sheet a to-do list pointed at exactly the missing work.
+- The sheet is a **panel inside `#catalogView`**, not a fifth view, so `showView`'s hide-sweep is untouched. `#/formulas/<subject>` is a real route. The tab row has its OWN id and class family, because the catalog gates select on `#qtypeChips .cat-chip` and count `.cat-section`.
+
+### The data model
+
+`answer-book/formulas/<subject>.json` owns the WORDING; cards carry `formulas: [id]`. A formula forty cards use is authored once, so one identity can never drift into four spellings. **Student state is question ids, never formula ids, so renaming one needs no migration.**
+
+Gates mirror the manifest's bidirectional drift check: a card naming a formula the registry lacks, **and a registry formula no card names** — a row that could never be earned. Plus all-or-none per paper, duplicate id, duplicate text, unknown chapter, Rule 41 over every name. `match` is authoring-side only, stripped from the browser copy exactly as the recall rubric is.
+
+**Formulas are AUTHORED, never scraped.** Deriving them from `kind: "boxed_final"` steps is the cheap path and it is wrong: that line is *that question's answer* (`∴ y″ + y = 4 cos x`), not something to memorise — 1170 one-off results nobody would open twice. Authored from our own cards; the books' printed "IPE 24 QF" pages are a coverage cross-check only, never transcribed (`docs/ORIGINALITY_MATHS.md`).
+
+### The tagger, and two traps that cost half the first run
+
+`answer-book/tools/propose_formulas.py` proposes each card's list by searching its written lines for the registry's `match` signatures; a person confirms, and `--write` refuses while any formula matches nothing. `--find` shows how the cards really spell something.
+
+A formula almost never appears as its own line — it sits inside worked arithmetic, in the card's own variables, plain Unicode on one card and TeX on the next. Both sides are flattened hard and compared as substrings. Two traps:
+
+1. **Brackets had to go entirely.** `\dfrac{n(n+1)(2n+1)}{6}` unwraps to `(n(n+1)(2n+1))/(6)` while the same formula typed by hand reads `n(n+1)(2n+1)/6` — one wrapping paren apart, never a substring of the other. **Half the formulas scored zero on the first run for exactly this.**
+2. **`\operatorname{Sin}`** flattens to `operatornamesin` unless unwrapped, which hid every inverse-trig row.
+
+### What the gates caught, and what got dropped
+
+- **1A**: 97 formulas / 11 chapters / 348 of 556 cards. **14 drafted formulas dropped** because no card uses them (half-angle sine and cosine, `(AB)ᵀ = BᵀAᵀ`, `|AB| = |A||B|`, the section formula, `sech²x + tanh²x = 1`, `cosh⁻¹x`, product-to-sum). Mathematical Induction is deliberately absent — it has a method, not formulas.
+- **1B**: 45 / 10 / 250 of 375. Four dropped; the drafted second-derivative test became "Largest and smallest value on a closed interval" because that is what every 1B maxima card actually does. **The duplicate-text gate refused the build** when "angle between two planes" carried the same string as "angle between two lines from direction ratios" — the row now says the a, b, c come from the two NORMALS.
+- **2A**: 35 / 10 / 164 of 257. Six rows added after reading the cards (`i² = −1`, circular arrangements, middle term, conditional probability, independent events, mutually exclusive), lifting coverage 145 → 164.
+- **2B**: 27 / 8 / 162 of 271. Passed the unreachable gate on the first run with nothing to drop.
+
+**535 cards use no listed formula and most honestly do not**: define a term, find a domain, decide whether a function is one-one, manipulate a determinant, separate variables.
+
+### The look, in three founder passes
+
+The white plate took three rounds and the record matters because the first two were wrong: (1) a plate hugging the formula text only; (2) widened to cover the row's own rule, after "it should cover the whole border"; (3) **the whole row becomes one white card** — tick, heading and formula inside one rectangle with the clay margin line — after "the border should also include the heading". The orange accent sits on the card only, never also on the row: two orange rules 13px apart read as noise. Earned cards have no hairline (they have their own edge) and sit 8px apart so three in a row read as three cards.
+
+A real defect fell out of the review link: **the "added to your sheet" line was landing at the foot of a 1160px-per-page column, below a `position: sticky` button** — correct in the DOM, invisible to a human. It now rides above the Next button.
+
+### Verification, and two PRE-EXISTING failures
+
+`tsc` clean · `vitest src/lib/answerBook` 85 passed (incl. the `mergeStages` source-extraction test) · `build:answers` and `build:answers:gated:live` both green · the sheet costs ~11 KB per paper in the deployed artifact and the gated projection keeps the ids the "questions away" count needs · CI `verify` green on all four PRs.
+
+`npx playwright test e2e/answer_book.spec.ts` — **88 passed, 2 failed**. Both (`Simplify writes ONE mark…` straddle, and `hosted: telemetry…`) **reproduce identically on a branch carrying none of this work**, so they are pre-existing and are NOT caused by the formula sheet. Recorded here rather than fixed.
+
+**A process lesson worth keeping:** a first full-suite pass reported 11 failures, all of them mine — Chromium screenshot runs, a gated rebuild and a 71 MB bundle write were competing with a suite that loads an 86 MB page per navigation. Three of the 11, picked because they touch nothing here, passed in 37s when run alone. **Keep the machine quiet for `smoke:answers`.** The suite is slow for a real reason: `dist/index.html` went from ~1.5 MB to 86 MB when the stacked-fractions conversion (18–19 Sep) turned a large share of maths division lines into KaTeX, whose rendered HTML runs ~10× its source, and several gates walk every question in the bank.
+
+### Not done
+
+- **Not deployed.** `build:pilot`/`deploy:answers` stays founder-only (Rule 17). Students still get the old book.
+- **`pm_read_v1` does not sync.** The `u`-tick union covers a second device for anything the student ticked; a card merely read stays local.
+- **Physics and chemistry have no sheet.** The same mechanism serves them for the cost of a registry; chemistry needs its own think, since what a student memorises there is reactions and conditions rather than formulas.
+- **Vidi cannot see the sheet.** `buildVidiContext()` was left untouched deliberately — it must stay byte-stable per card for the DeepSeek prefix cache.
+
+
 ## 🧠 SESSION — Vidi remembers: reload, chat history, bookmarks, delete, and a nightly prune (2026-09-19, PRs #220 / #221 / #222, MERGED, **not deployed**)
 
 **Bottom line: Vidi's conversation used to exist only in page memory. It now survives a reload, remembers five exchanges instead of three, keeps every past chat on the device, and lets a student bookmark one to keep it for good or delete one outright — with a nightly job enforcing the 30 days the history list promises. Everything is merged and the database is live; NOTHING is deployed, so students still get the old Vidi.**
