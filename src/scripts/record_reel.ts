@@ -5,8 +5,10 @@
  *   npm run reel -- --q <id> --shot answer --out answer-book/tools/out/insta/p1.mp4
  *   npm run reel -- --shot door            # the door + group pick, no question
  *   npm run reel -- --q <id> --speed 4     # 52s of real writing -> a 13s Reel
- *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
- *                                          # a PHASED figure: every tap lands at a pause, then Restart
+ *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --instant-scroll --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
+ *                                          # a PHASED figure: every tap lands at a pause, then Restart;
+ *                                          # --instant-scroll = no frame taken around a product scroll
+ *                                          #   (the sticky header composited 100-240 px low for ~160 ms)
  *
  * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
  * pace a STUDENT reads along with, and each step's marks land in the margin only
@@ -65,6 +67,10 @@ const VIEWPORT = (() => {
     return m ? { width: Number(m[1]), height: Number(m[2]) } : { width: 360, height: 640 };
 })();
 const DPR = 3;
+/** --instant-scroll: how long the page must have been still after a product
+    scroll before the next frame is taken. The displaced-header frames lasted
+    2 captures ≈ 160 ms (V06_HEART); 220 ms clears them with one capture to spare. */
+const SCROLL_SETTLE_MS = 220;
 
 /** Port 8100 is not arbitrary: it is in every Edge Function's AB_ALLOWED_ORIGINS
     and in the LOCAL_ORIGINS subset that classifies the ledger row as
@@ -507,15 +513,19 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             // function assigned to a name with its `__name()` helper, which does
             // not exist inside the page — `ReferenceError: __name is not defined`
             // at runtime, invisible at compile time.
+            // `__pmPanning` tells the --instant-scroll settle guard that these
+            // scrolls are the shot's own and must be filmed, not waited out.
             await page.evaluate(async ({ to, ms }) => {
                 const from = window.scrollY;
                 const steps = 60;
+                (window as any).__pmPanning = true;
                 for (let i = 1; i <= steps; i++) {
                     const p = i / steps;
                     const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
                     window.scrollTo(0, from + (to - from) * e);
                     await new Promise((r) => setTimeout(r, ms / steps));
                 }
+                (window as any).__pmPanning = false;
             }, { to: b.to, ms: b.ms });
             return;
         }
@@ -742,6 +752,35 @@ async function main(): Promise<void> {
         await context.addInitScript(() => {
             try { localStorage.setItem('pm_internal', '1'); } catch { /* blocked storage */ }
         });
+        // --instant-scroll: no frame is taken while the product is scrolling.
+        // The product scrolls a revealed block into view with `behavior:
+        // 'smooth'`, and a screenshot taken around that scroll shows the sticky
+        // header composited with the scroll delta — 100–240 px low, the page
+        // already at its new offset (V06_HEART, measured on every frame with a
+        // logo-row scan: 13 such frames with smooth scrolls; 5 with the scrolls
+        // forced instant; 4 with the header made `position: fixed` on top of
+        // that, so it is the capture's compositing, not the header's CSS). Two
+        // halves, both opt-in under this flag so earlier shots keep their frames:
+        // (1) every programmatic scroll lands in one step (no mid-scroll frame);
+        // (2) the capture loop below holds its next screenshot until the page has
+        // been still for SCROLL_SETTLE_MS after the last scroll event. A `pan`
+        // beat scrolls from the recorder on purpose and is exempt (`__pmPanning`).
+        if (flag('instant-scroll')) {
+            await context.addInitScript(() => {
+                const si = Element.prototype.scrollIntoView;
+                Element.prototype.scrollIntoView = function (arg?: boolean | ScrollIntoViewOptions) {
+                    const o = typeof arg === 'object' && arg ? { ...arg, behavior: 'auto' as ScrollBehavior } : arg;
+                    return si.call(this, o);
+                };
+                const st = window.scrollTo.bind(window);
+                (window as any).scrollTo = (...a: any[]) => {
+                    if (a.length === 1 && a[0] && typeof a[0] === 'object') return st({ ...a[0], behavior: 'auto' });
+                    return (st as any)(...a);
+                };
+                (window as any).__pmScrollAt = -1e9;
+                addEventListener('scroll', () => { (window as any).__pmScrollAt = performance.now(); }, { capture: true, passive: true });
+            });
+        }
         // --track mpc/second_year/mpc_2 : start as a student who ALREADY chose at
         // the door. A multi-stream build shows the chooser on the bare landing
         // route, so without this the catalog never paints and #subjectSelect is
@@ -807,12 +846,58 @@ async function main(): Promise<void> {
         let n = 0;
         const t0 = Date.now();
         const take: Take = { t0, events: [] };
+        const settle = flag('instant-scroll');
+        let lastY = -1;
+        let retakes = 0;
+        let pre: { y: number; at: number; still: number; panning: boolean } | null = null;
         const capture = (async () => {
             while (capturing) {
-                const file = path.join(frameDir, `f${String(n++).padStart(5, '0')}.jpg`);
+                const file = path.join(frameDir, `f${String(n).padStart(5, '0')}.jpg`);
                 try {
+                    // --instant-scroll half (2). Before: hold this frame until the
+                    // page has been still for SCROLL_SETTLE_MS (a changed scrollY
+                    // counts even before its scroll event has fired; capped, so a
+                    // page that never settles still gets filmed). After: a scroll
+                    // that landed DURING the ~80 ms capture is the frame this guard
+                    // exists for (measured: holding only before turned one such
+                    // frame into a 7-frame freeze) — the file is dropped and the
+                    // frame re-taken once still. Up to 3 re-takes, then kept as is.
+                    // One probe per frame: the read taken after frame k's capture is
+                    // the read frame k+1 settles from (the probe costs a round trip,
+                    // and the capture rate is the product's real-speed smoothness).
+                    if (settle) {
+                        for (let k = 0; k < 12; k++) {
+                            if (!pre) {
+                                pre = await page.evaluate(() => ({
+                                    y: window.scrollY,
+                                    at: (window as any).__pmScrollAt as number,
+                                    still: performance.now() - (window as any).__pmScrollAt,
+                                    panning: !!(window as any).__pmPanning,
+                                }));
+                            }
+                            const moved = lastY >= 0 && pre.y !== lastY;
+                            lastY = pre.y;
+                            if (pre.panning || (!moved && pre.still > SCROLL_SETTLE_MS)) break;
+                            pre = null;
+                            await new Promise((r) => setTimeout(r, 50));
+                        }
+                    }
                     await page.screenshot({ path: file, type: 'jpeg', quality: 92 });
-                    frames.push({ file, t: (Date.now() - t0) / 1000 });
+                    const t = (Date.now() - t0) / 1000;
+                    if (settle) {
+                        const post = await page.evaluate(() => ({
+                            y: window.scrollY,
+                            at: (window as any).__pmScrollAt as number,
+                            still: performance.now() - (window as any).__pmScrollAt,
+                            panning: !!(window as any).__pmPanning,
+                        }));
+                        const dirty = !post.panning && !!pre && (post.y !== pre.y || post.at !== pre.at);
+                        pre = post;
+                        if (dirty && retakes < 3) { retakes++; fs.unlinkSync(file); continue; }
+                    }
+                    retakes = 0;
+                    n++;
+                    frames.push({ file, t });
                 } catch { break; }                   // page closed mid-shot
             }
         })();
