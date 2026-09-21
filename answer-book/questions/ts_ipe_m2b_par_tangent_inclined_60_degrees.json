@@ -129,5 +129,9 @@
       }
     ]
   },
-  "insider_note": "tan 60° = √3 exactly, never 1.732 rounded — an exact surd is expected in the final boxed line, not a decimal."
+  "insider_note": "tan 60° = √3 exactly, never 1.732 rounded — an exact surd is expected in the final boxed line, not a decimal.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

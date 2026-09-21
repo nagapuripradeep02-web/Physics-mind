@@ -111,5 +111,8 @@
       }
     ]
   },
-  "insider_note": "This is a proof, not a calculation, so the final line has to name the vertex explicitly — simply stopping at x₁ = 0, y₁ = 0 without saying that this is the vertex misses the point of the question."
+  "insider_note": "This is a proof, not a calculation, so the final line has to name the vertex explicitly — simply stopping at x₁ = 0, y₁ = 0 without saying that this is the vertex misses the point of the question.",
+  "formulas": [
+    "m2b.pa.standard"
+  ]
 }
