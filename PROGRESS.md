@@ -1,5 +1,54 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — Vidi knows his name, tells a joke, and stops calling answering technique a mnemonic (2026-09-21, branch `feat/answerbook-vidi-personal`, **not deployed**)
+
+**Bottom line: three fine-tunings to the Answer Book chat. Vidi now asks the student their own name and greets them by it; she may make one small joke, never when they are stuck or worried; and the memory-tip chip is renamed per paper, with a new question-level `formula_note` piloted on the four sibling trigonometry identities.**
+
+### 1. The student's name
+
+Nothing anywhere held it — `pm_vidi_name` is the name the student gives *Vidi*, and the persona had a line saying so. The rename moment now asks two questions instead of one (`offerRename` → `askStudentName`), reusing `normName`/`nameOk` and the existing blocklist unchanged. Stored as `pm_student_name`, greeted once a calendar day (`greetByName`), sent per request as `student_name` and rendered into the `situation` block — **never** into `PERSONA` or `tutor_context`, which are the cached prefix and would cost a cache miss per student per ask. The name is re-sanitised server-side because the page can be forged.
+
+**It never reaches telemetry.** `ab_events` gets `student_name_set` / `student_name_skipped`, not the name. Vidi's own pet name keeps being logged as before — that is a made-up word, not a student's real one.
+
+A student who was already offered the rename before today (every existing device) is jumped straight to step two, or the question could never reach them; a student who skips is never asked again (`pm_student_name_done`).
+
+### 2. A friendlier tone
+
+PERSONA in both servers now permits one small joke per reply, shaped on the encouragement rule that follows it: never when the student is stuck, worried, short of time or has just got something wrong; never about the student, their mistake, their teacher or the marks they could lose; never as a sign-off.
+
+**The rule alone did nothing.** Measured: with only the permission added, 6 probes produced ZERO jokes, including on open banter. Adding a worked example in the persona's own house style — "five times is more than the examiner will ever ask for" is the right size, "at this point the proof owes you rent" is too much — made it fire correctly on the casual probes while staying silent on the worried and stuck ones. Recorded as **CLAUDE.md Rule 41g**, on the same experimental footing as 41f, so no agent reverts it citing 41a.
+
+### 3. The tip chip, and the formula note
+
+`memory_tip` is authored on all 9,705 steps, but the content differs by paper: maths/physics/chemistry tips are how to DO the step, botany/zoology tips are real mnemonics. The chip called all of them "How to remember?", announcing answering technique as a memory device. It now follows the content — "How do I write this?" on the first group, unchanged on the second (`WRITE_TIP_SUBJECTS`).
+
+New question-level `formula_note` (optional and sparse, `insider_note`'s shape): which formulas the answer turns on and how to tell it from the siblings it is confused with. Its own "Which formula?" chip, deterministic and ₹0, plus a `FORMULA NOTE` line in Vidi's context.
+
+**Piloted on the four sibling triangle identities** (`tr_sin_sum_half_angle_cosines`, `tr_cos_sum_half_angle_sines`, `tr_sin2_sum_minus_b`, `tr_cos2_sum_minus_c`) with the rule the four share: single angles give half angles and double angles give full angles; sines on the left come out as cosines, cosines come out as sines and bring a leading 1; and when the three terms are not all added, the term carrying the minus keeps its own function. Four step tips were rewritten to name the formula rather than describe this proof's move. **Not a bulk pass** — 242 more Maths-1A SAQ/LAQ cards remain, deliberately left until the founder sees these four.
+
+### A gating bug found on the way
+
+`formula_note` is TOP-LEVEL, and the gated projection spreads `...q`, so the per-step allowlist cannot reach it — it would have shipped the formulas onto a LOCKED card, which is what the chapter is sold for. Knocked out by name in `build_answer_book.ts`, with an e2e gate that probes by CONTENT (the client code mentions the field, so a key-name probe would pass while proving nothing). `insider_note` deliberately still ships: examiner behaviour, not the answer.
+
+### Evidence
+
+- `tsc` 0 · `check_cards --prefix ts_ipe_m1a_tr_` 110 cards pass · `build:answers` and `build:answers:gated:mpc` clean.
+- **25/25** of the affected e2e gates, including every offline gate (zero network, `PM_VIDI_BASE === ""`) and the gated "not one answer byte" leak test.
+- Two existing tests updated for the new contracts (the rename test now walks both questions; the tip-chip test is subject-aware), and two gates added: the per-paper chip label, and the formula chip answering with zero network.
+- **`vidi:shakedown` 1/22 flagged, 0 CRITICAL, ₹1.39** — the one flag is the known 6-sentence soft-cap residual, at the same rate as before the change. Safety behaviours all hold: out-of-bank refused, marks quoted only from the authored split, abuse handled, identity admitted.
+- Direct probes confirmed the name is used once and naturally, no name is invented when none is sent, and both the worried and stuck probes get no joke.
+
+### NOT done — read before deploying
+
+- **Nothing is deployed**, and this rides the SAME Edge Function as the undeployed chat-history work (#220/#221/#222). `~/Desktop/VIDI_CHAT_MEMORY_DEPLOY.md` has been updated to say what else now ships when §3 of it is run. Cloudflare auth is still not on this Mac.
+- **Telugu/Hindi code-mix was explicitly deferred** by the founder this session. The persona's Telugu-script rule is untouched.
+- The confidence rating (solid/shaky/stuck) and the exit MCQ were explored and **shelved** by the founder earlier in the session.
+- The full `answer_book.spec.ts` fleet sweeps were not run — they cover construction lines and typesetting, which this does not touch.
+- Observed, not fixed: on a mark-split question Vidi said the book "made up" the split. That wording is the existing verification-honesty rule, not this change, but "made up" reads worse than it should.
+
+**Next session's first task:** founder reads the four piloted cards at `npm run serve:answers` and says whether the formula notes are worth a bulk pass over the remaining 242 Maths-1A cards.
+
+
 ## 🧠 SESSION — Vidi remembers: reload, chat history, bookmarks, delete, and a nightly prune (2026-09-19, PRs #220 / #221 / #222, MERGED, **not deployed**)
 
 **Bottom line: Vidi's conversation used to exist only in page memory. It now survives a reload, remembers five exchanges instead of three, keeps every past chat on the device, and lets a student bookmark one to keep it for good or delete one outright — with a nightly job enforcing the 30 days the history list promises. Everything is merged and the database is live; NOTHING is deployed, so students still get the old Vidi.**

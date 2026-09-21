@@ -502,6 +502,7 @@ manifest.units = manifest.units
         const where = q.question_id;
         const strings: [string, string][] = [];
         if (q.insider_note) strings.push(['insider_note', q.insider_note]);
+        if (q.formula_note) strings.push(['formula_note', q.formula_note]);
 
         let tips = 0, notes = 0;
         let marksSoFar = 0;
@@ -649,6 +650,13 @@ type AnyRec = Record<string, unknown>;
 const gatedQuestions = !GATED ? browserQuestions : browserQuestions.map((q) => ({
     ...q,
     gated: true,
+    // Top-level fields ride the spread above, so anything that is really ANSWER
+    // content has to be knocked out by name here — the per-step allowlist below
+    // cannot reach it. formula_note names the formulas the answer turns on,
+    // which is exactly what the chapter is sold for. (insider_note stays: it is
+    // examiner behaviour, "most students lose the figure mark", not the answer.)
+    // undefined is dropped by JSON.stringify, so the key simply does not ship.
+    formula_note: undefined,
     answer: {
         page_header: q.answer.page_header,
         steps: q.answer.steps.map((s) => ({ id: (s as AnyRec).id, marks: (s as AnyRec).marks })),

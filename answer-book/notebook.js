@@ -2549,7 +2549,7 @@
         Vidi.setStage(lastSelfCheck.qid, 'r', true);
       }
       VidiPanel.onStageTick();
-      var offer = !Vidi.renameOffered();
+      var offer = !Vidi.renameOffered() || !Vidi.studentAsked();
       lastSelfCheck = null;
       VidiPanel.onCheckClosed(offer);
     } else {
@@ -3162,6 +3162,20 @@
   var DRAG_ASK_SUBJECTS = { mathematics: 1, mathematics_1b: 1, mathematics_2a: 1, mathematics_2b: 1 };
   var DRAG_ASK_UNITS = {};
 
+  // What the memory-tip chip is CALLED, per paper (2026-09-21). The field is
+  // named memory_tip everywhere, but what the authors actually wrote differs by
+  // subject: in maths, physics and chemistry the tips are how to DO the step
+  // ("Multiply by its conjugate — the squares cancel"), while in botany and
+  // zoology they are real memory devices ("Apo = away from, mixis = mixing").
+  // Calling the first kind "How to remember?" announced answering technique as
+  // a mnemonic; calling the second kind "How do I write this?" would be the
+  // same lie pointing the other way. So the label follows the content.
+  var WRITE_TIP_SUBJECTS = {
+    mathematics: 1, mathematics_1b: 1, mathematics_2a: 1, mathematics_2b: 1,
+    physics: 1, physics_2: 1, chemistry: 1, chemistry_2: 1,
+  };
+  function tipIsHowToWrite(q) { return !!WRITE_TIP_SUBJECTS[(q && q.subject) || 'physics']; }
+
   /** Is this card in the drag-to-ask scope? */
   function dragAskCard(q) {
     if (!q) return false;
@@ -3200,6 +3214,15 @@
 
     var name = normName(lsGet('pm_vidi_name') || '') || 'Vidi';
     if (!nameOk(name)) name = 'Vidi';
+
+    // The STUDENT's own name, asked for in the same moment they name Vidi
+    // (2026-09-21). Same validator, same 20-char cap, same blocklist — but a
+    // different default: '' means "never told us", and Vidi simply does not use
+    // a name. It is display data like Vidi's own name, never an identifier, and
+    // it never reaches telemetry: ab_events keeps the pet name a student gives
+    // Vidi, which is a made-up word, not the student's real one.
+    var student = normName(lsGet('pm_student_name') || '');
+    if (student && !nameOk(student)) student = '';
 
     var history = {};
     try { history = JSON.parse(lsGet('pm_vidi_history') || '{}') || {}; } catch (e) { history = {}; }
@@ -3372,8 +3395,21 @@
         if (!nameOk(v)) return false;
         name = v; lsSet('pm_vidi_name', v); return true;
       },
+      /** '' when the student never told us — every caller must handle that. */
+      getStudent: function () { return student; },
+      setStudent: function (n) {
+        var v = normName(n);
+        if (!nameOk(v)) return false;
+        student = v; lsSet('pm_student_name', v); return true;
+      },
       renameOffered: function () { return lsGet('pm_vidi_rename_done') === '1'; },
       markRenameOffered: function () { lsSet('pm_vidi_rename_done', '1'); },
+      /** Asked once and never again — a student who skipped is not nagged. */
+      studentAsked: function () { return lsGet('pm_student_name_done') === '1'; },
+      markStudentAsked: function () { lsSet('pm_student_name_done', '1'); },
+      /** The day Vidi last said hello by name — once a day, not once a tap. */
+      greetedOn: function () { return lsGet('pm_greet_day') || ''; },
+      markGreeted: function (d) { lsSet('pm_greet_day', d); },
       recordCheck: function (qid, score, total) {
         var h = history[qid];
         var best = (h && h.total === total) ? Math.max(h.best, score) : score;
@@ -5470,6 +5506,20 @@
       return null;
     }
 
+    /** Hello by name, at most once a calendar day (2026-09-21). Silent when the
+        student never gave a name, and never called inside onboarding or the
+        intro — a hello stacked on top of a setup question reads as two people
+        talking at once. Deterministic and offline-safe like every other
+        authored line: no model call. */
+    function greetByName() {
+      var who = Vidi.getStudent();
+      if (!who) return;
+      var today = Vidi.todayStr();
+      if (Vidi.greetedOn() === today) return;
+      Vidi.markGreeted(today);
+      say('Hello ' + who + '.');
+    }
+
     /** The per-question greeting is about the STUDENT'S plan, never the bank
         (founder, 2026-08-22): no stars, no asked-years, no insider line here —
         the chips still answer all of that on demand. Without a plan, only a
@@ -6365,6 +6415,7 @@
       var plan = Vidi.getPlan();
       if (ob.active && plannerOn()) { resumeOnboarding(); return; }
       if (!Vidi.introDone()) { startIntro(); return; }
+      greetByName();                             // once a day, only if named
       if (plannerOn() && plan && plan.implemented && !plan.archived) {
         updatePlanStrip();
         planCheckin(plan);
@@ -6437,8 +6488,11 @@
       row.appendChild(chipBtn('Will this come?', chipCome));
       row.appendChild(chipBtn('Why this step?', chipWhy));
       var s = currentStep();
-      if (s && s.memory_tip) row.appendChild(chipBtn('How to remember?', chipTip));
+      if (s && s.memory_tip) {
+        row.appendChild(chipBtn(tipIsHowToWrite(question) ? 'How do I write this?' : 'How to remember?', chipTip));
+      }
       row.appendChild(chipBtn('How much to write?', chipHowMuch));
+      if (question.formula_note) row.appendChild(chipBtn('Which formula?', chipFormula));
       // Planner chips are APPENDED, never prepended: the offline gate clicks the
       // FIRST chip and expects the deterministic bank answer.
       var plan = Vidi.getPlan();
@@ -6458,7 +6512,7 @@
           renderVidiChips();
           // The FIRST finished revision is the rename moment now that the
           // self-check is dormant (it used to ride the first completed check).
-          if (!Vidi.renameOffered()) offerRename();
+          if (!Vidi.renameOffered() || !Vidi.studentAsked()) offerRename();
         }));
       }
       if (plannerOn() && plan && plan.implemented && !plan.archived) {
@@ -6513,8 +6567,17 @@
     function chipTip() {
       var s = currentStep();
       Vidi.log('chip', { chip: 'tip', qid: question.question_id, step: s ? s.id : null });
-      if (!s || !s.memory_tip) { say('No memory tip for this step yet.'); return; }
-      say('To remember "' + s.label + '": ' + s.memory_tip);
+      if (!s || !s.memory_tip) { say('Nothing written for this step yet.'); return; }
+      say((tipIsHowToWrite(question) ? 'Writing "' : 'To remember "') + s.label + '": ' + s.memory_tip);
+    }
+
+    /** The question-level formula note: which formula this answer needs, and
+        how to tell it from the sibling questions that look like it. Authored,
+        deterministic, no model call. */
+    function chipFormula() {
+      Vidi.log('chip', { chip: 'formula', qid: question.question_id });
+      if (!question.formula_note) { say('Nothing written for this one yet.'); return; }
+      say(question.formula_note);
     }
 
     function chipHowMuch() {
@@ -6635,6 +6698,7 @@
       // One examiner-insight sentence. It already opens the deterministic
       // greeting; the model was never given it, so it could not build on it.
       if (question.insider_note) out.push('INSIDER POINT: ' + question.insider_note);
+      if (question.formula_note) out.push('FORMULA NOTE: ' + question.formula_note);
       // The same answer at its OTHER authored lengths — without this the model
       // invents a 4-mark scheme the moment a student asks (found in a real chat).
       if (question.cuts && question.cuts.length > 1) {
@@ -6846,6 +6910,11 @@
         // the model's prompt-prefix cache hits; plan facts change daily, so
         // they ride the per-request situation block server-side instead.
         plan_status: Plan.modelStatus(home ? null : question.question_id) || undefined,
+        // Same reasoning as plan_status: the student's name is per STUDENT, so
+        // putting it in tutor_context would give every student a different
+        // prefix and cost a cache miss on every ask. Sent only when they told
+        // us; omitted entirely otherwise, so the server has nothing to guess.
+        student_name: Vidi.getStudent() || undefined,
         tutor_context: home ? buildHomeContext() : buildVidiContext()
       };
       // WHO is asking — for the cost ledger only. ai_usage_log has no device
@@ -7116,8 +7185,14 @@
     // ── rename — offered ONCE, after the first completed self-check ─────────
 
     function offerRename() {
-      Vidi.markRenameOffered();
       $('vidiRename').hidden = false;
+      $('vidiStudentRow').hidden = true;
+      // A student who was offered the rename before their own name was ever
+      // asked for (every student who used the book before 2026-09-21) skips
+      // straight to step two — otherwise that question could never reach them.
+      if (Vidi.renameOffered()) { askStudentName(); return; }
+      Vidi.markRenameOffered();
+      $('vidiNameRow').hidden = false;
       $('vidiRenameNote').textContent = 'You can give me your own name if you want. Type a name, or keep Vidi.';
       say('Good work finishing this one. You can give me your own name if you want — see the box below.');
       Vidi.log('rename_offered', {});
@@ -7126,18 +7201,46 @@
     function saveRename() {
       var v = $('vidiNameInput').value;
       if (Vidi.setName(v)) {
-        $('vidiRename').hidden = true;
         syncName();
         say('Done. From now on I am ' + Vidi.getName() + '.');
         Vidi.log('rename', { name: Vidi.getName() });
+        askStudentName();
       } else {
         $('vidiRenameNote').textContent = 'That name will not work here. Please pick a different one.';
       }
     }
 
     function keepRename() {
-      $('vidiRename').hidden = true;
       Vidi.log('rename_kept', {});
+      askStudentName();
+    }
+
+    /** Step two of the naming moment — the student's own name. Skipped outright
+        when they have already told us, so the box never asks twice. */
+    function askStudentName() {
+      $('vidiNameRow').hidden = true;
+      if (Vidi.getStudent() || Vidi.studentAsked()) { $('vidiRename').hidden = true; return; }
+      Vidi.markStudentAsked();
+      $('vidiRenameNote').textContent = 'And what should I call you?';
+      $('vidiStudentRow').hidden = false;
+      Vidi.log('student_name_offered', {});
+    }
+
+    function saveStudentName() {
+      var v = $('vidiStudentInput').value;
+      if (Vidi.setStudent(v)) {
+        $('vidiRename').hidden = true;
+        say('Got it, ' + Vidi.getStudent() + '.');
+        // The name itself never goes to telemetry — only that one was set.
+        Vidi.log('student_name_set', {});
+      } else {
+        $('vidiRenameNote').textContent = 'That name will not work here. Please pick a different one.';
+      }
+    }
+
+    function skipStudentName() {
+      $('vidiRename').hidden = true;
+      Vidi.log('student_name_skipped', {});
     }
 
     return {
@@ -7188,6 +7291,7 @@
         } else if (!Vidi.introDone()) {
           startIntro();                          // first experience = Viditra, never stars
         } else if (!restored) {
+          greetByName();                         // once a day, only if named
           var plan = Vidi.getPlan();
           if (plan && plan.implemented && !plan.archived) planCheckin(plan);
           greet();                               // plan-aware; silent without a plan
@@ -7250,7 +7354,9 @@
       canQuote: canQuote,
       attachQuote: attachQuote,
       saveRename: saveRename,
-      keepRename: keepRename
+      keepRename: keepRename,
+      saveStudentName: saveStudentName,
+      skipStudentName: skipStudentName
     };
   })();
 
@@ -7391,6 +7497,8 @@
     });
     $('vidiNameSave').addEventListener('click', VidiPanel.saveRename);
     $('vidiNameKeep').addEventListener('click', VidiPanel.keepRename);
+    $('vidiStudentSave').addEventListener('click', VidiPanel.saveStudentName);
+    $('vidiStudentSkip').addEventListener('click', VidiPanel.skipStudentName);
     document.addEventListener('pm:step-revealed', VidiPanel.onStep);
     window.addEventListener('pagehide', Vidi.flush);
   }

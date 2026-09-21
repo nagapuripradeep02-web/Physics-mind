@@ -543,6 +543,20 @@ export const answerBookQuestionSchema = z
         insider_note: z.string().min(1).optional(),
 
         /**
+         * One authored note about the FORMULAS this question needs, and about the
+         * sibling questions it is confused with — "the board asks four of these and
+         * they look alike; sines added give cosines out, cosines added give sines
+         * out and start with 1". Question-level on purpose: a step's memory_tip is
+         * about that step, but telling a FAMILY of identities apart belongs to the
+         * question as a whole and has no single step to sit on.
+         *
+         * Optional and sparse, the same shape as insider_note, and plain literal
+         * English (Rule 41 — the 41f comparison carve-out covers Vidi's chat
+         * replies, never an authored string). Maths papers first.
+         */
+        formula_note: z.string().min(1).optional(),
+
+        /**
          * Optional: the same answer offered at more than one length. cuts[0] is the
          * DEFAULT and must restate the root header exactly, so a consumer that knows
          * nothing about cuts (the grader, PM_ANSWER) still reads the truth.

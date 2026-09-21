@@ -316,10 +316,18 @@
   </div>
   <div class="vidi-rename" id="vidiRename" hidden>
     <div class="vidi-rename-note" id="vidiRenameNote"></div>
-    <div class="vidi-rename-row">
+    <div class="vidi-rename-row" id="vidiNameRow">
       <input type="text" id="vidiNameInput" maxlength="20" placeholder="Type a name">
       <button class="btn" id="vidiNameSave" type="button">Save</button>
       <button class="btn" id="vidiNameKeep" type="button">Keep Vidi</button>
+    </div>
+    <!-- Step two of the same moment: the student's own name. Revealed only
+         after the first row is answered, so an impatient student meets one
+         question at a time. -->
+    <div class="vidi-rename-row" id="vidiStudentRow" hidden>
+      <input type="text" id="vidiStudentInput" maxlength="20" placeholder="Type your name">
+      <button class="btn" id="vidiStudentSave" type="button">Save</button>
+      <button class="btn" id="vidiStudentSkip" type="button">Skip</button>
     </div>
   </div>
 </aside>

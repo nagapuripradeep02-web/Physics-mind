@@ -102,6 +102,23 @@ Scope lives in three lists at the top of `notebook.js`, widest to narrowest —
 half and lives per-request in both chat servers (`src/scripts/answerbook_vidi_server.ts` and
 `supabase/functions/answerbook-vidi-chat/index.ts`, kept identical by hand), never in PERSONA.
 
+## What the tip chip is called, and the formula note
+
+`memory_tip` is authored on every step, but what the authors wrote differs by paper:
+in maths, physics and chemistry the tips are how to DO the step ("Multiply by its
+conjugate — the squares cancel"), while in botany and zoology they are real memory
+devices ("Apo = away from, mixis = mixing"). So the chip is named for the content —
+**"How do I write this?"** on the first group, **"How to remember?"** on the second.
+The list is `WRITE_TIP_SUBJECTS` at the top of `notebook.js`, mirrored by a gate in
+`e2e/answer_book.spec.ts`.
+
+`formula_note` is a question-level field (optional and sparse, like `insider_note`):
+which formulas the answer turns on, and how to tell the question apart from the
+siblings it is confused with. It has its own **"Which formula?"** chip, is handed to
+Vidi as `FORMULA NOTE`, and is **stripped from gated builds by name** — top-level
+fields ride the `...q` spread, so the per-step allowlist cannot reach it, and it names
+the formulas the chapter is sold for.
+
 ## Test yourself
 
 A **Test myself** button sits in the top-right corner. It opens an overlay with two ways to be
