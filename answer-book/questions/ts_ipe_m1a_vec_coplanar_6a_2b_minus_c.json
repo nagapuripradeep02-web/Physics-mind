@@ -331,5 +331,10 @@
       }
     ]
   },
-  "insider_note": "All three differences must start from the same point. PR here has no b component, so the middle entry is 0 — a zero in the determinant is a help, not a sign of error."
+  "insider_note": "All three differences must start from the same point. PR here has no b component, so the middle entry is 0 — a zero in the determinant is a help, not a sign of error.",
+  "formulas": [
+    "m1a.mx.determinant_3x3",
+    "m1a.av.coplanar_box",
+    "m1a.av.vector_between_points"
+  ]
 }

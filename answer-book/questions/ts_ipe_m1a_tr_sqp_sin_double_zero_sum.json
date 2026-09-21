@@ -342,5 +342,8 @@
       }
     ]
   },
-  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sin C and, inside the bracket, cos C = +cos(A+B). Both differ from the triangle version, and together they give −4 sinA sinB sinC."
+  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sin C and, inside the bracket, cos C = +cos(A+B). Both differ from the triangle version, and together they give −4 sinA sinB sinC.",
+  "formulas": [
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

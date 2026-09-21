@@ -547,5 +547,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.cramer",
+    "m1a.mx.determinant_3x3",
+    "m1a.mx.matrix_inversion_method"
+  ]
 }

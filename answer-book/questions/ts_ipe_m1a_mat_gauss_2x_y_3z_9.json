@@ -568,5 +568,9 @@
       }
     ]
   },
-  "insider_note": "Swap rows first so the top-left entry is 1 — the method is far cleaner with an integer pivot. Clear DOWN to a triangle and then clear UP; stopping halfway is Gaussian elimination, not Gauss-Jordan."
+  "insider_note": "Swap rows first so the top-left entry is 1 — the method is far cleaner with an integer pivot. Clear DOWN to a triangle and then clear UP; stopping halfway is Gaussian elimination, not Gauss-Jordan.",
+  "formulas": [
+    "m1a.mx.matrix_inversion_method",
+    "m1a.mx.row_operation"
+  ]
 }

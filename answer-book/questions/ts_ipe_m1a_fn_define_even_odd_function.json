@@ -168,5 +168,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.even_odd"
+  ]
 }

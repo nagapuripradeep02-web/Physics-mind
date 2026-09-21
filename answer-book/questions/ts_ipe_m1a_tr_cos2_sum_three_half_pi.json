@@ -449,5 +449,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sum_to_product_cos_plus"
+  ]
 }

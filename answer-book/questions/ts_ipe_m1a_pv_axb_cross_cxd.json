@@ -378,5 +378,8 @@
       }
     ]
   },
-  "insider_note": "Four vectors and three cross products, taken in order: a×b first, then c×d, then cross those two. The common factor 5 comes out of the FINAL vector, which is what makes the magnitude easy."
+  "insider_note": "Four vectors and three cross products, taken in order: a×b first, then c×d, then cross those two. The common factor 5 comes out of the FINAL vector, which is what makes the magnitude easy.",
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

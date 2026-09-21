@@ -202,5 +202,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.one_one_test",
+    "m1a.fn.onto_test"
+  ]
 }

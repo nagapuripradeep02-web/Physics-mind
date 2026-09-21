@@ -157,6 +157,14 @@
     <p class="cat-sub" id="catSub"></p>
   </div>
 
+  <!-- QUESTIONS | FORMULAS — the bank's two faces. Its OWN id and its OWN class
+       family on purpose: the catalog gates select on `#qtypeChips .cat-chip` and
+       count `.cat-section`, and a nav control wearing a filter's class would
+       satisfy a contract it has nothing to do with (the same rule the door tiles
+       follow). Hidden unless the chosen paper has a formula sheet — a paper with
+       no registry shows no tab at all, never an empty one. -->
+  <nav class="bank-tabs" id="bankTabs" role="tablist" aria-label="Question bank" hidden></nav>
+
   <div class="cat-filters">
     <!-- Subject and chapter are NATIVE selects, not chip rows: 4 subjects and 38
          chapters rendered as chips was a wall of ~40 taps a student had to scroll
@@ -185,6 +193,13 @@
 
   <div id="catSections"></div>
   <p class="cat-none" id="catNone" hidden>No questions match. Clear the search or the filter.</p>
+
+  <!-- THE FORMULA SHEET — a printed sheet that fills itself. Every formula this
+       paper's answers use is listed in chapter order from the first visit; a row
+       shows its formula once the student has read a card that uses it. Lives
+       INSIDE the catalog view (so the hero, the eyebrow and the Vidi chrome all
+       survive) rather than as a fifth view in showView's hide-sweep. -->
+  <section class="fsheet" id="formulaSheet" role="tabpanel" aria-labelledby="bankTabFormulas" hidden></section>
 </main>
 
 <!-- ═══ EXAM-EVE VIEW — #/exam-eve/<unit> ═══════════════════════════════════
@@ -244,6 +259,13 @@
 
   <section class="notebook-col" id="notebookCol">
     <div class="notebook" id="notebook"></div>
+    <!-- "2 formulas added to your sheet" — OUTSIDE .notebook on purpose (every
+         vertical metric inside the page is a multiple of 32px, so a node on the
+         paper walks every later line off the rules) and BEFORE the Next button,
+         which is sticky: a normal-flow sibling after it lands at the foot of a
+         1160px-per-page column and is never seen. This one is sticky too, and
+         rides just above it. -->
+    <div class="fs-added-wrap" id="fsAddedWrap" hidden></div>
     <button class="btn btn-next" id="btnNext" type="button">Start writing</button>
   </section>
 

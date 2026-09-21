@@ -379,5 +379,10 @@
       }
     ]
   },
-  "insider_note": "Pair the first two, then use cos2C = 2cos²C − 1, which is where the −1 comes from. cos(180° − θ) = −cosθ is needed twice, and both minus signs matter."
+  "insider_note": "Pair the first two, then use cos2C = 2cos²C − 1, which is where the −1 comes from. cos(180° − θ) = −cosθ is needed twice, and both minus signs matter.",
+  "formulas": [
+    "m1a.tr.cos_double",
+    "m1a.tr.half_angle_from_sum",
+    "m1a.tr.sum_to_product_cos_plus"
+  ]
 }

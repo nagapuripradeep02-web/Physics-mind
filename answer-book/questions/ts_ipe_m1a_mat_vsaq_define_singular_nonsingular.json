@@ -170,5 +170,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.determinant_3x3"
+  ]
 }

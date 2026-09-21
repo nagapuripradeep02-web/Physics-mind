@@ -157,5 +157,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.sets.de_morgan_intersection",
+    "m1a.sets.de_morgan_union"
+  ]
 }

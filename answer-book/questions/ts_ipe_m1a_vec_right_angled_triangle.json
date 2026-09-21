@@ -377,5 +377,9 @@
       }
     ]
   },
-  "insider_note": "Compare the SQUARES of the magnitudes: 41 = 6 + 35 is a whole-number check, while decimal forms of the roots never match exactly. The longest side is AB, so the right angle sits at C, opposite it."
+  "insider_note": "Compare the SQUARES of the magnitudes: 41 = 6 + 35 is a whole-number check, while decimal forms of the roots never match exactly. The longest side is AB, so the right angle sits at C, opposite it.",
+  "formulas": [
+    "m1a.av.magnitude",
+    "m1a.av.vector_between_points"
+  ]
 }

@@ -457,5 +457,6 @@
       }
     ]
   },
-  "insider_note": "Two separate things are asked. Expanding Δ once gives −(a³+b³+c³−3abc), and squaring removes the sign; the other half needs Δ·Δ multiplied ROW by row after a column swap."
+  "insider_note": "Two separate things are asked. Expanding Δ once gives −(a³+b³+c³−3abc), and squaring removes the sign; the other half needs Δ·Δ multiplied ROW by row after a column swap.",
+  "formulas": []
 }

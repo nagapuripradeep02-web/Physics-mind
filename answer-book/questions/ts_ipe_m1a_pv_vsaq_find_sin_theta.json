@@ -180,5 +180,8 @@
       }
     ]
   },
-  "insider_note": "sin θ needs a×b, never a·b. √155 and √156 are consecutive, which looks like a mistake but is not — leave the answer as √(155/156)."
+  "insider_note": "sin θ needs a×b, never a·b. √155 and √156 are consecutive, which looks like a mistake but is not — leave the answer as √(155/156).",
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

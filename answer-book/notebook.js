@@ -313,6 +313,11 @@
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
+    // The "added to your sheet" line belongs to the card that earned it. Cleared
+    // here, before renderUpTo(-1) can re-complete anything, so it never travels
+    // to the next question.
+    var fsw = $('fsAddedWrap');
+    if (fsw) { fsw.hidden = true; fsw.innerHTML = ''; }
     // Every question opens at exam length, whatever was unfolded on the last one.
     expandedSteps = {};
     loadCuts();
@@ -452,6 +457,9 @@
 
   var currentView = null;               // 'catalog' | 'notebook'
   var catFilter = { subject: 'ALL', qtype: 'ALL', unit: 'ALL', search: '', due: false };
+  // Which face of the Question Bank is showing. Not part of catFilter: it selects
+  // a PANEL, while every catFilter key narrows the card list.
+  var bankTab = 'questions';            // 'questions' | 'formulas'
 
   function showView(v) {
     currentView = v;
@@ -1176,6 +1184,200 @@
 
     $('catNone').hidden = shown > 0;
     renderTriage();
+    // Last, so the panel swap runs over a finished catalog.
+    renderBankTabs();
+  }
+
+  /** QUESTIONS | FORMULAS. The tab row appears only when the chosen paper has a
+      sheet, so a physics student never meets a dead tab and a paper gets its tab
+      on the day its registry lands — no code change. */
+  function renderBankTabs() {
+    var tabs = $('bankTabs');
+    var sheetEl = $('formulaSheet');
+    var subject = catFilter.subject;
+    var on = Formulas.has(subject);
+    if (!on) bankTab = 'questions';          // ALL, or a paper with no sheet
+    tabs.hidden = !on;
+    tabs.innerHTML = '';
+    var showing = on && bankTab === 'formulas';
+
+    if (on) {
+      var st = Formulas.state(subject);
+      [['questions', 'Questions', ''],
+       ['formulas', 'Formulas', st.have + '/' + st.total]].forEach(function (t) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.id = 'bankTab' + (t[0] === 'formulas' ? 'Formulas' : 'Questions');
+        b.className = 'bank-tab' + (bankTab === t[0] ? ' on' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('data-tab', t[0]);
+        b.setAttribute('aria-selected', bankTab === t[0] ? 'true' : 'false');
+        b.appendChild(document.createTextNode(t[1]));
+        if (t[2]) {
+          var ct = document.createElement('span');
+          ct.className = 'ct';
+          ct.textContent = t[2];
+          b.appendChild(ct);
+        }
+        b.addEventListener('click', function () { goBankTab(t[0], subject); });
+        tabs.appendChild(b);
+      });
+    }
+
+    // The sheet lives inside the catalog view, so the swap is done here rather
+    // than in showView: everything the Questions tab owns is hidden, and the
+    // hero, the eyebrow and the Vidi chrome stay exactly where they were.
+    var filters = document.querySelector('.cat-filters');
+    if (filters) filters.hidden = showing;
+    $('catSections').hidden = showing;
+    if (showing) {
+      // catNone and the triage are owned by the card list: while the sheet is up
+      // they are hidden outright, and the card render sets them again on the way
+      // back — never read here, so the two panels cannot fight over them.
+      $('catNone').hidden = true;
+      $('vidiTriage').hidden = true;
+      renderFormulaSheet(subject);
+    }
+    sheetEl.hidden = !showing;
+  }
+
+  /** Write the hash, and let route() paint — one path, so a forwarded
+      #/formulas/<subject> link and a tap on the tab land identically. */
+  function goBankTab(tab, subject) {
+    Vidi.log('bank_tab', { tab: tab, subject: subject });
+    var want = tab === 'formulas' ? '#/formulas/' + subject : '#/';
+    // Deliberately NOT setting bankTab first. route()'s already-on-screen no-op
+    // reads bankTab, so setting it here made the very first tap look like a
+    // repaint of a sheet that had never been drawn — the tab lit up and nothing
+    // appeared. The hash is the single source; route() sets the tab and paints.
+    if (location.hash === want) { bankTab = tab; renderCatalog(); return; }
+    location.hash = want;
+  }
+
+  /** The sheet itself: every formula of the paper in chapter order, the earned
+      ones showing their formula, the rest showing only their name and how far
+      away they are. Deterministic — authored data plus what the student has read. */
+  function renderFormulaSheet(subject) {
+    var st = Formulas.state(subject);
+    var root = $('formulaSheet');
+    root.innerHTML = '';
+    if (!st) return;
+
+    var head = document.createElement('div');
+    head.className = 'fsheet-head';
+    var h2 = document.createElement('h2');
+    h2.textContent = st.label + ' — your formula sheet';
+    var count = document.createElement('span');
+    count.className = 'fsheet-count';
+    count.id = 'fsheetCount';
+    count.textContent = st.have + ' of ' + st.total;
+    head.appendChild(h2);
+    head.appendChild(count);
+    root.appendChild(head);
+
+    var note = document.createElement('p');
+    note.className = 'fsheet-note';
+    note.textContent = st.have === 0
+      ? 'You write nothing here. Read an answer to its last step and the formulas it uses are added to this sheet.'
+      : 'Every formula these answers use. Read an answer to its last step and the formulas it uses are added here.';
+    root.appendChild(note);
+
+    st.chapters.forEach(function (ch) {
+      var wrap = document.createElement('div');
+      wrap.className = 'fs-chapter';
+      wrap.setAttribute('data-chapter', String(ch.number));
+
+      var chead = document.createElement('div');
+      chead.className = 'fs-chapter-head';
+      var name = document.createElement('span');
+      name.className = 'fs-chapter-name';
+      var num = document.createElement('span');
+      num.className = 'fs-chapter-num';
+      num.textContent = ch.number + ' · ';
+      name.appendChild(num);
+      name.appendChild(document.createTextNode(ch.name));
+      var cct = document.createElement('span');
+      cct.className = 'fs-chapter-count';
+      cct.textContent = ch.have + '/' + ch.total;
+      chead.appendChild(name);
+      chead.appendChild(cct);
+      wrap.appendChild(chead);
+
+      ch.rows.forEach(function (row) {
+        // A locked row is a button because tapping it opens a card that unlocks
+        // it; an earned row is not interactive, so it is not a button.
+        var el = document.createElement(row.earned ? 'div' : 'button');
+        el.className = 'fs-row ' + (row.earned ? 'earned' : 'locked');
+        el.setAttribute('data-formula', row.fm.id);
+        if (!row.earned) {
+          el.type = 'button';
+          el.addEventListener('click', function () {
+            if (row.next) location.hash = '#/q/' + encodeURIComponent(row.next);
+          });
+        }
+        var nm = document.createElement('span');
+        nm.className = 'fs-name';
+        if (row.earned) {
+          var tick = document.createElement('span');
+          tick.className = 'fs-tick';
+          tick.textContent = '✓';
+          nm.appendChild(tick);
+        }
+        nm.appendChild(document.createTextNode(row.fm.name));
+        el.appendChild(nm);
+
+        if (row.earned) {
+          var txt = document.createElement('div');
+          txt.className = 'fs-text';
+          // Typeset at BUILD time (Rule 18) — `html` is KaTeX's own markup and is
+          // deliberately NOT put inside .kx-clip, whose Kalam override would set a
+          // printed reference sheet in handwriting.
+          if (row.fm.html) { txt.className += ' fs-tex'; txt.innerHTML = row.fm.html; }
+          else txt.textContent = row.fm.text;
+          el.appendChild(txt);
+        } else {
+          var away = document.createElement('div');
+          away.className = 'fs-away';
+          away.textContent = row.away === 1
+            ? '1 question away'
+            : row.away + ' questions away';
+          el.appendChild(away);
+        }
+        wrap.appendChild(el);
+      });
+      root.appendChild(wrap);
+    });
+  }
+
+  /** "2 formulas added to your sheet" — shown once, when the last step of a card
+      is revealed, under the page. */
+  function showFormulaNotice(subject, n) {
+    var wrap = $('fsAddedWrap');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fs-added';
+    b.id = 'fsAdded';
+    b.textContent = (n === 1 ? '1 formula' : n + ' formulas') + ' added to your sheet →';
+    b.addEventListener('click', function () {
+      Vidi.log('formula_notice', { subject: subject, n: n });
+      catFilter.subject = subject;
+      catFilter.unit = 'ALL';
+      bankTab = 'formulas';
+      location.hash = '#/formulas/' + subject;
+    });
+    wrap.appendChild(b);
+    wrap.hidden = false;
+  }
+
+  /** Called the moment a card is read to its last step, from BOTH places that
+      complete an answer (tapping through, and jumping to the last step). */
+  function recordRead() {
+    if (!question) return;
+    var gained = Formulas.creditFor(question.question_id);
+    Vidi.markRead(question.question_id);
+    if (gained.length) showFormulaNotice(question.subject || 'physics', gained.length);
   }
 
   var catalogPainted = false;          // has this session drawn the catalog once?
@@ -1289,6 +1491,25 @@
     // #/choose — the door on demand, from the catalog eyebrow. Always available
     // once a choice exists, so a student who tapped the wrong tile is not stuck.
     if (location.hash === '#/choose') { Door.show(); return; }
+    // #/formulas/<subject> — the sheet as its own address, so a tab tap, a
+    // reload and a forwarded link all land in the same place. Subject keys carry
+    // underscores (mathematics_1b), like the exam-eve route above.
+    var fsm = location.hash.match(/^#\/formulas\/([a-z0-9_]+)$/);
+    if (fsm) {
+      if (Formulas.has(fsm[1])) {
+        // Already on screen? Do nothing — the tab handler writes this hash, and
+        // repainting here would draw the same sheet twice (the no-op the notebook
+        // route below has needed since cut switching started writing the hash).
+        if (currentView === 'catalog' && bankTab === 'formulas' && catFilter.subject === fsm[1]) return;
+        bankTab = 'formulas';
+        catFilter.subject = fsm[1];
+        catFilter.unit = 'ALL';
+      } else {
+        bankTab = 'questions';          // a paper with no sheet, or a stale link
+      }
+      showCatalog();
+      return;
+    }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
     if (!m) {
       // The door only ever intercepts the BARE landing route. A link to an
@@ -1297,6 +1518,7 @@
       // reader we most wanted — so #/q/, #/exam-eve/ and #/pricing all pass
       // above this line, untouched.
       if (Door.enabled() && !Door.chosen()) { Door.show(); return; }
+      bankTab = 'questions';
       showCatalog();
       return;
     }
@@ -1950,6 +2172,7 @@
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
+        recordRead();
       }
       updateChrome();
       document.dispatchEvent(new CustomEvent('pm:step-revealed', {
@@ -1985,6 +2208,10 @@
     if (stepIndex === steps.length - 1) {
       completed = true;
       placeTotalBlock();
+      // Jumping to the last step counts as reading it, exactly as it counts for
+      // the leave-question ask — both key on `completed`, and one action must not
+      // mean two different things.
+      recordRead();
     }
     updateChrome();
     // The page geometry is fixed but its HEIGHT is not: a cut with fewer steps
@@ -3246,6 +3473,21 @@
     var stages = {};
     try { stages = JSON.parse(lsGet('pm_stage_v1') || '{}') || {}; } catch (e) { stages = {}; }
 
+    // ── the read set (2026-09-21) ───────────────────────────────────────────
+    // Which cards the student has read to the LAST step, as { qid: 'YYYY-MM-DD' }
+    // — deliberately the same shape as pm_stage_v1, and written through the same
+    // lsSet and the same todayStr, so the formula sheet is as clock-injectable as
+    // the planner.
+    //
+    // It exists because `completed` is page memory: the moment a student finishes
+    // an answer was known and then forgotten, and the only durable record was the
+    // yellow tick, which a student has to CLAIM. The sheet earns its rows from
+    // reading, not from claiming (founder, 2026-09-20), so reading needed a
+    // record of its own. Uncapped, like the ticks: ~40 bytes a card, and it is
+    // the kind of data the quota exists to protect rather than to ration.
+    var reads = {};
+    try { reads = JSON.parse(lsGet('pm_read_v1') || '{}') || {}; } catch (e) { reads = {}; }
+
     function todayStr() {
       var o = lsGet('pm_today_override');
       if (o && /^\d{4}-\d{2}-\d{2}$/.test(o)) return o;
@@ -3459,6 +3701,17 @@
       },
       /** The raw tick map, for the sync push. */
       allStages: function () { return stages; },
+      /** This card was read to its last step. First read wins — the date is when
+          the student FIRST finished it, never the last time they re-opened it.
+          Returns true when this is new, so a caller can react once. */
+      markRead: function (qid) {
+        if (!qid || reads[qid]) return false;
+        reads[qid] = todayStr();
+        lsSet('pm_read_v1', JSON.stringify(reads));
+        return true;
+      },
+      /** Every card read to the end. The formula sheet's raw material. */
+      readIds: function () { return Object.keys(reads); },
       /** Store a plan EXACTLY as given — no saved_at re-stamp. Only sync uses
           this, to adopt another device's plan without making it look newer
           than the device it came from. */
@@ -4023,6 +4276,143 @@
       dueWithoutPlan: dueWithoutPlan,
       examDatesOf: examDatesOf, nextExam: nextExam, subjectDone: subjectDone,
       subjectOfQid: subjectOfQid, revStartFor: revStartFor
+    };
+  })();
+
+  // ═══ Formulas — the sheet that fills itself ════════════════════════════════
+  //
+  // A student's formula sheet, earned rather than bought: every formula this
+  // paper's answers use is listed from the first visit, and a row shows its
+  // formula once the student has READ a card that uses it.
+  //
+  // Wholly derived — PM_FORMULAS (authored, build-validated) + the read set +
+  // the ticks. Nothing about the sheet is stored, so a formula id may be renamed
+  // at any time: the student's state is question ids, never formula ids.
+  var Formulas = (function () {
+    var SHEETS = window.PM_FORMULAS || {};
+    var usedBy = null;          // formula id → [question_id], built once
+    var flatById = {};          // subject → { formula id: formula }
+
+    /** A stored id can outlive its question (the bank is rebuilt) or its chapter
+        (the syllabus retires one), so every id from storage is checked against
+        the bank it is being read into — the same guard Plan.dueWithoutPlan uses. */
+    function live(qid) { return qIndexById[qid] !== undefined && !retiredOf(qid); }
+
+    function index() {
+      if (usedBy) return usedBy;
+      usedBy = {};
+      for (var i = 0; i < questions.length; i++) {
+        var ids = questions[i].formulas || [];
+        for (var j = 0; j < ids.length; j++) {
+          (usedBy[ids[j]] = usedBy[ids[j]] || []).push(questions[i].question_id);
+        }
+      }
+      return usedBy;
+    }
+
+    function flat(subject) {
+      if (flatById[subject]) return flatById[subject];
+      var out = {}, sheet = SHEETS[subject];
+      if (sheet) {
+        for (var i = 0; i < sheet.chapters.length; i++) {
+          var fs = sheet.chapters[i].formulas;
+          for (var j = 0; j < fs.length; j++) out[fs[j].id] = fs[j];
+        }
+      }
+      flatById[subject] = out;
+      return out;
+    }
+
+    /** Every card that counts as read.
+
+        The read set UNION the cards carrying an Understand tick. The union is the
+        point: a tick can only be given on a card that was read to the end, and
+        ticks already travel between a student's devices while the read set does
+        not — so a second device shows the formulas from everything the student
+        ticked rather than an empty sheet. */
+    function earnedQids() {
+      var out = {}, i;
+      var read = Vidi.readIds();
+      for (i = 0; i < read.length; i++) if (live(read[i])) out[read[i]] = true;
+      var ticked = Vidi.stageIds();
+      for (i = 0; i < ticked.length; i++) {
+        if (Vidi.stageFor(ticked[i]).u && live(ticked[i])) out[ticked[i]] = true;
+      }
+      return out;
+    }
+
+    function chapterName(subject, number) {
+      for (var i = 0; i < UNITS.length; i++) {
+        var u = UNITS[i];
+        if ((u.subject || 'physics') === subject && u.number === number) return chapterLabel(u);
+      }
+      return 'Chapter ' + number;
+    }
+
+    return {
+      /** Does this paper have a sheet at all? What the tab keys on. */
+      has: function (subject) { return !!(subject && SHEETS[subject]); },
+
+      /** The whole sheet, ready to render: chapters in authored order, each row
+          earned or not, and for a row not earned how many unread cards stand
+          between the student and it (plus the nearest one, so the row can open
+          it). A chapter is never hidden — the sheet's job is to show the
+          destination as well as the distance. */
+      state: function (subject) {
+        var sheet = SHEETS[subject];
+        if (!sheet) return null;
+        var got = earnedQids(), idx = index();
+        var chapters = [], have = 0, total = 0;
+        for (var i = 0; i < sheet.chapters.length; i++) {
+          var ch = sheet.chapters[i], rows = [], chHave = 0;
+          for (var j = 0; j < ch.formulas.length; j++) {
+            var fm = ch.formulas[j], users = idx[fm.id] || [];
+            var earned = false, away = [], seen = 0;
+            for (var k = 0; k < users.length; k++) {
+              if (!live(users[k])) continue;
+              seen++;
+              if (got[users[k]]) earned = true; else away.push(users[k]);
+            }
+            // The build proves every formula has a card, but RETIREMENT can take
+            // the last one away after the fact. A row with no card left could
+            // never be earned, so it is not shown and not counted — the sheet's
+            // denominator has to be reachable.
+            if (!seen) continue;
+            total++;
+            if (earned) { have++; chHave++; }
+            rows.push({ fm: fm, earned: earned, away: away.length, next: away[0] || null });
+          }
+          if (!rows.length) continue;               // every row retired away
+          chapters.push({
+            number: ch.number, name: chapterName(subject, ch.number),
+            rows: rows, have: chHave, total: rows.length
+          });
+        }
+        return { label: sheet.sheet_label, chapters: chapters, have: have, total: total };
+      },
+
+      /** What finishing THIS card adds to the sheet that the student did not
+          already have. Called BEFORE the read is recorded, so it names only what
+          is new — re-reading a card announces nothing. */
+      creditFor: function (qid) {
+        var q = questions[qIndexById[qid]];
+        if (!q || !q.formulas || !q.formulas.length) return [];
+        var subject = q.subject || 'physics';
+        if (!SHEETS[subject]) return [];
+        var got = earnedQids();
+        if (got[qid]) return [];
+        var byId = flat(subject), idx = index(), out = [];
+        for (var i = 0; i < q.formulas.length; i++) {
+          var fm = byId[q.formulas[i]];
+          if (!fm) continue;
+          var users = idx[q.formulas[i]] || [], already = false;
+          for (var j = 0; j < users.length; j++) {
+            if (got[users[j]] && live(users[j])) { already = true; break; }
+          }
+          if (!already) out.push(fm);
+        }
+        return out;
+      }
     };
   })();
 

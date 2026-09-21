@@ -354,5 +354,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.gp_infinite_sum",
+    "m1a.te.general_cos"
+  ]
 }

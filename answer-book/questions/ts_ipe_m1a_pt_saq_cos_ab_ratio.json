@@ -264,5 +264,8 @@
       }
     ]
   },
-  "insider_note": "Use A + B + C = 180° to write cos C = −cos(A+B), which brings in a minus sign. Then cos(A+B)cos(A−B) = cos²A − sin²B turns both brackets into squares."
+  "insider_note": "Use A + B + C = 180° to write cos C = −cos(A+B), which brings in a minus sign. Then cos(A+B)cos(A−B) = cos²A − sin²B turns both brackets into squares.",
+  "formulas": [
+    "m1a.pt.sine_rule"
+  ]
 }

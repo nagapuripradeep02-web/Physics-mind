@@ -553,5 +553,10 @@
       }
     ]
   },
-  "insider_note": "Δ = 136, and both Δ₂ and Δ₃ come to 136 as well, so y and z are both 1. That repetition is a genuine feature of this system, not a copying error."
+  "insider_note": "Δ = 136, and both Δ₂ and Δ₃ come to 136 as well, so y and z are both 1. That repetition is a genuine feature of this system, not a copying error.",
+  "formulas": [
+    "m1a.mx.cramer",
+    "m1a.mx.determinant_3x3",
+    "m1a.mx.matrix_inversion_method"
+  ]
 }

@@ -411,5 +411,8 @@
       }
     ]
   },
-  "insider_note": "Add all three ROWS into R₁ and every entry becomes a + b + c. Once that is taken out, C₂ − C₁ and C₃ − C₁ clear the top row down to a single 1."
+  "insider_note": "Add all three ROWS into R₁ and every entry becomes a + b + c. Once that is taken out, C₂ − C₁ and C₃ − C₁ clear the top row down to a single 1.",
+  "formulas": [
+    "m1a.mx.row_operation"
+  ]
 }

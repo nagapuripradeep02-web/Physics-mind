@@ -164,5 +164,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.tan_sum"
+  ]
 }

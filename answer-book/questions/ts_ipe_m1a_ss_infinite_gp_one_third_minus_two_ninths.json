@@ -191,5 +191,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.gp_infinite_sum"
+  ]
 }

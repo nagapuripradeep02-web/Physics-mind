@@ -145,5 +145,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.composition"
+  ]
 }

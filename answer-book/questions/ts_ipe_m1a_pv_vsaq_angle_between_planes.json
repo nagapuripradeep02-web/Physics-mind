@@ -179,5 +179,8 @@
       }
     ]
   },
-  "insider_note": "The angle between two planes is the angle between their NORMALS, which are just the bracket vectors. The constants 3 and 4 play no part in the answer at all."
+  "insider_note": "The angle between two planes is the angle between their NORMALS, which are just the bracket vectors. The constants 3 and 4 play no part in the answer at all.",
+  "formulas": [
+    "m1a.pv.dot_components"
+  ]
 }

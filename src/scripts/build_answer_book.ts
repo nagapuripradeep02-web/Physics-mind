@@ -23,7 +23,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join } from 'path';
 import katex from 'katex';
-import { answerBookQuestionSchema, PAPER_PATTERNS, type AnswerBookQuestion } from '../schemas/answerBook';
+import { answerBookQuestionSchema, formulaSheetSchema, PAPER_PATTERNS, SUBJECT_KEYS, type AnswerBookQuestion } from '../schemas/answerBook';
 // The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
 // grades Vidi's replies with, so the bank and the model are held to one standard.
 import { idiomsIn, markNumberError } from '../lib/answerBook/vidiChecks';
@@ -375,7 +375,7 @@ const listedIds = new Set<string>();
 // below). `mathematics` is Maths-1A for historical reasons — it predates 1B, the
 // same way an absent subject means physics. Physics-II will need the same
 // treatment when it opens.
-const SUBJECTS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2'];
+const SUBJECTS: readonly string[] = SUBJECT_KEYS;   // the schema owns the list — never a second copy
 // STREAMS (top of file) names subjects too. If the two lists drift — a stream
 // naming a subject that no longer exists, or a renamed subject — the lens would
 // silently drop a whole paper from a student's book rather than erroring. Cheap
@@ -590,6 +590,138 @@ function katexCss(): string {
         const src = `src:url(data:font/woff2;base64,${b64}) format("woff2")`;
         return `@font-face{${body.replace(/src:[^;]*$/, src).replace(/src:.*/, src)}}`;
     });
+}
+
+// ── 1e. the formula sheets (one registry per paper) ───────────────────────────
+// A student's sheet fills itself: finish a card, and the formulas that card used
+// appear. The WORDING lives here, once per paper, never in the cards — a formula
+// forty cards use is authored once and referenced by id, so the same identity can
+// never drift into four spellings. `answer-book/formulas/<subject>.json`.
+//
+// Two gates carry the design, and they mirror the manifest's bidirectional drift
+// check (§1b) exactly:
+//   · a card naming a formula the registry does not hold  → a dead reference
+//   · a registry formula NO card names                    → a row that can never
+//     be earned, which is the "manifest pointer at nothing" dead card again
+// Plus all-or-none per paper: once a paper has a registry, every card of that
+// paper carries the key, and a card that uses none writes []. A MISSING key fails
+// — the marks-gate-lost-by-silence lesson (src/schemas/answerBook.ts) applied
+// before it can happen here.
+//
+// Validated over the WHOLE bank (allQuestions) but emitted only for what this
+// build ships, so a streamed build still proves every paper's sheet is sound.
+const FORMULAS_DIR = join(BOOK_DIR, 'formulas');
+type FormulaOut = { id: string; name: string; text: string; render?: string; html?: string };
+type SheetOut = { sheet_label: string; chapters: { number: number; formulas: FormulaOut[] }[] };
+const sheets: Record<string, SheetOut> = {};
+let formulaTotal = 0;
+let taggedCards = 0;
+let emptyCards = 0;
+if (existsSync(FORMULAS_DIR)) {
+    const bad: string[] = [];
+    const registered = new Map<string, Map<string, { name: string; chapter: number }>>();
+    const shipSubjects = new Set(questions.map((q) => q.subject));
+    const liveUnitKeys = new Set(manifest.units.map((u) => `${u.subject || 'physics'}-${u.number}`));
+
+    for (const f of readdirSync(FORMULAS_DIR).filter((x) => x.endsWith('.json')).sort()) {
+        const path = join(FORMULAS_DIR, f);
+        let raw: unknown;
+        try {
+            raw = JSON.parse(readFileSync(path, 'utf8'));
+        } catch (e) {
+            fail(`${path}\n  invalid JSON: ${(e as Error).message}`);
+        }
+        const parsed = formulaSheetSchema.safeParse(raw);
+        if (!parsed.success) {
+            fail(`${path}\n` + parsed.error.issues.map((i) => `  - ${i.path.join('.') || '(root)'}: ${i.message}`).join('\n'));
+        }
+        const sheet = parsed.data;
+        if (sheet.subject !== f.replace(/\.json$/, '')) {
+            fail(`${path}\n  subject "${sheet.subject}" must match the filename`);
+        }
+        if (registered.has(sheet.subject)) fail(`${path}\n  a second registry for "${sheet.subject}"`);
+
+        const byId = new Map<string, { name: string; chapter: number }>();
+        const seenText = new Map<string, string>();
+        const seenChapter = new Set<number>();
+        for (const ch of sheet.chapters) {
+            // A chapter with no unit is a heading a student can never reach, and a
+            // chapter listed twice splits one chapter's formulas into two blocks.
+            if (!liveUnitKeys.has(`${sheet.subject}-${ch.number}`)) {
+                bad.push(`${f}: chapter ${ch.number} is not a live unit of ${sheet.subject} in units.json`);
+            }
+            if (seenChapter.has(ch.number)) bad.push(`${f}: chapter ${ch.number} is listed twice`);
+            seenChapter.add(ch.number);
+            for (const fm of ch.formulas) {
+                if (byId.has(fm.id)) bad.push(`${f}: formula id "${fm.id}" is used twice`);
+                byId.set(fm.id, { name: fm.name, chapter: ch.number });
+                // Same identity authored as two rows = the student sees it twice and
+                // earns it twice. Compared on collapsed whitespace, the way the
+                // tagger reads a card's lines.
+                const norm = fm.text.replace(/\s+/g, ' ').trim();
+                const twin = seenText.get(norm);
+                if (twin) bad.push(`${f}: "${fm.id}" and "${twin}" are the same formula`);
+                seenText.set(norm, fm.id);
+                // Rule 41 over the one string a student reads on the sheet.
+                const hit = idiomsIn(fm.name);
+                if (hit.length) bad.push(`${f} / ${fm.id}: Rule 41 — "${hit.join('", "')}"`);
+            }
+        }
+        registered.set(sheet.subject, byId);
+
+        if (shipSubjects.has(sheet.subject)) {
+            sheets[sheet.subject] = {
+                sheet_label: sheet.sheet_label,
+                chapters: sheet.chapters.map((ch) => ({
+                    number: ch.number,
+                    formulas: ch.formulas.map((fm) => {
+                        // `match` is authoring-side only — the tagger's signatures, with
+                        // no business on a student's page. Stripped exactly as `recall` is.
+                        const { match, ...rest } = fm;
+                        void match;
+                        // Typeset here, never in the browser (Rule 18), through the same
+                        // path an answer line takes.
+                        const [line] = typesetLines([rest], `formulas/${f} ${fm.id}`) as FormulaOut[];
+                        return line;
+                    }),
+                })),
+            };
+            formulaTotal += sheet.chapters.reduce((n, ch) => n + ch.formulas.length, 0);
+        }
+    }
+
+    // The cards' half of the contract.
+    const used = new Set<string>();
+    for (const q of allQuestions) {
+        const own = registered.get(q.subject);
+        if (!own) {
+            // No registry for this paper: a `formulas` key here is validated by
+            // nothing and would silently rot. Fail closed.
+            if (q.formulas) bad.push(`${q.question_id}: has \`formulas\` but ${q.subject} has no registry in answer-book/formulas/`);
+            continue;
+        }
+        if (!q.formulas) {
+            bad.push(`${q.question_id}: no \`formulas\` key — ${q.subject} has a registry, so every card declares its list (write [] for none)`);
+            continue;
+        }
+        const seen = new Set<string>();
+        for (const id of q.formulas) {
+            if (!own.has(id)) bad.push(`${q.question_id}: formula "${id}" is not in answer-book/formulas/${q.subject}.json`);
+            else used.add(id);
+            if (seen.has(id)) bad.push(`${q.question_id}: formula "${id}" listed twice`);
+            seen.add(id);
+        }
+        if (q.formulas.length) taggedCards++; else emptyCards++;
+    }
+    for (const [subject, byId] of registered) {
+        for (const [id, fm] of byId) {
+            if (!used.has(id)) bad.push(`formulas/${subject}.json: "${id}" (${fm.name}) is used by no card — it could never be earned`);
+        }
+    }
+
+    if (bad.length) {
+        fail(`formula sheets — ${bad.length} problem(s):\n` + bad.map((b) => '  - ' + b).join('\n'));
+    }
 }
 
 // ── 2. read the engine files ─────────────────────────────────────────────────
@@ -833,6 +965,10 @@ const dataJs =
     // Cards whose topic left the syllabus: still in PM_QUESTIONS (a forwarded
     // link must not 404), absent from PM_UNITS (never offered).
     `window.PM_RETIRED = ${JSON.stringify(retiredById).replace(/</g, '\\u003c')};\n` +
+    // The formula sheet per paper, `match` stripped (§1e). An absent subject is how
+    // the Formulas tab stays away: a paper with no registry shows no tab at all,
+    // rather than an empty one.
+    `window.PM_FORMULAS = ${JSON.stringify(sheets).replace(/</g, '\\u003c')};\n` +
     `window.PM_API_BASE = ${JSON.stringify(apiBase)};\n` +
     `window.PM_VIDI_BASE = ${JSON.stringify(vidiBase)};
 ` +
@@ -956,6 +1092,10 @@ console.log(`  progress sync: ${syncBase || '(unset — Sync inert, localStorage
 console.log(`  content gate:  ${contentBase || '(unset — every answer embedded, Gate inert)'}${GATED ? ' [GATED — answer bodies NOT in the page]' : ''}`);
 console.log(`  payments:      ${payBase || '(unset — no pay button)'}`);
 console.log(`  katex lines: ${katexLineCount || '0 (no KaTeX stylesheet or fonts embedded)'}`);
+for (const [subject, sheet] of Object.entries(sheets)) {
+    console.log(`  formula sheet ${subject}: ${sheet.chapters.reduce((n, c) => n + c.formulas.length, 0)} formulas in ${sheet.chapters.length} chapters`);
+}
+if (formulaTotal) console.log(`  formula tags: ${taggedCards} cards tagged, ${emptyCards} use none`);
 for (const q of questions) {
     const sum = q.answer.steps.reduce((a, s) => a + s.marks, 0);
     const recall = q.answer.steps.every((s) => s.recall) ? 'recall: ready' : 'recall: not authored';

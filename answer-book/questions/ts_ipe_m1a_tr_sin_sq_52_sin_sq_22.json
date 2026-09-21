@@ -185,5 +185,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sin_squared_difference"
+  ]
 }

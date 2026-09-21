@@ -420,5 +420,10 @@
       }
     ]
   },
-  "insider_note": "Points are given, not lines, so build the direction vectors AB and CD first. a − c comes out as −4j alone, so the dot product has only one surviving term."
+  "insider_note": "Points are given, not lines, so build the direction vectors AB and CD first. a − c comes out as −4j alone, so the dot product has only one surviving term.",
+  "formulas": [
+    "m1a.av.vector_between_points",
+    "m1a.pv.cross_determinant",
+    "m1a.pv.projection"
+  ]
 }

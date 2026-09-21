@@ -470,6 +470,110 @@ on that sentence. Full operator doc: `docs/notes/ANSWER_BOOK_PAYMENTS_RUNBOOK.md
   conversion — they re-tap), phone OTP / second-device restore (needs SMS/DLT,
   weeks of lead), in-app refunds (dashboard + expire the pass).
 
+## The formula sheet — a printed sheet that fills itself (added 2026-09-21)
+
+A maths student has to hold ~100 formulas per paper, and until now the book gave them
+nothing for that: every formula a card uses is buried in its `lines[]`. The Question Bank
+of a paper that has a sheet grows a second face — **Questions | Formulas** — and the sheet
+lists every formula the paper's answers use, in chapter order, **from the first visit**. A
+row shows its formula once the student has **read a card that uses it**.
+
+- **Earned by READING, not by claiming** (founder, 2026-09-20). The trigger is the same
+  `completed` flag the leave-question ask keys on — the last step of the answer revealed,
+  whether tapped through or jumped to. Jumping to the last step therefore counts, exactly
+  as it counts for the ask; one action must not mean two things.
+- **A new key, `pm_read_v1`** = `{ qid: 'YYYY-MM-DD' }`, deliberately the same shape as
+  `pm_stage_v1`, written through the same `lsSet` and the same `todayStr()` (so the feature
+  is clock-injectable via `pm_today_override`). It exists because `completed` is page
+  memory: the moment a student finished an answer was known and then forgotten, and the
+  only durable record was the yellow tick, which has to be CLAIMED.
+- **Earned = the read set UNION every card carrying an Understand tick.** A tick can only
+  exist on a card read to the end, and **ticks sync between devices while the read set does
+  not** — so a second device shows the formulas from everything the student ticked instead
+  of an empty sheet. That union is why syncing `pm_read_v1` itself is a follow-up and not a
+  blocker (it would cost a client merge rule, the push, the adopt, an edge-function
+  validator, a migration recreating `ab_sync`, and the `syncMerge` test).
+- **An un-earned row shows its NAME and how far away it is, never its formula** — the
+  formula is not in the DOM at all, so it cannot be read out of devtools. Tapping the row
+  opens the nearest card that unlocks it, which turns the sheet into a to-do list pointed
+  at exactly the missing work. A gate asserts the no-leak half; the whole feature is worth
+  nothing without it.
+- **The sheet is the one surface here that is NOT handwriting.** It is the printed card a
+  student would otherwise buy. This costs nothing: the Kalam override for typeset maths is
+  scoped to `.kx-clip .katex` (see Mechanism 3), and a formula on the sheet is drawn in
+  `.fs-tex`, which that selector never reaches.
+- **It is a panel inside `#catalogView`, not a fifth view.** `showView()`'s hide-sweep is
+  untouched, so the hero, the eyebrow and the Vidi chrome all survive; the swap hides
+  `.cat-filters` / `#vidiTriage` / `#catSections` / `#catNone`. `#/formulas/<subject>` is a
+  real route, so the sheet is shareable and the back button works. The tab row carries its
+  OWN id and class family (`#bankTabs`, `.bank-tab`) because the catalog gates select on
+  `#qtypeChips .cat-chip` and count `.cat-section` — the same rule the door tiles follow.
+
+### The data: a registry per paper, referenced by id
+
+`answer-book/formulas/<subject>.json` (zod: `formulaSheetSchema`) owns the WORDING; each
+card carries `formulas: ["m1a.tr.sum_to_product_sin_plus", …]`. A formula forty cards use is
+authored once, so one identity can never drift into four spellings. Student state is
+question ids, never formula ids, so **renaming a formula id needs no migration**.
+
+**Formulas are AUTHORED, never scraped.** Deriving the sheet from `kind: "equation" |
+"boxed_final"` steps is the cheap path and it is wrong: a `boxed_final` line is *that
+question's answer* (`∴ y″ + y = 4 cos x`), not something to memorise. It would fill the
+sheet with 1170 one-off results and no student would open it twice.
+
+**Authored from OUR OWN cards.** The source books all print a formula sheet ("IPE 24 QF",
+book pp.4-5) and those pages are a coverage cross-check only, never transcribed — the house
+rule is "take question text, mark split, star rank and years, never the prose"
+(`docs/ORIGINALITY_MATHS.md`), and a publisher's selection and arrangement of a formula
+sheet is exactly the prose half. It is also the better product: the sheet then matches what
+the exam questions actually need.
+
+**Gates in `build_answer_book.ts` §1e**, collected and reported once:
+
+| Gate | Fails when |
+|---|---|
+| unknown id | a card names a formula the registry does not hold |
+| **unreachable formula** | a registry formula NO card names — a row that could never be earned, which is the manifest's "pointer at nothing" dead card again |
+| missing key | a card of a registered paper has no `formulas` key (all-or-none; `[]` means none) |
+| duplicate id / duplicate text | the same id twice, or one identity authored as two rows |
+| unknown chapter | a registry chapter that is not a live unit of that paper |
+| Rule 41 | an idiom in a formula `name` |
+
+`match` is authoring-side only and is **stripped from the browser copy exactly as `recall`
+is**. It holds the signatures `answer-book/tools/propose_formulas.py` searches for to
+propose each card's list; a person confirms every proposal, and `--write` refuses while any
+formula matches nothing.
+
+### What the first authoring run cost, and what it taught
+
+Maths-1A: **97 formulas over 11 chapters, 348 of 556 cards tagged.** Chapter 4
+(Mathematical Induction) is deliberately absent — it has a method, not formulas of its own.
+
+- **A signature must be the distinctive CORE of a formula, not a line.** A formula almost
+  never appears as its own line: it appears inside worked arithmetic, in the card's own
+  variables, plain Unicode on one card and TeX on the next. Both sides are flattened hard
+  (TeX unwrapped, greek names to letters, superscripts to `^2`, **every bracket dropped**,
+  lowercased) and compared as substrings.
+- **Dropping brackets is load-bearing.** `\dfrac{n(n+1)(2n+1)}{6}` unwraps to
+  `(n(n+1)(2n+1))/(6)` while the same formula typed by hand reads `n(n+1)(2n+1)/6` — one
+  wrapping paren apart, and never a substring of the other. Half the formulas scored zero
+  on the first run for exactly that. `\operatorname{Sin}` was a second such trap.
+- **14 authored formulas were DROPPED because no Maths-1A card uses them** — the half-angle
+  sine and cosine, `(AB)ᵀ = BᵀAᵀ`, `|AB| = |A||B|`, the section formula, `sech²x + tanh²x = 1`,
+  `cosh⁻¹x`, the product-to-sum form, and others. That is the unreachable-formula gate doing
+  its job, not a gap: a formula arrives with the first card that needs it. The half-angle
+  **cotangent** replaced the sine and cosine because that is the form the cards actually use.
+- **208 cards use no listed formula, and most of them honestly do not**: define a term, find
+  a domain, decide whether a function is one-one, manipulate a determinant. Chapters 3, 9,
+  11 and 12 are tagged almost completely; 1, 2, 4 and 5 are where the technique cards live.
+
+### Extending it to the other papers
+
+1B, 2A and 2B are **data only**: a registry each plus the `formulas` key on their 375 / 257 /
+271 cards. No code, no CSS, no new gate — a paper's tab appears the day its registry lands.
+Physics and chemistry can follow the same way; chemistry needs its own think, since what a
+student memorises there is reactions and conditions rather than formulas.
+
 ## Rule tensions — resolved, do not relitigate
 
 - **Rule 35 (globally neutral content):** no violation. 35c scopes the rule to SIM content;

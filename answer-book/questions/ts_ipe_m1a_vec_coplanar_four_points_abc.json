@@ -346,5 +346,10 @@
       }
     ]
   },
-  "insider_note": "All three differences must start from P. The rows come out as 4, −2, −2 and its two rotations, so the determinant is symmetric — a quick check that the differences were taken correctly."
+  "insider_note": "All three differences must start from P. The rows come out as 4, −2, −2 and its two rotations, so the determinant is symmetric — a quick check that the differences were taken correctly.",
+  "formulas": [
+    "m1a.mx.determinant_3x3",
+    "m1a.av.coplanar_box",
+    "m1a.av.vector_between_points"
+  ]
 }

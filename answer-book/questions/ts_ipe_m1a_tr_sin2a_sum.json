@@ -358,5 +358,10 @@
       }
     ]
   },
-  "insider_note": "Pair the first two into 2sin(A+B)cos(A−B), then sin(180° − C) = sinC. The bracket becomes cos(A−B) − cos(A+B) = 2 sinA sinB, and that minus sign is essential."
+  "insider_note": "Pair the first two into 2sin(A+B)cos(A−B), then sin(180° − C) = sinC. The bracket becomes cos(A−B) − cos(A+B) = 2 sinA sinB, and that minus sign is essential.",
+  "formulas": [
+    "m1a.tr.half_angle_from_sum",
+    "m1a.tr.sin_double",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

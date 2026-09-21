@@ -159,5 +159,8 @@
       }
     ]
   },
-  "insider_note": "Only the magnitude is asked for; the usual route still finds the full cross product first. Watch the middle term: the j entry carries a minus sign built into the expansion."
+  "insider_note": "Only the magnitude is asked for; the usual route still finds the full cross product first. Watch the middle term: the j entry carries a minus sign built into the expansion.",
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

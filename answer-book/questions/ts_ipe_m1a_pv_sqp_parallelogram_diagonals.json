@@ -366,5 +366,6 @@
       }
     ]
   },
-  "insider_note": "Build the diagonals from the sides first: AC = AB + AD and BD = AD − AB. The dot product is negative, so the angle between AC and BD is obtuse. Its supplement, the acute angle between the diagonals, is also a correct answer."
+  "insider_note": "Build the diagonals from the sides first: AC = AB + AD and BD = AD − AB. The dot product is negative, so the angle between AC and BD is obtuse. Its supplement, the acute angle between the diagonals, is also a correct answer.",
+  "formulas": []
 }

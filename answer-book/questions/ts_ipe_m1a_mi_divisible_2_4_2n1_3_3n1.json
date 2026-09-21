@@ -336,5 +336,6 @@
       }
     ]
   },
-  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers are multiplied by 16 and 27, and 27 − 16 = 11 is what makes 11 a factor."
+  "insider_note": "Rearrange the assumption to isolate the first term, 2·4²ᵏ⁺¹ = 11q − 3³ᵏ⁺¹, before substituting. The powers are multiplied by 16 and 27, and 27 − 16 = 11 is what makes 11 a factor.",
+  "formulas": []
 }

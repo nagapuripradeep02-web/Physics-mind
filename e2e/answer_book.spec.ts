@@ -3452,3 +3452,195 @@ test('drag-to-ask: a written box dropped into Vidi is asked about, and a drag ne
     await openFirst(page);
     await expect(page.locator('#notebook.dq-on')).toHaveCount(0);
 });
+
+/* ═══ THE FORMULA SHEET ══════════════════════════════════════════════════════
+   A printed sheet that fills itself: finish a card, and the formulas it used
+   appear. The two gates that matter are (1) a locked row must not leak its
+   formula — the whole feature is worth nothing if the sheet is readable before
+   it is earned — and (2) READING must be enough, with no tick claimed, because
+   that is the founder's rule and the tick is a separate, claimed action. */
+
+/** The sheet, opened the way a student opens it: pick the paper, tap the tab. */
+async function openSheet(page: any, subject = 'mathematics'): Promise<void> {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await page.selectOption('#subjectSelect', subject);
+    await page.waitForSelector('#bankTabs:not([hidden])');
+    await page.click('#bankTabFormulas');
+    await page.waitForSelector('#formulaSheet:not([hidden])');
+}
+
+/** Tap through a card to its last step. Leaves the student ON the card. */
+async function readToEnd(page: any, qid: string): Promise<void> {
+    await page.evaluate((id: string) => { location.hash = '#/q/' + id; }, qid);
+    await page.waitForSelector('#notebookView:not([hidden])');
+    const steps = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps.length);
+    for (let i = 0; i < steps; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            (window as any).PM_ANSWER.revealNext();
+        }));
+    }
+}
+
+/** Leave a finished card the way a student does. Navigating away from a fully
+    revealed answer raises the existing "did you understand this?" ask and the
+    route is held until it is answered — so every gate that reads a card and then
+    goes somewhere else has to answer it. NOT YET, so no gate here ever depends on
+    a tick it did not mean to give. */
+async function leave(page: any): Promise<void> {
+    await page.evaluate(() => { location.hash = '#/'; });
+    await page.waitForTimeout(250);
+    if (!(await page.locator('#askOverlay').evaluate((e: any) => e.hidden))) await page.click('#askNo');
+    await page.waitForSelector('#catalogView:not([hidden])');
+}
+
+test('the Formulas tab exists only for a paper that has a sheet', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    // Every subject at once names no paper, so no sheet.
+    await expect(page.locator('#bankTabs')).toBeHidden();
+    await page.selectOption('#subjectSelect', 'physics');
+    await expect(page.locator('#bankTabs')).toBeHidden();
+    await page.selectOption('#subjectSelect', 'mathematics');
+    await expect(page.locator('#bankTabs')).toBeVisible();
+    // Switching back to a paper with no registry puts the tab away AND returns
+    // the student to the questions — never a selected tab with nothing behind it.
+    await page.selectOption('#subjectSelect', 'chemistry');
+    await expect(page.locator('#bankTabs')).toBeHidden();
+    await expect(page.locator('#catSections')).toBeVisible();
+});
+
+test('a fresh sheet lists every formula, shows none of them, and hides the cards', async ({ page }) => {
+    await openSheet(page);
+    const rows = await page.locator('.fs-row').count();
+    expect(rows).toBeGreaterThan(50);                       // the whole paper, from day one
+    expect(await page.locator('.fs-row.earned').count()).toBe(0);
+    expect(await page.locator('.fs-row.locked').count()).toBe(rows);
+    // THE gate: a formula not yet earned is not in the DOM at all — not hidden
+    // by CSS, not greyed out, not readable from devtools.
+    expect(await page.locator('.fs-row .fs-text').count()).toBe(0);
+    expect(await page.locator('#fsheetCount').innerText()).toMatch(/^0 of \d+$/);
+    // The sheet replaces the card list rather than sitting under it.
+    await expect(page.locator('#catSections')).toBeHidden();
+    await expect(page.locator('.cat-filters')).toBeHidden();
+    // Its own address, so the sheet is shareable and the back button works.
+    expect(await page.evaluate(() => location.hash)).toBe('#/formulas/mathematics');
+});
+
+test('reading a card to the end adds exactly its formulas — no tick claimed', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const qid = 'ts_ipe_m1a_tr_sqp_sin_sq_sum';
+    const want: string[] = await page.evaluate((id: string) =>
+        ((window as any).PM_QUESTIONS.find((q: any) => q.question_id === id) || {}).formulas || [], qid);
+    expect(want.length).toBeGreaterThan(0);
+
+    // OPENING a card earns nothing. The whole feature rests on the difference
+    // between opening an answer and reading it to the end, and renderUpTo(-1)
+    // runs on every open — one off-by-one there would hand a student the paper.
+    await page.evaluate((id: string) => { location.hash = '#/q/' + id; }, qid);
+    await page.waitForSelector('#notebookView:not([hidden])');
+    await expect(page.locator('#fsAdded')).toHaveCount(0);
+    expect(await page.evaluate(() => localStorage.getItem('pm_read_v1'))).toBeNull();
+
+    await readToEnd(page, qid);
+    // The notice belongs under the page, never on the ruled paper.
+    await expect(page.locator('#fsAdded')).toBeVisible();
+    expect(await page.locator('#notebook #fsAdded').count()).toBe(0);
+    expect(await page.locator('#fsAdded').innerText()).toMatch(/added to your sheet/);
+
+    await page.click('#fsAdded');
+    // Leaving a finished answer raises the existing ask, which replays the
+    // navigation. Answer NOT YET — the formulas must not need the tick.
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    await page.click('#askNo');
+    await page.waitForSelector('#formulaSheet:not([hidden])');
+
+    expect(await page.evaluate(() => localStorage.getItem('pm_stage_v1'))).toBeNull();
+    expect(await page.evaluate(() => localStorage.getItem('pm_read_v1'))).toContain(qid);
+    const earned = await page.locator('.fs-row.earned').evaluateAll(
+        (els) => els.map((e) => e.getAttribute('data-formula')));
+    expect(earned.sort()).toEqual(want.slice().sort());
+    expect(await page.locator('.fs-row.earned .fs-text').count()).toBe(earned.length);
+    expect(await page.locator('#fsheetCount').innerText()).toMatch(/^1 of \d+$/);
+});
+
+test('an Understand tick alone fills the sheet — the second device is not empty', async ({ page }) => {
+    // What a synced device actually has: the tick travels, the read set does not.
+    // So a tick has to be enough on its own, or a student who switches phones
+    // loses a sheet they earned.
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    const qid = 'ts_ipe_m1a_tr_sqp_sin_sq_sum';
+    await page.evaluate((id: string) => {
+        localStorage.setItem('pm_stage_v1', JSON.stringify({ [id]: { u: '2026-09-01', p: '', r: '' } }));
+    }, qid);
+    await openSheet(page);
+    expect(await page.evaluate(() => localStorage.getItem('pm_read_v1'))).toBeNull();
+    expect(await page.locator('.fs-row.earned').count()).toBeGreaterThan(0);
+});
+
+test('a locked row opens a card that unlocks it', async ({ page }) => {
+    await openSheet(page);
+    const row = page.locator('.fs-row.locked').first();
+    const fid = await row.getAttribute('data-formula');
+    await expect(row.locator('.fs-away')).toHaveText(/\d+ questions? away/);
+    await row.click();
+    await page.waitForSelector('#notebookView:not([hidden])');
+    const uses = await page.evaluate(() => {
+        const id = decodeURIComponent(location.hash.replace('#/q/', ''));
+        const q = (window as any).PM_QUESTIONS.find((x: any) => x.question_id === id);
+        return q ? q.formulas || [] : [];
+    });
+    expect(uses).toContain(fid);
+});
+
+test('the sheet survives a reload and its rows are the authored data', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+    await readToEnd(page, 'ts_ipe_m1a_hf_sinh_five');
+    await leave(page);
+    await page.goto(URL + '#/formulas/mathematics');
+    await page.waitForSelector('#formulaSheet:not([hidden])');
+    const before = await page.locator('#fsheetCount').innerText();
+    expect(before).not.toMatch(/^0 of/);
+    await page.reload();
+    await page.waitForSelector('#formulaSheet:not([hidden])');
+    expect(await page.locator('#fsheetCount').innerText()).toBe(before);
+    // Every row's text is a string the BUILD emitted — the page computes which
+    // formulas are earned, never the formulas themselves (Rule 18).
+    const shown = await page.locator('.fs-row.earned .fs-text').evaluateAll(
+        (els) => els.map((e) => (e.textContent || '').trim()));
+    const authored: string[] = await page.evaluate(() => {
+        const out: string[] = [];
+        const sheet = (window as any).PM_FORMULAS.mathematics;
+        sheet.chapters.forEach((c: any) => c.formulas.forEach((f: any) => out.push(f.text)));
+        return out;
+    });
+    for (const s of shown) expect(authored).toContain(s);
+});
+
+test('the build ships no match signatures to the browser', async () => {
+    // `match` is the tagger's authoring data, stripped exactly as the recall
+    // rubric is. A signature on the page would be authoring noise a student can
+    // read, and the first step to someone treating it as content.
+    const html = readFileSync(DIST, 'utf8');
+    // Sliced, not regexed: the /s flag is past this project's TS target, and the
+    // data block is one assignment per line in a known order.
+    const key = 'window.PM_FORMULAS = ';
+    const start = html.indexOf(key);
+    expect(start).toBeGreaterThan(0);
+    const end = html.indexOf('window.PM_API_BASE', start);
+    const sheets = JSON.parse(html.slice(start + key.length, end).trim().replace(/;$/, ''));
+    for (const subject of Object.keys(sheets)) {
+        for (const ch of sheets[subject].chapters) {
+            for (const f of ch.formulas) {
+                expect(f.match).toBeUndefined();
+                expect(f.name).toBeTruthy();
+                expect(f.text).toBeTruthy();
+            }
+        }
+    }
+});

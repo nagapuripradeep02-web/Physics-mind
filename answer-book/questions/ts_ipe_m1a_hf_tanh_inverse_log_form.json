@@ -204,5 +204,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.hf.inverse_tanh"
+  ]
 }

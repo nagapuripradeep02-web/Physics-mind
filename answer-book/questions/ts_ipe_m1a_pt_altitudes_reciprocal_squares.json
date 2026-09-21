@@ -377,5 +377,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pt.altitudes",
+    "m1a.pt.cosine_rule",
+    "m1a.pt.sine_rule"
+  ]
 }

@@ -428,5 +428,9 @@
       }
     ]
   },
-  "insider_note": "Equal sides alone do not separate a rhombus from a square, so the diagonals have to be checked too. |AC| = √122 and |BD| = √74 are unequal, and that inequality is the deciding mark."
+  "insider_note": "Equal sides alone do not separate a rhombus from a square, so the diagonals have to be checked too. |AC| = √122 and |BD| = √74 are unequal, and that inequality is the deciding mark.",
+  "formulas": [
+    "m1a.av.magnitude",
+    "m1a.av.vector_between_points"
+  ]
 }

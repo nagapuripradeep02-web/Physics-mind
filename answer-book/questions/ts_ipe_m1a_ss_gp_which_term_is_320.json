@@ -171,5 +171,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.seq.gp_nth_term"
+  ]
 }

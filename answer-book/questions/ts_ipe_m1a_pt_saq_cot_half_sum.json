@@ -200,5 +200,6 @@
       }
     ]
   },
-  "insider_note": "Write each cotangent as s(s−a)/Δ so that s/Δ factors out. Then (s−a) + (s−b) + (s−c) = 3s − 2s = s, and that step finishes the proof."
+  "insider_note": "Write each cotangent as s(s−a)/Δ so that s/Δ factors out. Then (s−a) + (s−b) + (s−c) = 3s − 2s = s, and that step finishes the proof.",
+  "formulas": []
 }
