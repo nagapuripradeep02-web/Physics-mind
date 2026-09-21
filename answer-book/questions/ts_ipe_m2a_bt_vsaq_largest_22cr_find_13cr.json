@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find ¹³Cᵣ — how the largest coefficient of (1 + x)²² fixes r, and how ¹³C₁₁ is evaluated.",
   "insider_note": "n = 22 is even, so r = 11, and ¹³C₁₁ is read as ¹³C₂ by symmetry. Computing it from factorials by hand is the long way to the same one mark.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

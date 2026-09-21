@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would form the equation — say what two numbers you compute from the roots and which formula you put them into.",
   "insider_note": "i² = −1 makes the product 9 + 25, not 9 − 25, and −(α + β) with a negative sum makes the middle term POSITIVE. Both signs go against habit, and both marks sit on them.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

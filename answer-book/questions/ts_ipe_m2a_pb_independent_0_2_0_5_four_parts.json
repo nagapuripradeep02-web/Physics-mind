@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would find the four quantities for independent events with P(A) = 0.2 and P(B) = 0.5 — the rule each part uses and the number.",
   "insider_note": "Parts (i) and (ii) are one line each: for independent events a condition changes nothing. The only computation is part (iv).",
+  "formulas": [
+    "m2a.pr.addition",
+    "m2a.pr.independent"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

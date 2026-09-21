@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would prove this — how the half-angle identities rewrite 1 + cos θ + i sin θ, what De Moivre's theorem does to it, and how the two powers combine.",
   "insider_note": "Two of the seven marks are for the half-angle rewrite alone. Students who jump straight to De Moivre without taking 2cos(θ/2) outside lose them and get the wrong power.",
+  "formulas": [
+    "m2a.dm.add_conjugates",
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

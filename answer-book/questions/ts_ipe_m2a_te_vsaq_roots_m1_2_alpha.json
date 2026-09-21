@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say which root relation you would use to find α, and what it gives.",
   "insider_note": "The leading coefficient is 2, so the sum is −1/2, not −1; that division is the whole question.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would prove that 10 C 3 plus 10 C 6 equals 11 C 4.",
   "insider_note": "Pascal needs lower numbers one apart, so the one required move is ¹⁰C₆ = ¹⁰C₄. After it the identity gives ¹¹C₄ in one line — and a prove-that question ends at \"= R.H.S.\", not at the identity.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

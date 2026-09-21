@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find n — how you name the three coefficients, what the two ratios of consecutive coefficients give, and how the two relations are solved for n.",
   "insider_note": "The two ratios use two different formulas: (n − r + 1)/r for 84/36 and (n − r)/(r + 1) for 126/84. The question asks for n — stopping at r = 3 answers the wrong question.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

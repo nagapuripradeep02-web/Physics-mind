@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find these values of x — say what you find first, what the sign of a tells you, and how you write the answer.",
   "insider_note": "Rewrite as −3x² + 4x + 15 first: a = −3, so the expression is negative OUTSIDE its two roots. 'Between the roots' is the a > 0 habit, and here it is exactly where the expression is positive.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would prove this ratio of combinations — what you write each C as, how you split the factorials, and what cancels.",
   "insider_note": "The proof turns on splitting (4n)! into even and odd factors: there are 2n even numbers up to 4n, so the power of 2 is 2²ⁿ, not 2ⁿ — and (2n)! must be given the same even–odd split before anything cancels.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would find the maximum value of this expression — say what you call y, what equation in x you form, what condition x being real gives, and how the maximum comes out at the end.",
   "insider_note": "Treat y as a constant and set Δ ≥ 0 in x; dividing by −2 REVERSES the inequality. The asked answer is one number, the right end of the interval — not the interval itself, and not the left end that appears first.",
+  "formulas": [
+    "m2a.qe.discriminant",
+    "m2a.qe.sign"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

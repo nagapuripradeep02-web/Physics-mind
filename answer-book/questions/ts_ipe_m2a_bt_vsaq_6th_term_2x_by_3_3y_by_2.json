@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the 6th term — which r you use in the general term, and how the fractions cancel to a whole number.",
   "insider_note": "The 6th term is Tᵣ₊₁ with r = 5, not 6. The fractions are built to cancel — (2⁴/3⁴)(3⁵/2⁵) reduces to a single small fraction — so heavy arithmetic means a wrong r.",
+  "formulas": [
+    "m2a.bt.general_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

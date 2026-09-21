@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find x² + y² without expanding the square — what you take on both sides and what that gives.",
   "insider_note": "This is a modulus question, not an expansion question: x² + y² is |x + iy|², so take the modulus of both sides and square to get (a² + b²)². Expanding, comparing parts, then squaring and adding reaches the same answer with four times the work.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

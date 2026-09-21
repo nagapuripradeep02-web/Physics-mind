@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the sum of these four-digit numbers when one of the digits is zero — the count per place, the sum with the zero rule ignored, and how the leading-zero numbers are removed.",
   "insider_note": "The 0 is the whole difference from the 1, 3, 5, 7, 9 twin: sum all 120 arrangements first, then subtract the SUM of the 24 strings that start with 0 — 13,986, not their count. That correction carries two of the four marks.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

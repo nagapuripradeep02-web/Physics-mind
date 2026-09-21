@@ -67,6 +67,9 @@
   },
   "recall_prompt": "Say how you would find c and the three probabilities — what equation c satisfies, how you solve it, why two roots are rejected, and which values of X each probability covers.",
   "insider_note": "One full mark is the rejection line: test c = 1 and c = 2 against P(X = 2) = 5c − 1, show the values 4 and 9 cannot be probabilities, and only then keep c = 1/3 — a bare c = 1/3 with no reason is a half answer.",
+  "formulas": [
+    "m2a.rv.total_one"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

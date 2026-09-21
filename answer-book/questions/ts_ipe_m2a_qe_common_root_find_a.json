@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find this — say which equation you solve first and why, and what you do with each root you get.",
   "insider_note": "Solve the equation with no unknown in it — its two roots are the only candidates for the common root. Carry BOTH into the second equation: two values of α give two values of a, and one alone is a half answer.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

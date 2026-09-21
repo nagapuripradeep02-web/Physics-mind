@@ -71,6 +71,7 @@
   },
   "recall_prompt": "Say the addition theorem, then say how the proof goes — the two cases, and which two disjoint splittings the second case uses.",
   "insider_note": "The theorem is asked in its \"(or)\" form as often as by name; recognise both wordings. Most marks are lost by writing only the formula and skipping the two disjoint splittings.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

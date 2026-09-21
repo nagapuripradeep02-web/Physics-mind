@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would show this — what each bracket reduces to, and how the sixth powers are evaluated.",
   "insider_note": "Both brackets need the doubling: 1 + ω² = −ω gives −2ω, and 1 + ω = −ω² gives −2ω². The sixth power removes the minus sign and ω⁶ = ω¹² = 1, so each term is 64.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the 7th term — which r you use in the general term, and how the powers of 4, 2 and x combine.",
   "insider_note": "Take r = 6, and combine the constants through base 2: 4⁸/2⁶ is a single power of 2. The x-powers subtract to leave x¹² in the DENOMINATOR — subtracting the wrong way puts it on top.",
+  "formulas": [
+    "m2a.bt.general_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

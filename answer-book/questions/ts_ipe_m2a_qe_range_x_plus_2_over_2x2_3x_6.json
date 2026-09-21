@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would find the range of this expression — say what you call y, what equation you form, what condition you use because x is real, and how you get the answer for y at the end.",
   "insider_note": "The whole method is Δ ≥ 0 with y treated as a constant. Multiplying by −1 reverses the inequality, and both end values are reached at real x, so the brackets are square — round brackets lose the last mark.",
+  "formulas": [
+    "m2a.qe.discriminant",
+    "m2a.qe.sign"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

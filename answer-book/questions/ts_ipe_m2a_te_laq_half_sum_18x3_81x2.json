@@ -63,6 +63,9 @@
   },
   "recall_prompt": "Say how you would solve this — what the given condition tells you about the roots, how you name them, and which two relations you use.",
   "insider_note": "The first mark is for turning the words into 2β = α + γ; after that it is the A.P. question with three negative roots.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

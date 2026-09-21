@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for seven numbers — what you do to the data first, how you pick the median, and what you average at the end.",
   "insider_note": "The data must be put in ascending order and the median stated before any deviation is taken — the middle of the unsorted list is 3, not the true median 6.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

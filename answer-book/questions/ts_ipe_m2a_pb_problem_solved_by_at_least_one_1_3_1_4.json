@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find the probability that the problem is solved — the events, the complements, and why the complements are multiplied.",
   "insider_note": "\"Solved\" means at least one of them solves it. The short route is 1 − P(both fail); the long route P(A) + P(B) − P(A)P(B) gives the same 1/2 and is also accepted.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

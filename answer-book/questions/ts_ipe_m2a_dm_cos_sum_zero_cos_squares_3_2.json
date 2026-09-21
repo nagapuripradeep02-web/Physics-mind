@@ -67,6 +67,7 @@
   },
   "recall_prompt": "Say how you would prove this — what you call a, b, c, what squaring a + b + c = 0 gives, why the reciprocal sum is zero, and how the two identities for cos 2θ finish it.",
   "insider_note": "Five printed year tags. The one mark students most often lose is the middle one: showing 1/a + 1/b + 1/c = 0 explicitly, not just writing it.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

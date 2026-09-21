@@ -67,6 +67,10 @@
   },
   "recall_prompt": "Say how you would find k, the mean and P(0 < X < 5) from this table — what equation gives k, why one root is rejected, what you add for the mean, and which values of X the probability covers.",
   "insider_note": "Σ P(X = xᵢ) = 1 carries the first three marks and here it is a quadratic, 10k² + 9k − 1 = 0 — the lone k inside 7k² + k is the term most often dropped; k = −1 must be rejected in writing, because a probability cannot be negative.",
+  "formulas": [
+    "m2a.rv.mean",
+    "m2a.rv.total_one"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

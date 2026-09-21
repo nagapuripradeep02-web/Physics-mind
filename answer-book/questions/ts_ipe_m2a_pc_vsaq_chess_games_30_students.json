@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would count the chess games among thirty students — why a game is a selection of two, and the number.",
   "insider_note": "One game is one pair of students, so the count is ³⁰C₂ = 435. Any working that reaches 870 has counted each game twice, once from each player’s side.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

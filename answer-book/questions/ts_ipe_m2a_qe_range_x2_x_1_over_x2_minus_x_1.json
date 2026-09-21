@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would find the range of this expression — say what you call y, what equation you form, what condition you use because x is real, and how you get the answer for y at the end.",
   "insider_note": "Do not expand the discriminant: 4(y − 1)² is (2y − 2)², and a² − b² factorises the whole condition in one line. Both end values are reached, so the range takes square brackets — test the ends before choosing square or round brackets.",
+  "formulas": [
+    "m2a.qe.discriminant",
+    "m2a.qe.sign"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

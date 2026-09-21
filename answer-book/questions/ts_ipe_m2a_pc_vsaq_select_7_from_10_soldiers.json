@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would count the selections of seven soldiers from ten — why it is a combination, and the number.",
   "insider_note": "A selection has no order, so the answer is ¹⁰C₇ — and the short route is the complement, ¹⁰C₇ = ¹⁰C₃ = 120: three factors over 3! instead of seven.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

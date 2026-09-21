@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find the variance and standard deviation of grouped data by the step deviation method — what columns the table needs, what the variance formula does with the two sums, and how you finish.",
   "insider_note": "The last column is fᵢ·dᵢ² — frequency times the square — never (fᵢdᵢ)²; and the bracket value 2.01 is not yet the variance: the C² = 100 outside the bracket turns it into 201.",
+  "formulas": [
+    "m2a.md.standard_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

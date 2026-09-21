@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would show this sum of combinations equals thirty C four — what you write out first, which identity you use, and how it collapses.",
   "insider_note": "Write all five terms of the sum first — r = 0 gives ²⁹C₃ and r = 4 gives ²⁵C₃ — then start Pascal at the 25 pair, the only pair with a C₄ partner. Two of the four marks are the written chain ²⁶C₄, ²⁷C₄, ²⁸C₄, ²⁹C₄, ³⁰C₄, ending at \"= R.H.S.\".",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

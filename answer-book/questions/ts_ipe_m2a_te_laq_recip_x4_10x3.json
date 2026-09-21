@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would solve this reciprocal equation — what you divide by, what you substitute, and how each value of t gives two roots.",
   "insider_note": "Most students lose the −2 in x² + 1/x² = t² − 2; write the squaring line and the two 2-mark endings follow.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

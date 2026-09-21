@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find the probability that one person in ten is left-handed — what n, p and q are, and which term of the binomial formula you use.",
   "insider_note": "The book reads this as EXACTLY one left-handed person, P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10), and the ¹⁰C₁ = 10 cancels the 1/10 to leave (9/10)⁹. The English also allows 'at least one', which would be 1 − (9/10)¹⁰ and a very different number — write which reading you are taking.",
+  "formulas": [
+    "m2a.rv.binomial"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

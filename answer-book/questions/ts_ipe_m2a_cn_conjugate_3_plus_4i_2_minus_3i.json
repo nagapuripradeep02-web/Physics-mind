@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would find the conjugate of this product — what you do first, and what a conjugate changes.",
   "insider_note": "The order is fixed: multiply to one number a + ib, then flip only the sign of the i part. The product 18 − i is not the answer — the question asks for its conjugate, 18 + i, and stopping one line early loses the second mark.",
+  "formulas": [
+    "m2a.cn.conjugate",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

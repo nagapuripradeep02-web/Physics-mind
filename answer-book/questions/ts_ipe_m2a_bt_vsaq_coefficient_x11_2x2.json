@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the coefficient of x¹¹ — the power of x in the general term, the r that gives 11, and the coefficient.",
   "insider_note": "Write the general term first and collect the powers of x into 26 − 5r; set it equal to 11, not to zero — the term independent of x is not what is asked. The coefficient is everything except the x¹¹.",
+  "formulas": [
+    "m2a.bt.general_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -39,6 +39,10 @@
   },
   "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "tan θ = √3 also fits π/3, the first-quadrant point (1, √3) — the quadrant sentence is what separates the two and carries the second mark. (−1, −√3) is in the third quadrant, so θ = −π + π/3 = −2π/3.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.cn.polar_form"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

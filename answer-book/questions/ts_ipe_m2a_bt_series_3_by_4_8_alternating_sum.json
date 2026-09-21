@@ -46,6 +46,9 @@
   },
   "recall_prompt": "Say how you would find this sum — how you rewrite the terms, what you add to both sides and why, which standard form the alternating signs point to, how you find p, q and x, and how you get S back.",
   "insider_note": "Alternating signs mean the (1 + x) form, and the missing start is 1 − 1/4, added with its minus sign. The 3/4 comes off again at the end: S = √(2/3) − 3/4.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

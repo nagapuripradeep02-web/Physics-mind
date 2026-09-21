@@ -51,6 +51,11 @@
   },
   "recall_prompt": "Say how you would find k, the mean and the variance from a probability table — what equation gives k, and what you multiply and add for the mean and for the variance.",
   "insider_note": "The first two marks are for the equation Σ P(X = xᵢ) = 1 written out, not for k = 1/15 alone; and the variance subtracts μ², so the mean 11/3 has to be found before it.",
+  "formulas": [
+    "m2a.rv.mean",
+    "m2a.rv.total_one",
+    "m2a.rv.variance"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

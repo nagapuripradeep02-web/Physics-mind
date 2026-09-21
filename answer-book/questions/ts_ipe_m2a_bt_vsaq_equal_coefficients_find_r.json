@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find r — the coefficient of the k-th term, the rule for when two binomial coefficients are equal, and the value of r.",
   "insider_note": "Equal coefficients ⁿCᵣ = ⁿCₛ has two branches, r = s and r + s = n. The first gives only the same term twice — the real answer comes from the r + s = 21 branch, the one students forget.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

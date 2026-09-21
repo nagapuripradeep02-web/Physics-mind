@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would solve this — which roots you take out first and why, how you divide twice, and how the quotient is solved with t = x + 1/x.",
   "insider_note": "The x³ coefficient is 0 and must be written in the synthetic division; leaving the column out shifts every later entry.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find the first two terms of this binomial distribution — how you get n, p and q, and what r values the first two terms use.",
   "insider_note": "The first two terms are P(X = 0) and P(X = 1), not P(X = 1) and P(X = 2); in P(X = 1) = 9·(1/3)⁸·(2/3) the 9 cancels against 3², so the answer reduces to 2/3⁷.",
+  "formulas": [
+    "m2a.rv.binomial"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

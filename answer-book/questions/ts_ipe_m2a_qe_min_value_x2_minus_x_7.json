@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find the maximum or minimum value — say what decides which one it is, and what formula gives the value.",
   "insider_note": "b is −1, and (−1)² = 1 — the wrong square is the one slip in this question. The question asks for the minimum VALUE, not the x where it occurs.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

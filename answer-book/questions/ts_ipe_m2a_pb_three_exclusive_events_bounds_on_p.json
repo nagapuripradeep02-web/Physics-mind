@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would prove the bounds on p — the fact about every probability, the three separate inequalities, the inequality from the sum, and how the four combine.",
   "insider_note": "The sum inequality is the only step that uses \"mutually exclusive\", and it is the step that gives the lower bound 1/3. The single-event bounds alone give only p ≤ 1/2.",
+  "formulas": [
+    "m2a.pr.mutually_exclusive"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

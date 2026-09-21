@@ -42,6 +42,10 @@
   },
   "recall_prompt": "Say how you would resolve x³/((2x − 1)(x + 2)(x − 3)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "Write the constant 1/2 before the three fractions — the degrees are equal, so the fraction is improper; and fractions with 25 and 50 are expected here: A = −1/50 is correct, not a sign of an error.",
+  "formulas": [
+    "m2a.pf.improper",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

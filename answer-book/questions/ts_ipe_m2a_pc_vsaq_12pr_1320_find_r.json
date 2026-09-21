@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find r when 12 P r is 1320.",
   "insider_note": "The same product 12 · 11 · 10 = 1320 also appears when n is the unknown and r = 3, but here the unknown is r: count the factors written, 3 — the last factor 10 is not r.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

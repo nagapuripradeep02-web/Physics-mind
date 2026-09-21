@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would prove this — what you multiply the sum by and why, which identity raises the index to n + 1, what the new sum adds up to, and how you divide back to get S.",
   "insider_note": "Two multiplications, in order: by x so the powers match the denominators, then by n + 1. At the end divide by (n + 1)x — dividing by n + 1 alone leaves the x and loses the final mark.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

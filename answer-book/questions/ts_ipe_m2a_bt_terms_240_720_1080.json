@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find a, x and n — how you write the three terms, what dividing consecutive terms gives, how the two relations give n, and how you then get a and x.",
   "insider_note": "The 2nd term is Tᵣ₊₁ with r = 1, not r = 2. Divide consecutive terms so the powers of a and x cancel, and state all three values at the end — n alone is not the full answer.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

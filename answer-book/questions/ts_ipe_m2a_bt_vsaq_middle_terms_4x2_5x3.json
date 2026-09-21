@@ -34,6 +34,10 @@
   },
   "recall_prompt": "Say how you would find the middle terms — why an odd n gives two of them and which two, and what each comes to.",
   "insider_note": "n = 17 is odd, so there are TWO middle terms, the 9th and the 10th, and each has its own ¹⁷Cᵣ. Answering only T₉ is the standard half answer.",
+  "formulas": [
+    "m2a.bt.general_term",
+    "m2a.bt.middle_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

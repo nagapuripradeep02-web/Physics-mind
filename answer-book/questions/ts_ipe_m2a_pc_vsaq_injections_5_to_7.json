@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would count the injections from a five-element set to a seven-element set — what an injection is as a count, and the number.",
   "insider_note": "An injection gives the 5 elements different images chosen from 7, and which element takes which image matters — that sentence is the first mark, and it forces ⁷P₅ = 2520, not ⁷C₅ and not 7⁵.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

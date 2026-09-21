@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for eleven numbers — what you do to the data first, how you pick the median, and what you average at the end.",
   "insider_note": "Keep every repeated value when sorting, so n stays 11 and the median is the 6th value, 13; the two zero deviations still count, and the divisor stays n = 11.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would resolve (x² + 5x + 7)/(x − 3)³ into partial fractions — name each move in order.",
   "insider_note": "One linear factor cubed means the substitution x − 3 = y does the whole question — expand, divide term by term, no constants to solve; the last mark is putting y = x − 3 back.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

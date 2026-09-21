@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would prove 9t = 16 — what you add to both sides, what you compare with, how you find p, q and x, and why the power comes out as a plain fraction 25/9.",
   "insider_note": "No leading 1 is printed, so add 1 on both sides first. The power is (3/5)⁻² = 25/9 — the negative index inverts the fraction, and writing 9/25 is the one slip that stops 9t = 16.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

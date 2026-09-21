@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say which root relation you would use, and how the minus signs work out.",
   "insider_note": "Two minus signs meet here — the rule's and the constant term's — so the product is +a/4; one minus too few gives −36.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would show this — what the two ω brackets multiply to, and which factorisation finishes it.",
   "insider_note": "Multiply the two ω brackets first — putting (a + b) in first gives a cubic in ω that does not simplify. The second mark is recognising a² − ab + b² as the factor that makes (a + b)(a² − ab + b²) = a³ + b³.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

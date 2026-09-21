@@ -38,6 +38,7 @@
   },
   "recall_prompt": "Say how you would find the probability of 53 Sundays and of exactly 52 Sundays in a non-leap year — the extra day, the seven cases, and the two answers.",
   "insider_note": "A non-leap year is 52 full weeks plus ONE day; that one day fixes both answers. 52 Sundays \"only\" is the complement of 53, so it is 1 − 1/7 and not a fresh count.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

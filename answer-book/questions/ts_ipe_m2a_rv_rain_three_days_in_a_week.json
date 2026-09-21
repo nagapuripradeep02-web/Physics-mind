@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find the probability of rain on exactly three days of a week — what n, p and q are, and which term of the binomial formula you use.",
   "insider_note": "n comes from the week — n = 7, never 30 or 12; those two numbers only make p = 12/30 = 2/5, and 'just 3 days' means exactly 3, a single term with r = 3.",
+  "formulas": [
+    "m2a.rv.binomial"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

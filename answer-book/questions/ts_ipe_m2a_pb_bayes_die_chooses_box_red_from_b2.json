@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find the probability that the red ball came from B₂ — the events, why each box has prior 1/3, the three red-ball probabilities, the total, and Bayes.",
   "insider_note": "The die changes nothing: two faces out of six for each box is 1/3, the same as choosing a box at random. The fractions 2/5, 4/9, 2/9 have two different denominators, so the total needs the common denominator 45.",
+  "formulas": [
+    "m2a.pr.bayes"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

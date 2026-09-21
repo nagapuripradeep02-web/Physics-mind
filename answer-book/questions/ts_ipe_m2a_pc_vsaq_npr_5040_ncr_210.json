@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find n and r from n P r = 5040 and n C r = 210.",
   "insider_note": "Divide the two given numbers before anything else: ⁿPᵣ/ⁿCᵣ = r!, so r! = 5040/210 = 24 and r = 4. Then 5040 = 10 · 9 · 8 · 7 gives n = 10 — and the answer must state both letters.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

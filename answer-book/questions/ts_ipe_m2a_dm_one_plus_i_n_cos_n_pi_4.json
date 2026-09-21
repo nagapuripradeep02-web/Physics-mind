@@ -59,6 +59,11 @@
   },
   "recall_prompt": "Say how you would prove this — how you write 1 + i, what De Moivre's theorem does to it, and how the two powers of 2 combine at the end.",
   "insider_note": "The last line is where the mark goes: 2 times 2 to the n/2 is 2 to the (n + 2)/2, not 2 to the n. Write the exponent addition out.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.dm.add_conjugates",
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

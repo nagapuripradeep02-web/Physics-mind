@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean for eight numbers — what you find first and what you average at the end.",
   "insider_note": "The mean is exactly 10, so the value 10 contributes a zero deviation — it still counts in n = 8; dividing the sum 26 by 7 instead of 8 loses the second mark.",
+  "formulas": [
+    "m2a.md.mean",
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

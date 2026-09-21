@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would find the dictionary rank of PRISON — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "Every later block depends on the first line: alphabetical order is I, N, O, P, R, S, and O placed after P shifts every block. After P R is fixed there is no third-place block to add, because I is the smallest letter remaining.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

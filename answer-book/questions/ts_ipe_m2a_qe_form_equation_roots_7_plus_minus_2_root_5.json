@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would form the equation — say what two numbers you compute from the roots and which formula you put them into.",
   "insider_note": "The whole first mark is one square: (2√5)² = 4·5 = 20, not 10. The surds already cancel in the sum on their own — the product is where this question is decided.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

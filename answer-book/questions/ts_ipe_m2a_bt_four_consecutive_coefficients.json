@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would prove this — what the four coefficients are, the one identity that turns each fraction into (r + 1)/(n + 1), what the left side and the right side each reduce to, and why they are equal.",
   "insider_note": "The four coefficients start at a general r — ⁿCᵣ to ⁿCᵣ₊₃, never ⁿC₁ to ⁿC₄. The seventh mark is the one-line sentence that the reduced left and right sides are the same expression; reducing both and never saying so loses it.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

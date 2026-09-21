@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would solve this — which root you take out first and why, how you divide, and how the quotient is solved with t = x + 1/x.",
   "insider_note": "Four of the seven marks are the two endings; both discriminants (5 and −3) must be written, and the negative one gives i√3, not √3.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

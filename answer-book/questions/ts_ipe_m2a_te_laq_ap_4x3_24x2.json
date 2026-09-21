@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would solve a cubic whose roots are in A.P. — how you name the roots, which two relations you use, and what each one gives you.",
   "insider_note": "The book gives only the answer for this one; the working is the same six steps as the 8x³ question, and the product relation is where the fraction arithmetic sits.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

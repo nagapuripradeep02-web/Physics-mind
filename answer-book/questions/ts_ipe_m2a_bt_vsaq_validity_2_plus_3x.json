@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the set — how you take 2 out of the bracket, and the condition on x that makes the expansion valid.",
   "insider_note": "The condition is |3x/2| < 1 AFTER the 2 is factored out — never |2 + 3x| < 1. The interval is open: square brackets at the ends lose the mark.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

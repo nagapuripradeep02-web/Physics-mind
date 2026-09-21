@@ -63,6 +63,10 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean for six numbers — what you find first and what you average at the end.",
   "insider_note": "n = 6 counts the repeated 10 twice and divides both steps; the answer 16/6 = 2.666… is written 2.67, the two-decimal form this chapter uses.",
+  "formulas": [
+    "m2a.md.mean",
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

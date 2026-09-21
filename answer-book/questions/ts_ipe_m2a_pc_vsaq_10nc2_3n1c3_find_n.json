@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find n when 10 times n C 2 equals 3 times n plus 1 C 3.",
   "insider_note": "⁽ⁿ⁺¹⁾C₃ expands to exactly three factors, (n + 1)n(n − 1)/6, and the question is built around writing four. Once n(n − 1) is cancelled the equation is a single line.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

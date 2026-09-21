@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would resolve (2x² + 1)/(x³ − 1) into partial fractions — name each move in order.",
   "insider_note": "x³ − 1 factorises as (x − 1)(x² + x + 1) with the middle sign plus, and that quadratic must carry the numerator Bx + C; finding C = 0 at the end is correct, not a slip.",
+  "formulas": [
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

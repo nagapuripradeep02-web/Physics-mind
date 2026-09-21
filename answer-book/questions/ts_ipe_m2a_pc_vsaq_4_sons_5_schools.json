@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would count the ways of placing four sons in five schools with no two together — why it is a permutation, and the number.",
   "insider_note": "Distinct sons into distinct schools with no sharing is an arrangement question: ⁵P₄ = 120. The first mark is the sentence that says why — different schools for different sons — not the number.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

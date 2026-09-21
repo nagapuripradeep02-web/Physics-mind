@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would resolve (x² − x + 1)/((x + 1)(x − 1)²) into partial fractions — name each move in order.",
   "insider_note": "The repeated factor needs both B/(x − 1) and C/(x − 1)² in the form; there is no third root, so B can only come from comparing the x² coefficients — no substitution will produce it.",
+  "formulas": [
+    "m2a.pf.repeated",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

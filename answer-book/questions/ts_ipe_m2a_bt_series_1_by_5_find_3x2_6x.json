@@ -63,6 +63,9 @@
   },
   "recall_prompt": "Say how you would find 3x² + 6x — what you add to both sides, what you compare with, how you find p, q and y, and how the value of 1 + x gives the answer.",
   "insider_note": "Add 1 on both sides first — the printed series has no leading 1 to match the expansion. Finish by squaring 1 + x = √(5/3): the 3x² + 6x asked for appears on its own, with no need to solve for x.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

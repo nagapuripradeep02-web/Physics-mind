@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would find this — say which equation you solve first and why, and what you do with each root you get.",
   "insider_note": "The first equation has no unknown, so solve it and take both roots forward — each one gives its own p. Subtracting the equations instead mixes p and x in one line and solves nothing.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

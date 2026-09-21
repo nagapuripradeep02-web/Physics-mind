@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would prove this — what De Moivre's theorem gives for z²ⁿ, which double-angle identities reduce the numerator and the denominator, and what cancels at the end.",
   "insider_note": "The one move this question depends on is writing −2 sin² nθ as 2i² sin² nθ. Without it the numerator will not factor and nothing cancels.",
+  "formulas": [
+    "m2a.cn.i_squared",
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would prove the three results — what you call a, b, c, which identity gives the cubes, how De Moivre gives the triple angles, and where the third result comes from.",
   "insider_note": "Results (i) and (ii) are one equation read twice. Result (iii) needs a second idea, the reciprocals, and is where the last two marks are decided.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would find P(A), P(B), P(C) — how independence turns each given probability into a product, which pairs of equations are divided, and the three values.",
   "insider_note": "Dividing two equations that share two factors leaves P(X)/P(Xᶜ), and P(X)/(1 − P(X)) = k is a one-line solve. The third value comes from substituting the first two, not from another division.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

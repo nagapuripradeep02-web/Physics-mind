@@ -63,6 +63,7 @@
   },
   "recall_prompt": "Say how you would find the relation — the general term of each expansion, how you pick r to get x¹⁰ and x⁻¹⁰, what the two coefficients are, and how equating them gives ab = −1.",
   "insider_note": "Keep ¹¹C₄ and ¹¹C₇ unevaluated — 4 + 7 = 11 makes them equal, so they cancel — and keep the (−1)⁷ from the second bracket. That minus is what makes the answer ab = −1, not ab = 1.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

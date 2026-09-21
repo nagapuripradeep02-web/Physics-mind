@@ -39,6 +39,10 @@
   },
   "recall_prompt": "Say how you would find the middle term — how the parity of n decides how many there are and which one, and what the term comes to with its sign.",
   "insider_note": "n = 10 is even, so there is ONE middle term, the 6th. (−2y)⁵ keeps its minus — an odd power preserves the sign, and a positive final term shows it was dropped.",
+  "formulas": [
+    "m2a.bt.general_term",
+    "m2a.bt.middle_term"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

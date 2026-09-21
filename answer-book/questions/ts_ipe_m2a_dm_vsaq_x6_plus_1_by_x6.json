@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find this — what De Moivre gives for x⁶, what its reciprocal is, and what their sum is.",
   "insider_note": "The second mark depends on |x| = 1: only then is 1/x⁶ the conjugate of x⁶, so the sines cancel. The answer is 2cos 6θ — a stray i means the two were subtracted, and 2cos⁶ θ means the power was left on the cosine instead of the angle.",
+  "formulas": [
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

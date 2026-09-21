@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of twelve books, four alike copies of each of three titles, in a row — what you count first and which formula you use.",
   "insider_note": "The divisor is one 4! per title, three times in all: 12!/(4!·4!·4!) = 34,650. Writing 4! once counts the copies of two titles as if they were different books.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

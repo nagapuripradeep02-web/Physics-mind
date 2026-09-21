@@ -39,6 +39,10 @@
   },
   "recall_prompt": "Say how you would write a complex number in polar form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "tan θ = −√3 fits two angles and a calculator picks the wrong one; (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3. Simplify r = √28 to 2√7 — that is the expected form.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.cn.polar_form"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

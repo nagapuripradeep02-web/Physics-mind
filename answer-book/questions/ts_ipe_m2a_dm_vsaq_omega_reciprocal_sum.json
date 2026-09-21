@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would prove this — how the left side reduces, how the right side reduces, and why they are equal.",
   "insider_note": "Both sides come to −ω, and the question is not finished until the right side is reduced as well. The first mark is spotting that 2 + 5ω + 2ω² = 2(1 + ω + ω²) + 3ω = 3ω.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

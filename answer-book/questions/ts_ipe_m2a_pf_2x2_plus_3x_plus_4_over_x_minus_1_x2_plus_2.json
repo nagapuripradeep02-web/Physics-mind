@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would resolve (2x² + 3x + 4)/((x − 1)(x² + 2)) into partial fractions — name each move in order.",
   "insider_note": "x² + 2 has no real factors, so its numerator must be Bx + C, never a constant; after x = 1 gives A, the easy value x = 0 gives C, and only B needs a coefficient comparison.",
+  "formulas": [
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

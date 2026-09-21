@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of the word INDEPENDENCE — what you count first and which formula you use.",
   "insider_note": "Write INDEPENDENCE out and number the letters: 12 in all, with E four times, N three times and D twice. The D pair is the repeat most often missed, and one missed pair doubles the answer.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find the probability that A does not occur, and that neither A nor B occurs — which set each one is, and the numbers.",
   "insider_note": "\"Neither A nor B\" is the complement of \"A or B\", so it is 1 − P(A ∪ B). Students who write 1 − P(A ∩ B) get 0.7 and lose both marks of part (ii).",
+  "formulas": [
+    "m2a.pr.addition"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

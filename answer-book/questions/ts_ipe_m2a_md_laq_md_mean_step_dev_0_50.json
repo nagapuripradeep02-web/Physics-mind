@@ -67,6 +67,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the mean by the step deviation method — what you put in the table, how you get the mean from dᵢ, and what you divide at the end.",
   "insider_note": "Four of the seven marks are the two tables and every later number is computed from them: write A = 25 and C = 10 down first, and divide by N = 50, never by the 5 classes.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

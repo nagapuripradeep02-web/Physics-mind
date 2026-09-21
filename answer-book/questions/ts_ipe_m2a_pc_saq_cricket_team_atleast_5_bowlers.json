@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would count the teams — which compositions are allowed, how each is counted, and how you finish.",
   "insider_note": "\"At least 5 bowlers\" is exactly two cases here, 5 and 6, because only 6 bowlers exist. The case table carries its own mark, and the two case totals are added at the end, never multiplied.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

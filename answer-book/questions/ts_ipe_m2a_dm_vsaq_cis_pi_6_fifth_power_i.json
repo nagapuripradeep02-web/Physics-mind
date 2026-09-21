@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find this — what angle the base is, what De Moivre gives for the fifth powers, and what their difference is.",
   "insider_note": "Read √3/2 and 1/2 as cos π/6 and sin π/6 and the question is two lines. Two errors cost the marks: taking the angle as π/3, which is the other way round, and making sin(5π/6) negative — it is +1/2, so the answer is i.",
+  "formulas": [
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

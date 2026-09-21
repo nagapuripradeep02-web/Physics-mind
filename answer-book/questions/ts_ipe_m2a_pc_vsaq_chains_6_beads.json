@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would count the chains from six different beads — why the circular count is halved, and the number.",
   "insider_note": "A chain is a circle that can also be turned over, so the count is (n − 1)!/2 and the division by 2 is the mark students lose — 120 is the round-table answer, not the chain answer.",
+  "formulas": [
+    "m2a.pc.circular"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

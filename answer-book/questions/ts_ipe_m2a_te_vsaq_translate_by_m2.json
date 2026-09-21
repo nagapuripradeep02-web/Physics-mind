@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say what you replace x by and why the sign is plus, and how you get the new coefficients.",
   "insider_note": "Translate by −2 means replace x by x PLUS 2; the sign is the first mark and the one most often reversed.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

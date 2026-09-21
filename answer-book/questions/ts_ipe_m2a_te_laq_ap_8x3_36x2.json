@@ -59,6 +59,9 @@
   },
   "recall_prompt": "Say how you would solve a cubic whose roots are in A.P. — how you name the roots, which two relations you use, and what each one gives you.",
   "insider_note": "Two of the seven marks are the final three numbers; d = −3 is not a second answer, it lists the same roots in the other order.",
+  "formulas": [
+    "m2a.te.root_relations"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

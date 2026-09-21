@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would solve this reciprocal equation — what you divide by, what you substitute, and how each value of t gives two roots.",
   "insider_note": "The t = 5/2 ending factorises; students who reach for the quadratic formula there waste time they need for the surd ending.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would build the distribution of the sum of two dice and find its mean — how many outcomes there are, how you count each sum, and what you add at the end.",
   "insider_note": "The table is worth three marks and carries its own check: the counts 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 must add to 36; keep every probability over 36, so the pattern stays visible when the mean step adds the products.",
+  "formulas": [
+    "m2a.rv.mean"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

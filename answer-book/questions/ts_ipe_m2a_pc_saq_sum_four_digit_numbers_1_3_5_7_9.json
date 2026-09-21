@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would find the sum of all these four-digit numbers — how often a digit appears in a place, what each place contributes, and how you finish.",
   "insider_note": "The number the whole sum is built on is 24: each digit sits in each place ⁴P₃ = 24 times, while ⁵P₄ = 120 counts the numbers themselves. The sum is 24 · 25 · 1111, and the digit sum is 25, not 24.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

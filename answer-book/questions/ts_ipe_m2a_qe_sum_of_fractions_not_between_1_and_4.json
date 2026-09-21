@@ -71,6 +71,9 @@
   },
   "recall_prompt": "Say how you would show the expression never lies between 1 and 4 — say how you simplify it first, what you call y, what equation in x you form, what condition x being real gives, and how the conclusion comes out.",
   "insider_note": "Combine the three fractions first — the common denominator is already there and the numerator reduces to one linear term. 'Does not lie between' reverses the range habit: the product is ≥ 0, so y lies OUTSIDE the two values, and writing the between-answer proves the opposite of the claim.",
+  "formulas": [
+    "m2a.qe.discriminant"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find m — say what form you put the equation in, what condition equal roots gives, and how you solve it.",
   "insider_note": "Collect to standard form before touching Δ — the constant is 8m − 15, not −15. The question says 'values': there are two, and one alone is a half answer.",
+  "formulas": [
+    "m2a.qe.discriminant"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

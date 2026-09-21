@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would find the sum — what the conjugate does to an argument, and how the two fractions add.",
   "insider_note": "The whole question is the first move: a conjugate reflects a number in the real axis, so Arg z₁ = −π/5, not π/5. After that it is one fraction addition, −3π/15 + 5π/15 = 2π/15.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
