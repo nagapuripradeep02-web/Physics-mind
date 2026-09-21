@@ -91,7 +91,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ 1 + i = √2(cos π/4 + i sin π/4)"
+          {
+            "text": "\\therefore \\ 1\\ + \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -132,7 +136,11 @@
         "margin_note": "Third and fourth marks. The power n gives (√2)ⁿ and the angle nπ/4. Write (√2)ⁿ as 2 to the power n/2 on this line — the exponent in the final answer is built by adding to it.",
         "memory_tip": "Write (√2)ⁿ as 2 to the power n/2 on this line — the final exponent is built by adding to it.",
         "lines": [
-          "(1 + i)ⁿ = [√2(cos π/4 + i sin π/4)]ⁿ",
+          {
+            "text": "\\left(1\\ + \\ i\\right)^{n}\\ = \\ \\left[\\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "By De Moivre's theorem the angle is multiplied:",
             "added": true
@@ -184,7 +192,11 @@
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
         ],
         "lines_compact": [
-          "(1 + i)ⁿ = [√2(cos π/4 + i sin π/4)]ⁿ",
+          {
+            "text": "\\left(1\\ + \\ i\\right)^{n}\\ = \\ \\left[\\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= (\\sqrt{2})^{n}\\left[\\cos\\tfrac{n\\pi}{4} + i\\sin\\tfrac{n\\pi}{4}\\right]",
             "render": "katex",

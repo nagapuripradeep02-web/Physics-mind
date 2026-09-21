@@ -63,7 +63,11 @@
             "style": "heading"
           },
           "z = (cos θ, sin θ) means z = cos θ + i sin θ",
-          "1/z = 1/(cos θ + i sin θ)",
+          {
+            "text": "\\dfrac{1}{z} = \\ \\dfrac{1}{\\cos \\theta \\ + \\ i\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiply above and below by the conjugate",
           "of the denominator, cos θ − i sin θ:",
           "= (cos θ − i sin θ) ÷",

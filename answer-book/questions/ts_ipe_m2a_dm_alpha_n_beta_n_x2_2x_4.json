@@ -159,7 +159,11 @@
             "render": "katex",
             "added": true
           },
-          "∴ 1 + i√3 = 2(cos π/3 + i sin π/3)"
+          {
+            "text": "\\therefore \\ 1\\ + \\ i\\sqrt{3}\\ = \\ 2\\left(\\cos \\dfrac{\\pi }{3}\\ + \\ i\\sin \\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -198,7 +202,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ 1 + i√3 = 2(cos π/3 + i sin π/3)"
+          {
+            "text": "\\therefore \\ 1\\ + \\ i\\sqrt{3}\\ = \\ 2\\left(\\cos \\dfrac{\\pi }{3}\\ + \\ i\\sin \\dfrac{\\pi }{3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -210,9 +218,15 @@
         "margin_note": "Fourth mark. αⁿ = 2ⁿ[cos(nπ/3) + i sin(nπ/3)]: the modulus 2 is raised to n as an ordinary real number and the power moves onto the angle inside. Label it (1).",
         "memory_tip": "The power splits: r is raised as an ordinary number, the angle is multiplied. 2ⁿ outside, nπ/3 inside.",
         "lines": [
-          "αⁿ = (1 + i√3)ⁿ = [2(cos π/3 + i sin π/3)]ⁿ",
           {
-            "text": "= 2ⁿ(cos π/3 + i sin π/3)ⁿ",
+            "text": "\\alpha ^{n}\\ = \\ \\left(1\\ + \\ i\\sqrt{3}\\right)^{n}\\ = \\ \\left[2\\left(\\cos \\dfrac{\\pi }{3}\\ + \\ i\\sin \\dfrac{\\pi }{3}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 2^{n}\\left(\\cos \\dfrac{\\pi }{3}\\ + \\ i\\sin \\dfrac{\\pi }{3}\\right)^{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -255,7 +269,11 @@
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
         ],
         "lines_compact": [
-          "αⁿ = (1 + i√3)ⁿ = [2(cos π/3 + i sin π/3)]ⁿ",
+          {
+            "text": "\\alpha ^{n}\\ = \\ \\left(1\\ + \\ i\\sqrt{3}\\right)^{n}\\ = \\ \\left[2\\left(\\cos \\dfrac{\\pi }{3}\\ + \\ i\\sin \\dfrac{\\pi }{3}\\right)\\right]^{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ 2^{n}\\left[\\cos \\left(\\dfrac{n\\pi }{3}\\right)\\ + \\ i\\sin \\left(\\dfrac{n\\pi }{3}\\right)\\right]\\ \\dots \\left(1\\right)",
             "style": "normal",

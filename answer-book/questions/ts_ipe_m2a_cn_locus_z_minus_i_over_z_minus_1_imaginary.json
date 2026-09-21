@@ -195,12 +195,9 @@
         "lines_compact": [
           "Multiply above and below by (x − 1) − iy:",
           {
-            "text": "= [x + i(y − 1)][(x − 1) − iy]",
-            "style": "eq"
-          },
-          {
-            "text": "/ [(x − 1)² + y²]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left[x\\ + \\ i\\left(y\\ - \\ 1\\right)\\right]\\left[\\left(x\\ - \\ 1\\right)\\ - \\ iy\\right]}{\\left(x\\ - \\ 1\\right)^{2}\\ + \\ y^{2}}",
+            "style": "normal",
+            "render": "katex"
           },
           "Numerator = x(x − 1) − ixy + i(x − 1)(y − 1)",
           "+ y(y − 1)        (since −i² = 1)",

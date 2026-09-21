@@ -168,11 +168,9 @@
             "added": true
           },
           {
-            "text": "= (15 · 81 · 4 + 20 · 27 · 8",
-            "added": true
-          },
-          {
-            "text": "  + 15 · 9 · 16)/15625",
+            "text": "= \\ \\dfrac{15\\ \\cdot \\ 81\\ \\cdot \\ 4\\ + \\ 20\\ \\cdot \\ 27\\ \\cdot \\ 8\\ + \\ 15\\ \\cdot \\ 9\\ \\cdot \\ 16}{15625}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

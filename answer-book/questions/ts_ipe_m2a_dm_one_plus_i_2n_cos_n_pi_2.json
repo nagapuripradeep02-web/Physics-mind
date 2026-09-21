@@ -79,7 +79,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ 1 + i = √2(cos π/4 + i sin π/4)"
+          {
+            "text": "\\therefore \\ 1\\ + \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -120,9 +124,15 @@
         "margin_note": "Third and fourth marks. The power 2n goes on both parts: (√2)²ⁿ = 2ⁿ, and the angle becomes 2n · π/4 = nπ/2. Raise the modulus as an ordinary real number and multiply the angle by the same power.",
         "memory_tip": "The power 2n goes on both parts: (√2)²ⁿ = 2ⁿ, and 2n · π/4 = nπ/2.",
         "lines": [
-          "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
           {
-            "text": "= (√2)²ⁿ (cos π/4 + i sin π/4)²ⁿ",
+            "text": "\\left(1\\ + \\ i\\right)^{2n}\\ = \\ \\left[\\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)\\right]^{2n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\sqrt{2}\\right)^{2n}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)^{2n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -134,7 +144,9 @@
             "added": true
           },
           {
-            "text": "(cos π/4 + i sin π/4)²ⁿ",
+            "text": "\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)^{2n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -185,7 +197,11 @@
           "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
         ],
         "lines_compact": [
-          "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
+          {
+            "text": "\\left(1\\ + \\ i\\right)^{2n}\\ = \\ \\left[\\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ + \\ i\\sin \\dfrac{\\pi }{4}\\right)\\right]^{2n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\left(\\sqrt{2}\\right)^{2n}\\left[\\cos \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)\\ + \\ i\\sin \\left(2n\\ \\cdot \\ \\dfrac{\\pi }{4}\\right)\\right]",
             "style": "normal",

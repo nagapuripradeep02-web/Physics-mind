@@ -74,17 +74,32 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let z = sin π/8 + i cos π/8",
+          {
+            "text": "\\text{Let}\\ z\\ = \\ \\sin \\dfrac{\\pi }{8}\\ + \\ i\\cos \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Find}\\ \\dfrac{1}{z}\\text{by}\\ \\text{multiplying}\\ \\text{above}\\ \\text{and}\\ \\text{below}\\ \\text{by}",
             "style": "normal",
             "render": "katex"
           },
-          "the conjugate sin π/8 − i cos π/8:",
-          "1/z = (sin π/8 − i cos π/8)",
-          "  ÷ (sin²π/8 + cos²π/8)",
+          {
+            "text": "\\text{the}\\ \\text{conjugate}\\ \\sin \\dfrac{\\pi }{8}\\ - \\ i\\cos \\dfrac{\\pi }{8}:",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{1}{z} = \\ \\dfrac{\\sin \\tfrac{\\pi }{8}\\ - \\ i\\cos \\tfrac{\\pi }{8}}{\\sin ^{2}\\tfrac{\\pi }{8}\\ + \\ \\cos ^{2}\\tfrac{\\pi }{8}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "sin²θ + cos²θ = 1, so the bottom is 1:",
-          "1/z = sin π/8 − i cos π/8"
+          {
+            "text": "\\dfrac{1}{z} = \\ \\sin \\dfrac{\\pi }{8}\\ - \\ i\\cos \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -213,7 +228,11 @@
             "render": "katex",
             "added": true
           },
-          "z = sin π/8 + i cos π/8",
+          {
+            "text": "z\\ = \\ \\sin \\dfrac{\\pi }{8}\\ + \\ i\\cos \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)",
             "style": "normal",
@@ -260,7 +279,11 @@
           "Writing z = cis(π/8), ignoring the swap."
         ],
         "lines_compact": [
-          "z = sin π/8 + i cos π/8",
+          {
+            "text": "z\\ = \\ \\sin \\dfrac{\\pi }{8}\\ + \\ i\\cos \\dfrac{\\pi }{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\cos \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)\\ + \\ i\\sin \\left(\\dfrac{\\pi }{2} - \\ \\dfrac{\\pi }{8}\\right)",
             "style": "normal",

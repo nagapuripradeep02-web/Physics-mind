@@ -126,8 +126,9 @@
           },
           "Σ|xᵢ − M| = 27",
           {
-            "text": "M.D. = Σ|xᵢ − M|/n",
-            "style": "eq",
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ M\\right|}{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -173,7 +174,11 @@
         "lines_compact": [
           "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
           "Σ|xᵢ − M| = 27",
-          "M.D. = Σ|xᵢ − M|/n = 27/11 = 2.45",
+          {
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ M\\right|}{n} = \\ \\dfrac{27}{11} = \\ 2.45",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "∴ M.D. about the median = 2.45",
             "style": "boxed"
