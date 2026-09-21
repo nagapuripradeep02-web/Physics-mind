@@ -5,6 +5,10 @@
  *   npm run reel -- --q <id> --shot answer --out answer-book/tools/out/insta/p1.mp4
  *   npm run reel -- --shot door            # the door + group pick, no question
  *   npm run reel -- --q <id> --speed 4     # 52s of real writing -> a 13s Reel
+ *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --instant-scroll --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
+ *                                          # a PHASED figure: every tap lands at a pause, then Restart;
+ *                                          # --instant-scroll = no frame taken around a product scroll
+ *                                          #   (the sticky header composited 100-240 px low for ~160 ms)
  *
  * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
  * pace a STUDENT reads along with, and each step's marks land in the margin only
@@ -63,6 +67,10 @@ const VIEWPORT = (() => {
     return m ? { width: Number(m[1]), height: Number(m[2]) } : { width: 360, height: 640 };
 })();
 const DPR = 3;
+/** --instant-scroll: how long the page must have been still after a product
+    scroll before the next frame is taken. The displaced-header frames lasted
+    2 captures ≈ 160 ms (V06_HEART); 220 ms clears them with one capture to spare. */
+const SCROLL_SETTLE_MS = 220;
 
 /** Port 8100 is not arbitrary: it is in every Edge Function's AB_ALLOWED_ORIGINS
     and in the LOCAL_ORIGINS subset that classifies the ledger row as
@@ -101,7 +109,27 @@ type Beat =
     | { do: 'openVidi' }
     | { do: 'waitWritten'; maxMs?: number }
     | { do: 'waitFor'; selector: string; maxMs?: number }
-    | { do: 'waitReply'; maxMs?: number };
+    | { do: 'waitReply'; maxMs?: number }
+    // ── the phased-figure beats (--shot figure) ──────────────────────────────
+    // Reveal N steps OFF camera, instantly: the e2e's own trick — revealNext()
+    // starts a step, a second revealNext() 60 ms later is "Finish this step now"
+    // (typeLines.finish is synchronous), and `pm:step-revealed` says it landed.
+    // Default N = every step before the first `kind: 'diagram'` step.
+    | { do: 'revealInstant'; count?: number }
+    // Block until the figure sits at its k-th `pause` (0-based) with every
+    // element before it fully drawn. `playFigure` writes the pause's caption in
+    // the same synchronous call that sets `waiting = true`, so the caption text
+    // is a truthful outside read of "at pause k" — and a tap sent any earlier
+    // would complete the phase instantly (the impatience path), which is the
+    // one thing this shot must never film.
+    | { do: 'waitPhase'; pause: number; maxMs?: number }
+    // The tap that starts the next phase — the same code path as a thumb on the
+    // page (advance() → finishCurrent() → resume), stamped where the thumb lands.
+    | { do: 'tapFigure' }
+    // Bring an element back into frame with the eased pan, or do nothing if it
+    // already is. Used before Restart: completing the answer scrolls the Total
+    // block into view, which may leave the figure off-screen.
+    | { do: 'panTo'; selector: string; ms: number };
 
 /** What a shot may be pointed at. Everything is a flag with a default, so a shot
     stays data and the film's beats are recorded by name rather than by hand. */
@@ -118,11 +146,21 @@ interface ShotOpts {
     ask: string;
     /** The chip to tap by its label (`--shot vidi_chip`). */
     chip: string;
+    /** `--shot figure`: how long the drawn phase is held on screen before the
+        tap that starts the next one — the pause a student uses to copy it. */
+    holdMs: number;
+    /** `--shot figure`: the number of `pause` elements in the card's first
+        diagram step, read from the artifact (0 when the card has no phased figure). */
+    phases: number;
 }
 
 interface Shot {
     describe: string;
     beats: (opts: ShotOpts) => Beat[];
+    /** Beats that run BEFORE the first frame is captured and are never stamped
+        into the sidecar — how a shot arrives at its starting state (a card read
+        up to its figure) without filming the walk there. */
+    setup?: (opts: ShotOpts) => Beat[];
     /** The route to LOAD, when the shot does not start at the door/catalog.
         A shot that opens in the notebook navigates straight to `#/q/<id>` — the
         deep-link path a forwarded answer arrives on, which the router lets
@@ -239,6 +277,45 @@ const SHOTS: Record<string, Shot> = {
             { do: 'wait', ms: 3000 },              // the reply reads
         ],
     },
+    /** A PHASED figure, drawn phase by phase — the "watch it drawn" contract
+        (docs/ZOOLOGY_START_HERE.md §6). Phase 1 draws on its own once the figure
+        step is revealed; every later phase WAITS for a tap, and this shot only
+        ever taps at a pause, after `--hold-ms` of the drawn phase on screen. The
+        text steps before the figure are revealed off camera (`setup`), so frame 0
+        is the ruled page with the figure block centred — the product's own
+        `scrollIntoView` on the reveal frames it. Then the labels land, the answer
+        completes, and Restart is tapped on camera so the figure clears. Recorded
+        at speed 1: the sidecar's phase/tap times are real seconds for an edit
+        that time-lapses the drawing but keeps the pauses. The `answer` shot's
+        waitWritten cannot do this — `.btn-next` reads "Finish this step now"
+        through every pause, so it times out at each boundary. */
+    figure: {
+        startAt: ({ questionId }) => '#/q/' + encodeURIComponent(questionId),
+        describe: 'a phased figure drawn phase by phase — every tap lands at a pause, then Restart',
+        setup: ({ questionId }) => [
+            { do: 'wait', ms: 600 },
+            { do: 'openQuestion', id: questionId },
+            { do: 'revealInstant' },                 // the text steps before the figure, off camera
+            { do: 'wait', ms: 700 },                 // the last off-camera smooth scroll settles
+        ],
+        beats: ({ phases, holdMs }) => [
+            { do: 'wait', ms: 800 },
+            { do: 'revealNext' },                    // the figure step; phase 1 draws by itself
+            { do: 'waitPhase', pause: 0, maxMs: 5_000 },
+            ...Array.from({ length: Math.max(0, phases - 1) }, (_, k): Beat[] => [
+                // phase k+1's strokes landed and the engine is waiting: hold, then tap
+                { do: 'waitPhase', pause: k + 1, maxMs: 60_000 },
+                { do: 'wait', ms: holdMs },
+                { do: 'tapFigure' },
+            ]).flat(),
+            { do: 'waitWritten', maxMs: 60_000 },    // the last phase (labels) lands: "Answer complete"
+            { do: 'wait', ms: holdMs },
+            { do: 'panTo', selector: '.step-block[data-kind="diagram"]', ms: 1200 },
+            { do: 'wait', ms: 500 },
+            { do: 'click', selector: '#btnRestart' },
+            { do: 'wait', ms: 1500 },
+        ],
+    },
     // NO exam-eve shot, deliberately. Both the exam-eve list and Vidi's catalog
     // triage box gate on questions with stars >= 2, and only MATHS units carry
     // any — so on a physics chapter the view renders "Nothing to list yet."
@@ -301,7 +378,7 @@ function serveDist(dir: string): Promise<Server> {
     mp4 as `<out>.taps.json` so an edit can put a tap ripple exactly where the
     finger would be, cut to a named step, and tick when marks land. Always on:
     it is free and it is data. */
-type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav';
+type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav' | 'phase';
 type TakeEvent = { t: number; kind: TakeKind; label?: string; x?: number | null; y?: number | null };
 interface Take { t0: number; events: TakeEvent[] }
 const stamp = (take: Take) => (Date.now() - take.t0) / 1000;
@@ -436,15 +513,19 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             // function assigned to a name with its `__name()` helper, which does
             // not exist inside the page — `ReferenceError: __name is not defined`
             // at runtime, invisible at compile time.
+            // `__pmPanning` tells the --instant-scroll settle guard that these
+            // scrolls are the shot's own and must be filmed, not waited out.
             await page.evaluate(async ({ to, ms }) => {
                 const from = window.scrollY;
                 const steps = 60;
+                (window as any).__pmPanning = true;
                 for (let i = 1; i <= steps; i++) {
                     const p = i / steps;
                     const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
                     window.scrollTo(0, from + (to - from) * e);
                     await new Promise((r) => setTimeout(r, ms / steps));
                 }
+                (window as any).__pmPanning = false;
             }, { to: b.to, ms: b.ms });
             return;
         }
@@ -487,6 +568,95 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             }
             take.events.push({ t: stamp(take), kind: 'vidi' });
             return;
+        case 'revealInstant': {
+            // How many: every step before the first diagram step, unless told.
+            const n = b.count ?? await page.evaluate(() => {
+                const api = (window as any).PM_ANSWER;
+                const ids: string[] = api.getState().stepIds;
+                const steps: any[] = api.question.answer.steps;
+                const di = ids.findIndex((id) => steps.find((s) => s.id === id)?.kind === 'diagram');
+                return di < 0 ? ids.length - 1 : di;
+            });
+            for (let i = 0; i < n; i++) {
+                // Inline, not a named helper: see `pan` (the __name trap).
+                await page.evaluate(() => new Promise<void>((resolve) => {
+                    document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+                    (window as any).PM_ANSWER.revealNext();
+                    setTimeout(() => (window as any).PM_ANSWER.revealNext(), 60);
+                }));
+            }
+            return;
+        }
+        case 'waitPhase': {
+            // The probe returns the pause's caption (truthy) only when the
+            // figure shows it AND every element before that pause is at its
+            // final value by COMPUTED style — the inline value is set at the
+            // rAF while the transition is still running, the computed one is
+            // what is painted. Labels: opacity 1. Ink strokes: dashoffset ~0.
+            // Pencil strokes (clip-rect wipe): the rect at its full size.
+            const caption = await page.waitForFunction((k: number) => {
+                const wrap = document.querySelector('.step-block[data-kind="diagram"] .figure-wrap') as any;
+                const fig = wrap?._fig;
+                if (!fig) return null;
+                const els: any[] = fig.elements;
+                let at = -1, seen = -1;
+                for (let i = 0; i < els.length; i++) {
+                    if (els[i].type === 'pause' && ++seen === k) { at = i; break; }
+                }
+                if (at < 0) return null;
+                const cap = document.querySelector('.figure-caption')?.textContent ?? '';
+                if (cap !== (els[at].caption || '')) return null;
+                for (let i = 0; i < at; i++) {
+                    const e = els[i];
+                    if (e.type === 'pause') continue;
+                    const n = e._node;
+                    if (!n) return null;
+                    const cs = getComputedStyle(n);
+                    if (e.type === 'label') { if (cs.opacity !== '1') return null; continue; }
+                    if (e._clipRect) {
+                        const rc = getComputedStyle(e._clipRect);
+                        const bb = e._bb || { width: 0, height: 0 };
+                        if (parseFloat(rc.width) < bb.width + 7 || parseFloat(rc.height) < bb.height + 7) return null;
+                        continue;
+                    }
+                    if (parseFloat(cs.strokeDashoffset) >= 0.5) return null;
+                }
+                return cap || ' ';
+            }, b.pause, { timeout: b.maxMs ?? 60_000, polling: 100 })
+                .then((h) => h.jsonValue() as Promise<string>)
+                .catch(() => {
+                    // Keep the frames; say the sidecar cannot vouch for this pause.
+                    console.warn(`  ! waitPhase ${b.pause}: the figure did not reach that pause in time`);
+                    return '';
+                });
+            take.events.push({ t: stamp(take), kind: 'phase', label: String(caption).trim() });
+            return;
+        }
+        case 'tapFigure': {
+            // Where the thumb lands: the figure itself. The advance is the page
+            // API (same path as a tap on the notebook: advance → finishCurrent),
+            // never page.click — an actionability scroll would jerk the frame.
+            const box = await boxOf(page, '.step-block[data-kind="diagram"] .figure-wrap svg');
+            const label = await page.evaluate(
+                () => (document.querySelector('.figure-caption')?.textContent ?? '').trim());
+            await page.evaluate(() => (window as any).PM_ANSWER.revealNext());
+            take.events.push({ t: stamp(take), kind: 'tap', label, ...box });
+            return;
+        }
+        case 'panTo': {
+            const to = await page.evaluate((sel: string) => {
+                const el = document.querySelector(sel);
+                if (!el) return null;
+                const r = el.getBoundingClientRect();
+                // in frame already (below the sticky topbar, above the fold): no pan
+                if (r.top >= 110 && r.bottom <= window.innerHeight) return null;
+                return window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
+            }, b.selector);
+            if (to === null) return;
+            await runBeat(page, { do: 'pan', to: Math.max(0, to), ms: b.ms }, take);
+            take.events.push({ t: stamp(take), kind: 'nav', label: b.selector });
+            return;
+        }
     }
 }
 
@@ -582,6 +752,35 @@ async function main(): Promise<void> {
         await context.addInitScript(() => {
             try { localStorage.setItem('pm_internal', '1'); } catch { /* blocked storage */ }
         });
+        // --instant-scroll: no frame is taken while the product is scrolling.
+        // The product scrolls a revealed block into view with `behavior:
+        // 'smooth'`, and a screenshot taken around that scroll shows the sticky
+        // header composited with the scroll delta — 100–240 px low, the page
+        // already at its new offset (V06_HEART, measured on every frame with a
+        // logo-row scan: 13 such frames with smooth scrolls; 5 with the scrolls
+        // forced instant; 4 with the header made `position: fixed` on top of
+        // that, so it is the capture's compositing, not the header's CSS). Two
+        // halves, both opt-in under this flag so earlier shots keep their frames:
+        // (1) every programmatic scroll lands in one step (no mid-scroll frame);
+        // (2) the capture loop below holds its next screenshot until the page has
+        // been still for SCROLL_SETTLE_MS after the last scroll event. A `pan`
+        // beat scrolls from the recorder on purpose and is exempt (`__pmPanning`).
+        if (flag('instant-scroll')) {
+            await context.addInitScript(() => {
+                const si = Element.prototype.scrollIntoView;
+                Element.prototype.scrollIntoView = function (arg?: boolean | ScrollIntoViewOptions) {
+                    const o = typeof arg === 'object' && arg ? { ...arg, behavior: 'auto' as ScrollBehavior } : arg;
+                    return si.call(this, o);
+                };
+                const st = window.scrollTo.bind(window);
+                (window as any).scrollTo = (...a: any[]) => {
+                    if (a.length === 1 && a[0] && typeof a[0] === 'object') return st({ ...a[0], behavior: 'auto' });
+                    return (st as any)(...a);
+                };
+                (window as any).__pmScrollAt = -1e9;
+                addEventListener('scroll', () => { (window as any).__pmScrollAt = performance.now(); }, { capture: true, passive: true });
+            });
+        }
         // --track mpc/second_year/mpc_2 : start as a student who ALREADY chose at
         // the door. A multi-stream build shows the chooser on the bare landing
         // route, so without this the catalog never paints and #subjectSelect is
@@ -605,6 +804,8 @@ async function main(): Promise<void> {
             unit: arg('unit', 'physics_2-1'),
             ask: arg('ask', 'Can you explain step 3? I did not understand why the crest travels the full distance.'),
             chip: arg('chip', 'How to remember?'),
+            holdMs: Math.max(0, Number(arg('hold-ms', '2000')) || 0),
+            phases: 0,
         };
 
         const page = await context.newPage();
@@ -615,6 +816,28 @@ async function main(): Promise<void> {
         if (hide) await page.addStyleTag({ content: `${hide}{display:none!important}` });
         await page.waitForFunction(() => (window as any).PM_ANSWER, undefined, { timeout: 20_000 });
 
+        // The figure shot is data-driven by the card: how many pauses its first
+        // diagram step carries decides how many taps the shot makes. Read from
+        // the artifact, not typed — a card with no phased figure is refused
+        // rather than filmed as an empty walk.
+        opts.phases = await page.evaluate((id: string) => {
+            const qs: any[] = (window as any).PM_QUESTIONS || [];
+            const q = qs.find((x) => x.question_id === id);
+            const d = q?.answer?.steps?.find((s: any) => s.kind === 'diagram');
+            return d?.figure?.elements ? d.figure.elements.filter((e: any) => e.type === 'pause').length : 0;
+        }, questionId);
+        if (shotName === 'figure' && opts.phases < 2) {
+            throw new Error(`--shot figure: ${questionId} has no phased figure `
+                + `(${opts.phases} pause element${opts.phases === 1 ? '' : 's'}) — nothing to tap through`);
+        }
+
+        // Arrive at the starting state OFF camera: these beats are stamped on a
+        // scratch take that is thrown away, so t=0 stays the first frame.
+        if (shot.setup) {
+            const scratch: Take = { t0: Date.now(), events: [] };
+            for (const beat of shot.setup(opts)) await runBeat(page, beat, scratch);
+        }
+
         // Capture runs alongside the beats and takes frames as fast as
         // screenshot() returns; the real inter-frame gaps are what timing is
         // rebuilt from below, so an uneven rate costs nothing.
@@ -623,12 +846,58 @@ async function main(): Promise<void> {
         let n = 0;
         const t0 = Date.now();
         const take: Take = { t0, events: [] };
+        const settle = flag('instant-scroll');
+        let lastY = -1;
+        let retakes = 0;
+        let pre: { y: number; at: number; still: number; panning: boolean } | null = null;
         const capture = (async () => {
             while (capturing) {
-                const file = path.join(frameDir, `f${String(n++).padStart(5, '0')}.jpg`);
+                const file = path.join(frameDir, `f${String(n).padStart(5, '0')}.jpg`);
                 try {
+                    // --instant-scroll half (2). Before: hold this frame until the
+                    // page has been still for SCROLL_SETTLE_MS (a changed scrollY
+                    // counts even before its scroll event has fired; capped, so a
+                    // page that never settles still gets filmed). After: a scroll
+                    // that landed DURING the ~80 ms capture is the frame this guard
+                    // exists for (measured: holding only before turned one such
+                    // frame into a 7-frame freeze) — the file is dropped and the
+                    // frame re-taken once still. Up to 3 re-takes, then kept as is.
+                    // One probe per frame: the read taken after frame k's capture is
+                    // the read frame k+1 settles from (the probe costs a round trip,
+                    // and the capture rate is the product's real-speed smoothness).
+                    if (settle) {
+                        for (let k = 0; k < 12; k++) {
+                            if (!pre) {
+                                pre = await page.evaluate(() => ({
+                                    y: window.scrollY,
+                                    at: (window as any).__pmScrollAt as number,
+                                    still: performance.now() - (window as any).__pmScrollAt,
+                                    panning: !!(window as any).__pmPanning,
+                                }));
+                            }
+                            const moved = lastY >= 0 && pre.y !== lastY;
+                            lastY = pre.y;
+                            if (pre.panning || (!moved && pre.still > SCROLL_SETTLE_MS)) break;
+                            pre = null;
+                            await new Promise((r) => setTimeout(r, 50));
+                        }
+                    }
                     await page.screenshot({ path: file, type: 'jpeg', quality: 92 });
-                    frames.push({ file, t: (Date.now() - t0) / 1000 });
+                    const t = (Date.now() - t0) / 1000;
+                    if (settle) {
+                        const post = await page.evaluate(() => ({
+                            y: window.scrollY,
+                            at: (window as any).__pmScrollAt as number,
+                            still: performance.now() - (window as any).__pmScrollAt,
+                            panning: !!(window as any).__pmPanning,
+                        }));
+                        const dirty = !post.panning && !!pre && (post.y !== pre.y || post.at !== pre.at);
+                        pre = post;
+                        if (dirty && retakes < 3) { retakes++; fs.unlinkSync(file); continue; }
+                    }
+                    retakes = 0;
+                    n++;
+                    frames.push({ file, t });
                 } catch { break; }                   // page closed mid-shot
             }
         })();
