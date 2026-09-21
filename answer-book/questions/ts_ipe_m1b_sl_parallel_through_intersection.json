@@ -55,7 +55,11 @@
             "style": "heading"
           },
           "Given line is 3x + 4y = 7",
-          "(the slope of ax + by + c = 0 is −a/b; here a = 3, b = 4)",
+          {
+            "text": "\\left(\\text{the} \\text{slope} \\text{of} ax + by + c = 0 \\text{is} - \\dfrac{a}{b}; \\text{here} a = 3, b = 4\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{3}{4}",
             "style": "normal",

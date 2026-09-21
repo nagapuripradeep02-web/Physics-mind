@@ -263,8 +263,9 @@
             "added": true
           },
           {
-            "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
-            "style": "boxed"
+            "text": "\\therefore \\ \\tan \\left(\\theta _{1} + \\theta _{2}\\right)\\ = \\ \\dfrac{2b}{2a} = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -321,8 +322,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ tan(θ₁+θ₂) = 2b/2a = b/a",
-            "style": "boxed"
+            "text": "\\therefore \\ \\tan \\left(\\theta _{1} + \\theta _{2}\\right)\\ = \\ \\dfrac{2b}{2a} = \\ \\dfrac{b}{a}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

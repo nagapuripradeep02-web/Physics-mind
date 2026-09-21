@@ -71,7 +71,11 @@
             "style": "indent"
           },
           "Any parameter may be used. Put t = tan θ, so that",
-          "dy/dx = (dy/dθ) / (dx/dθ)"
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -199,17 +203,31 @@
         "margin_note": "Third mark. The factor 2 comes from the chain rule on 2θ and cancels between the two derivatives, so only the sign and b/a are left.",
         "lines": [
           {
-            "text": "(d/dθ(cos 2θ) = −sin 2θ · 2, by the chain rule)",
+            "text": "\\left(\\dfrac{d}{d\\theta }\\left(\\cos 2\\theta \\right)\\ = \\ - \\sin 2\\theta \\ \\cdot \\ 2,\\ \\text{by}\\ \\text{the}\\ \\text{chain}\\ \\text{rule}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dx/dθ = a(−sin 2θ)(2) = −2a sin 2θ",
           {
-            "text": "(d/dθ(sin 2θ) = cos 2θ · 2)",
+            "text": "\\dfrac{dx}{d\\theta }\\ = \\ a\\left( - \\sin 2\\theta \\right)\\left(2\\right)\\ = \\ - 2a\\sin 2\\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{d\\theta }\\left(\\sin 2\\theta \\right)\\ = \\ \\cos 2\\theta \\ \\cdot \\ 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "dy/dθ = b(cos 2θ)(2) = 2b cos 2θ",
           {
-            "text": "(the 2s cancel, and cos 2θ/sin 2θ = cot 2θ)",
+            "text": "\\dfrac{dy}{d\\theta }\\ = \\ b\\left(\\cos 2\\theta \\right)\\left(2\\right)\\ = \\ 2b\\cos 2\\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{the}\\ 2\\text{s}\\ \\text{cancel},\\ \\text{and}\\ \\dfrac{\\cos 2\\theta }{\\sin 2\\theta } = \\ \\cot 2\\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -247,8 +265,16 @@
         ],
         "memory_tip": "cos over sin is cot, sin over cos is tan — the answer here is a cot because cos 2θ is on top.",
         "lines_compact": [
-          "dx/dθ = a(−sin 2θ)(2) = −2a sin 2θ",
-          "dy/dθ = b(cos 2θ)(2) = 2b cos 2θ",
+          {
+            "text": "\\dfrac{dx}{d\\theta }\\ = \\ a\\left( - \\sin 2\\theta \\right)\\left(2\\right)\\ = \\ - 2a\\sin 2\\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{d\\theta }\\ = \\ b\\left(\\cos 2\\theta \\right)\\left(2\\right)\\ = \\ 2b\\cos 2\\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{2b\\cos 2\\theta }{ - 2a\\sin 2\\theta } = \\ - \\left(\\dfrac{b}{a}\\right)\\cot 2\\theta",
             "style": "normal",
@@ -294,8 +320,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dx = b(t² − 1) / (2at)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{b\\left(t^{2}\\ - \\ 1\\right)}{2at}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -338,8 +365,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ dy/dx = b(t² − 1) / (2at)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{b\\left(t^{2}\\ - \\ 1\\right)}{2at}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

@@ -112,10 +112,10 @@
             "style": "indent",
             "added": true
           },
-          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
           {
-            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
-            "style": "indent"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2}\\ + \\ b_{1}^{2}\\ + \\ c_{1}^{2}\\right)\\left(a_{2}^{2}\\ + \\ b_{2}^{2}\\ + \\ c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "(put a₁ = 2, b₁ = −1, c₁ = 1 and a₂ = 1, b₂ = 1, c₂ = 2)",
@@ -183,10 +183,10 @@
           "Adding the two sums of squares instead of multiplying them."
         ],
         "lines_compact": [
-          "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂|",
           {
-            "text": "  / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
-            "style": "indent"
+            "text": "\\therefore \\ \\cos \\theta \\ = \\ \\dfrac{\\left|a_{1}a_{2}\\ + \\ b_{1}b_{2}\\ + \\ c_{1}c_{2}\\right|}{\\sqrt{\\left(a_{1}^{2}\\ + \\ b_{1}^{2}\\ + \\ c_{1}^{2}\\right)\\left(a_{2}^{2}\\ + \\ b_{2}^{2}\\ + \\ c_{2}^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{\\left|2\\left(1\\right)\\ - \\ 1\\left(1\\right)\\ + \\ 1\\left(2\\right)\\right|}{\\sqrt{\\left(2^{2}\\ + \\ \\left( - 1\\right)^{2}\\ + \\ 1^{2}\\right)\\left(1^{2}\\ + \\ 1^{2}\\ + \\ 2^{2}\\right)}}",

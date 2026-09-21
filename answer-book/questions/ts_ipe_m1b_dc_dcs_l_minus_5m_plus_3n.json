@@ -165,7 +165,11 @@
             "text": "(a product is 0 when one of its factors is 0)",
             "added": true
           },
-          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
+          {
+            "text": "\\Rightarrow 3m - 2n = 0 \\Rightarrow m = \\dfrac{2n}{3} \\left(\\text{or}\\right) 2m - n = 0 \\Rightarrow m = \\dfrac{n}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -207,7 +211,11 @@
             "style": "indent"
           },
           "⇒ (3m − 2n)(2m − n) = 0",
-          "⇒ 3m − 2n = 0 ⇒ m = 2n/3  (or)  2m − n = 0 ⇒ m = n/2"
+          {
+            "text": "\\Rightarrow 3m - 2n = 0 \\Rightarrow m = \\dfrac{2n}{3} \\left(\\text{or}\\right) 2m - n = 0 \\Rightarrow m = \\dfrac{n}{2}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -321,7 +329,11 @@
             "text": "(divide by n and multiply by 2)",
             "added": true
           },
-          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
+          {
+            "text": "\\text{Now}, l : m : n = - \\dfrac{n}{2} : \\dfrac{n}{2} : n = - \\dfrac{1}{2} : \\dfrac{1}{2} : 1 = - 1 : 1 : 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ],
         "recall": {
@@ -362,7 +374,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Now, l : m : n = −n/2 : n/2 : n = −1/2 : 1/2 : 1 = −1 : 1 : 2",
+          {
+            "text": "\\text{Now}, l : m : n = - \\dfrac{n}{2} : \\dfrac{n}{2} : n = - \\dfrac{1}{2} : \\dfrac{1}{2} : 1 = - 1 : 1 : 2",
+            "style": "normal",
+            "render": "katex"
+          },
           "So, d.r's of L₂ = (a₂, b₂, c₂) = (−1, 1, 2)  ……(4)"
         ]
       },

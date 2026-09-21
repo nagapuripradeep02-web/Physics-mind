@@ -55,11 +55,19 @@
           "Let y = 7ˣ³⁺³ˣ",
           "The base 7 is a constant and the exponent",
           "is a function of x, so the rule is",
-          "d/dx(aᵘ) = aᵘ · logₑa · du/dx",
+          {
+            "text": "\\dfrac{d}{dx}\\left(a^{u}\\right)\\ = \\ a^{u}\\ \\cdot \\ \\log _{e}a\\ \\cdot \\ \\dfrac{du}{dx}",
+            "style": "normal",
+            "render": "katex"
+          },
           "(compare 7ˣ³⁺³ˣ with aᵘ)",
           "Here a = 7 and u = x³ + 3x",
           "(put a = 7 and u = x³ + 3x in the rule)",
-          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · d/dx(x³ + 3x)"
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 7^{x^{3}\\ + \\ 3x}\\ \\cdot \\ \\log _{e}7\\ \\cdot \\ \\dfrac{d}{dx}\\left(x^{3}\\ + \\ 3x\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -118,14 +126,19 @@
             "render": "katex",
             "added": true
           },
-          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 7^{x^{3}\\ + \\ 3x}\\ \\cdot \\ \\log _{e}7\\ \\cdot \\ 3\\left(x^{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(the same product, with the factor 3(x² + 1) written first)",
             "added": true
           },
           {
-            "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(7^{x^{3}\\ + \\ 3x}\\right)\\ = \\ 3\\left(x^{2}\\ + \\ 1\\right) \\cdot 7^{x^{3}\\ + \\ 3x} \\cdot \\log _{e}7",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,10 +174,15 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ dy/dx = 7ˣ³⁺³ˣ · logₑ7 · 3(x² + 1)",
           {
-            "text": "∴ d/dx(7ˣ³⁺³ˣ) = 3(x² + 1)·7ˣ³⁺³ˣ·logₑ7",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ 7^{x^{3}\\ + \\ 3x}\\ \\cdot \\ \\log _{e}7\\ \\cdot \\ 3\\left(x^{2}\\ + \\ 1\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d}{dx}\\left(7^{x^{3}\\ + \\ 3x}\\right)\\ = \\ 3\\left(x^{2}\\ + \\ 1\\right) \\cdot 7^{x^{3}\\ + \\ 3x} \\cdot \\log _{e}7",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

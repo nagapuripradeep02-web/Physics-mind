@@ -244,10 +244,16 @@
             "render": "katex"
           },
           {
-            "text": "(multiply both sides by v = xˢⁱⁿˣ; sin x · (1/x) = (sin x)/x)",
+            "text": "\\left(\\text{multiply}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ v\\ = \\ x^{\\sin x};\\ \\sin x\\ \\cdot \\ \\left(\\dfrac{1}{x}\\right)\\ = \\ \\dfrac{\\sin x}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "∴ dv/dx = xˢⁱⁿˣ [cos x · log x + (sin x)/x]"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ x^{\\sin x}\\left[\\cos x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\sin x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -287,7 +293,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ dv/dx = xˢⁱⁿˣ [cos x · log x + (sin x)/x]"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ x^{\\sin x}\\left[\\cos x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\sin x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -322,8 +332,9 @@
             "render": "katex"
           },
           {
-            "text": "+ xˢⁱⁿˣ [cos x · log x + (sin x)/x]",
-            "style": "boxed"
+            "text": "+ \\ x^{\\sin x}\\left[\\cos x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\sin x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -366,8 +377,9 @@
             "render": "katex"
           },
           {
-            "text": "+ xˢⁱⁿˣ [cos x · log x + (sin x)/x]",
-            "style": "boxed"
+            "text": "+ \\ x^{\\sin x}\\left[\\cos x\\ \\cdot \\ \\log x\\ + \\ \\dfrac{\\sin x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

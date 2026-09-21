@@ -75,7 +75,11 @@
             "render": "katex"
           },
           "Divide numerator and denominator by cos9°:",
-          "(cos9° ≠ 0, and sin9°/cos9° = tan9°)",
+          {
+            "text": "\\left(\\cos 9^{\\circ}\\ \\ne \\ 0,\\ \\text{and}\\ \\dfrac{\\sin 9^{\\circ}}{\\cos 9^{\\circ}} = \\ \\tan 9^{\\circ}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{1\\ + \\ \\tan 9^{\\circ}}{1\\ - \\ \\tan 9^{\\circ}}",
             "style": "normal",

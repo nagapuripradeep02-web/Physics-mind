@@ -161,7 +161,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "since θ/2 lies in (−π/4, π/4)",
+          {
+            "text": "\\text{since}\\ \\dfrac{\\theta }{2}\\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{4},\\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put θ = Tan⁻¹x)",
             "added": true
@@ -221,7 +225,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "since θ/2 lies in (−π/4, π/4)",
+          {
+            "text": "\\text{since}\\ \\dfrac{\\theta }{2}\\ \\text{lies}\\ \\text{in}\\ \\left( - \\dfrac{\\pi }{4},\\ \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\theta \\ = \\ \\operatorname{Tan}^{-1} x,\\ \\text{so}\\ y\\ = \\ \\left(\\dfrac{1}{2}\\right)\\operatorname{Tan}^{-1} x",
             "style": "normal",

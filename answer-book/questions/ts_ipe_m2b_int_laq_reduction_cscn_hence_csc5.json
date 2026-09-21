@@ -199,7 +199,11 @@
         "margin_note": "Solution",
         "lines": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = −cosec³x cotx/4 + (3/4)I₃",
+          {
+            "text": "I_{5}\\ = \\ - \\dfrac{\\operatorname{cosec} ^{3}x\\cot x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
             "style": "normal",
@@ -221,7 +225,11 @@
             "render": "katex",
             "added": true
           },
-          "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
+          {
+            "text": "\\therefore \\ I\\ = \\ - \\dfrac{\\operatorname{cosec} ^{3}x\\cot x}{4} - \\ \\left(\\dfrac{3}{8}\\right)\\operatorname{cosec} x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
             "style": "boxed",
@@ -236,7 +244,11 @@
         "memory_tip": "Differentiate the final answer to check: only −cosec³x cotx/4 − (3/8)cosecx cotx + (3/8)log|tan(x/2)| gives back cosec⁵x.",
         "lines_compact": [
           "Put n = 5, 3 successively in (1):",
-          "I₅ = −cosec³x cotx/4 + (3/4)I₃",
+          {
+            "text": "I_{5}\\ = \\ - \\dfrac{\\operatorname{cosec} ^{3}x\\cot x}{4} + \\ \\left(\\dfrac{3}{4}\\right)I_{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "I_{3}\\ = \\ - \\dfrac{\\operatorname{cosec} x\\cot x}{2} + \\ \\left(\\dfrac{1}{2}\\right)I_{1},",
             "style": "normal",
@@ -252,7 +264,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ I = −cosec³x cotx/4 − (3/8)cosecx cotx",
+          {
+            "text": "\\therefore \\ I\\ = \\ - \\dfrac{\\operatorname{cosec} ^{3}x\\cot x}{4} - \\ \\left(\\dfrac{3}{8}\\right)\\operatorname{cosec} x\\cot x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "+ \\ \\left(\\dfrac{3}{8}\\right)\\log \\left|\\tan \\left(\\dfrac{x}{2}\\right)\\right|\\ + \\ c",
             "style": "boxed",

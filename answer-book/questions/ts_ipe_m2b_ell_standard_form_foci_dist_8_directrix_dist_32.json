@@ -147,7 +147,9 @@
             "render": "katex"
           },
           {
-            "text": "(ae × a/e = a², since e/e = 1)",
+            "text": "\\left(ae\\ \\times \\ \\dfrac{a}{e} = \\ a^{2},\\ \\text{since}\\ \\dfrac{e}{e} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

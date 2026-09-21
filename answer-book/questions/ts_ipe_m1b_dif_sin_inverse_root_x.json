@@ -109,7 +109,9 @@
         "memory_tip": "√x times √(1 − x) is √(x(1 − x)), and x(1 − x) expands to x − x².",
         "lines": [
           {
-            "text": "(√x = x¹ᐟ², so d/dx(√x) = ½x⁻¹ᐟ² = 1/(2√x))",
+            "text": "\\left(\\sqrt{x}\\ = \\ x^{1/2},\\ \\text{so}\\ \\dfrac{d}{dx}\\left(\\sqrt{x}\\right)\\ = \\ \\dfrac{1}{2}x^{-1/2}\\ = \\ \\dfrac{1}{2\\sqrt{x}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

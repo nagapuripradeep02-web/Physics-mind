@@ -138,20 +138,34 @@
             "render": "katex"
           },
           {
-            "text": "(take out e⁻ˣ⁄²/2 from both terms)",
+            "text": "\\left(\\text{take}\\ \\text{out}\\ \\dfrac{e^{-x/2}}{2}\\ \\text{from}\\ \\text{both}\\ \\text{terms}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
+          {
+            "text": "= \\ \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left[2\\left(2x\\ + \\ 3\\right)\\ - \\ \\left(x^{2}\\ + \\ 3x\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2(2x + 3) = 4x + 6, and 4x − 3x = x)",
             "added": true
           },
-          "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
+          {
+            "text": "= \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left(4x + 6 - x^{2} - 3x\\right) = \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left( - x^{2} + x + 6\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−x² + x + 6 = −(x² − x − 6) = −(x − 3)(x + 2))",
             "added": true
           },
-          "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
+          {
+            "text": "= \\ - \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a product is 0 only when a factor is 0)",
             "added": true
@@ -212,9 +226,21 @@
             "style": "indent",
             "render": "katex"
           },
-          "= (e⁻ˣ⁄²/2)[2(2x + 3) − (x² + 3x)]",
-          "= (e⁻ˣ⁄²/2)(4x + 6 − x² − 3x) = (e⁻ˣ⁄²/2)(−x² + x + 6)",
-          "= −(e⁻ˣ⁄²/2)(x − 3)(x + 2)",
+          {
+            "text": "= \\ \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left[2\\left(2x\\ + \\ 3\\right)\\ - \\ \\left(x^{2}\\ + \\ 3x\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left(4x + 6 - x^{2} - 3x\\right) = \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left( - x^{2} + x + 6\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ - \\left(\\dfrac{e^{-x/2}}{2}\\right)\\left(x\\ - \\ 3\\right)\\left(x\\ + \\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "e⁻ˣ⁄² > 0 for every real x, so f′(x) = 0 ⇒ (x − 3)(x + 2) = 0",
           {
             "text": "  ⇒ x = 3 or x = −2",

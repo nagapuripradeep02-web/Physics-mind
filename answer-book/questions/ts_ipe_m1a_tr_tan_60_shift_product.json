@@ -136,13 +136,21 @@
             "text": "(60° ± 6° = 54°, 66°; divide both sides by tan54°)",
             "added": true
           },
-          "⇒ tan6° tan66° = tan18°/tan54°",
+          {
+            "text": "\\Rightarrow \\ \\tan 6^{\\circ}\\tan 66^{\\circ}\\ = \\ \\dfrac{\\tan 18^{\\circ}}{\\tan 54^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put A = 18°: tan18° tan78° tan42° = tan54°",
           {
             "text": "(60° ± 18° = 42°, 78°; divide both sides by tan18°)",
             "added": true
           },
-          "⇒ tan42° tan78° = tan54°/tan18°",
+          {
+            "text": "\\Rightarrow \\ \\tan 42^{\\circ}\\tan 78^{\\circ}\\ = \\ \\dfrac{\\tan 54^{\\circ}}{\\tan 18^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiplying these two results:",
           {
             "text": "(tan18° and tan54° cancel on the right)",
@@ -184,9 +192,17 @@
         ],
         "lines_compact": [
           "Put A = 6°: tan6° tan66° tan54° = tan18°",
-          "⇒ tan6° tan66° = tan18°/tan54°",
+          {
+            "text": "\\Rightarrow \\ \\tan 6^{\\circ}\\tan 66^{\\circ}\\ = \\ \\dfrac{\\tan 18^{\\circ}}{\\tan 54^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Put A = 18°: tan18° tan78° tan42° = tan54°",
-          "⇒ tan42° tan78° = tan54°/tan18°",
+          {
+            "text": "\\Rightarrow \\ \\tan 42^{\\circ}\\tan 78^{\\circ}\\ = \\ \\dfrac{\\tan 54^{\\circ}}{\\tan 18^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Multiplying these two results:",
           {
             "text": "tan6° tan42° tan66° tan78° = 1",

@@ -135,7 +135,11 @@
             "text": "(put x = cos 2θ and use the two identities)",
             "added": true
           },
-          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
+          {
+            "text": "\\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}}\\ = \\ \\sqrt{\\dfrac{2\\sin ^{2} \\theta }{2\\cos ^{2} \\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\text{the}\\ 2s\\ \\text{cancel};\\ \\dfrac{\\sin ^{2} \\theta }{\\cos ^{2} \\theta } = \\ \\tan ^{2} \\theta \\ \\text{and}\\ \\sqrt{p^{2}}\\ = \\ \\left|p\\right|\\right)",
             "style": "normal",
@@ -192,7 +196,11 @@
         "memory_tip": "Remember the pair: 1 MINUS cos 2θ = 2 SIN²θ and 1 PLUS cos 2θ = 2 COS²θ.",
         "lines_compact": [
           "1 − cos 2θ = 2sin²θ   and   1 + cos 2θ = 2cos²θ",
-          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ)",
+          {
+            "text": "\\sqrt{\\dfrac{1\\ - \\ x}{1\\ + \\ x}}\\ = \\ \\sqrt{\\dfrac{2\\sin ^{2} \\theta }{2\\cos ^{2} \\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = √(tan²θ) = |tan θ|",
             "style": "indent"

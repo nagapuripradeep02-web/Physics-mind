@@ -141,14 +141,19 @@
             "text": "(take logₑ of both sides)",
             "added": true
           },
-          "2y = logₑ((1 + x)/(1 − x))",
+          {
+            "text": "2y\\ = \\ \\log _{e}\\left(\\dfrac{1\\ + \\ x}{1\\ - \\ x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(divide by 2)",
             "added": true
           },
           {
-            "text": "∴ Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
-            "style": "boxed"
+            "text": "\\therefore \\ \\operatorname{Tanh}^{-1}x\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{1\\ + \\ x}{1\\ - \\ x}\\right)",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -196,10 +201,15 @@
           },
           "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
           "The ratio is positive, so its logarithm exists",
-          "2y = logₑ((1 + x)/(1 − x))",
           {
-            "text": "∴ Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
-            "style": "boxed"
+            "text": "2y\\ = \\ \\log _{e}\\left(\\dfrac{1\\ + \\ x}{1\\ - \\ x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\operatorname{Tanh}^{-1}x\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{1\\ + \\ x}{1\\ - \\ x}\\right)",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

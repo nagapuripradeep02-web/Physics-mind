@@ -54,7 +54,11 @@
           },
           "Here log means the natural logarithm logₑ.",
           "(log 1 = 0)",
-          "Putting x = 0 gives log 1 / 0 = 0/0,",
+          {
+            "text": "\\text{Putting}\\ x\\ = \\ 0\\ \\text{gives}\\ \\dfrac{\\log 1}{0} = \\ \\dfrac{0}{0},",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the expression is rewritten first.",
           {
             "text": "\\left(5\\ \\cdot \\ \\dfrac{1}{5x} = \\ \\dfrac{1}{x},\\ \\text{so}\\ \\text{the}\\ \\text{value}\\ \\text{is}\\ \\text{unchanged}\\right)",
@@ -117,7 +121,9 @@
         "lines": [
           "Put t = 5x. As x → 0, t → 0.",
           {
-            "text": "(the standard limit lim(t → 0) log(1 + t)/t = 1)",
+            "text": "\\left(\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\log \\left(1\\ + \\ t\\right)}{t} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

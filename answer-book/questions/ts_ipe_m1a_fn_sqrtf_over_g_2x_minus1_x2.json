@@ -118,8 +118,9 @@
             "render": "katex"
           },
           {
-            "text": "(√f/g)(x) = √(2x − 1)/x² on [1/2, ∞)",
-            "style": "boxed"
+            "text": "\\left(\\dfrac{\\sqrt{f}}{g}\\right)\\left(x\\right)\\ = \\ \\dfrac{\\sqrt{2x\\ - \\ 1}}{x^{2}}\\ \\text{on}\\ \\left[\\dfrac{1}{2},\\ \\infty \\right)",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {

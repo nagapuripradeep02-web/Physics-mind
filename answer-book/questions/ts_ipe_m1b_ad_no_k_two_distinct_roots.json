@@ -130,7 +130,11 @@
             "render": "katex",
             "added": true
           },
-          "This contradicts c = 3/2, since 3/2 > 1.",
+          {
+            "text": "\\text{This}\\ \\text{contradicts}\\ c\\ = \\ \\dfrac{3}{2},\\ \\text{since}\\ \\dfrac{3}{2} > \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "So the assumption is false.",
           {
             "text": "∴ there is no real number k",
@@ -182,7 +186,11 @@
             "render": "katex"
           },
           "But 0 ≤ α < c < β ≤ 1, so c lies in (0, 1) and therefore c < 1.",
-          "This contradicts c = 3/2, since 3/2 > 1.",
+          {
+            "text": "\\text{This}\\ \\text{contradicts}\\ c\\ = \\ \\dfrac{3}{2},\\ \\text{since}\\ \\dfrac{3}{2} > \\ 1.",
+            "style": "normal",
+            "render": "katex"
+          },
           "So the assumption is false.",
           {
             "text": "∴ there is no real number k",

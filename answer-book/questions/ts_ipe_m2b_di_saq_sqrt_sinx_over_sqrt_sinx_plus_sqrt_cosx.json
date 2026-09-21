@@ -195,7 +195,9 @@
             "render": "katex"
           },
           {
-            "text": "since π/3 = 2π/6. Divide both sides by 2:",
+            "text": "\\text{since}\\ \\dfrac{\\pi }{3} = \\ \\dfrac{2\\pi }{6}.\\ \\text{Divide}\\ \\text{both}\\ \\text{sides}\\ \\text{by}\\ 2:",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

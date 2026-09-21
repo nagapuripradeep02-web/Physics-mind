@@ -61,7 +61,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= √3/sin20° − 1/cos20°",
+          {
+            "text": "= \\ \\dfrac{\\sqrt{3}}{\\sin 20^{\\circ}} - \\ \\dfrac{1}{\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Use the common denominator sin20° cos20°:",
           {
             "text": "= \\ \\dfrac{\\sqrt{3}\\cos 20^{\\circ}\\ - \\ \\sin 20^{\\circ}}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
@@ -189,7 +193,11 @@
             "text": "(60° − 20° = 40°)",
             "added": true
           },
-          "= 2 sin40° / (sin20° cos20°)"
+          {
+            "text": "= \\ \\dfrac{2\\sin 40^{\\circ}}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -224,7 +232,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= 2 sin40° / (sin20° cos20°)"
+          {
+            "text": "= \\ \\dfrac{2\\sin 40^{\\circ}}{\\sin 20^{\\circ}\\cos 20^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

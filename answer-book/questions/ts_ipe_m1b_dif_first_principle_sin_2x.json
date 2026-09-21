@@ -230,7 +230,11 @@
             "render": "katex"
           },
           "The angle in sin h matches the h below it, so",
-          "the standard limit (sin h)/h → 1 applies"
+          {
+            "text": "\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\sin h}{h} \\to \\ 1\\ \\text{applies}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -267,7 +271,11 @@
             "render": "katex"
           },
           "The angle in sin h matches the h below it, so",
-          "the standard limit (sin h)/h → 1 applies"
+          {
+            "text": "\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\sin h}{h} \\to \\ 1\\ \\text{applies}",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

@@ -175,7 +175,9 @@
             "render": "katex"
           },
           {
-            "text": "du = dx, since (a+b)/2 is a constant",
+            "text": "du\\ = \\ dx,\\ \\text{since}\\ \\dfrac{a + b}{2}\\ \\text{is}\\ \\text{a}\\ \\text{constant}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "I",
@@ -185,7 +187,11 @@
             "render": "katex"
           },
           "[∵ ∫√(k² − u²) du",
-          "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
+          {
+            "text": "= \\ \\left(\\dfrac{u}{2}\\right)\\sqrt{k^{2}\\ - \\ u^{2}}\\ + \\ \\left(\\dfrac{k^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{u}{k}\\right)\\ + \\ c]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "The completed-square form is exactly k² − u² with k = (b−a)/2 fixed and u = x − (a+b)/2 varying, so the standard result for ∫√(k²−u²) du applies directly, ready to be evaluated at the two limits.",
         "common_mistakes": [
@@ -205,7 +211,11 @@
             "render": "katex"
           },
           "[∵ ∫√(k² − u²) du",
-          "= (u/2)√(k² − u²) + (k²/2) Sin⁻¹(u/k) + c]"
+          {
+            "text": "= \\ \\left(\\dfrac{u}{2}\\right)\\sqrt{k^{2}\\ - \\ u^{2}}\\ + \\ \\left(\\dfrac{k^{2}}{2}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{u}{k}\\right)\\ + \\ c]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

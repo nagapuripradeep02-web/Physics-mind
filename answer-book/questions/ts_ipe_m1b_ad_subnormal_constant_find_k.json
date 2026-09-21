@@ -305,7 +305,11 @@
             "style": "indent",
             "added": true
           },
-          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
+          {
+            "text": "\\text{Check}\\ \\text{on}\\ \\text{the}\\ \\text{curve}\\ \\text{itself}:\\ k\\ = \\ \\dfrac{1}{2}\\ \\text{gives}\\ y\\ = \\ a^{1/2}x^{1/2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "that is y² = ax,",
           {
             "text": "a\\ \\text{parabola},\\ \\text{and}\\ \\text{its}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}\\text{at}\\ \\text{every}\\ \\text{point}.",
@@ -366,7 +370,11 @@
             "render": "katex"
           },
           "This has no x in it, so it is the same at every point.",
-          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄²,",
+          {
+            "text": "\\text{Check}\\ \\text{on}\\ \\text{the}\\ \\text{curve}\\ \\text{itself}:\\ k\\ = \\ \\dfrac{1}{2}\\ \\text{gives}\\ y\\ = \\ a^{1/2}x^{1/2},",
+            "style": "normal",
+            "render": "katex"
+          },
           "that is y² = ax,",
           {
             "text": "a\\ \\text{parabola},\\ \\text{and}\\ \\text{its}\\ \\text{subnormal}\\ \\text{is}\\ \\dfrac{a}{2}\\text{at}\\ \\text{every}\\ \\text{point}.",

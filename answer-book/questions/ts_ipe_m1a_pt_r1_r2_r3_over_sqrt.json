@@ -291,7 +291,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= as/s",
+          {
+            "text": "= \\ \\dfrac{as}{s}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= a = R.H.S",
             "style": "boxed"
@@ -333,7 +337,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= as/s",
+          {
+            "text": "= \\ \\dfrac{as}{s}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= a = R.H.S",
             "style": "boxed"

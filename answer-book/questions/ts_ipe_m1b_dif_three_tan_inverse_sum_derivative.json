@@ -306,7 +306,11 @@
             "text": "(the double angle formula with 2θ in place of θ)",
             "added": true
           },
-          "tan 4θ = tan(2·2θ) = 2 tan 2θ/(1 − tan²2θ),",
+          {
+            "text": "\\tan 4\\theta \\ = \\ \\tan \\left(2\\ \\cdot \\ 2\\theta \\right)\\ = \\ \\dfrac{2\\tan 2\\theta }{1\\ - \\ \\tan ^{2} 2\\theta },",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{with}\\ \\tan 2\\theta \\ = \\ \\dfrac{2x}{1\\ - \\ x^{2}}",
             "style": "normal",
@@ -424,7 +428,11 @@
         "lines_compact": [
           "There is no separate formula for tan 4θ,",
           "so build it from the double angle formula applied to 2θ:",
-          "tan 4θ = tan(2·2θ) = 2 tan 2θ/(1 − tan²2θ),",
+          {
+            "text": "\\tan 4\\theta \\ = \\ \\tan \\left(2\\ \\cdot \\ 2\\theta \\right)\\ = \\ \\dfrac{2\\tan 2\\theta }{1\\ - \\ \\tan ^{2} 2\\theta },",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{with}\\ \\tan 2\\theta \\ = \\ \\dfrac{2x}{1\\ - \\ x^{2}}",
             "style": "normal",

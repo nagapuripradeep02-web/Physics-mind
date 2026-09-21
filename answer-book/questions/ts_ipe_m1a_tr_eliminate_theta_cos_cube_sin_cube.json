@@ -66,7 +66,11 @@
           },
           "A real number has exactly one real cube root,",
           "so no ± sign is needed:",
-          "cos θ = (x/a)¹⁄³,  sin θ = (y/b)¹⁄³"
+          {
+            "text": "\\cos \\theta \\ = \\ \\left(\\dfrac{x}{a}\\right)^{1/3},\\ \\ \\sin \\theta \\ = \\ \\left(\\dfrac{y}{b}\\right)^{1/3}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -124,11 +128,16 @@
             "style": "indent",
             "added": true
           },
-          "cos²θ + sin²θ = (x/a)²⁄³ + (y/b)²⁄³",
+          {
+            "text": "\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta \\ = \\ \\left(\\dfrac{x}{a}\\right)^{2/3}\\ + \\ \\left(\\dfrac{y}{b}\\right)^{2/3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But cos²θ + sin²θ = 1 for every θ, so",
           {
-            "text": "∴ (x/a)²⁄³ + (y/b)²⁄³ = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\dfrac{x}{a}\\right)^{2/3}\\ + \\ \\left(\\dfrac{y}{b}\\right)^{2/3}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -160,11 +169,16 @@
         ],
         "lines_compact": [
           "Square both and add:",
-          "cos²θ + sin²θ = (x/a)²⁄³ + (y/b)²⁄³",
+          {
+            "text": "\\cos ^{2} \\theta \\ + \\ \\sin ^{2} \\theta \\ = \\ \\left(\\dfrac{x}{a}\\right)^{2/3}\\ + \\ \\left(\\dfrac{y}{b}\\right)^{2/3}",
+            "style": "normal",
+            "render": "katex"
+          },
           "But cos²θ + sin²θ = 1 for every θ, so",
           {
-            "text": "∴ (x/a)²⁄³ + (y/b)²⁄³ = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\dfrac{x}{a}\\right)^{2/3}\\ + \\ \\left(\\dfrac{y}{b}\\right)^{2/3}\\ = \\ 1",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

@@ -52,7 +52,11 @@
             "style": "heading"
           },
           "As x → ∞ both lines increase without bound,",
-          "so this is the indeterminate form ∞/∞.",
+          {
+            "text": "\\text{so}\\ \\text{this}\\ \\text{is}\\ \\text{the}\\ \\text{indeterminate}\\ \\text{form}\\ \\dfrac{\\infty }{\\infty }.",
+            "style": "normal",
+            "render": "katex"
+          },
           "The highest power of x present is x³.",
           "(dividing the top and the bottom by the same non-zero",
           {

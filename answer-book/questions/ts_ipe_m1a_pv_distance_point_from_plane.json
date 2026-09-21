@@ -185,7 +185,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Gap = |−9/7 − 4/7| = 13/7  ✓",
+          {
+            "text": "\\text{Gap}\\ = \\ \\left| - \\dfrac{9}{7} - \\ \\dfrac{4}{7}\\right|\\ = \\ \\dfrac{13}{7}\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Distance}\\ = \\ \\dfrac{13}{7}\\text{units}",
             "style": "boxed",
@@ -236,7 +240,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Gap = |−9/7 − 4/7| = 13/7  ✓",
+          {
+            "text": "\\text{Gap}\\ = \\ \\left| - \\dfrac{9}{7} - \\ \\dfrac{4}{7}\\right|\\ = \\ \\dfrac{13}{7}\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Distance}\\ = \\ \\dfrac{13}{7}\\text{units}",
             "style": "boxed",

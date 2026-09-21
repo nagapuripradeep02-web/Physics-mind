@@ -66,7 +66,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= (7/9)[(1 − 1/10) + (1 − 1/10²) + … + (1 − 1/10ⁿ)]"
+          {
+            "text": "= \\left(\\dfrac{7}{9}\\right)\\left[\\left(1 - \\dfrac{1}{10}\\right) + \\left(1 - \\dfrac{1}{10^{2}}\\right) + \\dots + \\left(1 - \\dfrac{1}{10^{n}}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

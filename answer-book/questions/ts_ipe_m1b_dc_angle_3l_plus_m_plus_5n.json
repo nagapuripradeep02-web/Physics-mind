@@ -340,10 +340,10 @@
             "text": "(put the d.r's (1, 2, −1) and (2, −1, −1))",
             "added": true
           },
-          "= |1(2) + 2(−1) + (−1)(−1)|",
           {
-            "text": "  / √((1²+2²+(−1)²)(2²+(−1)²+(−1)²))",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|1\\left(2\\right)\\ + \\ 2\\left( - 1\\right)\\ + \\ \\left( - 1\\right)\\left( - 1\\right)\\right|}{\\sqrt{\\left(1^{2} + 2^{2} + \\left( - 1\\right)^{2}\\right)\\left(2^{2} + \\left( - 1\\right)^{2} + \\left( - 1\\right)^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "(1 + 4 + 1 = 6 and 4 + 1 + 1 = 6)",
@@ -394,10 +394,10 @@
             "style": "normal",
             "render": "katex"
           },
-          "= |1(2) + 2(−1) + (−1)(−1)|",
           {
-            "text": "  / √((1²+2²+(−1)²)(2²+(−1)²+(−1)²))",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|1\\left(2\\right)\\ + \\ 2\\left( - 1\\right)\\ + \\ \\left( - 1\\right)\\left( - 1\\right)\\right|}{\\sqrt{\\left(1^{2} + 2^{2} + \\left( - 1\\right)^{2}\\right)\\left(2^{2} + \\left( - 1\\right)^{2} + \\left( - 1\\right)^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{\\left|2\\ - \\ 2\\ + \\ 1\\right|}{\\sqrt{\\left(6\\right)\\left(6\\right)}} = \\ \\dfrac{1}{\\sqrt{36}} = \\ \\dfrac{1}{6}",

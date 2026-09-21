@@ -128,7 +128,11 @@
             "text": "(put sec x(tan x + sec x) as the numerator)",
             "added": true
           },
-          "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sec x\\left(\\sec x\\ + \\ \\tan x\\right)}{\\sec x\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cancel sec x + tan x, which is not 0 because it is positive)",
             "added": true
@@ -169,7 +173,11 @@
         "lines_compact": [
           "Take sec x common in the numerator:",
           "sec x tan x + sec²x = sec x(tan x + sec x)",
-          "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\sec x\\left(\\sec x\\ + \\ \\tan x\\right)}{\\sec x\\ + \\ \\tan x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\sec x",
             "style": "boxed",

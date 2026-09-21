@@ -449,7 +449,11 @@
             "style": "indent",
             "added": true
           },
-          "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ \\dfrac{al\\ + \\ am\\ + \\ an}{\\sqrt{\\left(a^{2} + a^{2} + a^{2}\\right)\\left(l^{2} + m^{2} + n^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a² + a² + a² = 3a² and l² + m² + n² = 1)",
             "added": true
@@ -500,7 +504,11 @@
           "Let (l, m, n) be the d.c's of the given ray,",
           "then we have l² + m² + n² = 1",
           "The ray makes angles α, β, γ, δ with OP, CL, NB, AM",
-          "∴ cosα = (al + am + an) / √((a²+a²+a²)(l²+m²+n²))",
+          {
+            "text": "\\therefore \\ \\cos \\alpha \\ = \\ \\dfrac{al\\ + \\ am\\ + \\ an}{\\sqrt{\\left(a^{2} + a^{2} + a^{2}\\right)\\left(l^{2} + m^{2} + n^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3a^{2}\\left(1\\right)}} = \\ \\dfrac{a\\left(l\\ + \\ m\\ + \\ n\\right)}{\\sqrt{3}a}",
             "style": "normal",

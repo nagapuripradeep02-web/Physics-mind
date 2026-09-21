@@ -114,7 +114,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Take a > 0 and 0 < t < π, so sin(t/2) > 0, cos(t/2) > 0",
+          {
+            "text": "\\text{Take} a > 0 \\text{and} 0 < t < \\pi , \\text{so} \\sin \\left(\\dfrac{t}{2}\\right) > 0, \\cos \\left(\\dfrac{t}{2}\\right) > 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "and every length below is positive."
         ],
         "recall": {

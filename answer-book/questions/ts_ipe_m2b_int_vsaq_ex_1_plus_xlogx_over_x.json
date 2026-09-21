@@ -69,7 +69,11 @@
             "text": "  function plus its own derivative:",
             "style": "indent"
           },
-          "(1+xlogx)/x = 1/x + logx",
+          {
+            "text": "\\dfrac{1 + x\\log x}{x} = \\ \\dfrac{1}{x}\\ + \\ \\log x",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Here}\\ f\\left(x\\right)\\ = \\ \\log x\\ \\Rightarrow \\ f'\\left(x\\right)\\ = \\ \\dfrac{1}{x}",
             "style": "normal",
@@ -100,8 +104,9 @@
             "added": true
           },
           {
-            "text": "∴ ∫ eˣ[(1+xlogx)/x] dx = eˣ logx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int e^{x}\\left[\\dfrac{1 + x\\log x}{x}\\right]dx\\ = \\ e^{x}\\log x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "why": "With f(x)=logx identified, the standard eˣ[f+f′] result gives eˣlogx directly.",
@@ -112,8 +117,9 @@
         "memory_tip": "The answer keeps f(x)=logx, the term that survived after the split — not 1/x.",
         "lines_compact": [
           {
-            "text": "∴ ∫ eˣ[(1+xlogx)/x] dx = eˣ logx + c",
-            "style": "boxed"
+            "text": "\\therefore \\ \\int e^{x}\\left[\\dfrac{1 + x\\log x}{x}\\right]dx\\ = \\ e^{x}\\log x\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

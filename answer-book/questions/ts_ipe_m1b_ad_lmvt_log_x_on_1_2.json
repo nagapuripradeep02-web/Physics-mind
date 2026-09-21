@@ -61,7 +61,11 @@
             "render": "katex"
           },
           "Here f(x) = logₑ x, a = 1, b = 2",
-          "(the derivative of logₑ x is 1/x, for every x > 0)",
+          {
+            "text": "\\left(\\text{the}\\ \\text{derivative}\\ \\text{of}\\ \\log _{e}x\\ \\text{is}\\ \\dfrac{1}{x},\\ \\text{for}\\ \\text{every}\\ x\\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "logₑ x is defined, continuous",
           "and differentiable for every x > 0,",
           "and [1, 2] lies inside x > 0.",
@@ -70,7 +74,11 @@
           "(logₑ 1 = 0, because e⁰ = 1)",
           "f(1) = logₑ 1 = 0,   f(2) = logₑ 2",
           "(the slope of the chord joining (1, 0) and (2, logₑ 2))",
-          "(f(2) − f(1))/(2 − 1) = (logₑ 2 − 0)/1 = logₑ 2"
+          {
+            "text": "\\dfrac{f\\left(2\\right)\\ - \\ f\\left(1\\right)}{2\\ - \\ 1} = \\ \\dfrac{\\log _{e}2\\ - \\ 0}{1} = \\ \\log _{e}2",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -112,7 +120,9 @@
         "memory_tip": "logₑ 2 is a little under 0.7, so its reciprocal is a little over 1.4 — comfortably inside 1 to 2.",
         "lines": [
           {
-            "text": "(d/dx of logₑ x is 1/x)",
+            "text": "\\left(\\dfrac{d}{dx}\\ \\text{of}\\ \\log _{e}x\\ \\text{is}\\ \\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -125,15 +135,22 @@
             "text": "(logₑ 2 ≠ 0, so take the reciprocal of both sides)",
             "added": true
           },
-          "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
           {
-            "text": "(logₑ 2 ≈ 0.6931, and 1/0.6931 ≈ 1.443)",
+            "text": "\\dfrac{1}{c} = \\ \\log _{e}2\\ \\Rightarrow \\ c\\ = \\ \\dfrac{1}{\\log _{e}2}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\log _{e}2\\ \\approx \\ 0.6931,\\ \\text{and}\\ \\dfrac{1}{0.6931}\\ \\approx \\ 1.443\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",
           {
-            "text": "∴ c = 1/logₑ 2 ≈ 1.443 ∈ (1, 2)",
-            "style": "boxed"
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{\\log _{e}2}\\ \\approx \\ 1.443\\ \\in \\ \\left(1,\\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -172,11 +189,16 @@
             "render": "katex"
           },
           "By the theorem there is c in (1, 2) with f′(c) = logₑ 2",
-          "1/c = logₑ 2 ⇒ c = 1/logₑ 2",
+          {
+            "text": "\\dfrac{1}{c} = \\ \\log _{e}2\\ \\Rightarrow \\ c\\ = \\ \\dfrac{1}{\\log _{e}2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "logₑ 2 ≈ 0.693, so c ≈ 1.443, and 1 < 1.443 < 2",
           {
-            "text": "∴ c = 1/logₑ 2 ≈ 1.443 ∈ (1, 2)",
-            "style": "boxed"
+            "text": "\\therefore \\ c\\ = \\ \\dfrac{1}{\\log _{e}2}\\ \\approx \\ 1.443\\ \\in \\ \\left(1,\\ 2\\right)",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

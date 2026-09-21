@@ -75,7 +75,11 @@
             "render": "katex"
           },
           "The standard limit is",
-          "lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0."
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(a^{x}\\ - \\ 1\\right)}{x} = \\ \\log _{e}a\\ \\text{for}\\ a\\ > \\ 0.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -124,10 +128,15 @@
             "text": "(put logₑa above and logₑb below)",
             "added": true
           },
-          "= logₑa / logₑb",
           {
-            "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\log _{e}a}{\\log _{e}b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(a^{x}\\ - \\ 1\\right)}{b^{x}\\ - \\ 1} = \\ \\dfrac{\\log _{e}a}{\\log _{e}b}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -161,10 +170,15 @@
         "lines_compact": [
           "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient",
           "is the quotient of the limits.",
-          "= logₑa / logₑb",
           {
-            "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\log _{e}a}{\\log _{e}b}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(a^{x}\\ - \\ 1\\right)}{b^{x}\\ - \\ 1} = \\ \\dfrac{\\log _{e}a}{\\log _{e}b}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

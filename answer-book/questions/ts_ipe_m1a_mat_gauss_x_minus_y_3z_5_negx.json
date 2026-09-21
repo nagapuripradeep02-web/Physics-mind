@@ -277,7 +277,9 @@
             "render": "katex"
           },
           {
-            "text": "R₃ × −1/25: (0, 0, −25 | −50)",
+            "text": "R_{3}\\ \\times \\ - \\dfrac{1}{25}:\\ \\left(0,\\ 0,\\ - 25\\ \\mid \\ - 50\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

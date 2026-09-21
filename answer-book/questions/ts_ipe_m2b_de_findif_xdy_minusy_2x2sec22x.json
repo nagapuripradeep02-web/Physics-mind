@@ -63,7 +63,11 @@
             "render": "katex"
           },
           "[dividing throughout by x]",
-          "since 2x²/x = 2x and −y/x = y·(−1/x)",
+          {
+            "text": "\\text{since}\\ \\dfrac{2x^{2}}{x} = \\ 2x\\ \\text{and}\\ - \\dfrac{y}{x} = \\ y \\cdot \\left( - \\dfrac{1}{x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{This}\\ \\text{is}\\ \\text{in}\\ \\text{the}\\ \\text{form}\\ \\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)\\ = \\ Q\\left(x\\right).",
             "style": "normal",

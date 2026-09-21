@@ -116,7 +116,11 @@
             "added": true
           },
           "Area = ½ |a × b| = ½ |41k|",
-          "= ½ (41) = 41/2",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left(41\\right)\\ = \\ \\dfrac{41}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 20.5 sq. units",
             "style": "boxed"
@@ -151,7 +155,11 @@
         ],
         "lines_compact": [
           "Area = ½ |a × b| = ½ |41k|",
-          "= ½ (41) = 41/2",
+          {
+            "text": "= \\ \\dfrac{1}{2}\\left(41\\right)\\ = \\ \\dfrac{41}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= 20.5 sq. units",
             "style": "boxed"

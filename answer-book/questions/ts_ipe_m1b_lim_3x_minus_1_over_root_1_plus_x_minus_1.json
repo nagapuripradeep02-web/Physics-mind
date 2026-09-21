@@ -80,7 +80,11 @@
             "style": "indent"
           },
           "The two standard limits are",
-          "lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(a^{x}\\ - \\ 1\\right)}{x} = \\ \\log _{e}a\\ \\text{for}\\ a\\ > \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sqrt{1\\ + \\ x}\\ - \\ 1\\right)}{x} = \\ \\dfrac{1}{2}",
             "style": "normal",
@@ -124,13 +128,23 @@
         "mark_note": "Answer",
         "margin_note": "Second mark. Both limits exist and the lower one, 1/2, is not 0, so the limit of the quotient is the quotient of the limits. Dividing by 1/2 is multiplying by 2.",
         "lines": [
-          "Both limits exist and the denominator limit 1/2 is not 0,",
+          {
+            "text": "\\text{Both}\\ \\text{limits}\\ \\text{exist}\\ \\text{and}\\ \\text{the}\\ \\text{denominator}\\ \\text{limit}\\ \\dfrac{1}{2}\\ \\text{is}\\ \\text{not}\\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the limit of the quotient is the quotient of the limits.",
           {
-            "text": "(put a = 3 in logₑa, and 1/2 below)",
+            "text": "\\left(\\text{put}\\ a\\ = \\ 3\\ \\text{in}\\ \\log _{e}a,\\ \\text{and}\\ \\dfrac{1}{2}\\ \\text{below}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "= logₑ3 / (1/2)",
+          {
+            "text": "= \\ \\dfrac{\\log _{e}3}{\\tfrac{1}{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{1}{2}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ 2\\right)",
             "style": "normal",
@@ -181,9 +195,17 @@
         ],
         "memory_tip": "Dividing by 1/2 doubles the number. So the answer is twice logₑ3, and 2 logₑ3 = logₑ9 by the power rule for logarithms.",
         "lines_compact": [
-          "Both limits exist and the denominator limit 1/2 is not 0,",
+          {
+            "text": "\\text{Both}\\ \\text{limits}\\ \\text{exist}\\ \\text{and}\\ \\text{the}\\ \\text{denominator}\\ \\text{limit}\\ \\dfrac{1}{2}\\ \\text{is}\\ \\text{not}\\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so the limit of the quotient is the quotient of the limits.",
-          "= logₑ3 / (1/2)",
+          {
+            "text": "= \\ \\dfrac{\\log _{e}3}{\\tfrac{1}{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2 logₑ3",
           {
             "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(3^{x}\\ - \\ 1\\right)}{\\sqrt{1\\ + \\ x}\\ - \\ 1}",

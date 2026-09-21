@@ -121,7 +121,11 @@
             "text": "((s − a)² = s² − 2as + a², and so on)",
             "added": true
           },
-          "= [s² + (s²−2as+a²) + (s²−2bs+b²) + (s²−2cs+c²)]/Δ²",
+          {
+            "text": "= \\dfrac{s^{2} + \\left(s^{2} - 2as + a^{2}\\right) + \\left(s^{2} - 2bs + b^{2}\\right) + \\left(s^{2} - 2cs + c^{2}\\right)}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(collect: 4s², then the −2s terms, then the squares)",
             "added": true
@@ -175,7 +179,11 @@
           "Writing a+b+c = s."
         ],
         "lines_compact": [
-          "= [s² + (s²−2as+a²) + (s²−2bs+b²) + (s²−2cs+c²)]/Δ²",
+          {
+            "text": "= \\dfrac{s^{2} + \\left(s^{2} - 2as + a^{2}\\right) + \\left(s^{2} - 2bs + b^{2}\\right) + \\left(s^{2} - 2cs + c^{2}\\right)}{\\Delta ^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{4s^{2}\\ - \\ 2s\\left(a + b + c\\right)\\ + \\ a^{2} + b^{2} + c^{2}}{\\Delta ^{2}}",
             "style": "normal",

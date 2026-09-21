@@ -312,7 +312,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "So Tan⁻¹u + Tan⁻¹v = Tan⁻¹(1) = π/4  ✓",
+          {
+            "text": "\\text{So}\\ \\operatorname{Tan}^{-1}u\\ + \\ \\operatorname{Tan}^{-1}v\\ = \\ \\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           "Neither root is rejected.",
           {
             "text": "\\therefore \\ x\\ = \\ \\dfrac{1}{\\sqrt{2}}\\text{or}\\ x\\ = \\ - \\dfrac{1}{\\sqrt{2}}",
@@ -358,7 +362,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "So Tan⁻¹u + Tan⁻¹v = Tan⁻¹(1) = π/4  ✓",
+          {
+            "text": "\\text{So}\\ \\operatorname{Tan}^{-1}u\\ + \\ \\operatorname{Tan}^{-1}v\\ = \\ \\operatorname{Tan}^{-1}\\left(1\\right)\\ = \\ \\dfrac{\\pi }{4}\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           "Neither root is rejected.",
           {
             "text": "\\therefore \\ x\\ = \\ \\dfrac{1}{\\sqrt{2}}\\text{or}\\ x\\ = \\ - \\dfrac{1}{\\sqrt{2}}",

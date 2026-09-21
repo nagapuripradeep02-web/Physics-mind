@@ -291,7 +291,11 @@
             "text": "(put f′(x) and g′(x) from step 3)",
             "added": true
           },
-          "df/dg = f′(x) / g′(x) = [1 / (2(1 + x²))] / [1 / (1 + x²)]",
+          {
+            "text": "\\dfrac{df}{dg}\\ = \\ \\dfrac{f'\\left(x\\right)}{g'\\left(x\\right)} = \\ \\left[\\dfrac{1}{2\\left(1\\ + \\ x^{2}\\right)}\\right]\\ \\div \\ \\left[\\dfrac{1}{1\\ + \\ x^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\text{dividing}\\ \\text{by}\\ \\dfrac{1}{1\\ + \\ x^{2}}\\text{is}\\ \\text{multiplying}\\ \\text{by}\\ 1\\ + \\ x^{2}\\right)",
             "style": "normal",
@@ -342,7 +346,11 @@
         ],
         "memory_tip": "Test it at x = 1: f(1) = π/8 and g(1) = π/4, and π/8 is half of π/4.",
         "lines_compact": [
-          "df/dg = f′(x) / g′(x) = [1 / (2(1 + x²))] / [1 / (1 + x²)]",
+          {
+            "text": "\\dfrac{df}{dg}\\ = \\ \\dfrac{f'\\left(x\\right)}{g'\\left(x\\right)} = \\ \\left[\\dfrac{1}{2\\left(1\\ + \\ x^{2}\\right)}\\right]\\ \\div \\ \\left[\\dfrac{1}{1\\ + \\ x^{2}}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{1\\ + \\ x^{2}}{2\\left(1\\ + \\ x^{2}\\right)}",
             "style": "normal",

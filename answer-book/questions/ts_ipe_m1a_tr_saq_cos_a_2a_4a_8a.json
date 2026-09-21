@@ -213,8 +213,9 @@
         "margin_note": "The chain ends at sin16A over the 16 sinA that was introduced at the start.",
         "lines": [
           {
-            "text": "= sin16A / (16 sinA) = R.H.S",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\sin 16A}{16\\sin A}\\ = \\ R.H.S",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {

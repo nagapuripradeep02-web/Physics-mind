@@ -64,7 +64,11 @@
           "We know 1 − cos 2θ = 2sin²θ",
           "Put θ = mx, then 1 − cos 2mx = 2sin²(mx)",
           "(put 2sin²(mx) in place of 1 − cos 2mx)",
-          "∴ lim(x → 0) (1 − cos 2mx)/sin² nx",
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(1\\ - \\ \\cos 2mx\\right)}{\\sin ^{2} nx}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)2\\sin ^{2}\\left(mx\\right)}{\\sin ^{2}\\left(nx\\right)}",
             "style": "indent",
@@ -169,8 +173,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(1\\ - \\ \\cos 2mx\\right)}{\\sin ^{2} nx} = \\ \\dfrac{2m^{2}}{n^{2}}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -222,8 +227,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(1\\ - \\ \\cos 2mx\\right)}{\\sin ^{2} nx} = \\ \\dfrac{2m^{2}}{n^{2}}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

@@ -80,8 +80,16 @@
             "text": "  sinθ cosθ = (1/2) sin 2θ)",
             "style": "indent"
           },
-          "= cos 2θ / ((1/2) sin 2θ)",
-          "= 2 cos 2θ / sin 2θ = 2 cot 2θ",
+          {
+            "text": "= \\ \\dfrac{\\cos 2\\theta }{\\left(\\tfrac{1}{2}\\right)\\sin 2\\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\cos 2\\theta }{\\sin 2\\theta } = \\ 2\\cot 2\\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
           "(add tan θ and subtract 2 cot 2θ on both sides)",
           "∴ tan θ = cot θ − 2 cot 2θ"
         ],

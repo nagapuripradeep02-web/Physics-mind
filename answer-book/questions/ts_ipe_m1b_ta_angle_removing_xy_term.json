@@ -274,9 +274,15 @@
             "style": "indent",
             "added": true
           },
-          "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
           {
-            "text": "(sin 2θ/cos 2θ = tan 2θ)",
+            "text": "\\Rightarrow \\ \\dfrac{\\sin 2\\theta }{\\cos 2\\theta } = \\ \\dfrac{2h}{a\\ - \\ b},\\ a\\ \\ne \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{\\sin 2\\theta }{\\cos 2\\theta } = \\ \\tan 2\\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -334,7 +340,11 @@
         ],
         "lines_compact": [
           "⇒ sin2θ (a − b) = 2h cos2θ",
-          "⇒ sin2θ / cos2θ = 2h / (a − b),  a ≠ b",
+          {
+            "text": "\\Rightarrow \\ \\dfrac{\\sin 2\\theta }{\\cos 2\\theta } = \\ \\dfrac{2h}{a\\ - \\ b},\\ a\\ \\ne \\ b",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\Rightarrow \\ \\tan 2\\theta \\ = \\ \\dfrac{2h}{a\\ - \\ b} \\Rightarrow \\ 2\\theta \\ = \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2h}{a\\ - \\ b}\\right)",
             "style": "normal",

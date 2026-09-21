@@ -336,7 +336,11 @@
             "text": "(multiply both sides by v = (sin x)ᶜᵒˢˣ)",
             "added": true
           },
-          "∴ dv/dx = (sin x)ᶜᵒˢˣ [cos x cot x − sin x · log(sin x)]"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ \\left(\\sin x\\right)^{\\cos x}\\left[\\cos x\\cot x\\ - \\ \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -377,7 +381,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ dv/dx = (sin x)ᶜᵒˢˣ [cos x cot x − sin x · log(sin x)]"
+          {
+            "text": "\\therefore \\ \\dfrac{dv}{dx}\\ = \\ \\left(\\sin x\\right)^{\\cos x}\\left[\\cos x\\cot x\\ - \\ \\sin x\\ \\cdot \\ \\log \\left(\\sin x\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

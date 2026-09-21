@@ -227,7 +227,11 @@
             "text": "(a product is 0 only when a factor is 0)",
             "added": true
           },
-          "S′(x) = 0   ⇒   R − 2x = 0      (since 2πH/R ≠ 0)",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ R\\ - \\ 2x\\ = \\ 0\\quad \\left(\\text{since}\\ \\dfrac{2\\pi H}{R}\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(add 2x to both sides and divide by 2)",
             "added": true
@@ -284,7 +288,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "S′(x) = 0   ⇒   R − 2x = 0      (since 2πH/R ≠ 0)",
+          {
+            "text": "S'\\left(x\\right)\\ = \\ 0\\ \\Rightarrow \\ R\\ - \\ 2x\\ = \\ 0\\quad \\left(\\text{since}\\ \\dfrac{2\\pi H}{R}\\ \\ne \\ 0\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x\\ = \\ \\dfrac{R}{2}",
             "style": "normal",

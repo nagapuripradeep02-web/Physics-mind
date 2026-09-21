@@ -65,13 +65,21 @@
             "text": "  change the value)",
             "style": "indent"
           },
-          "(eˢⁱⁿˣ − 1)/x = [(eˢⁱⁿˣ − 1)/sin x] · [(sin x)/x]",
+          {
+            "text": "\\dfrac{e^{\\sin x}\\ - \\ 1}{x} = \\ \\left[\\dfrac{e^{\\sin x}\\ - \\ 1}{\\sin x}\\right]\\ \\cdot \\ \\left[\\dfrac{\\sin x}{x}\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
           "(both limits exist, so the limit of the product is",
           {
             "text": "  the product of the limits)",
             "style": "indent"
           },
-          "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = lim(x → 0) (eˢⁱⁿˣ − 1)/sin x",
+          {
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{x} = \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{\\sin x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\cdot \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x}",
             "style": "normal",
@@ -125,7 +133,11 @@
             "style": "indent",
             "added": true
           },
-          "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{\\sin x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\left(e^{t}\\ - \\ 1\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
             "style": "normal",
@@ -137,8 +149,9 @@
           },
           "= 1 · 1",
           {
-            "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -170,7 +183,11 @@
         ],
         "lines_compact": [
           "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
-          "lim(x → 0) (eˢⁱⁿˣ − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          {
+            "text": "\\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{\\sin x} = \\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\left(e^{t}\\ - \\ 1\\right)}{t} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{and}\\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(\\sin x\\right)}{x} = \\ 1",
             "style": "normal",
@@ -178,8 +195,9 @@
           },
           "= 1 · 1",
           {
-            "text": "∴ lim(x → 0) (eˢⁱⁿˣ − 1)/x = 1",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ 0\\right)\\left(e^{\\sin x}\\ - \\ 1\\right)}{x} = \\ 1",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

@@ -62,7 +62,11 @@
           "5ˣ = y ⇒ log 5ˣ = log y",
           "(log of a power: log pⁿ = n log p)",
           "⇒ x log 5 = log y",
-          "⇒ x = log y / log 5 = log₅ y"
+          {
+            "text": "\\Rightarrow \\ x\\ = \\ \\dfrac{\\log y}{\\log 5} = \\ \\log _{5}y",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -104,7 +108,9 @@
         "lines": [
           "⇒ f⁻¹(y) = log₅ y",
           {
-            "text": "(log y / log 5 = log₅ y, the change of base)",
+            "text": "\\left(\\dfrac{\\log y}{\\log 5} = \\ \\log _{5}y,\\ \\text{the}\\ \\text{change}\\ \\text{of}\\ \\text{base}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

@@ -126,14 +126,20 @@
           },
           "∴ the point P which divides A(−2,3,4) and B(1,2,3)",
           "in the ratio −3 : 2 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
-          "(mz₂ + nz₁)/(m+n))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m + n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m + n},\\ \\dfrac{mz_{2}\\ + \\ nz_{1}}{m + n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x₁ = −2, y₁ = 3, z₁ = 4, x₂ = 1, y₂ = 2, z₂ = 3)",
             "added": true
           },
-          "= ((−3×1 + 2×−2)/(−3+2), (−3×2 + 2×3)/(−3+2),",
-          "(−3×3 + 2×4)/(−3+2))",
+          {
+            "text": "= \\left(\\dfrac{ - 3 \\times 1 + 2 \\times - 2}{ - 3 + 2}, \\dfrac{ - 3 \\times 2 + 2 \\times 3}{ - 3 + 2}, \\dfrac{ - 3 \\times 3 + 2 \\times 4}{ - 3 + 2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−3 − 4 = −7; −6 + 6 = 0; −9 + 8 = −1; −3 + 2 = −1)",
             "added": true
@@ -191,10 +197,16 @@
         "lines_compact": [
           "∴ the point P which divides A(−2,3,4) and B(1,2,3)",
           "in the ratio −3 : 2 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
-          "(mz₂ + nz₁)/(m+n))",
-          "= ((−3×1 + 2×−2)/(−3+2), (−3×2 + 2×3)/(−3+2),",
-          "(−3×3 + 2×4)/(−3+2))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m + n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m + n},\\ \\dfrac{mz_{2}\\ + \\ nz_{1}}{m + n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\left(\\dfrac{ - 3 \\times 1 + 2 \\times - 2}{ - 3 + 2}, \\dfrac{ - 3 \\times 2 + 2 \\times 3}{ - 3 + 2}, \\dfrac{ - 3 \\times 3 + 2 \\times 4}{ - 3 + 2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\left( - \\dfrac{7}{-1},\\ \\dfrac{0}{-1},\\ - \\dfrac{1}{-1}\\right)",
             "style": "normal",
