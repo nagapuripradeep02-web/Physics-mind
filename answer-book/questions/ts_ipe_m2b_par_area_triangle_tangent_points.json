@@ -288,5 +288,8 @@
       }
     ]
   },
-  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — here the determinant is a²(…) instead of 2a²(…), because the vertices' y-differences carry a, not 2a, which is exactly why the denominator here is 16a and not 8a."
+  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — here the determinant is a²(…) instead of 2a²(…), because the vertices' y-differences carry a, not 2a, which is exactly why the denominator here is 16a and not 8a.",
+  "formulas": [
+    "m2b.pa.standard"
+  ]
 }

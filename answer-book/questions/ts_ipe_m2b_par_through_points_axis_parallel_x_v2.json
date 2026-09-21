@@ -259,5 +259,6 @@
       }
     ]
   },
-  "insider_note": "Every coefficient here was checked by substituting all three given points back into the boxed equation — each gives exactly 0, which is the fastest way to catch an arithmetic slip in this kind of question."
+  "insider_note": "Every coefficient here was checked by substituting all three given points back into the boxed equation — each gives exactly 0, which is the fastest way to catch an arithmetic slip in this kind of question.",
+  "formulas": []
 }

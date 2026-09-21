@@ -333,5 +333,9 @@
       }
     ]
   },
-  "insider_note": "Reaching a²(t₁−t₂)(t₁−t₃)(t₂−t₃) by factoring each column of the determinant is worth showing explicitly — jumping straight from the determinant to that product without the factoring step is where marks are lost."
+  "insider_note": "Reaching a²(t₁−t₂)(t₁−t₃)(t₂−t₃) by factoring each column of the determinant is worth showing explicitly — jumping straight from the determinant to that product without the factoring step is where marks are lost.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

@@ -177,5 +177,9 @@
       }
     ]
   },
-  "insider_note": "Two full equations are expected for two marks — writing only the tangent, or only the normal, earns half credit at best."
+  "insider_note": "Two full equations are expected for two marks — writing only the tangent, or only the normal, earns half credit at best.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

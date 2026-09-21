@@ -126,5 +126,9 @@
       }
     ]
   },
-  "insider_note": "The ± sign on y₁ is the easiest mark to drop in this question — the parabola is symmetric about its axis, so every valid x always gives two points."
+  "insider_note": "The ± sign on y₁ is the easiest mark to drop in this question — the parabola is symmetric about its axis, so every valid x always gives two points.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

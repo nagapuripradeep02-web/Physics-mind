@@ -111,5 +111,9 @@
       }
     ]
   },
-  "insider_note": "All four parts are asked in one question worth two marks total, so each part needs to be stated cleanly and briefly rather than derived at length."
+  "insider_note": "All four parts are asked in one question worth two marks total, so each part needs to be stated cleanly and briefly rather than derived at length.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

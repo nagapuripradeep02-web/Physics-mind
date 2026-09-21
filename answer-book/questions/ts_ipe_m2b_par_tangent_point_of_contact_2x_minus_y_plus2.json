@@ -136,5 +136,9 @@
       }
     ]
   },
-  "insider_note": "Two separate things are asked here — proving the line is a tangent, and then finding where it touches — and both need their own line of working for full marks."
+  "insider_note": "Two separate things are asked here — proving the line is a tangent, and then finding where it touches — and both need their own line of working for full marks.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

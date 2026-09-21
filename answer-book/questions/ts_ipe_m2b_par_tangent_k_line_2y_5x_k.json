@@ -147,5 +147,9 @@
       }
     ]
   },
-  "insider_note": "The parabola's tangential condition c = a/m is much simpler than the circle's — mixing the two up under exam pressure is the most common slip on this question type."
+  "insider_note": "The parabola's tangential condition c = a/m is much simpler than the circle's — mixing the two up under exam pressure is the most common slip on this question type.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }

@@ -151,5 +151,8 @@
       }
     ]
   },
-  "insider_note": "This question uses the standard sideways-parabola method (vertex, focus, directrix, axis) with two extra twists — the equation must first be completed to standard form, and the vertex has shifted away from the origin."
+  "insider_note": "This question uses the standard sideways-parabola method (vertex, focus, directrix, axis) with two extra twists — the equation must first be completed to standard form, and the vertex has shifted away from the origin.",
+  "formulas": [
+    "m2b.pa.latus_rectum"
+  ]
 }

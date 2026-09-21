@@ -402,5 +402,8 @@
       }
     ]
   },
-  "insider_note": "The examiner is really checking two things: that SA = AZ is argued (not assumed) so A is shown to be on the curve, and that PM is correctly split as x₁ + a — most marks are lost on the sign of that second one."
+  "insider_note": "The examiner is really checking two things: that SA = AZ is argued (not assumed) so A is shown to be on the curve, and that PM is correctly split as x₁ + a — most marks are lost on the sign of that second one.",
+  "formulas": [
+    "m2b.pa.standard"
+  ]
 }

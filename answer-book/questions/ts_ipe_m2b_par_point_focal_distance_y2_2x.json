@@ -135,5 +135,9 @@
       }
     ]
   },
-  "insider_note": "The steps here are identical in shape to 121.1 with a smaller a — recognising the two questions as the same method is worth more than re-deriving the focal-distance rule from scratch each time."
+  "insider_note": "The steps here are identical in shape to 121.1 with a smaller a — recognising the two questions as the same method is worth more than re-deriving the focal-distance rule from scratch each time.",
+  "formulas": [
+    "m2b.pa.latus_rectum",
+    "m2b.pa.standard"
+  ]
 }
