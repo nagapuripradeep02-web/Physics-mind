@@ -392,7 +392,11 @@
             "style": "indent",
             "added": true
           },
-          "tan θ = (a² − b²)/(2ab) = opposite/adjacent",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{2ab} = \\ \\dfrac{\\text{opposite}}{\\text{adjacent}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(Pythagoras' theorem)",
             "added": true
@@ -414,7 +418,9 @@
           },
           "= √(a⁴ + 2a²b² + b⁴) = a² + b²",
           {
-            "text": "(sin θ = opposite/hypotenuse; θ is acute, so sin θ > 0)",
+            "text": "\\left(\\sin \\theta \\ = \\ \\dfrac{\\text{opposite}}{\\text{hypotenuse}};\\ \\theta \\ \\text{is}\\ \\text{acute},\\ \\text{so}\\ \\sin \\theta \\ > \\ 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -453,7 +459,11 @@
         "mark_note": "Method",
         "memory_tip": "(a² − b²)² + (2ab)² = (a² + b²)² — the hypotenuse is a perfect square.",
         "lines_compact": [
-          "tan θ = (a² − b²)/(2ab) = opposite/adjacent",
+          {
+            "text": "\\tan \\theta \\ = \\ \\dfrac{a^{2}\\ - \\ b^{2}}{2ab} = \\ \\dfrac{\\text{opposite}}{\\text{adjacent}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Hypotenuse = √((a² − b²)² + (2ab)²)",
           "= √(a⁴ + 2a²b² + b⁴) = a² + b²",
           {

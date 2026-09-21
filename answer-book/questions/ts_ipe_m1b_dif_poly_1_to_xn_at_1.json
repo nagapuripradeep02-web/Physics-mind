@@ -113,7 +113,9 @@
           "f′(1) = 1 + 2 + 3 + ⋯ + n",
           "This is the sum of the first n natural numbers.",
           {
-            "text": "(the sum 1 + 2 + ⋯ + n = n(n + 1)/2)",
+            "text": "\\left(\\text{the}\\ \\text{sum}\\ 1\\ + \\ 2\\ + \\ \\cdots \\ + \\ n\\ = \\ \\dfrac{n\\left(n\\ + \\ 1\\right)}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -121,7 +123,11 @@
             "style": "boxed",
             "render": "katex"
           },
-          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
+          {
+            "text": "\\text{Check} \\text{with} n = 3: f'\\left(1\\right) = 1 + 2 + 3 = 6 \\text{and} \\dfrac{n\\left(n + 1\\right)}{2} = 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -160,7 +166,11 @@
             "style": "boxed",
             "render": "katex"
           },
-          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
+          {
+            "text": "\\text{Check} \\text{with} n = 3: f'\\left(1\\right) = 1 + 2 + 3 = 6 \\text{and} \\dfrac{n\\left(n + 1\\right)}{2} = 6.",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       }
     ]

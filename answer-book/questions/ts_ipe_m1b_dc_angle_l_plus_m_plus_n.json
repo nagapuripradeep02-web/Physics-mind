@@ -315,10 +315,10 @@
             "text": "(put the d.r's (−1, 0, 1) and (0, −1, 1))",
             "added": true
           },
-          "= |(−1)(0) + (0)(−1) + (1)(1)|",
           {
-            "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|\\left( - 1\\right)\\left(0\\right)\\ + \\ \\left(0\\right)\\left( - 1\\right)\\ + \\ \\left(1\\right)\\left(1\\right)\\right|}{\\sqrt{\\left(\\left( - 1\\right)^{2} + 0^{2} + 1^{2}\\right)\\left(0^{2} + \\left( - 1\\right)^{2} + 1^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "\\left(1\\ + \\ 0\\ + \\ 1\\ = \\ 2\\ \\text{twice};\\ \\cos 60^{\\circ}\\ = \\ \\dfrac{1}{2}\\right)",
@@ -370,10 +370,10 @@
             "style": "normal",
             "render": "katex"
           },
-          "= |(−1)(0) + (0)(−1) + (1)(1)|",
           {
-            "text": "  / √(((−1)²+0²+1²)(0²+(−1)²+1²))",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|\\left( - 1\\right)\\left(0\\right)\\ + \\ \\left(0\\right)\\left( - 1\\right)\\ + \\ \\left(1\\right)\\left(1\\right)\\right|}{\\sqrt{\\left(\\left( - 1\\right)^{2} + 0^{2} + 1^{2}\\right)\\left(0^{2} + \\left( - 1\\right)^{2} + 1^{2}\\right)}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{1}{\\sqrt{\\left(2\\right)\\left(2\\right)}} = \\ \\dfrac{1}{\\sqrt{4}} = \\ \\dfrac{1}{2} = \\ \\cos 60^{\\circ}",

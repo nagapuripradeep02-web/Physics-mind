@@ -69,7 +69,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "(tan(90° + θ) = −cot θ, and cot20° = 1/tan20°)"
+          {
+            "text": "\\left(\\tan \\left(90^{\\circ}\\ + \\ \\theta \\right)\\ = \\ - \\cot \\theta ,\\ \\text{and}\\ \\cot 20^{\\circ}\\ = \\ \\dfrac{1}{\\tan 20^{\\circ}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

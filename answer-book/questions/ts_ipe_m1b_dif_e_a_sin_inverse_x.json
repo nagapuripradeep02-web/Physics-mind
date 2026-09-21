@@ -61,7 +61,11 @@
             "render": "katex"
           },
           "(put u = a Sin⁻¹x)",
-          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · d/dx(a Sin⁻¹x)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ e^{a\\operatorname{Sin}^{-1}x}\\ \\cdot \\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "The exponential factor eᵃ ˢⁱⁿ⁻¹ˣ is y itself,",
           {
             "text": "\\text{so}\\ \\dfrac{dy}{dx}\\ = \\ y\\ \\cdot \\ \\dfrac{d}{dx}\\left(a\\operatorname{Sin}^{-1} x\\right)",
@@ -126,7 +130,11 @@
             "render": "katex",
             "added": true
           },
-          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ e^{a\\operatorname{Sin}^{-1}x}\\ \\cdot \\ \\dfrac{a}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {
             "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay}{\\sqrt{1\\ - \\ x^{2}}}",
@@ -172,7 +180,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ dy/dx = eᵃ ˢⁱⁿ⁻¹ˣ · a/√(1 − x²)",
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ e^{a\\operatorname{Sin}^{-1}x}\\ \\cdot \\ \\dfrac{a}{\\sqrt{1\\ - \\ x^{2}}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Replacing eᵃ ˢⁱⁿ⁻¹ˣ by y,",
           {
             "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{ay}{\\sqrt{1\\ - \\ x^{2}}}",

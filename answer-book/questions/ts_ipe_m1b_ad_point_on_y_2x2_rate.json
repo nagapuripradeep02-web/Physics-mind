@@ -51,7 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dx/dt = 4 units/sec.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dx}{dt}\\ = \\ 4\\ \\text{units}/\\text{sec}.",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Asked}:\\ \\dfrac{dy}{dt}\\ \\text{at}\\ \\text{the}\\ \\text{point}\\ \\left(2,\\ 8\\right).",
             "style": "normal",
@@ -134,8 +138,9 @@
             "added": true
           },
           {
-            "text": "∴ dy/dt = 32 units/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ 32\\ \\text{units}/\\text{sec}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -177,8 +182,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ dy/dt = 32 units/sec",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dt}\\ = \\ 32\\ \\text{units}/\\text{sec}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

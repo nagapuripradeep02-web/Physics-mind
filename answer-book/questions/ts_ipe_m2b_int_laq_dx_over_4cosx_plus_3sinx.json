@@ -191,7 +191,9 @@
             "render": "katex"
           },
           {
-            "text": "since 9/16 + 1 = 25/16 = (5/4)²",
+            "text": "\\text{since}\\ \\dfrac{9}{16}\\ + \\ 1\\ = \\ \\dfrac{25}{16} = \\ \\left(\\dfrac{5}{4}\\right)^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -280,10 +282,10 @@
             "render": "katex",
             "added": true
           },
-          "∴ I = (1/5)log|",
           {
-            "text": "(2tan(x/2)+1)/(2(tan(x/2)−2))| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{2\\tan \\left(\\tfrac{x}{2}\\right) + 1}{2\\left(\\tan \\left(\\tfrac{x}{2}\\right) - 2\\right)}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "why": "Clearing the internal fractions and writing t back as tan(x/2) returns the answer to the original variable x, which is what the question actually asked for.",
@@ -303,10 +305,10 @@
             "style": "normal",
             "render": "katex"
           },
-          "∴ I = (1/5)log|",
           {
-            "text": "(2tan(x/2)+1)/(2(tan(x/2)−2))| + c",
-            "style": "boxed"
+            "text": "\\therefore \\ I\\ = \\ \\left(\\dfrac{1}{5}\\right)\\log \\left|\\dfrac{2\\tan \\left(\\tfrac{x}{2}\\right) + 1}{2\\left(\\tan \\left(\\tfrac{x}{2}\\right) - 2\\right)}\\right|\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

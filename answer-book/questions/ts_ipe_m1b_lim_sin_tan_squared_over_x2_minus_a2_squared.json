@@ -132,7 +132,11 @@
             "added": true
           },
           "As x → a, the angle (x − a) → 0, so",
-          "lim sin(x − a)/(x − a) = 1",
+          {
+            "text": "\\lim \\dfrac{\\sin \\left(x\\ - \\ a\\right)}{x\\ - \\ a} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{and}\\ \\lim \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]^{2}\\ = \\ 1^{2}\\ = \\ 1",
             "style": "normal",
@@ -160,12 +164,9 @@
           },
           "∴ the limit = 1 · 1 · 0",
           {
-            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",
-            "style": "boxed"
-          },
-          {
-            "text": "/((x² − a²)²) = 0,  a ≠ 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(\\sin \\left(x\\ - \\ a\\right)\\ \\cdot \\ \\tan ^{2}\\left(x\\ - \\ a\\right)\\right)}{\\left(x^{2}\\ - \\ a^{2}\\right)^{2}} = \\ 0,\\ a\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -198,7 +199,11 @@
         "memory_tip": "When the numerator carries more powers of (x − a) than the denominator, the limit is 0. Only equal counts give a non-zero number.",
         "lines_compact": [
           "As x → a, the angle (x − a) → 0, so",
-          "lim sin(x − a)/(x − a) = 1",
+          {
+            "text": "\\lim \\dfrac{\\sin \\left(x\\ - \\ a\\right)}{x\\ - \\ a} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{and}\\ \\lim \\left[\\dfrac{\\tan \\left(x\\ - \\ a\\right)}{x\\ - \\ a}\\right]^{2}\\ = \\ 1^{2}\\ = \\ 1",
             "style": "normal",
@@ -213,12 +218,9 @@
           },
           "∴ the limit = 1 · 1 · 0",
           {
-            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))",
-            "style": "boxed"
-          },
-          {
-            "text": "/((x² − a²)²) = 0,  a ≠ 0",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(\\sin \\left(x\\ - \\ a\\right)\\ \\cdot \\ \\tan ^{2}\\left(x\\ - \\ a\\right)\\right)}{\\left(x^{2}\\ - \\ a^{2}\\right)^{2}} = \\ 0,\\ a\\ \\ne \\ 0",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

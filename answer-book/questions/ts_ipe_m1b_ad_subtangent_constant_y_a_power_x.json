@@ -129,8 +129,16 @@
             "style": "indent",
             "added": true
           },
-          "d(aˣ)/dx = aˣ logₑa",
-          "∴ dy/dx = aˣ logₑa"
+          {
+            "text": "\\dfrac{d\\left(a^{x}\\right)}{dx}\\ = \\ a^{x}\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{x}\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -167,8 +175,16 @@
           "and the index x is the variable,",
           "so the power rule does not apply.",
           "The standard result is used:",
-          "d(aˣ)/dx = aˣ logₑa",
-          "∴ dy/dx = aˣ logₑa"
+          {
+            "text": "\\dfrac{d\\left(a^{x}\\right)}{dx}\\ = \\ a^{x}\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ a^{x}\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -184,7 +200,11 @@
             "text": "(aˣ logₑa = y logₑa)",
             "added": true
           },
-          "m = dy/dx = y logₑa"
+          {
+            "text": "m\\ = \\ \\dfrac{dy}{dx}\\ = \\ y\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -218,7 +238,11 @@
         "memory_tip": "An exponential curve is its own derivative up to a constant. For y = aˣ that constant is logₑa, so m = y logₑa.",
         "lines_compact": [
           "The curve itself says aˣ = y, so replace aˣ in the derivative:",
-          "m = dy/dx = y logₑa"
+          {
+            "text": "m\\ = \\ \\dfrac{dy}{dx}\\ = \\ y\\log _{e}a",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -243,7 +267,11 @@
             "text": "(y cancels, as y = aˣ > 0)",
             "added": true
           },
-          "= 1/logₑa",
+          {
+            "text": "= \\ \\dfrac{1}{\\log _{e}a}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(a ≠ 1, so logₑa ≠ 0 and 1/logₑa is defined; when",
             "added": true
@@ -258,8 +286,9 @@
           "So the subtangent has the same value",
           "at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/|logₑa|,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{1}{\\left|\\log _{e}a\\right|},",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "a constant",
@@ -303,14 +332,19 @@
             "render": "katex"
           },
           "= y ÷ (y logₑa)",
-          "= 1/logₑa",
+          {
+            "text": "= \\ \\dfrac{1}{\\log _{e}a}",
+            "style": "normal",
+            "render": "katex"
+          },
           "logₑa is a fixed number once the base a is fixed,",
           "and no x or y is left.",
           "So the subtangent has the same value",
           "at every point of the curve.",
           {
-            "text": "∴ the length of the subtangent = 1/|logₑa|,",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{the}\\ \\text{length}\\ \\text{of}\\ \\text{the}\\ \\text{subtangent}\\ = \\ \\dfrac{1}{\\left|\\log _{e}a\\right|},",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "a constant",

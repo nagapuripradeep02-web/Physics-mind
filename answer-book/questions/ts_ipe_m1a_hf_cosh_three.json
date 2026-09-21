@@ -174,7 +174,9 @@
             "render": "katex"
           },
           {
-            "text": "(logₑ(1/y) = −logₑ y)",
+            "text": "\\left(\\log _{e}\\left(\\dfrac{1}{y}\\right)\\ = \\ - \\log _{e}y\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "∴ logₑ(3 − √8) = −logₑ(3 + √8)",

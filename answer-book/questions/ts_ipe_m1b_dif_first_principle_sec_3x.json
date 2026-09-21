@@ -115,7 +115,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "sec(3x+3h) − sec 3x = 1/cos(3x+3h) − 1/cos 3x",
+          {
+            "text": "\\sec \\left(3x + 3h\\right)\\ - \\ \\sec 3x\\ = \\ \\dfrac{1}{\\cos \\left(3x + 3h\\right)} - \\ \\dfrac{1}{\\cos 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(subtract the fractions over the common denominator",
             "added": true
@@ -167,7 +171,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "sec(3x+3h) − sec 3x = 1/cos(3x+3h) − 1/cos 3x",
+          {
+            "text": "\\sec \\left(3x + 3h\\right)\\ - \\ \\sec 3x\\ = \\ \\dfrac{1}{\\cos \\left(3x + 3h\\right)} - \\ \\dfrac{1}{\\cos 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\cos 3x\\ - \\ \\cos \\left(3x\\ + \\ 3h\\right)}{\\cos \\left(3x + 3h\\right)\\cos 3x}",
             "style": "normal",
@@ -307,7 +315,11 @@
             "added": true
           },
           "As h → 0 that second factor → 1, so",
-          "f′(x) = 2 · (3/2) · sin 3x/(cos 3x · cos 3x)",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ 2\\ \\cdot \\ \\left(\\dfrac{3}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin 3x}{\\cos 3x\\ \\cdot \\ \\cos 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(2 · 3/2 = 3;",
             "added": true
@@ -322,9 +334,15 @@
             "style": "indent",
             "added": true
           },
-          "= 3 · (1/cos 3x) · (sin 3x/cos 3x)",
           {
-            "text": "(1/cos 3x = sec 3x and sin 3x/cos 3x = tan 3x)",
+            "text": "= \\ 3\\ \\cdot \\ \\left(\\dfrac{1}{\\cos 3x}\\right)\\ \\cdot \\ \\left(\\dfrac{\\sin 3x}{\\cos 3x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\cos 3x} = \\ \\sec 3x\\ \\text{and}\\ \\dfrac{\\sin 3x}{\\cos 3x} = \\ \\tan 3x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -367,8 +385,16 @@
             "render": "katex"
           },
           "As h → 0 that second factor → 1, so",
-          "f′(x) = 2 · (3/2) · sin 3x/(cos 3x · cos 3x)",
-          "= 3 · (1/cos 3x) · (sin 3x/cos 3x)",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ 2\\ \\cdot \\ \\left(\\dfrac{3}{2}\\right)\\ \\cdot \\ \\dfrac{\\sin 3x}{\\cos 3x\\ \\cdot \\ \\cos 3x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ 3\\ \\cdot \\ \\left(\\dfrac{1}{\\cos 3x}\\right)\\ \\cdot \\ \\left(\\dfrac{\\sin 3x}{\\cos 3x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\sec 3x\\right)\\ = \\ 3\\sec 3x\\tan 3x",
             "style": "boxed",

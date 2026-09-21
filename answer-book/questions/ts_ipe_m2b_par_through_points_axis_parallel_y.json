@@ -179,7 +179,11 @@
         "margin_note": "Last mark. Check the boxed equation by substituting (4, 5) back in — it should give 0.",
         "lines": [
           "From (1):",
-          "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
+          {
+            "text": "16\\left(\\dfrac{1}{2}\\right) + 4\\left( - 2\\right) + n = 5 \\Rightarrow 8 - 8 + n = 5 \\Rightarrow n = 5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Substitute}\\ l\\ = \\ \\dfrac{1}{2},\\ m\\ = \\ - 2,\\ n\\ = \\ 5\\ \\text{in}\\ y\\ = \\ lx^{2}\\ + \\ mx\\ + \\ n:",
             "style": "normal",
@@ -212,7 +216,11 @@
         "memory_tip": "Multiply through by 2 the moment a fraction appears — one clean whole-number equation is the target.",
         "lines_compact": [
           "From (1):",
-          "16(1/2) + 4(−2) + n = 5 ⇒ 8 − 8 + n = 5 ⇒ n = 5",
+          {
+            "text": "16\\left(\\dfrac{1}{2}\\right) + 4\\left( - 2\\right) + n = 5 \\Rightarrow 8 - 8 + n = 5 \\Rightarrow n = 5",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Substitute}\\ l\\ = \\ \\dfrac{1}{2},\\ m\\ = \\ - 2,\\ n\\ = \\ 5\\ \\text{in}\\ y\\ = \\ lx^{2}\\ + \\ mx\\ + \\ n:",
             "style": "normal",

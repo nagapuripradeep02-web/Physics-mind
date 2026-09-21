@@ -108,7 +108,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
+          {
+            "text": "= \\ \\dfrac{\\cos 2A}{\\sin A\\cos A}\\quad \\left[\\because \\ \\cos 2A\\ = \\ \\cos ^{2}A\\ - \\ \\sin ^{2}A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -144,7 +148,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
+          {
+            "text": "= \\ \\dfrac{\\cos 2A}{\\sin A\\cos A}\\quad \\left[\\because \\ \\cos 2A\\ = \\ \\cos ^{2}A\\ - \\ \\sin ^{2}A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -164,8 +172,16 @@
             "style": "indent",
             "added": true
           },
-          "= 2 cos2A/(2 sinA cosA)",
-          "= 2 cos2A/sin2A   [∵ sin2A = 2 sinA cosA]"
+          {
+            "text": "= \\ \\dfrac{2\\cos 2A}{2\\sin A\\cos A}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\cos 2A}{\\sin 2A}\\quad \\left[\\because \\ \\sin 2A\\ = \\ 2\\sin A\\cos A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -195,8 +211,16 @@
         ],
         "memory_tip": "Double top and bottom so the denominator becomes sin 2A.",
         "lines_compact": [
-          "= 2 cos2A/(2 sinA cosA)",
-          "= 2 cos2A/sin2A   [∵ sin2A = 2 sinA cosA]"
+          {
+            "text": "= \\ \\dfrac{2\\cos 2A}{2\\sin A\\cos A}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2\\cos 2A}{\\sin 2A}\\quad \\left[\\because \\ \\sin 2A\\ = \\ 2\\sin A\\cos A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -208,7 +232,9 @@
         "margin_note": "Last mark. cos over sin is cot, so the answer is 2 cot 2A.",
         "lines": [
           {
-            "text": "(cos2A/sin2A = cot2A)",
+            "text": "\\left(\\dfrac{\\cos 2A}{\\sin 2A} = \\ \\cot 2A\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

@@ -303,8 +303,9 @@
             "added": true
           },
           {
-            "text": "∴ (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\dfrac{1}{8a}\\right)\\left|\\left(y_{1} - y_{2}\\right)\\left(y_{2} - y_{3}\\right)\\left(y_{3} - y_{1}\\right)\\right|\\ \\text{sq.}\\ \\text{units}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "why": "The three factors of 2a in the denominator combine to 8a³, and one power of a² from out front cancels two of those, leaving the single power of a in the boxed answer's denominator.",
@@ -326,8 +327,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| sq. units",
-            "style": "boxed"
+            "text": "\\therefore \\ \\left(\\dfrac{1}{8a}\\right)\\left|\\left(y_{1} - y_{2}\\right)\\left(y_{2} - y_{3}\\right)\\left(y_{3} - y_{1}\\right)\\right|\\ \\text{sq.}\\ \\text{units}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

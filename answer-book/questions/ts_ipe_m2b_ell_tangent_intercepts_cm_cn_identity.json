@@ -87,7 +87,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "⇒ x / (a/cos θ) + y / (b/sin θ) = 1"
+          {
+            "text": "\\Rightarrow \\ \\dfrac{x}{\\tfrac{a}{\\cos \\theta }}\\ + \\ \\dfrac{y}{\\tfrac{b}{\\sin \\theta }} = \\ 1",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Writing the tangent line in intercept form x/p + y/q = 1 makes its x- and y-intercepts p and q directly readable, which is exactly what M and N are.",
         "common_mistakes": [
@@ -116,11 +120,21 @@
             "added": true
           },
           {
-            "text": "Put y = 0: x = a/cos θ. Put x = 0: y = b/sin θ.",
+            "text": "\\text{Put}\\ y\\ = \\ 0:\\ x\\ = \\ \\dfrac{a}{\\cos \\theta }.\\ \\text{Put}\\ x\\ = \\ 0:\\ y\\ = \\ \\dfrac{b}{\\sin \\theta }.",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "⇒ X-intercept CM = a/cos θ",
-          "and Y-intercept CN = b/sin θ"
+          {
+            "text": "\\Rightarrow \\ \\text{X-intercept}\\ CM\\ = \\ \\dfrac{a}{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{Y-intercept}\\ CN\\ = \\ \\dfrac{b}{\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "why": "Since C is the origin (the centre of the ellipse), the distances CM and CN are exactly the x- and y-intercepts of the tangent line found in step 1.",
         "common_mistakes": [
@@ -130,8 +144,16 @@
         "lines_compact": [
           "The tangent meets the major axis (X-axis)",
           "at M and the minor axis (Y-axis) at N",
-          "⇒ X-intercept CM = a/cos θ",
-          "and Y-intercept CN = b/sin θ"
+          {
+            "text": "\\Rightarrow \\ \\text{X-intercept}\\ CM\\ = \\ \\dfrac{a}{\\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{and}\\ \\text{Y-intercept}\\ CN\\ = \\ \\dfrac{b}{\\sin \\theta }",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -143,19 +165,25 @@
         "margin_note": "Third mark. Invert the two relations from step 2 to isolate cos θ and sin θ.",
         "memory_tip": "Once CM = a/cos θ is known, cos θ = a/CM follows by simply inverting.",
         "lines": [
-          "From CM = a/cos θ and CN = b/sin θ:",
+          {
+            "text": "\\text{From}\\ CM\\ = \\ \\dfrac{a}{\\cos \\theta }\\ \\text{and}\\ CN\\ = \\ \\dfrac{b}{\\sin \\theta }:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "Turn each one over:",
             "added": true
           },
           {
-            "text": "  1/CM = cos θ/a ⇒ cos θ = a/CM",
-            "style": "indent",
+            "text": "\\dfrac{1}{CM} = \\ \\dfrac{\\cos \\theta }{a}\\ \\Rightarrow \\ \\cos \\theta \\ = \\ \\dfrac{a}{CM}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
-            "text": "  1/CN = sin θ/b ⇒ sin θ = b/CN",
-            "style": "indent",
+            "text": "\\dfrac{1}{CN} = \\ \\dfrac{\\sin \\theta }{b}\\ \\Rightarrow \\ \\sin \\theta \\ = \\ \\dfrac{b}{CN}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -170,7 +198,11 @@
           "Mixing up a with CM or b with CN when inverting."
         ],
         "lines_compact": [
-          "From CM = a/cos θ and CN = b/sin θ:",
+          {
+            "text": "\\text{From}\\ CM\\ = \\ \\dfrac{a}{\\cos \\theta }\\ \\text{and}\\ CN\\ = \\ \\dfrac{b}{\\sin \\theta }:",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\cos \\theta \\ = \\ \\dfrac{a}{CM}\\text{and}\\ \\sin \\theta \\ = \\ \\dfrac{b}{CN}",
             "style": "normal",

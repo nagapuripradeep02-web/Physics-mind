@@ -348,7 +348,9 @@
             "added": true
           },
           {
-            "text": "2(n − 2)x/((n − 1)x) = 9a/6a",
+            "text": "\\dfrac{2\\left(n\\ - \\ 2\\right)x}{\\left(n\\ - \\ 1\\right)x} = \\ \\dfrac{9a}{6a}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -397,7 +399,11 @@
           "Getting n = 5 but not checking it makes both (4) and (5) consistent."
         ],
         "lines_compact": [
-          "(5)/(4): 2(n − 2)/(n − 1) = 9a/6a = 3/2",
+          {
+            "text": "\\left(5\\right)\\ \\div \\ \\left(4\\right):\\ \\dfrac{2\\left(n\\ - \\ 2\\right)}{n\\ - \\ 1} = \\ \\dfrac{9a}{6a} = \\ \\dfrac{3}{2}",
+            "style": "normal",
+            "render": "katex"
+          },
           "4(n − 2) = 3(n − 1) ⇒ 4n − 8 = 3n − 3",
           "∴ n = 5"
         ]

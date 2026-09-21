@@ -306,9 +306,15 @@
         "margin_note": "Last mark. A⁻¹ = (Adj A)/det A = 3Aᵀ/27 = Aᵀ/9 — the identity just proved makes this one line instead of nine.",
         "memory_tip": "A⁻¹ = 3Aᵀ/27 = Aᵀ/9 — the identity just proved makes this one line instead of nine.",
         "lines": [
-          "A⁻¹ = (Adj A)/(det A) = 3Aᵀ/27",
           {
-            "text": "(Adj A = 3Aᵀ, and 3/27 = 1/9)",
+            "text": "A^{-1}\\ = \\ \\dfrac{\\text{Adj}\\ A}{\\det A} = \\ \\dfrac{3A^{T}}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{Adj}\\ A\\ = \\ 3A^{T},\\ \\text{and}\\ \\dfrac{3}{27} = \\ \\dfrac{1}{9}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -317,8 +323,9 @@
             "style": "eq"
           },
           {
-            "text": "∴ A⁻¹ = (1/9) Aᵀ",
-            "style": "boxed"
+            "text": "\\therefore \\ A^{-1}\\ = \\ \\left(\\dfrac{1}{9}\\right)A^{T}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -349,15 +356,20 @@
           "Writing A⁻¹ = 3Aᵀ/27 without simplifying."
         ],
         "lines_compact": [
-          "A⁻¹ = (Adj A)/(det A) = 3Aᵀ/27",
+          {
+            "text": "A^{-1}\\ = \\ \\dfrac{\\text{Adj}\\ A}{\\det A} = \\ \\dfrac{3A^{T}}{27}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\tfrac{1}{9}A^{T} = \\tfrac{1}{9}\\begin{bmatrix} -1 & 2 & 2 \\\\ -2 & 1 & -2 \\\\ -2 & -2 & 1 \\end{bmatrix}",
             "render": "katex",
             "style": "eq"
           },
           {
-            "text": "∴ A⁻¹ = (1/9) Aᵀ",
-            "style": "boxed"
+            "text": "\\therefore \\ A^{-1}\\ = \\ \\left(\\dfrac{1}{9}\\right)A^{T}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

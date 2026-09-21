@@ -226,7 +226,9 @@
         "lines": [
           "At x = −2:",
           {
-            "text": "(for x < −2, f(x) = 6/(x − 10), and x − 10 ≠ 0 at x = −2)",
+            "text": "\\left(\\text{for} x < - 2, f\\left(x\\right) = \\dfrac{6}{x - 10}, \\text{and} x - 10 \\ne 0 \\text{at} x = - 2\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

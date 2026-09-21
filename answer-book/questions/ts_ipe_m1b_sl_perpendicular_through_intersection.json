@@ -60,7 +60,11 @@
           },
           "(write 5x − 2y = 7 with 0 on the right)",
           "Given line is 5x − 2y − 7 = 0",
-          "(the slope of ax + by + c = 0 is −a/b; here a = 5, b = −2)",
+          {
+            "text": "\\left(\\text{the} \\text{slope} \\text{of} ax + by + c = 0 \\text{is} - \\dfrac{a}{b}; \\text{here} a = 5, b = - 2\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{5}{ - 2} = \\ \\dfrac{5}{2}",
             "style": "normal",

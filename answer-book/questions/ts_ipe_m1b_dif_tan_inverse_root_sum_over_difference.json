@@ -63,10 +63,10 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given y = Tan⁻¹[(√(1 + x²) + √(1 − x²))",
           {
-            "text": "  /(√(1 + x²) − √(1 − x²))],  0 < |x| < 1.",
-            "style": "indent"
+            "text": "\\text{Given}\\ y\\ = \\ \\operatorname{Tan}^{-1}\\left[\\dfrac{\\sqrt{1\\ + \\ x^{2}}\\ + \\ \\sqrt{1\\ - \\ x^{2}}}{\\sqrt{1\\ + \\ x^{2}}\\ - \\ \\sqrt{1\\ - \\ x^{2}}}\\right],\\ 0\\ < \\ \\left|x\\right|\\ < \\ 1.",
+            "style": "normal",
+            "render": "katex"
           },
           "The restriction is needed at both ends:",
           "|x| < 1 keeps 1 − x² ≥ 0, and x ≠ 0 is required because",

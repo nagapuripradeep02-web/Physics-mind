@@ -289,8 +289,9 @@
             "render": "katex"
           },
           {
-            "text": "Subnormal = |(b²/2a) sin(2x/a)|",
-            "style": "boxed"
+            "text": "\\text{Subnormal}\\ = \\ \\left|\\left(\\dfrac{b^{2}}{2a}\\right)\\sin \\left(\\dfrac{2x}{a}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -356,8 +357,9 @@
             "render": "katex"
           },
           {
-            "text": "Subnormal = |(b²/2a) sin(2x/a)|",
-            "style": "boxed"
+            "text": "\\text{Subnormal}\\ = \\ \\left|\\left(\\dfrac{b^{2}}{2a}\\right)\\sin \\left(\\dfrac{2x}{a}\\right)\\right|",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

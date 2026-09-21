@@ -134,9 +134,15 @@
             "render": "katex"
           },
           "with lx + my = −n:",
-          "(cos θ / a) / l = (sin θ / b) / m = −1/n",
           {
-            "text": "First = third: cos θ / a = −l/n",
+            "text": "\\dfrac{\\tfrac{\\cos \\theta }{a}}{l} = \\ \\dfrac{\\tfrac{\\sin \\theta }{b}}{m} = \\ - \\dfrac{1}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\text{First}\\ = \\ \\text{third}:\\ \\dfrac{\\cos \\theta }{a} = \\ - \\dfrac{l}{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -146,7 +152,9 @@
             "added": true
           },
           {
-            "text": "Second = third: sin θ / b = −m/n",
+            "text": "\\text{Second}\\ = \\ \\text{third}:\\ \\dfrac{\\sin \\theta }{b} = \\ - \\dfrac{m}{n}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -173,7 +181,11 @@
             "render": "katex"
           },
           "with lx + my = −n:",
-          "(cos θ / a) / l = (sin θ / b) / m = −1/n",
+          {
+            "text": "\\dfrac{\\tfrac{\\cos \\theta }{a}}{l} = \\ \\dfrac{\\tfrac{\\sin \\theta }{b}}{m} = \\ - \\dfrac{1}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\Rightarrow \\ \\cos \\theta \\ = \\ - \\dfrac{al}{n},\\ \\sin \\theta \\ = \\ - \\dfrac{bm}{n}",
             "style": "normal",

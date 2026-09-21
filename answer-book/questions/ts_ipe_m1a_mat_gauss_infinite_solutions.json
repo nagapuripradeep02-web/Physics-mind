@@ -243,8 +243,9 @@
             "added": true
           },
           {
-            "text": "  − 2/3(0, 0, −3 | −3)",
-            "style": "indent",
+            "text": "- \\dfrac{2}{3}\\left(0,\\ 0,\\ - 3\\ \\mid \\ - 3\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

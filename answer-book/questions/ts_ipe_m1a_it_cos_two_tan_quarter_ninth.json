@@ -68,7 +68,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "so xy = 2/36 = 1/18 < 1  ✓",
+          {
+            "text": "\\text{so}\\ xy\\ = \\ \\dfrac{2}{36} = \\ \\dfrac{1}{18} < \\ 1\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\operatorname{Tan}^{-1}\\left(\\dfrac{1}{4}\\right)\\ + \\ \\operatorname{Tan}^{-1}\\left(\\dfrac{2}{9}\\right)",
             "style": "normal",

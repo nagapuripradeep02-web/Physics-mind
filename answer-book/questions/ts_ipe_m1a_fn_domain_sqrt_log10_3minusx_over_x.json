@@ -57,7 +57,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "The root needs log₁₀((3 − x)/x) ≥ 0",
+          {
+            "text": "\\text{The}\\ \\text{root}\\ \\text{needs}\\ \\log _{10}\\left(\\dfrac{3\\ - \\ x}{x}\\right)\\ \\ge \\ 0",
+            "style": "normal",
+            "render": "katex"
+          },
           "Now log₁₀ 1 = 0, so the second condition means",
           "(log₁₀ u ≥ 0 exactly when u ≥ 1)",
           {
@@ -135,8 +139,9 @@
           },
           "so the first condition holds as well.",
           {
-            "text": "∴ Domain = (0, 3/2]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Domain}\\ = \\ \\left(0,\\ \\dfrac{3}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -198,8 +203,9 @@
           },
           "so the first condition holds as well.",
           {
-            "text": "∴ Domain = (0, 3/2]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\text{Domain}\\ = \\ \\left(0,\\ \\dfrac{3}{2}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

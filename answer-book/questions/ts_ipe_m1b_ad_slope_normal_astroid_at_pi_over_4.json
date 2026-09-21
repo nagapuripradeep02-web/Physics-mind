@@ -57,10 +57,26 @@
           },
           "Given:   x = a cos³θ,   y = a sin³θ",
           "Differentiate each with respect to θ, using the chain rule:",
-          "(chain rule: d/dθ of cos³θ is 3cos²θ · (−sin θ))",
-          "dx/dθ = a · 3cos²θ · (−sin θ) = −3a cos²θ sin θ",
-          "(chain rule: d/dθ of sin³θ is 3sin²θ · cos θ)",
-          "dy/dθ = a · 3sin²θ · (cos θ) = 3a sin²θ cos θ"
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{d\\theta }\\ \\text{of}\\ \\cos ^{3} \\theta \\ \\text{is}\\ 3\\cos ^{2} \\theta \\ \\cdot \\ \\left( - \\sin \\theta \\right)\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dx}{d\\theta }\\ = \\ a\\ \\cdot \\ 3\\cos ^{2} \\theta \\ \\cdot \\ \\left( - \\sin \\theta \\right)\\ = \\ - 3a\\cos ^{2} \\theta \\sin \\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{d\\theta }\\ \\text{of}\\ \\sin ^{3} \\theta \\ \\text{is}\\ 3\\sin ^{2} \\theta \\ \\cdot \\ \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{d\\theta }\\ = \\ a\\ \\cdot \\ 3\\sin ^{2} \\theta \\ \\cdot \\ \\left(\\cos \\theta \\right)\\ = \\ 3a\\sin ^{2} \\theta \\cos \\theta ",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -101,9 +117,15 @@
         "mark_note": "Method",
         "margin_note": "Second mark. 3a cancels, one sin θ and one cos θ cancel, and the minus sign stays. The result −tan θ holds wherever sin θ cos θ ≠ 0, so it is worth writing before substituting.",
         "lines": [
-          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
           {
-            "text": "(put dy/dθ and dx/dθ from step 1)",
+            "text": "\\text{For}\\ a\\ \\text{curve}\\ \\text{given}\\ \\text{through}\\ \\theta :\\quad \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\text{put}\\ \\dfrac{dy}{d\\theta }\\ \\text{and}\\ \\dfrac{dx}{d\\theta }\\ \\text{from}\\ \\text{step}\\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -160,7 +182,11 @@
         ],
         "memory_tip": "sin²θ cos θ divided by cos²θ sin θ leaves sin θ/cos θ, which is tan θ. The minus comes from dx/dθ and stays.",
         "lines_compact": [
-          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          {
+            "text": "\\text{For}\\ a\\ \\text{curve}\\ \\text{given}\\ \\text{through}\\ \\theta :\\quad \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
             "style": "normal",

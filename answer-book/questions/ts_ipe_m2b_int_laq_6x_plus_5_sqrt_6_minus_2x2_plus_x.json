@@ -305,13 +305,9 @@
             "added": true
           },
           {
-            "text": "  [((4x−1)/8)√[(7/4)²−(x−1/4)²]",
-            "style": "indent",
-            "added": true
-          },
-          {
-            "text": "   + (49/32)Sin⁻¹((4x−1)/7)]",
-            "style": "indent",
+            "text": "\\left[\\left(\\dfrac{4x - 1}{8}\\right)\\sqrt{\\left(\\dfrac{7}{4}\\right)^{2} - \\left(x - \\dfrac{1}{4}\\right)^{2}} + \\left(\\dfrac{49}{32}\\right)\\operatorname{Sin}^{-1}\\left(\\dfrac{4x - 1}{7}\\right)\\right]",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

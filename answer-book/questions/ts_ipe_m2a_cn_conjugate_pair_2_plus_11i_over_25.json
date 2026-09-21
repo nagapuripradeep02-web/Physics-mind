@@ -73,7 +73,11 @@
             "render": "katex"
           },
           "Take −1 out of the top and the bottom:",
-          "= −(2 − i) / −(3 + 4i) = (2 − i)/(3 + 4i)"
+          {
+            "text": "= \\ \\dfrac{ - \\left(2\\ - \\ i\\right)}{ - \\left(3\\ + \\ 4i\\right)} = \\ \\dfrac{2\\ - \\ i}{3\\ + \\ 4i}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

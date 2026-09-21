@@ -109,7 +109,9 @@
         "margin_note": "Second mark. 1 + sin x is a perfect square in the half angles, and cos x factorises with the same bracket — that shared factor is what cancels.",
         "lines": [
           {
-            "text": "(1 = cos²(x/2) + sin²(x/2) and sin x = 2 sin(x/2) cos(x/2))",
+            "text": "\\left(1 = \\cos ^{2}\\left(\\dfrac{x}{2}\\right) + \\sin ^{2}\\left(\\dfrac{x}{2}\\right) \\text{and} \\sin x = 2\\sin \\left(\\dfrac{x}{2}\\right)\\cos \\left(\\dfrac{x}{2}\\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

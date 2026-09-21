@@ -148,8 +148,11 @@
             "render": "katex",
             "added": true
           },
-          "= 1 + 2 sin(C/2)[cos((A−B)/2)",
-          "   − sin(C/2)]"
+          {
+            "text": "= \\ 1\\ + \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -194,8 +197,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= 1 + 2 sin(C/2)[cos((A−B)/2)",
-          "   − sin(C/2)]"
+          {
+            "text": "= \\ 1\\ + \\ 2\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A - B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{C}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -208,7 +214,9 @@
         "memory_tip": "Turn sin(C/2) back into cos((A+B)/2), so the bracket is cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2).",
         "lines": [
           {
-            "text": "(since (A+B)/2 = 90° − C/2)",
+            "text": "\\left(\\text{since}\\ \\dfrac{A + B}{2} = \\ 90^{\\circ}\\ - \\ \\dfrac{C}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

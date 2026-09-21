@@ -142,7 +142,9 @@
             "render": "katex"
           },
           {
-            "text": "(tan = opposite/adjacent in a right triangle)",
+            "text": "\\left(\\tan \\ = \\ \\dfrac{\\text{opposite}}{\\text{adjacent}}\\ \\text{in}\\ \\text{a}\\ \\text{right}\\ \\text{triangle}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Opposite 2, adjacent 3,",
@@ -152,7 +154,9 @@
           },
           "hypotenuse √(2² + 3²) = √13",
           {
-            "text": "(sin = opposite/hypotenuse)",
+            "text": "\\left(\\sin \\ = \\ \\dfrac{\\text{opposite}}{\\text{hypotenuse}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

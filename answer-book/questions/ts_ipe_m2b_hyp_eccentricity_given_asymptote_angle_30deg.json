@@ -94,7 +94,11 @@
         "margin_note": "Second mark. Rationalise the denominator to reach the exact surd form.",
         "memory_tip": "cos15° = (√6+√2)/4 is a standard value — invert it and rationalise to get sec15° = √6 − √2.",
         "lines": [
-          "sec15° = 1/cos15° = 4/(√6+√2)",
+          {
+            "text": "\\sec 15^{\\circ}\\ = \\ \\dfrac{1}{\\cos 15^{\\circ}} = \\ \\dfrac{4}{\\sqrt{6}\\ + \\ \\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(cos15° = cos(45° − 30°)",
             "added": true
@@ -130,7 +134,11 @@
           "Using the standard value cos15° = (√6+√2)/4 with the wrong sign."
         ],
         "lines_compact": [
-          "sec15° = 1/cos15° = 4/(√6+√2)",
+          {
+            "text": "\\sec 15^{\\circ}\\ = \\ \\dfrac{1}{\\cos 15^{\\circ}} = \\ \\dfrac{4}{\\sqrt{6}\\ + \\ \\sqrt{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "e = sec15° = √6 − √2",
             "style": "boxed"

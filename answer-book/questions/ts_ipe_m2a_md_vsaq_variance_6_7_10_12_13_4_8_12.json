@@ -57,7 +57,11 @@
           "gaps from the mean, so the signs disappear",
           "without taking sizes.",
           "There are n = 8 values.",
-          "Mean x̄ = (sum of the values)/n",
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ \\dfrac{\\text{sum of the values}}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{6\\ + \\ 7\\ + \\ 10\\ + \\ 12\\ + \\ 13\\ + \\ 4\\ + \\ 8\\ + \\ 12}{8}",
             "style": "normal",

@@ -71,7 +71,11 @@
             "text": "  3/2 − 5/2 = −1, and −1 + 1 = 0)",
             "style": "indent"
           },
-          "6(1/4) − 5(1/2) + 2(1/2) = 3/2 − 5/2 + 1 = 0  ✓",
+          {
+            "text": "6\\left(\\dfrac{1}{4}\\right)\\ - \\ 5\\left(\\dfrac{1}{2}\\right)\\ + \\ 2\\left(\\dfrac{1}{2}\\right)\\ = \\ \\dfrac{3}{2} - \\ \\dfrac{5}{2} + \\ 1\\ = \\ 0\\ \\checkmark",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Put}\\ x\\ = \\ \\dfrac{1}{2},\\ y\\ = \\ \\dfrac{1}{2}\\text{in}\\ \\left(ii\\right):",
             "style": "normal",
@@ -82,7 +86,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "4(1/4) + 8(1/4) = 1 + 2 = 3  ✓",
+          {
+            "text": "4\\left(\\dfrac{1}{4}\\right)\\ + \\ 8\\left(\\dfrac{1}{4}\\right)\\ = \\ 1\\ + \\ 2\\ = \\ 3\\ \\checkmark",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\ P\\left(\\dfrac{1}{2},\\ \\dfrac{1}{2}\\right)\\ \\text{lies}\\ \\text{on}\\ \\text{both}\\ \\text{curves},\\ \\text{so}\\ \\text{it}\\ \\text{is}\\ a\\ \\text{common}\\ \\text{point}.",
             "style": "normal",

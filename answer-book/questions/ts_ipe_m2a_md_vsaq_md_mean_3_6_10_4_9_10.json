@@ -86,7 +86,11 @@
           "lie from a centre ON AVERAGE, using the size",
           "of each gap and ignoring its sign.",
           "There are n = 6 values.",
-          "Mean x̄ = (sum of the values)/n",
+          {
+            "text": "\\text{Mean}\\ \\bar{x}\\ = \\ \\dfrac{\\text{sum of the values}}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{3\\ + \\ 6\\ + \\ 10\\ + \\ 4\\ + \\ 9\\ + \\ 10}{6}",
             "style": "normal",
@@ -144,8 +148,9 @@
           },
           "|xᵢ − x̄| : 4, 1, 3, 3, 2, 3",
           {
-            "text": "M.D. = Σ|xᵢ − x̄|/n",
-            "style": "eq"
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{4\\ + \\ 1\\ + \\ 3\\ + \\ 3\\ + \\ 2\\ + \\ 3}{6}",
@@ -195,7 +200,11 @@
         ],
         "lines_compact": [
           "|xᵢ − x̄| : 4, 1, 3, 3, 2, 3",
-          "M.D. = Σ|xᵢ − x̄|/n",
+          {
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ \\bar{x}\\right|}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{4\\ + \\ 1\\ + \\ 3\\ + \\ 3\\ + \\ 2\\ + \\ 3}{6} = \\ \\dfrac{16}{6} = \\ 2.67",
             "style": "normal",

@@ -136,10 +136,15 @@
             "style": "indent",
             "added": true
           },
-          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
           {
-            "text": "  = 2/sin 2θ",
-            "style": "indent"
+            "text": "\\text{This}\\ \\text{may}\\ \\text{be}\\ \\text{tidied},\\ \\text{since}\\ \\dfrac{\\sec ^{2} \\theta }{\\tan \\theta } = \\ \\dfrac{1}{\\sin \\theta \\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2}{\\sin 2\\theta }",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "\\left(\\text{with}\\ \\theta \\ = \\ e^{x}:\\ \\dfrac{2}{\\sin \\left(2e^{x}\\right)} = \\ 2\\cos ec\\left(2e^{x}\\right)\\right)",
@@ -191,10 +196,15 @@
             "style": "normal",
             "render": "katex"
           },
-          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ)",
           {
-            "text": "  = 2/sin 2θ",
-            "style": "indent"
+            "text": "\\text{This}\\ \\text{may}\\ \\text{be}\\ \\text{tidied},\\ \\text{since}\\ \\dfrac{\\sec ^{2} \\theta }{\\tan \\theta } = \\ \\dfrac{1}{\\sin \\theta \\cos \\theta }",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{2}{\\sin 2\\theta }",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "\\therefore \\ f'\\left(x\\right)\\ = \\ e^{x} \\cdot \\dfrac{\\sec ^{2}\\left(e^{x}\\right)}{\\tan \\left(e^{x}\\right)} = \\ 2e^{x} \\cdot \\cos ec\\left(2e^{x}\\right)",

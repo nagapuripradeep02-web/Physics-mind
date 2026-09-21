@@ -152,7 +152,11 @@
             "render": "katex"
           },
           "[tangent triple angle formula:",
-          "tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
+          {
+            "text": "\\tan 3\\theta \\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -196,7 +200,11 @@
             "render": "katex"
           },
           "[tangent triple angle formula:",
-          "tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
+          {
+            "text": "\\tan 3\\theta \\ = \\ \\dfrac{3\\tan \\theta \\ - \\ \\tan ^{3} \\theta }{1\\ - \\ 3\\tan ^{2} \\theta }]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {

@@ -221,10 +221,10 @@
             "style": "indent",
             "added": true
           },
-          "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²|",
           {
-            "text": "  / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|l_{1}l_{2}\\alpha ^{2}\\ + \\ l_{1}m_{2}\\alpha \\beta \\ + \\ l_{2}m_{1}\\alpha \\beta \\ + \\ m_{1}m_{2}\\beta ^{2}\\right|}{\\sqrt{l_{1}^{2}l_{2}^{2}\\ + \\ l_{1}^{2}m_{2}^{2}\\ + \\ l_{2}^{2}m_{1}^{2}\\ + \\ m_{1}^{2}m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -273,10 +273,10 @@
             "style": "normal",
             "render": "katex"
           },
-          "= |l₁l₂α² + l₁m₂αβ + l₂m₁αβ + m₁m₂β²|",
           {
-            "text": "  / √(l₁²l₂² + l₁²m₂² + l₂²m₁² + m₁²m₂²)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left|l_{1}l_{2}\\alpha ^{2}\\ + \\ l_{1}m_{2}\\alpha \\beta \\ + \\ l_{2}m_{1}\\alpha \\beta \\ + \\ m_{1}m_{2}\\beta ^{2}\\right|}{\\sqrt{l_{1}^{2}l_{2}^{2}\\ + \\ l_{1}^{2}m_{2}^{2}\\ + \\ l_{2}^{2}m_{1}^{2}\\ + \\ m_{1}^{2}m_{2}^{2}}}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       },

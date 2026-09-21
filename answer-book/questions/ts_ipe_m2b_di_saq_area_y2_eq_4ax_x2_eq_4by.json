@@ -256,8 +256,9 @@
             "added": true
           },
           {
-            "text": "  1/2 is b√a, and [4∛(ab²)]³ = 64ab²",
-            "style": "indent",
+            "text": "\\dfrac{1}{2}\\ \\text{is}\\ b\\sqrt{a},\\ \\text{and}\\ \\left[4\\sqrt[3]{ab^{2}}\\right]^{3}\\ = \\ 64ab^{2}",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

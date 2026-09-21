@@ -72,7 +72,11 @@
             "render": "katex"
           },
           "when xy < 1",
-          "Here x = 1/7, y = 1/13, so xy = 1/91 < 1. ✓"
+          {
+            "text": "\\text{Here}\\ x\\ = \\ \\dfrac{1}{7},\\ y\\ = \\ \\dfrac{1}{13},\\ \\text{so}\\ xy\\ = \\ \\dfrac{1}{91} < \\ 1.\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

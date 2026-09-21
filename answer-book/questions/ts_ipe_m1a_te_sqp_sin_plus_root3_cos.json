@@ -109,7 +109,11 @@
         "margin_note": "Second mark. ½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
         "memory_tip": "½ = sin 30° and √3/2 = cos 30°, so the left side is cos x cos(π/6) + sin x sin(π/6) = cos(x − π/6).",
         "lines": [
-          "½ = sin(π/6) and √3/2 = cos(π/6), so",
+          {
+            "text": "\\dfrac{1}{2} = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ \\text{and}\\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{\\sqrt{2}}{2}",
             "style": "normal",
@@ -163,7 +167,11 @@
           "Writing √2/2 as √2 rather than 1/√2."
         ],
         "lines_compact": [
-          "½ = sin(π/6) and √3/2 = cos(π/6), so",
+          {
+            "text": "\\dfrac{1}{2} = \\ \\sin \\left(\\dfrac{\\pi }{6}\\right)\\ \\text{and}\\ \\dfrac{\\sqrt{3}}{2} = \\ \\cos \\left(\\dfrac{\\pi }{6}\\right),\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\sin x\\sin \\left(\\dfrac{\\pi }{6}\\right)\\ + \\ \\cos x\\cos \\left(\\dfrac{\\pi }{6}\\right)\\ = \\ \\dfrac{\\sqrt{2}}{2}",
             "style": "normal",

@@ -194,11 +194,21 @@
             "render": "katex",
             "added": true
           },
-          "= (1/2)(x + sin2x/2) + c",
-          "⇒ y sec x = x/2 + sin2x/4 + c,",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left(x\\ + \\ \\dfrac{\\sin 2x}{2}\\right)\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\sec x\\ = \\ \\dfrac{x}{2}\\ + \\ \\dfrac{\\sin 2x}{4}\\ + \\ c,",
+            "style": "normal",
+            "render": "katex"
+          },
           "and multiplying through by 2 cos x:",
           {
-            "text": "(sin2x/4)·2cos x = sin x cos x·cos x",
+            "text": "\\left(\\dfrac{\\sin 2x}{4}\\right) \\cdot 2\\cos x\\ = \\ \\sin x\\cos x \\cdot \\cos x",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -222,8 +232,16 @@
             "style": "normal",
             "render": "katex"
           },
-          "= (1/2)(x + sin2x/2) + c",
-          "⇒ y sec x = x/2 + sin2x/4 + c,",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\left(x\\ + \\ \\dfrac{\\sin 2x}{2}\\right)\\ + \\ c",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\Rightarrow \\ y\\sec x\\ = \\ \\dfrac{x}{2}\\ + \\ \\dfrac{\\sin 2x}{4}\\ + \\ c,",
+            "style": "normal",
+            "render": "katex"
+          },
           "and multiplying through by 2 cos x:",
           {
             "text": "2y = x cos x + sin x cos²x + c cos x",

@@ -68,7 +68,11 @@
           },
           "ⁿP₇ = n(n − 1)(n − 2)(n − 3)(n − 4)(n − 5)(n − 6)",
           "ⁿP₅ = n(n − 1)(n − 2)(n − 3)(n − 4)",
-          "Given ⁿP₇ = 42 · ⁿP₅, so ⁿP₇ / ⁿP₅ = 42",
+          {
+            "text": "\\text{Given}\\ {}^{n}P_{7}\\ = \\ 42\\ \\cdot \\ {}^{n}P_{5},\\ \\text{so}\\ \\dfrac{{}^{n}P_{7}}{{}^{n}P_{5}} = \\ 42",
+            "style": "normal",
+            "render": "katex"
+          },
           "The first five factors are common",
           "to both, so they cancel:",
           "(n − 5)(n − 6) = 42"

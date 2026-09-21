@@ -139,10 +139,10 @@
             "style": "indent",
             "added": true
           },
-          "So the expression = [(a − x)(√(3a + x) + 2√x)]",
           {
-            "text": "  / [3(a − x)(√(a + 2x) + √(3x))]",
-            "style": "indent"
+            "text": "\\text{So}\\ \\text{the}\\ \\text{expression}\\ = \\ \\dfrac{\\left(a\\ - \\ x\\right)\\left(\\sqrt{3a\\ + \\ x}\\ + \\ 2\\sqrt{x}\\right)}{3\\left(a\\ - \\ x\\right)\\left(\\sqrt{a\\ + \\ 2x}\\ + \\ \\sqrt{3x}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "(cancel a − x, which is not 0 for x ≠ a)",
@@ -189,12 +189,9 @@
             "added": true
           },
           {
-            "text": "∴ lim(x → a) (√(a + 2x) − √(3x))",
-            "style": "boxed"
-          },
-          {
-            "text": "/(√(3a + x) − 2√x)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(\\sqrt{a\\ + \\ 2x}\\ - \\ \\sqrt{3x}\\right)}{\\sqrt{3a\\ + \\ x}\\ - \\ 2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{2}{3\\sqrt{3}} = \\ \\dfrac{2\\sqrt{3}}{9}\\left(a\\ > \\ 0\\right)",
@@ -231,10 +228,10 @@
         ],
         "memory_tip": "After both conjugates the value is 4√a over 6√(3a): the √a cancels and 2 over 3√3 is left.",
         "lines_compact": [
-          "So the expression = [(a − x)(√(3a + x) + 2√x)]",
           {
-            "text": "  / [3(a − x)(√(a + 2x) + √(3x))]",
-            "style": "indent"
+            "text": "\\text{So}\\ \\text{the}\\ \\text{expression}\\ = \\ \\dfrac{\\left(a\\ - \\ x\\right)\\left(\\sqrt{3a\\ + \\ x}\\ + \\ 2\\sqrt{x}\\right)}{3\\left(a\\ - \\ x\\right)\\left(\\sqrt{a\\ + \\ 2x}\\ + \\ \\sqrt{3x}\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{\\sqrt{3a\\ + \\ x}\\ + \\ 2\\sqrt{x}}{3\\left(\\sqrt{a\\ + \\ 2x}\\ + \\ \\sqrt{3x}\\right)}",
@@ -253,12 +250,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ lim(x → a) (√(a + 2x) − √(3x))",
-            "style": "boxed"
-          },
-          {
-            "text": "/(√(3a + x) − 2√x)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{\\lim \\left(x\\ \\to \\ a\\right)\\left(\\sqrt{a\\ + \\ 2x}\\ - \\ \\sqrt{3x}\\right)}{\\sqrt{3a\\ + \\ x}\\ - \\ 2\\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{2}{3\\sqrt{3}} = \\ \\dfrac{2\\sqrt{3}}{9}\\left(a\\ > \\ 0\\right)",

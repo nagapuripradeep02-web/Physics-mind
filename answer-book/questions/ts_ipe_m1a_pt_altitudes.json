@@ -401,9 +401,15 @@
             "style": "indent",
             "added": true
           },
-          "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
           {
-            "text": "((abc/4R)³ = (abc)³/(64R³); cancel one abc)",
+            "text": "\\text{Also}\\ \\Delta \\ = \\ \\dfrac{abc}{4R}\\ \\Rightarrow \\ \\dfrac{8\\Delta ^{3}}{abc} = \\ \\dfrac{8}{abc}\\ \\cdot \\ \\left(\\dfrac{abc}{4R}\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\left(\\dfrac{abc}{4R}\\right)^{3}\\ = \\ \\dfrac{\\left(abc\\right)^{3}}{64R^{3}};\\ \\text{cancel}\\ \\text{one}\\ abc\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -451,7 +457,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
+          {
+            "text": "\\text{Also}\\ \\Delta \\ = \\ \\dfrac{abc}{4R}\\ \\Rightarrow \\ \\dfrac{8\\Delta ^{3}}{abc} = \\ \\dfrac{8}{abc}\\ \\cdot \\ \\left(\\dfrac{abc}{4R}\\right)^{3}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{8\\left(abc\\right)^{3}}{abc\\ \\cdot \\ 64R^{3}} = \\ \\dfrac{\\left(abc\\right)^{2}}{8R^{3}}",
             "style": "normal",

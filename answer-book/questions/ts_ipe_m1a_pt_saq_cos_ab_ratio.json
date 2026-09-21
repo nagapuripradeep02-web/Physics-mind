@@ -64,10 +64,10 @@
           "In a △ABC, A + B + C = 180°",
           "⇒ C = 180° − (A+B) and B = 180° − (A+C)",
           "(cos(180° − x) = −cos x)",
-          "L.H.S = [1 + cos(A−B)cos(180°−(A+B))]",
           {
-            "text": "/ [1 + cos(A−C)cos(180°−(A+C))]",
-            "style": "indent"
+            "text": "L.H.S\\ = \\ \\dfrac{1\\ + \\ \\cos \\left(A - B\\right)\\cos \\left(180^{\\circ} - \\left(A + B\\right)\\right)}{1\\ + \\ \\cos \\left(A - C\\right)\\cos \\left(180^{\\circ} - \\left(A + C\\right)\\right)}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{1\\ - \\ \\cos \\left(A + B\\right)\\cos \\left(A - B\\right)}{1\\ - \\ \\cos \\left(A + C\\right)\\cos \\left(A - C\\right)}",
@@ -199,12 +199,20 @@
         "margin_note": "Last mark. a = 2R sinA, so sinA = a/(2R) — and the (2R)² cancels top and bottom, leaving the sides.",
         "memory_tip": "sinA = a/(2R), and the (2R)² cancels top and bottom, leaving the sides.",
         "lines": [
-          "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{sine}\\ \\text{rule},\\ \\sin A\\ = \\ \\dfrac{a}{2R},\\ \\sin B\\ = \\ \\dfrac{b}{2R},\\ \\sin C\\ = \\ \\dfrac{c}{2R}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put these into the result of step 2)",
             "added": true
           },
-          "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
+          {
+            "text": "= \\ \\dfrac{\\left(\\tfrac{a}{2R}\\right)^{2}\\ + \\ \\left(\\tfrac{b}{2R}\\right)^{2}}{\\left(\\tfrac{a}{2R}\\right)^{2}\\ + \\ \\left(\\tfrac{c}{2R}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(every square has 4R² below it, so 4R² cancels)",
             "added": true
@@ -248,8 +256,16 @@
           "Cancelling only one of the two."
         ],
         "lines_compact": [
-          "By the sine rule, sinA = a/2R, sinB = b/2R, sinC = c/2R",
-          "= [(a/2R)² + (b/2R)²] / [(a/2R)² + (c/2R)²]",
+          {
+            "text": "\\text{By}\\ \\text{the}\\ \\text{sine}\\ \\text{rule},\\ \\sin A\\ = \\ \\dfrac{a}{2R},\\ \\sin B\\ = \\ \\dfrac{b}{2R},\\ \\sin C\\ = \\ \\dfrac{c}{2R}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\left(\\tfrac{a}{2R}\\right)^{2}\\ + \\ \\left(\\tfrac{b}{2R}\\right)^{2}}{\\left(\\tfrac{a}{2R}\\right)^{2}\\ + \\ \\left(\\tfrac{c}{2R}\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{a^{2}\\ + \\ b^{2}}{4R^{2}} \\div \\ \\dfrac{a^{2}\\ + \\ c^{2}}{4R^{2}}",
             "style": "normal",

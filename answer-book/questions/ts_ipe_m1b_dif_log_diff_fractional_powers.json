@@ -64,7 +64,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "y = [(1 − 2x)²ᐟ³(1 + 3x)⁻³ᐟ⁴] / [(1 − 6x)⁵ᐟ⁶(1 + 7x)⁻⁶ᐟ⁷]",
+          {
+            "text": "y\\ = \\ \\dfrac{\\left(1\\ - \\ 2x\\right)^{2/3}\\left(1\\ + \\ 3x\\right)^{-3/4}}{\\left(1\\ - \\ 6x\\right)^{5/6}\\left(1\\ + \\ 7x\\right)^{-6/7}}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The function is a product and a quotient of four powers.",
           "Applying the product rule",
           "and the quotient rule directly takes many lines,",
@@ -124,7 +128,9 @@
         "memory_tip": "Numerator terms get a plus, denominator terms get a minus, and a negative power changes that sign once more.",
         "lines": [
           {
-            "text": "(log(P/Q) = log P − log Q and log(PQ) = log P + log Q)",
+            "text": "\\left(\\log \\left(\\dfrac{P}{Q}\\right) = \\log P - \\log Q \\text{and} \\log \\left(PQ\\right) = \\log P + \\log Q\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "Taking logarithms on both sides,",
@@ -397,20 +403,14 @@
           },
           "Multiplying both sides of (3) by y,",
           {
-            "text": "∴ dy/dx = [(1 − 2x)²ᐟ³(1 + 3x)⁻³ᐟ⁴]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\left(1\\ - \\ 2x\\right)^{2/3}\\left(1\\ + \\ 3x\\right)^{-3/4}}{\\left(1\\ - \\ 6x\\right)^{5/6}\\left(1\\ + \\ 7x\\right)^{-6/7}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "/[(1 − 6x)⁵ᐟ⁶(1 + 7x)⁻⁶ᐟ⁷]",
-            "style": "boxed"
-          },
-          {
-            "text": "× [ −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
-            "style": "boxed"
-          },
-          {
-            "text": "+ 5/(1 − 6x) + 6/(1 + 7x) ]",
-            "style": "boxed"
+            "text": "\\times \\ \\left[ - \\dfrac{4}{3\\left(1\\ - \\ 2x\\right)}\\ - \\ \\dfrac{9}{4\\left(1\\ + \\ 3x\\right)}\\ + \\ \\dfrac{5}{1\\ - \\ 6x}\\ + \\ \\dfrac{6}{1\\ + \\ 7x}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -444,20 +444,14 @@
         "lines_compact": [
           "Multiplying both sides of (3) by y,",
           {
-            "text": "∴ dy/dx = [(1 − 2x)²ᐟ³(1 + 3x)⁻³ᐟ⁴]",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\left(1\\ - \\ 2x\\right)^{2/3}\\left(1\\ + \\ 3x\\right)^{-3/4}}{\\left(1\\ - \\ 6x\\right)^{5/6}\\left(1\\ + \\ 7x\\right)^{-6/7}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
-            "text": "/[(1 − 6x)⁵ᐟ⁶(1 + 7x)⁻⁶ᐟ⁷]",
-            "style": "boxed"
-          },
-          {
-            "text": "× [ −4/(3(1 − 2x)) − 9/(4(1 + 3x))",
-            "style": "boxed"
-          },
-          {
-            "text": "+ 5/(1 − 6x) + 6/(1 + 7x) ]",
-            "style": "boxed"
+            "text": "\\times \\ \\left[ - \\dfrac{4}{3\\left(1\\ - \\ 2x\\right)}\\ - \\ \\dfrac{9}{4\\left(1\\ + \\ 3x\\right)}\\ + \\ \\dfrac{5}{1\\ - \\ 6x}\\ + \\ \\dfrac{6}{1\\ + \\ 7x}\\right]",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

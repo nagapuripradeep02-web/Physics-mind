@@ -52,7 +52,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "L.H.S = tanh(x − y) = sinh(x − y)/cosh(x − y)",
+          {
+            "text": "L.H.S\\ = \\ \\tanh \\left(x\\ - \\ y\\right)\\ = \\ \\dfrac{\\sinh \\left(x\\ - \\ y\\right)}{\\cosh \\left(x\\ - \\ y\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\tan h\\ = \\ \\dfrac{\\sin h}{\\cos h}\\right)",
             "style": "normal",

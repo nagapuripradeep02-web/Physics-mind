@@ -65,7 +65,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "We know Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
+          {
+            "text": "\\text{We}\\ \\text{know}\\ \\operatorname{Tanh}^{-1}x\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{1\\ + \\ x}{1\\ - \\ x}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "(this holds for −1 < x < 1)"
         ],
         "recall": {
@@ -111,14 +115,22 @@
             "render": "katex",
             "added": true
           },
-          "∴ Tanh⁻¹(1/2) = (1/2) logₑ((1 + 1/2)/(1 − 1/2))",
+          {
+            "text": "\\therefore \\ \\operatorname{Tanh}^{-1}\\left(\\dfrac{1}{2}\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{1\\ + \\ \\tfrac{1}{2}}{1\\ - \\ \\tfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(1\\ + \\ \\dfrac{1}{2} = \\ \\dfrac{3}{2}\\text{and}\\ 1\\ - \\ \\dfrac{1}{2} = \\ \\dfrac{1}{2}\\right)",
             "style": "normal",
             "render": "katex",
             "added": true
           },
-          "= (1/2) logₑ((3/2)/(1/2))",
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{\\tfrac{3}{2}}{\\tfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\dfrac{\\dfrac{3}{2}}{\\dfrac{1}{2}} = \\ 3\\right)",
             "style": "normal",
@@ -126,8 +138,9 @@
             "added": true
           },
           {
-            "text": "= (1/2) logₑ 3",
-            "style": "boxed"
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}3",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -157,11 +170,20 @@
           "Losing the 1/2 outside."
         ],
         "lines_compact": [
-          "∴ Tanh⁻¹(1/2) = (1/2) logₑ((1 + 1/2)/(1 − 1/2))",
-          "= (1/2) logₑ((3/2)/(1/2))",
           {
-            "text": "= (1/2) logₑ 3",
-            "style": "boxed"
+            "text": "\\therefore \\ \\operatorname{Tanh}^{-1}\\left(\\dfrac{1}{2}\\right)\\ = \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{1\\ + \\ \\tfrac{1}{2}}{1\\ - \\ \\tfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}\\left(\\dfrac{\\tfrac{3}{2}}{\\tfrac{1}{2}}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\left(\\dfrac{1}{2}\\right)\\log _{e}3",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

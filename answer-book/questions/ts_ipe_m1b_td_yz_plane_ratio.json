@@ -116,14 +116,20 @@
           },
           "∴ the point which divides A(2,4,5) and B(3,5,−4)",
           "in the ratio −2 : 3 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
-          "(mz₂ + nz₁)/(m+n))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m + n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m + n},\\ \\dfrac{mz_{2}\\ + \\ nz_{1}}{m + n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(put x₁ = 2, y₁ = 4, z₁ = 5, x₂ = 3, y₂ = 5, z₂ = −4)",
             "added": true
           },
-          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
-          "(−2×−4 + 3×5)/(−2+3))",
+          {
+            "text": "= \\left(\\dfrac{ - 2 \\times 3 + 3 \\times 2}{ - 2 + 3}, \\dfrac{ - 2 \\times 5 + 3 \\times 4}{ - 2 + 3}, \\dfrac{ - 2 \\times - 4 + 3 \\times 5}{ - 2 + 3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(−2 × 3 = −6, −2 × 5 = −10, −2 × −4 = 8;",
             "added": true
@@ -176,10 +182,16 @@
         "lines_compact": [
           "∴ the point which divides A(2,4,5) and B(3,5,−4)",
           "in the ratio −2 : 3 is",
-          "P = ((mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n),",
-          "(mz₂ + nz₁)/(m+n))",
-          "= ((−2×3 + 3×2)/(−2+3), (−2×5 + 3×4)/(−2+3),",
-          "(−2×−4 + 3×5)/(−2+3))",
+          {
+            "text": "P\\ = \\ \\left(\\dfrac{mx_{2}\\ + \\ nx_{1}}{m + n},\\ \\dfrac{my_{2}\\ + \\ ny_{1}}{m + n},\\ \\dfrac{mz_{2}\\ + \\ nz_{1}}{m + n}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\left(\\dfrac{ - 2 \\times 3 + 3 \\times 2}{ - 2 + 3}, \\dfrac{ - 2 \\times 5 + 3 \\times 4}{ - 2 + 3}, \\dfrac{ - 2 \\times - 4 + 3 \\times 5}{ - 2 + 3}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\left(\\dfrac{ - 6 + 6}{1},\\ \\dfrac{ - 10 + 12}{1},\\ \\dfrac{8 + 15}{1}\\right)",
             "style": "normal",

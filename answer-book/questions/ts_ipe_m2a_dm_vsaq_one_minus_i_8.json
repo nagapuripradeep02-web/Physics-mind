@@ -70,8 +70,16 @@
             "style": "normal",
             "render": "katex"
           },
-          "Now cos π/4 = 1/√2 and sin π/4 = 1/√2, so",
-          "1 − i = √2(cos π/4 − i sin π/4)"
+          {
+            "text": "\\text{Now}\\ \\cos \\dfrac{\\pi }{4} = \\ \\dfrac{1}{\\sqrt{2}}\\ \\text{and}\\ \\sin \\dfrac{\\pi }{4} = \\ \\dfrac{1}{\\sqrt{2}},\\ \\text{so}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "1\\ - \\ i\\ = \\ \\sqrt{2}\\left(\\cos \\dfrac{\\pi }{4}\\ - \\ i\\sin \\dfrac{\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -111,7 +119,11 @@
         "margin_note": "Second mark. (√2)⁸ = 2⁴ = 16, and the angle becomes 8 · π/4 = 2π, where cos 2π = 1 and sin 2π = 0. So the value is 16.",
         "memory_tip": "(√2)⁸ = 2⁴ = 16, and 8 · π/4 = 2π, where cos = 1 and sin = 0.",
         "lines": [
-          "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
+          {
+            "text": "\\left(1\\ - \\ i\\right)^{8}\\ = \\ \\left(\\sqrt{2}\\right)^{8}\\left(\\cos \\dfrac{\\pi }{4}\\ - \\ i\\sin \\dfrac{\\pi }{4}\\right)^{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(√2)⁸ = ((√2)²)⁴ = 2⁴ = 16",
             "added": true
@@ -121,7 +133,9 @@
             "added": true
           },
           {
-            "text": "(cos π/4 − i sin π/4)⁸ = cos(8π/4) − i sin(8π/4)",
+            "text": "\\left(\\cos \\dfrac{\\pi }{4}\\ - \\ i\\sin \\dfrac{\\pi }{4}\\right)^{8}\\ = \\ \\cos \\left(\\dfrac{8\\pi }{4}\\right)\\ - \\ i\\sin \\left(\\dfrac{8\\pi }{4}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= cos 2π − i sin 2π",
@@ -168,7 +182,11 @@
           "Leaving the answer as 16(cos 2π − i sin 2π)."
         ],
         "lines_compact": [
-          "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
+          {
+            "text": "\\left(1\\ - \\ i\\right)^{8}\\ = \\ \\left(\\sqrt{2}\\right)^{8}\\left(\\cos \\dfrac{\\pi }{4}\\ - \\ i\\sin \\dfrac{\\pi }{4}\\right)^{8}",
+            "style": "normal",
+            "render": "katex"
+          },
           "= 2⁴ (cos 2π − i sin 2π)",
           {
             "text": "= 16 (1 − i · 0) = 16",

@@ -138,8 +138,9 @@
           },
           "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
           {
-            "text": "M.D. = Σ|xᵢ − M|/n",
-            "style": "eq"
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ M\\right|}{n}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{4\\ + \\ 3\\ + \\ 2\\ + \\ 0\\ + \\ 3\\ + \\ 4\\ + \\ 7}{7}",
@@ -189,7 +190,11 @@
         ],
         "lines_compact": [
           "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
-          "M.D. = Σ|xᵢ − M|/n",
+          {
+            "text": "\\text{M.D.}\\ = \\ \\dfrac{\\sum \\left|x_{i}\\ - \\ M\\right|}{n}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{4\\ + \\ 3\\ + \\ 2\\ + \\ 0\\ + \\ 3\\ + \\ 4\\ + \\ 7}{7} = \\ \\dfrac{23}{7} = \\ 3.29",
             "style": "normal",

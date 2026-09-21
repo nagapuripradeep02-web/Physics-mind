@@ -120,12 +120,9 @@
             "render": "katex"
           },
           {
-            "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
-            "style": "indent"
-          },
-          {
-            "text": "  / [√(x − 3) · √(x + 3)]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left[\\sqrt{x\\ - \\ 3}\\ \\cdot \\ \\sqrt{x\\ - \\ 3}\\right]}{\\sqrt{x\\ - \\ 3}\\ \\cdot \\ \\sqrt{x\\ + \\ 3}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "(cancel one √(x − 3) from the top and the bottom)",
@@ -194,12 +191,9 @@
             "render": "katex"
           },
           {
-            "text": "  = lim(x → 3) [√(x − 3) · √(x − 3)]",
-            "style": "indent"
-          },
-          {
-            "text": "  / [√(x − 3) · √(x + 3)]",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\left[\\sqrt{x\\ - \\ 3}\\ \\cdot \\ \\sqrt{x\\ - \\ 3}\\right]}{\\sqrt{x\\ - \\ 3}\\ \\cdot \\ \\sqrt{x\\ + \\ 3}}",
+            "style": "normal",
+            "render": "katex"
           },
           {
             "text": "= \\ \\dfrac{\\lim \\left(x\\ \\to \\ 3\\right)\\sqrt{x\\ - \\ 3}}{\\sqrt{x\\ + \\ 3}}",

@@ -61,7 +61,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "The standard limit lim(θ → 0) sin θ / θ = 1 is stated at 0,",
+          {
+            "text": "\\text{The}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\sin \\theta }{\\theta } = \\ 1\\ \\text{is}\\ \\text{stated}\\ \\text{at}\\ 0,",
+            "style": "normal",
+            "render": "katex"
+          },
           "so shift the point to 0.",
           {
             "text": "\\text{Put}\\ x\\ = \\ \\dfrac{\\pi }{2} + \\ h.\\ \\text{Then}\\ x\\ \\to \\ \\dfrac{\\pi }{2}\\text{means}\\ h\\ \\to \\ 0,",
@@ -142,7 +146,9 @@
             "render": "katex"
           },
           {
-            "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
+            "text": "\\left(\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "= −(1)",

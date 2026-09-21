@@ -61,10 +61,26 @@
           },
           "Given:   x = c sec θ,   y = c tan θ",
           "Differentiate each with respect to θ:",
-          "(d/dθ of sec θ is sec θ tan θ)",
-          "dx/dθ = c sec θ tan θ",
-          "(d/dθ of tan θ is sec²θ)",
-          "dy/dθ = c sec²θ"
+          {
+            "text": "\\left(\\dfrac{d}{d\\theta }\\ \\text{of}\\ \\sec \\theta \\ \\text{is}\\ \\sec \\theta \\tan \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dx}{d\\theta }\\ = \\ c\\sec \\theta \\tan \\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{d}{d\\theta }\\ \\text{of}\\ \\tan \\theta \\ \\text{is}\\ \\sec ^{2} \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{d\\theta }\\ = \\ c\\sec ^{2} \\theta ",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -105,7 +121,11 @@
         "mark_note": "Method",
         "margin_note": "Second mark. c cancels, and one sec θ cancels with the sec²θ above it. Writing sec θ and tan θ in terms of sin and cos makes the final form obvious.",
         "lines": [
-          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          {
+            "text": "\\text{For}\\ a\\ \\text{curve}\\ \\text{given}\\ \\text{through}\\ \\theta :\\quad \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{c\\sec ^{2} \\theta }{c\\sec \\theta \\tan \\theta }",
             "style": "normal",
@@ -174,7 +194,11 @@
         ],
         "memory_tip": "Divide the y-derivative by the x-derivative — the letter on top matches the letter on top of dy/dx.",
         "lines_compact": [
-          "For a curve given through θ:   dy/dx = (dy/dθ) / (dx/dθ)",
+          {
+            "text": "\\text{For}\\ a\\ \\text{curve}\\ \\text{given}\\ \\text{through}\\ \\theta :\\quad \\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{c\\sec ^{2} \\theta }{c\\sec \\theta \\tan \\theta }",
             "style": "normal",

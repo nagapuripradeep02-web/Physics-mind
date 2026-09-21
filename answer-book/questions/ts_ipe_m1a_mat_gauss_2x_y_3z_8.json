@@ -281,7 +281,9 @@
             "render": "katex"
           },
           {
-            "text": "R₃ × −1/38: (0, 0, −38 | −76)",
+            "text": "R_{3}\\ \\times \\ - \\dfrac{1}{38}:\\ \\left(0,\\ 0,\\ - 38\\ \\mid \\ - 76\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

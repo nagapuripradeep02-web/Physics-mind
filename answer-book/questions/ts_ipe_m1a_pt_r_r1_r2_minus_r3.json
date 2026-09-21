@@ -79,10 +79,16 @@
             "text": "  from r − r₃)",
             "style": "indent"
           },
-          "= 4R cos(C/2)[sin(A/2)cos(B/2)",
-          "   + cos(A/2)sin(B/2)]",
-          " − 4R sin(C/2)[cos(A/2)cos(B/2)",
-          "   − sin(A/2)sin(B/2)]"
+          {
+            "text": "= \\ 4R\\cos \\left(\\dfrac{C}{2}\\right)\\left[\\sin \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\ + \\ \\cos \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "- \\ 4R\\sin \\left(\\dfrac{C}{2}\\right)\\left[\\cos \\left(\\dfrac{A}{2}\\right)\\cos \\left(\\dfrac{B}{2}\\right)\\ - \\ \\sin \\left(\\dfrac{A}{2}\\right)\\sin \\left(\\dfrac{B}{2}\\right)\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",

@@ -115,7 +115,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
+          {
+            "text": "\\dfrac{\\sin \\left(2x\\ + \\ 2h\\right)}{\\cos \\left(2x\\ + \\ 2h\\right)} - \\ \\dfrac{\\sin 2x}{\\cos 2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(subtract the fractions over the common denominator",
             "added": true
@@ -163,7 +167,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
+          {
+            "text": "\\dfrac{\\sin \\left(2x\\ + \\ 2h\\right)}{\\cos \\left(2x\\ + \\ 2h\\right)} - \\ \\dfrac{\\sin 2x}{\\cos 2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           "Numerator = sin(2x+2h) cos 2x",
           "− cos(2x+2h) sin 2x",
           "Denominator = cos(2x + 2h) cos 2x"
@@ -267,9 +275,15 @@
             "render": "katex"
           },
           "cos(2x + 2h) → cos 2x, so",
-          "f′(x) = 2/(cos 2x · cos 2x) = 2/cos²2x",
           {
-            "text": "(1/cos²2x = sec²2x)",
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{2}{\\cos 2x\\ \\cdot \\ \\cos 2x} = \\ \\dfrac{2}{\\cos ^{2} 2x}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\left(\\dfrac{1}{\\cos ^{2} 2x} = \\ \\sec ^{2} 2x\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -317,7 +331,11 @@
             "render": "katex"
           },
           "cos(2x + 2h) → cos 2x, so",
-          "f′(x) = 2/(cos 2x · cos 2x) = 2/cos²2x",
+          {
+            "text": "f'\\left(x\\right)\\ = \\ \\dfrac{2}{\\cos 2x\\ \\cdot \\ \\cos 2x} = \\ \\dfrac{2}{\\cos ^{2} 2x}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\ \\dfrac{d}{dx}\\left(\\tan 2x\\right)\\ = \\ 2\\sec ^{2} 2x",
             "style": "boxed",

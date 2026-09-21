@@ -120,7 +120,9 @@
           },
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           {
-            "text": "(put a = 2, b = −7, c = −6, f = 23/2, g = 1/2, h = −13/2)",
+            "text": "\\left(\\text{put} a = 2, b = - 7, c = - 6, f = \\dfrac{23}{2}, g = \\dfrac{1}{2}, h = - \\dfrac{13}{2}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

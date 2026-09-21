@@ -115,7 +115,9 @@
         "lines": [
           "Put t = 7x. As x → 0, t → 0.",
           {
-            "text": "(the standard limit lim(t → 0) (eᵗ − 1)/t = 1)",
+            "text": "\\left(\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\lim \\left(t\\ \\to \\ 0\\right)\\left(e^{t}\\ - \\ 1\\right)}{t} = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

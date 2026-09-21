@@ -162,8 +162,11 @@
             "render": "katex",
             "added": true
           },
-          "Length of the perpendicular from C(−3/2,",
-          "−5/2)",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{perpendicular}\\ \\text{from}\\ C\\left( - \\dfrac{3}{2},\\ - \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x − y = 0 is",
           {
             "text": "Here a = 1, b = −1 and c = 0:",
@@ -188,8 +191,11 @@
         ],
         "memory_tip": "The line x − y = 0 makes the distance formula especially short: just the difference of the coordinates over √2.",
         "lines_compact": [
-          "Length of the perpendicular from C(−3/2,",
-          "−5/2)",
+          {
+            "text": "\\text{Length}\\ \\text{of}\\ \\text{the}\\ \\text{perpendicular}\\ \\text{from}\\ C\\left( - \\dfrac{3}{2},\\ - \\dfrac{5}{2}\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           "to the line x − y = 0 is",
           {
             "text": "p\\ = \\ \\dfrac{\\left| - \\dfrac{3}{2} - \\ \\left( - \\dfrac{5}{2}\\right)\\right|}{\\sqrt{1\\ + \\ 1}} = \\ \\dfrac{1}{\\sqrt{2}}",

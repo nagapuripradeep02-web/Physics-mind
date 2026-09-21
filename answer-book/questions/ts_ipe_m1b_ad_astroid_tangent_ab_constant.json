@@ -126,19 +126,31 @@
         "margin_note": "Second mark. Differentiate x and y separately with respect to θ, then divide. The factor 3a cancels, so the slope depends only on θ.",
         "lines": [
           {
-            "text": "(chain rule: d/dθ of cos³θ is 3cos²θ · (−sinθ))",
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{d\\theta }\\ \\text{of}\\ \\cos ^{3} \\theta \\ \\text{is}\\ 3\\cos ^{2} \\theta \\ \\cdot \\ \\left( - \\sin \\theta \\right)\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ)",
+          {
+            "text": "x\\ = \\ a\\cos ^{3} \\theta \\ \\Rightarrow \\ \\dfrac{dx}{d\\theta }\\ = \\ 3a\\cos ^{2} \\theta \\ \\cdot \\ \\left( - \\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −3a cos²θ sinθ",
             "style": "indent"
           },
           {
-            "text": "(chain rule: d/dθ of sin³θ is 3sin²θ · cosθ)",
+            "text": "\\left(\\text{chain}\\ \\text{rule}:\\ \\dfrac{d}{d\\theta }\\ \\text{of}\\ \\sin ^{3} \\theta \\ \\text{is}\\ 3\\sin ^{2} \\theta \\ \\cdot \\ \\cos \\theta \\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
+          {
+            "text": "y\\ = \\ a\\sin ^{3} \\theta \\ \\Rightarrow \\ \\dfrac{dy}{d\\theta }\\ = \\ 3a\\sin ^{2} \\theta \\ \\cdot \\ \\cos \\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(for x and y given in terms of θ,",
             "added": true
@@ -148,7 +160,11 @@
             "style": "indent",
             "added": true
           },
-          "dy/dx = (dy/dθ)/(dx/dθ)",
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
             "style": "indent",
@@ -207,13 +223,25 @@
         ],
         "memory_tip": "Top over bottom, both with respect to θ: dy/dθ goes above, dx/dθ goes below.",
         "lines_compact": [
-          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ)",
+          {
+            "text": "x\\ = \\ a\\cos ^{3} \\theta \\ \\Rightarrow \\ \\dfrac{dx}{d\\theta }\\ = \\ 3a\\cos ^{2} \\theta \\ \\cdot \\ \\left( - \\sin \\theta \\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "  = −3a cos²θ sinθ",
             "style": "indent"
           },
-          "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
-          "dy/dx = (dy/dθ)/(dx/dθ)",
+          {
+            "text": "y\\ = \\ a\\sin ^{3} \\theta \\ \\Rightarrow \\ \\dfrac{dy}{d\\theta }\\ = \\ 3a\\sin ^{2} \\theta \\ \\cdot \\ \\cos \\theta ",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\dfrac{dy}{dx}\\ = \\ \\dfrac{\\dfrac{dy}{d\\theta }}{\\dfrac{dx}{d\\theta }}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{3a\\sin ^{2} \\theta \\cos \\theta }{ - 3a\\cos ^{2} \\theta \\sin \\theta }",
             "style": "indent",

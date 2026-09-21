@@ -317,14 +317,22 @@
             "render": "katex",
             "added": true
           },
-          "= ½ cosec²(t/2) / [a(1 − cos t)]",
+          {
+            "text": "= \\ \\dfrac{\\tfrac{1}{2}\\cos ec^{2}\\left(\\tfrac{t}{2}\\right)}{a\\left(1\\ - \\ \\cos t\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(1\\ - \\ \\cos t\\ = \\ 2\\sin ^{2}\\left(\\dfrac{t}{2}\\right)\\right)",
             "style": "normal",
             "render": "katex",
             "added": true
           },
-          "= ½ cosec²(t/2) / [2a sin²(t/2)]",
+          {
+            "text": "= \\ \\dfrac{\\tfrac{1}{2}\\cos ec^{2}\\left(\\tfrac{t}{2}\\right)}{2a\\sin ^{2}\\left(\\tfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(½ ÷ 2a = 1/(4a), and cosec²(t/2)/sin²(t/2)",
             "added": true
@@ -335,8 +343,9 @@
             "added": true
           },
           {
-            "text": "∴ d²y/dx² = cosec⁴(t/2) / (4a)",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{d^{2}y}{dx^{2}}\\ = \\ \\dfrac{\\cos ec^{4}\\left(\\tfrac{t}{2}\\right)}{4a}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -373,11 +382,20 @@
             "style": "normal",
             "render": "katex"
           },
-          "= ½ cosec²(t/2) / [a(1 − cos t)]",
-          "= ½ cosec²(t/2) / [2a sin²(t/2)]",
           {
-            "text": "∴ d²y/dx² = cosec⁴(t/2) / (4a)",
-            "style": "boxed"
+            "text": "= \\ \\dfrac{\\tfrac{1}{2}\\cos ec^{2}\\left(\\tfrac{t}{2}\\right)}{a\\left(1\\ - \\ \\cos t\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "= \\ \\dfrac{\\tfrac{1}{2}\\cos ec^{2}\\left(\\tfrac{t}{2}\\right)}{2a\\sin ^{2}\\left(\\tfrac{t}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
+          {
+            "text": "\\therefore \\ \\dfrac{d^{2}y}{dx^{2}}\\ = \\ \\dfrac{\\cos ec^{4}\\left(\\tfrac{t}{2}\\right)}{4a}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

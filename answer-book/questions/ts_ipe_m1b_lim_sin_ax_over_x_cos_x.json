@@ -120,7 +120,9 @@
         "margin_note": "Second mark. As x → 0 the angle ax → 0, so the sine bracket is 1, and cos 0 = 1. The coefficient a is left.",
         "lines": [
           {
-            "text": "(the standard limit lim(θ → 0) (sin θ)/θ = 1)",
+            "text": "\\left(\\text{the}\\ \\text{standard}\\ \\text{limit}\\ \\dfrac{\\lim \\left(\\theta \\ \\to \\ 0\\right)\\left(\\sin \\theta \\right)}{\\theta } = \\ 1\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

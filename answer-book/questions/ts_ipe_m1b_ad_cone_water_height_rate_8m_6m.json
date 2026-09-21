@@ -51,7 +51,11 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Given: dV/dt = 2 m³/min.  Asked: dh/dt when h = 4 m.",
+          {
+            "text": "\\text{Given}:\\ \\dfrac{dV}{dt}\\ = \\ 2\\ \\text{m}^{3}/\\text{min}.\\ \\ \\text{Asked}:\\ \\dfrac{dh}{dt}\\ \\text{when}\\ h\\ = \\ 4\\ \\text{m}.",
+            "style": "normal",
+            "render": "katex"
+          },
           "Let r be the radius and h the height",
           "of the water cone at time t.",
           "(the formula for the volume of a cone)",
@@ -168,8 +172,9 @@
             "added": true
           },
           {
-            "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dh}{dt}\\ = \\ \\dfrac{2}{9\\pi }\\ \\text{m}/\\text{min}\\ \\approx \\ 0.07\\ \\text{m}/\\text{min}",
+            "style": "normal",
+            "render": "katex"
           }
         ],
         "recall": {
@@ -226,8 +231,9 @@
             "render": "katex"
           },
           {
-            "text": "∴ dh/dt = 2/(9π) m/min ≈ 0.07 m/min",
-            "style": "boxed"
+            "text": "\\therefore \\ \\dfrac{dh}{dt}\\ = \\ \\dfrac{2}{9\\pi }\\ \\text{m}/\\text{min}\\ \\approx \\ 0.07\\ \\text{m}/\\text{min}",
+            "style": "normal",
+            "render": "katex"
           }
         ]
       }

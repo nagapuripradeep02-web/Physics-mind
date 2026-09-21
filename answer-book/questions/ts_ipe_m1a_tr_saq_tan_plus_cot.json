@@ -177,7 +177,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= 2/sin2A   [∵ sin2A = 2 sinA cosA]"
+          {
+            "text": "= \\ \\dfrac{2}{\\sin 2A}\\quad \\left[\\because \\ \\sin 2A\\ = \\ 2\\sin A\\cos A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -213,7 +217,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "= 2/sin2A   [∵ sin2A = 2 sinA cosA]"
+          {
+            "text": "= \\ \\dfrac{2}{\\sin 2A}\\quad \\left[\\because \\ \\sin 2A\\ = \\ 2\\sin A\\cos A\\right]",
+            "style": "normal",
+            "render": "katex"
+          }
         ]
       },
       {
@@ -225,7 +233,9 @@
         "margin_note": "Last mark. 1/sin is cosec, so 2/sin2A is 2 cosec2A. Name the reciprocal rather than leaving the fraction.",
         "lines": [
           {
-            "text": "(1/sin2A = cosec2A)",
+            "text": "\\left(\\dfrac{1}{\\sin 2A} = \\ \\operatorname{cosec} 2A\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {

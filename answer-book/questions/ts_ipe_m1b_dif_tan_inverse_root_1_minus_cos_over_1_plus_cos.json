@@ -64,7 +64,11 @@
             "render": "katex"
           },
           "(put both identities into the fraction)",
-          "∴ (1 − cos x)/(1 + cos x) = 2sin²(x/2) / 2cos²(x/2)",
+          {
+            "text": "\\therefore \\ \\dfrac{1\\ - \\ \\cos x}{1\\ + \\ \\cos x} = \\ \\dfrac{2\\sin ^{2}\\left(\\tfrac{x}{2}\\right)}{2\\cos ^{2}\\left(\\tfrac{x}{2}\\right)}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\text{the}\\ 2s\\ \\text{cancel},\\ \\text{and}\\ \\dfrac{\\sin ^{2}\\left(\\dfrac{x}{2}\\right)}{\\cos ^{2}\\left(\\dfrac{x}{2}\\right)} = \\ \\tan ^{2}\\left(\\dfrac{x}{2}\\right)\\right)",
             "style": "normal",

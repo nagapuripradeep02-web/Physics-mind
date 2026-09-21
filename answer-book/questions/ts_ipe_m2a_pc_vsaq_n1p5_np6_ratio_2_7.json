@@ -57,7 +57,11 @@
           "⁽ⁿ⁺¹⁾P₅ = (n + 1)n(n − 1)(n − 2)(n − 3)",
           "ⁿP₆ = n(n − 1)(n − 2)(n − 3)(n − 4)(n − 5)",
           "Given ⁽ⁿ⁺¹⁾P₅ : ⁿP₆ = 2 : 7, so",
-          "⁽ⁿ⁺¹⁾P₅ / ⁿP₆ = 2/7",
+          {
+            "text": "\\dfrac{{}^{\\left(n\\ + \\ 1\\right)}P_{5}}{{}^{n}P_{6}} = \\ \\dfrac{2}{7}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The factors n(n − 1)(n − 2)(n − 3)",
           "are common to both, so they cancel:",
           {

@@ -58,7 +58,11 @@
           "(cos 2α = 2cos²α − 1)",
           "1 + cos 2α = 1 + 2cos²α − 1 = 2cos²α",
           "This is not 0, because cos α ≠ 0.",
-          "sin 2α/(1 + cos 2α) = (2 sin α cos α)/(2cos²α)",
+          {
+            "text": "\\dfrac{\\sin 2\\alpha }{1\\ + \\ \\cos 2\\alpha } = \\ \\dfrac{2\\sin \\alpha \\cos \\alpha }{2\\cos ^{2}\\alpha }",
+            "style": "normal",
+            "render": "katex"
+          },
           "(cancel 2 cos α from top and bottom)",
           {
             "text": "= \\ \\dfrac{\\sin \\alpha }{\\cos \\alpha } = \\ \\tan \\alpha",
@@ -105,7 +109,11 @@
         "lines": [
           "cos 15° and cos 22½° are not 0, so the rule",
           "applies to both.",
-          "α = 15°: tan 15° = sin 30°/(1 + cos 30°)",
+          {
+            "text": "\\alpha \\ = \\ 15^{\\circ}:\\ \\tan 15^{\\circ}\\ = \\ \\dfrac{\\sin 30^{\\circ}}{1\\ + \\ \\cos 30^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\dfrac{1}{2}}{1\\ + \\ \\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{1}{2\\ + \\ \\sqrt{3}} = \\ 2\\ - \\ \\sqrt{3}",
             "style": "normal",
@@ -120,7 +128,11 @@
             "style": "indent",
             "added": true
           },
-          "α = 22½°: tan 22½° = sin 45°/(1 + cos 45°)",
+          {
+            "text": "\\alpha \\ = \\ 22\\tfrac{1}{2}^{\\circ}:\\ \\tan 22\\tfrac{1}{2}^{\\circ}\\ = \\ \\dfrac{\\sin 45^{\\circ}}{1\\ + \\ \\cos 45^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\dfrac{1}{\\sqrt{2}}}{1\\ + \\ \\dfrac{1}{\\sqrt{2}}} = \\ \\dfrac{1}{\\sqrt{2}\\ + \\ 1} = \\ \\sqrt{2}\\ - \\ 1",
             "style": "normal",
@@ -170,13 +182,21 @@
         "lines_compact": [
           "cos 15° and cos 22½° are not 0, so the rule",
           "applies to both.",
-          "α = 15°: tan 15° = sin 30°/(1 + cos 30°)",
+          {
+            "text": "\\alpha \\ = \\ 15^{\\circ}:\\ \\tan 15^{\\circ}\\ = \\ \\dfrac{\\sin 30^{\\circ}}{1\\ + \\ \\cos 30^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\dfrac{1}{2}}{1\\ + \\ \\dfrac{\\sqrt{3}}{2}} = \\ \\dfrac{1}{2\\ + \\ \\sqrt{3}} = \\ 2\\ - \\ \\sqrt{3}",
             "style": "normal",
             "render": "katex"
           },
-          "α = 22½°: tan 22½° = sin 45°/(1 + cos 45°)",
+          {
+            "text": "\\alpha \\ = \\ 22\\tfrac{1}{2}^{\\circ}:\\ \\tan 22\\tfrac{1}{2}^{\\circ}\\ = \\ \\dfrac{\\sin 45^{\\circ}}{1\\ + \\ \\cos 45^{\\circ}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{\\dfrac{1}{\\sqrt{2}}}{1\\ + \\ \\dfrac{1}{\\sqrt{2}}} = \\ \\dfrac{1}{\\sqrt{2}\\ + \\ 1} = \\ \\sqrt{2}\\ - \\ 1",
             "style": "normal",

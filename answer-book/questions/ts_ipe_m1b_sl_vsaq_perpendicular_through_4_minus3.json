@@ -60,7 +60,11 @@
             "style": "heading"
           },
           "Given line is 5x − 3y + 1 = 0",
-          "(the slope of ax + by + c = 0 is −a/b; here a = 5, b = −3)",
+          {
+            "text": "\\left(\\text{the} \\text{slope} \\text{of} ax + by + c = 0 \\text{is} - \\dfrac{a}{b}; \\text{here} a = 5, b = - 3\\right)",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\text{Its}\\ \\text{slope}\\ m\\ = \\ - \\dfrac{a}{b} = \\ - \\dfrac{5}{ - 3} = \\ \\dfrac{5}{3}",
             "style": "normal",

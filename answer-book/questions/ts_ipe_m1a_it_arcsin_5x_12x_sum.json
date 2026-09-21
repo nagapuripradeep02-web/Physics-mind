@@ -135,7 +135,9 @@
             "render": "katex"
           },
           {
-            "text": "(sin(π/2 − φ) = cos φ, and cos(Sin⁻¹k) = √(1 − k²) ≥ 0)",
+            "text": "\\left(\\sin \\left(\\dfrac{\\pi }{2} - \\phi \\right) = \\cos \\phi , \\text{and} \\cos \\left(\\operatorname{Sin}^{-1}k\\right) = \\sqrt{1 - k^{2}} \\ge 0\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           {
@@ -270,7 +272,11 @@
         "lines": [
           "Both candidates satisfy |x| ≥ 12,",
           "so test the equation itself.",
-          "x = 13: 5/13 = √(1 − 144/169) = 5/13  ✓",
+          {
+            "text": "x\\ = \\ 13:\\ \\dfrac{5}{13} = \\ \\sqrt{1\\ - \\ \\dfrac{144}{169}}\\ = \\ \\dfrac{5}{13}\\ ✓",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "x\\ = \\ - 13:\\ \\text{then}\\ \\dfrac{5}{x} = \\ - \\dfrac{5}{13},",
             "style": "normal",

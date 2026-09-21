@@ -110,7 +110,9 @@
         "lines": [
           "L₁: x + 2a − √3y = 0. Put x = a:",
           {
-            "text": "(a + 2a = 3a, so 3a − √3y = 0; divide by √3: 3/√3 = √3)",
+            "text": "\\left(a + 2a = 3a, \\text{so} 3a - \\sqrt{3}y = 0; \\text{divide} \\text{by} \\sqrt{3}: \\dfrac{3}{\\sqrt{3}} = \\sqrt{3}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
           "3a = √3 y ⇒ y = √3 a, so B = (a, √3a)",

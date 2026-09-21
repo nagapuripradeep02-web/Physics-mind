@@ -204,7 +204,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Δ = ½ bc sin A ⇒ sin A = 2Δ/(bc)",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}bc\\sin A\\ \\Rightarrow \\ \\sin A\\ = \\ \\dfrac{2\\Delta }{bc}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\left(\\dfrac{\\cos A}{\\sin A} = \\ \\left[\\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{2bc}\\right]\\ \\times \\ \\left[\\dfrac{bc}{2\\Delta }\\right]\\right)",
             "style": "normal",
@@ -265,7 +269,11 @@
             "style": "normal",
             "render": "katex"
           },
-          "Δ = ½ bc sin A ⇒ sin A = 2Δ/(bc)",
+          {
+            "text": "\\Delta \\ = \\ \\dfrac{1}{2}bc\\sin A\\ \\Rightarrow \\ \\sin A\\ = \\ \\dfrac{2\\Delta }{bc}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "\\therefore \\ \\cot A\\ = \\ \\dfrac{b^{2}\\ + \\ c^{2}\\ - \\ a^{2}}{4\\Delta }",
             "style": "normal",

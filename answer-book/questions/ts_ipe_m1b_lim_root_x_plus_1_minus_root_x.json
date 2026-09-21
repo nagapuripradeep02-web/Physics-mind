@@ -61,12 +61,9 @@
           "Multiply and divide by the conjugate √(x + 1) + √x :",
           "√(x + 1) − √x",
           {
-            "text": "  = [(√(x + 1) − √x)(√(x + 1) + √x)]",
-            "style": "indent"
-          },
-          {
-            "text": "  /(√(x + 1) + √x)",
-            "style": "indent"
+            "text": "= \\ \\dfrac{\\left(\\sqrt{x\\ + \\ 1}\\ - \\ \\sqrt{x}\\right)\\left(\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}\\right)}{\\sqrt{x\\ + \\ 1}\\ + \\ \\sqrt{x}}",
+            "style": "normal",
+            "render": "katex"
           },
           "((p − q)(p + q) = p² − q², with p = √(x + 1) and q = √x;",
           {

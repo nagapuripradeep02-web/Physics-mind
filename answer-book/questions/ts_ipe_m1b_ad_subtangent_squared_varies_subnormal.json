@@ -73,7 +73,11 @@
             "render": "katex"
           },
           "(divide both sides by 2by)",
-          "∴ m = dy/dx = 3(x + a)²/(2by)"
+          {
+            "text": "\\therefore \\ m\\ = \\ \\dfrac{dy}{dx}\\ = \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2by}",
+            "style": "normal",
+            "render": "katex"
+          }
         ],
         "recall": {
           "credit": "say_it",
@@ -115,10 +119,16 @@
         "margin_note": "Second mark. After writing y/m, substitute by² = (x + a)³ into the numerator. That substitution reduces the expression to a single bracket.",
         "lines": [
           {
-            "text": "(dividing by m is multiplying by 2by/(3(x + a)²))",
+            "text": "\\left(\\text{dividing}\\ \\text{by}\\ m\\ \\text{is}\\ \\text{multiplying}\\ \\text{by}\\ \\dfrac{2by}{3\\left(x\\ + \\ a\\right)^{2}}\\right)",
+            "style": "normal",
+            "render": "katex",
             "added": true
           },
-          "Subtangent = y/m = y · 2by/(3(x + a)²)",
+          {
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{y}{m} = \\ y\\ \\cdot \\ \\dfrac{2by}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{2by^{2}}{3\\left(x\\ + \\ a\\right)^{2}}",
             "style": "indent",
@@ -177,7 +187,11 @@
         ],
         "memory_tip": "Sub-TANGENT has m underneath. Once it is written, look back at the curve for a substitution that clears the y.",
         "lines_compact": [
-          "Subtangent = y/m = y · 2by/(3(x + a)²)",
+          {
+            "text": "\\text{Subtangent}\\ = \\ \\dfrac{y}{m} = \\ y\\ \\cdot \\ \\dfrac{2by}{3\\left(x\\ + \\ a\\right)^{2}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\dfrac{2by^{2}}{3\\left(x\\ + \\ a\\right)^{2}}",
             "style": "indent",
@@ -208,7 +222,11 @@
             "text": "(multiply y by m from step 1)",
             "added": true
           },
-          "Subnormal = ym = y · 3(x + a)²/(2by)",
+          {
+            "text": "\\text{Subnormal}\\ = \\ ym\\ = \\ y\\ \\cdot \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2by}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The y cancels:",
           {
             "text": "\\therefore \\ \\text{Subnormal}\\ = \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}",
@@ -247,7 +265,11 @@
         ],
         "memory_tip": "Sub-NORMAL multiplies by m, and multiplying by y is what cancels the y sitting under the slope.",
         "lines_compact": [
-          "Subnormal = ym = y · 3(x + a)²/(2by)",
+          {
+            "text": "\\text{Subnormal}\\ = \\ ym\\ = \\ y\\ \\cdot \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2by}",
+            "style": "normal",
+            "render": "katex"
+          },
           "The y cancels:",
           {
             "text": "\\therefore \\ \\text{Subnormal}\\ = \\ \\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}",
@@ -274,7 +296,11 @@
             "render": "katex"
           },
           "Divide by the subnormal:",
-          "(Subtangent)²/Subnormal",
+          {
+            "text": "\\dfrac{\\left(\\text{Subtangent}\\right)^{2}}{\\text{Subnormal}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "(dividing by a fraction is multiplying by its reciprocal)",
             "added": true
@@ -352,7 +378,11 @@
             "render": "katex"
           },
           "Divide by the subnormal:",
-          "(Subtangent)²/Subnormal",
+          {
+            "text": "\\dfrac{\\left(\\text{Subtangent}\\right)^{2}}{\\text{Subnormal}}",
+            "style": "normal",
+            "render": "katex"
+          },
           {
             "text": "= \\ \\left[\\dfrac{4\\left(x\\ + \\ a\\right)^{2}}{9}\\right]\\ \\div \\ \\left[\\dfrac{3\\left(x\\ + \\ a\\right)^{2}}{2b}\\right]",
             "style": "indent",
