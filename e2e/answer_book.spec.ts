@@ -1174,21 +1174,37 @@ test('Vidi panel renders in the rail, chips answer deterministically, zero netwo
     expect(external).toEqual([]);
 });
 
+// What the tip chip is CALLED follows what the authors actually wrote
+// (2026-09-21): maths, physics and chemistry tips are how to DO the step, while
+// botany and zoology tips are real memory devices. Mirrors WRITE_TIP_SUBJECTS
+// in notebook.js — if the two ever drift, this gate says so.
+const WRITE_TIP_SUBJECTS = new Set([
+    'mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b',
+    'physics', 'physics_2', 'chemistry', 'chemistry_2',
+]);
+const tipChipLabel = (subject: string) =>
+    WRITE_TIP_SUBJECTS.has(subject || 'physics') ? 'How do I write this?' : 'How to remember?';
+
 test('the memory-tip chip appears only where a tip is authored', async ({ page }) => {
     await openFirst(page);
     const ids = await page.evaluate(() => {
         const qs = (window as any).PM_QUESTIONS as any[];
         const tipped = qs.find((q) => q.answer.steps[0] && q.answer.steps[0].memory_tip);
         const bare = qs.find((q) => q.answer.steps.every((s: any) => !s.memory_tip));
-        return { tipped: tipped ? tipped.question_id : null, bare: bare ? bare.question_id : null };
+        return {
+            tipped: tipped ? tipped.question_id : null,
+            tippedSubject: tipped ? (tipped.subject || 'physics') : '',
+            bare: bare ? bare.question_id : null,
+        };
     });
 
     const chipTexts = async () => page.evaluate(
         () => Array.from(document.querySelectorAll('#vidiChips .vidi-chip')).map((b) => b.textContent));
 
     test.skip(!ids.tipped, 'no question with a memory tip on its first step is authored yet');
+    const label = tipChipLabel(ids.tippedSubject);
     await openQ(page, ids.tipped!);
-    expect(await chipTexts()).toContain('How to remember?');
+    expect(await chipTexts()).toContain(label);
 
     // The NEGATIVE control. It used to be a bare `if (ids.bare)`, which silently
     // becomes a no-op the moment every question has a tip — an enrichment pass
@@ -1198,7 +1214,7 @@ test('the memory-tip chip appears only where a tip is authored', async ({ page }
     // the page and re-render. Same branch exercised either way.
     if (ids.bare) {
         await openQ(page, ids.bare);
-        expect(await chipTexts()).not.toContain('How to remember?');
+        expect(await chipTexts()).not.toContain(label);
     } else {
         // Strip the TIPPED question, not just any question: stripping one that had
         // no tips to begin with is a no-op that passes while proving nothing.
@@ -1209,13 +1225,78 @@ test('the memory-tip chip appears only where a tip is authored', async ({ page }
         }, ids.tipped!);
         await openQ(page, ids.tipped!);
         expect(await chipTexts(), 'the tip chip must disappear when no step carries a tip')
-            .not.toContain('How to remember?');
+            .not.toContain(label);
         await page.evaluate((qid) => {
             const q = ((window as any).PM_QUESTIONS as any[]).find((x) => x.question_id === qid);
             const saved = (window as any).__PM_TIPS_SAVED as (string | undefined)[];
             q.answer.steps.forEach((s: any, i: number) => { if (saved[i]) s.memory_tip = saved[i]; });
         }, ids.tipped!);
     }
+});
+
+test('the tip chip is named for what the paper actually authored, and the formula chip is deterministic', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await openFirst(page);
+
+    const picks = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const firstTipped = (subs: string[]) => {
+            const q = qs.find((x) => subs.includes(x.subject || 'physics') &&
+                x.answer.steps[0] && x.answer.steps[0].memory_tip);
+            return q ? q.question_id : null;
+        };
+        const withFormula = qs.find((x) => x.formula_note);
+        return {
+            maths: firstTipped(['mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b']),
+            bio: firstTipped(['botany', 'botany_2', 'zoology', 'zoology_2']),
+            formula: withFormula ? withFormula.question_id : null,
+            formulaText: withFormula ? withFormula.formula_note : '',
+        };
+    });
+
+    const chipTexts = async () => page.evaluate(
+        () => Array.from(document.querySelectorAll('#vidiChips .vidi-chip')).map((b) => b.textContent));
+
+    // A maths tip is answering technique, so the chip must not call it a mnemonic.
+    if (picks.maths) {
+        await openQ(page, picks.maths);
+        const c = await chipTexts();
+        expect(c).toContain('How do I write this?');
+        expect(c).not.toContain('How to remember?');
+    }
+    // A biology tip really is a memory device, and keeps the old name.
+    if (picks.bio) {
+        await openQ(page, picks.bio);
+        const c = await chipTexts();
+        expect(c).toContain('How to remember?');
+        expect(c).not.toContain('How do I write this?');
+    }
+
+    // The question-level formula note: its own chip, answered from authored
+    // data with no network — the same ₹0 contract every other chip holds to.
+    test.skip(!picks.formula, 'no question carries a formula_note yet');
+    await openQ(page, picks.formula!);
+    expect(await chipTexts()).toContain('Which formula?');
+    // First visit is MINIMISED (founder, 2026-09-02) — the chips are in the DOM
+    // but not on screen, so the panel has to be opened before one can be tapped.
+    if (await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)) {
+        await page.click('#vidiFab');
+        await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    }
+    const before = await page.evaluate(
+        () => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length);
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Which formula?' }).click();
+    await page.waitForFunction(
+        (n) => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length > n,
+        before, { timeout: 4000 });
+    const said = await page.evaluate(() => Array.from(
+        document.querySelectorAll('#vidiThread .vidi-msg.tutor')).map((b) => b.textContent).join(' '));
+    expect(said).toContain(picks.formulaText.slice(0, 40));
+    expect(external).toEqual([]);
 });
 
 test('rename is offered once after the first Mark revised, blocklist holds, name persists', async ({ page }) => {
@@ -1255,15 +1336,37 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
     expect(blocked.name).toBe('Vidi');
     expect(blocked.note).toContain('different');
 
-    // a real name is saved and shown
+    // a real name is saved and shown — and the box stays open, because the same
+    // moment now asks a SECOND question: the student's own name (2026-09-21)
     await page.fill('#vidiNameInput', 'Chintu');
     await page.click('#vidiNameSave');
     const renamed = await page.evaluate(() => ({
         name: document.querySelector('#pm-assistant-slot .vidi-name')!.textContent,
         renameOpen: !document.getElementById('vidiRename')!.hidden,
+        nameRowOpen: !document.getElementById('vidiNameRow')!.hidden,
+        studentRowOpen: !document.getElementById('vidiStudentRow')!.hidden,
     }));
     expect(renamed.name).toBe('Chintu');
-    expect(renamed.renameOpen).toBe(false);
+    expect(renamed.renameOpen).toBe(true);
+    expect(renamed.nameRowOpen).toBe(false);      // one question at a time
+    expect(renamed.studentRowOpen).toBe(true);
+
+    // the student's own name runs the same blocklist as Vidi's
+    await page.fill('#vidiStudentInput', 'chutiya');
+    await page.click('#vidiStudentSave');
+    expect(await page.evaluate(() => ({
+        open: !document.getElementById('vidiRename')!.hidden,
+        stored: localStorage.getItem('pm_student_name'),
+    }))).toEqual({ open: true, stored: null });
+
+    await page.fill('#vidiStudentInput', 'Ravi');
+    await page.click('#vidiStudentSave');
+    const named = await page.evaluate(() => ({
+        open: !document.getElementById('vidiRename')!.hidden,
+        stored: localStorage.getItem('pm_student_name'),
+    }));
+    expect(named.open).toBe(false);
+    expect(named.stored).toBe('Ravi');
 
     // a SECOND finished revision must not offer the rename again
     await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid2);
@@ -1283,9 +1386,12 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
     });
     if (storageWorks) {
         await openFirst(page);   // full reload
-        const kept = await page.evaluate(
-            () => document.querySelector('#pm-assistant-slot .vidi-name')!.textContent);
-        expect(kept).toBe('Chintu');
+        const kept = await page.evaluate(() => ({
+            vidi: document.querySelector('#pm-assistant-slot .vidi-name')!.textContent,
+            student: localStorage.getItem('pm_student_name'),
+        }));
+        expect(kept.vidi).toBe('Chintu');
+        expect(kept.student).toBe('Ravi');
     }
 });
 

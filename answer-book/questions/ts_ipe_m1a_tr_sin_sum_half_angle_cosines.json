@@ -45,6 +45,7 @@
     "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 4, book p.101. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 above weights the two transformations that carry the proof (the sum-to-product pairing and the substitution from the halved condition) against the set-up and the finish, and matches the split already used on the eight sibling transformation long answers in this unit so a student meets ONE method, not eight. NUMERIC CHECK (before authoring and again after): at A = 50°, B = 60°, C = 70°, which is a genuine triangle, L.H.S = 2.5717624677 and R.H.S = 2.5717624677. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "formula_note": "Four of these look alike, and two rules sort them out. Single angles A, B, C give half angles in the answer; double angles 2A, 2B, 2C give full angles. Sines on the left come out as cosines; cosines on the left come out as sines and bring a leading 1. This one is sines at single angles, so the answer is half angles, all cosines, and no 1.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -198,7 +199,7 @@
         "marks": 2,
         "mark_note": "Substitution",
         "margin_note": "Two more marks. The halved condition turns a sine of (A+B)/2 into a cosine of C/2, which is what makes both terms carry cos(C/2).",
-        "memory_tip": "sin(90° − C/2) = cos(C/2). A sine becomes a cosine under this shift.",
+        "memory_tip": "sin(90° − θ) = cos θ. Subtracting from 90° changes the name, sine to cosine and tangent to cotangent, and never changes the sign, because 90° − θ is still in the first quadrant.",
         "lines": [
           {
             "text": "Use the given condition in the first factor:",
@@ -374,7 +375,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. One sum formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
-        "memory_tip": "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2). The two 2s multiply to give the 4.",
+        "memory_tip": "cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2). Two cosines added stay cosines; the first bracket is half the sum, the second half the difference. Here that gives 2 cos(A/2) cos(B/2), and the two 2s multiply to the 4.",
         "lines": [
           {
             "text": "\\text{Use}\\ \\text{the}\\ \\text{sum}\\ \\text{formula}\\ \\text{with}\\ p\\ = \\ \\dfrac{A - B}{2}\\text{and}",

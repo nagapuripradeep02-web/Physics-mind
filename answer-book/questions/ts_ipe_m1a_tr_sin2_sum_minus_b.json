@@ -45,6 +45,7 @@
     "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.97, chapter 8 TRANSFORMATIONS, Long Answer question 1(iii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.7615699589, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "formula_note": "Four of these look alike. Single angles give half angles in the answer, double angles give full angles. Sines on the left come out as cosines; cosines come out as sines and bring a leading 1. When the terms are not all added, the one with the minus keeps its own function. Here that is B, so B stays a sine and A and C become cosines, with no 1.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -193,7 +194,7 @@
         "marks": 2,
         "mark_note": "Substitution",
         "margin_note": "Two more marks. The angle condition turns sin(A+C) into sin B, so both terms now carry the same factor 2 sin B.",
-        "memory_tip": "sin(180° − B) = +sin B. Sine keeps its sign across 180°.",
+        "memory_tip": "sin(180° − θ) = sin θ, but cos(180° − θ) = −cos θ. Across 180° the sine keeps its sign and the cosine flips. That single difference decides the sign in every question of this family.",
         "lines": [
           {
             "text": "Use the condition: A + C = 180° − B.",

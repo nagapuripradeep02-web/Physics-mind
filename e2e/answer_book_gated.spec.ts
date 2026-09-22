@@ -179,6 +179,25 @@ test('the gated page carries the catalog but not one answer byte', async ({ page
     expect(gated).not.toContain('"why"');
     expect(gated).not.toContain('"common_mistakes"');
     expect(gated).not.toContain('"memory_tip"');
+    // formula_note is TOP-LEVEL, so the per-step allowlist cannot reach it and
+    // the gated projection has to knock it out by name. It names the formulas
+    // the answer turns on, which is what the chapter is sold for. Probed by
+    // CONTENT, not by key name: the client code mentions the field, so the bare
+    // string "formula_note" appears in any build and would pass while proving
+    // nothing. Positive control lives in the full-build block above.
+    const withFormula: { id: string; note: string }[] = [];
+    for (const f of readdirSync(CONTENT_DIR)) {
+        if (!f.endsWith('.json')) continue;
+        for (const q of JSON.parse(readFileSync(join(CONTENT_DIR, f), 'utf8')).questions) {
+            if (q.formula_note) withFormula.push({ id: q.question_id, note: q.formula_note });
+        }
+    }
+    for (const q of withFormula.slice(0, 5)) {
+        // present in the bundle a PAYING student is served — the positive control
+        expect(q.note.length).toBeGreaterThan(20);
+        expect(gated, `formula_note of ${q.id} must not reach a locked page`)
+            .not.toContain(q.note.slice(0, 45));
+    }
 
     // the page still boots and sells: full catalog, every card
     await bootGated(page, () => ({ ok: true, unlocked: [], free_available: true, sku: { price_inr: null } }));

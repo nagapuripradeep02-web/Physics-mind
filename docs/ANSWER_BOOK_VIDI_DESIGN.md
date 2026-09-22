@@ -16,6 +16,25 @@ flag-gated chat live in `answer-book/notebook.js` (`Vidi`/`VidiPanel`), the Edge
 > product. The student-facing Vidi chat may reply in natural Telugu-English code-mix, TEXT
 > ONLY (no Telugu TTS — Telugu audio stays retired); physics terms stay in English, never
 > transliterated.
+> **Tone ruling — SIGNED (founder, 2026-09-21), now CLAUDE.md Rule 41g:** Vidi's
+> chat replies may carry ONE small joke — one literal sentence, then back to the
+> answer. Never when the student is stuck, worried, short of time or has just got
+> something wrong; never about the student, their mistake, their teacher or the
+> marks they could lose; never as a sign-off. It is taught by worked example in
+> PERSONA because the rule alone did nothing (0 jokes in 6 probes). Vidi's REPLIES
+> only — authored strings stay under the full Rule 41a ban.
+>
+> **The student's name — SIGNED (founder, 2026-09-21):** Vidi asks for the
+> student's own name in the same moment she offers her rename, stores it in
+> `pm_student_name`, greets by it once a calendar day, and receives it per request
+> in the `situation` block. It is display data, never an identifier; it never
+> enters `PERSONA`/`tutor_context` (the cached prefix) and never reaches
+> `ab_events`.
+>
+> **Telugu/Hindi code-mix — DEFERRED (founder, 2026-09-21).** The pending carve-out
+> above was explicitly NOT taken this session; the persona's Telugu-script rule
+> stands unchanged.
+
 **Scope:** the IPE Answer Book (student-facing) ONLY. Quick Learn stays shelved; this design
 *borrows* its built pieces (persona prompt, Edge Function pattern, usage logging) but builds no
 Quick Learn surface. The teacher product is untouched — **Vidi never appears in the teacher app**

@@ -605,6 +605,20 @@ export const answerBookQuestionSchema = z
         insider_note: z.string().min(1).optional(),
 
         /**
+         * One authored note about the FORMULAS this question needs, and about the
+         * sibling questions it is confused with — "the board asks four of these and
+         * they look alike; sines added give cosines out, cosines added give sines
+         * out and start with 1". Question-level on purpose: a step's memory_tip is
+         * about that step, but telling a FAMILY of identities apart belongs to the
+         * question as a whole and has no single step to sit on.
+         *
+         * Optional and sparse, the same shape as insider_note, and plain literal
+         * English (Rule 41 — the 41f comparison carve-out covers Vidi's chat
+         * replies, never an authored string). Maths papers first.
+         */
+        formula_note: z.string().min(1).optional(),
+
+        /**
          * Which formulas this card uses — ids from `answer-book/formulas/<subject>.json`.
          *
          * ALL-OR-NONE PER PAPER: once a subject has a registry, EVERY card of that

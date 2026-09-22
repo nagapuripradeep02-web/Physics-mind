@@ -1,5 +1,83 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — Vidi knows his name, tells a joke, and stops calling answering technique a mnemonic (2026-09-21, branch `feat/answerbook-vidi-personal`, **not deployed**)
+
+**Bottom line: three fine-tunings to the Answer Book chat. Vidi now asks the student their own name and greets them by it; she may make one small joke, never when they are stuck or worried; and the memory-tip chip is renamed per paper, with a new question-level `formula_note` piloted on the four sibling trigonometry identities.**
+
+### 1. The student's name
+
+Nothing anywhere held it — `pm_vidi_name` is the name the student gives *Vidi*, and the persona had a line saying so. The rename moment now asks two questions instead of one (`offerRename` → `askStudentName`), reusing `normName`/`nameOk` and the existing blocklist unchanged. Stored as `pm_student_name`, greeted once a calendar day (`greetByName`), sent per request as `student_name` and rendered into the `situation` block — **never** into `PERSONA` or `tutor_context`, which are the cached prefix and would cost a cache miss per student per ask. The name is re-sanitised server-side because the page can be forged.
+
+**It never reaches telemetry.** `ab_events` gets `student_name_set` / `student_name_skipped`, not the name. Vidi's own pet name keeps being logged as before — that is a made-up word, not a student's real one.
+
+A student who was already offered the rename before today (every existing device) is jumped straight to step two, or the question could never reach them; a student who skips is never asked again (`pm_student_name_done`).
+
+### 2. A friendlier tone
+
+PERSONA in both servers now permits one small joke per reply, shaped on the encouragement rule that follows it: never when the student is stuck, worried, short of time or has just got something wrong; never about the student, their mistake, their teacher or the marks they could lose; never as a sign-off.
+
+**The rule alone did nothing.** Measured: with only the permission added, 6 probes produced ZERO jokes, including on open banter. Adding a worked example in the persona's own house style — "five times is more than the examiner will ever ask for" is the right size, "at this point the proof owes you rent" is too much — made it fire correctly on the casual probes while staying silent on the worried and stuck ones. Recorded as **CLAUDE.md Rule 41g**, on the same experimental footing as 41f, so no agent reverts it citing 41a.
+
+### 3. The tip chip, and the formula note
+
+`memory_tip` is authored on all 9,705 steps, but the content differs by paper: maths/physics/chemistry tips are how to DO the step, botany/zoology tips are real mnemonics. The chip called all of them "How to remember?", announcing answering technique as a memory device. It now follows the content — "How do I write this?" on the first group, unchanged on the second (`WRITE_TIP_SUBJECTS`).
+
+New question-level `formula_note` (optional and sparse, `insider_note`'s shape): which formulas the answer turns on and how to tell it from the siblings it is confused with. Its own "Which formula?" chip, deterministic and ₹0, plus a `FORMULA NOTE` line in Vidi's context.
+
+**Piloted on the four sibling triangle identities** (`tr_sin_sum_half_angle_cosines`, `tr_cos_sum_half_angle_sines`, `tr_sin2_sum_minus_b`, `tr_cos2_sum_minus_c`) with the rule the four share: single angles give half angles and double angles give full angles; sines on the left come out as cosines, cosines come out as sines and bring a leading 1; and when the three terms are not all added, the term carrying the minus keeps its own function. Four step tips were rewritten to name the formula rather than describe this proof's move. **Not a bulk pass** — 242 more Maths-1A SAQ/LAQ cards remain, deliberately left until the founder sees these four.
+
+### A gating bug found on the way
+
+`formula_note` is TOP-LEVEL, and the gated projection spreads `...q`, so the per-step allowlist cannot reach it — it would have shipped the formulas onto a LOCKED card, which is what the chapter is sold for. Knocked out by name in `build_answer_book.ts`, with an e2e gate that probes by CONTENT (the client code mentions the field, so a key-name probe would pass while proving nothing). `insider_note` deliberately still ships: examiner behaviour, not the answer.
+
+### Evidence
+
+- `tsc` 0 · `check_cards --prefix ts_ipe_m1a_tr_` 110 cards pass · `build:answers` and `build:answers:gated:mpc` clean.
+- **25/25** of the affected e2e gates, including every offline gate (zero network, `PM_VIDI_BASE === ""`) and the gated "not one answer byte" leak test.
+- Two existing tests updated for the new contracts (the rename test now walks both questions; the tip-chip test is subject-aware), and two gates added: the per-paper chip label, and the formula chip answering with zero network.
+- **`vidi:shakedown` 1/22 flagged, 0 CRITICAL, ₹1.39** — the one flag is the known 6-sentence soft-cap residual, at the same rate as before the change. Safety behaviours all hold: out-of-bank refused, marks quoted only from the authored split, abuse handled, identity admitted.
+- Direct probes confirmed the name is used once and naturally, no name is invented when none is sent, and both the worried and stuck probes get no joke.
+
+### NOT done — read before deploying
+
+- **Nothing is deployed**, and this rides the SAME Edge Function as the undeployed chat-history work (#220/#221/#222). `~/Desktop/VIDI_CHAT_MEMORY_DEPLOY.md` has been updated to say what else now ships when §3 of it is run. Cloudflare auth is still not on this Mac.
+- **Telugu/Hindi code-mix was explicitly deferred** by the founder this session. The persona's Telugu-script rule is untouched.
+- The confidence rating (solid/shaky/stuck) and the exit MCQ were explored and **shelved** by the founder earlier in the session.
+- The full `answer_book.spec.ts` **was** run: **82 passed, 2 failed in 2.6 h**. Both failures were then reproduced on the PRE-CHANGE tree (`HEAD~1` checked out and rebuilt), so **both are pre-existing on master, not from this change**: `hosted: telemetry AND the ask both say who is asking` (the mocked hosted build never un-hides `#vidiAskRow`, so the test times out before it can send an ask) and `Simplify writes ONE mark out in full` (an `expandableSteps` assertion on `EXPANDED_CARD`). Neither is diagnosed further here — they are red on master and want their own session.
+- Observed, not fixed: on a mark-split question Vidi said the book "made up" the split. That wording is the existing verification-honesty rule, not this change, but "made up" reads worse than it should.
+
+### The bulk pass — Maths-1A complete (same session)
+
+The four piloted cards became the whole paper: **175 formula notes across the 246 SAQ+LAQ cards (71%)**, authored by nine `model: sonnet` sub-agents on the Claude Code subscription, one per unit (Rule 30g — never a metered-API script), each reading its cards and writing only where a note earns its place.
+
+| unit | | written / in scope |
+|---|---|---|
+| 2 | Functions | 10 / 10 |
+| 4 | Mathematical Induction | 13 / 17 |
+| 5 | Matrices | 26 / 57 |
+| 6 | Addition of Vectors | 14 / 19 |
+| 7 | Product of Vectors | 40 / 58 |
+| 8 | Trigonometric Ratios | 27 / 29 |
+| 9 | Trigonometric Equations | 11 / 18 |
+| 10 | Inverse Trigonometric Functions | 17 / 19 |
+| 12 | Properties of Triangles | 17 / 19 |
+
+**The spread is the point.** Matrices came in lowest at 46% because most of that unit is procedure — "expand this determinant", "row-reduce this system" — with nothing to misremember; Functions came in at 100% because its ten SAQ/LAQ cards really are one tight family of composition and inverse laws that confuse each other. A flat rate across units would have meant padding. Skips were reported and reasoned per card, and reviewed as carefully as the writes.
+
+**Scope deliberately held:** `formula_note` ONLY. The pilot also rewrote four step `memory_tip`s; doing that across the paper means touching authored lines on ~1,400 steps, which is a separate green-light. VSAQ (310 more cards) also excluded.
+
+**Verification — three layers, because the agents checking their own work is not a check.**
+1. Each agent verified numerically against its own cards (sympy/numpy/Fraction), including every claim made about a SIBLING card.
+2. A new report-only sweep, `answer-book/tools/check_formula_notes.py`, over all 556: round-trip byte fidelity, key order, the 200–350 band, and LaTeX/ASCII/hyphen-for-minus notation. Clean.
+3. **Independent re-derivation here**, not taking any agent's word: the nine non-standard Unit-8 identities and their cross-claims; every matrix rule ((AB)⁻¹ and (AB)ᵀ reversing, (A+B)ᵀ not reversing, (A⁻¹)ᵀ=(Aᵀ)⁻¹, det(AB), the symmetric/skew split); both vector triple-product forms plus non-associativity, Lagrange, and the box-product swap rules; the four induction closed forms at n=1,5,10,25; and the Tan⁻¹ addition formula's xy<1 side condition — with negative controls, confirming the wrong order really is wrong and the bare formula really does fail at xy>1. All passed.
+
+**Two real defects this turned up:**
+- A note reached `formula_note` carrying "the trick is", a named Rule 41 idiom. The build caught it — but `check_cards.ts` did NOT, because it keeps its OWN copy of the scanned-field list and only `build_answer_book.ts` had been updated. So the per-card pre-flight an authoring pass actually runs was blind to idioms in the new field. Both fixed, and the fix proved by re-inserting the idiom and watching the pre-flight fail.
+- Two of the four pilot notes were 508 characters, well over the band the agents were held to. Trimmed to 345.
+
+Gates: `check_cards` 556 cards pass · `tsc` 0 · offline and gated builds clean · **0 of 175 notes leak onto a locked page** (checked by content against the paid bundles) · 25/25 affected e2e.
+
+**Next session's first task:** founder reads the four piloted cards at `npm run serve:answers` and says whether the formula notes are worth a bulk pass over the remaining 242 Maths-1A cards.
 ## 🧠 SESSION — the formula sheet: a printed sheet that fills itself (2026-09-21, PRs #227 / #228 / #229 / #230, MERGED, **not deployed**)
 
 **Bottom line: every maths paper now has a second face on the Question Bank — Questions | Formulas. The sheet lists every formula that paper's answers use, in chapter order, from the student's first visit; a row shows its formula once the student has READ a card that uses it. 204 formulas across the four papers, 924 of 1459 maths cards tagged. Merged to master; NOTHING is deployed, so students still get the old book.**

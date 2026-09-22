@@ -84,6 +84,11 @@ for (const q of parsed) {
     const where = q.question_id;
     const strings: [string, string][] = [];
     if (q.insider_note) strings.push(['insider_note', q.insider_note]);
+    // Kept in step with the same list in build_answer_book.ts by hand. This
+    // file is the PRE-FLIGHT an authoring pass runs per chapter, so a field
+    // missing here is a field whose idioms nobody sees until the full build —
+    // which is exactly how a "the trick is" reached a formula_note (2026-09-22).
+    if (q.formula_note) strings.push(['formula_note', q.formula_note]);
 
     let tips = 0, notes = 0;
     let marksSoFar = 0;
