@@ -54,6 +54,7 @@
     "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.14 — LAQ chapter 1 Functions, question 2, on a ★★★ SSP. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,20 and AP 16,17,19. Both are the publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Both sides give the same value. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove the reverse law for inverses — the two things you have to check, and how each one goes.",
+  "formula_note": "Proves (gof)⁻¹ = f⁻¹og⁻¹ — note the REVERSED order: g⁻¹ acts first, undoing g, the outer function of gof, before f⁻¹ undoes f. Two sibling short-answer questions verify this same law on finite sets: one is given f and g directly, the other is given f and g⁻¹ instead, so g must be rebuilt by reversing its pairs before gof can be formed.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

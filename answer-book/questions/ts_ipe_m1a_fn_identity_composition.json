@@ -38,6 +38,7 @@
     "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 3. The 3+4 split is printed in that book's margin; the only appearance year printed is AP 18. Publisher's claims until a Telangana IPE teacher confirms them. Written lines use render:'katex' wherever the identity functions appear, because a capital-letter subscript has no Unicode form (docs/IPE_MATHS_1A_SOURCE.md). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that foI_A = f. LINES EXPANDED 2026-09-14 (founder direction, modelled on the Maths-2A and Maths-2B expansions): every move is written on its own line, with the reason or the arithmetic shown before it is used; the steps, marks and split are unchanged."
   },
   "recall_prompt": "Say how you would prove that composing f with the identity on either side leaves f unchanged — the two parts, and how each part goes.",
+  "formula_note": "This proves that composing f with the identity on A, then with the identity on B, both leave f unchanged — for ANY function f, no bijection needed. A sibling proof about f composed with its own inverse is different: it needs f bijective so f⁻¹ exists, and it is f then f⁻¹ that gives the identity, not f composed with the identity.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -46,6 +46,37 @@ New question-level `formula_note` (optional and sparse, `insider_note`'s shape):
 - The full `answer_book.spec.ts` **was** run: **82 passed, 2 failed in 2.6 h**. Both failures were then reproduced on the PRE-CHANGE tree (`HEAD~1` checked out and rebuilt), so **both are pre-existing on master, not from this change**: `hosted: telemetry AND the ask both say who is asking` (the mocked hosted build never un-hides `#vidiAskRow`, so the test times out before it can send an ask) and `Simplify writes ONE mark out in full` (an `expandableSteps` assertion on `EXPANDED_CARD`). Neither is diagnosed further here — they are red on master and want their own session.
 - Observed, not fixed: on a mark-split question Vidi said the book "made up" the split. That wording is the existing verification-honesty rule, not this change, but "made up" reads worse than it should.
 
+### The bulk pass — Maths-1A complete (same session)
+
+The four piloted cards became the whole paper: **175 formula notes across the 246 SAQ+LAQ cards (71%)**, authored by nine `model: sonnet` sub-agents on the Claude Code subscription, one per unit (Rule 30g — never a metered-API script), each reading its cards and writing only where a note earns its place.
+
+| unit | | written / in scope |
+|---|---|---|
+| 2 | Functions | 10 / 10 |
+| 4 | Mathematical Induction | 13 / 17 |
+| 5 | Matrices | 26 / 57 |
+| 6 | Addition of Vectors | 14 / 19 |
+| 7 | Product of Vectors | 40 / 58 |
+| 8 | Trigonometric Ratios | 27 / 29 |
+| 9 | Trigonometric Equations | 11 / 18 |
+| 10 | Inverse Trigonometric Functions | 17 / 19 |
+| 12 | Properties of Triangles | 17 / 19 |
+
+**The spread is the point.** Matrices came in lowest at 46% because most of that unit is procedure — "expand this determinant", "row-reduce this system" — with nothing to misremember; Functions came in at 100% because its ten SAQ/LAQ cards really are one tight family of composition and inverse laws that confuse each other. A flat rate across units would have meant padding. Skips were reported and reasoned per card, and reviewed as carefully as the writes.
+
+**Scope deliberately held:** `formula_note` ONLY. The pilot also rewrote four step `memory_tip`s; doing that across the paper means touching authored lines on ~1,400 steps, which is a separate green-light. VSAQ (310 more cards) also excluded.
+
+**Verification — three layers, because the agents checking their own work is not a check.**
+1. Each agent verified numerically against its own cards (sympy/numpy/Fraction), including every claim made about a SIBLING card.
+2. A new report-only sweep, `answer-book/tools/check_formula_notes.py`, over all 556: round-trip byte fidelity, key order, the 200–350 band, and LaTeX/ASCII/hyphen-for-minus notation. Clean.
+3. **Independent re-derivation here**, not taking any agent's word: the nine non-standard Unit-8 identities and their cross-claims; every matrix rule ((AB)⁻¹ and (AB)ᵀ reversing, (A+B)ᵀ not reversing, (A⁻¹)ᵀ=(Aᵀ)⁻¹, det(AB), the symmetric/skew split); both vector triple-product forms plus non-associativity, Lagrange, and the box-product swap rules; the four induction closed forms at n=1,5,10,25; and the Tan⁻¹ addition formula's xy<1 side condition — with negative controls, confirming the wrong order really is wrong and the bare formula really does fail at xy>1. All passed.
+
+**Two real defects this turned up:**
+- A note reached `formula_note` carrying "the trick is", a named Rule 41 idiom. The build caught it — but `check_cards.ts` did NOT, because it keeps its OWN copy of the scanned-field list and only `build_answer_book.ts` had been updated. So the per-card pre-flight an authoring pass actually runs was blind to idioms in the new field. Both fixed, and the fix proved by re-inserting the idiom and watching the pre-flight fail.
+- Two of the four pilot notes were 508 characters, well over the band the agents were held to. Trimmed to 345.
+
+Gates: `check_cards` 556 cards pass · `tsc` 0 · offline and gated builds clean · **0 of 175 notes leak onto a locked page** (checked by content against the paid bundles) · 25/25 affected e2e.
+
 **Next session's first task:** founder reads the four piloted cards at `npm run serve:answers` and says whether the formula notes are worth a bulk pass over the remaining 242 Maths-1A cards.
 
 
