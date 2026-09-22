@@ -1,0 +1,972 @@
+{
+  "subject": "mathematics",
+  "sheet_label": "Maths 1A",
+  "chapters": [
+    {
+      "number": 1,
+      "formulas": [
+        {
+          "id": "m1a.sets.power_set_size",
+          "name": "Number of subsets of a set",
+          "text": "n[P(A)] = 2ⁿ, where n = |A|",
+          "match": [
+            "P(A)] = 2",
+            "P(A)) = 2",
+            "|P(A)| = 2",
+            "2ⁿ subsets",
+            "has 2ⁿ"
+          ]
+        },
+        {
+          "id": "m1a.sets.de_morgan_union",
+          "name": "De Morgan — complement of a union",
+          "text": "(A ∪ B)′ = A′ ∩ B′",
+          "match": [
+            "(A ∪ B)′ = A′ ∩ B′",
+            "(A∪B)' = A' ∩ B'"
+          ]
+        },
+        {
+          "id": "m1a.sets.de_morgan_intersection",
+          "name": "De Morgan — complement of an intersection",
+          "text": "(A ∩ B)′ = A′ ∪ B′",
+          "match": [
+            "(A ∩ B)′ = A′ ∪ B′",
+            "(A∩B)' = A' ∪ B'"
+          ]
+        },
+        {
+          "id": "m1a.sets.symmetric_difference",
+          "name": "Symmetric difference",
+          "text": "A △ B = (A − B) ∪ (B − A)",
+          "match": [
+            "(A − B) ∪ (B − A)",
+            "A △ B ="
+          ]
+        },
+        {
+          "id": "m1a.sets.product_over_union",
+          "name": "Cartesian product over a union",
+          "text": "A × (B ∪ C) = (A × B) ∪ (A × C)",
+          "match": [
+            "A × (B ∪ C) = (A × B) ∪ (A × C)",
+            "(A × B) ∪ (A × C)"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "formulas": [
+        {
+          "id": "m1a.fn.composition",
+          "name": "Composite function",
+          "text": "(g∘f)(x) = g[f(x)]",
+          "match": [
+            "(gof)(x) = g[f(x)]",
+            "(g∘f)(x) = g[f(x)]",
+            "= g[f(x)]",
+            "= g(f(x))"
+          ]
+        },
+        {
+          "id": "m1a.fn.inverse_by_solving",
+          "name": "Inverse of a function",
+          "text": "If f(x) = y then x = f⁻¹(y)",
+          "match": [
+            "f(x) = y ⇒ x = f⁻¹(y)",
+            "= y, so x = f⁻¹(y)"
+          ]
+        },
+        {
+          "id": "m1a.fn.inverse_of_composite",
+          "name": "Inverse of a composite function",
+          "text": "(g∘f)⁻¹ = f⁻¹∘g⁻¹",
+          "match": [
+            "(gof)⁻¹ = f⁻¹og⁻¹",
+            "(g∘f)⁻¹ = f⁻¹∘g⁻¹"
+          ]
+        },
+        {
+          "id": "m1a.fn.inverse_cancels",
+          "name": "A function and its inverse cancel",
+          "text": "f∘f⁻¹ = I_B and f⁻¹∘f = I_A",
+          "match": [
+            "fof⁻¹ = I_B",
+            "f⁻¹of = I_A",
+            "f \\circ f^{-1} = I_B"
+          ]
+        },
+        {
+          "id": "m1a.fn.even_odd",
+          "name": "Even and odd functions",
+          "text": "Even: f(−x) = f(x). Odd: f(−x) = −f(x)",
+          "match": [
+            "f(−x) = f(x)",
+            "f(−x) = −f(x)",
+            "f(-x) = f(x)"
+          ]
+        },
+        {
+          "id": "m1a.fn.domain_of_root",
+          "name": "Domain of a square root",
+          "text": "√(f(x)) is real only when f(x) ≥ 0",
+          "match": [
+            "under a square root must not be negative",
+            "inside the square root must not be negative",
+            "square root needs"
+          ]
+        },
+        {
+          "id": "m1a.fn.one_one_test",
+          "name": "Test for a one one function",
+          "text": "f is one one when f(x₁) = f(x₂) gives x₁ = x₂",
+          "match": [
+            "f(x₁) = f(x₂)",
+            "one one: equal images must come from equal inputs"
+          ]
+        },
+        {
+          "id": "m1a.fn.onto_test",
+          "name": "Test for an onto function",
+          "text": "f is onto when every y in the codomain has an x with f(x) = y",
+          "match": [
+            "onto: every element of the codomain is an image",
+            "every element of the codomain"
+          ]
+        },
+        {
+          "id": "m1a.fn.domain_of_fraction",
+          "name": "Domain of a fraction",
+          "text": "A fraction is undefined only where its denominator is 0",
+          "match": [
+            "denominator is 0"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "formulas": [
+        {
+          "id": "m1a.seq.ap_nth_term",
+          "name": "nth term of an A.P.",
+          "text": "tₙ = a + (n − 1)d",
+          "match": [
+            "a + (n − 1)d",
+            "a+(n−1)d"
+          ]
+        },
+        {
+          "id": "m1a.seq.ap_sum",
+          "name": "Sum of n terms of an A.P.",
+          "text": "Sₙ = (n/2)[2a + (n − 1)d]",
+          "match": [
+            "(n/2)[2a + (n − 1)d]",
+            "n/2[2a + (n − 1)d]",
+            "(n/2)(2a + (n − 1)d)"
+          ]
+        },
+        {
+          "id": "m1a.seq.gp_nth_term",
+          "name": "nth term of a G.P.",
+          "text": "tₙ = arⁿ⁻¹",
+          "match": [
+            "arⁿ⁻¹",
+            "ar^{n-1}"
+          ]
+        },
+        {
+          "id": "m1a.seq.gp_sum",
+          "name": "Sum of n terms of a G.P.",
+          "text": "Sₙ = a(rⁿ − 1)/(r − 1), r ≠ 1",
+          "match": [
+            "a(rⁿ − 1)/(r − 1)",
+            "a(1 − rⁿ)/(1 − r)"
+          ]
+        },
+        {
+          "id": "m1a.seq.gp_infinite_sum",
+          "name": "Sum of an infinite G.P.",
+          "text": "S∞ = a/(1 − r), |r| < 1",
+          "match": [
+            "a/(1 − r)",
+            "S∞ = a/(1−r)"
+          ]
+        },
+        {
+          "id": "m1a.seq.am_gm",
+          "name": "Arithmetic mean and geometric mean",
+          "text": "A.M. = (a + b)/2, G.M. = √(ab)",
+          "match": [
+            "A.M. = (a + b)/2",
+            "G.M. = √(ab)",
+            "(a + b)/2 = ",
+            "√(ab)"
+          ]
+        },
+        {
+          "id": "m1a.seq.sum_n",
+          "name": "Sum of the first n natural numbers",
+          "text": "Σn = n(n + 1)/2",
+          "match": [
+            "n(n + 1)/2",
+            "n(n+1)/2"
+          ]
+        },
+        {
+          "id": "m1a.seq.sum_n_squared",
+          "name": "Sum of the squares of the first n natural numbers",
+          "text": "Σn² = n(n + 1)(2n + 1)/6",
+          "match": [
+            "n(n + 1)(2n + 1)/6",
+            "n(n+1)(2n+1)/6"
+          ]
+        },
+        {
+          "id": "m1a.seq.sum_n_cubed",
+          "name": "Sum of the cubes of the first n natural numbers",
+          "text": "Σn³ = [n(n + 1)/2]²",
+          "match": [
+            "n²(n + 1)²/4",
+            "[n(n + 1)/2]²",
+            "n²(n+1)²/4"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "formulas": [
+        {
+          "id": "m1a.mx.determinant_3x3",
+          "name": "Determinant of a 3×3 matrix along the first row",
+          "text": "det A = a₁(b₂c₃ − b₃c₂) − b₁(a₂c₃ − a₃c₂) + c₁(a₂b₃ − a₃b₂)",
+          "match": [
+            "Expand along R₁",
+            "expand along the first row",
+            "det A ="
+          ]
+        },
+        {
+          "id": "m1a.mx.adjoint_product",
+          "name": "A times its adjoint",
+          "text": "A(adj A) = (adj A)A = (det A)I",
+          "match": [
+            "A(adj A)",
+            "(det A)I",
+            "A (adj A)"
+          ]
+        },
+        {
+          "id": "m1a.mx.inverse",
+          "name": "Inverse of a matrix",
+          "text": "A⁻¹ = (adj A)/det A, det A ≠ 0",
+          "match": [
+            "A⁻¹ = (adj A)/det A",
+            "adj A/det A",
+            "(1/det A) adj A",
+            "\\dfrac{adjA}{detA}"
+          ]
+        },
+        {
+          "id": "m1a.mx.cramer",
+          "name": "Cramer's rule",
+          "text": "x = Δ₁/Δ, y = Δ₂/Δ, z = Δ₃/Δ, Δ ≠ 0",
+          "match": [
+            "Δ₁/Δ",
+            "x = Δ₁/Δ",
+            "Cramer"
+          ]
+        },
+        {
+          "id": "m1a.mx.matrix_inversion_method",
+          "name": "Matrix inversion method for three equations",
+          "text": "AX = D, so X = A⁻¹D",
+          "match": [
+            "X = A⁻¹D",
+            "AX = D",
+            "A⁻¹D"
+          ]
+        },
+        {
+          "id": "m1a.mx.symmetric_skew",
+          "name": "Symmetric and skew symmetric matrices",
+          "text": "Symmetric: Aᵀ = A. Skew symmetric: Aᵀ = −A",
+          "match": [
+            "Aᵀ = A",
+            "Aᵀ = −A",
+            "A' = −A"
+          ]
+        },
+        {
+          "id": "m1a.mx.row_operation",
+          "name": "Row and column operations",
+          "text": "Adding a multiple of one row to another leaves the determinant unchanged",
+          "match": [
+            "R₂ → R₂ −",
+            "C₁ → C₁",
+            "R₁ → R₁ + R₂ + R₃",
+            "R₂ − 2R₁"
+          ]
+        },
+        {
+          "id": "m1a.mx.row_common_factor",
+          "name": "Common factor of a row",
+          "text": "A factor common to a whole row comes out of the determinant",
+          "match": [
+            "out of R₁",
+            "a factor common to a whole row",
+            "comes out of R"
+          ]
+        },
+        {
+          "id": "m1a.mx.equal_rows",
+          "name": "Determinant with two equal rows",
+          "text": "A determinant with two equal rows is 0",
+          "match": [
+            "two identical rows",
+            "identical rows"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "formulas": [
+        {
+          "id": "m1a.av.magnitude",
+          "name": "Length of a vector",
+          "text": "|xi + yj + zk| = √(x² + y² + z²)",
+          "match": [
+            "√(x² + y² + z²)",
+            "the length of xi + yj + zk"
+          ]
+        },
+        {
+          "id": "m1a.av.vector_between_points",
+          "name": "Vector joining two points",
+          "text": "AB = OB − OA",
+          "match": [
+            "AB = OB − OA",
+            "end minus start",
+            "end point minus start point"
+          ]
+        },
+        {
+          "id": "m1a.av.unit_vector",
+          "name": "Unit vector along a vector",
+          "text": "â = a/|a|",
+          "match": [
+            "a/|a|",
+            "divided by its length"
+          ]
+        },
+        {
+          "id": "m1a.av.midpoint",
+          "name": "Midpoint of two points",
+          "text": "Midpoint of AB is (a + b)/2",
+          "match": [
+            "midpoint",
+            "(a + b)/2 is the"
+          ]
+        },
+        {
+          "id": "m1a.av.collinear",
+          "name": "Test for collinear vectors",
+          "text": "a and b are parallel when b = k a",
+          "match": [
+            "collinear only if",
+            "are collinear",
+            "= λ AC"
+          ]
+        },
+        {
+          "id": "m1a.av.coplanar_box",
+          "name": "Test for coplanar vectors",
+          "text": "Three vectors are coplanar when [a b c] = 0",
+          "match": [
+            "zero box product",
+            "[a b c] = 0",
+            "box product is 0"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "formulas": [
+        {
+          "id": "m1a.pv.dot_components",
+          "name": "Dot product from components",
+          "text": "a·b = a₁b₁ + a₂b₂ + a₃b₃",
+          "match": [
+            "multiply matching components and add",
+            "a₁b₁ + a₂b₂ + a₃b₃"
+          ]
+        },
+        {
+          "id": "m1a.pv.angle_between",
+          "name": "Angle between two vectors",
+          "text": "cos θ = (a·b)/(|a||b|)",
+          "match": [
+            "cos θ = (a·b)/(|a||b|)",
+            "cosθ = (a.b)/(|a||b|)"
+          ]
+        },
+        {
+          "id": "m1a.pv.perpendicular",
+          "name": "Test for perpendicular vectors",
+          "text": "a ⊥ b when a·b = 0",
+          "match": [
+            "a·b = 0",
+            "a.b = 0, so",
+            "perpendicular when"
+          ]
+        },
+        {
+          "id": "m1a.pv.cross_determinant",
+          "name": "Cross product from components",
+          "text": "a × b is the determinant with rows i j k, a₁ a₂ a₃, b₁ b₂ b₃",
+          "match": [
+            "Expand along the top row, i, j, k",
+            "i, j, k (signs + − +)"
+          ]
+        },
+        {
+          "id": "m1a.pv.cross_magnitude",
+          "name": "Length of a cross product",
+          "text": "|a × b| = |a||b| sin θ",
+          "match": [
+            "|a × b| = |a||b| sin θ",
+            "|a×b| = |a||b| sinθ"
+          ]
+        },
+        {
+          "id": "m1a.pv.lagrange",
+          "name": "Dot and cross together",
+          "text": "|a × b|² + (a·b)² = |a|²|b|²",
+          "match": [
+            "(a × b)·(a × b) = |a × b|²",
+            "|a × b|² + (a·b)²"
+          ]
+        },
+        {
+          "id": "m1a.pv.triangle_area",
+          "name": "Area of a triangle from two sides",
+          "text": "Area = ½|a × b|",
+          "match": [
+            "½|a × b|",
+            "(1/2)|a × b|",
+            "half the length of the cross product"
+          ]
+        },
+        {
+          "id": "m1a.pv.box_volume",
+          "name": "Box product as a volume",
+          "text": "Volume of the parallelepiped = |[a b c]|",
+          "match": [
+            "volume of the parallelepiped",
+            "[a b c] is the volume"
+          ]
+        },
+        {
+          "id": "m1a.pv.projection",
+          "name": "Projection of one vector on another",
+          "text": "Projection of a on b = (a·b)/|b|",
+          "match": [
+            "projection of a on b",
+            "Projection vector of",
+            "the projection of"
+          ]
+        },
+        {
+          "id": "m1a.pv.component_along",
+          "name": "Component of one vector along another",
+          "text": "Component of b along a = ((a·b)/|a|²)a",
+          "match": [
+            "vector component of b along a",
+            "component of b along"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "formulas": [
+        {
+          "id": "m1a.tr.pythagorean",
+          "name": "Pythagorean identity",
+          "text": "sin²θ + cos²θ = 1",
+          "match": [
+            "sin²θ + cos²θ = 1",
+            "sin^2θ + cos^2θ = 1",
+            "sin²A + cos²A = 1"
+          ]
+        },
+        {
+          "id": "m1a.tr.sec_tan",
+          "name": "Secant and tangent identity",
+          "text": "sec²θ − tan²θ = 1",
+          "match": [
+            "sec²θ − tan²θ = 1",
+            "1 + tan²θ = sec²θ"
+          ]
+        },
+        {
+          "id": "m1a.tr.sin_sum",
+          "name": "Sine of a sum",
+          "text": "sin(A + B) = sin A cos B + cos A sin B",
+          "match": [
+            "sin(A + B) = sin A cos B + cos A sin B",
+            "sinA cosB + cosA sinB"
+          ]
+        },
+        {
+          "id": "m1a.tr.cos_sum",
+          "name": "Cosine of a sum",
+          "text": "cos(A + B) = cos A cos B − sin A sin B",
+          "match": [
+            "cos(A + B) = cos A cos B − sin A sin B",
+            "cosA cosB − sinA sinB"
+          ]
+        },
+        {
+          "id": "m1a.tr.tan_sum",
+          "name": "Tangent of a sum",
+          "text": "tan(A + B) = (tan A + tan B)/(1 − tan A tan B)",
+          "match": [
+            "(tan A + tan B)/(1 − tan A tan B)",
+            "(tanA + tanB)/(1 − tanA tanB)"
+          ]
+        },
+        {
+          "id": "m1a.tr.sin_double",
+          "name": "Sine of a double angle",
+          "text": "sin 2θ = 2 sin θ cos θ",
+          "match": [
+            "sin2θ = 2 sinθ cosθ",
+            "sin 2θ = 2 sin θ cos θ",
+            "2 sinθ cosθ"
+          ]
+        },
+        {
+          "id": "m1a.tr.cos_double",
+          "name": "Cosine of a double angle",
+          "text": "cos 2θ = cos²θ − sin²θ = 2cos²θ − 1 = 1 − 2sin²θ",
+          "match": [
+            "cos2θ = cos²θ − sin²θ",
+            "2cos²θ − 1",
+            "1 − 2sin²θ"
+          ]
+        },
+        {
+          "id": "m1a.tr.sin_triple",
+          "name": "Sine of a triple angle",
+          "text": "sin 3A = 3 sin A − 4 sin³A",
+          "match": [
+            "3 sin A − 4 sin³A",
+            "3sinA − 4sin³A"
+          ]
+        },
+        {
+          "id": "m1a.tr.cos_triple",
+          "name": "Cosine of a triple angle",
+          "text": "cos 3A = 4 cos³A − 3 cos A",
+          "match": [
+            "4 cos³A − 3 cos A",
+            "4cos³A − 3cosA"
+          ]
+        },
+        {
+          "id": "m1a.tr.sum_to_product_sin_plus",
+          "name": "Sum to product — sin C + sin D",
+          "text": "sin C + sin D = 2 sin((C + D)/2) cos((C − D)/2)",
+          "match": [
+            "sin p + sin q = 2sin((p + q)/2)cos((p − q)/2)",
+            "sin C + sin D = 2 sin((C + D)/2) cos((C − D)/2)"
+          ]
+        },
+        {
+          "id": "m1a.tr.sum_to_product_sin_minus",
+          "name": "Sum to product — sin C − sin D",
+          "text": "sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2)",
+          "match": [
+            "sin p − sin q = 2cos((p + q)/2)sin((p − q)/2)",
+            "sin C − sin D = 2 cos((C + D)/2) sin((C − D)/2)"
+          ]
+        },
+        {
+          "id": "m1a.tr.sum_to_product_cos_plus",
+          "name": "Sum to product — cos C + cos D",
+          "text": "cos C + cos D = 2 cos((C + D)/2) cos((C − D)/2)",
+          "match": [
+            "cos p + cos q = 2cos((p + q)/2)cos((p − q)/2)",
+            "cos C + cos D = 2 cos((C + D)/2) cos((C − D)/2)"
+          ]
+        },
+        {
+          "id": "m1a.tr.sum_to_product_cos_minus",
+          "name": "Sum to product — cos C − cos D",
+          "text": "cos C − cos D = −2 sin((C + D)/2) sin((C − D)/2)",
+          "match": [
+            "cos p − cos q = −2sin((p + q)/2)sin((p − q)/2)",
+            "cos C − cos D = −2"
+          ]
+        },
+        {
+          "id": "m1a.tr.sin_squared_difference",
+          "name": "Difference of squares of sines",
+          "text": "sin²A − sin²B = sin(A + B) sin(A − B)",
+          "match": [
+            "sin²x − sin²y = sin(x+y) sin(x−y)",
+            "sin(A + B) sin(A − B)",
+            "sin²A − sin²B ="
+          ]
+        },
+        {
+          "id": "m1a.tr.a_sin_b_cos_range",
+          "name": "Range of a sin θ + b cos θ",
+          "text": "a sin θ + b cos θ lies between −√(a² + b²) and √(a² + b²)",
+          "match": [
+            "−√(a² + b²) and +√(a² + b²)",
+            "√(a² + b²) and reaches both"
+          ]
+        },
+        {
+          "id": "m1a.tr.half_angle_from_sum",
+          "name": "Half angles in a triangle",
+          "text": "If A + B + C = 180° then (A + B)/2 = 90° − C/2",
+          "match": [
+            "A + B = 180° − C",
+            "sin(C/2) = cos((A + B)/2)"
+          ]
+        },
+        {
+          "id": "m1a.tr.sin_difference",
+          "name": "Sine of a difference",
+          "text": "sin(A − B) = sin A cos B − cos A sin B",
+          "match": [
+            "sin A cos B − cos A sin B",
+            "sinA cosB − cosA sinB"
+          ]
+        },
+        {
+          "id": "m1a.tr.cos_difference",
+          "name": "Cosine of a difference",
+          "text": "cos(A − B) = cos A cos B + sin A sin B",
+          "match": [
+            "cos A cos B + sin A sin B",
+            "cosA cosB + sinA sinB"
+          ]
+        },
+        {
+          "id": "m1a.tr.tan_difference",
+          "name": "Tangent of a difference",
+          "text": "tan(A − B) = (tan A − tan B)/(1 + tan A tan B)",
+          "match": [
+            "(tan A − tan B)/(1 + tan A tan B)",
+            "(tanA − tanB)/(1 + tanA tanB)"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "formulas": [
+        {
+          "id": "m1a.te.general_sin",
+          "name": "General solution of sin θ = sin α",
+          "text": "θ = nπ + (−1)ⁿ α, n ∈ Z",
+          "match": [
+            "θ = nπ + (−1)ⁿ α",
+            "nπ + (−1)ⁿα"
+          ]
+        },
+        {
+          "id": "m1a.te.general_cos",
+          "name": "General solution of cos θ = cos α",
+          "text": "θ = 2nπ ± α, n ∈ Z",
+          "match": [
+            "θ = 2nπ ± α",
+            "2nπ ± α"
+          ]
+        },
+        {
+          "id": "m1a.te.general_tan",
+          "name": "General solution of tan θ = tan α",
+          "text": "θ = nπ + α, n ∈ Z",
+          "match": [
+            "θ = nπ + α",
+            "nπ + α, n ∈ Z"
+          ]
+        },
+        {
+          "id": "m1a.te.zero_cos",
+          "name": "Solution of cos θ = 0",
+          "text": "θ = (2n + 1)π/2, n ∈ Z",
+          "match": [
+            "(2n + 1)π/2",
+            "(2n+1)π/2"
+          ]
+        },
+        {
+          "id": "m1a.te.a_cos_b_sin_method",
+          "name": "Solving a cos θ + b sin θ = c",
+          "text": "Divide by √(a² + b²) and write the left side as one cosine",
+          "match": [
+            "√(a² + b²)",
+            "divide by √(a²+b²)"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "formulas": [
+        {
+          "id": "m1a.itf.complementary",
+          "name": "Inverse pairs that add to a right angle",
+          "text": "Sin⁻¹x + Cos⁻¹x = π/2, Tan⁻¹x + Cot⁻¹x = π/2",
+          "match": [
+            "Sin⁻¹x + Cos⁻¹x = π/2",
+            "Tan⁻¹x + Cot⁻¹x = π/2"
+          ]
+        },
+        {
+          "id": "m1a.itf.tan_sum",
+          "name": "Sum of two inverse tangents",
+          "text": "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy)), xy < 1",
+          "match": [
+            "Tan⁻¹((x + y)/(1 − xy))",
+            "Tan⁻¹x + Tan⁻¹y = Tan⁻¹"
+          ]
+        },
+        {
+          "id": "m1a.itf.tan_difference",
+          "name": "Difference of two inverse tangents",
+          "text": "Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x − y)/(1 + xy))",
+          "match": [
+            "Tan⁻¹((x − y)/(1 + xy))",
+            "Tan⁻¹x − Tan⁻¹y = Tan⁻¹"
+          ]
+        },
+        {
+          "id": "m1a.itf.double_tan",
+          "name": "Twice an inverse tangent",
+          "text": "2Tan⁻¹x = Tan⁻¹(2x/(1 − x²)) = Sin⁻¹(2x/(1 + x²)) = Cos⁻¹((1 − x²)/(1 + x²))",
+          "match": [
+            "2Tan⁻¹x = Tan⁻¹(2x/(1 − x²))",
+            "Sin⁻¹(2x/(1 + x²))",
+            "Cos⁻¹((1 − x²)/(1 + x²))"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "formulas": [
+        {
+          "id": "m1a.hf.definitions",
+          "name": "Hyperbolic sine and cosine",
+          "text": "sinh x = (eˣ − e⁻ˣ)/2, cosh x = (eˣ + e⁻ˣ)/2",
+          "match": [
+            "sinh x = (eˣ − e⁻ˣ)/2",
+            "cosh x = (eˣ + e⁻ˣ)/2",
+            "\\sin hx = \\dfrac{e^{x} - e^{-x}}{2}"
+          ]
+        },
+        {
+          "id": "m1a.hf.pythagorean",
+          "name": "Hyperbolic identity",
+          "text": "cosh²x − sinh²x = 1",
+          "match": [
+            "cosh²x − sinh²x = 1",
+            "cosh^2x − sinh^2x = 1"
+          ]
+        },
+        {
+          "id": "m1a.hf.sinh_double",
+          "name": "Hyperbolic sine of a double angle",
+          "text": "sinh 2x = 2 sinh x cosh x",
+          "match": [
+            "sinh 2x = 2 sinh x cosh x",
+            "sinh2x = 2sinhx coshx"
+          ]
+        },
+        {
+          "id": "m1a.hf.cosh_double",
+          "name": "Hyperbolic cosine of a double angle",
+          "text": "cosh 2x = cosh²x + sinh²x = 2cosh²x − 1 = 1 + 2sinh²x",
+          "match": [
+            "cosh 2x = cosh²x + sinh²x",
+            "2cosh²x − 1",
+            "1 + 2sinh²x"
+          ]
+        },
+        {
+          "id": "m1a.hf.sinh_sum",
+          "name": "Hyperbolic sine of a sum",
+          "text": "sinh(x + y) = sinh x cosh y + cosh x sinh y",
+          "match": [
+            "sinh x cosh y + cosh x sinh y",
+            "sinh(x + y) ="
+          ]
+        },
+        {
+          "id": "m1a.hf.cosh_sum",
+          "name": "Hyperbolic cosine of a sum",
+          "text": "cosh(x + y) = cosh x cosh y + sinh x sinh y",
+          "match": [
+            "cosh x cosh y + sinh x sinh y",
+            "cosh(x + y) ="
+          ]
+        },
+        {
+          "id": "m1a.hf.tanh_sum",
+          "name": "Hyperbolic tangent of a sum",
+          "text": "tanh(x + y) = (tanh x + tanh y)/(1 + tanh x tanh y)",
+          "match": [
+            "(tanh x + tanh y)/(1 + tanh x tanh y)",
+            "(tanh x − tanh y)/(1 − tanh x tanh y)"
+          ]
+        },
+        {
+          "id": "m1a.hf.inverse_sinh",
+          "name": "Inverse hyperbolic sine",
+          "text": "sinh⁻¹x = logₑ(x + √(x² + 1))",
+          "match": [
+            "logₑ(x + √(x² + 1))",
+            "log(x + √(x² + 1))"
+          ]
+        },
+        {
+          "id": "m1a.hf.inverse_tanh",
+          "name": "Inverse hyperbolic tangent",
+          "text": "tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
+          "match": [
+            "(1/2) logₑ((1 + x)/(1 − x))",
+            "½ logₑ((1 + x)/(1 − x))"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "formulas": [
+        {
+          "id": "m1a.pt.sine_rule",
+          "name": "Sine rule",
+          "text": "a/sin A = b/sin B = c/sin C = 2R",
+          "match": [
+            "a/sin A = b/sin B = c/sin C",
+            "= 2R",
+            "sine rule"
+          ]
+        },
+        {
+          "id": "m1a.pt.cosine_rule",
+          "name": "Cosine rule",
+          "text": "cos A = (b² + c² − a²)/2bc",
+          "match": [
+            "cos A = (b² + c² − a²)/2bc",
+            "(b² + c² − a²)/(2bc)",
+            "cosine rule"
+          ]
+        },
+        {
+          "id": "m1a.pt.projection_rule",
+          "name": "Projection rule",
+          "text": "a = b cos C + c cos B",
+          "match": [
+            "a = b cos C + c cos B",
+            "b cos C + c cos B"
+          ]
+        },
+        {
+          "id": "m1a.pt.tangent_rule",
+          "name": "Tangent rule",
+          "text": "tan((B − C)/2) = ((b − c)/(b + c)) cot(A/2)",
+          "match": [
+            "tan((B − C)/2) = ((b − c)/(b + c)) cot(A/2)",
+            "((b − c)/(b + c)) cot(A/2)"
+          ]
+        },
+        {
+          "id": "m1a.pt.area_forms",
+          "name": "Area of a triangle",
+          "text": "Δ = ½ab sin C = rs = abc/4R = √(s(s − a)(s − b)(s − c))",
+          "match": [
+            "Δ = rs",
+            "abc/4R",
+            "√(s(s − a)(s − b)(s − c))",
+            "½ab sin C"
+          ]
+        },
+        {
+          "id": "m1a.pt.inradius",
+          "name": "Inradius",
+          "text": "r = Δ/s = 4R sin(A/2) sin(B/2) sin(C/2)",
+          "match": [
+            "r = Δ/s",
+            "4R sin(A/2) sin(B/2) sin(C/2)"
+          ]
+        },
+        {
+          "id": "m1a.pt.exradii",
+          "name": "Exradii",
+          "text": "r₁ = Δ/(s − a), r₂ = Δ/(s − b), r₃ = Δ/(s − c)",
+          "match": [
+            "Δ/(s − a)",
+            "r₁ = Δ/(s−a)"
+          ]
+        },
+        {
+          "id": "m1a.pt.circumradius",
+          "name": "Circumradius",
+          "text": "R = abc/4Δ",
+          "match": [
+            "R = abc/4Δ",
+            "abc/(4Δ)"
+          ]
+        },
+        {
+          "id": "m1a.pt.exradii_sum",
+          "name": "Sum of the exradii",
+          "text": "r₁ + r₂ + r₃ − r = 4R",
+          "match": [
+            "(r₁ + r₂) + (r₃ − r)",
+            "r₁ + r₂ + r₃ − r = 4R"
+          ]
+        },
+        {
+          "id": "m1a.pt.half_angle_tan",
+          "name": "Half angle tangent",
+          "text": "tan(A/2) = √(((s − b)(s − c))/(s(s − a)))",
+          "match": [
+            "tan(A/2) = √(((s − b)(s − c))/(s(s − a)))",
+            "√((s − b)(s − c)/(s(s − a)))"
+          ]
+        },
+        {
+          "id": "m1a.pt.altitudes",
+          "name": "Altitudes of a triangle",
+          "text": "p₁ = 2Δ/a, p₂ = 2Δ/b, p₃ = 2Δ/c",
+          "match": [
+            "2Δ/a",
+            "p₁ = 2Δ/a"
+          ]
+        },
+        {
+          "id": "m1a.pt.half_angle_cot",
+          "name": "Half angle cotangent",
+          "text": "cot(A/2) = √(s(s − a)/((s − b)(s − c)))",
+          "match": [
+            "s(s − a)/((s − b)(s − c))",
+            "cot(A/2) = √(s(s − a)"
+          ]
+        }
+      ]
+    }
+  ]
+}

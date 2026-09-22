@@ -233,5 +233,9 @@
       }
     ]
   },
-  "insider_note": "Vertices are given, not edges, so subtract first to get AB, AC and AD all starting at A. The modulus matters: −36 gives a volume of 6, never −6."
+  "insider_note": "Vertices are given, not edges, so subtract first to get AB, AC and AD all starting at A. The modulus matters: −36 gives a volume of 6, never −6.",
+  "formulas": [
+    "m1a.mx.determinant_3x3",
+    "m1a.av.vector_between_points"
+  ]
 }

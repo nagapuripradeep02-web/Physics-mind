@@ -197,5 +197,8 @@
       }
     ]
   },
-  "insider_note": "Only sin(ax)/x is indeterminate; cos x is simply 1 at x = 0, so separate the two first. Multiply and divide by a so the angle matches below the sine, and that a is the answer."
+  "insider_note": "Only sin(ax)/x is indeterminate; cos x is simply 1 at x = 0, so separate the two first. Multiply and divide by a so the angle matches below the sine, and that a is the answer.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

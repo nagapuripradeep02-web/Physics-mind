@@ -349,5 +349,8 @@
       }
     ]
   },
-  "insider_note": "Pair sin5θ − sin3θ, so that sinθ is left as the common factor (pairing sinθ + sin5θ also works and gives the common factor sin3θ). The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed."
+  "insider_note": "Pair sin5θ − sin3θ, so that sinθ is left as the common factor (pairing sinθ + sin5θ also works and gives the common factor sin3θ). The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed.",
+  "formulas": [
+    "m1a.te.general_cos"
+  ]
 }

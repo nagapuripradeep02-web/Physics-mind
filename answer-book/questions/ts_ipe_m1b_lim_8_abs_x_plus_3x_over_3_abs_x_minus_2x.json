@@ -166,5 +166,6 @@
       }
     ]
   },
-  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus can be removed. Decide the sign of x before anything else."
+  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus can be removed. Decide the sign of x before anything else.",
+  "formulas": []
 }

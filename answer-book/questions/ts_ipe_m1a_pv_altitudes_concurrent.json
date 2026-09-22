@@ -395,5 +395,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.av.vector_between_points",
+    "m1a.pv.perpendicular"
+  ]
 }

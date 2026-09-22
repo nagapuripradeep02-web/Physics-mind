@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find r when 15 C 2r minus 1 equals 15 C 2r plus 4.",
   "insider_note": "A false equal branch is part of the design: 2r − 1 = 2r + 4 gives −1 = 4, so the sum branch is the only route — and the lower numbers add to the upper 15, never to each other: (2r − 1) + (2r + 4) = 15, so r = 3.",
+  "formulas": [
+    "m2a.pc.ncr_equal"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

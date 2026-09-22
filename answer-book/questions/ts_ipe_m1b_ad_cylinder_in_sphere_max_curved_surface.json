@@ -389,5 +389,6 @@
       }
     ]
   },
-  "insider_note": "The sphere's centre bisects the axis, so R² + (h/2)² = r² eliminates R. Maximising then gives h = r√2, and squaring to avoid the root keeps the algebra clean."
+  "insider_note": "The sphere's centre bisects the axis, so R² + (h/2)² = r² eliminates R. Maximising then gives h = r√2, and squaring to avoid the root keeps the algebra clean.",
+  "formulas": []
 }

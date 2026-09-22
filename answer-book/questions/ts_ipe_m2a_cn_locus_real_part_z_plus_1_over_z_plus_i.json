@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find the locus — what you substitute for z, what you multiply by, and what you set the real part equal to.",
   "insider_note": "A locus answer must end as an equation in x and y — here the squares cancel and the line x − y = 1 is that equation. The imaginary part of the numerator is never used, so writing it out in full costs time and earns no mark.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

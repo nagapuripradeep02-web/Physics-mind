@@ -201,5 +201,8 @@
       }
     ]
   },
-  "insider_note": "Replace cos²x by 1 − sin²x so the argument becomes π − π sin²x, then sin(π − θ) = sin θ. Without that step the angle π cos²x stays close to π, not to 0, so the standard limit cannot be used."
+  "insider_note": "Replace cos²x by 1 − sin²x so the argument becomes π − π sin²x, then sin(π − θ) = sin θ. Without that step the angle π cos²x stays close to π, not to 0, so the standard limit cannot be used.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

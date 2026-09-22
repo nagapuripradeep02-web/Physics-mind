@@ -46,6 +46,9 @@
   },
   "recall_prompt": "Say how you would find x² + 4x — how you rewrite each term as 3·5·7… over a factorial, what you add to both sides, what you compare with, how you find p, q and y, and how 2 + x gives the answer.",
   "insider_note": "Each term is short of one factor 3 on top: rewrite 5/(2!·3) as (3·5)/(2!·3²) and p = 3 appears, not the printed 5. The missing start is 1 + 1 = 2, and the final line squares 2 + x = √27.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

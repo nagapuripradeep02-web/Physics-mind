@@ -297,5 +297,6 @@
       }
     ]
   },
-  "insider_note": "The right side is 4Tan⁻¹, so find tan2β = 3/4 first and treat sin4β as sin(2 · 2β). Using a quadruple-angle formula is far longer."
+  "insider_note": "The right side is 4Tan⁻¹, so find tan2β = 3/4 first and treat sin4β as sin(2 · 2β). Using a quadruple-angle formula is far longer.",
+  "formulas": []
 }

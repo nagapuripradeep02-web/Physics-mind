@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would count the ways of putting four letters in the wrong envelopes — the derangement formula, and the number.",
   "insider_note": "The signs in the derangement bracket alternate: 4!(1/2! − 1/3! + 1/4!) = 12 − 4 + 1 = 9. Keeping all three terms positive, or stopping before the 1/4! term, are the two standard ways to miss it.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

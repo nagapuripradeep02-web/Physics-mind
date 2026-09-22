@@ -171,5 +171,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.ta.translation"
+  ]
 }

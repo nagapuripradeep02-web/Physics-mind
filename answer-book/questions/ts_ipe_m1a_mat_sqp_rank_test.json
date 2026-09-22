@@ -370,5 +370,9 @@
       }
     ]
   },
-  "insider_note": "Row-reduce the AUGMENTED matrix once and read both ranks off it — computing them separately doubles the work. Equal ranks matching the number of unknowns is what consistent-and-unique means."
+  "insider_note": "Row-reduce the AUGMENTED matrix once and read both ranks off it — computing them separately doubles the work. Equal ranks matching the number of unknowns is what consistent-and-unique means.",
+  "formulas": [
+    "m1a.mx.matrix_inversion_method",
+    "m1a.mx.row_operation"
+  ]
 }

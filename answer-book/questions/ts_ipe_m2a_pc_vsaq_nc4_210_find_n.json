@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find n when n C 4 is 210.",
   "insider_note": "Clear the 4! first: n(n − 1)(n − 2)(n − 3) = 210 · 24 = 5040, then write 5040 as four consecutive factors, 10 · 9 · 8 · 7. n is the largest factor, 10 — not the smallest.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -185,5 +185,8 @@
       }
     ]
   },
-  "insider_note": "The ripple is a circle, so A = πr² and dA/dt = 2πr(dr/dt). The speed 5 cm/sec is dr/dt, not dA/dt — an area rate would be in cm²/sec, so 5 cm/sec must be dr/dt."
+  "insider_note": "The ripple is a circle, so A = πr² and dA/dt = 2πr(dr/dt). The speed 5 cm/sec is dr/dt, not dA/dt — an area rate would be in cm²/sec, so 5 cm/sec must be dr/dt.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

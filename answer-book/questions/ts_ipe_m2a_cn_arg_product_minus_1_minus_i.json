@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the argument of the product — what the two arguments are and what rule combines them.",
   "insider_note": "The question is decided by the two starting arguments, and Arg(−i) is the one students get wrong: it is −π/2, not π/2. Then π + (−π/2) = π/2, and the one-line check (−1)(−i) = i confirms it.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

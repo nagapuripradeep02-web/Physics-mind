@@ -169,5 +169,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.pythagorean"
+  ]
 }

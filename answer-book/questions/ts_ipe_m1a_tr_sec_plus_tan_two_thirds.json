@@ -236,5 +236,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sec_tan"
+  ]
 }

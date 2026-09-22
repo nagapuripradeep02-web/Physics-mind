@@ -34,6 +34,10 @@
   },
   "recall_prompt": "Say how you would find the least n — what the base simplifies to, and why the answer is what it is.",
   "insider_note": "The base collapses to a single i, because (1 + i)² = 2i sits over 1 + 1 = 2 — after that the question is only the cycle of powers of i. 'Least positive' rules out n = 0, and i² = −1 rules out n = 2; the answer is n = 4.",
+  "formulas": [
+    "m2a.cn.conjugate_product",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

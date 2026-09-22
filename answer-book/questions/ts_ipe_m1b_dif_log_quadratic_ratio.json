@@ -379,5 +379,6 @@
       }
     ]
   },
-  "insider_note": "Use log(P/Q) = log P − log Q BEFORE differentiating — the quotient rule on the fraction inside is far longer. Two simple logarithmic derivatives are then subtracted."
+  "insider_note": "Use log(P/Q) = log P − log Q BEFORE differentiating — the quotient rule on the fraction inside is far longer. Two simple logarithmic derivatives are then subtracted.",
+  "formulas": []
 }

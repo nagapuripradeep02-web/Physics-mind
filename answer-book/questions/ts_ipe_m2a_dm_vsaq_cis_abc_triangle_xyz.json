@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would find xyz — what happens to the angles when cis numbers are multiplied, and what the triangle tells you.",
   "insider_note": "The phrase 'angles of a triangle' is the given fact: A + B + C = 180°, so xyz = cis 180° = −1. The first mark is for writing that angle sum down; without it only the second mark is earned.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

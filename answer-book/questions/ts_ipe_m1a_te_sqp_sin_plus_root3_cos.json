@@ -312,5 +312,9 @@
       }
     ]
   },
-  "insider_note": "Divide by 2 and read ½ as sin(π/6) with √3/2 as cos(π/6) — that pairing is what makes it a COSINE difference. The answer is x = 2nπ ± π/4 + π/6, using the cosine general form."
+  "insider_note": "Divide by 2 and read ½ as sin(π/6) with √3/2 as cos(π/6) — that pairing is what makes it a COSINE difference. The answer is x = 2nπ ± π/4 + π/6, using the cosine general form.",
+  "formulas": [
+    "m1a.tr.cos_difference",
+    "m1a.te.general_cos"
+  ]
 }

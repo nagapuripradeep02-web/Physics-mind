@@ -373,5 +373,10 @@
       }
     ]
   },
-  "insider_note": "TWO terms, each with x in base and power, so take logarithms of each SEPARATELY — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Differentiate u and v apart and add at the end."
+  "insider_note": "TWO terms, each with x in base and power, so take logarithms of each SEPARATELY — one logarithm of the sum does not help, because log(u + v) is not log u + log v. Differentiate u and v apart and add at the end.",
+  "formulas": [
+    "m1b.dif.implicit",
+    "m1b.dif.log",
+    "m1b.dif.product"
+  ]
 }

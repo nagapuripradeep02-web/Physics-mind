@@ -206,5 +206,8 @@
       }
     ]
   },
-  "insider_note": "tan θ / θ → 1 just as sin θ / θ does, so factorise x² − a² to expose the matching (x − a). The remaining 1/(x + a) gives 1/(2a), and a ≠ 0 must be stated."
+  "insider_note": "tan θ / θ → 1 just as sin θ / θ does, so factorise x² − a² to expose the matching (x − a). The remaining 1/(x + a) gives 1/(2a), and a ≠ 0 must be stated.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

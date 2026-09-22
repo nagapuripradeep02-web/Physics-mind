@@ -181,5 +181,8 @@
       }
     ]
   },
-  "insider_note": "The phrase 'not in the first quadrant' is what fixes the sign: a positive sine allows Q₁ or Q₂, so it must be Q₂ and cos is negative. Without that sentence the answer would be ±3/5."
+  "insider_note": "The phrase 'not in the first quadrant' is what fixes the sign: a positive sine allows Q₁ or Q₂, so it must be Q₂ and cos is negative. Without that sentence the answer would be ±3/5.",
+  "formulas": [
+    "m1a.tr.pythagorean"
+  ]
 }

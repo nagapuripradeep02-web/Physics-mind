@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find r when 9 C 3 plus 9 C 5 equals 10 C r.",
   "insider_note": "Rewrite ⁹C₅ as ⁹C₄ first so the lower numbers differ by one; Pascal then gives ¹⁰C₄. The full answer is r = 4 or r = 6, since ¹⁰C₄ = ¹⁰C₆ — the book stops at r = 4 and misses the second value.",
+  "formulas": [
+    "m2a.pc.ncr_equal"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

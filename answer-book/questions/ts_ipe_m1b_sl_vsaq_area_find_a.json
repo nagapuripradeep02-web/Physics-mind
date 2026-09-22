@@ -189,5 +189,6 @@
       }
     ]
   },
-  "insider_note": "Use Δ = r²/(2|pq|), comparing with px + qy + r = 0, so r = −a and r² = a². Since a² = 144 both signs are answers, a = ±12, and giving only 12 loses the second mark."
+  "insider_note": "Use Δ = r²/(2|pq|), comparing with px + qy + r = 0, so r = −a and r² = a². Since a² = 144 both signs are answers, a = ±12, and giving only 12 loses the second mark.",
+  "formulas": []
 }

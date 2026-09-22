@@ -387,5 +387,9 @@
       }
     ]
   },
-  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that gives 8fgh, and dividing both sides by 4 at the end leaves 2fgh. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so h² ≥ ab, with equality when the lines are parallel or coincident."
+  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that gives 8fgh, and dividing both sides by 4 at the end leaves 2fgh. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so h² ≥ ab, with equality when the lines are parallel or coincident.",
+  "formulas": [
+    "m1b.psl.general_pair",
+    "m1b.psl.pair_through_origin"
+  ]
 }

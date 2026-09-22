@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find the roots — what the three cube roots of −8 are, and how you get x from x − 1.",
   "insider_note": "The question asks for the roots, plural: a cubic has three, so all three cube roots of 1 are used. The second mark is adding the 1 back — stopping at x − 1 = −2, −2ω, −2ω² is the usual half answer.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the probability of both contracts — which set \"at least one\" is, the theorem, and the arithmetic.",
   "insider_note": "The common error is treating the two contracts as independent and multiplying 2/3 × 5/9. The question gives P(at least one), which means the addition theorem is the intended tool.",
+  "formulas": [
+    "m2a.pr.addition"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

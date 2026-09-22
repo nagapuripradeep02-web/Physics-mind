@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the probability that the white ball came from urn III — the events, the priors, the three white-ball probabilities, the total, and Bayes.",
   "insider_note": "The arithmetic is clean here: 1/3 + 2/3 = 1 makes the bracket 3/2 and the total exactly 1/2. Write every step anyway — the marks are for the method.",
+  "formulas": [
+    "m2a.pr.bayes"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

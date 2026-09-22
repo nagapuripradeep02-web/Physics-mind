@@ -315,5 +315,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pv.dot_components"
+  ]
 }

@@ -67,6 +67,9 @@
   },
   "recall_prompt": "Say how you would show 4x² − 1 = 0 — what identities you use on the denominator, what you multiply by, and which part you read off at the end.",
   "insider_note": "Everything after depends on the first line: 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2)·cos(θ/2) share the factor 2cos(θ/2), and taking it out of the whole denominator is the step the other three marks depend on. Only the real part x is used at the end — time spent simplifying y brings no mark.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would count the committees — which compositions give an Indian majority, how each is counted, and how you finish.",
   "insider_note": "Indian majority means three cases — 3, 4 or 5 Indians — and the case list carries its own mark before any ⁿCᵣ is evaluated. The case students drop is all five Indians, ⁶C₅·⁵C₀ = 6, and without it 275 replaces 281.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

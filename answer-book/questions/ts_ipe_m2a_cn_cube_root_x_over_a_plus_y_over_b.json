@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would prove this — what you do to the cube root first, what you expand, what you compare, and how the two fractions combine.",
   "insider_note": "The first mark is the first step: cube both sides, and the cube root never appears again. After that the minus sign in −iy on the left must be carried through to y — compare real parts with real parts and keep that minus.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

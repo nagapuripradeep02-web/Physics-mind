@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find 50 C n when n C 21 equals n C 27.",
   "insider_note": "The lower numbers 21 and 27 are unequal, so only the sum branch applies: n = 21 + 27 = 48. The question is finished at ⁵⁰C₄₈ = ⁵⁰C₂ = 1225, not at n — and the C₂ rewrite is what keeps the arithmetic to two factors.",
+  "formulas": [
+    "m2a.pc.ncr_equal"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

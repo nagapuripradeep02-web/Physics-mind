@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the sum of this alternating series — how you rewrite it, which standard form the minus signs point to, how you find p, q and x, and what the sum comes to.",
   "insider_note": "The numerators 4, 7, 10 step by 3, so q = 3 and x = 3/5, not 1/5. The signs alternate, so the comparison is with the (1 + x) form — the (1 − x) habit gives a wrong base before any arithmetic.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

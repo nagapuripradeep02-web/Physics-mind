@@ -275,5 +275,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sin_double"
+  ]
 }

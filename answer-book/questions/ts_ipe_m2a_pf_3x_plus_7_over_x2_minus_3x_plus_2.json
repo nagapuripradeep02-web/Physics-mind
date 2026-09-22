@@ -42,6 +42,9 @@
   },
   "recall_prompt": "Say how you would resolve (3x + 7)/(x² − 3x + 2) into partial fractions — name each move in order.",
   "insider_note": "Factorise x² − 3x + 2 as (x − 1)(x − 2) first; then one substitution gives one constant — x = 2 makes the A term zero, x = 1 makes the B term zero — and no simultaneous equations are needed.",
+  "formulas": [
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

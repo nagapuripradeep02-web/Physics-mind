@@ -262,5 +262,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pv.dot_components",
+    "m1a.pv.projection"
+  ]
 }

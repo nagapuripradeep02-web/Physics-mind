@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find the maximum or minimum value — say what decides which one it is, and what formula gives the value.",
   "insider_note": "Rewrite in descending powers first: a = −5, so there is a maximum. Expect that maximum itself to be negative — the whole expression sits below the axis, and 'correcting' the sign at the end is the standard lost mark.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

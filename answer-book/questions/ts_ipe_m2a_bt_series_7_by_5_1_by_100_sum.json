@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find this sum — how you rewrite the bracket as a series in 1/100, what you compare with, how you find p, q and x, what the bracket comes to, and what the 7/5 does at the end.",
   "insider_note": "The powers 1/10², 1/10⁴, 1/10⁶ make the common ratio 1/100, not 1/10. The 7/5 outside the bracket is there to cancel the 5/7 in S — the final answer is exactly √2.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

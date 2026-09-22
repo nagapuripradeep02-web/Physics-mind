@@ -1528,3 +1528,87 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .lock-price .lp-per { font-size: 13px; color: var(--chrome-dim); }
 .lock-price .lp-note { flex-basis: 100%; margin-top: 5px; font-size: 12.5px;
   font-weight: 600; color: var(--sage-deep); }
+
+/* ═══ THE FORMULA SHEET ═════════════════════════════════════════════════════
+   A printed reference card inside a handwritten product, and the contrast is
+   deliberate: the notebook is the student's answer, this is the sheet they would
+   otherwise have bought. So it is set in Inter and in KaTeX's own type — the
+   Kalam override lives on `.kx-clip .katex` (see "typeset lines" above) and a
+   formula here is drawn in `.fs-tex`, which that selector never reaches. */
+.bank-tabs { display: flex; gap: 2px; margin: 22px 0 -2px; border-bottom: 1px solid var(--chrome-line); }
+.bank-tab {
+  font: 600 13px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 9px 15px 10px; border: 0; background: none; color: var(--chrome-dim);
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.bank-tab:hover { color: var(--accent); }
+.bank-tab.on { color: var(--ink); border-bottom-color: var(--red); }
+.bank-tab .ct { font-weight: 500; opacity: 0.7; margin-left: 5px; }
+
+.fsheet { margin-top: 22px; }
+.fsheet-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.fsheet-head h2 {
+  font: 700 11px Inter, system-ui, sans-serif; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--chrome-dim); margin: 0;
+}
+.fsheet-count { font: 600 12.5px Inter, system-ui, sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fsheet-note { font-size: 12.5px; color: var(--chrome-dim); margin: 7px 0 0; line-height: 1.5; }
+
+.fs-chapter { margin-top: 26px; }
+.fs-chapter-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  padding-bottom: 7px; border-bottom: 1px solid var(--chrome-line);
+}
+.fs-chapter-name { font: 600 13px Inter, system-ui, sans-serif; color: var(--ink); }
+.fs-chapter-num { color: var(--chrome-dim); font-weight: 500; }
+.fs-chapter-count { font: 500 12px Inter, system-ui, sans-serif; color: var(--chrome-dim); font-variant-numeric: tabular-nums; }
+
+/* One row = one formula. A row not earned yet is flat on the paper, separated by
+   a hairline; a REVEALED one becomes a white card — heading, tick and formula
+   together inside one rectangle with the examiner's clay margin line down its
+   left edge. That is the book's own card idiom (the catalog cards are the same
+   white, the same hairline, the same red rule), so an earned formula reads as
+   something the student now holds. */
+.fs-row {
+  display: block; width: 100%; text-align: left; border: 0; background: none;
+  padding: 11px 0 11px 13px; border-left: 2px solid var(--chrome-line);
+}
+.fs-row + .fs-row { border-top: 1px solid rgba(230, 223, 208, 0.7); }
+.fs-name { font: 500 13px Inter, system-ui, sans-serif; color: var(--ink); display: flex; gap: 8px; align-items: baseline; }
+.fs-tick { color: var(--sage-deep); font-weight: 700; }
+.fs-text { margin-top: 7px; font-size: 15.5px; color: var(--ink); line-height: 1.55; }
+.fs-tex .katex { font-size: 1.02em; }
+
+/* The card. Declared AFTER the flat-row rules so it wins on equal specificity —
+   including the hairline, which a card does not need: it has its own edge. */
+.fs-row.earned {
+  background: var(--chrome-card);
+  border: 1px solid var(--chrome-line); border-left: 2px solid var(--red);
+  border-radius: 8px; padding: 12px 16px; margin: 8px 0;
+  box-shadow: 0 1px 2px rgba(43, 38, 32, 0.05);
+}
+.fs-row.earned + .fs-row { border-top: 0; }
+
+/* Not earned yet: the NAME shows (a student should see what is still to come),
+   the formula does not. Tapping opens a card that would unlock it, which makes
+   the sheet a to-do list pointed at exactly the missing work. */
+.fs-row.locked { cursor: pointer; }
+.fs-row.locked .fs-name { color: var(--chrome-dim); }
+.fs-row.locked:hover { border-left-color: var(--accent); }
+.fs-row.locked:hover .fs-name { color: var(--accent); }
+.fs-away { font: 500 12px Inter, system-ui, sans-serif; color: var(--chrome-dim); margin-top: 5px; }
+
+/* "2 formulas added to your sheet" — BELOW the ruled page, never on it. Every
+   vertical page metric is a multiple of 32px (one rule) and a node inside the
+   paper walks every later line off the rules. */
+.fs-added {
+  display: inline-flex; align-items: center; gap: 7px; margin: 14px auto 0;
+  font: 600 12.5px Inter, system-ui, sans-serif; cursor: pointer;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid rgba(116, 181, 148, 0.55); background: var(--sage-wash); color: #33654A;
+}
+.fs-added:hover { border-color: var(--sage-deep); }
+/* Rides the viewport just above the sticky Next button, for the same reason that
+   button is sticky: the column is 1160px per page, and anything in normal flow at
+   the end of it is somewhere a student who just finished an answer is not. */
+.fs-added-wrap { text-align: center; position: sticky; bottom: 76px; z-index: 11; margin-bottom: -6px; }

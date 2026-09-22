@@ -660,5 +660,9 @@
       }
     ]
   },
-  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Four things are marked: Δ = 0, the three inequalities, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|."
+  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Four things are marked: Δ = 0, the three inequalities, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|.",
+  "formulas": [
+    "m1b.psl.angle",
+    "m1b.psl.general_pair"
+  ]
 }

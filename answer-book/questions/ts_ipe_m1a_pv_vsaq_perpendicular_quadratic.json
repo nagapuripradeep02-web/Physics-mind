@@ -162,5 +162,9 @@
       }
     ]
   },
-  "insider_note": "λ appears in BOTH vectors, so the dot product is a quadratic and not a linear equation. Two answers follow, 1 and −5/2, and giving only the whole one loses half the marks."
+  "insider_note": "λ appears in BOTH vectors, so the dot product is a quadratic and not a linear equation. Two answers follow, 1 and −5/2, and giving only the whole one loses half the marks.",
+  "formulas": [
+    "m1a.pv.dot_components",
+    "m1a.pv.perpendicular"
+  ]
 }

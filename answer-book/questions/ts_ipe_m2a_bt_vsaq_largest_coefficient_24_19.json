@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say which coefficient is largest in each expansion and why — what an even n gives and what an odd n gives.",
   "insider_note": "One answer for (i) and TWO for (ii): even n has a single largest coefficient, odd n has an equal middle pair. Giving only one of the pair is the usual half answer.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

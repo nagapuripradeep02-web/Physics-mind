@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say how you would prove this — how you write p + iq in mod-amp form, what a 1/n power does to r and to θ, and how the two roots combine.",
   "insider_note": "Same method as the (1 + i)ⁿ questions, but with letters and a fractional power. The exponent on the modulus is 1/2n, not 1/n: the square root inside r is easy to forget.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.dm.add_conjugates"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

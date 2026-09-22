@@ -503,5 +503,8 @@
       }
     ]
   },
-  "insider_note": "One formula covers both sides of 0, so a single two-sided limit is enough — no separate left and right work is needed. The limit comes to (b² − a²)/2, which is exactly the given f(0)."
+  "insider_note": "One formula covers both sides of 0, so a single two-sided limit is enough — no separate left and right work is needed. The limit comes to (b² − a²)/2, which is exactly the given f(0).",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

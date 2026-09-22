@@ -281,5 +281,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.av.magnitude"
+  ]
 }

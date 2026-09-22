@@ -196,5 +196,6 @@
       }
     ]
   },
-  "insider_note": "x is given in terms of y, so find dx/dy and invert at the end. sec²(e⁻ʸ) = 1 + tan²(e⁻ʸ) = 1 + x² is the substitution that puts the answer in terms of x."
+  "insider_note": "x is given in terms of y, so find dx/dy and invert at the end. sec²(e⁻ʸ) = 1 + tan²(e⁻ʸ) = 1 + x² is the substitution that puts the answer in terms of x.",
+  "formulas": []
 }

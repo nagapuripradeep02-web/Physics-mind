@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would count the committees of five from six men and three ladies when there is no condition — the total to choose from, and the number.",
   "insider_note": "The split into 6 men and 3 ladies carries no condition — the committee is any 5 of the 9 people, ⁹C₅ = 126 in one line. Case work by number of ladies reaches the same 126 in four times the space.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

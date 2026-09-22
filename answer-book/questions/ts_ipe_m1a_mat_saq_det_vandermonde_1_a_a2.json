@@ -264,5 +264,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.row_common_factor",
+    "m1a.mx.row_operation"
+  ]
 }

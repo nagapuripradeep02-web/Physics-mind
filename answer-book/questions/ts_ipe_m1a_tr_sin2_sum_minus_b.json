@@ -365,5 +365,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.sin_double",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

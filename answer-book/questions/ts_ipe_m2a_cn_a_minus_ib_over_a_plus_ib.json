@@ -39,6 +39,10 @@
   },
   "recall_prompt": "Say how you would write this quotient in the form A + iB — what you multiply by and what you read off.",
   "insider_note": "The multiplier is the numerator itself, so the top becomes the single expansion (a − ib)², not four separate products. The second mark is for naming A and B separately — one unsplit fraction is not the form asked.",
+  "formulas": [
+    "m2a.cn.conjugate_product",
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

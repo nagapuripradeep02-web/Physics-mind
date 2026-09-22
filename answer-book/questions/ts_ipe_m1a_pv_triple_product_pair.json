@@ -413,5 +413,8 @@
       }
     ]
   },
-  "insider_note": "Two different brackets are asked for, so a×b and b×c both have to be computed — they are not interchangeable. Only the second answer needs a magnitude."
+  "insider_note": "Two different brackets are asked for, so a×b and b×c both have to be computed — they are not interchangeable. Only the second answer needs a magnitude.",
+  "formulas": [
+    "m1a.pv.cross_determinant"
+  ]
 }

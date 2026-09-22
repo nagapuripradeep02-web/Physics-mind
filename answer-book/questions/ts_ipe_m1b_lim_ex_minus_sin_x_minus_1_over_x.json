@@ -185,5 +185,9 @@
       }
     ]
   },
-  "insider_note": "Regroup as (eˣ − 1) − sin x so each piece over x is a standard limit. Both come to 1, so they cancel and the answer is 0."
+  "insider_note": "Regroup as (eˣ − 1) − sin x so each piece over x is a standard limit. Both come to 1, so they cancel and the answer is 0.",
+  "formulas": [
+    "m1b.lim.indeterminate",
+    "m1b.lim.sin"
+  ]
 }

@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would count the chains from seven different beads — why the circular count is halved, and the number.",
   "insider_note": "Same two lines as the 6-bead chain — only the number changes: (7 − 1)!/2 = 720/2 = 360. The halving still carries the mark; 720 alone counts a ring that cannot be turned over.",
+  "formulas": [
+    "m2a.pc.circular"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

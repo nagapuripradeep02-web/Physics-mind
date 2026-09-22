@@ -75,6 +75,7 @@
   },
   "recall_prompt": "Say how you would find the dictionary rank of MASTER — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "The marks sit in the block table, not in the final addition, and the closing term is +1 for MASTER itself, not a factorial — the words before it count 256, so the rank is one more.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

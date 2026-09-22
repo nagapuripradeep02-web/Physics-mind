@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find c and P(1 < X < 3) when P(X = k) = (k + 1)c/2ᵏ — what series the probabilities make, which standard series it is, and which value of X the probability keeps.",
   "insider_note": "The range starts at k = 0, so the series opens with the term c itself — starting at k = 1 loses that term and c comes out wrong; the sum needed is 1 + 2x + 3x² + … = (1 − x)⁻², not the geometric series.",
+  "formulas": [
+    "m2a.rv.total_one"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -447,5 +447,9 @@
       }
     ]
   },
-  "insider_note": "The MINUS before sinC is what turns the bracket into a difference of cosines, giving sines rather than cosines. sin((A+B)/2) = cos(C/2) is the substitution to make first."
+  "insider_note": "The MINUS before sinC is what turns the bracket into a difference of cosines, giving sines rather than cosines. sin((A+B)/2) = cos(C/2) is the substitution to make first.",
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

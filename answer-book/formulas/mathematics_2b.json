@@ -1,0 +1,287 @@
+{
+  "subject": "mathematics_2b",
+  "sheet_label": "Maths 2B",
+  "chapters": [
+    {
+      "number": 1,
+      "formulas": [
+        {
+          "id": "m2b.ci.centre_radius_form",
+          "name": "Circle with a given centre and radius",
+          "text": "(x − h)² + (y − k)² = r²",
+          "match": [
+            "(x − h)² + (y − k)² = r²",
+            "A circle with centre (h, k) and radius r is"
+          ]
+        },
+        {
+          "id": "m2b.ci.general_form",
+          "name": "General equation of a circle",
+          "text": "x² + y² + 2gx + 2fy + c = 0, centre (−g, −f)",
+          "match": [
+            "Compare with x² + y² + 2gx + 2fy + c = 0",
+            "x² + y² + 2gx + 2fy + c = 0"
+          ]
+        },
+        {
+          "id": "m2b.ci.radius",
+          "name": "Radius of a circle in the general form",
+          "text": "r = √(g² + f² − c)",
+          "match": [
+            "Radius r = √(g² + f² − c)",
+            "√(g² + f² − c)"
+          ]
+        },
+        {
+          "id": "m2b.ci.tangent_condition",
+          "name": "When a line touches a circle",
+          "text": "The distance from the centre to the line equals the radius",
+          "match": [
+            "distance from the centre to the line",
+            "equals the radius"
+          ]
+        },
+        {
+          "id": "m2b.ci.power_of_point",
+          "name": "Power of a point",
+          "text": "S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c",
+          "match": [
+            "S₁₁ =",
+            "S_{11}"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "formulas": [
+        {
+          "id": "m2b.sc.orthogonal",
+          "name": "Condition for two circles to cut at right angles",
+          "text": "2gg′ + 2ff′ = c + c′",
+          "match": [
+            "2gg′ + 2ff′ = c + c′",
+            "Two circles cut orthogonally exactly when"
+          ]
+        },
+        {
+          "id": "m2b.sc.radical_axis",
+          "name": "Radical axis of two circles",
+          "text": "S − S′ = 0",
+          "match": [
+            "Radical axis is S − S′ = 0",
+            "radical axis"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "formulas": [
+        {
+          "id": "m2b.pa.standard",
+          "name": "Standard parabola",
+          "text": "y² = 4ax, focus (a, 0), directrix x = −a",
+          "match": [
+            "compare with y² = 4ax",
+            "y² = 4ax"
+          ]
+        },
+        {
+          "id": "m2b.pa.latus_rectum",
+          "name": "Latus rectum of a parabola",
+          "text": "Length = 4a",
+          "match": [
+            "latus rectum",
+            "4a = "
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "formulas": [
+        {
+          "id": "m2b.el.standard",
+          "name": "Standard ellipse",
+          "text": "x²/a² + y²/b² = 1, with b² = a²(1 − e²)",
+          "match": [
+            "x²/a² + y²/b² = 1",
+            "b² = a²(1 − e²)",
+            "\\dfrac{x^{2}}{a^{2}} + \\ \\dfrac{y^{2}}{b^{2}} = \\ 1"
+          ]
+        },
+        {
+          "id": "m2b.el.directrix",
+          "name": "Directrices of an ellipse",
+          "text": "x = ± a/e, perpendicular to the major axis",
+          "match": [
+            "The directrices are perpendicular to the major",
+            "x = ± a/e"
+          ]
+        },
+        {
+          "id": "m2b.el.latus_rectum",
+          "name": "Latus rectum of an ellipse",
+          "text": "Length = 2b²/a",
+          "match": [
+            "2b²/a",
+            "\\dfrac{2b^{2}}{a}"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "formulas": [
+        {
+          "id": "m2b.hy.standard",
+          "name": "Standard hyperbola",
+          "text": "x²/a² − y²/b² = 1, with b² = a²(e² − 1)",
+          "match": [
+            "x²/a² − y²/b² = 1",
+            "b² = a²(e² − 1)"
+          ]
+        },
+        {
+          "id": "m2b.hy.tangent_slope",
+          "name": "Tangent to a hyperbola with a given slope",
+          "text": "y = mx ± √(a²m² − b²)",
+          "match": [
+            "Tangent with slope m: y = mx ± √(a²m² − b²)",
+            "√(a²m² − b²)"
+          ]
+        },
+        {
+          "id": "m2b.hy.asymptotes",
+          "name": "Asymptotes of a hyperbola",
+          "text": "y = ± (b/a)x",
+          "match": [
+            "asymptote"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "formulas": [
+        {
+          "id": "m2b.in.power_rule",
+          "name": "Integral of a power",
+          "text": "∫xⁿ dx = xⁿ⁺¹/(n + 1) + c, n ≠ −1",
+          "match": [
+            "\\int x^{n}dx\\ = \\ \\dfrac{x^{n+1}}{n + 1}",
+            "the power rule"
+          ]
+        },
+        {
+          "id": "m2b.in.sec",
+          "name": "Integral of sec x",
+          "text": "∫sec x dx = log|sec x + tan x| + c",
+          "match": [
+            "log|sec x + tan x|"
+          ]
+        },
+        {
+          "id": "m2b.in.by_parts",
+          "name": "Integration by parts",
+          "text": "∫uv dx = u∫v dx − ∫[u′·∫v dx]dx",
+          "match": [
+            "By parts: ∫uv dx = u∫v dx",
+            "∫uv dx"
+          ]
+        },
+        {
+          "id": "m2b.in.half_angle_substitution",
+          "name": "The t = tan(x/2) substitution",
+          "text": "Put t = tan(x/2) to turn sin x and cos x into t",
+          "match": [
+            "t\\ = \\ \\tan \\left(\\dfrac{x}{2}\\right)",
+            "t = tan(x/2)"
+          ]
+        },
+        {
+          "id": "m2b.in.log_derivative",
+          "name": "Integral of f′/f",
+          "text": "∫f′(x)/f(x) dx = log|f(x)| + c",
+          "match": [
+            "The derivative of log x is",
+            "Put t = logx back"
+          ]
+        },
+        {
+          "id": "m2b.in.reduction",
+          "name": "Reduction formula",
+          "text": "Take the Iₙ terms to one side and solve for Iₙ",
+          "match": [
+            "Take the Iₙ terms to the left side",
+            "reduction formula"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "formulas": [
+        {
+          "id": "m2b.di.fundamental",
+          "name": "Evaluating a definite integral",
+          "text": "∫ₐᵇ f(x)dx = F(b) − F(a)",
+          "match": [
+            "Upper limit minus lower limit"
+          ]
+        },
+        {
+          "id": "m2b.di.a_minus_x",
+          "name": "The a − x property",
+          "text": "∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
+          "match": [
+            "∫₀ᵃ f(x)dx = ∫₀ᵃ f(a − x)dx",
+            "By x → "
+          ]
+        },
+        {
+          "id": "m2b.di.adding_two",
+          "name": "Adding the two forms of one integral",
+          "text": "Add the original and the transformed integral to get 2I",
+          "match": [
+            "Adding (1) and (2): I + I",
+            "Divide both sides by 2"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "formulas": [
+        {
+          "id": "m2b.de.homogeneous",
+          "name": "Homogeneous differential equation",
+          "text": "Put y = vx, so dy/dx = v + x(dv/dx)",
+          "match": [
+            "Put\\ y\\ = \\ vx",
+            "is a homogeneous D.E."
+          ]
+        },
+        {
+          "id": "m2b.de.linear",
+          "name": "Linear differential equation",
+          "text": "dy/dx + Py = Q has I.F. = e^∫P dx and solution y(I.F.) = ∫(I.F.)Q dx",
+          "match": [
+            "y·(I.F.) = ∫(I.F.)Q dx",
+            "\\dfrac{dy}{dx}\\ + \\ yP\\left(x\\right)"
+          ]
+        },
+        {
+          "id": "m2b.de.separable",
+          "name": "Variable separable equation",
+          "text": "Put all the y terms on one side and all the x terms on the other, then integrate",
+          "match": [
+            "Separate v and x",
+            "separate the variables"
+          ]
+        }
+      ]
+    }
+  ]
+}

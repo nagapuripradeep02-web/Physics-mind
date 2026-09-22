@@ -251,5 +251,8 @@
       }
     ]
   },
-  "insider_note": "A shorter method is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and changes one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
+  "insider_note": "A shorter method is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and changes one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3).",
+  "formulas": [
+    "m1b.ad.normal"
+  ]
 }

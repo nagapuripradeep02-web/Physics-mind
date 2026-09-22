@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would prove this — how you take Cᵣ₋₁ out of each bracket, what 1 + Cᵣ/Cᵣ₋₁ simplifies to, what the product of all the (n + 1)/r factors is, and why C₀C₁…Cₙ₋₁ can be written as C₁C₂…Cₙ.",
   "insider_note": "Take Cᵣ₋₁ out of every bracket, not Cᵣ — the inverted ratio never simplifies. The last mark is the line C₀ = Cₙ = 1, which turns C₀C₁…Cₙ₋₁ into the C₁C₂…Cₙ the right side shows.",
+  "formulas": [
+    "m2a.pc.ncr"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find this — say what two facts you write about α and β first, and how you rewrite the asked expression in terms of them.",
   "insider_note": "Write α + β = −b/a and αβ = c/a before anything else — the minus belongs to the sum only. Then α² + β² = (α + β)² − 2αβ; solving for α and β with the quadratic formula earns nothing here.",
+  "formulas": [
+    "m2a.qe.root_sum_product"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

@@ -157,5 +157,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.mx.symmetric_skew"
+  ]
 }

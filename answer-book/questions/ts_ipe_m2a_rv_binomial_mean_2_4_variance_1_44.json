@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find P(1 < X ≤ 4) from the mean and variance — how you get q, p and n, and which three terms you add.",
   "insider_note": "Variance over mean gives q, not p — 1.44/2.4 = 3/5 — and the fractions should be fifths from the start, since every power later is over 5; 1 < X ≤ 4 keeps exactly three terms, X = 2, 3 and 4.",
+  "formulas": [
+    "m2a.rv.binomial"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

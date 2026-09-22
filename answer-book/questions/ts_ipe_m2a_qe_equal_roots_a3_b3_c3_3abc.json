@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would show this — say what A, B and C are, what equal roots gives, how you expand and cancel the discriminant, and how the two possible conclusions come out.",
   "insider_note": "Equal roots means Δ exactly zero, and never divide through by a — that silently deletes the a = 0 half of the printed answer. The condition c² ≠ ab is what makes the leading coefficient non-zero, so the equation really is a quadratic.",
+  "formulas": [
+    "m2a.qe.discriminant"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

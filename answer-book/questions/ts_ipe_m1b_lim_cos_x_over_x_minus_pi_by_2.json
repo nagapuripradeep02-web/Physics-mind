@@ -200,5 +200,8 @@
       }
     ]
   },
-  "insider_note": "The standard limit is at 0, so move the point: put x = π/2 + h. cos(π/2 + h) = −sin h, and that minus sign gives the answer −1."
+  "insider_note": "The standard limit is at 0, so move the point: put x = π/2 + h. cos(π/2 + h) = −sin h, and that minus sign gives the answer −1.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

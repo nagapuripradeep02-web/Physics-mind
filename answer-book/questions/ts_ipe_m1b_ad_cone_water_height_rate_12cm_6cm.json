@@ -242,5 +242,8 @@
       }
     ]
   },
-  "insider_note": "Use SIMILAR triangles to write r = h/2 and eliminate r before differentiating — differentiating a cone volume with two variables brings in dr/dt, which the question does not give. V then becomes πh³/12."
+  "insider_note": "Use SIMILAR triangles to write r = h/2 and eliminate r before differentiating — differentiating a cone volume with two variables brings in dr/dt, which the question does not give. V then becomes πh³/12.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

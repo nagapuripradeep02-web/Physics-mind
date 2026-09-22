@@ -46,6 +46,9 @@
   },
   "recall_prompt": "Say how you would solve this reciprocal equation — what you divide by, what you substitute, and how each value of t gives two roots.",
   "insider_note": "Every root here is rational, so both endings factorise; a surd in the answer means a slip in the t values.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

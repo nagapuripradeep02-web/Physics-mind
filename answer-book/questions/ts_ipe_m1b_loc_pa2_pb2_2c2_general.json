@@ -259,5 +259,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.loc.distance"
+  ]
 }

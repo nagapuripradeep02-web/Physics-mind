@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would count the bijections from a seven-element set onto itself — what a bijection is as a count, and the number.",
   "insider_note": "The first mark is the sentence, not the number: a bijection uses each of the 7 images exactly once, so it is an arrangement of all 7 and the count is 7!. Then 7! = 5040 — the 720 answer is 6!, one factor short.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

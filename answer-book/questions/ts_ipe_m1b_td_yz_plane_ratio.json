@@ -193,5 +193,8 @@
       }
     ]
   },
-  "insider_note": "The YZ-plane is x = 0, so here it is the x-coordinates that give the ratio: −x₁ : x₂ = −2 : 3. The negative ratio is correct, not an error, and the answer's x-coordinate coming out 0 is the check."
+  "insider_note": "The YZ-plane is x = 0, so here it is the x-coordinates that give the ratio: −x₁ : x₂ = −2 : 3. The negative ratio is correct, not an error, and the answer's x-coordinate coming out 0 is the check.",
+  "formulas": [
+    "m1b.td.section"
+  ]
 }

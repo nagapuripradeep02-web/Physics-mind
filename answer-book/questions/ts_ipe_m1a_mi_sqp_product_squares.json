@@ -334,5 +334,6 @@
       }
     ]
   },
-  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; written as (n+1)²/n² it shows at once that the (k+1)² cancels. The (k+1)² then cancels, and that cancellation is the main step."
+  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; written as (n+1)²/n² it shows at once that the (k+1)² cancels. The (k+1)² then cancels, and that cancellation is the main step.",
+  "formulas": []
 }

@@ -372,5 +372,9 @@
       }
     ]
   },
-  "insider_note": "Take the slope from the third line first: the negative reciprocal of 5/2 is −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and a sign error there is common: the point is P(14, −9)."
+  "insider_note": "Take the slope from the third line first: the negative reciprocal of 5/2 is −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and a sign error there is common: the point is P(14, −9).",
+  "formulas": [
+    "m1b.sl.intersection",
+    "m1b.ad.normal"
+  ]
 }

@@ -34,6 +34,10 @@
   },
   "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "The book's printed θ = 3π/4 is a slip — that angle gives −1 + i, a different number. (−1, −1) is in the third quadrant, so the principal amplitude is −3π/4; write the quadrant sentence so the sign choice is visible.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.cn.polar_form"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

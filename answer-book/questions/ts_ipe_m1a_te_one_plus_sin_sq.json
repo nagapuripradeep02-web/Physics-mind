@@ -344,5 +344,9 @@
       }
     ]
   },
-  "insider_note": "Divide throughout by cos²θ (cosθ = 0 is not a solution): 1 becomes sec²θ = 1 + tan²θ and sinθcosθ/cos²θ becomes tanθ, so the equation becomes a quadratic in tanθ. The root tanθ = 1 gives a standard angle and tanθ = 1/2 does not, so Tan⁻¹(1/2) stays in the answer."
+  "insider_note": "Divide throughout by cos²θ (cosθ = 0 is not a solution): 1 becomes sec²θ = 1 + tan²θ and sinθcosθ/cos²θ becomes tanθ, so the equation becomes a quadratic in tanθ. The root tanθ = 1 gives a standard angle and tanθ = 1/2 does not, so Tan⁻¹(1/2) stays in the answer.",
+  "formulas": [
+    "m1a.tr.sec_tan",
+    "m1a.te.general_tan"
+  ]
 }

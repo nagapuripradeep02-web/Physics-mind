@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would find r when 12 P 5 plus 5 times 12 P 4 equals 13 P r.",
   "insider_note": "The coefficient 5 fits the permutation identity ⁿPᵣ + r·ⁿPᵣ₋₁ = ⁽ⁿ⁺¹⁾Pᵣ, which the combination identity does not have — and r matches the first term, so r = 5, not the 4 of the second term.",
+  "formulas": [
+    "m2a.pc.npr"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

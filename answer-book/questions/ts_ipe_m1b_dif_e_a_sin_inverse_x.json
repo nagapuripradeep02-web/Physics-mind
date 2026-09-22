@@ -183,5 +183,8 @@
       }
     ]
   },
-  "insider_note": "The exponential factor IS y, so replace it rather than writing it out again — that is what produces the y on the right-hand side. The a comes out of a Sin⁻¹x."
+  "insider_note": "The exponential factor IS y, so replace it rather than writing it out again — that is what produces the y on the right-hand side. The a comes out of a Sin⁻¹x.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

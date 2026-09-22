@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would find the probability of an ace or a spade — what you count, which theorem you use, and the answer.",
   "insider_note": "The overlap card (the ace of spades) is what this question tests: forget it and the answer is 17/52, which is wrong.",
+  "formulas": [
+    "m2a.pr.addition",
+    "m2a.pr.mutually_exclusive"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

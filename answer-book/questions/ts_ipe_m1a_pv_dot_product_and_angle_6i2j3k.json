@@ -291,5 +291,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pv.angle_between",
+    "m1a.pv.dot_components"
+  ]
 }

@@ -367,5 +367,8 @@
       }
     ]
   },
-  "insider_note": "First principle means the limit definition, not the standard rule — quoting −a sin(ax) earns nothing. Use cos C − cos D to turn the difference into a product, then sin(ah/2)/(ah/2) → 1."
+  "insider_note": "First principle means the limit definition, not the standard rule — quoting −a sin(ax) earns nothing. Use cos C − cos D to turn the difference into a product, then sin(ah/2)/(ah/2) → 1.",
+  "formulas": [
+    "m1b.dif.first_principle"
+  ]
 }

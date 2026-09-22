@@ -303,5 +303,8 @@
       }
     ]
   },
-  "insider_note": "Write both cotangents as cos/sin and combine over one denominator; the numerator becomes sin(−h) by the compound angle formula. That minus is why the answer is −cosec²x."
+  "insider_note": "Write both cotangents as cos/sin and combine over one denominator; the numerator becomes sin(−h) by the compound angle formula. That minus is why the answer is −cosec²x.",
+  "formulas": [
+    "m1b.dif.first_principle"
+  ]
 }

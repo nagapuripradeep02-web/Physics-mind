@@ -289,5 +289,6 @@
       }
     ]
   },
-  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Comparing coefficients is allowed only because a, b, c are non-coplanar, so say so."
+  "insider_note": "Write both lines in the two-point form, then COLLECT the a, b and c coefficients before comparing. Comparing coefficients is allowed only because a, b, c are non-coplanar, so say so.",
+  "formulas": []
 }

@@ -187,5 +187,8 @@
       }
     ]
   },
-  "insider_note": "The two lines must carry IDENTICAL coefficients first, so double the first to 6x + 8y − 6 = 0. Rescaling the x and y terms but leaving the constant at −3 is what makes this come out wrong."
+  "insider_note": "The two lines must carry IDENTICAL coefficients first, so double the first to 6x + 8y − 6 = 0. Rescaling the x and y terms but leaving the constant at −3 is what makes this come out wrong.",
+  "formulas": [
+    "m1b.sl.parallel_distance"
+  ]
 }

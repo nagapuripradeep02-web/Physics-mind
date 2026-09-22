@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find a — which root you substitute and what it gives.",
   "insider_note": "Substituting x = 1 is two lines; the pairwise-product relation a₂/a₀ = −5 is the check, and either route earns both marks.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

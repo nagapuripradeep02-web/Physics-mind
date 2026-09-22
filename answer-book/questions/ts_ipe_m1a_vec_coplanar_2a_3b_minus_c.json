@@ -330,5 +330,10 @@
       }
     ]
   },
-  "insider_note": "Take all the differences from ONE point: PQ, PR and PS every one starting at P. The determinant of their coefficients must be zero, and the [a b c] factor is carried along, never evaluated."
+  "insider_note": "Take all the differences from ONE point: PQ, PR and PS every one starting at P. The determinant of their coefficients must be zero, and the [a b c] factor is carried along, never evaluated.",
+  "formulas": [
+    "m1a.mx.determinant_3x3",
+    "m1a.av.coplanar_box",
+    "m1a.av.vector_between_points"
+  ]
 }

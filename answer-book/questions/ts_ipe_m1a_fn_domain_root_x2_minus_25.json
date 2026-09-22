@@ -156,5 +156,8 @@
       }
     ]
   },
-  "insider_note": "The x² is POSITIVE here, so the expression is ≥ 0 outside the roots — the answer is two rays, not the interval [−5, 5]. That sign flip is the whole difference from the a² − x² form, which gives the inside interval instead."
+  "insider_note": "The x² is POSITIVE here, so the expression is ≥ 0 outside the roots — the answer is two rays, not the interval [−5, 5]. That sign flip is the whole difference from the a² − x² form, which gives the inside interval instead.",
+  "formulas": [
+    "m1a.fn.domain_of_root"
+  ]
 }

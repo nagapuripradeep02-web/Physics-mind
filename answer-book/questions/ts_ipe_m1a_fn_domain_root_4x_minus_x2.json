@@ -163,5 +163,8 @@
       }
     ]
   },
-  "insider_note": "There is no constant term, so the factors are x and x − 4 and one root is 0 — the domain starts at 0, not at a negative number. Closed brackets, because a plain root permits zero."
+  "insider_note": "There is no constant term, so the factors are x and x − 4 and one root is 0 — the domain starts at 0, not at a negative number. Closed brackets, because a plain root permits zero.",
+  "formulas": [
+    "m1a.fn.domain_of_root"
+  ]
 }

@@ -161,5 +161,6 @@
       }
     ]
   },
-  "insider_note": "sin(1/x) has no limit at 0, so bound it between −1 and 1 and multiply by x². Both outer limits are 0, so by the Sandwich theorem the limit is 0."
+  "insider_note": "sin(1/x) has no limit at 0, so bound it between −1 and 1 and multiply by x². Both outer limits are 0, so by the Sandwich theorem the limit is 0.",
+  "formulas": []
 }

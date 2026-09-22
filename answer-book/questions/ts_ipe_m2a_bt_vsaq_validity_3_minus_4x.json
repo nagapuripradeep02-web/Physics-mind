@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find the set — how you take 3 out of the bracket, and the condition on x that makes the expansion valid.",
   "insider_note": "A fractional index expands only in the form (1 + y) with |y| < 1, so factor the 3 out first. The answer is an open interval — the end points are excluded.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

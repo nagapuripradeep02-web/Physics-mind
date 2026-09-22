@@ -332,5 +332,9 @@
       }
     ]
   },
-  "insider_note": "Use cos²A − cos²B = −sin(A + B)sin(A − B) so the difference becomes a product in one step. The sin h/h then goes to 1 and sin(2x + h) → sin 2x."
+  "insider_note": "Use cos²A − cos²B = −sin(A + B)sin(A − B) so the difference becomes a product in one step. The sin h/h then goes to 1 and sin(2x + h) → sin 2x.",
+  "formulas": [
+    "m1b.dif.chain",
+    "m1b.dif.first_principle"
+  ]
 }

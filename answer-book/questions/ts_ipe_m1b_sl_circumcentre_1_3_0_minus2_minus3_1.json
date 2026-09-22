@@ -569,5 +569,8 @@
       }
     ]
   },
-  "insider_note": "Square both sides straight away — the square roots go and the x² and y² terms cancel, so two linear equations are left, and subtracting them here removes x in a single step."
+  "insider_note": "Square both sides straight away — the square roots go and the x² and y² terms cancel, so two linear equations are left, and subtracting them here removes x in a single step.",
+  "formulas": [
+    "m1b.loc.distance"
+  ]
 }

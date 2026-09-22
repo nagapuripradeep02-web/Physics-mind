@@ -310,5 +310,6 @@
       }
     ]
   },
-  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so there are TWO lines — the answer is their product, and a single line loses the last mark."
+  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so there are TWO lines — the answer is their product, and a single line loses the last mark.",
+  "formulas": []
 }

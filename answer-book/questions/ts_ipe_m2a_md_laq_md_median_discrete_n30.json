@@ -42,6 +42,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for a discrete frequency table — what you do to the data first, how you locate the median, and what you divide at the end.",
   "insider_note": "Sort the data first and keep each frequency with its value; the median is read from the cumulative frequency column — the first c.f. at or above N/2 = 15 gives M = 13 — and the grouped-data formula with l and C is not used on discrete data.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

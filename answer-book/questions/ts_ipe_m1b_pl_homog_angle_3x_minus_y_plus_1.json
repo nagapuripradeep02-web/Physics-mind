@@ -433,5 +433,9 @@
       }
     ]
   },
-  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and each linear term changes sign when 1 is replaced; a sign error there is common. Then use cosθ = |a + b|/√((a − b)² + (2h)²); tanθ = 2√(h² − ab)/|a + b| gives the same angle."
+  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and each linear term changes sign when 1 is replaced; a sign error there is common. Then use cosθ = |a + b|/√((a − b)² + (2h)²); tanθ = 2√(h² − ab)/|a + b| gives the same angle.",
+  "formulas": [
+    "m1b.psl.homogenise",
+    "m1b.psl.pair_through_origin"
+  ]
 }

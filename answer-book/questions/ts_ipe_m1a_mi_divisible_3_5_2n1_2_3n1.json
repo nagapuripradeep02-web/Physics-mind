@@ -334,5 +334,6 @@
       }
     ]
   },
-  "insider_note": "The powers are multiplied by 25 and 8, and 25 − 8 = 17 is what makes this work — that subtraction is the key idea. Isolate 3·5²ᵏ⁺¹ from the assumption first, then substitute it in."
+  "insider_note": "The powers are multiplied by 25 and 8, and 25 − 8 = 17 is what makes this work — that subtraction is the key idea. Isolate 3·5²ᵏ⁺¹ from the assumption first, then substitute it in.",
+  "formulas": []
 }

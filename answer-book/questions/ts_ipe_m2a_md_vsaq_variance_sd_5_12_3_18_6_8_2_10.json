@@ -43,6 +43,10 @@
   },
   "recall_prompt": "Say how you would find the variance and standard deviation of eight numbers — what you find first, what you square, what you divide, and how you finish.",
   "insider_note": "Variance and standard deviation differ by one square root and BOTH are asked: σ² = 194/8 = 24.25, then σ = 4.92; the book's printed 4.95 is a misprint — 4.95² is 24.50, not 24.25.",
+  "formulas": [
+    "m2a.md.mean",
+    "m2a.md.standard_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

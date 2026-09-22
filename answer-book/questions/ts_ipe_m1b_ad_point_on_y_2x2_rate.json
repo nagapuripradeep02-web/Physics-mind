@@ -184,5 +184,8 @@
       }
     ]
   },
-  "insider_note": "Chain the rates: dy/dt = (dy/dx)(dx/dt). The point (2, 8) supplies x = 2, so dy/dx = 8 and the answer is 32."
+  "insider_note": "Chain the rates: dy/dt = (dy/dx)(dx/dt). The point (2, 8) supplies x = 2, so dy/dx = 8 and the answer is 32.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

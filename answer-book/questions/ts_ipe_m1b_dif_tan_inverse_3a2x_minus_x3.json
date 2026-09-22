@@ -396,5 +396,8 @@
       }
     ]
   },
-  "insider_note": "The substitution is x = a tan θ, not x = tan θ, because of the a's. The bracket becomes tan3θ, so y = 3Tan⁻¹(x/a) and the answer carries 3a/(a² + x²)."
+  "insider_note": "The substitution is x = a tan θ, not x = tan θ, because of the a's. The bracket becomes tan3θ, so y = 3Tan⁻¹(x/a) and the answer carries 3a/(a² + x²).",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

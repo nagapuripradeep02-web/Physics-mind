@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would count the teams — which compositions are allowed, how each is counted, and how you finish.",
   "insider_note": "Both keepers are in the team from the start, so only 9 places remain and the batsmen count is 9 − bowlers, never 11 − bowlers. Write the bowler cases 4, 5, 6 as a table first — the list of compositions is a mark on its own.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

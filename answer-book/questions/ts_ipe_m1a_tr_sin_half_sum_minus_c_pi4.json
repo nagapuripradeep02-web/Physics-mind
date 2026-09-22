@@ -617,5 +617,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.cos_double",
+    "m1a.tr.sum_to_product_cos_plus",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

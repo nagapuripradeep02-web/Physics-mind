@@ -364,5 +364,9 @@
       }
     ]
   },
-  "insider_note": "AAᵀ = 9I here, so A⁻¹ = Aᵀ/9 and adj A = (det A)A⁻¹ = 27Aᵀ/9 = 3Aᵀ. Once adj A = 3Aᵀ is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
+  "insider_note": "AAᵀ = 9I here, so A⁻¹ = Aᵀ/9 and adj A = (det A)A⁻¹ = 27Aᵀ/9 = 3Aᵀ. Once adj A = 3Aᵀ is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work.",
+  "formulas": [
+    "m1a.mx.determinant_3x3",
+    "m1a.mx.inverse"
+  ]
 }

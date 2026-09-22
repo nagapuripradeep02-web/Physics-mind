@@ -1,0 +1,362 @@
+{
+  "subject": "mathematics_2a",
+  "sheet_label": "Maths 2A",
+  "chapters": [
+    {
+      "number": 1,
+      "formulas": [
+        {
+          "id": "m2a.cn.conjugate_product",
+          "name": "A complex number times its conjugate",
+          "text": "(a + ib)(a − ib) = a² + b²",
+          "match": [
+            "(a + ib)(a − ib) = a² + b²",
+            "Multiply above and below by the conjugate"
+          ]
+        },
+        {
+          "id": "m2a.cn.modulus",
+          "name": "Modulus and amplitude",
+          "text": "r = √(x² + y²) and tan θ = y/x",
+          "match": [
+            "r = √(x² + y²)",
+            "\\sqrt{x^{2}\\ + \\ y^{2}}\\ \\text{and}\\ \\tan \\theta"
+          ]
+        },
+        {
+          "id": "m2a.cn.polar_form",
+          "name": "Modulus amplitude form",
+          "text": "z = r(cos θ + i sin θ)",
+          "match": [
+            "z = r(cos θ + i sin θ)",
+            "The modulus-amplitude form is"
+          ]
+        },
+        {
+          "id": "m2a.cn.conjugate",
+          "name": "Conjugate of a complex number",
+          "text": "The conjugate of a + ib is a − ib",
+          "match": [
+            "The conjugate of a + ib is a − ib"
+          ]
+        },
+        {
+          "id": "m2a.cn.i_squared",
+          "name": "The square of i",
+          "text": "i² = −1",
+          "match": [
+            "i² = −1",
+            "i^{2}\\ = \\ - 1"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "formulas": [
+        {
+          "id": "m2a.dm.theorem",
+          "name": "De Moivre's theorem",
+          "text": "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ",
+          "match": [
+            "By De Moivre's theorem the angle is multiplied",
+            "(cos θ + i sin θ)ⁿ = cos nθ + i sin nθ"
+          ]
+        },
+        {
+          "id": "m2a.dm.add_conjugates",
+          "name": "Adding a pair of conjugate expansions",
+          "text": "Adding the two expansions cancels the i sin terms",
+          "match": [
+            "the i sin terms cancel",
+            "expansion is the same with the sin term negative"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "formulas": [
+        {
+          "id": "m2a.qe.root_sum_product",
+          "name": "Sum and product of the roots",
+          "text": "α + β = −b/a and αβ = c/a",
+          "match": [
+            "\\alpha \\ + \\ \\beta \\ = \\ - \\dfrac{b}{a}",
+            "α + β = −b/a"
+          ]
+        },
+        {
+          "id": "m2a.qe.discriminant",
+          "name": "Condition for real roots",
+          "text": "Δ = b² − 4ac ≥ 0",
+          "match": [
+            "Δ = b² − 4ac",
+            "b^{2}\\ - \\ 4ac"
+          ]
+        },
+        {
+          "id": "m2a.qe.sign",
+          "name": "Sign of a quadratic expression",
+          "text": "A quadratic is ≤ 0 only between its roots",
+          "match": [
+            "A product is ≤ 0 BETWEEN its roots",
+            "between its roots"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "formulas": [
+        {
+          "id": "m2a.te.root_relations",
+          "name": "Root relations of a cubic",
+          "text": "S₁ = −a₁/a₀, S₂ = a₂/a₀, S₃ = −a₃/a₀",
+          "match": [
+            "the root relations are",
+            "S_{1}\\ = \\ - \\dfrac{a_{1}}{a_{0}}"
+          ]
+        },
+        {
+          "id": "m2a.te.reciprocal",
+          "name": "Reciprocal equation substitution",
+          "text": "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "match": [
+            "x\\ + \\ \\dfrac{1}{x} = \\ t",
+            "t^{2}\\ - \\ 2"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "formulas": [
+        {
+          "id": "m2a.pc.alike",
+          "name": "Arrangements when some things are alike",
+          "text": "n!/(p! q! r!)",
+          "match": [
+            "\\dfrac{n!}{p! \\cdot q! \\cdot r!}",
+            "When n things have p, q, r alike"
+          ]
+        },
+        {
+          "id": "m2a.pc.ncr_equal",
+          "name": "When two combinations are equal",
+          "text": "ⁿCᵣ = ⁿCₛ gives r = s or r + s = n",
+          "match": [
+            "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n"
+          ]
+        },
+        {
+          "id": "m2a.pc.ncr",
+          "name": "Number of combinations",
+          "text": "ⁿCᵣ = n!/(r!(n − r)!)",
+          "match": [
+            "n!/(r!(n − r)!)",
+            "\\dfrac{n!}{r!\\left(n\\ - \\ r\\right)!}"
+          ]
+        },
+        {
+          "id": "m2a.pc.npr",
+          "name": "Number of arrangements",
+          "text": "ⁿPᵣ = n!/(n − r)!",
+          "match": [
+            "ⁿPᵣ",
+            "\\dfrac{n!}{\\left(n\\ - \\ r\\right)!}"
+          ]
+        },
+        {
+          "id": "m2a.pc.circular",
+          "name": "Circular arrangements",
+          "text": "n things in a circle: (n − 1)! ways",
+          "match": [
+            "(n − 1)! ways",
+            "the arrangement is circular"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "formulas": [
+        {
+          "id": "m2a.bt.general_term",
+          "name": "General term of a binomial expansion",
+          "text": "In (x + y)ⁿ, Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
+          "match": [
+            "Tᵣ₊₁ = ⁿCᵣ xⁿ⁻ʳ yʳ",
+            "In (x + y)ⁿ, Tᵣ₊₁"
+          ]
+        },
+        {
+          "id": "m2a.bt.negative_index",
+          "name": "Expansion for a negative or fractional index",
+          "text": "Compare with the standard series for (1 + x)^p",
+          "match": [
+            "Compare with the standard expansion",
+            "A negative power inverts the fraction"
+          ]
+        },
+        {
+          "id": "m2a.bt.middle_term",
+          "name": "Middle term of a binomial expansion",
+          "text": "n even: one middle term. n odd: two",
+          "match": [
+            "there is one middle term",
+            "two middle terms"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "formulas": [
+        {
+          "id": "m2a.pf.substitute_root",
+          "name": "Finding a partial fraction constant",
+          "text": "Put a root of one factor: every other term becomes 0",
+          "match": [
+            "Substituting a root of one factor",
+            "makes the other terms 0"
+          ]
+        },
+        {
+          "id": "m2a.pf.improper",
+          "name": "An improper fraction must be divided first",
+          "text": "Divide out a polynomial when the top degree is not less than the bottom",
+          "match": [
+            "improper and a polynomial must come out first",
+            "The numerator's degree is not less than"
+          ]
+        },
+        {
+          "id": "m2a.pf.repeated",
+          "name": "A repeated factor",
+          "text": "A repeated factor gets one term for each power",
+          "match": [
+            "A repeated factor gets one term"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "formulas": [
+        {
+          "id": "m2a.md.mean",
+          "name": "Mean of a set of values",
+          "text": "x̄ = (sum of the values)/n",
+          "match": [
+            "Mean x̄ = (sum of the values)/n"
+          ]
+        },
+        {
+          "id": "m2a.md.mean_deviation",
+          "name": "Mean deviation",
+          "text": "The average size of the gaps from a centre, signs ignored",
+          "match": [
+            "Mean deviation measures how far the values",
+            "always as a positive number"
+          ]
+        },
+        {
+          "id": "m2a.md.standard_deviation",
+          "name": "Standard deviation",
+          "text": "σ = √(variance)",
+          "match": [
+            "Standard deviation σ = √σ²",
+            "σ = √σ²"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "formulas": [
+        {
+          "id": "m2a.pr.addition",
+          "name": "Addition theorem of probability",
+          "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+          "match": [
+            "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "By the addition theorem"
+          ]
+        },
+        {
+          "id": "m2a.pr.bayes",
+          "name": "Bayes' theorem",
+          "text": "It turns a known P(A | B) into the wanted P(B | A)",
+          "match": [
+            "Bayes' theorem turns the known"
+          ]
+        },
+        {
+          "id": "m2a.pr.conditional",
+          "name": "Conditional probability",
+          "text": "P(A | B) = P(A ∩ B)/P(B), P(B) ≠ 0",
+          "match": [
+            "conditional probability, which needs",
+            "P(A | B) = P(A ∩ B)/P(B)"
+          ]
+        },
+        {
+          "id": "m2a.pr.independent",
+          "name": "Independent events",
+          "text": "P(A ∩ B) = P(A)·P(B)",
+          "match": [
+            "P(A ∩ B) = P(A)·P(B)"
+          ]
+        },
+        {
+          "id": "m2a.pr.mutually_exclusive",
+          "name": "Mutually exclusive events",
+          "text": "P(A ∪ B) = P(A) + P(B) when A and B cannot both happen",
+          "match": [
+            "mutually exclusive"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "formulas": [
+        {
+          "id": "m2a.rv.total_one",
+          "name": "Probabilities of a distribution add to one",
+          "text": "ΣP(X = xᵢ) = 1",
+          "match": [
+            "ΣP(X = xᵢ) = 1",
+            "its probabilities adding up to 1"
+          ]
+        },
+        {
+          "id": "m2a.rv.mean",
+          "name": "Mean of a random variable",
+          "text": "μ = Σxᵢ·P(X = xᵢ)",
+          "match": [
+            "Mean μ = Σxᵢ·P(X = xᵢ)"
+          ]
+        },
+        {
+          "id": "m2a.rv.variance",
+          "name": "Variance of a random variable",
+          "text": "σ² = Σxᵢ²·P(X = xᵢ) − μ²",
+          "match": [
+            "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²"
+          ]
+        },
+        {
+          "id": "m2a.rv.binomial",
+          "name": "Binomial distribution",
+          "text": "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ, with mean np and variance npq",
+          "match": [
+            "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
+            "mean = np and variance = npq"
+          ]
+        }
+      ]
+    }
+  ]
+}

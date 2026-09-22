@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would find n when n P 3 is 1320.",
   "insider_note": "The first mark is the factoring: 1320 as three consecutive factors, 12 · 11 · 10, with n the largest of them. A factoring such as 20 · 66 is correct arithmetic, but its factors are not consecutive, so no ⁿP₃ can be read from it.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

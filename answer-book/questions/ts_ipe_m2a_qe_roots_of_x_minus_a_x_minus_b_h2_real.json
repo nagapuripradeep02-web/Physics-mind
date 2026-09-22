@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would prove the roots are always real — say what you expand to, what you compute, and why it can never be negative.",
   "insider_note": "Move h² across before computing Δ — the constant becomes ab − h², which is what the proof needs. Write Δ as (a − b)² + (2h)²: a sum of two squares is never negative, and that visible form is the whole argument.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

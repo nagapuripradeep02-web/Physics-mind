@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the multiplicative inverse — what the inverse is, and how you write it as a + ib.",
   "insider_note": "The multiplicative inverse is 1/z, not the conjugate — the conjugate is only the multiplier that clears the denominator. The denominator 7² + 24² = 625 comes from the 7, 24, 25 triple, so any other number there is an arithmetic slip.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

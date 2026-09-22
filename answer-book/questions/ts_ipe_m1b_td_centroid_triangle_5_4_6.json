@@ -179,5 +179,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.td.centroid"
+  ]
 }

@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find this sum — how you rewrite the terms, what you add to both sides and why, what you compare with, how you find p, q and x, and how you get S back at the end.",
   "insider_note": "Here p = 3, so the missing start is 1 + 3/5 = 8/5, not just 1. The same 8/5 must be subtracted at the end — reporting 5√5/(3√3) as the sum loses the last mark.",
+  "formulas": [
+    "m2a.bt.negative_index"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

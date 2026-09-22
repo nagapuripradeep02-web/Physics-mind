@@ -169,5 +169,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.a_sin_b_cos_range",
+    "m1a.te.a_cos_b_sin_method"
+  ]
 }

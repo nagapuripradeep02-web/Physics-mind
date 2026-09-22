@@ -382,5 +382,6 @@
       }
     ]
   },
-  "insider_note": "The derivative simplifies to y/a, which is the key step — the exponential reappears as y itself. Subtangent y/m is then a, and subnormal y·m is y²/a."
+  "insider_note": "The derivative simplifies to y/a, which is the key step — the exponential reappears as y itself. Subtangent y/m is then a, and subnormal y·m is y²/a.",
+  "formulas": []
 }

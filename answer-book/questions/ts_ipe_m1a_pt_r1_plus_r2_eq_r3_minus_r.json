@@ -383,5 +383,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pt.area_forms",
+    "m1a.pt.exradii",
+    "m1a.pt.inradius"
+  ]
 }

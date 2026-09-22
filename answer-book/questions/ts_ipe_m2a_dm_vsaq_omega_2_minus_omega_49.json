@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would prove this — what ω¹⁰ and ω¹¹ reduce to, and how the product is evaluated.",
   "insider_note": "Four brackets but only two different ones: ω¹⁰ = ω and ω¹¹ = ω², so the product is [(2 − ω)(2 − ω²)]². Reducing the two powers the other way round still ends at 49, so the first mark is for the reduction itself, not for the number.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

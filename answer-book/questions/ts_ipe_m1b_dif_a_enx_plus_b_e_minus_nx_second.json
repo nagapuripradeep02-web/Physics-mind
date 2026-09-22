@@ -160,5 +160,8 @@
       }
     ]
   },
-  "insider_note": "Differentiating twice brings down n² from BOTH terms — the second one squares its minus sign to plus. Taking n² out then leaves the original y, which completes the proof."
+  "insider_note": "Differentiating twice brings down n² from BOTH terms — the second one squares its minus sign to plus. Taking n² out then leaves the original y, which completes the proof.",
+  "formulas": [
+    "m1b.dif.chain"
+  ]
 }

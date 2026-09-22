@@ -170,5 +170,9 @@
       }
     ]
   },
-  "insider_note": "Divide top and bottom by x so each becomes the standard (aˣ − 1)/x → logₑa. The condition b ≠ 1 is what keeps logₑb from being zero, so it belongs in the answer."
+  "insider_note": "Divide top and bottom by x so each becomes the standard (aˣ − 1)/x → logₑa. The condition b ≠ 1 is what keeps logₑb from being zero, so it belongs in the answer.",
+  "formulas": [
+    "m1b.lim.exponential",
+    "m1b.lim.indeterminate"
+  ]
 }

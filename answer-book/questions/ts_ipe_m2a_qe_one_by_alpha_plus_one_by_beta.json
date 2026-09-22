@@ -39,6 +39,9 @@
   },
   "recall_prompt": "Say how you would find this — say what two facts you write about α and β first, and how you rewrite the asked expression in terms of them.",
   "insider_note": "Combine to (α + β)/(αβ) and the a's cancel — the answer keeps its minus sign. Writing 1/(α + β) for the sum of reciprocals is the error this question is built to catch.",
+  "formulas": [
+    "m2a.qe.root_sum_product"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

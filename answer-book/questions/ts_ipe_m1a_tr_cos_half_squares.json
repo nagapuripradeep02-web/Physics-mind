@@ -523,5 +523,10 @@
       }
     ]
   },
-  "insider_note": "Convert ONE term with cos² = 1 − sin² so a cos² − sin² pair appears — that move starts every proof in this family. sin(C/2) = cos((A+B)/2) is what lets the last bracket combine."
+  "insider_note": "Convert ONE term with cos² = 1 − sin² so a cos² − sin² pair appears — that move starts every proof in this family. sin(C/2) = cos((A+B)/2) is what lets the last bracket combine.",
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.half_angle_from_sum",
+    "m1a.tr.pythagorean"
+  ]
 }

@@ -250,5 +250,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.cos_sum"
+  ]
 }

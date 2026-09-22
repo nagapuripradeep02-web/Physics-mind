@@ -196,5 +196,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.onto_test"
+  ]
 }

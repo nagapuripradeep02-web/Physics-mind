@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find this — what ω⁴ and ω⁸ reduce to, and how the product is evaluated.",
   "insider_note": "The four brackets are two repeated pairs, because ω⁴ = ω and ω⁸ = ω²; multiply one pair and square it. (1 − ω)(1 − ω²) = 3 needs the ω³ = 1 term at the end — drop it and the pair gives 2 and the answer 4.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

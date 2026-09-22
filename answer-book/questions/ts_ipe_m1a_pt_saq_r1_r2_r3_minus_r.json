@@ -211,5 +211,9 @@
       }
     ]
   },
-  "insider_note": "Group as (r₁ + r₂) and (r₃ − r). The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
+  "insider_note": "Group as (r₁ + r₂) and (r₃ − r). The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R.",
+  "formulas": [
+    "m1a.pt.exradii_sum",
+    "m1a.pt.inradius"
+  ]
 }

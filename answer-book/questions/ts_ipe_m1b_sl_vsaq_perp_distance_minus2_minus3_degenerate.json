@@ -176,5 +176,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.point_distance"
+  ]
 }

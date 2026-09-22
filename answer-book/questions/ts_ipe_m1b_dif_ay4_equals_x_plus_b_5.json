@@ -425,5 +425,10 @@
       }
     ]
   },
-  "insider_note": "Take logarithms first — it leads straight to y′/y. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top."
+  "insider_note": "Take logarithms first — it leads straight to y′/y. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top.",
+  "formulas": [
+    "m1b.lim.exponential",
+    "m1b.dif.chain",
+    "m1b.dif.quotient"
+  ]
 }

@@ -361,5 +361,10 @@
       }
     ]
   },
-  "insider_note": "Substituting gives x³ = −8, which has ONE real root, x = −2 — the quadratic factor has no real roots. So there is a single point of intersection."
+  "insider_note": "Substituting gives x³ = −8, which has ONE real root, x = −2 — the quadratic factor has no real roots. So there is a single point of intersection.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.dif.product",
+    "m1b.ad.angle_between_curves"
+  ]
 }

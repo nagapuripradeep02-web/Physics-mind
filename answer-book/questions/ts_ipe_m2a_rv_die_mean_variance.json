@@ -55,6 +55,10 @@
   },
   "recall_prompt": "Say how you would find the mean and variance of the number on a die — what the distribution is, and what you add for each formula.",
   "insider_note": "The variance formula Σxᵢ²·P − μ² needs the mean found first, and it subtracts μ² = 49/4, not μ = 7/2; a mean of 7/2 is correct even though no face of the die shows 3.5.",
+  "formulas": [
+    "m2a.rv.mean",
+    "m2a.rv.variance"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

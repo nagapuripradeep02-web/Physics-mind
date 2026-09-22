@@ -47,6 +47,10 @@
   },
   "recall_prompt": "Say how you would resolve x³/((x − 1)(x + 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
   "insider_note": "Degree 3 over degree 2 is improper, so divide FIRST — quotient x − 1, remainder 3x − 2 — because no A and B can resolve x³ directly; the quotient must also appear again in the final line.",
+  "formulas": [
+    "m2a.pf.improper",
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

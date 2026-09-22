@@ -210,5 +210,6 @@
       }
     ]
   },
-  "insider_note": "sin x has no limit at infinity, but it is BOUNDED, so (sin x)/x² is squeezed to 0. Naming the Sandwich theorem is what makes this an argument rather than an assertion."
+  "insider_note": "sin x has no limit at infinity, but it is BOUNDED, so (sin x)/x² is squeezed to 0. Naming the Sandwich theorem is what makes this an argument rather than an assertion.",
+  "formulas": []
 }

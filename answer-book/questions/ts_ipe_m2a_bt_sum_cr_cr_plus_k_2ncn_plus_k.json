@@ -55,6 +55,7 @@
   },
   "recall_prompt": "Say how you would prove this — the two expansions you multiply, why their product is (1 + x)²ⁿ, which power of x you compare on both sides, and how r = 0 and r = 1 give the two deductions.",
   "insider_note": "Write the SAME expansion twice, once in rising and once in falling powers, so the product is (1 + x)²ⁿ. The deductions cost one mark only as substitutions — r = 0 for (i), r = 1 for (ii) — never as fresh proofs.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

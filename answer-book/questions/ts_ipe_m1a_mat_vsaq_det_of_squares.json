@@ -160,5 +160,6 @@
       }
     ]
   },
-  "insider_note": "Square every entry before doing anything else, or the determinant is of the wrong matrix. The answer is negative, −8, which is correct and not a sign slip."
+  "insider_note": "Square every entry before doing anything else, or the determinant is of the wrong matrix. The answer is negative, −8, which is correct and not a sign slip.",
+  "formulas": []
 }

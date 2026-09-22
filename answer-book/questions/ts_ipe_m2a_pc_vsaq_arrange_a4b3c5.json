@@ -34,6 +34,9 @@
   },
   "recall_prompt": "Say how you would count the arrangements of the letters of a to the 4, b cubed, c to the 5 written out in full — what you count first and which formula you use.",
   "insider_note": "In expanded form a⁴b³c⁵ is a word of 4 + 3 + 5 = 12 letters, so the count is 12!/(4!·3!·5!) — the exponents are letter counts to divide by, not powers to evaluate.",
+  "formulas": [
+    "m2a.pc.alike"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

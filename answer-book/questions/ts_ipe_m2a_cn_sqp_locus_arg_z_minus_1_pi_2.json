@@ -34,6 +34,7 @@
   },
   "recall_prompt": "Say how you would find the locus — what z − 1 is in x and y, and what an argument of π/2 forces on its two parts.",
   "insider_note": "The answer is a half-line, not the whole line x = 1: an argument of π/2 forces the real part of z − 1 to be 0 and its imaginary part to be positive, so y > 0 must appear next to x = 1. Without y > 0 the line includes points whose argument is −π/2.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

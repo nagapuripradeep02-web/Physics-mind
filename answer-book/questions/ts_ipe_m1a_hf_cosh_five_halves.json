@@ -218,5 +218,10 @@
       }
     ]
   },
-  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1) for x > 0, the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
+  "insider_note": "cosh x = 5/2 is possible because cosh x is never less than 1, and here sinh x = √(cosh²x − 1) for x > 0, the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected.",
+  "formulas": [
+    "m1a.hf.cosh_double",
+    "m1a.hf.pythagorean",
+    "m1a.hf.sinh_double"
+  ]
 }

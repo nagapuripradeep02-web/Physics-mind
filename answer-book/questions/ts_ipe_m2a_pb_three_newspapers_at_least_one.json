@@ -51,6 +51,7 @@
   },
   "recall_prompt": "Say how you would find the percentage reading at least one paper — the seven values, the three-event addition formula with its signs, and the answer.",
   "insider_note": "The three-event formula has seven terms: add the singles, subtract the pairs, add the triple back. The sign of the last term is where the mark is lost.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -71,6 +71,9 @@
   },
   "recall_prompt": "Say how you would solve this — which root you take out first and why, how you divide, and how the quotient is solved with t = x + 1/x.",
   "insider_note": "The last mark is for listing all five roots; the root −1 removed at the start is the one most often left out of the box.",
+  "formulas": [
+    "m2a.te.reciprocal"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

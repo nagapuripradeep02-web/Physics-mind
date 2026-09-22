@@ -213,5 +213,8 @@
       }
     ]
   },
-  "insider_note": "Δx must be converted to RADIANS before use — 5′ is (1/12)° and then π/2160. Leaving it in minutes or degrees makes the correction about 3400 times too large if it is left in minutes, and about 57 times too large if it is left in degrees."
+  "insider_note": "Δx must be converted to RADIANS before use — 5′ is (1/12)° and then π/2160. Leaving it in minutes or degrees makes the correction about 3400 times too large if it is left in minutes, and about 57 times too large if it is left in degrees.",
+  "formulas": [
+    "m1b.ad.approximation"
+  ]
 }

@@ -164,5 +164,8 @@
       }
     ]
   },
-  "insider_note": "Add first and take the magnitude afterwards — |a| + |b| is not |a + b|. b has no k component, so the sum is 4i + 3j + 3k and the magnitude is √34."
+  "insider_note": "Add first and take the magnitude afterwards — |a| + |b| is not |a + b|. b has no k component, so the sum is 4i + 3j + 3k and the magnitude is √34.",
+  "formulas": [
+    "m1a.av.unit_vector"
+  ]
 }

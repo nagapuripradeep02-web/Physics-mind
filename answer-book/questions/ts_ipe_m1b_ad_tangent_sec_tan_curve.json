@@ -356,5 +356,9 @@
       }
     ]
   },
-  "insider_note": "Parametric, so dy/dx = (dy/dθ)/(dx/dθ), and it simplifies to cosec θ. Multiplying through by sin θ at the end is what produces the printed form."
+  "insider_note": "Parametric, so dy/dx = (dy/dθ)/(dx/dθ), and it simplifies to cosec θ. Multiplying through by sin θ at the end is what produces the printed form.",
+  "formulas": [
+    "m1b.sl.slope_point",
+    "m1b.ad.tangent"
+  ]
 }

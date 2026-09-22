@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find 13 C n when n C 5 equals n C 6.",
   "insider_note": "State the identity line before using it: unequal lower numbers mean n = 5 + 6 = 11. Then finish what was asked — ¹³C₁₁ = ¹³C₂ = 78 — because n itself is not the answer.",
+  "formulas": [
+    "m2a.pc.ncr_equal"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

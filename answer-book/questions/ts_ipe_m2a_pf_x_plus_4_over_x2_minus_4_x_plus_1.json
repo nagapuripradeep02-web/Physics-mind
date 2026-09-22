@@ -42,6 +42,9 @@
   },
   "recall_prompt": "Say how you would resolve (x + 4)/((x² − 4)(x + 1)) into partial fractions — name each move in order.",
   "insider_note": "x² − 4 is not irreducible — it splits as (x + 2)(x − 2), so the denominator is three different linear factors with three constants, and each root gives one of them directly.",
+  "formulas": [
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

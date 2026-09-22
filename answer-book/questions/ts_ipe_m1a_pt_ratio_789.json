@@ -352,5 +352,9 @@
       }
     ]
   },
-  "insider_note": "Introduce k and the k² cancels in every cosine, so the ratio does not depend on it. Multiply the three fractions by 21, their common denominator, to reach whole numbers."
+  "insider_note": "Introduce k and the k² cancels in every cosine, so the ratio does not depend on it. Multiply the three fractions by 21, their common denominator, to reach whole numbers.",
+  "formulas": [
+    "m1a.pt.cosine_rule",
+    "m1a.pt.sine_rule"
+  ]
 }

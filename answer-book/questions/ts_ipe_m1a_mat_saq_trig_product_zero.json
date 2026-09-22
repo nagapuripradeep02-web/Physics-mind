@@ -274,5 +274,6 @@
       }
     ]
   },
-  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ; cos θ = −sin φ, and that minus sign is what cancels everything. (Multiplying first also works: every entry carries the factor cos(θ − φ) = cos(π/2) = 0.)"
+  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ; cos θ = −sin φ, and that minus sign is what cancels everything. (Multiplying first also works: every entry carries the factor cos(θ − φ) = cos(π/2) = 0.)",
+  "formulas": []
 }

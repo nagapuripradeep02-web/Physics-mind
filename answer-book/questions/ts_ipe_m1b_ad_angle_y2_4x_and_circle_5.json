@@ -321,5 +321,9 @@
       }
     ]
   },
-  "insider_note": "y² = 4x forces x ≥ 0, so the root x = −5 is rejected immediately. Both intersection points share x = 1, with y = ±2."
+  "insider_note": "y² = 4x forces x ≥ 0, so the root x = −5 is rejected immediately. Both intersection points share x = 1, with y = ±2.",
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

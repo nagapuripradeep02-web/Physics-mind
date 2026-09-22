@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would write this product in the form A + iB.",
   "insider_note": "The second mark is one substitution, i² = −1: it turns −12i² into +12 and makes the real part 6 + 12 = 18. And B is the real number −1, not −i — the form A + iB has both A and B real.",
+  "formulas": [
+    "m2a.cn.i_squared"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

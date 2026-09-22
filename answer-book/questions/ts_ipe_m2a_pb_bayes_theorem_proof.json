@@ -67,6 +67,10 @@
   },
   "recall_prompt": "Say Bayes' theorem — what the events must be, the formula — then say the two ideas of the proof: the conditional probability definition, and total probability for P(A).",
   "insider_note": "The statement must say mutually exclusive AND exhaustive; the proof must show where P(A) comes from. Writing only the formula earns the statement mark and nothing else.",
+  "formulas": [
+    "m2a.pr.conditional",
+    "m2a.pr.mutually_exclusive"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

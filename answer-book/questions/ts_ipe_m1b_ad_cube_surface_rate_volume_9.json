@@ -231,5 +231,6 @@
       }
     ]
   },
-  "insider_note": "Two steps: da/dt from the volume rate, then the surface rate. With a = 10 the arithmetic is short, giving 3.6."
+  "insider_note": "Two steps: da/dt from the volume rate, then the surface rate. With a = 10 the arithmetic is short, giving 3.6.",
+  "formulas": []
 }

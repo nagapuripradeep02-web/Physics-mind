@@ -175,5 +175,9 @@
       }
     ]
   },
-  "insider_note": "Sum zero means the intercepts are a and −a, so the form becomes x − y = a. The point gives a = −1, and the answer is x − y + 1 = 0 — write the line, not just the value of a."
+  "insider_note": "Sum zero means the intercepts are a and −a, so the form becomes x − y = a. The point gives a = −1, and the answer is x − y + 1 = 0 — write the line, not just the value of a.",
+  "formulas": [
+    "m1b.sl.intercept_form",
+    "m1b.pl.intercept"
+  ]
 }

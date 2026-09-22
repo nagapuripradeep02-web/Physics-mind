@@ -206,5 +206,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pt.sine_rule",
+    "m1a.pt.tangent_rule"
+  ]
 }

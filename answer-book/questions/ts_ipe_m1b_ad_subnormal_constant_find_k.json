@@ -387,5 +387,6 @@
       }
     ]
   },
-  "insider_note": "Form the subnormal y·m and collect the powers of x; it is constant only when the total index is zero. That gives 2k − 1 = 0, so k = 1/2."
+  "insider_note": "Form the subnormal y·m and collect the powers of x; it is constant only when the total index is zero. That gives 2k − 1 = 0, so k = 1/2.",
+  "formulas": []
 }

@@ -43,6 +43,10 @@
   },
   "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
   "insider_note": "tan θ = −1 fits two angles, so the second mark is the quadrant sentence: (1, −1) is in the fourth quadrant and θ = −π/4. Without that sentence the examiner cannot tell the angle was chosen and not guessed.",
+  "formulas": [
+    "m2a.cn.modulus",
+    "m2a.cn.polar_form"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

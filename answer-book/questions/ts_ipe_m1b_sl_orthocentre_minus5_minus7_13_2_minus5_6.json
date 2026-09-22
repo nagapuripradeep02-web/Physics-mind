@@ -478,5 +478,8 @@
       }
     ]
   },
-  "insider_note": "A and C share x = −5, so AC is vertical and its altitude is simply horizontal: y = 2, with no slope formula at all. Using −1/m on a vertical side is the common error here, because a vertical side has no slope."
+  "insider_note": "A and C share x = −5, so AC is vertical and its altitude is simply horizontal: y = 2, with no slope formula at all. Using −1/m on a vertical side is the common error here, because a vertical side has no slope.",
+  "formulas": [
+    "m1b.ad.normal"
+  ]
 }

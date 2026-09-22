@@ -295,5 +295,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.itf.tan_sum"
+  ]
 }

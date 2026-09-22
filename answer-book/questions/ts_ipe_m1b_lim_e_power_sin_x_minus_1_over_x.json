@@ -185,5 +185,9 @@
       }
     ]
   },
-  "insider_note": "Multiply and divide by sin x so it splits into (eᵗ − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide method is the one the examiner expects."
+  "insider_note": "Multiply and divide by sin x so it splits into (eᵗ − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide method is the one the examiner expects.",
+  "formulas": [
+    "m1b.lim.indeterminate",
+    "m1b.lim.sin"
+  ]
 }

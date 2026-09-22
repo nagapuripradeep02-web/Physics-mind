@@ -188,5 +188,8 @@
       }
     ]
   },
-  "insider_note": "The same method as the 50°/40° version: start from tan(70° − 20°) = tan50°. tan20° = cot70° makes the denominator exactly 2."
+  "insider_note": "The same method as the 50°/40° version: start from tan(70° − 20°) = tan50°. tan20° = cot70° makes the denominator exactly 2.",
+  "formulas": [
+    "m1a.tr.tan_difference"
+  ]
 }

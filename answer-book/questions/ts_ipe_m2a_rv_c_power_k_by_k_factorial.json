@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find c and P(0 < X < 3) when P(X = k) = cᵏ/k! — what series the probabilities make, which standard series it is, and which terms the probability needs.",
   "insider_note": "Σ P(X = k) = 1 written as the series c/1! + c²/2! + … is where the first marks sit; the series is eᶜ with its leading 1 missing, so add 1 to BOTH sides to get eᶜ = 2 — and the final answer stays as logₑ 2, never a decimal.",
+  "formulas": [
+    "m2a.rv.total_one"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

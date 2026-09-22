@@ -303,5 +303,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.pv.component_along"
+  ]
 }

@@ -464,5 +464,10 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.sl.intercept_form",
+    "m1b.ad.angle_between_curves"
+  ]
 }

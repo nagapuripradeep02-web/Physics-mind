@@ -205,5 +205,8 @@
       }
     ]
   },
-  "insider_note": "Collinear means equal ratios, and the first pair 2/4 = ½ is the one to compute first. Then 5/m = ½ gives m = 10, not 2.5 — the unknown is sitting in the denominator."
+  "insider_note": "Collinear means equal ratios, and the first pair 2/4 = ½ is the one to compute first. Then 5/m = ½ gives m = 10, not 2.5 — the unknown is sitting in the denominator.",
+  "formulas": [
+    "m1a.av.collinear"
+  ]
 }

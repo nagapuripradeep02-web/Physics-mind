@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find z minus one over z — what 1/z is for a cis value, and what is left after subtracting.",
   "insider_note": "The ordered pair (cos θ, sin θ) is the complex number cos θ + i sin θ, and because its modulus is 1 the reciprocal is simply the conjugate cos θ − i sin θ. Subtracting cancels the cos terms, so the answer is 2i sin θ — 2cos θ is z + 1/z, a different question.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

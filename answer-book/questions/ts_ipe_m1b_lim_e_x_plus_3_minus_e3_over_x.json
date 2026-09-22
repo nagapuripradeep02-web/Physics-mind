@@ -172,5 +172,8 @@
       }
     ]
   },
-  "insider_note": "Split the power first: eˣ⁺³ = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1."
+  "insider_note": "Split the power first: eˣ⁺³ = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

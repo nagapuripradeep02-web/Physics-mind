@@ -51,6 +51,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for eight numbers — what you do to the data first, how you pick the median when n is even, and what you average at the end.",
   "insider_note": "n = 8 is even, so the median is the average of the 4th and 5th sorted values, (10 + 12)/2 = 11; the deviations are taken from 11 — not from the mean 10 that the same data gives.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

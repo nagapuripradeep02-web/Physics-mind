@@ -63,6 +63,9 @@
   },
   "recall_prompt": "Say how you would find the variance and standard deviation of a discrete frequency table directly — how you get the mean, what you square, and what you divide.",
   "insider_note": "The mean x̄ = 14 must be found before any deviation can be squared, and the question asks for BOTH numbers: σ² = 45.8 and then its square root σ = 6.77 — the root is the last mark.",
+  "formulas": [
+    "m2a.md.standard_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

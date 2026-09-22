@@ -55,6 +55,9 @@
   },
   "recall_prompt": "Say how you would find the probability that the black ball came from B₁ — the events, the priors, the two black-ball probabilities, the total, and Bayes.",
   "insider_note": "The urn is chosen first and the colour is seen second; the question asks the REVERSE direction, which is exactly what Bayes is for. The denominator 41/70 is where arithmetic slips happen.",
+  "formulas": [
+    "m2a.pr.bayes"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

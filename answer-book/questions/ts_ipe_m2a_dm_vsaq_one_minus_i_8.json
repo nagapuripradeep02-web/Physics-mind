@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find this — how you write 1 − i in mod-amp form, and what De Moivre's theorem does with the power 8.",
   "insider_note": "Two lines: take √2 out, leaving cos π/4 − i sin π/4, then apply the power 8. The mark most often lost is (√2)⁸ = 2⁴ = 16 — reading it as 2⁸ gives 256, which is the value of (1 + i)¹⁶, not of (1 − i)⁸.",
+  "formulas": [
+    "m2a.dm.theorem"
+  ],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

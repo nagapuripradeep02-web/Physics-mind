@@ -207,5 +207,8 @@
       }
     ]
   },
-  "insider_note": "Prove ONE of the three and say the others follow by rotating the letters. Each comes to 4R, and it is that shared value which makes them equal to one another."
+  "insider_note": "Prove ONE of the three and say the others follow by rotating the letters. Each comes to 4R, and it is that shared value which makes them equal to one another.",
+  "formulas": [
+    "m1a.seq.am_gm"
+  ]
 }

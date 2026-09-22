@@ -155,5 +155,8 @@
       }
     ]
   },
-  "insider_note": "A quote-and-substitute question: Sinh⁻¹x = logₑ(x + √(x² + 1)). Note the PLUS one inside the root — the cosh and tanh forms differ, and mixing them up is the main risk here."
+  "insider_note": "A quote-and-substitute question: Sinh⁻¹x = logₑ(x + √(x² + 1)). Note the PLUS one inside the root — the cosh and tanh forms differ, and mixing them up is the main risk here.",
+  "formulas": [
+    "m1a.hf.inverse_sinh"
+  ]
 }

@@ -483,6 +483,68 @@ const cutSchema = z.object({
     note: z.string().optional(),
 });
 
+// ── subjects ─────────────────────────────────────────────────────────────────
+/**
+ * Every `subject` value in the bank — ONE list, because the formula sheet keys on
+ * it too and a paper that existed in one place and not the other would ship a
+ * sheet no card could ever fill.
+ */
+export const SUBJECT_KEYS = ['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2'] as const;
+export type SubjectKey = (typeof SUBJECT_KEYS)[number];
+
+// ── the formula sheet (one registry per paper) ────────────────────────────────
+/**
+ * One formula on the sheet.
+ *
+ * The registry, not the cards, owns the WORDING. A formula used by forty cards is
+ * authored once here and referenced by id, so the same identity can never drift
+ * into four spellings across the bank — the reason this is a registry and not a
+ * per-card field.
+ *
+ * Authored from OUR OWN cards: every identity our answers actually use. The source
+ * books print their own formula sheets ("IPE 24 QF", book pp.4-5) and those pages
+ * are a coverage cross-check only, never transcribed — the standing house rule is
+ * "take question text, mark split, star rank and years, never the prose"
+ * (docs/ORIGINALITY_MATHS.md).
+ */
+const formulaSchema = z.object({
+    /** `<paper>.<chapter>.<name>`, e.g. `m1a.tr.sum_to_product_sin`. Stable, but carries
+     *  no student state — the sheet is earned per QUESTION id, so renaming one is free. */
+    id: z.string().regex(/^[a-z0-9]+(\.[a-z0-9_]+){2}$/),
+    /** What a student calls it. Rule 41: basic literal English, the words the formula uses. */
+    name: z.string().min(1),
+    /** The formula itself. Plain Unicode unless `render` says otherwise. */
+    text: z.string().min(1),
+    /**
+     * Same rule as an answer line (lineSchema.render), and the same reason to resist
+     * it: KaTeX HTML runs ~10x its source and every unit bundle carries it. Matrices,
+     * determinants and stacked fractions only.
+     */
+    render: z.enum(['plain', 'katex']).optional(),
+    /**
+     * Signatures that identify this formula inside a card's written lines —
+     * AUTHORING-SIDE ONLY, stripped from the browser copy exactly as `recall` is.
+     * Read by answer-book/tools/propose_formulas.py to propose each card's
+     * `formulas` list; the author confirms every proposal. Matched as a substring
+     * of the card's written lines after both sides are flattened hard — TeX
+     * unwrapped, greek names turned into their letters, superscripts spelled `^2`,
+     * every space and bracket dropped — so a signature is the DISTINCTIVE CORE of
+     * a formula (`2 sinθ cosθ`), never a whole line.
+     */
+    match: z.array(z.string().min(1)).min(1),
+});
+export const formulaSheetSchema = z.object({
+    subject: z.enum(SUBJECT_KEYS),
+    /** Printed at the top of the sheet, e.g. "Maths 1A". */
+    sheet_label: z.string().min(1),
+    /** Grouped by the chapter the formula BELONGS to — a card in any chapter may use it. */
+    chapters: z.array(z.object({
+        number: z.number().int().positive(),
+        formulas: z.array(formulaSchema).min(1),
+    })).min(1),
+});
+export type FormulaSheet = z.infer<typeof formulaSheetSchema>;
+
 // ── question header ──────────────────────────────────────────────────────────
 
 export const answerBookQuestionSchema = z
@@ -501,7 +563,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b', 'zoology_2']),
+        subject: z.enum(SUBJECT_KEYS),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),
@@ -555,6 +617,20 @@ export const answerBookQuestionSchema = z
          * replies, never an authored string). Maths papers first.
          */
         formula_note: z.string().min(1).optional(),
+
+        /**
+         * Which formulas this card uses — ids from `answer-book/formulas/<subject>.json`.
+         *
+         * ALL-OR-NONE PER PAPER: once a subject has a registry, EVERY card of that
+         * subject carries the key, and a card that uses none writes `[]`. A MISSING
+         * key fails the build. Same posture as the `recall` rubric, and the same
+         * lesson as the marks gate a whole paper lost by silence (PracticeSection
+         * above): silence must not buy a free pass twice.
+         *
+         * The student earns these by reading the card to its last step; the sheet is
+         * derived, so nothing here is student state and an id may be renamed freely.
+         */
+        formulas: z.array(z.string().min(1)).optional(),
 
         /**
          * Optional: the same answer offered at more than one length. cuts[0] is the

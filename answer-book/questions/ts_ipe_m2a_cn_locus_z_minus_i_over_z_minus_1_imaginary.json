@@ -43,6 +43,9 @@
   },
   "recall_prompt": "Say how you would find the locus — what you substitute for z, what you multiply by, and which part you set to zero and why.",
   "insider_note": "Purely imaginary means the real part is 0 — setting the imaginary part to zero answers a different question. The last mark needs the locus as an equation in x and y, with the positive denominator dropped: x² + y² − x − y = 0.",
+  "formulas": [
+    "m2a.cn.conjugate_product"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

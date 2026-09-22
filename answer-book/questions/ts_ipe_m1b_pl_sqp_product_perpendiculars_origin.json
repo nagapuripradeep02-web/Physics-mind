@@ -360,5 +360,6 @@
       }
     ]
   },
-  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator equal to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ in the split, which carries constants here, and in the numerator."
+  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator equal to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ in the split, which carries constants here, and in the numerator.",
+  "formulas": []
 }

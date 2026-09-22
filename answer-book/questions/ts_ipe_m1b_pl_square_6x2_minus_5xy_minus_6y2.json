@@ -361,5 +361,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.parallel_distance"
+  ]
 }

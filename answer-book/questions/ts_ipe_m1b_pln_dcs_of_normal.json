@@ -197,5 +197,8 @@
       }
     ]
   },
-  "insider_note": "Both sign sets are valid, because the normal can be taken in either of two opposite directions; quoting one triad answers the question, and the ± shows both. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip."
+  "insider_note": "Both sign sets are valid, because the normal can be taken in either of two opposite directions; quoting one triad answers the question, and the ± shows both. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip.",
+  "formulas": [
+    "m1b.dc.from_ratios"
+  ]
 }

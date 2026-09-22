@@ -518,5 +518,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1b.sl.angle",
+    "m1b.ad.angle_between_curves"
+  ]
 }

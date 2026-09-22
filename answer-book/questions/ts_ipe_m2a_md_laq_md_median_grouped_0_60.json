@@ -47,6 +47,9 @@
   },
   "recall_prompt": "Say how you would find the mean deviation about the median for grouped data — how you find the median class, what the median formula needs, and what you divide at the end.",
   "insider_note": "In the median formula m is the cumulative frequency of the class BEFORE the median class — here 14, not 28; that single number is where this question is most often lost.",
+  "formulas": [
+    "m2a.md.mean_deviation"
+  ],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

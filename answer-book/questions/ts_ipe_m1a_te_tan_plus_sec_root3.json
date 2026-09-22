@@ -399,5 +399,9 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.tr.cos_sum",
+    "m1a.te.general_cos"
+  ]
 }

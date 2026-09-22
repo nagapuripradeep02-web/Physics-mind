@@ -211,5 +211,8 @@
       }
     ]
   },
-  "insider_note": "Here dV/dt is given and dr/dt is the unknown, not the other way round. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π."
+  "insider_note": "Here dV/dt is given and dr/dt is the unknown, not the other way round. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π.",
+  "formulas": [
+    "m1b.ad.rate"
+  ]
 }

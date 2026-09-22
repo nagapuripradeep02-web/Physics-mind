@@ -231,5 +231,8 @@
       }
     ]
   },
-  "insider_note": "The second term is a product, so the product rule is needed at BOTH differentiations. Adding y back cancels the a and b terms entirely, leaving only the 4 cos x."
+  "insider_note": "The second term is a product, so the product rule is needed at BOTH differentiations. Adding y back cancels the a and b terms entirely, leaving only the 4 cos x.",
+  "formulas": [
+    "m1b.dif.product"
+  ]
 }

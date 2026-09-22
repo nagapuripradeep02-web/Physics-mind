@@ -422,5 +422,11 @@
       }
     ]
   },
-  "insider_note": "The condition gives (S−A) + (S−B) = C, replacing the usual 180° step. There is no −1 in this answer, because sinC = 2sin(C/2)cos(C/2) needs no constant term."
+  "insider_note": "The condition gives (S−A) + (S−B) = C, replacing the usual 180° step. There is no −1 in this answer, because sinC = 2sin(C/2)cos(C/2) needs no constant term.",
+  "formulas": [
+    "m1a.seq.am_gm",
+    "m1a.tr.sin_double",
+    "m1a.tr.sum_to_product_cos_plus",
+    "m1a.tr.sum_to_product_sin_plus"
+  ]
 }

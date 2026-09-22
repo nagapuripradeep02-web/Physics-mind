@@ -247,5 +247,8 @@
       }
     ]
   },
-  "insider_note": "Add and subtract a sin a on top so the expression splits into sin a minus a · (sin x − sin a)/(x − a). That quotient tends to cos a, the derivative of sin x at a, giving sin a − a cos a."
+  "insider_note": "Add and subtract a sin a on top so the expression splits into sin a minus a · (sin x − sin a)/(x − a). That quotient tends to cos a, the derivative of sin x at a, giving sin a − a cos a.",
+  "formulas": [
+    "m1b.lim.indeterminate"
+  ]
 }

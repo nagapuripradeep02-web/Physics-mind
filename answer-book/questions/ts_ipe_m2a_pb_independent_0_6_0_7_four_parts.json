@@ -55,6 +55,10 @@
   },
   "recall_prompt": "Say how you would find the four quantities for independent events with P(A) = 0.6 and P(B) = 0.7 — the rule each part uses and the number.",
   "insider_note": "Part (iii) is a one-line answer: for independent events P(B|A) is just P(B). Students lose that mark by computing P(A ∩ B)/P(A) — which gives the same 0.7, but slowly.",
+  "formulas": [
+    "m2a.pr.addition",
+    "m2a.pr.independent"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

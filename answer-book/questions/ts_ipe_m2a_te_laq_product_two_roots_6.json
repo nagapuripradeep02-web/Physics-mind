@@ -47,6 +47,7 @@
   },
   "recall_prompt": "Say how you would solve this — what the product 6 tells you about the other pair, how the two pairs become two quadratic factors, and how you find the pair-sums.",
   "insider_note": "Only the x³ and x coefficients are needed to find p and q; the x² coefficient is a free check that most students never write.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

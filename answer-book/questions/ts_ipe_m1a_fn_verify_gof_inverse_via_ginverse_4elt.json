@@ -277,5 +277,8 @@
         ]
       }
     ]
-  }
+  },
+  "formulas": [
+    "m1a.fn.inverse_of_composite"
+  ]
 }

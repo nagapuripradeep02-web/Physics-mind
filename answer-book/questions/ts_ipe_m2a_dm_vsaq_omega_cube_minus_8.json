@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would find this — what 1 − ω + ω² reduces to, and what its cube is.",
   "insider_note": "1 − ω + ω² reduces to −2ω, not −ω: 1 + ω² = −ω, and the −ω already in the bracket adds to it. Miss that doubling and the cube comes out −1 instead of −8.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

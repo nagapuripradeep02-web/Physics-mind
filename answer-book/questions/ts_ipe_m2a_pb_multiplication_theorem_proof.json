@@ -51,6 +51,10 @@
   },
   "recall_prompt": "Say the multiplication theorem, then say how it is proved from the two conditional probability definitions.",
   "insider_note": "The statement needs both conditions P(A) ≠ 0 and P(B) ≠ 0 — each one is what allows one of the two divisions in the proof.",
+  "formulas": [
+    "m2a.pr.conditional",
+    "m2a.pr.independent"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

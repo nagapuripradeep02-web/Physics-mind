@@ -39,6 +39,7 @@
   },
   "recall_prompt": "Say how you would show this — say what you do with the two equations to find the common root, and where you put that root afterwards.",
   "insider_note": "Subtract the two equations so α² cancels: (b − c)(α − 1) = 0 forces α = 1 when b ≠ c. The required line is then one substitution back — stopping at α = 1 leaves the asked result unwritten.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

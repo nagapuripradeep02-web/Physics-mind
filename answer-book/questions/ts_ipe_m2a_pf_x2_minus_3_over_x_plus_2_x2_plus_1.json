@@ -63,6 +63,9 @@
   },
   "recall_prompt": "Say how you would resolve (x² − 3)/((x + 2)(x² + 1)) into partial fractions — name each move in order.",
   "insider_note": "x² + 1 does not factorise, so it takes Bx + C on top, not a constant; all three constants come out as fifths — A = 1/5, B = 4/5, C = −8/5 — and they stay as fractions to the end.",
+  "formulas": [
+    "m2a.pf.substitute_root"
+  ],
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -171,5 +171,9 @@
       }
     ]
   },
-  "insider_note": "Only √(a² + b²) matters, so 3 and 4 give 5 whichever function they sit on. With no constant term the two answers are symmetric: 5 and −5."
+  "insider_note": "Only √(a² + b²) matters, so 3 and 4 give 5 whichever function they sit on. With no constant term the two answers are symmetric: 5 and −5.",
+  "formulas": [
+    "m1a.tr.a_sin_b_cos_range",
+    "m1a.te.a_cos_b_sin_method"
+  ]
 }

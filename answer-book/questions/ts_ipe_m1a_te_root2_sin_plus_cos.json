@@ -321,5 +321,10 @@
       }
     ]
   },
-  "insider_note": "Divide by √(a² + b²) = 2, not by √2, so the right side becomes √3/2. It then becomes cos(x − π/4) = cos(π/6), and the cosine general solution 2nπ ± α is the one to use."
+  "insider_note": "Divide by √(a² + b²) = 2, not by √2, so the right side becomes √3/2. It then becomes cos(x − π/4) = cos(π/6), and the cosine general solution 2nπ ± α is the one to use.",
+  "formulas": [
+    "m1a.tr.cos_difference",
+    "m1a.te.a_cos_b_sin_method",
+    "m1a.te.general_cos"
+  ]
 }

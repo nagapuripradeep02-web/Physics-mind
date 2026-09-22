@@ -43,6 +43,7 @@
   },
   "recall_prompt": "Say how you would show a² + b² = 4 without expanding the power — what you take on both sides and what cancels.",
   "insider_note": "Do not expand the power, and leave De Moivre alone here — it reaches the same 4, but takes several more lines. Take the modulus of both sides: |√3 + i| = 2 gives 2¹⁰⁰ on the left, and the positive real number 2⁹⁹ comes out of the modulus unchanged. The finish is 2¹⁰⁰/2⁹⁹ = 2, then square.",
+  "formulas": [],
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
