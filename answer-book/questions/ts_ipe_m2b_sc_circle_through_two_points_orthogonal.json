@@ -49,6 +49,7 @@
     "m2b.ci.general_form",
     "m2b.sc.orthogonal"
   ],
+  "formula_note": "Two circles cut at right angles exactly when 2gg′ + 2ff′ = c + c′ — a numeric relation between their coefficients, not a line. That is different from the radical axis S − S′ = 0, which subtracts the two circle equations to produce an actual line through their intersection points; orthogonality never produces a line by itself.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

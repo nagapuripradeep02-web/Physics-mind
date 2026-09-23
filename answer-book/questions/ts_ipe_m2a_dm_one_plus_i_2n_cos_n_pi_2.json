@@ -52,6 +52,7 @@
     "m2a.dm.add_conjugates",
     "m2a.dm.theorem"
   ],
+  "formula_note": "Same base 1 + i, r = √2 and θ = π/4, as the sibling (1 + i)ⁿ + (1 − i)ⁿ question — but here the power 2n multiplies the angle to nπ/2 directly and (√2)²ⁿ simplifies cleanly to 2ⁿ. Do not confuse the two: raising to 2n gives 2ⁿ⁺¹cos(nπ/2), while the sibling's power of n instead gives the different form 2 to the power (n + 2)/2, cos(nπ/4).",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -43,6 +43,7 @@
   },
   "insider_note": "The comparison ratio comes out as k = 1 here, which means the polar is literally the given line with no scaling — a useful sign that the arithmetic is right.",
   "formulas": [],
+  "formula_note": "Finding a pole reverses the polar formula: write S₁ = 0 with the pole's coordinates left as x₁, y₁, then match its coefficients against the given line through one ratio k, since two equations of the same line have proportional coefficients. Finding a POLAR instead substitutes a known point straight into S₁ = 0, with no unknowns and no ratio.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

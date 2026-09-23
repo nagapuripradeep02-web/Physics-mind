@@ -43,6 +43,7 @@
   },
   "insider_note": "The two circles are mirror images of each other, swapping a and b — that symmetry is exactly why the second-degree terms cancel completely and only a straight line survives.",
   "formulas": [],
+  "formula_note": "The common chord of two circles is S − S′ = 0, the same line usually called the radical axis — the two names describe the same formula, used here as a genuine chord because the two circles actually meet. Both x² and y² terms cancel whenever the two circles carry the same coefficient on them, which is why the result is a straight line.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

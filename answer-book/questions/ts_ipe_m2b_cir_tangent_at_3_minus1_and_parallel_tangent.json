@@ -41,6 +41,7 @@
   "formulas": [
     "m2b.ci.general_form"
   ],
+  "formula_note": "Two different formulas answer two different questions: S₁ = 0 gives the tangent at a point known to lie ON the circle, while y + f = m(x + g) ± r√(1 + m²) gives a tangent of a given SLOPE, with no point on the circle required. This question uses S₁ = 0 first, then switches to the slope formula for the parallel tangent.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

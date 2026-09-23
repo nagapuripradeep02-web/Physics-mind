@@ -44,6 +44,7 @@
   "formulas": [
     "m2b.di.a_minus_x"
   ],
+  "formula_note": "The three x·sinx or x·sin³x style integrals from 0 to π in this unit open with the same King's property step, x → π − x, then add. What follows differs: here sin³x expands to (1−cos²x)sinx and cosx = t finishes it directly, unlike the sibling with 1 + sinx in the denominator, which instead needs the 1 − sinx conjugate.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

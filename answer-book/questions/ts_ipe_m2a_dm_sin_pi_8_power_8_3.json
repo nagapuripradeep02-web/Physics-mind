@@ -58,6 +58,7 @@
   "formulas": [
     "m2a.dm.theorem"
   ],
+  "formula_note": "Two facts do the reduction, not mod-amp conversion of each bracket separately: since |sin π/8 + i cos π/8| = 1, its reciprocal equals its conjugate, so both brackets collapse to (1 + z)/(1 + 1/z) = z; and because z is sine-first, the co-function swap cos(π/2 − π/8) = sin π/8 rewrites it cosine-first as cis(3π/8) before De Moivre applies.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

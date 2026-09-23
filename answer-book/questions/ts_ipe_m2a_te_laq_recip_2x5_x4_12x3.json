@@ -74,6 +74,7 @@
   "formulas": [
     "m2a.te.reciprocal"
   ],
+  "formula_note": "This is Class I (aₖ=aₙ₋ₖ, coefficients read the same forwards and backwards) at ODD degree n=5, so x=−1 is always a root — remove it first, leaving an even Class I quotient for x+1/x=t. A Class II sibling (signs flip, aₖ=−aₙ₋ₖ) at the same odd degree has x=+1 as its root, never −1 — check whether coefficients repeat or flip before dividing.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

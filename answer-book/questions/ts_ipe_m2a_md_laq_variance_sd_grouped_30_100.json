@@ -50,6 +50,7 @@
   "formulas": [
     "m2a.md.standard_deviation"
   ],
+  "formula_note": "For grouped data with step deviation, variance is σ² = C²[(1/N)Σfᵢdᵢ² − ((1/N)Σfᵢdᵢ)²] — the C² multiplies the whole bracket at the very end. This differs from the direct formula used on ungrouped data, σ² = (1/N)Σfᵢ(xᵢ − x̄)² − no C² factor there, since no step deviation is used.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

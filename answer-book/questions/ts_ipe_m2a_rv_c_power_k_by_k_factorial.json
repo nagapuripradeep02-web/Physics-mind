@@ -46,6 +46,7 @@
   "formulas": [
     "m2a.rv.total_one"
   ],
+  "formula_note": "Recognise the series by its shape: a term cᵏ/k! sums using eˣ = 1 + x + x²/2! + …, so Σcᵏ/k! from k = 1 equals eᶜ − 1. A different shape, a linear factor in k over a fixed power like (k + 1)c/2ᵏ, instead needs the series 1 + 2x + 3x² + … = (1 − x)⁻², tested separately in this unit — the two series are not interchangeable.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

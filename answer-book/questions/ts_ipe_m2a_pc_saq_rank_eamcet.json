@@ -60,6 +60,7 @@
   "recall_prompt": "Say how you would find the dictionary rank of EAMCET — what you write first, how you count the words before it, and how you finish.",
   "insider_note": "The two E letters are what make this rank different from a word whose letters are all distinct: the A and C blocks are 5!/2! = 60 each, not 120. Miss that division and every later number moves — the marks are in the block table, not the final addition.",
   "formulas": [],
+  "formula_note": "Rank = 1 + the words before it, found by fixing letters in order and counting permutations of what remains — (remaining letters)!/(repeat!) whenever a repeat is still among them. EAMCET has a repeated letter, so its A and C blocks divide by 2!, giving 60, not 120; MASTER and PRISON have no repeat, so every block there is a plain factorial.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

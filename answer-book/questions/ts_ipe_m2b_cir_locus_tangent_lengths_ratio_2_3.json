@@ -47,6 +47,7 @@
   },
   "insider_note": "Squaring the ratio is the whole method: PT₁ : PT₂ = 2 : 3 becomes 9(PT₁)² = 4(PT₂)², and the 9 goes with the FIRST circle — putting the 4 there is the single commonest slip on this question.",
   "formulas": [],
+  "formula_note": "The square of a tangent length from an external point is S₁₁ — the circle's own left-hand side evaluated at that point, a plain number depending only on x₁, y₁. That is different from S₁, the LINEAR expression in x and y used for a tangent line or a polar. This locus question needs S₁₁, not S₁, for both circles.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

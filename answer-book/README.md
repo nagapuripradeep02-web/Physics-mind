@@ -135,22 +135,24 @@ Scope lives in three lists at the top of `notebook.js`, widest to narrowest —
 half and lives per-request in both chat servers (`src/scripts/answerbook_vidi_server.ts` and
 `supabase/functions/answerbook-vidi-chat/index.ts`, kept identical by hand), never in PERSONA.
 
-## What the tip chip is called, and the formula note
+## The chat box chips, and the formula note
 
-`memory_tip` is authored on every step, but what the authors wrote differs by paper:
-in maths, physics and chemistry the tips are how to DO the step ("Multiply by its
-conjugate — the squares cancel"), while in botany and zoology they are real memory
-devices ("Apo = away from, mixis = mixing"). So the chip is named for the content —
-**"How do I write this?"** on the first group, **"How to remember?"** on the second.
-The list is `WRITE_TIP_SUBJECTS` at the top of `notebook.js`, mirrored by a gate in
-`e2e/answer_book.spec.ts`.
+The Vidi panel offers **two question chips** (founder, 2026-09-23): **Explain this
+step** (the step's `why` line + its top common mistake) and **How to remember?**
+(the step's `memory_tip`). "Will this come?", "How much to write?" and "Which
+formula?" were removed — five chips read as a menu rather than a conversation.
+Nothing authored was lost with them: the star rank, the asked years, the mark
+split and the formula note all still ride `buildVidiContext`, so the model answers
+those questions when a student types them. The chips that remain are
+deterministic and free, as they have always been.
 
 `formula_note` is a question-level field (optional and sparse, like `insider_note`):
 which formulas the answer turns on, and how to tell the question apart from the
-siblings it is confused with. It has its own **"Which formula?"** chip, is handed to
-Vidi as `FORMULA NOTE`, and is **stripped from gated builds by name** — top-level
-fields ride the `...q` spread, so the per-step allowlist cannot reach it, and it names
-the formulas the chapter is sold for.
+siblings it is confused with. It reaches the student through Vidi's replies as the
+`FORMULA NOTE` line, and is **stripped from gated builds by name** — top-level
+fields ride the `...q` spread, so the per-step allowlist cannot reach it, and it
+names the formulas the chapter is sold for. Swept by
+`answer-book/tools/check_formula_notes.py`.
 
 ## Test yourself
 

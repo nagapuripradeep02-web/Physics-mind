@@ -59,6 +59,7 @@
     "m2a.rv.mean",
     "m2a.rv.variance"
   ],
+  "formula_note": "This is one die, so all six outcomes are equally likely, each 1/6. Do not carry that over to the sum of two dice, tested separately in this unit: there the outcomes 2 to 12 are not equally likely — a sum of 7 has probability 6/36 while a sum of 2 has only 1/36, since more pairs of dice add to 7.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

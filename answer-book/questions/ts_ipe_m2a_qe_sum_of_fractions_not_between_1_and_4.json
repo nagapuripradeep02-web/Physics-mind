@@ -74,6 +74,7 @@
   "formulas": [
     "m2a.qe.discriminant"
   ],
+  "formula_note": "Same method as the range siblings: set y equal to the expression, require Δ ≥ 0 in x — but the y² coefficient in that discriminant is POSITIVE here, not negative. A positive leading coefficient makes Δ ≥ 0 hold OUTSIDE its two roots: 'does not lie between', the opposite shape from x/(x² − 5x + 9), whose negative coefficient bounds a range instead.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

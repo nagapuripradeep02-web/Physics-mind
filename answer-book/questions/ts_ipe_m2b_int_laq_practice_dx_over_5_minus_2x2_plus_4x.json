@@ -46,6 +46,7 @@
   },
   "insider_note": "The book's own bracketed answer is written with √7 and √2 kept separate rather than combined into √14 — both forms are correct and equal; write whichever one this card's boxed line ends in, since that is the more standard way to present it, but recognise the book's form if it turns up in a mark scheme.",
   "formulas": [],
+  "formula_note": "After taking out −2 and completing the square, this denominator becomes a²−(x−1)², not (x−1)²−a² — a bounded difference, since the leading coefficient is negative. The log formula for a²−x² puts (a+x) on top and (a−x) below, the opposite order from the x²−a² formula used when the leading coefficient is positive.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

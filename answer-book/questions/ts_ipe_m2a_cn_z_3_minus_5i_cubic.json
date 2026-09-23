@@ -41,6 +41,7 @@
   "formulas": [
     "m2a.cn.i_squared"
   ],
+  "formula_note": "General formula: for z = a + ib, the real quadratic with roots z and z̄ is z² − 2az + (a² + b²) = 0, since z + z̄ = 2a and z·z̄ = a² + b² = |z|². For z = 3 − 5i this gives z² − 6z + 34 = 0, and the cubic factors as (z − 4)(z² − 6z + 34) — recall the general form first, then substitute the numbers, rather than expanding (3 − 5i)³ directly.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

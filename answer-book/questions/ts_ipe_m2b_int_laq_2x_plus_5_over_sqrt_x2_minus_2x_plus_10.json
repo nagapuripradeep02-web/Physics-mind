@@ -42,6 +42,7 @@
   },
   "insider_note": "Whenever the numerator is linear and the denominator is a square root of a quadratic, write the numerator as A times the quadratic's derivative plus a leftover constant B — the A-part always integrates to 2A√(quadratic), no matter what the quadratic is.",
   "formulas": [],
+  "formula_note": "After splitting the numerator as A times the derivative of the quadratic plus B, the B-part needs a standard form for the leftover √(quadratic). Completing the square here gives (x−1)²+3², a sum under the root, so the standard form is sinh⁻¹ — not Sin⁻¹, which applies only when completing the square gives a bounded a²−x² instead.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

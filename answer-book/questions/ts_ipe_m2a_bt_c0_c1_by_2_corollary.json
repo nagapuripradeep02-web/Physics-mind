@@ -50,6 +50,7 @@
   "formulas": [
     "m2a.pc.ncr"
   ],
+  "formula_note": "The step ((n+1)/(r+1))·ⁿCᵣ=ⁿ⁺¹Cᵣ₊₁ converts a coefficient of (1+x)ⁿ into one of (1+x)ⁿ⁺¹, letting the sum be read off a higher expansion — different from ⁿCᵣ/ⁿCᵣ₋₁=(n−r+1)/r, used elsewhere in this unit to compare two coefficients of the SAME n and solve for n or r.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

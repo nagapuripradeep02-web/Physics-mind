@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.ci.general_form"
   ],
+  "formula_note": "S + λL = 0 is the family of every circle through the two points where the circle S meets the line L — the same one-parameter idea as S + λS′ = 0 for two circles, but built from a circle and a line instead. A chord becomes a diameter exactly when the family's own centre lies on L; that condition is what fixes λ here.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

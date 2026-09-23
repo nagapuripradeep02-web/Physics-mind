@@ -41,6 +41,7 @@
     "m2b.ci.general_form",
     "m2b.ci.radius"
   ],
+  "formula_note": "The mid point of a chord is the foot of the perpendicular from the centre to the chord: (h − x₁)/a = (k − y₁)/b = −(ax₁ + by₁ + c)/(a² + b²). The identical formula gives the POINT OF CONTACT when the same line only touches the circle instead of cutting it — the geometry differs, the algebra does not.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

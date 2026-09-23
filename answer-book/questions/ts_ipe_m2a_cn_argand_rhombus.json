@@ -56,6 +56,7 @@
   "recall_prompt": "Say how you would show that the four points make a rhombus — what you compute, and which two facts you compare at the end.",
   "insider_note": "A rhombus answer needs the two diagonals as well as the four sides: equal sides with unequal diagonals is what separates a rhombus from a square. The last mark is the sentence that states both and names the shape.",
   "formulas": [],
+  "formula_note": "Distance between two complex numbers is |z₁ − z₂|; the equilateral and square siblings reuse the same formula for a different shape. A rhombus needs all four sides equal AND the two diagonals unequal — equal sides alone only proves a rhombus-or-square, and equal diagonals instead would make it a square, so both diagonals must be found and compared.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

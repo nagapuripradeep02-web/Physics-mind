@@ -48,6 +48,7 @@
   "formulas": [
     "m2b.de.homogeneous"
   ],
+  "formula_note": "This is the homogeneous twin of the cos²(y/x) gradient question, sharing the same point (1, π/4). Here the equation carries sin²(y/x), so 1/sin²v = cosec²v, and ∫−cosec²v dv gives cot v, not tan v — the other question's cos² term needs sec²v and gives tan v instead. Check which trig function is inside before choosing the identity.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.de.separable"
   ],
+  "formula_note": "Recognise this as REDUCIBLE, not homogeneous, because of the constants +3 and +5. Test a₁/a₂ = b₁/b₂ first: here 1/2 = (−1)/(−2), so the lines are parallel and x − y is the repeating combination — substitute v = x − y. A non-parallel ratio would instead need a shift of origin, not this substitution.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

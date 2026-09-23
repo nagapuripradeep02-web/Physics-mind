@@ -50,6 +50,7 @@
     "m2b.ci.power_of_point",
     "m2b.ci.radius"
   ],
+  "formula_note": "Two centres decide the two pairs: I divides C₁C₂ internally in r₁ : r₂ and gives the TRANSVERSE tangents; E divides it externally and gives the DIRECT tangents. Swapping internal and external swaps the pair. Each pair uses S₁² = S₁₁·S measured from that centre, not S₁ = 0, since I and E lie outside both circles, never on them.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

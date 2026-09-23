@@ -41,6 +41,7 @@
   "formulas": [
     "m2b.ci.general_form"
   ],
+  "formula_note": "The tangent at a point ON the circle is S₁ = 0, a genuine named formula. The normal has no formula of its own — it is simply the line through that same point and the centre, equivalently the line through the point perpendicular to the tangent just found. There is no second S-formula to look for when finding the normal.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

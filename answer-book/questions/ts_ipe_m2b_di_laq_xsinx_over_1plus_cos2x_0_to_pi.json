@@ -54,6 +54,7 @@
     "m2b.di.a_minus_x",
     "m2b.di.adding_two"
   ],
+  "formula_note": "Like its two 0-to-π siblings in this unit, this opens with King's property, x → π − x, then adding to cancel x. Here the reduced integral is already free of x, so cosx = t leads straight to a Tan⁻¹ answer — no cubing and no conjugate is needed, unlike the sin³x or the 1 + sinx versions of this same style of integral.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

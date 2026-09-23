@@ -50,6 +50,7 @@
     "m2b.ci.general_form",
     "m2b.ci.radius"
   ],
+  "formula_note": "Length of a chord uses 2√(r² − p²), with p the perpendicular distance from the centre to the LINE — different from the length of a tangent from an external POINT, which is √S₁₁, with no perpendicular distance involved. Confusing the two formulas is the usual slip between chord-length and tangent-length questions in this unit.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

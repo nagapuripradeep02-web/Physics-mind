@@ -50,6 +50,7 @@
   "formulas": [
     "m2a.cn.i_squared"
   ],
+  "formula_note": "The formula is the cube of a binomial: (a − ib)³ = (a³ − 3ab²) + i(3a²b − b³), using i² = −1 and i³ = −i. Comparing with x − iy gives x = a³ − 3ab² and y = 3a²b − b³ — the sign flips because −iy is matched to the imaginary part. Then x/a + y/b = (a² − 3b²) + (3a² − b²) = 4(a² − b²).",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

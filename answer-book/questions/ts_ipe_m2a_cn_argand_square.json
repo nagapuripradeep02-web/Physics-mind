@@ -48,6 +48,7 @@
   "recall_prompt": "Say how you would show that the four points make a square — what you compute, how many distances there are, and what two facts you need at the end.",
   "insider_note": "Six distances, not four — equal sides alone only prove a rhombus, so the two diagonals must also be computed and shown equal. And read 3i as the point (0, 3): taking it as (3, 0) breaks every distance that uses D.",
   "formulas": [],
+  "formula_note": "Distance between two complex numbers is |z₁ − z₂|. A square needs all four sides equal AND the two diagonals equal — equal sides alone only proves a rhombus; unequal diagonals would make it a rhombus instead, not a square, so both diagonals must be found and shown equal, six distances in total, not four.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

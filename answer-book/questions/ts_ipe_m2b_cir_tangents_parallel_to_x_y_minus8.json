@@ -46,6 +46,7 @@
     "m2b.ci.general_form",
     "m2b.ci.radius"
   ],
+  "formula_note": "A tangent parallel to a given line can be found two ways: keep the same x and y coefficients and add an unknown constant k, then set the perpendicular distance from the centre equal to the radius, as done here; or convert to a slope m and use y + f = m(x + g) ± r√(1 + m²) directly. Both give the same pair of tangents.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

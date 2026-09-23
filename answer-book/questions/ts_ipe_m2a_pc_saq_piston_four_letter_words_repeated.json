@@ -41,6 +41,7 @@
   "formulas": [
     "m2a.pc.npr"
   ],
+  "formula_note": "Words allowing repetition = nʳ, since each of the r positions is filled independently from all n letters; words with NO repetition = ⁿPᵣ, since each choice removes one letter from the pool. There is no direct formula for at least one repeat, so it is found by subtraction: all words minus the no-repeat count, never the reverse.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

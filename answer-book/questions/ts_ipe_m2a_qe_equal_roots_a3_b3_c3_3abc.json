@@ -50,6 +50,7 @@
   "formulas": [
     "m2a.qe.discriminant"
   ],
+  "formula_note": "Δ = 0 here factors as 4a(a + b + c)(a² + b² + c² − ab − bc − ca), which is exactly 4a(a³ + b³ + c³ − 3abc), since a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca). So Δ = 0 means a = 0 or a³ + b³ + c³ = 3abc — dividing the equation by a before setting Δ = 0 silently discards the a = 0 branch.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

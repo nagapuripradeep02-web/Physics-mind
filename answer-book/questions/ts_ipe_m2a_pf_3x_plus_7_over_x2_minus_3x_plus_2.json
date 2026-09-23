@@ -45,6 +45,7 @@
   "formulas": [
     "m2a.pf.substitute_root"
   ],
+  "formula_note": "For a fraction over linear factors that do not repeat, each constant comes from one substitution: put x equal to that factor's root, and the other terms vanish, giving the constant directly, no simultaneous equations needed. This fails once a factor repeats or is an irreducible quadratic — then coefficient comparison is needed too.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

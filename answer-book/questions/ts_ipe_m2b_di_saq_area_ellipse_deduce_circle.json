@@ -46,6 +46,7 @@
     "m2b.pa.latus_rectum",
     "m2b.el.standard"
   ],
+  "formula_note": "This area question is bounded by one closed curve, the ellipse, so the method is: solve for y, take 4 times the first-quadrant integral, and apply the standard ∫√(a²−x²)dx formula. This differs from the other area questions in this unit, bounded by two curves, which need their intersection points and an upper-minus-lower-curve integral instead.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

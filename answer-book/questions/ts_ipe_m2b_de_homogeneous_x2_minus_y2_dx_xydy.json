@@ -49,6 +49,7 @@
     "m2b.de.homogeneous",
     "m2b.de.separable"
   ],
+  "formula_note": "Recognise a homogeneous differential equation by checking every term has the same total degree in x and y, then substitute y = vx. This differs from a REDUCIBLE equation, which carries an extra lone constant (such as +1 or −1) in its coefficients and instead needs v = a₁x + b₁y or a shift of origin, never y = vx.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

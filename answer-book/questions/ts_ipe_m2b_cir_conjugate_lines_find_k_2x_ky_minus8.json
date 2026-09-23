@@ -50,6 +50,7 @@
     "m2b.ci.general_form",
     "m2b.ci.radius"
   ],
+  "formula_note": "The conjugate-lines condition is r²(l₁l₂ + m₁m₂) = (l₁g + m₁f − n₁)(l₂g + m₂f − n₂), with each line written as lx + my + n = 0. Every bracket carries MINUS n, not plus — a line ending in −8 contributes +8 inside its bracket. The sibling question with kx + 3y − 1 = 0 uses the identical formula; only which line holds k changes.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

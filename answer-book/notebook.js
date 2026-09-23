@@ -3389,20 +3389,6 @@
   var DRAG_ASK_SUBJECTS = { mathematics: 1, mathematics_1b: 1, mathematics_2a: 1, mathematics_2b: 1 };
   var DRAG_ASK_UNITS = {};
 
-  // What the memory-tip chip is CALLED, per paper (2026-09-21). The field is
-  // named memory_tip everywhere, but what the authors actually wrote differs by
-  // subject: in maths, physics and chemistry the tips are how to DO the step
-  // ("Multiply by its conjugate — the squares cancel"), while in botany and
-  // zoology they are real memory devices ("Apo = away from, mixis = mixing").
-  // Calling the first kind "How to remember?" announced answering technique as
-  // a mnemonic; calling the second kind "How do I write this?" would be the
-  // same lie pointing the other way. So the label follows the content.
-  var WRITE_TIP_SUBJECTS = {
-    mathematics: 1, mathematics_1b: 1, mathematics_2a: 1, mathematics_2b: 1,
-    physics: 1, physics_2: 1, chemistry: 1, chemistry_2: 1,
-  };
-  function tipIsHowToWrite(q) { return !!WRITE_TIP_SUBJECTS[(q && q.subject) || 'physics']; }
-
   /** Is this card in the drag-to-ask scope? */
   function dragAskCard(q) {
     if (!q) return false;
@@ -6875,14 +6861,17 @@
     function renderVidiChips() {
       var row = $('vidiChips');
       row.innerHTML = '';
-      row.appendChild(chipBtn('Will this come?', chipCome));
-      row.appendChild(chipBtn('Why this step?', chipWhy));
+      // TWO question chips, not five (founder, 2026-09-23). "Will this come?",
+      // "How much to write?" and "Which formula?" were removed: this is a chat
+      // box, and a row of five buttons reads as a menu rather than a
+      // conversation. The authored data behind the removed chips is NOT lost —
+      // stars, asked years, the mark split and the formula note all still reach
+      // the model through buildVidiContext, so a student who types the question
+      // gets the same authored answer. "Why this step?" became "Explain this
+      // step": same data, the words a student would actually use.
+      row.appendChild(chipBtn('Explain this step', chipWhy));
       var s = currentStep();
-      if (s && s.memory_tip) {
-        row.appendChild(chipBtn(tipIsHowToWrite(question) ? 'How do I write this?' : 'How to remember?', chipTip));
-      }
-      row.appendChild(chipBtn('How much to write?', chipHowMuch));
-      if (question.formula_note) row.appendChild(chipBtn('Which formula?', chipFormula));
+      if (s && s.memory_tip) row.appendChild(chipBtn('How to remember?', chipTip));
       // Planner chips are APPENDED, never prepended: the offline gate clicks the
       // FIRST chip and expects the deterministic bank answer.
       var plan = Vidi.getPlan();
@@ -6923,23 +6912,12 @@
       return p.done + ' of ' + p.total + ' finished.';
     }
 
-    function chipCome() {
-      Vidi.log('chip', { chip: 'come', qid: question.question_id });
-      var e = manifestEntry();
-      var parts = [];
-      var st = starsLine(e);
-      if (st) parts.push(st);
-      if (e && e.source === 'enumerated') {
-        parts.push('No paper has asked it yet. It fills a gap in the chapter, so it can appear.');
-      } else {
-        var asked = askedLine(question);
-        if (asked) parts.push(asked + '.');
-      }
-      if (!parts.length) parts.push('There is no exam record for this one yet.');
-      parts.push('Learn the 3-star questions of this chapter first.');
-      say(parts.join(' '));
-    }
-
+    // REMOVED 2026-09-23 (founder): chipCome ("Will this come?"), chipHowMuch
+    // ("How much to write?") and chipFormula ("Which formula?"). The chat box
+    // keeps two question chips. Nothing authored was lost with them — the star
+    // rank, the asked years, the mark split and the formula note all still ride
+    // buildVidiContext, so the model answers those questions when a student
+    // types them; only the one-tap shortcuts are gone.
     function chipWhy() {
       Vidi.log('chip', { chip: 'why', qid: question.question_id,
         step: stepIndex >= 0 ? steps[stepIndex].id : null });
@@ -6958,26 +6936,7 @@
       var s = currentStep();
       Vidi.log('chip', { chip: 'tip', qid: question.question_id, step: s ? s.id : null });
       if (!s || !s.memory_tip) { say('Nothing written for this step yet.'); return; }
-      say((tipIsHowToWrite(question) ? 'Writing "' : 'To remember "') + s.label + '": ' + s.memory_tip);
-    }
-
-    /** The question-level formula note: which formula this answer needs, and
-        how to tell it from the sibling questions that look like it. Authored,
-        deterministic, no model call. */
-    function chipFormula() {
-      Vidi.log('chip', { chip: 'formula', qid: question.question_id });
-      if (!question.formula_note) { say('Nothing written for this one yet.'); return; }
-      say(question.formula_note);
-    }
-
-    function chipHowMuch() {
-      Vidi.log('chip', { chip: 'howmuch', qid: question.question_id });
-      var rows = [];
-      for (var i = 0; i < cut.mark_split.length; i++) {
-        rows.push(cut.mark_split[i].label + ' — ' + cut.mark_split[i].marks + 'M');
-      }
-      say('This answer is ' + marksTotal + ' marks. The split: ' + rows.join(' · ') +
-        '. Plan about ' + cut.expected_time_min + ' minutes for it.');
+      say('To remember "' + s.label + '": ' + s.memory_tip);
     }
 
     // ── free-text ask (exists only when the build has a chat base) ──────────

@@ -54,6 +54,7 @@
   "formulas": [
     "m2a.bt.negative_index"
   ],
+  "formula_note": "Match a series to the standard expansion by its numerators and its bracket: the first numerator gives p, the second gives p(p+q), and the bracket ratio gives x/q. A series with every term ADDED matches (1−x) to the power −p/q; one with ALTERNATING signs matches (1+x) to the power −p/q instead — the sign pattern decides which mirror form is needed.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

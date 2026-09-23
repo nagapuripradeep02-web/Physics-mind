@@ -70,6 +70,7 @@
   "formulas": [
     "m2a.md.mean_deviation"
   ],
+  "formula_note": "Mean deviation about the mean finds x̄ in one step from the step-deviation table, then uses (1/N)Σfᵢ|xᵢ − x̄|. Mean deviation about the median instead needs the median found first — from the cumulative-frequency table for discrete data, or l + (C/f)(N/2 − m) for grouped data — before the |xᵢ − M| column can be filled; both then divide by N.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

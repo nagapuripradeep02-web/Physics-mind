@@ -615,6 +615,11 @@ export const answerBookQuestionSchema = z
          * Optional and sparse, the same shape as insider_note, and plain literal
          * English (Rule 41 — the 41f comparison carve-out covers Vidi's chat
          * replies, never an authored string). Maths papers first.
+         *
+         * It had its own "Which formula?" chip until 2026-09-23, when the chat
+         * box was cut to two question chips. It is NOT orphaned: it rides
+         * buildVidiContext as the FORMULA NOTE line, so the model answers from
+         * it whenever a student asks which formula a question needs.
          */
         formula_note: z.string().min(1).optional(),
 

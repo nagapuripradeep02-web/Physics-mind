@@ -64,6 +64,7 @@
     "m2a.dm.add_conjugates",
     "m2a.dm.theorem"
   ],
+  "formula_note": "Same base 1 + i, r = √2 and θ = π/4, as the sibling (1 + i)²ⁿ + (1 − i)²ⁿ question — but here the power is n, not 2n, so (√2)ⁿ is 2 to the power n/2, a half-integer power that must combine with the outer 2 as 2 to the power (n + 2)/2, cos(nπ/4) — not the clean 2ⁿ⁺¹ the 2n sibling gives.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

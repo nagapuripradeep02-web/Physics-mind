@@ -55,6 +55,7 @@
     "m2a.pr.conditional",
     "m2a.pr.independent"
   ],
+  "formula_note": "The multiplication theorem P(A ∩ B) = P(A)·P(B|A) = P(B)·P(A|B) holds for any two events with nonzero probability. It reduces to P(A ∩ B) = P(A)·P(B) only when A and B are independent, since then P(B|A) equals plain P(B). That reduced form is the one used in the independent-events computation questions, never the general one.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

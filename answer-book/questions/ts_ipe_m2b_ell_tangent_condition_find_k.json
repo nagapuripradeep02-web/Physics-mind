@@ -49,6 +49,7 @@
   "formulas": [
     "m2b.el.standard"
   ],
+  "formula_note": "The tangency condition used here is c² = a²m² + b², with a plus sign, since this is an ellipse. The matching hyperbola condition is c² = a²m² − b², with a minus sign — using it here would give k² = 3(16) − 1 = 47 instead of 49, and an ugly k = ±√47 instead of the clean k = ±7. Check which conic before writing the sign.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

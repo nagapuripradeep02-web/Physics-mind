@@ -56,6 +56,7 @@
   "formulas": [
     "m2b.sc.radical_axis"
   ],
+  "formula_note": "The radical centre is where the three pairwise radical axes S − S′ = 0, S − S″ = 0 and S′ − S″ = 0 all meet — but any TWO of the three already fix that point, so only two need to be solved together; the third is a free check, not a third required equation.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

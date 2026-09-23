@@ -56,6 +56,7 @@
   "recall_prompt": "Say how you would find a, x and n — how you write the three terms, what dividing consecutive terms gives, how the two relations give n, and how you then get a and x.",
   "insider_note": "The 2nd term is Tᵣ₊₁ with r = 1, not r = 2. Divide consecutive terms so the powers of a and x cancel, and state all three values at the end — n alone is not the full answer.",
   "formulas": [],
+  "formula_note": "Dividing consecutive TERMS of (a+x)ⁿ gives (ⁿCᵣ/ⁿCᵣ₋₁)·(x/a), an extra x/a factor beyond the plain coefficient ratio (n−r+1)/r used elsewhere in this unit when only coefficients — not full terms with a and x — are given. Missing that factor turns a three-unknown question into one that looks solvable from ratios alone.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

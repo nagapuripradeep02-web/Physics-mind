@@ -192,11 +192,16 @@ test('the gated page carries the catalog but not one answer byte', async ({ page
             if (q.formula_note) withFormula.push({ id: q.question_id, note: q.formula_note });
         }
     }
-    for (const q of withFormula.slice(0, 5)) {
+    for (const q of withFormula.slice(0, 8)) {
         // present in the bundle a PAYING student is served — the positive control
         expect(q.note.length).toBeGreaterThan(20);
+        // Probe the TAIL, not the head. insider_note DOES ship to a locked page
+        // by design, and a formula note often opens by restating the same fact,
+        // so a head slice can collide with legitimate content and report a leak
+        // that is not one (observed 2026-09-23 on ts_ipe_m2b_cir_midpoint…).
+        // The closing sentence is the note's own.
         expect(gated, `formula_note of ${q.id} must not reach a locked page`)
-            .not.toContain(q.note.slice(0, 45));
+            .not.toContain(q.note.slice(-45));
     }
 
     // the page still boots and sells: full catalog, every card

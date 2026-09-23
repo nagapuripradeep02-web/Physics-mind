@@ -48,6 +48,7 @@
   "recall_prompt": "Say how you would show that the three points make an equilateral triangle — what you turn each complex number into, what you compute, and what you compare at the end.",
   "insider_note": "All three distances are needed — two equal sides only show an isosceles triangle. The last mark is a sentence, not a number: say the three sides are equal and name the triangle.",
   "formulas": [],
+  "formula_note": "The formula is the distance between two complex numbers, |z₁ − z₂|. This card and its rhombus and square siblings all use it, but need different counts and conclusions: an equilateral triangle needs only the three sides equal; a rhombus needs all four sides equal plus unequal diagonals; a square needs all four sides equal plus equal diagonals.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -45,6 +45,7 @@
     "m2b.ci.general_form",
     "m2b.sc.orthogonal"
   ],
+  "formula_note": "An unknown circle x² + y² + 2gx + 2fy + c = 0 has three unknowns g, f, c, so three conditions are needed: the given point supplies one equation, and each orthogonality condition 2gg′ + 2ff′ = c + c′ against a named circle supplies one more. Two orthogonality conditions plus one point is exactly three equations for three unknowns.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
