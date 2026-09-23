@@ -1,3 +1,7 @@
+> **[SUPERSEDED 2026-09-23 — this deploy is DONE.]** The formula sheet is live on
+> answers.viditra.co. For the next deploy use **`docs/ANSWER_BOOK_DEPLOY_HANDBOOK.md`**,
+> which covers the whole surface. This file is kept as the record of how the sheet shipped.
+
 # Handoff — deploying the formula sheet to answers.viditra.co
 
 > Written 2026-09-21, after PRs #227–#231 merged to master. The code is **done and
