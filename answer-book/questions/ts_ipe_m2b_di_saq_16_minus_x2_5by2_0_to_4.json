@@ -43,6 +43,7 @@
   },
   "insider_note": "The exponent bookkeeping is where marks are lost: (√16)⁵ already equals 4⁵ before dx contributes another factor of 4, so the final power is 4⁶, not 4⁵ — write that step out explicitly rather than combining it in your head.",
   "formulas": [],
+  "formula_note": "The √(16−x²) form signals the substitution x = 4sinθ. Wallis's formula then needs the even/odd rule: an even power of cosθ (here cos⁶θ, since 0 to 4 covers only the first quadrant) keeps the extra π/2 factor, while an odd power drops it. Confusing the two is the main way marks are lost on this family of questions.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

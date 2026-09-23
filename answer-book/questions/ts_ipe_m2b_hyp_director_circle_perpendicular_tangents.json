@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.hy.tangent_slope"
   ],
+  "formula_note": "This locus is x² + y² = a² − b², with a minus sign, from the hyperbola condition c² = a²m² − b², which gives the quadratic in m a constant term y₁² + b². The ellipse director circle instead is x² + y² = a² + b², with a plus sign, from c² = a²m² + b² — check which conic before writing the sign; real only when a > b.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

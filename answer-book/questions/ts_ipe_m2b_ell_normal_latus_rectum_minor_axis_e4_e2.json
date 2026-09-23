@@ -49,6 +49,7 @@
     "m2b.pa.latus_rectum",
     "m2b.el.standard"
   ],
+  "formula_note": "This substitution uses the ellipse identity b² = a²(1 − e²), with e less than 1. The matching hyperbola identity is b² = a²(e² − 1), with e greater than 1 — the same shape, opposite sign inside the bracket. Swapping the sign here substitutes the wrong quantity for b² and produces a different, incorrect relation instead of the boxed e⁴ + e² = 1.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

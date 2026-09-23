@@ -68,6 +68,7 @@
     "m2a.dm.add_conjugates",
     "m2a.dm.theorem"
   ],
+  "formula_note": "The shared method behind several questions here: write z in modulus-amplitude form r(cos θ + i sin θ), raise to the power by De Moivre's theorem, then add the conjugate power (same r, θ, sine reversed) so the i sin terms cancel: zⁿ + z̄ⁿ = 2rⁿ cos(nθ). Here z = 1 + i√3 comes from a quadratic's roots — find r = 2, θ = π/3 first.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

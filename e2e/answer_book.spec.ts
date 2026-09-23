@@ -1161,12 +1161,12 @@ test('Vidi panel renders in the rail, chips answer deterministically, zero netwo
     }));
     expect(r.vidiBase).toBe('');
     expect(r.askRowHidden).toBe(true);        // no base → the ask row does not exist
-    expect(r.chips).toBeGreaterThanOrEqual(3);
+    expect(r.chips).toBeGreaterThanOrEqual(2);   // two question chips since 2026-09-23
     expect(r.cardTitleInSlot).toBe(false);
     expect(r.greeting.length).toBeGreaterThan(0);
 
     // a chip answers instantly from authored data — still zero network
-    await page.click('#vidiChips .vidi-chip');   // "Will this come?"
+    await page.click('#vidiChips .vidi-chip');   // "Explain this step"
     await page.waitForFunction(
         () => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length >= 2,
         undefined, { timeout: 4000 });
@@ -1174,35 +1174,20 @@ test('Vidi panel renders in the rail, chips answer deterministically, zero netwo
     expect(external).toEqual([]);
 });
 
-// What the tip chip is CALLED follows what the authors actually wrote
-// (2026-09-21): maths, physics and chemistry tips are how to DO the step, while
-// botany and zoology tips are real memory devices. Mirrors WRITE_TIP_SUBJECTS
-// in notebook.js — if the two ever drift, this gate says so.
-const WRITE_TIP_SUBJECTS = new Set([
-    'mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b',
-    'physics', 'physics_2', 'chemistry', 'chemistry_2',
-]);
-const tipChipLabel = (subject: string) =>
-    WRITE_TIP_SUBJECTS.has(subject || 'physics') ? 'How do I write this?' : 'How to remember?';
-
 test('the memory-tip chip appears only where a tip is authored', async ({ page }) => {
     await openFirst(page);
     const ids = await page.evaluate(() => {
         const qs = (window as any).PM_QUESTIONS as any[];
         const tipped = qs.find((q) => q.answer.steps[0] && q.answer.steps[0].memory_tip);
         const bare = qs.find((q) => q.answer.steps.every((s: any) => !s.memory_tip));
-        return {
-            tipped: tipped ? tipped.question_id : null,
-            tippedSubject: tipped ? (tipped.subject || 'physics') : '',
-            bare: bare ? bare.question_id : null,
-        };
+        return { tipped: tipped ? tipped.question_id : null, bare: bare ? bare.question_id : null };
     });
 
     const chipTexts = async () => page.evaluate(
         () => Array.from(document.querySelectorAll('#vidiChips .vidi-chip')).map((b) => b.textContent));
 
     test.skip(!ids.tipped, 'no question with a memory tip on its first step is authored yet');
-    const label = tipChipLabel(ids.tippedSubject);
+    const label = 'How to remember?';
     await openQ(page, ids.tipped!);
     expect(await chipTexts()).toContain(label);
 
@@ -1234,7 +1219,12 @@ test('the memory-tip chip appears only where a tip is authored', async ({ page }
     }
 });
 
-test('the tip chip is named for what the paper actually authored, and the formula chip is deterministic', async ({ page }) => {
+test('the chat box offers exactly two question chips, on every paper', async ({ page }) => {
+    // Founder, 2026-09-23: five question chips read as a menu, not a
+    // conversation. "Will this come?", "How much to write?" and "Which
+    // formula?" were removed and "Why this step?" became "Explain this step".
+    // This gate is the decision — the row is easy to grow back one chip at a
+    // time, and each one costs the chat box the thing it was cut down to be.
     const external: string[] = [];
     page.on('request', (r) => {
         const u = r.url();
@@ -1244,58 +1234,46 @@ test('the tip chip is named for what the paper actually authored, and the formul
 
     const picks = await page.evaluate(() => {
         const qs = (window as any).PM_QUESTIONS as any[];
-        const firstTipped = (subs: string[]) => {
+        const first = (subs: string[]) => {
             const q = qs.find((x) => subs.includes(x.subject || 'physics') &&
                 x.answer.steps[0] && x.answer.steps[0].memory_tip);
             return q ? q.question_id : null;
         };
-        const withFormula = qs.find((x) => x.formula_note);
         return {
-            maths: firstTipped(['mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b']),
-            bio: firstTipped(['botany', 'botany_2', 'zoology', 'zoology_2']),
-            formula: withFormula ? withFormula.question_id : null,
-            formulaText: withFormula ? withFormula.formula_note : '',
+            maths: first(['mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b']),
+            bio: first(['botany', 'botany_2', 'zoology', 'zoology_2']),
+            // a card carrying a formula note proves the REMOVED chip stays removed
+            // even where its authored data exists
+            withFormula: (qs.find((x) => x.formula_note) || {}).question_id || null,
         };
     });
 
     const chipTexts = async () => page.evaluate(
         () => Array.from(document.querySelectorAll('#vidiChips .vidi-chip')).map((b) => b.textContent));
 
-    // A maths tip is answering technique, so the chip must not call it a mnemonic.
-    if (picks.maths) {
-        await openQ(page, picks.maths);
-        const c = await chipTexts();
-        expect(c).toContain('How do I write this?');
-        expect(c).not.toContain('How to remember?');
-    }
-    // A biology tip really is a memory device, and keeps the old name.
-    if (picks.bio) {
-        await openQ(page, picks.bio);
-        const c = await chipTexts();
-        expect(c).toContain('How to remember?');
-        expect(c).not.toContain('How do I write this?');
+    const GONE = ['Will this come?', 'How much to write?', 'Which formula?', 'How do I write this?'];
+    for (const qid of [picks.maths, picks.bio, picks.withFormula].filter(Boolean) as string[]) {
+        await openQ(page, qid);
+        const c = (await chipTexts()).filter(Boolean) as string[];
+        // the two that stayed — the same two names on every paper
+        expect(c, qid).toContain('Explain this step');
+        expect(c, qid).toContain('How to remember?');
+        for (const g of GONE) expect(c, `${qid} must not offer "${g}"`).not.toContain(g);
+        // only plan/state chips may follow them; no third QUESTION chip crept back
+        expect(c.slice(0, 2)).toEqual(['Explain this step', 'How to remember?']);
     }
 
-    // The question-level formula note: its own chip, answered from authored
-    // data with no network — the same ₹0 contract every other chip holds to.
-    test.skip(!picks.formula, 'no question carries a formula_note yet');
-    await openQ(page, picks.formula!);
-    expect(await chipTexts()).toContain('Which formula?');
-    // First visit is MINIMISED (founder, 2026-09-02) — the chips are in the DOM
-    // but not on screen, so the panel has to be opened before one can be tapped.
+    // and the surviving chips still answer from authored data with no network
     if (await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)) {
         await page.click('#vidiFab');
         await page.waitForSelector('#pm-assistant-slot:not([hidden])');
     }
     const before = await page.evaluate(
         () => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length);
-    await page.locator('#vidiChips .vidi-chip', { hasText: 'Which formula?' }).click();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'How to remember?' }).click();
     await page.waitForFunction(
         (n) => document.querySelectorAll('#vidiThread .vidi-msg.tutor:not(.vidi-typing)').length > n,
         before, { timeout: 4000 });
-    const said = await page.evaluate(() => Array.from(
-        document.querySelectorAll('#vidiThread .vidi-msg.tutor')).map((b) => b.textContent).join(' '));
-    expect(said).toContain(picks.formulaText.slice(0, 40));
     expect(external).toEqual([]);
 });
 
@@ -1885,9 +1863,9 @@ test('without a plan a question opens silently — chips only, and a quiet offer
         (els) => els.map((e) => e.textContent || ''));
     expect(bubbles).toEqual([]);                       // silent open
     const chips = await page.$$eval('#vidiChips .vidi-chip', (els) => els.map((e) => e.textContent || ''));
-    expect(chips.length).toBeGreaterThanOrEqual(3);    // the bank chips still answer
+    expect(chips.length).toBeGreaterThanOrEqual(2);    // the bank chips still answer
     expect(chips).toContain('Want a study plan?');     // the quiet offer, appended last
-    expect(chips[0]).toBe('Will this come?');          // gate 27's first-chip click stays truthful
+    expect(chips[0]).toBe('Explain this step');        // gate 27's first-chip click stays truthful
 });
 
 test('crunch mode: one week and too much work flips the plan to marks-first — LAQ and SAQ before any VSAQ', async ({ page }) => {

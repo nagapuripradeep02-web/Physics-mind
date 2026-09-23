@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.el.standard"
   ],
+  "formula_note": "This locus is x² + y² = a², using a alone, because P is the foot of the perpendicular from a focus to a tangent. A different question — where two perpendicular tangents meet each other — gives the director circle x² + y² = a² + b² instead. Both proofs square and add, so read which point is being located before picking the right side.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

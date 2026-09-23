@@ -47,6 +47,7 @@
   },
   "insider_note": "The name 'director circle' for x² + y² = a² + b² is worth writing on the final boxed line — examiners often award the last mark for naming the result, not just deriving it.",
   "formulas": [],
+  "formula_note": "The locus here is x² + y² = a² + b², with a plus sign, from the ellipse tangent condition c² = a²m² + b², which gives the quadratic in m a constant term y₁² − b². The hyperbola's director circle instead is x² + y² = a² − b², with a minus sign, from its own condition c² = a²m² − b² — check which conic before writing the sign.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

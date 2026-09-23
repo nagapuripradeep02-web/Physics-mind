@@ -46,6 +46,7 @@
   "formulas": [
     "m2a.cn.conjugate_product"
   ],
+  "formula_note": "Purely imaginary means the real part is zero — a different condition from a sibling question that fixes the real part at a given value instead, which gives a line, not this circle. Rationalising (z − i)/(z − 1) by the conjugate x − 1 − iy keeps the denominator positive and separates the parts; the locus is x² + y² − x − y = 0.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

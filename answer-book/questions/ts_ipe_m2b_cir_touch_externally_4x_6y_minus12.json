@@ -49,6 +49,7 @@
     "m2b.ci.general_form",
     "m2b.ci.radius"
   ],
+  "formula_note": "External touching, C₁C₂ = r₁ + r₂, puts the point of contact INTERNALLY between the two centres, dividing C₁C₂ in the ratio r₁ : r₂ by (mx₂ + nx₁)/(m + n). The mirror case, internal touching with C₁C₂ = |r₂ − r₁|, instead divides the centres EXTERNALLY, with the sign in front of n reversed.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

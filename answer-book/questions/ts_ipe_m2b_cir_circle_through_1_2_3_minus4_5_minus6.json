@@ -57,6 +57,7 @@
   "formulas": [
     "m2b.ci.centre_radius_form"
   ],
+  "formula_note": "The method is SA = SB = SC: any two of those equalities give two perpendicular-bisector lines, meeting at the centre — the same idea as a centre-on-a-line question, except a THIRD point replaces the line as the second condition. Concyclic questions reuse this method on three of four points, then check the fourth.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

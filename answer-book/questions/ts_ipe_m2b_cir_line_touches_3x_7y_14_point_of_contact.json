@@ -55,6 +55,7 @@
     "m2b.ci.radius",
     "m2b.ci.tangent_condition"
   ],
+  "formula_note": "The point of contact is the foot of the perpendicular from the centre to the tangent line: (h − x₁)/a = (k − y₁)/b = −(ax₁ + by₁ + c)/(a² + b²). The same formula finds the MIDPOINT of a chord when the line cuts the circle instead of touching it — the algebra is identical, only what the foot represents changes.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

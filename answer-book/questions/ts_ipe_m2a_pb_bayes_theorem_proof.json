@@ -71,6 +71,7 @@
     "m2a.pr.conditional",
     "m2a.pr.mutually_exclusive"
   ],
+  "formula_note": "Bayes' theorem answers a reverse question: an effect has already happened — which cause produced it. Total probability, its middle step, answers the forward question: given each cause's chance and its chance of producing the effect, find the effect's overall chance. Applications here find total probability first, then divide for one cause.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

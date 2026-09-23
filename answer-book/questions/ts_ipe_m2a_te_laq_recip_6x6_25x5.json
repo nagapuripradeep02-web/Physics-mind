@@ -62,6 +62,7 @@
   "formulas": [
     "m2a.te.reciprocal"
   ],
+  "formula_note": "This is Class II (aₖ=−aₙ₋ₖ, coefficients flip sign end to end) at EVEN degree n=6, so BOTH x=1 and x=−1 are guaranteed roots, and the middle coefficient — here the x³ term — must be exactly 0. Remove both linear factors before dividing by x². A Class I EVEN sibling needs no root removed; a Class II ODD sibling needs only x=1.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

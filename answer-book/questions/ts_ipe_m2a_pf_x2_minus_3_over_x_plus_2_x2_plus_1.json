@@ -66,6 +66,7 @@
   "formulas": [
     "m2a.pf.substitute_root"
   ],
+  "formula_note": "A quadratic factor needs the linear numerator Bx + C only when it is irreducible, that is, its discriminant is negative — here x² + 1 has discriminant −4, so it has no real roots. Contrast x² − 4, discriminant 16: it factors as (x + 2)(x − 2) and takes two separate constants, not a linear numerator.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

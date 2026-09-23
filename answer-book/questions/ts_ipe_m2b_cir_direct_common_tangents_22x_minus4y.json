@@ -56,6 +56,7 @@
     "m2b.ci.radius",
     "m2b.ci.tangent_condition"
   ],
+  "formula_note": "Direct tangents meet at E, the EXTERNAL centre of similitude, dividing C₁C₂ in the ratio r₁ : r₂ by (mx₂ − nx₁)/(m − n), a MINUS in the denominator. The transverse pair instead meets at I, the internal centre, using (mx₂ + nx₁)/(m + n) with a PLUS — the two formulas give different points if swapped.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

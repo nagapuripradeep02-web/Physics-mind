@@ -46,6 +46,7 @@
   },
   "insider_note": "Checking that the integrand is even is worth doing on any symmetric-limits integral (−a to a) before starting — if it were odd, the answer would just be 0 with no further work needed.",
   "formulas": [],
+  "formula_note": "This question uses two different \"even\" checks, and they are not the same thing. First, x²(√(a²−x²))³ is an even function of x, which lets −a to a become 2 times 0 to a. Second, after x = a sinθ the powers sin²θ cos⁴θ are both even numbers, which is what keeps the π/2 factor in Wallis's formula.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

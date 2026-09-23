@@ -51,6 +51,7 @@
     "m2a.pf.improper",
     "m2a.pf.substitute_root"
   ],
+  "formula_note": "Numerator degree 3 exceeds denominator degree 2 by one, so the quotient has degree one and true division is needed, giving quotient x − 1. This differs from x²/((x − 1)(x − 2)), where numerator and denominator have equal degree, so the quotient is just a constant read from the two leading coefficients, no division required.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

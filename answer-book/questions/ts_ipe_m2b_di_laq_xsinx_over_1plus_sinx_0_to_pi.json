@@ -53,6 +53,7 @@
     "m2b.di.a_minus_x",
     "m2b.di.adding_two"
   ],
+  "formula_note": "This King's-property integral (x → π − x, then add) reduces to π∫sinx/(1+sinx)dx, not directly to a ratio free of x, so it needs a second move: add and subtract 1 on top, then multiply ∫dx/(1+sinx) by the conjugate (1−sinx). Its two 0-to-π siblings instead finish with a plain cosx = t substitution.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -59,6 +59,7 @@
     "m2b.ci.power_of_point",
     "m2b.ci.radius"
   ],
+  "formula_note": "Transverse tangents meet at I, the internal centre of similitude, dividing C₁C₂ in r₁ : r₂ by (mx₂ + nx₁)/(m + n) — a PLUS in the denominator, unlike the external point E used for direct tangents. Because I lies outside both circles, the pair of tangents from it uses S₁² = S₁₁·S, never S₁ = 0, which needs a point already ON the circle.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

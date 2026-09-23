@@ -46,6 +46,7 @@
   },
   "insider_note": "This whole method is just three steps in sequence — complete the square, name a, plug into the standard Tan⁻¹ formula — and every other question of this type uses the same three steps with a different quadratic.",
   "formulas": [],
+  "formula_note": "Completing the square here gives (x + 1/2)² + (√3/2)², a sum of two squares, so the standard form is Tan⁻¹. A quadratic that instead completes to a difference of squares, x²−a² or a²−x², needs the log formula, not Tan⁻¹ — check the sign left over after completing the square before choosing the standard form.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

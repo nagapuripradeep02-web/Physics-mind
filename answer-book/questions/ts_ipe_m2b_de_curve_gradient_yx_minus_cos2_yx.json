@@ -61,6 +61,7 @@
   "formulas": [
     "m2b.de.homogeneous"
   ],
+  "formula_note": "This DE turns on recognising the right side as a function of y/x alone (homogeneous), then substituting y = vx. The −cos²v term integrates to tan v because 1/cos²v = sec²v. The sibling curve question with sin²(y/x) instead needs 1/sin²v = cosec²v, giving cot v, not tan v — check which trig function appears before choosing sec² or cosec².",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

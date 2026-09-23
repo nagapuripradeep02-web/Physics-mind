@@ -48,6 +48,7 @@
   "recall_prompt": "Say how you would solve this — what the product 6 tells you about the other pair, how the two pairs become two quadratic factors, and how you find the pair-sums.",
   "insider_note": "Only the x³ and x coefficients are needed to find p and q; the x² coefficient is a free check that most students never write.",
   "formulas": [],
+  "formula_note": "For a₀x⁴+a₁x³+a₂x²+a₃x+a₄=0 the product of all four roots is +a₄/a₀, a PLUS sign — unlike a cubic's product of all three roots, −a₃/a₀. The sign flips with the degree, minus for odd, plus for even, so αβγδ=48 directly and αβ=6 hands you γδ=48/6=8 at once.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

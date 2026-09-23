@@ -46,6 +46,7 @@
   "formulas": [
     "m2a.cn.conjugate_product"
   ],
+  "formula_note": "Rationalising (z + 1)/(z + i) by the conjugate of the denominator, x − i(y + 1), gives a positive real denominator and separates the real and imaginary parts. A sibling question instead asks for a PURELY IMAGINARY quotient — real part zero, not a fixed value like the 1 here — and its locus is a circle, not this line x − y = 1.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -58,6 +58,7 @@
   "formulas": [
     "m2a.te.root_relations"
   ],
+  "formula_note": "For a₀x³+a₁x²+a₂x+a₃=0 the root relations alternate in sign: S₁=−a₁/a₀, S₂=a₂/a₀, S₃=−a₃/a₀. Roots a−d, a, a+d make the ±d cancel in S₁, so an A.P. question opens with the SUM to find a first. A sibling G.P. question opens with the PRODUCT instead, since (a/r)·a·(ar)=a³ isolates a while the sum still carries r.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

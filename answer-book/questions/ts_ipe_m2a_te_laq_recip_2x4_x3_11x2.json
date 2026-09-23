@@ -54,6 +54,7 @@
   "formulas": [
     "m2a.te.reciprocal"
   ],
+  "formula_note": "Reciprocal equations split into two classes: Class I keeps the same coefficients forwards and backwards (aₖ=aₙ₋ₖ); Class II flips their sign (aₖ=−aₙ₋ₖ). This card is Class I at EVEN degree, so no root needs removing — divide by x² and put x+1/x=t. A Class I ODD sibling has root x=−1; a Class II ODD sibling has x=1; a Class II EVEN sibling has both.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

@@ -1,5 +1,47 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — formula notes across all four maths papers, and the chat box cut to two chips (2026-09-23, branch `feat/answerbook-formula-notes-maths2`, **not deployed**)
+
+**Bottom line: `formula_note` now covers all four maths papers — 368 notes over 680 SAQ/LAQ cards — and Vidi's question chips went from five to two.**
+
+### Coverage, and why it is uneven
+
+| paper | written / in scope | | has `insider_note` |
+|---|---|---|---|
+| Maths-1A | 175 / 246 (71%) | | 50% |
+| Maths-1B | 108 / 173 (62%) | | 82% |
+| Maths-2A | 41 / 123 (33%) | | 100%, avg 184 chars |
+| Maths-2B | 44 / 138 (32%) | | 100%, avg 210 chars |
+| **all four** | **368 / 680 (54%)** | | |
+
+Nine agents on 1A, eight on the rest, all `model: sonnet` on the Claude Code subscription (Rule 30g). **The second-year papers came in at half the first-year rate, and the reason checks out against the data**: they already carry 100% `insider_note` coverage with the longest notes in the bank, so there was far less uncovered ground. Every agent independently gave the same reason — "the card's own insider_note already states the fact" — and the correlation is clean and inverse. Sparseness there is signal, not laziness; a flat rate would have meant padding.
+
+### The chat box: five question chips → two (founder)
+
+**Explain this step** (was "Why this step?") and **How to remember?**. Removed: "Will this come?", "How much to write?", "Which formula?" — and the per-paper "How do I write this?" rename from 2026-09-21 is reverted, so the tip chip has one name on every paper again. A row of five reads as a menu rather than a conversation.
+
+**Nothing authored was lost.** The star rank, asked years, mark split and the formula note all still ride `buildVidiContext`, so the model answers those questions when a student types them; only the one-tap shortcuts are gone. The three handler functions were deleted rather than left unreachable, with a note naming what went and why. New gate: `the chat box offers exactly two question chips, on every paper` — the row is easy to grow back one chip at a time.
+
+### Verification — three layers again
+
+1. Each agent verified numerically/symbolically against its own cards (sympy, numpy, mpmath, exact Fractions), including every claim made about a SIBLING card.
+2. `check_formula_notes.py` over all 3,330: round-trip fidelity, key order, length band, LaTeX/ASCII/hyphen-for-minus. Clean.
+3. **Independently re-derived here**, with negative controls: the ellipse/hyperbola sign pairs (b² = a²(1−e²) vs a²(e²−1); tangent c² = a²m² ± b²; director circles a²±b²) — **and confirmed a hyperbola's tangent constant is genuinely NOT tangent to the ellipse**, so the trap those notes warn about is real; the quotient rule and that its reversal is genuinely wrong; the three trigonometric general-solution forms at n = −2…2.
+
+### Two things found, neither mine
+
+- **`npm run build:answers:gated:mpc` is broken on master.** The formula-sheet gate validates every registry file against the *lensed* `units.json`, so a single-year stream build fails with 18 "chapter N is not a live unit of mathematics_2a" errors. Reproduced on a clean stashed tree. **The live deploy path `build:answers:gated:live` passes** (it carries all streams), so nothing is blocked — but the per-stream builds are red.
+- Two Maths-2B circle cards carry a self-flagged, already-corrected source-book error in their own `why` fields (a wrong sign on a pair-tangent equation; a second-circle line copied from a different question). Pre-existing and already resolved by the card authors; recorded, not touched.
+
+### A false positive worth keeping
+
+The gated leak probe reported one leak that was not one: `insider_note` DOES ship to a locked page by design, and a formula note often opens by restating the same fact, so a head-slice probe collides with legitimate content. Re-probed on the tail, the whole note, and the key name — **0 of 368 reach a locked page**. The e2e gate now probes the tail for the same reason.
+
+Gates: `check_cards` passes on all four maths prefixes · `tsc` 0 · offline and live-gated builds clean · 32/32 affected e2e, including master's formula-sheet tests alongside the new chip gate.
+
+**Next session's first task:** founder reads a second-year card (the sparse ones) and says whether 33% is the right density there, or whether the insider-note overlap bar was set too high.
+
+
 ## 🧠 SESSION — Vidi knows his name, tells a joke, and stops calling answering technique a mnemonic (2026-09-21, branch `feat/answerbook-vidi-personal`, **not deployed**)
 
 **Bottom line: three fine-tunings to the Answer Book chat. Vidi now asks the student their own name and greets them by it; she may make one small joke, never when they are stuck or worried; and the memory-tip chip is renamed per paper, with a new question-level `formula_note` piloted on the four sibling trigonometry identities.**

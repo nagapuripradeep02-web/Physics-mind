@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.hy.tangent_slope"
   ],
+  "formula_note": "The tangency condition used here is c² = a²m² − b², with a minus sign, since this is a hyperbola. The matching ellipse condition is c² = a²m² + b², with a plus sign — using it here would give a²m² + b² = 4 + 3 = 7 instead of the 1 actually used, changing every tangent found. Check which conic before writing the sign.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

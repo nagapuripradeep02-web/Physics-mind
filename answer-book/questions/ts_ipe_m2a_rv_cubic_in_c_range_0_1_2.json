@@ -70,6 +70,7 @@
   "formulas": [
     "m2a.rv.total_one"
   ],
+  "formula_note": "Solving Σp = 1 can give more than one root, and a root can be positive yet still invalid: c = 1 and c = 2 are both positive, but each makes P(X = 2) exceed 1, which no probability can do. Always check every resulting P(X = xᵢ) lies between 0 and 1, not just the sign of the solved constant.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

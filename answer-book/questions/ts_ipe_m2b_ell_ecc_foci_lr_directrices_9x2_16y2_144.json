@@ -64,6 +64,7 @@
     "m2b.el.latus_rectum",
     "m2b.el.standard"
   ],
+  "formula_note": "This ellipse is horizontal (a > b), so e = √(a² − b²)/a, foci (±ae, 0) and directrices x = ±a/e. A vertical ellipse (b > a) instead uses e = √(b² − a²)/b, foci (h, k ± be) and directrices y = k ± b/e — check which denominator is larger before choosing a set of formulas, since the wrong pair would place the foci on the wrong axis.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

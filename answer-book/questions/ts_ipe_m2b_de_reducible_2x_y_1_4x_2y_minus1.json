@@ -53,6 +53,7 @@
   "formulas": [
     "m2b.de.separable"
   ],
+  "formula_note": "This equation looks homogeneous but is not — the constants +1 and −1 break the equal-degree pattern, so it is REDUCIBLE. Test a₁/a₂ = b₁/b₂ first; here 2/4 = 1/2, so the two lines are parallel and the substitution is v = 2x + y, not y = vx, which only applies when there is no lone constant.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

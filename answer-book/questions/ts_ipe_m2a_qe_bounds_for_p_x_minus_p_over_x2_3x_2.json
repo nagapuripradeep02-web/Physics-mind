@@ -59,6 +59,7 @@
     "m2a.qe.discriminant",
     "m2a.qe.sign"
   ],
+  "formula_note": "Unlike the range-finding siblings here, which apply Δ ≥ 0 once to find which y a fraction CAN take, this question demands the fraction take EVERY real value — so the y-inequality from that first discriminant must hold for all y, forcing a SECOND discriminant, this time Δ ≤ 0. Reversing the direction on either use gives the wrong bound on p.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

@@ -50,6 +50,7 @@
   "formulas": [
     "m2a.pc.ncr"
   ],
+  "formula_note": "This question names coefficients by their POWER — the coefficient of xʳ in (1+x)ⁿ is ⁿCᵣ, so x⁹, x¹⁰, x¹¹ give ⁿC₉, ⁿC₁₀, ⁿC₁₁ directly. A sibling question instead names three consecutive TERMS by position, where the coefficient of the r-th term is ⁿCᵣ₋₁, one index behind — same A.P. method, wrong index proves a different equation.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",

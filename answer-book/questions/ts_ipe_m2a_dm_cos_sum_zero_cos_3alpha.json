@@ -52,6 +52,7 @@
   "recall_prompt": "Say how you would prove the three results — what you call a, b, c, which identity gives the cubes, how De Moivre gives the triple angles, and where the third result comes from.",
   "insider_note": "Results (i) and (ii) are one equation read twice. Result (iii) needs a second idea, the reciprocals, and is where the last two marks are decided.",
   "formulas": [],
+  "formula_note": "Writing x = cis α, y = cis β, z = cis γ turns the hypothesis into x + y + z = 0. Parts (i)-(ii) use a + b + c = 0 ⟹ a³ + b³ + c³ = 3abc, giving cis 3α + cis 3β + cis 3γ = 3cis(α + β + γ). Part (iii) needs xy + yz + zx = 0 instead, from conjugating x + y + z = 0 since each modulus is 1 — the fact the squares-sum sibling also depends on.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
