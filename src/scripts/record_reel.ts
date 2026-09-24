@@ -5,14 +5,16 @@
  *   npm run reel -- --q <id> --shot answer --out answer-book/tools/out/insta/p1.mp4
  *   npm run reel -- --shot door            # the door + group pick, no question
  *   npm run reel -- --q <id> --speed 4     # 52s of real writing -> a 13s Reel
- *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
- *                                          # a PHASED figure: every tap lands at a pause, then Restart
+ *   npm run reel -- --q <id> --shot figure --hold-ms 2000 --instant-scroll --hide ".btn-next,.vidi-fab,#questionMeta>.chip.asked"
+ *                                          # a PHASED figure: every tap lands at a pause, then Restart;
+ *                                          # --instant-scroll = no frame taken around a product scroll
+ *                                          #   (the sticky header composited 100-240 px low for ~160 ms)
  *   npm run reel -- --q <maths id> --shot ask_line --line "PQ = OQ - OP" --ask "Why do we subtract OP here?" \
  *                   --dir answer-book/dist-mpc --hide "#btnAccount,.vidi-fab,#questionMeta>.chip.asked"
  *                                          # hold ONE written line, Ask Vidi about this, the real reply
  *                                          # (the build needs ANSWER_BOOK_VIDI_BASE, see `ask_line`)
  *   npm run reel -- --q <id> --shot revise_loop --day 1 --dir answer-book/dist-mpc --track mpc/first_year/mpc \
- *                   --subject mathematics --unit mathematics-6 --section VSAQ --hide ".vidi-fab"
+ *                   --subject mathematics --unit mathematics-6 --section VSAQ --instant-scroll --hide ".vidi-fab"
  *                                          # the understood → revised loop; --day 2 is the next calendar date
  *
  * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
@@ -72,6 +74,10 @@ const VIEWPORT = (() => {
     return m ? { width: Number(m[1]), height: Number(m[2]) } : { width: 360, height: 640 };
 })();
 const DPR = 3;
+/** --instant-scroll: how long the page must have been still after a product
+    scroll before the next frame is taken. The displaced-header frames lasted
+    2 captures ≈ 160 ms (V06_HEART); 220 ms clears them with one capture to spare. */
+const SCROLL_SETTLE_MS = 220;
 
 /** Port 8100 is not arbitrary: it is in every Edge Function's AB_ALLOWED_ORIGINS
     and in the LOCAL_ORIGINS subset that classifies the ledger row as
@@ -154,7 +160,14 @@ type Beat =
     // read for `readMs`, tap its Yes, stamp the confirmation line the sheet
     // swaps in, and wait out the app's own 1.1 s close. Never `Not yet` — the
     // reel does not film it (script §Product frames).
-    | { do: 'answerAsk'; readMs: number };
+    | { do: 'answerAsk'; readMs: number }
+    // Bring an element to the middle of the viewport in ONE step (or to the
+    // top with `top: true`). Unlike `pan`/`panTo` it does not set
+    // `__pmPanning`, so under --instant-scroll the settle guard takes no frame
+    // around it: the sticky header drifts 76–82 px during an eased window
+    // scroll (V08_REVISE v1 review, measured on every app frame), and a pan
+    // is exempt from the guard by design. On camera it reads as a cut.
+    | { do: 'jumpTo'; selector: string; top?: boolean };
 
 /** What a shot may be pointed at. Everything is a flag with a default, so a shot
     stays data and the film's beats are recorded by name rather than by hand. */
@@ -419,9 +432,11 @@ const SHOTS: Record<string, Shot> = {
         more?`, `Yes — revised`, `Full green tick — this one is done.`, and the
         list's `✓ done` pill. The catalog is scoped off camera (the subject,
         the chapter, and on day 1 the card's section) so the card sits near the
-        top of the list and every pan is short. Needs a multi-stream build's
-        door already chosen: `--track mpc/first_year/mpc`, plus `--subject`,
-        `--unit` and `--section` for the card. Recorded at speed 1 — the
+        top of the list, and every move to it is a one-step `jumpTo` that the
+        --instant-scroll settle guard covers (an eased pan filmed the sticky
+        header 76–82 px low — V08_REVISE v1). Needs --instant-scroll and a
+        multi-stream build's door already chosen: `--track mpc/first_year/mpc`,
+        plus `--subject`, `--unit` and `--section` for the card. Recorded at speed 1 — the
         sidecar stamps every tap, the sheet, and its confirmation line, so the
         edit can time-lapse the writing and hold the lines. */
     revise_loop: {
@@ -444,7 +459,7 @@ const SHOTS: Record<string, Shot> = {
                 { do: 'revealInstant', count: steps } as Beat,   // the whole answer, off camera
                 { do: 'waitWritten', maxMs: 30_000 } as Beat,
                 { do: 'wait', ms: 700 } as Beat,
-                { do: 'pan', to: 0, ms: 300 } as Beat,          // the page from its top: the back button in frame
+                { do: 'jumpTo', selector: 'body', top: true } as Beat,   // the page from its top: the back button in frame
             ]),
             { do: 'wait', ms: 600 },
         ],
@@ -456,7 +471,7 @@ const SHOTS: Record<string, Shot> = {
                     { do: 'click', selector: '#btnCatalog' },
                     { do: 'answerAsk', readMs: 1800 },      // the sheet, Yes, `Marked in yellow …`
                     { do: 'wait', ms: 700 },
-                    { do: 'panTo', selector: card, ms: 1300 },
+                    { do: 'jumpTo', selector: card },
                     { do: 'wait', ms: 2400 },               // the `✓ revise tomorrow` pill
                 ];
             }
@@ -464,7 +479,7 @@ const SHOTS: Record<string, Shot> = {
                 { do: 'wait', ms: 1500 },                   // the chip row: `✓ Revise 1`
                 { do: 'click', selector: '#reviseChip' },
                 { do: 'wait', ms: 900 },
-                { do: 'panTo', selector: card, ms: 1200 },
+                { do: 'jumpTo', selector: card },
                 { do: 'wait', ms: 2000 },                   // the `✓ revise today` pill
                 { do: 'tapCard', id: questionId },
                 { do: 'wait', ms: 1400 },                   // the question card reads
@@ -472,7 +487,7 @@ const SHOTS: Record<string, Shot> = {
                     { do: 'revealNext' }, { do: 'waitWritten', maxMs: 45_000 }, { do: 'wait', ms: 600 },
                 ]).flat(),
                 { do: 'wait', ms: 1000 },                   // `Answer complete`
-                { do: 'pan', to: 0, ms: 600 },
+                { do: 'jumpTo', selector: 'body', top: true },
                 { do: 'wait', ms: 400 },
                 { do: 'click', selector: '#btnCatalog' },
                 { do: 'answerAsk', readMs: 1800 },          // `Did you revise …`, Yes — revised, green tick
@@ -481,7 +496,7 @@ const SHOTS: Record<string, Shot> = {
                 { do: 'wait', ms: 500 },
                 { do: 'click', selector: `#qtypeChips [data-qtype="${section}"]` },   // … and the card's section
                 { do: 'wait', ms: 700 },
-                { do: 'panTo', selector: card, ms: 1200 },
+                { do: 'jumpTo', selector: card },
                 { do: 'wait', ms: 2400 },                   // the `✓ done` pill
             ];
         },
@@ -684,15 +699,19 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             // function assigned to a name with its `__name()` helper, which does
             // not exist inside the page — `ReferenceError: __name is not defined`
             // at runtime, invisible at compile time.
+            // `__pmPanning` tells the --instant-scroll settle guard that these
+            // scrolls are the shot's own and must be filmed, not waited out.
             await page.evaluate(async ({ to, ms }) => {
                 const from = window.scrollY;
                 const steps = 60;
+                (window as any).__pmPanning = true;
                 for (let i = 1; i <= steps; i++) {
                     const p = i / steps;
                     const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
                     window.scrollTo(0, from + (to - from) * e);
                     await new Promise((r) => setTimeout(r, ms / steps));
                 }
+                (window as any).__pmPanning = false;
             }, { to: b.to, ms: b.ms });
             return;
         }
@@ -907,6 +926,20 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             take.events.push({ t: stamp(take), kind: 'vidi', label: 'quote' });
             return;
         }
+        case 'jumpTo': {
+            const to = await page.evaluate(({ sel, top }) => {
+                const el = document.querySelector(sel);
+                if (!el) return null;
+                if (top) return 0;
+                const r = el.getBoundingClientRect();
+                return Math.max(0, window.scrollY + r.top + r.height / 2 - window.innerHeight / 2);
+            }, { sel: b.selector, top: !!b.top });
+            if (to === null) throw new Error(`jumpTo: nothing matches ${b.selector}`);
+            // Stamped at the jump itself: the cut IS the event.
+            take.events.push({ t: stamp(take), kind: 'nav', label: b.top ? 'top' : b.selector });
+            await page.evaluate((y) => window.scrollTo(0, y), to);
+            return;
+        }
         case 'tapCard': {
             const sel = `a.cat-card[href="#/q/${encodeURIComponent(b.id)}"]`;
             const box = await boxOf(page, sel);
@@ -1101,6 +1134,35 @@ async function main(): Promise<void> {
         await context.addInitScript(() => {
             try { localStorage.setItem('pm_internal', '1'); } catch { /* blocked storage */ }
         });
+        // --instant-scroll: no frame is taken while the product is scrolling.
+        // The product scrolls a revealed block into view with `behavior:
+        // 'smooth'`, and a screenshot taken around that scroll shows the sticky
+        // header composited with the scroll delta — 100–240 px low, the page
+        // already at its new offset (V06_HEART, measured on every frame with a
+        // logo-row scan: 13 such frames with smooth scrolls; 5 with the scrolls
+        // forced instant; 4 with the header made `position: fixed` on top of
+        // that, so it is the capture's compositing, not the header's CSS). Two
+        // halves, both opt-in under this flag so earlier shots keep their frames:
+        // (1) every programmatic scroll lands in one step (no mid-scroll frame);
+        // (2) the capture loop below holds its next screenshot until the page has
+        // been still for SCROLL_SETTLE_MS after the last scroll event. A `pan`
+        // beat scrolls from the recorder on purpose and is exempt (`__pmPanning`).
+        if (flag('instant-scroll')) {
+            await context.addInitScript(() => {
+                const si = Element.prototype.scrollIntoView;
+                Element.prototype.scrollIntoView = function (arg?: boolean | ScrollIntoViewOptions) {
+                    const o = typeof arg === 'object' && arg ? { ...arg, behavior: 'auto' as ScrollBehavior } : arg;
+                    return si.call(this, o);
+                };
+                const st = window.scrollTo.bind(window);
+                (window as any).scrollTo = (...a: any[]) => {
+                    if (a.length === 1 && a[0] && typeof a[0] === 'object') return st({ ...a[0], behavior: 'auto' });
+                    return (st as any)(...a);
+                };
+                (window as any).__pmScrollAt = -1e9;
+                addEventListener('scroll', () => { (window as any).__pmScrollAt = performance.now(); }, { capture: true, passive: true });
+            });
+        }
         // --track mpc/second_year/mpc_2 : start as a student who ALREADY chose at
         // the door. A multi-stream build shows the chooser on the bare landing
         // route, so without this the catalog never paints and #subjectSelect is
@@ -1131,6 +1193,11 @@ async function main(): Promise<void> {
             section: arg('section', 'VSAQ'),
             steps: 0,
         };
+        if (shotName === 'revise_loop' && !flag('instant-scroll')) {
+            // Its list moves are `jumpTo` cuts; without the settle guard the
+            // sticky header is filmed mid-composite on every one of them.
+            throw new Error('--shot revise_loop needs --instant-scroll');
+        }
         if (shotName === 'revise_loop' && opts.day !== 1 && opts.day !== 2) {
             throw new Error('--shot revise_loop wants --day 1 or --day 2');
         }
@@ -1187,12 +1254,58 @@ async function main(): Promise<void> {
         let n = 0;
         const t0 = Date.now();
         const take: Take = { t0, events: [] };
+        const settle = flag('instant-scroll');
+        let lastY = -1;
+        let retakes = 0;
+        let pre: { y: number; at: number; still: number; panning: boolean } | null = null;
         const capture = (async () => {
             while (capturing) {
-                const file = path.join(frameDir, `f${String(n++).padStart(5, '0')}.jpg`);
+                const file = path.join(frameDir, `f${String(n).padStart(5, '0')}.jpg`);
                 try {
+                    // --instant-scroll half (2). Before: hold this frame until the
+                    // page has been still for SCROLL_SETTLE_MS (a changed scrollY
+                    // counts even before its scroll event has fired; capped, so a
+                    // page that never settles still gets filmed). After: a scroll
+                    // that landed DURING the ~80 ms capture is the frame this guard
+                    // exists for (measured: holding only before turned one such
+                    // frame into a 7-frame freeze) — the file is dropped and the
+                    // frame re-taken once still. Up to 3 re-takes, then kept as is.
+                    // One probe per frame: the read taken after frame k's capture is
+                    // the read frame k+1 settles from (the probe costs a round trip,
+                    // and the capture rate is the product's real-speed smoothness).
+                    if (settle) {
+                        for (let k = 0; k < 12; k++) {
+                            if (!pre) {
+                                pre = await page.evaluate(() => ({
+                                    y: window.scrollY,
+                                    at: (window as any).__pmScrollAt as number,
+                                    still: performance.now() - (window as any).__pmScrollAt,
+                                    panning: !!(window as any).__pmPanning,
+                                }));
+                            }
+                            const moved = lastY >= 0 && pre.y !== lastY;
+                            lastY = pre.y;
+                            if (pre.panning || (!moved && pre.still > SCROLL_SETTLE_MS)) break;
+                            pre = null;
+                            await new Promise((r) => setTimeout(r, 50));
+                        }
+                    }
                     await page.screenshot({ path: file, type: 'jpeg', quality: 92 });
-                    frames.push({ file, t: (Date.now() - t0) / 1000 });
+                    const t = (Date.now() - t0) / 1000;
+                    if (settle) {
+                        const post = await page.evaluate(() => ({
+                            y: window.scrollY,
+                            at: (window as any).__pmScrollAt as number,
+                            still: performance.now() - (window as any).__pmScrollAt,
+                            panning: !!(window as any).__pmPanning,
+                        }));
+                        const dirty = !post.panning && !!pre && (post.y !== pre.y || post.at !== pre.at);
+                        pre = post;
+                        if (dirty && retakes < 3) { retakes++; fs.unlinkSync(file); continue; }
+                    }
+                    retakes = 0;
+                    n++;
+                    frames.push({ file, t });
                 } catch { break; }                   // page closed mid-shot
             }
         })();
