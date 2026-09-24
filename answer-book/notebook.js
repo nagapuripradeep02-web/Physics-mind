@@ -1304,17 +1304,11 @@
       wrap.appendChild(chead);
 
       ch.rows.forEach(function (row) {
-        // A locked row is a button because tapping it opens a card that unlocks
-        // it; an earned row is not interactive, so it is not a button.
-        var el = document.createElement(row.earned ? 'div' : 'button');
+        // No row is interactive. A formula is unlocked ONLY by reading a question
+        // that uses it — the sheet never sends the student into a question.
+        var el = document.createElement('div');
         el.className = 'fs-row ' + (row.earned ? 'earned' : 'locked');
         el.setAttribute('data-formula', row.fm.id);
-        if (!row.earned) {
-          el.type = 'button';
-          el.addEventListener('click', function () {
-            if (row.next) location.hash = '#/q/' + encodeURIComponent(row.next);
-          });
-        }
         var nm = document.createElement('span');
         nm.className = 'fs-name';
         if (row.earned) {
@@ -4377,8 +4371,7 @@
 
       /** The whole sheet, ready to render: chapters in authored order, each row
           earned or not, and for a row not earned how many unread cards stand
-          between the student and it (plus the nearest one, so the row can open
-          it). A chapter is never hidden — the sheet's job is to show the
+          between the student and it. A chapter is never hidden — the sheet's job is to show the
           destination as well as the distance. */
       state: function (subject) {
         var sheet = SHEETS[subject];
@@ -4402,7 +4395,7 @@
             if (!seen) continue;
             total++;
             if (earned) { have++; chHave++; }
-            rows.push({ fm: fm, earned: earned, away: away.length, next: away[0] || null });
+            rows.push({ fm: fm, earned: earned, away: away.length });
           }
           if (!rows.length) continue;               // every row retired away
           chapters.push({

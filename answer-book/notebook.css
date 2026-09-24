@@ -1590,12 +1590,9 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
 .fs-row.earned + .fs-row { border-top: 0; }
 
 /* Not earned yet: the NAME shows (a student should see what is still to come),
-   the formula does not. Tapping opens a card that would unlock it, which makes
-   the sheet a to-do list pointed at exactly the missing work. */
-.fs-row.locked { cursor: pointer; }
+   the formula does not. The row is not a link — a formula unlocks only by
+   reading the questions, never by tapping the sheet. */
 .fs-row.locked .fs-name { color: var(--chrome-dim); }
-.fs-row.locked:hover { border-left-color: var(--accent); }
-.fs-row.locked:hover .fs-name { color: var(--accent); }
 .fs-away { font: 500 12px Inter, system-ui, sans-serif; color: var(--chrome-dim); margin-top: 5px; }
 
 /* "2 formulas added to your sheet" — BELOW the ruled page, never on it. Every
