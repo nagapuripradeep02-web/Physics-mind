@@ -3666,19 +3666,15 @@ test('an Understand tick alone fills the sheet — the second device is not empt
     expect(await page.locator('.fs-row.earned').count()).toBeGreaterThan(0);
 });
 
-test('a locked row opens a card that unlocks it', async ({ page }) => {
+test('a locked row is not a link — formulas unlock only by reading questions', async ({ page }) => {
     await openSheet(page);
     const row = page.locator('.fs-row.locked').first();
-    const fid = await row.getAttribute('data-formula');
     await expect(row.locator('.fs-away')).toHaveText(/\d+ questions? away/);
+    expect(await row.evaluate((el) => el.tagName)).toBe('DIV');
     await row.click();
-    await page.waitForSelector('#notebookView:not([hidden])');
-    const uses = await page.evaluate(() => {
-        const id = decodeURIComponent(location.hash.replace('#/q/', ''));
-        const q = (window as any).PM_QUESTIONS.find((x: any) => x.question_id === id);
-        return q ? q.formulas || [] : [];
-    });
-    expect(uses).toContain(fid);
+    expect(await page.evaluate(() => location.hash)).toBe('#/formulas/mathematics');
+    await expect(page.locator('#formulaSheet')).toBeVisible();
+    await expect(page.locator('#notebookView')).toBeHidden();
 });
 
 test('the sheet survives a reload and its rows are the authored data', async ({ page }) => {
