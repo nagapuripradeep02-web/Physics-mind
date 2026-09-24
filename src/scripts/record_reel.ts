@@ -565,7 +565,12 @@ function serveDist(dir: string): Promise<Server> {
     it is free and it is data. */
 type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav' | 'phase'
     | 'press' | 'bar' | 'sheet';
-type TakeEvent = { t: number; kind: TakeKind; label?: string; x?: number | null; y?: number | null };
+type TakeEvent = {
+    t: number; kind: TakeKind; label?: string; x?: number | null; y?: number | null;
+    /** `jumpTo`: the window scrollY it landed on — the sidecar re-times the
+        event to the first FILMED frame at that offset (see the sidecar write). */
+    scroll_y?: number;
+};
 interface Take { t0: number; events: TakeEvent[] }
 const stamp = (take: Take) => (Date.now() - take.t0) / 1000;
 
@@ -935,9 +940,14 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
                 return Math.max(0, window.scrollY + r.top + r.height / 2 - window.innerHeight / 2);
             }, { sel: b.selector, top: !!b.top });
             if (to === null) throw new Error(`jumpTo: nothing matches ${b.selector}`);
-            // Stamped at the jump itself: the cut IS the event.
-            take.events.push({ t: stamp(take), kind: 'nav', label: b.top ? 'top' : b.selector });
-            await page.evaluate((y) => window.scrollTo(0, y), to);
+            // The cut IS the event — but under --instant-scroll the settle
+            // guard films no frame for >= SCROLL_SETTLE_MS after it, so the
+            // card reaches the mp4 0.31–0.35 s after this moment (V08_REVISE v2
+            // review: day 1 +5.3 f, day 2 +7 f on her words). The stamp keeps
+            // the offset it landed on; the sidecar write moves it to the first
+            // frame actually captured there.
+            const landed = await page.evaluate((y) => { window.scrollTo(0, y); return window.scrollY; }, to);
+            take.events.push({ t: stamp(take), kind: 'nav', label: b.top ? 'top' : b.selector, scroll_y: landed });
             return;
         }
         case 'tapCard': {
@@ -1249,7 +1259,8 @@ async function main(): Promise<void> {
         // Capture runs alongside the beats and takes frames as fast as
         // screenshot() returns; the real inter-frame gaps are what timing is
         // rebuilt from below, so an uneven rate costs nothing.
-        const frames: { file: string; t: number }[] = [];
+        // `y`: the window scrollY read right after the capture (settle mode only).
+        const frames: { file: string; t: number; y?: number }[] = [];
         let capturing = true;
         let n = 0;
         const t0 = Date.now();
@@ -1305,7 +1316,7 @@ async function main(): Promise<void> {
                     }
                     retakes = 0;
                     n++;
-                    frames.push({ file, t });
+                    frames.push({ file, t, ...(settle && pre ? { y: pre.y } : {}) });
                 } catch { break; }                   // page closed mid-shot
             }
         })();
@@ -1347,7 +1358,18 @@ async function main(): Promise<void> {
         const sidecar = out.replace(/\.mp4$/i, '.taps.json');
         fs.writeFileSync(sidecar, JSON.stringify({
             speed, fps, viewport: VIEWPORT, dpr: DPR,
-            events: take.events.map((e) => ({ ...e, t: Number(((e.t - frames[0].t) / speed).toFixed(3)) })),
+            // A jump's stamp moves to the first frame FILMED at its offset (and
+            // after it): that frame's t is when the mp4 shows the new place.
+            // Only with the settle guard's per-frame reads; otherwise as stamped.
+            events: take.events.map((e) => {
+                let t = e.t;
+                if (e.scroll_y !== undefined) {
+                    const f = frames.find((fr) => fr.t >= e.t && fr.y === e.scroll_y);
+                    if (f) t = f.t;
+                    else console.warn(`  ! ${e.label}: no frame was filmed at scrollY ${e.scroll_y} — kept the jump's own stamp`);
+                }
+                return { ...e, t: Number(((t - frames[0].t) / speed).toFixed(3)) };
+            }).sort((a, b) => a.t - b.t),
         }, null, 1));
 
         const secs = frames[frames.length - 1].t - frames[0].t;
