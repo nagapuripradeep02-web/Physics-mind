@@ -11,6 +11,9 @@
  *                   --dir answer-book/dist-mpc --hide "#btnAccount,.vidi-fab,#questionMeta>.chip.asked"
  *                                          # hold ONE written line, Ask Vidi about this, the real reply
  *                                          # (the build needs ANSWER_BOOK_VIDI_BASE, see `ask_line`)
+ *   npm run reel -- --q <id> --shot revise_loop --day 1 --dir answer-book/dist-mpc --track mpc/first_year/mpc \
+ *                   --subject mathematics --unit mathematics-6 --section VSAQ --hide ".vidi-fab"
+ *                                          # the understood → revised loop; --day 2 is the next calendar date
  *
  * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
  * pace a STUDENT reads along with, and each step's marks land in the margin only
@@ -140,7 +143,18 @@ type Beat =
     | { do: 'tapBarAsk' }
     // Ease the Vidi thread so the reply's sentence containing `text` is in
     // view. The thread is its own scroll box, so `pan` (window scroll) cannot.
-    | { do: 'scrollThread'; text: string; ms: number };
+    | { do: 'scrollThread'; text: string; ms: number }
+    // ── the revise-loop beats (--shot revise_loop) ───────────────────────────
+    // A catalog card, by its question id: the REAL click on the card (it is an
+    // <a href="#/q/...">, the router's own path), then the same two-condition
+    // wait as `openQuestion`. Only after `panTo` has put the card in frame, so
+    // the click never scroll-jerks the picture.
+    | { do: 'tapCard'; id: string }
+    // The leave-question sheet (notebook.js `showAsk`): wait for it, let it be
+    // read for `readMs`, tap its Yes, stamp the confirmation line the sheet
+    // swaps in, and wait out the app's own 1.1 s close. Never `Not yet` — the
+    // reel does not film it (script §Product frames).
+    | { do: 'answerAsk'; readMs: number };
 
 /** What a shot may be pointed at. Everything is a flag with a default, so a shot
     stays data and the film's beats are recorded by name rather than by hand. */
@@ -166,6 +180,13 @@ interface ShotOpts {
     /** `--shot ask_line`: the written line the thumb holds, by a fragment of its
         text (`--line "PQ = OQ - OP"`; any dash matches the page's minus sign). */
     line: string;
+    /** `--shot revise_loop`: which day of the loop (`--day 1|2`). */
+    day: number;
+    /** `--shot revise_loop`: the card's paper section chip (`--section VSAQ`). */
+    section: string;
+    /** The number of steps in the card's answer, read from the artifact — how
+        many reveals complete it (0 when the card is not in the build). */
+    steps: number;
 }
 
 interface Shot {
@@ -184,6 +205,16 @@ interface Shot {
         `.page` hidden past a 30 s timeout. Measured — the same sequence without
         capture running resolves in ~2 s. */
     startAt?: (opts: ShotOpts) => string;
+    /** localStorage keys written before the FIRST byte loads (an init script,
+        like `pm_internal`) — how a shot starts on a device that already has a
+        history, e.g. a question ticked yesterday. */
+    storage?: (opts: ShotOpts) => Record<string, string>;
+}
+
+/** A calendar date `days` from today, in the app's own `todayStr()` shape. */
+function ymd(days: number): string {
+    const d = new Date(Date.now() + days * 86_400_000);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
 
 /** Shots are DATA, so a month of Reels is a loop over ids rather than a month of
@@ -375,6 +406,86 @@ const SHOTS: Record<string, Shot> = {
             { do: 'wait', ms: 3000 },
         ],
     },
+    /** The understood → revised loop, as TWO shots of one device (V08_REVISE).
+        Day 1 (`--day 1`): the finished answer, `← All questions`, the sheet
+        `Did you understand and practice this answer?`, Yes, `Marked in yellow
+        — we will revise this one tomorrow.`, and the card's `✓ revise
+        tomorrow` pill in the list. Day 2 (`--day 2`): the device already holds
+        yesterday's tick (`pm_stage_v1`) and it is the next CALENDAR date — the
+        app's own test-only `pm_today_override` key, since a stage tick is a
+        date, not a clock (notebook.js `todayStr`). On camera: the `✓ Revise 1`
+        chip, tapped, the card's `✓ revise today` pill, the card opened and
+        written through, `← All questions`, `Did you revise this answer once
+        more?`, `Yes — revised`, `Full green tick — this one is done.`, and the
+        list's `✓ done` pill. The catalog is scoped off camera (the subject,
+        the chapter, and on day 1 the card's section) so the card sits near the
+        top of the list and every pan is short. Needs a multi-stream build's
+        door already chosen: `--track mpc/first_year/mpc`, plus `--subject`,
+        `--unit` and `--section` for the card. Recorded at speed 1 — the
+        sidecar stamps every tap, the sheet, and its confirmation line, so the
+        edit can time-lapse the writing and hold the lines. */
+    revise_loop: {
+        describe: 'the revise loop — day 1: Yes → yellow tick; day 2: ✓ Revise chip → revised → green tick',
+        storage: ({ questionId, day }): Record<string, string> => day === 2
+            ? { pm_stage_v1: JSON.stringify({ [questionId]: { u: ymd(0), p: '', r: '' } }), pm_today_override: ymd(1) }
+            : {},
+        setup: ({ questionId, subject, unit, section, day, steps }) => [
+            { do: 'wait', ms: 800 },
+            { do: 'select', selector: '#subjectSelect', value: subject },
+            { do: 'wait', ms: 500 },
+            { do: 'select', selector: '#unitSelect', value: unit },
+            { do: 'wait', ms: 500 },
+            ...(day === 2 ? [] : [
+                // the card's own section, so the list the student returns to
+                // opens on it (the filter is kept in memory across the visit)
+                { do: 'click', selector: `#qtypeChips [data-qtype="${section}"]` } as Beat,
+                { do: 'wait', ms: 400 } as Beat,
+                { do: 'openQuestion', id: questionId } as Beat,
+                { do: 'revealInstant', count: steps } as Beat,   // the whole answer, off camera
+                { do: 'waitWritten', maxMs: 30_000 } as Beat,
+                { do: 'wait', ms: 700 } as Beat,
+                { do: 'pan', to: 0, ms: 300 } as Beat,          // the page from its top: the back button in frame
+            ]),
+            { do: 'wait', ms: 600 },
+        ],
+        beats: ({ questionId, section, day, steps }) => {
+            const card = `a.cat-card[href="#/q/${encodeURIComponent(questionId)}"]`;
+            if (day !== 2) {
+                return [
+                    { do: 'wait', ms: 1500 },               // the finished answer: `Answer complete — 2 / 2 marks`
+                    { do: 'click', selector: '#btnCatalog' },
+                    { do: 'answerAsk', readMs: 1800 },      // the sheet, Yes, `Marked in yellow …`
+                    { do: 'wait', ms: 700 },
+                    { do: 'panTo', selector: card, ms: 1300 },
+                    { do: 'wait', ms: 2400 },               // the `✓ revise tomorrow` pill
+                ];
+            }
+            return [
+                { do: 'wait', ms: 1500 },                   // the chip row: `✓ Revise 1`
+                { do: 'click', selector: '#reviseChip' },
+                { do: 'wait', ms: 900 },
+                { do: 'panTo', selector: card, ms: 1200 },
+                { do: 'wait', ms: 2000 },                   // the `✓ revise today` pill
+                { do: 'tapCard', id: questionId },
+                { do: 'wait', ms: 1400 },                   // the question card reads
+                ...Array.from({ length: steps }, (): Beat[] => [
+                    { do: 'revealNext' }, { do: 'waitWritten', maxMs: 45_000 }, { do: 'wait', ms: 600 },
+                ]).flat(),
+                { do: 'wait', ms: 1000 },                   // `Answer complete`
+                { do: 'pan', to: 0, ms: 600 },
+                { do: 'wait', ms: 400 },
+                { do: 'click', selector: '#btnCatalog' },
+                { do: 'answerAsk', readMs: 1800 },          // `Did you revise …`, Yes — revised, green tick
+                { do: 'wait', ms: 1100 },                   // the list: `✓ Revise 0`, nothing left to revise
+                { do: 'click', selector: '#reviseChip' },   // the filter off …
+                { do: 'wait', ms: 500 },
+                { do: 'click', selector: `#qtypeChips [data-qtype="${section}"]` },   // … and the card's section
+                { do: 'wait', ms: 700 },
+                { do: 'panTo', selector: card, ms: 1200 },
+                { do: 'wait', ms: 2400 },                   // the `✓ done` pill
+            ];
+        },
+    },
     // NO exam-eve shot, deliberately. Both the exam-eve list and Vidi's catalog
     // triage box gate on questions with stars >= 2, and only MATHS units carry
     // any — so on a physics chapter the view renders "Nothing to list yet."
@@ -438,7 +549,7 @@ function serveDist(dir: string): Promise<Server> {
     finger would be, cut to a named step, and tick when marks land. Always on:
     it is free and it is data. */
 type TakeKind = 'open' | 'tap' | 'written' | 'vidi' | 'pick' | 'chip' | 'ask' | 'reply' | 'nav' | 'phase'
-    | 'press' | 'bar';
+    | 'press' | 'bar' | 'sheet';
 type TakeEvent = { t: number; kind: TakeKind; label?: string; x?: number | null; y?: number | null };
 interface Take { t0: number; events: TakeEvent[] }
 const stamp = (take: Take) => (Date.now() - take.t0) / 1000;
@@ -796,6 +907,54 @@ async function runBeat(page: Page, b: Beat, take: Take): Promise<void> {
             take.events.push({ t: stamp(take), kind: 'vidi', label: 'quote' });
             return;
         }
+        case 'tapCard': {
+            const sel = `a.cat-card[href="#/q/${encodeURIComponent(b.id)}"]`;
+            const box = await boxOf(page, sel);
+            if (box.y === null) throw new Error(`tapCard: no catalog card for ${b.id} on screen`);
+            await page.click(sel);
+            take.events.push({ t: stamp(take), kind: 'tap', label: b.id, ...box });
+            // Both conditions, as in `openQuestion`: a stale `.page` can be
+            // visible, and the id can be set while its pages are still hidden.
+            await page.waitForFunction((id) => {
+                const pg = document.querySelector('.page');
+                const r = pg?.getBoundingClientRect();
+                const q = (window as any).PM_ANSWER?.question;
+                return !!r && r.width > 0 && r.height > 0 && q?.question_id === id;
+            }, b.id, { timeout: 30_000 });
+            take.events.push({ t: stamp(take), kind: 'open', label: b.id });
+            return;
+        }
+        case 'answerAsk': {
+            // The sheet is shown by un-hiding #askOverlay (notebook.js showAsk).
+            // Refuse rather than film a list: no sheet means the app did not
+            // think this answer was due an ask (not complete, or already ticked).
+            const asked = await page.waitForFunction(() => {
+                const ov = document.getElementById('askOverlay');
+                return ov && !ov.hidden ? (document.getElementById('askText')?.textContent ?? '').trim() : null;
+            }, undefined, { timeout: 6_000 })
+                .then((h) => h.jsonValue() as Promise<string>)
+                .catch(() => null);
+            if (!asked) throw new Error('answerAsk: the leave-question sheet never opened');
+            take.events.push({ t: stamp(take), kind: 'sheet', label: asked, ...(await boxOf(page, '#askText')) });
+            await page.waitForTimeout(b.readMs);
+            const yes = await boxOf(page, '#askYes');
+            const yesLabel = await page.evaluate(() => (document.getElementById('askYes')?.textContent ?? '').trim());
+            await page.click('#askYes');
+            take.events.push({ t: stamp(take), kind: 'tap', label: yesLabel, ...yes });
+            // Yes swaps the question for its confirmation line in the same call.
+            const said = await page.waitForFunction((q: string) => {
+                const t = (document.getElementById('askText')?.textContent ?? '').trim();
+                return t && t !== q ? t : null;
+            }, asked, { timeout: 3_000 })
+                .then((h) => h.jsonValue() as Promise<string>)
+                .catch(() => '');
+            take.events.push({ t: stamp(take), kind: 'reply', label: said });
+            // The app closes the sheet itself after 1.1 s and routes on.
+            await page.waitForFunction(() => document.getElementById('askOverlay')?.hidden === true,
+                undefined, { timeout: 5_000 }).catch(() => { /* keep the frames */ });
+            take.events.push({ t: stamp(take), kind: 'nav', label: 'sheet closed' });
+            return;
+        }
         case 'scrollThread': {
             // Ease the nearest scroll box around the LAST tutor bubble so the
             // element whose text carries `text` sits a third of the way down.
@@ -968,7 +1127,20 @@ async function main(): Promise<void> {
             holdMs: Math.max(0, Number(arg('hold-ms', '2000')) || 0),
             phases: 0,
             line: arg('line', 'PQ = OQ - OP'),
+            day: Number(arg('day', '1')),
+            section: arg('section', 'VSAQ'),
+            steps: 0,
         };
+        if (shotName === 'revise_loop' && opts.day !== 1 && opts.day !== 2) {
+            throw new Error('--shot revise_loop wants --day 1 or --day 2');
+        }
+        // Before the first byte, like `pm_internal`: the device's history.
+        const seed = shot.storage?.(opts) ?? {};
+        if (Object.keys(seed).length) {
+            await context.addInitScript((kv: Record<string, string>) => {
+                try { for (const k of Object.keys(kv)) localStorage.setItem(k, kv[k]); } catch { /* blocked storage */ }
+            }, seed);
+        }
 
         const page = await context.newPage();
 
@@ -988,6 +1160,13 @@ async function main(): Promise<void> {
             const d = q?.answer?.steps?.find((s: any) => s.kind === 'diagram');
             return d?.figure?.elements ? d.figure.elements.filter((e: any) => e.type === 'pause').length : 0;
         }, questionId);
+        opts.steps = await page.evaluate((id: string) => {
+            const qs: any[] = (window as any).PM_QUESTIONS || [];
+            return qs.find((x) => x.question_id === id)?.answer?.steps?.length ?? 0;
+        }, questionId);
+        if (shotName === 'revise_loop' && opts.steps < 1) {
+            throw new Error(`--shot revise_loop: ${questionId} is not in this build (or has no answer steps)`);
+        }
         if (shotName === 'figure' && opts.phases < 2) {
             throw new Error(`--shot figure: ${questionId} has no phased figure `
                 + `(${opts.phases} pause element${opts.phases === 1 ? '' : 's'}) — nothing to tap through`);
