@@ -1,5 +1,17 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧠 SESSION — EAPCET interest list LIVE at viditra.co/eapcet (2026-09-25, branch `feat/eapcet-landing`, PR #237, **deployed**)
+
+**Bottom line: a sign-up page that measures student demand for EAPCET is live, and the list starts empty.** Students leave name, WhatsApp number, MPC/BiPC, exam year and what would help most. Each one gets "student #N" and a share link of their own.
+
+- **Share one link per WhatsApp group:** `viditra.co/eapcet?src=<group-name>`. Every student's share link is `?src=friend&ref=<code>`.
+- **Read the numbers at `viditra.co/admin/eapcet`** (same token as `/admin`): totals, splits, joins vs visitors per link, top sharers, per day, full list + CSV.
+- **Pilot Supabase:** `eapcet_interest` plus three functions, applied via MCP (`supabase_migrations/pilot_20260925_eapcet_interest.sql`, never re-run). The table cannot be read from outside — it holds minors' numbers.
+- `/students`: the count-only "Tell me when EAPCET is ready" tap now links to `/eapcet?src=students`. `/privacy` has an EAPCET-list section.
+- **Verified:** curl RPC cases, a 17-check phone walk, an 11-check admin walk, live checks on viditra.co. Live was diffed against master before deploying, so only this PR's 6 files changed. Test rows and test analytics were deleted.
+- **Deployed from the branch, not master** — merge PR #237 so master matches what is live.
+- **Open (founder):** India's DPDP rules require parental consent for under-18s as they phase in. The list is kept minimal, so decide how to handle this before it grows large.
+
 ## 🧠 SESSION — formula notes across all four maths papers, and the chat box cut to two chips (2026-09-23, branch `feat/answerbook-formula-notes-maths2`, **not deployed**)
 
 **Bottom line: `formula_note` now covers all four maths papers — 368 notes over 680 SAQ/LAQ cards — and Vidi's question chips went from five to two.**
