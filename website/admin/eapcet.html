@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Viditra — EAPCET list</title>
+<!--
+  The founder's view of viditra.co/eapcet sign-ups. Unlocked with the same
+  dashboard token as /admin (admin_config.funnel_token, kept in this browser's
+  localStorage as pm_funnel_token), so a browser already unlocked there opens
+  straight in. Reads eapcet_interest_report(tok) on the pilot project — the only
+  path to the list, which holds students' names and numbers.
+-->
+<style>
+  :root{
+    --bg:#1C1B19; --surface:#242220; --surface2:#2b2825; --line:rgba(245,240,230,.10);
+    --clay:#CB6843; --clay-soft:#E3A07F; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+    --good:#6FBF8A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    padding:28px 16px 60px;line-height:1.45;}
+  .wrap{max-width:980px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;}
+  .mark{width:30px;height:30px;border-radius:8px;background:var(--clay);flex:none;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:6px 0 22px;}
+  .sub a{color:var(--clay-soft);}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;}
+  input,button{font:inherit;color:var(--ink);}
+  input[type=text]{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+    font-size:14px;width:280px;max-width:100%;letter-spacing:.05em;}
+  button{background:var(--clay);border:0;border-radius:9px;padding:9px 15px;font-weight:600;font-size:13.5px;cursor:pointer;}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim);}
+  button:hover{filter:brightness(1.06);}
+  .msg{font-size:13px;color:var(--ink-dim);min-height:18px;margin-bottom:14px;}
+  .msg.err{color:#E58B72;}
+  .tokenbar{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px;}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px;}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 15px;}
+  .stat .lab{font-size:12px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.06em;}
+  .stat .num{font-size:34px;font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums;}
+  .stat .conv{font-size:12px;color:var(--clay-soft);margin-top:4px;min-height:16px;}
+  .stat.hero .num{color:var(--good);}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 15px;}
+  h2{font-size:13px;font-weight:600;color:var(--ink-dim);margin:0 0 12px;text-transform:uppercase;letter-spacing:.05em;}
+  .bar{margin-bottom:10px;}
+  .bar .top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:4px;}
+  .bar .top b{font-variant-numeric:tabular-nums;}
+  .bar .track{height:6px;border-radius:3px;background:var(--surface2);overflow:hidden;}
+  .bar .fill{height:100%;background:var(--clay);border-radius:3px;}
+  .empty{color:var(--ink-faint);font-size:13px;}
+
+  .section{margin-bottom:28px;}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  tr:last-child td{border-bottom:0;}
+  th{color:var(--ink-faint);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;background:var(--surface);}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;}
+  td a{color:var(--clay-soft);text-decoration:none;}
+  td a:hover{text-decoration:underline;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .listHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;}
+  .listHead h2{margin:0;}
+  .foot{margin-top:24px;color:var(--ink-faint);font-size:12px;}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.grid3,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="mark"></span> EAPCET interest list</h1>
+  <p class="sub">Students who joined at <a href="/eapcet">viditra.co/eapcet</a>. Give each WhatsApp group its own link &mdash; <code>viditra.co/eapcet?src=group-name</code> &mdash; and it shows up as its own row below. <a href="/admin">Outreach funnel &rarr;</a></p>
+
+  <div class="tokenbar" id="tokenbar" style="display:none">
+    <div class="row" style="margin-bottom:0">
+      <input id="token" type="text" placeholder="Paste your dashboard token" autocomplete="off">
+      <button id="saveTok">Unlock</button>
+    </div>
+  </div>
+
+  <div class="row" id="controls" style="display:none">
+    <button id="refresh">Refresh</button>
+    <button class="ghost" id="csv">Download CSV</button>
+  </div>
+
+  <div class="msg" id="msg"></div>
+
+  <div id="report" style="display:none">
+    <div class="stats">
+      <div class="stat hero"><div class="lab">Joined</div><div class="num" id="s_total">&mdash;</div><div class="conv" id="c_total"></div></div>
+      <div class="stat"><div class="lab">Today (IST)</div><div class="num" id="s_today">&mdash;</div></div>
+      <div class="stat"><div class="lab">Last 7 days</div><div class="num" id="s_7d">&mdash;</div></div>
+      <div class="stat"><div class="lab">Page visitors</div><div class="num" id="s_visitors">&mdash;</div><div class="conv" id="c_visitors"></div></div>
+    </div>
+
+    <div class="grid3">
+      <div class="panel"><h2>Group</h2><div id="b_stream"></div></div>
+      <div class="panel"><h2>EAPCET year</h2><div id="b_year"></div></div>
+      <div class="panel"><h2>What they want most</h2><div id="b_want"></div></div>
+    </div>
+
+    <div class="section">
+      <h2>By link (?src=)</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Link</th><th class="n">Visitors</th><th class="n">Joined</th><th class="n">Rate</th></tr></thead>
+        <tbody id="srcBody"></tbody>
+      </table></div>
+    </div>
+
+    <div class="section two">
+      <div>
+        <h2>Top sharers</h2>
+        <div class="scroll"><table>
+          <thead><tr><th>Student</th><th class="n">Friends who joined</th></tr></thead>
+          <tbody id="refBody"></tbody>
+        </table></div>
+      </div>
+      <div>
+        <h2>Per day (IST)</h2>
+        <div class="scroll"><table>
+          <thead><tr><th>Day</th><th class="n">Joined</th></tr></thead>
+          <tbody id="dayBody"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="listHead"><h2>Everyone on the list</h2></div>
+      <div class="scroll"><table>
+        <thead><tr><th class="n">#</th><th>Joined (IST)</th><th>Name</th><th>WhatsApp</th><th>Group</th><th>Year</th><th>Wants</th><th>Link</th><th>Sent by</th></tr></thead>
+        <tbody id="listBody"></tbody>
+      </table></div>
+    </div>
+
+    <p class="foot" id="foot"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://jqbnmltsupnnbuvqgkix.supabase.co/rest/v1/rpc/eapcet_interest_report';
+  var KEY = 'sb_publishable_pNj_zCtoU3kKdedr0KMvlQ_rAUo7PXc';
+  var WANTS = { weakness:'Weak chapters and ideas', photo:'Photo doubts', check:'Check my working', practice:'Chapter practice' };
+  var YEARS = { '2027':'2027', '2028':'2028', 'later':'Later' };
+  var $ = function(id){ return document.getElementById(id); };
+  var token = '', last = null;
+  try { token = localStorage.getItem('pm_funnel_token') || ''; } catch(e){}
+
+  function fmt(n){ return (n==null?'—':Number(n).toLocaleString('en-IN')); }
+  function pct(a,b){ return (b>0) ? Math.round(a/b*1000)/10 + '%' : '—'; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+  function ist(at){ try { return new Date(at).toLocaleString('en-IN', { timeZone:'Asia/Kolkata', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' }); } catch(e){ return at; } }
+  function setMsg(t, err){ var m=$('msg'); m.textContent=t||''; m.className='msg'+(err?' err':''); }
+
+  function showAuthed(on){
+    $('tokenbar').style.display = on ? 'none' : 'block';
+    $('controls').style.display = on ? 'flex' : 'none';
+    $('report').style.display   = on ? 'block' : 'none';
+  }
+
+  function load(){
+    if(!token){ showAuthed(false); return; }
+    setMsg('Loading…');
+    fetch(ENDPOINT, {
+      method:'POST',
+      headers:{ apikey:KEY, Authorization:'Bearer '+KEY, 'Content-Type':'application/json' },
+      body: JSON.stringify({ tok: token })
+    }).then(function(r){
+      if(!r.ok) return r.text().then(function(){ throw new Error(r.status===400 ? 'Invalid token' : ('HTTP '+r.status)); });
+      return r.json();
+    }).then(function(d){
+      last = d; render(d); showAuthed(true); setMsg('');
+    }).catch(function(e){
+      if(/Invalid token/.test(e.message)){
+        token=''; try{localStorage.removeItem('pm_funnel_token');}catch(x){}
+        showAuthed(false);
+        setMsg('That token was not accepted. Paste the correct one.', true);
+      } else {
+        setMsg('Could not load: '+e.message, true);
+      }
+    });
+  }
+
+  function bars(el, counts, labels, order){
+    var keys = order.filter(function(k){ return counts[k]; });
+    Object.keys(counts).forEach(function(k){ if(keys.indexOf(k) < 0) keys.push(k); });
+    var max = keys.reduce(function(m,k){ return Math.max(m, counts[k]); }, 0);
+    el.innerHTML = keys.length ? keys.map(function(k){
+      return '<div class="bar"><div class="top"><span>'+esc(labels[k]||k)+'</span><b>'+fmt(counts[k])+'</b></div>'+
+             '<div class="track"><div class="fill" style="width:'+(max ? Math.round(counts[k]/max*100) : 0)+'%"></div></div></div>';
+    }).join('') : '<p class="empty">Nobody yet.</p>';
+  }
+
+  function render(d){
+    $('s_total').textContent = fmt(d.total);
+    $('s_today').textContent = fmt(d.today);
+    $('s_7d').textContent = fmt(d.last_7d);
+    $('s_visitors').textContent = fmt(d.page_visitors);
+    $('c_visitors').textContent = 'joined: ' + pct(d.total, d.page_visitors);
+
+    bars($('b_stream'), d.by_stream||{}, { MPC:'MPC', BiPC:'BiPC' }, ['MPC','BiPC']);
+    bars($('b_year'), d.by_year||{}, YEARS, ['2027','2028','later']);
+    bars($('b_want'), d.by_want||{}, WANTS, ['weakness','photo','check','practice']);
+
+    $('srcBody').innerHTML = (d.by_source||[]).map(function(s){
+      return '<tr><td>'+esc(s.source)+'</td><td class="n">'+fmt(s.visitors)+'</td><td class="n">'+fmt(s.joined)+'</td><td class="n">'+pct(s.joined, s.visitors)+'</td></tr>';
+    }).join('') || '<tr><td colspan="4" class="empty">Nobody yet.</td></tr>';
+
+    $('refBody').innerHTML = (d.top_referrers||[]).map(function(r){
+      return '<tr><td>'+esc(r.name)+'</td><td class="n">'+fmt(r.brought)+'</td></tr>';
+    }).join('') || '<tr><td colspan="2" class="empty">No shared-link joins yet.</td></tr>';
+
+    $('dayBody').innerHTML = (d.daily||[]).map(function(r){
+      return '<tr><td>'+esc(r.day)+'</td><td class="n">'+fmt(r.n)+'</td></tr>';
+    }).join('') || '<tr><td colspan="2" class="empty">Nobody yet.</td></tr>';
+
+    $('listBody').innerHTML = (d.rows||[]).map(function(r){
+      var num = String(r.whatsapp||'').replace(/\D/g,'');
+      return '<tr><td class="n">'+fmt(r.n)+'</td><td>'+esc(ist(r.at))+'</td><td>'+esc(r.name)+'</td>'+
+        '<td><a href="https://wa.me/91'+num+'" target="_blank" rel="noopener">+91 '+esc(num)+'</a></td>'+
+        '<td>'+esc(r.stream)+'</td><td>'+esc(YEARS[r.year]||r.year)+'</td>'+
+        '<td>'+esc((r.wants||[]).map(function(w){ return WANTS[w]||w; }).join(', '))+'</td>'+
+        '<td>'+esc(r.source)+'</td><td>'+esc(r.referred_by||'')+'</td></tr>';
+    }).join('') || '<tr><td colspan="9" class="empty">Nobody yet.</td></tr>';
+
+    var g = d.generated_at ? new Date(d.generated_at).toLocaleString('en-IN', { timeZone:'Asia/Kolkata' }) : '';
+    $('foot').textContent = 'Visitors come from the site beacon on /eapcet; joins from the sign-up list. Updated '+g+' IST.';
+  }
+
+  // CSV — a leading = + - @ would run as a formula in Excel/Sheets; names are student-typed
+  function cell(v){
+    var s = String(v==null?'':v);
+    if(/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return '"' + s.replace(/"/g,'""') + '"';
+  }
+  $('csv').addEventListener('click', function(){
+    if(!last) return;
+    var head = ['n','joined_ist','name','whatsapp','group','year','wants','link','sent_by'];
+    var lines = [head.join(',')].concat((last.rows||[]).slice().reverse().map(function(r){
+      return [r.n, ist(r.at), r.name, '+91'+r.whatsapp, r.stream, YEARS[r.year]||r.year,
+              (r.wants||[]).map(function(w){ return WANTS[w]||w; }).join('; '), r.source, r.referred_by||''].map(cell).join(',');
+    }));
+    var blob = new Blob(['﻿' + lines.join('\r\n')], { type:'text/csv;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'eapcet_list_' + new Date().toISOString().slice(0,10) + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  $('saveTok').addEventListener('click', function(){
+    token = $('token').value.trim();
+    if(!token) return;
+    try{ localStorage.setItem('pm_funnel_token', token); }catch(e){}
+    load();
+  });
+  $('token').addEventListener('keydown', function(e){ if(e.key==='Enter') $('saveTok').click(); });
+  $('refresh').addEventListener('click', load);
+
+  showAuthed(!!token);
+  if(token) load();
+})();
+</script>
+</body>
+</html>
